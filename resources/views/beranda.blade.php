@@ -233,7 +233,6 @@
     style="background:#fff;border-radius:0 0 20px 20px;box-shadow:0 4px 10px rgba(0,0,0,0.1);position:fixed;top:40px;width:100%;z-index:9998;">
     
     <div class="container">
-
         <!-- LOGO -->
         <a class="navbar-brand" href="#">
             <img src="{{ asset('images/beranda/logo-almed.png') }}" height="40">
