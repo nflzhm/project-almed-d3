@@ -224,6 +224,9 @@
     background: #1C145C;
     color: #fff;
 }
+.dropdown-menu {
+    pointer-events: auto;
+}
 </style>
 
 <nav class="navbar navbar-expand-lg navbar-light"
@@ -256,10 +259,10 @@
                     </a>
 
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Pengadaan</a></li>
-                        <li><a class="dropdown-item" href="#">Karir</a></li>
-                        <li><a class="dropdown-item" href="#">Berita</a></li>
-                        <li><a class="dropdown-item" href="#">Video</a></li>
+                        <li><a class="dropdown-item" href="{{ url('/pengadaan') }}">Pengadaan</a></li>
+                        <li><a class="dropdown-item" href="{{ url('/karir') }}">Karir</a></li>
+                        <li><a class="dropdown-item" href="{{ url('/berita') }}">Berita</a></li>
+                        <li><a class="dropdown-item" href="{{ url('/video') }}">Video</a></li>
                     </ul>
                 </li>
 

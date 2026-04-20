@@ -21,3 +21,11 @@ Route::get('/download', function () {
 Route::get('/kontak', function () {
     return view('kontak');
 });
+
+Route::get('/pengadaan', function () {
+    return view('pengadaan');
+})->name('pengadaan');
+
+Route::get('/karir', function () {
+    return view('karir');
+})->name('karir');
