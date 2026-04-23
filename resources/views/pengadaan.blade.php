@@ -284,3 +284,414 @@
 
     </div>
 </nav>
+
+
+<!-- ================= PENGADAAN HEADER ================= -->
+<style>
+.pengadaan-section{
+    padding:60px 0 40px;
+}
+body{
+    padding-top:100px;
+}
+
+.pengadaan-label{
+    font-size:12px;
+    font-weight:600;
+    color:#888;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.pengadaan-heading{
+    font-size:32px;
+    font-weight:800;
+    color:#1C145C;
+    margin:10px 0;
+}
+
+.pengadaan-desc{
+    font-size:14px;
+    color:#444;
+    max-width:650px;
+}
+
+/* ================= STATS ================= */
+.pengadaan-stats{
+    display:flex;
+    gap:20px;
+    margin-top:25px;
+    flex-wrap:wrap;
+}
+
+.stat-card{
+    width:120px;
+    height:120px;
+    border-radius:16px;
+    background:rgba(28, 20, 92, 0.05);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    transition:0.3s;
+}
+
+.stat-card:hover{
+    transform:translateY(-5px);
+    background:rgba(28, 20, 92, 0.1);
+}
+
+.stat-number{
+    font-size:28px;
+    font-weight:800;
+    color:#1C145C;
+}
+
+.stat-text{
+    font-size:12px;
+    color:#555;
+    margin-top:5px;
+}
+</style>
+
+<section class="pengadaan-section">
+<div class="container">
+
+    <!-- WRAPPER BIAR SEJAJAR -->
+    <div class="text-start" style="max-width:600px;">
+
+        <!-- TEXT -->
+        <span class="pengadaan-label">Pengadaan Alat Kesehatan</span>
+
+        <h2 class="pengadaan-heading">
+            RSU Allam Medica Bumiayu
+        </h2>
+
+        <p class="pengadaan-desc">
+            Kami membuka pengadaan alat kesehatan untuk meningkatkan kualitas pelayanan medis 
+            pada periode Oktober – November 2025.
+        </p>
+
+        <!-- ================= STATS ================= -->
+        <div class="pengadaan-stats">
+
+            <div class="stat-card">
+                <div class="stat-number">7</div>
+                <div class="stat-text">Jenis Alat</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-number">29</div>
+                <div class="stat-text">Total Unit</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-number">1 bln</div>
+                <div class="stat-text">Batas Respon</div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+</section>
+
+
+
+<Style>
+.alert-urgent{
+    background:#ffe5e5;
+    border:1px solid #ff4d4d;
+    color:#b30000;
+    border-radius:12px;
+    padding:15px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:30px;
+}
+
+.alert-urgent strong{
+    display:block;
+    font-size:14px;
+}
+
+.badge-urgent{
+    background:#ff1a1a;
+    color:#fff;
+    padding:6px 14px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:600;
+}
+
+/* ================= TABLE CARD ================= */
+.pengadaan-wrapper{
+    display:flex;
+    gap:20px;
+    margin-top:25px;
+    flex-wrap:wrap;
+}
+
+.pengadaan-table-card{
+    flex:2;
+    background:#f9f9f9;
+    border-radius:16px;
+    padding:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.05);
+}
+
+.pengadaan-title{
+    font-weight:700;
+    font-size:16px;
+}
+
+.pengadaan-sub{
+    font-size:12px;
+    color:#777;
+}
+
+.badge-total{
+    background:#e6e0ff;
+    color:#4b3cc9;
+    padding:5px 12px;
+    border-radius:20px;
+    font-size:12px;
+}
+
+/* TABLE */
+.table-custom th{
+    font-size:12px;
+    color:#666;
+}
+
+.table-custom td{
+    font-size:13px;
+}
+
+/* ================= QR CARD ================= */
+.qr-card{
+    flex:1;
+    background:#fff;
+    border-radius:16px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+}
+
+.qr-card img{
+    width:100%;
+    max-width:400px;
+}
+
+.qr-text{
+    font-size:12px;
+    color:#555;
+    margin-top:10px;
+}
+</Style>
+
+
+
+<div class="container">
+
+    <div class="alert-urgent">
+        <div>
+            <strong>Dibutuhkan Segera</strong>
+            <small>
+                Pengiriman penawaran maksimal 1 bulan sejak permintaan diterima. 
+                Prioritas diberikan kepada vendor lokal Bumiayu.
+            </small>
+        </div>
+        <div class="badge-urgent">Urgent</div>
+    </div>
+
+    <!-- ================= TABLE + QR ================= -->
+    <div class="pengadaan-wrapper">
+
+        <!-- TABLE -->
+        <div class="pengadaan-table-card">
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <div class="pengadaan-title">Daftar Kebutuhan Alat Kesehatan</div>
+                    <div class="pengadaan-sub">Periode April – Mei 2026</div>
+                </div>
+                <div class="badge-total">7 Item • 29 Unit</div>
+            </div>
+
+            <table class="table table-borderless table-custom">
+                <thead>
+                    <tr>
+                        <th>NO</th>
+                        <th>NAMA BARANG</th>
+                        <th>JUMLAH</th>
+                        <th>PERIODE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>01</td><td>Bedside Monitor</td><td>8 Unit</td><td>April - Mei 2026</td></tr>
+                    <tr><td>02</td><td>Vein Viewer</td><td>1 Unit</td><td>April - Mei 2026</td></tr>
+                    <tr><td>03</td><td>Bed 3 Crank</td><td>7 Unit</td><td>April - Mei 2026</td></tr>
+                    <tr><td>04</td><td>Syringe Pump</td><td>6 Unit</td><td>April - Mei 2026</td></tr>
+                    <tr><td>05</td><td>Infuse Pump</td><td>3 Unit</td><td>April - Mei 2026</td></tr>
+                    <tr><td>06</td><td>Defibrillator</td><td>2 Unit</td><td>April - Mei 2026</td></tr>
+                    <tr><td>07</td><td>Oximetri Monitor</td><td>1 Unit</td><td>April - Mei 2026</td></tr>
+                </tbody>
+            </table>
+
+            <small style="color:#777;">
+                Kirim penawaran via form atau WhatsApp <br>
+                <b>Link: s.id/PengadaanAllamMedica</b>
+            </small>
+
+        </div>
+
+        <!-- QR -->
+        <div class="qr-card">
+            <img src="{{ asset('images/pengadaan/qr.png') }}" alt="QR Code">
+            <div class="qr-text">
+                Atau scan QR di atas <br>
+                untuk mengirimkan penawaran
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- footer -->
+<footer style="background:#FFFFFF; color:black; padding:50px 0 20px;">
+
+    <div class="container-fluid px-5">
+
+        <div class="row align-items-start">
+
+            <!-- LOGO + DESKRIPSI -->
+            <div class="col-md-3 mb-4" style="padding-right:30px;">
+
+                <!-- LOGO DIPERKECIL -->
+                <img src="{{ asset('images/beranda/logo-almed.png') }}"
+                     style="height:50px; margin-bottom:10px;">
+
+                <h5 class="fw-bold mb-2">RSU Allam Medica Bumiayu</h5>
+
+                <p style="font-size:13px; line-height:1.6; color:#666; margin-bottom:15px;">
+                    Jl. Pangeran Diponegoro No. 609, Jatisawit, Bumiayu,
+                    Kabupaten Brebes, Jawa Tengah 52273
+                </p>
+
+                <!-- SOSIAL -->
+                <div style="margin-bottom:15px;">
+                    <i class="bi bi-twitter me-2" style="color:#666;"></i>
+                    <i class="bi bi-facebook me-2" style="color:#666;"></i>
+                    <i class="bi bi-instagram" style="color:#666;"></i>
+                </div>
+
+                <!-- AKREDITASI & MITRA -->
+                <small style="color:#666;">Akreditasi & Mitra</small><br>
+
+                <div style="margin-top:8px; display:flex; gap:10px; align-items:center;">
+                    <img src="{{ asset('images/beranda/paripurna.png') }}" style="height:35px;">
+                    <img src="{{ asset('images/beranda/bpjs.png') }}" style="height:25px;">
+                </div>
+
+            </div>
+
+            <!-- TAUTAN CEPAT -->
+            <div class="col-md-2 mb-4">
+                <h6 class="fw-bold mb-3">Tautan Cepat</h6>
+
+                <ul style="list-style:none; padding:0; font-size:13px; line-height:1.9;">
+                    <li><a href="#" style="color:#666; text-decoration:none;">Beranda</a></li>
+                    <li><a href="#" style="color:#666; text-decoration:none;">Tentang Kami</a></li>
+                    <li><a href="#" style="color:#666; text-decoration:none;">Video</a></li>
+                    <li><a href="#" style="color:#666; text-decoration:none;">Kontak</a></li>
+                </ul>
+
+                <h6 class="fw-bold mt-3 mb-2">Download</h6>
+                <ul style="list-style:none; padding:0; font-size:13px; line-height:1.9;">
+                    <li><a href="#" style="color:#666; text-decoration:none;">Download List Pengadaan</a></li>
+                    <li><a href="#" style="color:#666; text-decoration:none;">Lihat Semua Data</a></li>
+                </ul>
+            </div>
+
+            <!-- MENU -->
+            <div class="col-md-2 mb-4">
+                <h6 class="fw-bold mb-3">Menu</h6>
+
+                <ul style="list-style:none; padding:0; font-size:13px; line-height:1.9;">
+                    <li><a href="#" style="color:#666; text-decoration:none;">Beranda</a></li>
+                    <li><a href="#" style="color:#666; text-decoration:none;">Layanan</a></li>
+                    <li><a href="#" style="color:#666; text-decoration:none;">Dokter</a></li>
+                    <li><a href="#" style="color:#666; text-decoration:none;">Kontak</a></li>
+                </ul>
+
+                <h6 class="fw-bold mt-3 mb-2">Informasi Legal</h6>
+                <ul style="list-style:none; padding:0; font-size:13px; line-height:1.9;">
+                    <li><a href="#" style="color:#666; text-decoration:none;">Kebijakan Privasi</a></li>
+                    <li><a href="#" style="color:#666; text-decoration:none;">Disclaimer</a></li>
+                </ul>
+            </div>
+
+            <!-- LAYANAN -->
+            <div class="col-md-3 mb-4">
+                <h6 class="fw-bold mb-3">Layanan</h6>
+
+                <ul style="list-style:none; padding:0; font-size:13px; line-height:1.8; color:#666;">
+                    <li>Poliklinik Spesialis Anak</li>
+                    <li>Poliklinik Spesialis Penyakit Dalam</li>
+                    <li>Poliklinik Spesialis THT</li>
+                    <li>Poliklinik Spesialis Mata</li>
+                    <li>Poliklinik Spesialis Kandungan</li>
+                    <li>Poliklinik Dermatologi & Estetika</li>
+                    <li>Poliklinik Gigi (Umum)</li>
+                    <li>Poliklinik Jantung & Pembuluh Darah</li>
+                </ul>
+            </div>
+
+            <!-- HUBUNGI (DIGESER KE KIRI) -->
+            <div class="col-md-2 mb-4" style="padding-left:0;">
+
+                <h6 class="fw-bold mb-3">Hubungi Kami</h6>
+
+                <p style="color:#666; font-size:13px; margin-bottom:10px;">
+                    <i class="bi bi-telephone-fill me-2"></i> (0289) 430822
+                </p>
+
+                <p style="color:#666; font-size:13px; margin-bottom:10px;">
+                    <i class="bi bi-envelope-fill me-2"></i> allam.medica@yahoo.co.id
+                </p>
+
+                <p style="color:#666; font-size:13px; margin-bottom:10px;">
+                    <i class="bi bi-clock-fill me-2"></i>
+                    IGD: 24 Jam | Rawat Jalan: Sen - Sab 07.00 – 21.00
+                </p>
+
+                <p style="color:#666; font-size:13px; line-height:1.6;">
+                    <i class="bi bi-geo-alt-fill me-2"></i>
+                    Jl. Pangeran Diponegoro No.609, Bumiayu, Brebes
+                </p>
+
+            </div>
+
+        </div>
+
+        <hr style="border-color:#ddd; margin:20px 0;">
+
+        <div class="text-start" style="font-size:13px; color:#666;">
+            © 2026 RSU Allam Medica. Hak Cipta Dilindungi.
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
