@@ -5,255 +5,184 @@
     <title>RSU Allam Medica - Beranda</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Style tambahan -->
+</head>
+
+<body>
     <style>
-        body {
-            font-family: 'Segoe UI', sans-serif;
-        }
-        .hero {
-            background: linear-gradient(#1C145C, #fdfdfd),
-                        url('/images/rs.jpg') no-repeat center;
-            background-size: cover;
-            color: white;
-            padding: 100px 0;
-        }
-        .card:hover {
-            transform: scale(1.05);
-            transition: 0.3s;
-        }
-        footer {
-            background: #1C145C;
-            color: white;
-            padding: 20px 0;
-        }
-        .navbar-white {
-        background-color: #ffffff !important;
-        border-radius: 0 0 20px 20px; /* kiri atas, kanan atas, kanan bawah, kiri bawah */
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* biar lebih elegan */
-        }
+
         
-        .dropdown-menu {
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        .partner-slider {
-            overflow: hidden;
-            position: relative;
-            width: 100%;
-        }
+body {
+    font-family: 'Segoe UI', sans-serif;
+    padding-top: 90px;
+}
 
-        .partner-track {
-            display: flex;
-            width: max-content;
-            animation: scroll 30s linear infinite;
-        }
+/* ================= TOP BAR ================= */
+.topbar {
+    background:#1C145C;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+    height: 40px;
+    padding: 2px 0;
+}
 
-        /* JARAK ANTAR LOGO */
-        .partner-item {
-            flex: 0 0 auto;
-            margin: 0 25px; /* jarak kiri kanan */
-        }
+/* ================= NAVBAR ================= */
+.navbar-main {
+    background: #fff;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    position: fixed;
+    top: 40px;
+    width: 100%;
+    z-index: 9998;
+}
 
-        /* UKURAN + HITAM PUTIH */
-        .partner-item img {
-            height: 60px;
-            width: auto;
-            object-fit: contain;
-            filter: grayscale(100%); /* jadi hitam putih */
-            opacity: 0.7;
-            transition: 0.3s ease;
-        }
+/* ================= DESKTOP GAP ================= */
+.nav-gap {
+    gap: 18px;
+}
 
-        /* HOVER JADI WARNA */
-        .partner-item img:hover {
-            filter: grayscale(0%);
-            opacity: 1;
-            transform: scale(1.1);
-        }
+/* ================= DROPDOWN DESKTOP ================= */
+@media (min-width: 992px) {
 
-        .floating-bar {
-        position: fixed;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 9999;
+    .dropdown-menu {
+        display: block;
+        opacity: 0;
+        transform: translateY(10px);
+        visibility: hidden;
+        transition: all 0.3s ease;
 
-        display: flex;
-        overflow: hidden;
-
-        border-radius: 40px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        border-radius: 12px;
+        border: none;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        padding: 10px 0;
     }
 
-    /* item umum */
-    .floating-item {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-
-        padding: 12px 25px;
-        font-size: 14px;
-        font-weight: 500;
-
-        background: #eaeaea;
-        color: #000;
-
-        transition: 0.3s;
-    }
-
-    /* kiri & kanan merah */
-    .floating-item.active {
-        background: #ff1a1a;
-        color: white;
-    }
-
-    /* tengah */
-    .floating-item.middle {
-        background: #e5e5e5;
-        color: #000;
-    }
-
-    /* icon */
-    .floating-item i {
-        font-size: 18px;
-    }
-
-    /* hover effect */
-    .floating-item:hover {
-        transform: translateY(-2px);
-        cursor: pointer;
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-        .floating-item span {
-            display: none;
-        }
-
-        .floating-item {
-            padding: 12px 15px;
-        }
-    }
-
-/* ANIMASI */
-@keyframes scroll {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(-50%);
+    .nav-item.dropdown:hover .dropdown-menu {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
     }
 }
-    </style>
-</head>
+
+/* ================= MOBILE FIX ================= */
+@media (max-width: 991px) {
+
+    body {
+        padding-top: 100px;
+    }
+
+    /* HAPUS JARAK MENU */
+    .navbar-nav.nav-gap {
+        gap: 0 !important;
+        width: 100%;
+    }
+
+    .navbar-nav .nav-item {
+        padding: 0;
+    }
+
+    .navbar-nav .nav-link {
+        padding: 10px 0;
+    }
+
+    /* ================= DROPDOWN SMOOTH MOBILE ================= */
+    .dropdown-menu {
+        position: static;
+        display: block !important;
+
+        max-height: 0;
+        overflow: hidden;
+
+        opacity: 0;
+        visibility: hidden;
+
+        transform: translateY(-5px);
+
+        transition: all 0.35s ease;
+
+        box-shadow: none;
+        border: none;
+        padding-left: 15px;
+    }
+
+    .dropdown-menu.show {
+        max-height: 500px;
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+}
+        </style>
+
+
 <body>
 
-<!-- ✅ Navbar -->
-
-<nav class="navbar navbar-expand-lg navbar-dark"
-    style="background:#1C145C;position:fixed;top:0;width:100%;z-index:9999;padding:2px 0;height:40px;">
+<!-- ================= TOP BAR ================= -->
+<nav class="navbar navbar-dark topbar">
     <div class="container">
 
-        <ul class="navbar-nav" style="font-size:13px;">
+        <ul class="navbar-nav flex-row" style="font-size:13px;">
             <li class="nav-item">
-                <span style="color:#fff;display:block;padding:4px 10px;">
-                    <i class="bi bi-telephone-fill" style="color:#fff;margin-right:5px;font-size:12px;"></i>
+                <span style="color:#fff;padding:4px 10px;">
+                    <i class="bi bi-telephone-fill" style="margin-right:5px;font-size:12px;"></i>
                     0834325542
                 </span>
             </li>
+
             <li class="nav-item">
-                <span style="color:#fff;display:block;padding:4px 10px;">
-                    <i class="bi bi-envelope-fill" style="color:#fff;margin-right:5px;font-size:12px;"></i>
+                <span style="color:#fff;padding:4px 10px;">
+                    <i class="bi bi-envelope-fill" style="margin-right:5px;font-size:12px;"></i>
                     allammedica@gmail.com
                 </span>
             </li>
         </ul>
 
-        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="menu">
-            <ul class="navbar-nav ms-auto" style="font-size:13px;">
-                <li class="nav-item"><a class="nav-link" href="#" style="padding:4px 8px;"><i class="bi bi-twitter" style="font-size:14px;"></i></a></li>
-                <li class="nav-item"><a class="nav-link" href="#" style="padding:4px 8px;"><i class="bi bi-facebook" style="font-size:14px;"></i></a></li>
-                <li class="nav-item"><a class="nav-link" href="#" style="padding:4px 8px;"><i class="bi bi-instagram" style="font-size:14px;"></i></a></li>
-            </ul>
-        </div>
+        <ul class="navbar-nav flex-row ms-auto">
+            <li class="nav-item"><a class="nav-link text-white p-1" href="#"><i class="bi bi-twitter"></i></a></li>
+            <li class="nav-item"><a class="nav-link text-white p-1" href="#"><i class="bi bi-facebook"></i></a></li>
+            <li class="nav-item"><a class="nav-link text-white p-1" href="#"><i class="bi bi-instagram"></i></a></li>
+        </ul>
 
     </div>
 </nav>
 
-<style>
-/* DROPDOWN ANIMATION */
-.dropdown-menu {
-    border-radius: 12px;
-    border: none;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    padding: 10px 0;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: all 0.3s ease;
-    display: block;
-    visibility: hidden;
-}
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar navbar-expand-lg navbar-light navbar-main">
 
-/* SHOW ON HOVER */
-.nav-item.dropdown:hover .dropdown-menu {
-    opacity: 1;
-    transform: translateY(0);
-    visibility: visible;
-}
-
-/* ITEM STYLE */
-.dropdown-item {
-    font-size: 14px;
-    padding: 8px 20px;
-    transition: 0.2s;
-}
-
-/* HOVER EFFECT */
-.dropdown-item:hover {
-    background: #1C145C;
-    color: #fff;
-}
-.dropdown-menu {
-    pointer-events: auto;
-}
-</style>
-
-<nav class="navbar navbar-expand-lg navbar-light"
-    style="background:#fff;border-radius:0 0 20px 20px;box-shadow:0 4px 10px rgba(0,0,0,0.1);position:fixed;top:40px;width:100%;z-index:9998;">
-    
     <div class="container">
+
         <!-- LOGO -->
         <a class="navbar-brand" href="#">
             <img src="{{ asset('images/beranda/logo-almed.png') }}" height="40">
         </a>
 
-        <!-- TOGGLER -->
-        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+        <!-- BURGER -->
+        <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <!-- MENU -->
-        <div class="collapse navbar-collapse" id="menu">
-            <ul class="navbar-nav ms-auto">
+        <div class="collapse navbar-collapse" id="mainMenu">
 
-                <li class="nav-item">
-                    <a href="/" class="nav-link">Beranda</a>
-                </li>
+            <ul class="navbar-nav ms-auto nav-gap">
 
-                <!-- DROPDOWN -->
-                <li class="nav-item dropdown position-relative">
-                    <a class="nav-link dropdown-toggle" href="#">
+                <li class="nav-item"><a href="/" class="nav-link">Beranda</a></li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
                         Menu
                     </a>
 
@@ -265,23 +194,13 @@
                     </ul>
                 </li>
 
-                <li class="nav-item">
-                    <a href="/layanan" class="nav-link">Layanan</a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="/download" class="nav-link me-3">Download</a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="/tentang" class="nav-link">Tentang Kami</a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="/kontak" class="nav-link">Kontak</a>
-                </li>
+                <li class="nav-item"><a href="/layanan" class="nav-link">Layanan</a></li>
+                <li class="nav-item"><a href="/download" class="nav-link">Download</a></li>
+                <li class="nav-item"><a href="/tentang" class="nav-link">Tentang Kami</a></li>
+                <li class="nav-item"><a href="/kontak" class="nav-link">Kontak</a></li>
 
             </ul>
+
         </div>
 
     </div>
@@ -328,24 +247,7 @@ body {
 </section>
 
 
-<div class="floating-bar">
 
-    <div class="floating-item active">
-        <i class="bi bi-hospital"></i>
-        <span>IGD 24 JAM</span>
-    </div>
-
-    <div class="floating-item middle">
-        <i class="bi bi-calendar-check"></i>
-        <span>Jadwal Praktik</span>
-    </div>
-
-    <div class="floating-item active">
-        <i class="bi bi-geo-alt-fill"></i>
-        <span>Alamat</span>
-    </div>
-
-</div>
 
 
 <section style="background:#1C145C; color:white; margin:0; padding:15px 0;">
@@ -439,7 +341,7 @@ body {
             <div class="col-md-10 text-center">
 
                 <p style="line-height:1.8; font-size:16px; color:#333;">
-                    <strong>RSU Alam Medica</strong> Rumah Sakit Umum “Allam Medica” berdiri sejak tahun 2012
+                    Rumah Sakit Umum <strong>“Allam Medica”</strong> berdiri sejak tahun 2012
                     didirikan oleh Yayasan Allam Medica Bumiayu. Pada mulanya merupakan klinik pelayanan kesehatan
                     umum dan kebidanan dengan nama Balai Pengobatan dan Rumah Bersalin Allam Medica.
                     Penyelenggaraan rumah sakit sejak tahun 2008 dengan surat ijin Bupati Brebes nomor :
@@ -1714,7 +1616,7 @@ body {
 
 <!-- BUTTON LIHAT BERITA LAINNYA -->
 <div class="text-center mt-4" style="margin-bottom:40px;">
-    <a href="#"
+    <a href="/berita"
        style="
             display:inline-block;
             padding:10px 20px;
@@ -1799,6 +1701,61 @@ body {
 
     </div>
 
+
+
+<style>
+
+/* ================= SLIDER WRAPPER ================= */
+.partner-slider {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+}
+
+/* ================= TRACK ANIMATION ================= */
+.partner-track {
+    display: flex;
+    width: max-content;
+    animation: scroll 30s linear infinite;
+    align-items: center;
+}
+
+/* ================= ITEM + JARAK ================= */
+.partner-item {
+    flex: 0 0 auto;
+    margin: 0 30px; /* 👉 INI JARAK ANTAR LOGO */
+}
+
+/* ================= IMAGE STYLE ================= */
+.partner-item img {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+
+    /* HITAM PUTIH DEFAULT */
+    filter: grayscale(100%);
+    opacity: 0.6;
+
+    transition: all 0.3s ease;
+}
+
+/* ================= HOVER COLOR ================= */
+.partner-item img:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* ================= ANIMASI LOOP ================= */
+@keyframes scroll {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+</style>
     <!-- SLIDER -->
     <div class="partner-slider">
 
@@ -2093,4 +2050,104 @@ body {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+<!-- ================= FLOATING BAR FINAL ================= -->
+<style>
+
+/* FLOATING BAR */
+.floating-bar{
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 99999999 !important;
+
+    display: flex;
+    overflow: hidden;
+
+    border-radius: 60px; /* lebih rounded */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+}
+
+/* ITEM */
+.floating-item{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 500;
+
+    text-decoration: none;
+    background: #eaeaea;
+    color: #000;
+
+    transition: 0.3s ease;
+}
+
+/* KIRI */
+.floating-item:first-child{
+    border-radius: 60px 0 0 60px;
+}
+
+/* KANAN */
+.floating-item:last-child{
+    border-radius: 0 60px 60px 0;
+}
+
+/* MERAH */
+.floating-item.active{
+    background: #ff1a1a;
+    color: #fff;
+}
+
+/* TENGAH */
+.floating-item.middle{
+    background: #e5e5e5;
+    color: #000;
+}
+
+/* ICON */
+.floating-item i{
+    font-size: 18px;
+}
+
+/* HOVER */
+.floating-item:hover{
+    transform: translateY(-2px);
+    opacity: .95;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+
+    .floating-item span{
+        display:none;
+    }
+
+    .floating-item{
+        padding:12px 15px;
+    }
+}
+</style>
+
+<div class="floating-bar">
+
+    <a href="tel:0834325542" class="floating-item active">
+        <i class="bi bi-hospital"></i>
+        <span>IGD 24 JAM</span>
+    </a>
+
+    <a href="{{ url('/jadwaldokter') }}" class="floating-item middle">
+        <i class="bi bi-calendar-check"></i>
+        <span>Jadwal Praktik</span>
+    </a>
+
+    <a href="https://maps.google.com" target="_blank" class="floating-item active">
+        <i class="bi bi-geo-alt-fill"></i>
+        <span>Alamat</span>
+    </a>
+
+</div>
+</div>
 </html>

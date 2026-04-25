@@ -16,9 +16,8 @@
 
 </head>
 
-<!-- ✅ Navbar -->
-
-<style>
+<body>
+    <style>
 
         
 body {
@@ -207,341 +206,253 @@ body {
     </div>
 </nav>
 
-
-
-
+<!-- ================= VIDEO HEADER ================= -->
 <style>
-/* ================= FIX NAVBAR SPACE ================= */
-body{
-    padding-top:80px; /* tinggi total navbar */
+
+.video-section{
+    padding:60px 0 40px;
 }
 
-/* ================= FULL BANNER ================= */
-.banner-download{
-    position:relative;
-    height:200px;
-    width:100%;
-    display:flex;
-    align-items:center;
-    color:#fff;
-    overflow:hidden;
+.video-wrap{
+    max-width: 900px;   /* bikin lebih lega */
+    text-align: left;
 }
 
-
-/* IMAGE */
-.banner-download img{
-    position:absolute;
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    top:0;
-    left:0;
-    z-index:1;
-}
-
-/* GRADIENT */
-.banner-overlay{
-    position:absolute;
-    width:100%;
-    height:100%;
-    background:linear-gradient(
-        to right,
-        rgba(28,20,92,0.85),
-        rgba(28,20,92,0.6),
-        rgba(28,20,92,0.2)
-    );
-    z-index:2;
-}
-
-/* CONTENT */
-.banner-content{
-    position:relative;
-    z-index:3;
-    padding-left:60px;
-    max-width:1000px; /* 🔥 diperlebar */
-}
-
-/* TEXT */
-.banner-title{
-    font-size:24px;
-    font-weight:700;
-    margin-bottom:8px;
-}
-
-.banner-desc{
-    font-size:13px;
-    line-height:1.7;
-    text-align:justify; /* 🔥 biar rata kiri kanan */
-}
-.download-card{
-    display:flex;
-    flex-direction:column;
-}
-</style>
-
-<!-- ================= BANNER ================= -->
-<section class="banner-download">
-
-    <img src="{{ asset('images/download/banner.png') }}">
-
-    <div class="banner-overlay"></div>
-
-    <div class="banner-content">
-        <div class="banner-title">
-            Download List Pengadaan
-        </div>
-
-        <div class="banner-desc">
-            Pengadaan rumah sakit merupakan langkah strategis dalam meningkatkan akses dan kualitas pelayanan kesehatan bagi masyarakat. Dalam proses ini, berbagai aspek harus dipertimbangkan, mulai dari perencanaan, pembangunan, hingga operasionalisasi rumah sakit agar dapat berfungsi secara optimal sesuai dengan standar pelayanan kesehatan yang ditetapkan.
-        </div>
-    </div>
-
-</section>
-
-
-
-<style>
-/* WRAPPER (LEBIH LEBAR) */
-.download-wrapper{
-    max-width:1300px; /* 🔥 lebih lebar dari sebelumnya */
-    margin:auto;
-}
-
-/* CARD */
-.download-card{
-    display:flex;
-    flex-direction:column;
-    background:#fff;
-    border-radius:14px;
-    padding:16px;
-    box-shadow:0 8px 20px rgba(0,0,0,0.05);
-    transition:0.3s;
-    height:100%;
-}
-
-.download-card:hover{
-    transform:translateY(-4px);
-}
-
-/* HEADER */
-.download-header{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    margin-bottom:8px;
-}
-
-/* ICON */
-.download-icon{
-    width:36px;
-    height:36px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:8px;
-    background:rgba(25,135,84,0.1);
-    color:#198754;
-    font-size:16px;
-}
-
-/* TITLE */
-.download-title{
-    font-size:14px;
-    font-weight:700;
-}
-
-/* SUBTITLE */
-.download-subtitle{
+/* LABEL */
+.video-label{
     font-size:12px;
     font-weight:600;
+    color:#888;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+/* JUDUL */
+.video-heading{
+    font-size:32px;
+    font-weight:800;
     color:#1C145C;
-    margin-bottom:4px;
-}
-
-/* DESC */
-.download-desc{
-    font-size:12px;
-    color:#444;
-    line-height:1.5;
-}
-
-/* LINE */
-.download-line{
-    height:1px;
-    background:#eee;
     margin:10px 0;
 }
 
-/* INFO */
-.download-info{
-    font-size:11px;
-    color:#888;
-    line-height:1.5;
-}
+/* PARAGRAF FIX */
+.video-desc{
+    font-size:14px;
+    color:#444;
 
-/* BUTTON */
-.btn-download{
-    margin-top:auto;
-    background:#198754;
-    color:#fff;
-    border:none;
-    border-radius:6px;
-    padding:7px;
-    font-size:12px;
-    font-weight:600;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:5px;
-}
+    margin:0;
+    padding:0;
 
-.btn-download:hover{
-    background:#157347;
+    line-height:1.6;
+
+    white-space: normal;
+
+    /* 🔥 INI YANG MEMASTIKAN TIDAK “ANEH ENTER” */
+    display: block;
+    width: 100%;
 }
 </style>
 
+<section class="video-section">
+    <div class="container">
 
-<div class="container-fluid py-5 download-wrapper">
-<div class="row g-3">
+        <!-- WRAPPER FULL WIDTH CONTROL -->
+        <div class="video-wrap">
 
-<!-- CARD 1 -->
-<div class="col-lg-4 col-md-6">
-<div class="download-card">
-<div class="download-header">
-<div class="download-icon"><i class="bi bi-file-earmark-text-fill"></i></div>
-<div class="download-title">Kebutuhan Alat Kesehatan</div>
-</div>
-<div class="download-subtitle">Bulan April 2026 - Mei 2026</div>
-<div class="download-desc">Surat Kebutuhan Alat Kesehatan RSU Allam Medica Bumiayu</div>
-<div class="download-line"></div>
-<div class="download-info"><i class="bi bi-clock"></i> Diunggah: 1 April 2026 <br> PDF 1,5 MB</div>
-<button class="btn-download"><i class="bi bi-download"></i> Download</button>
+            <span class="video-label">Video RSU Allam Medica</span>
+
+            <h2 class="video-heading">
+                Lihat Langsung Layanan dan Kegiatan Kami
+            </h2>
+
+            <p class="video-desc">
+                Dokumentasi prosedur medis, edukasi kesehatan, dan kegiatan rumah sakit dalam bentuk video yang informatif dan mudah dipahami.
+            </p>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= CARD VIDEO ================= -->
+<style>
+.video-card{
+    border: none;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+}
+
+/* WRAPPER GAMBAR */
+.video-img{
+    overflow: hidden;
+    height: 100%;
+}
+
+/* GAMBAR */
+.video-card img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    min-height: 320px;
+}
+
+/* BODY */
+.video-card .card-body{
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    min-height: 320px;
+}
+
+/* HEAD TETAP DI ATAS */
+.video-card h3{
+    font-size: 20px;
+    font-weight: 800;
+    color: #1C145C;
+    margin-bottom: 12px;
+}
+
+/* DESKRIPSI TETAP DI ATAS */
+.video-card p{
+    font-size: 13px;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+/* BUTTON PALING BAWAH */
+.btn-wrap{
+    margin-top: auto;
+}
+
+/* BUTTON DIKECILKAN */
+.btn-youtube{
+    background: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.3s;
+}
+
+.btn-youtube:hover{
+    background: #d90000;
+    color: #fff;
+}
+
+/* MOBILE */
+@media(max-width:991px){
+
+    .video-card img{
+        min-height: 230px;
+    }
+
+    .video-card .card-body{
+        min-height: auto;
+        padding: 22px;
+    }
+
+    .video-card h3{
+        font-size: 18px;
+    }
+
+    .video-card p{
+        font-size: 12px;
+    }
+}
+</style>
+
+<section class="pb-5">
+<div class="container">
+
+<div class="card video-card">
+<div class="row g-0 align-items-stretch">
+
+    <!-- GAMBAR -->
+    <div class="col-lg-5">
+        <div class="video-img">
+            <img src="{{ asset('images/vid/codered.png') }}" alt="Code Red RSU Allam Medica">
+        </div>
+    </div>
+
+    <!-- DESKRIPSI -->
+    <div class="col-lg-7">
+        <div class="card-body">
+
+            <h3>Code Red RSU Allam Medica Bumiayu</h3>
+
+            <p>
+                Dokumentasi simulasi penanganan darurat Code Red di RSU Allam Medica 
+                Bumiayu yang menggambarkan kesiapsiagaan serta koordinasi tim medis 
+                dalam menghadapi situasi kebakaran atau kondisi darurat lainnya. 
+                Simulasi ini mencakup penerapan prosedur tanggap darurat secara 
+                sistematis, mulai dari deteksi awal, evakuasi pasien, hingga 
+                penanganan risiko untuk meminimalisir dampak yang ditimbulkan.
+            </p>
+
+            <div class="btn-wrap">
+                <a href="https://youtube.com/" target="_blank" class="btn-youtube">
+                    <i class="bi bi-youtube"></i> Tonton di YouTube
+                </a>
+            </div>
+
+        </div>
+    </div>
+
 </div>
 </div>
 
-<!-- CARD 2 -->
-<div class="col-lg-4 col-md-6">
-<div class="download-card">
-<div class="download-header">
-<div class="download-icon"><i class="bi bi-file-earmark-text-fill"></i></div>
-<div class="download-title">Kebutuhan Obat Rumah Sakit</div>
 </div>
-<div class="download-subtitle">Bulan Mei 2026</div>
-<div class="download-desc">Daftar kebutuhan obat RSU Allam Medica Bumiayu</div>
-<div class="download-line"></div>
-<div class="download-info"><i class="bi bi-clock"></i> Diunggah: 3 April 2026 <br> PDF 2,1 MB</div>
-<button class="btn-download"><i class="bi bi-download"></i> Download</button>
-</div>
-</div>
+</section>
 
-<!-- CARD 3 -->
-<div class="col-lg-4 col-md-6">
-<div class="download-card">
-<div class="download-header">
-<div class="download-icon"><i class="bi bi-file-earmark-text-fill"></i></div>
-<div class="download-title">Pengadaan Alat Laboratorium</div>
-</div>
-<div class="download-subtitle">Bulan Juni 2026</div>
-<div class="download-desc">Dokumen pengadaan alat laboratorium terbaru</div>
-<div class="download-line"></div>
-<div class="download-info"><i class="bi bi-clock"></i> Diunggah: 5 April 2026 <br> PDF 1,8 MB</div>
-<button class="btn-download"><i class="bi bi-download"></i> Download</button>
-</div>
-</div>
+<section class="pb-5">
+<div class="container">
 
-<!-- CARD 4 -->
-<div class="col-lg-4 col-md-6">
-<div class="download-card">
-<div class="download-header">
-<div class="download-icon"><i class="bi bi-file-earmark-text-fill"></i></div>
-<div class="download-title">Pengadaan Alat Radiologi</div>
-</div>
-<div class="download-subtitle">Bulan Juni 2026</div>
-<div class="download-desc">Dokumen kebutuhan alat radiologi RSU</div>
-<div class="download-line"></div>
-<div class="download-info"><i class="bi bi-clock"></i> Diunggah: 6 April 2026 <br> PDF 2,5 MB</div>
-<button class="btn-download"><i class="bi bi-download"></i> Download</button>
-</div>
-</div>
+<div class="card video-card">
+<div class="row g-0 align-items-stretch">
 
-<!-- CARD 5 -->
-<div class="col-lg-4 col-md-6">
-<div class="download-card">
-<div class="download-header">
-<div class="download-icon"><i class="bi bi-file-earmark-text-fill"></i></div>
-<div class="download-title">Pengadaan ATK</div>
-</div>
-<div class="download-subtitle">Bulan April 2026</div>
-<div class="download-desc">Daftar kebutuhan alat tulis kantor RSU</div>
-<div class="download-line"></div>
-<div class="download-info"><i class="bi bi-clock"></i> Diunggah: 7 April 2026 <br> PDF 900 KB</div>
-<button class="btn-download"><i class="bi bi-download"></i> Download</button>
-</div>
-</div>
+    <!-- GAMBAR -->
+    <div class="col-lg-5">
+        <div class="video-img">
+            <img src="{{ asset('images/vid/codeblue.png') }}" alt="Code Red RSU Allam Medica">
+        </div>
+    </div>
 
-<!-- CARD 6 -->
-<div class="col-lg-4 col-md-6">
-<div class="download-card">
-<div class="download-header">
-<div class="download-icon"><i class="bi bi-file-earmark-text-fill"></i></div>
-<div class="download-title">Pengadaan Peralatan IT</div>
-</div>
-<div class="download-subtitle">Bulan Mei 2026</div>
-<div class="download-desc">Dokumen kebutuhan perangkat IT rumah sakit</div>
-<div class="download-line"></div>
-<div class="download-info"><i class="bi bi-clock"></i> Diunggah: 8 April 2026 <br> PDF 3,2 MB</div>
-<button class="btn-download"><i class="bi bi-download"></i> Download</button>
-</div>
-</div>
+    <!-- DESKRIPSI -->
+    <div class="col-lg-7">
+        <div class="card-body">
 
-<!-- CARD 7 -->
-<div class="col-lg-4 col-md-6">
-<div class="download-card">
-<div class="download-header">
-<div class="download-icon"><i class="bi bi-file-earmark-text-fill"></i></div>
-<div class="download-title">Pengadaan Ambulance</div>
-</div>
-<div class="download-subtitle">Bulan Juli 2026</div>
-<div class="download-desc">Rencana pengadaan kendaraan ambulance</div>
-<div class="download-line"></div>
-<div class="download-info"><i class="bi bi-clock"></i> Diunggah: 9 April 2026 <br> PDF 4,1 MB</div>
-<button class="btn-download"><i class="bi bi-download"></i> Download</button>
-</div>
-</div>
+            <h3>Code Blue RSU Allam Medica Bumiayu</h3>
 
-<!-- CARD 8 -->
-<div class="col-lg-4 col-md-6">
-<div class="download-card">
-<div class="download-header">
-<div class="download-icon"><i class="bi bi-file-earmark-text-fill"></i></div>
-<div class="download-title">Pengadaan Alat Operasi</div>
-</div>
-<div class="download-subtitle">Bulan Juni 2026</div>
-<div class="download-desc">Daftar kebutuhan alat operasi rumah sakit</div>
-<div class="download-line"></div>
-<div class="download-info"><i class="bi bi-clock"></i> Diunggah: 10 April 2026 <br> PDF 2,7 MB</div>
-<button class="btn-download"><i class="bi bi-download"></i> Download</button>
-</div>
-</div>
+            <p>
+                Code Blue RSU Allam Medica Bumiayu merupakan prosedur 
+                penanganan darurat untuk kondisi henti jantung atau pernapasan 
+                yang membutuhkan respon cepat dari tim medis. Pelaksanaan Code 
+                Blue menekankan koordinasi yang sigap, tindakan resusitasi yang 
+                tepat, serta kesiapan peralatan medis guna meningkatkan peluang 
+                keselamatan pasien dalam situasi kritis.
+            </p>
 
-<!-- CARD 9 -->
-<div class="col-lg-4 col-md-6">
-<div class="download-card">
-<div class="download-header">
-<div class="download-icon"><i class="bi bi-file-earmark-text-fill"></i></div>
-<div class="download-title">Pengadaan Peralatan ICU</div>
-</div>
-<div class="download-subtitle">Bulan Juli 2026</div>
-<div class="download-desc">Dokumen kebutuhan peralatan ICU terbaru</div>
-<div class="download-line"></div>
-<div class="download-info"><i class="bi bi-clock"></i> Diunggah: 12 April 2026 <br> PDF 3,8 MB</div>
-<button class="btn-download"><i class="bi bi-download"></i> Download</button>
-</div>
-</div>
+            <div class="btn-wrap">
+                <a href="https://youtube.com/" target="_blank" class="btn-youtube">
+                    <i class="bi bi-youtube"></i> Tonton di YouTube
+                </a>
+            </div>
+
+        </div>
+    </div>
 
 </div>
 </div>
 
+</div>
+</section>
 
 <!-- footer -->
 <footer style="background:#FFFFFF; color:black; padding:50px 0 20px;">

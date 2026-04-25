@@ -29,3 +29,15 @@ Route::get('/pengadaan', function () {
 Route::get('/karir', function () {
     return view('karir');
 })->name('karir');
+
+Route::get('/berita', function () {
+    return view('berita');
+})->name('berita');
+
+Route::get('/video', function () {
+    return view('video');
+})->name('video');
+
+Route::get('/jadwaldokter', function () {
+    return view('jadwaldokter');
+});
