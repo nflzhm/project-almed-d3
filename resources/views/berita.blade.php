@@ -1,8 +1,11 @@
+@php
+use Illuminate\Support\Str;
+@endphp
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>RSU Allam Medica - Beranda</title>
+    <title>RSU Allam Medica - Berita</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap CSS -->
@@ -277,10 +280,10 @@ body {
 <!-- MEDIA INFORMASI -->
 <section style="background:#fff; padding:50px 0;">
     <div class="container">
-
         <div class="row g-4">
 
-            <!-- CARD 1 -->
+            @foreach($berita as $item)
+
             <div class="col-md-3 col-12">
                 <div style="
                     border:1px solid #eee;
@@ -290,17 +293,20 @@ body {
                     height:100%;
                 ">
 
-                    <img src="{{ asset('images/beranda/gambar1.jpeg') }}"
+                    <img src="{{ asset('storage/'.$item->gambar) }}"
                          style="width:100%; height:auto; display:block;">
 
                     <div style="padding:15px; text-align:center;">
-                        <h6 class="fw-bold">Insomnia</h6>
+
+                        <h6 class="fw-bold">
+                            {{ $item->judul }}
+                        </h6>
 
                         <p style="font-size:13px; color:#666;">
-                            Apakah Anda sering merasa kesulitan untuk memulai tidur di malam hari?
+                            {{ \Illuminate\Support\Str::limit($item->deskripsi, 95) }}
                         </p>
 
-                        <a href="#"
+                        <a href="{{ url('/berita/'.$item->slug) }}"
                            style="
                                 display:inline-block;
                                 margin-top:8px;
@@ -313,263 +319,15 @@ body {
                            ">
                             Baca Selengkapnya
                         </a>
+
                     </div>
                 </div>
             </div>
 
-            <!-- CARD 2 -->
-            <div class="col-md-3 col-12">
-                <div style="
-                    border:1px solid #eee;
-                    border-radius:20px;
-                    overflow:hidden;
-                    background:#fff;
-                    height:100%;
-                ">
-
-                    <img src="{{ asset('images/beranda/gambar2.jpeg') }}"
-                         style="width:100%; height:auto; display:block;">
-
-                    <div style="padding:15px; text-align:center;">
-                        <h6 class="fw-bold">Tetap Sehat Setelah Lebaran</h6>
-                        <p style="font-size:13px; color:#666;">
-                            Lebaran telah usai. Momen penuh kebahagiaan yang diisi silahturahmi dan momen berkumpul
-                        </p>
-
-                        <a href="#"
-                           style="
-                                display:inline-block;
-                                margin-top:8px;
-                                padding:6px 12px;
-                                background:#1C145C;
-                                color:white;
-                                text-decoration:none;
-                                border-radius:20px;
-                                font-size:12px;
-                           ">
-                            Baca Selengkapnya
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CARD 3 -->
-            <div class="col-md-3 col-12">
-                <div style="
-                    border:1px solid #eee;
-                    border-radius:20px;
-                    overflow:hidden;
-                    background:#fff;
-                    height:100%;
-                ">
-
-                    <img src="{{ asset('images/beranda/gambar3.jpeg') }}"
-                         style="width:100%; height:auto; display:block;">
-
-                    <div style="padding:15px; text-align:center;">
-                        <h6 class="fw-bold">Mengenal NPD</h6>
-                        <p style="font-size:13px; color:#666;">
-                            Belakangan ini, istilah Narcissistic Personality Disorder atau NPD semakin sering kita dengar
-                        </p>
-
-                        <a href="#"
-                           style="
-                                display:inline-block;
-                                margin-top:8px;
-                                padding:6px 12px;
-                                background:#1C145C;
-                                color:white;
-                                text-decoration:none;
-                                border-radius:20px;
-                                font-size:12px;
-                           ">
-                            Baca Selengkapnya
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CARD 4 -->
-            <div class="col-md-3 col-12">
-                <div style="
-                    border:1px solid #eee;
-                    border-radius:20px;
-                    overflow:hidden;
-                    background:#fff;
-                    height:100%;
-                ">
-
-                    <img src="{{ asset('images/beranda/gambar4.jpeg') }}"
-                         style="width:100%; height:auto; display:block;">
-
-                    <div style="padding:15px; text-align:center;">
-                        <h6 class="fw-bold">FISIOTERAPI</h6>
-                        <p style="font-size:13px; color:#666;">
-                            Saat ini, fisioterapi telah menjadi salah satu layanan kesehatan yang semakin diminati.
-                        </p>
-
-                        <a href="#"
-                           style="
-                                display:inline-block;
-                                margin-top:8px;
-                                padding:6px 12px;
-                                background:#1C145C;
-                                color:white;
-                                text-decoration:none;
-                                border-radius:20px;
-                                font-size:12px;
-                           ">
-                            Baca Selengkapnya
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CARD 5 -->
-            <div class="col-md-3 col-12">
-                <div style="
-                    border:1px solid #eee;
-                    border-radius:20px;
-                    overflow:hidden;
-                    background:#fff;
-                    height:100%;
-                ">
-
-                    <img src="{{ asset('images/berita/mataa.jpeg') }}"
-                         style="width:100%; height:auto; display:block;">
-
-                    <div style="padding:15px; text-align:center;">
-                        <h6 class="fw-bold">Metode Fakoemulsifikasi</h6>
-                        <p style="font-size:13px; color:#666;">
-                            Pengelihatan adalah salah satu indra penting bagi manusia. Namun, seiring...
-                        </p>
-
-                        <a href="#"
-                           style="
-                                display:inline-block;
-                                margin-top:8px;
-                                padding:6px 12px;
-                                background:#1C145C;
-                                color:white;
-                                text-decoration:none;
-                                border-radius:20px;
-                                font-size:12px;
-                           ">
-                            Baca Selengkapnya
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CARD 6 -->
-            <div class="col-md-3 col-12">
-                <div style="
-                    border:1px solid #eee;
-                    border-radius:20px;
-                    overflow:hidden;
-                    background:#fff;
-                    height:100%;
-                ">
-
-                    <img src="{{ asset('images/berita/stroke.jpeg') }}"
-                         style="width:100%; height:auto; display:block;">
-
-                    <div style="padding:15px; text-align:center;">
-                        <h6 class="fw-bold">STROKE? Mari Pahami</h6>
-                        <p style="font-size:13px; color:#666;">
-                            Stroke Adalah kondisi gawat yang dapat mempengaruhi otak dan dapat...
-                        </p>
-
-                        <a href="#"
-                           style="
-                                display:inline-block;
-                                margin-top:8px;
-                                padding:6px 12px;
-                                background:#1C145C;
-                                color:white;
-                                text-decoration:none;
-                                border-radius:20px;
-                                font-size:12px;
-                           ">
-                            Baca Selengkapnya
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CARD 7 -->
-            <div class="col-md-3 col-12">
-                <div style="
-                    border:1px solid #eee;
-                    border-radius:20px;
-                    overflow:hidden;
-                    background:#fff;
-                    height:100%;
-                ">
-
-                    <img src="{{ asset('images/berita/telinga.jpeg') }}"
-                         style="width:100%; height:auto; display:block;">
-
-                    <div style="padding:15px; text-align:center;">
-                        <h6 class="fw-bold">Investasi Pendengaran Masa Tua</h6>
-                        <p style="font-size:13px; color:#666;">
-                            Pernahkah anda bayangkan hari dimana musik band favorit anda terdengar...
-                        </p>
-
-                        <a href="#"
-                           style="
-                                display:inline-block;
-                                margin-top:8px;
-                                padding:6px 12px;
-                                background:#1C145C;
-                                color:white;
-                                text-decoration:none;
-                                border-radius:20px;
-                                font-size:12px;
-                           ">
-                            Baca Selengkapnya
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CARD 8 -->
-            <div class="col-md-3 col-12">
-                <div style="
-                    border:1px solid #eee;
-                    border-radius:20px;
-                    overflow:hidden;
-                    background:#fff;
-                    height:100%;
-                ">
-
-                    <img src="{{ asset('images/berita/kb.jpeg') }}"
-                         style="width:100%; height:auto; display:block;">
-
-                    <div style="padding:15px; text-align:center;">
-                        <h6 class="fw-bold">AYO KB!</h6>
-                        <p style="font-size:13px; color:#666;">
-                            Keluarga Berencana (KB) merupakan salah satu program kesehatan yang sangat penting
-                        </p>
-
-                        <a href="#"
-                           style="
-                                display:inline-block;
-                                margin-top:8px;
-                                padding:6px 12px;
-                                background:#1C145C;
-                                color:white;
-                                text-decoration:none;
-                                border-radius:20px;
-                                font-size:12px;
-                           ">
-                            Baca Selengkapnya
-                        </a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
 
         </div>
+    </div>
 </section>
 
 <!-- ================= PAGINATION ================= -->

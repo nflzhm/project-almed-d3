@@ -1961,16 +1961,16 @@ body {
                 <h6 class="fw-bold mb-3">Tautan Cepat</h6>
 
                 <ul style="list-style:none; padding:0; font-size:13px; line-height:1.9;">
-                    <li><a href="#" style="color:#666; text-decoration:none;">Beranda</a></li>
-                    <li><a href="#" style="color:#666; text-decoration:none;">Tentang Kami</a></li>
-                    <li><a href="#" style="color:#666; text-decoration:none;">Video</a></li>
-                    <li><a href="#" style="color:#666; text-decoration:none;">Kontak</a></li>
+                    <li><a href="beranda" style="color:#666; text-decoration:none;">Beranda</a></li>
+                    <li><a href="tentang-kami" style="color:#666; text-decoration:none;">Tentang Kami</a></li>
+                    <li><a href="video" style="color:#666; text-decoration:none;">Video</a></li>
+                    <li><a href="kontak" style="color:#666; text-decoration:none;">Kontak</a></li>
                 </ul>
 
                 <h6 class="fw-bold mt-3 mb-2">Download</h6>
                 <ul style="list-style:none; padding:0; font-size:13px; line-height:1.9;">
-                    <li><a href="#" style="color:#666; text-decoration:none;">Download List Pengadaan</a></li>
-                    <li><a href="#" style="color:#666; text-decoration:none;">Lihat Semua Data</a></li>
+                    <li><a href="download" style="color:#666; text-decoration:none;">Download List Pengadaan</a></li>
+                    <li><a href="download" style="color:#666; text-decoration:none;">Lihat Semua Data</a></li>
                 </ul>
             </div>
 
@@ -1979,10 +1979,10 @@ body {
                 <h6 class="fw-bold mb-3">Menu</h6>
 
                 <ul style="list-style:none; padding:0; font-size:13px; line-height:1.9;">
-                    <li><a href="#" style="color:#666; text-decoration:none;">Beranda</a></li>
-                    <li><a href="#" style="color:#666; text-decoration:none;">Layanan</a></li>
-                    <li><a href="#" style="color:#666; text-decoration:none;">Dokter</a></li>
-                    <li><a href="#" style="color:#666; text-decoration:none;">Kontak</a></li>
+                    <li><a href="pengadaan" style="color:#666; text-decoration:none;">Pengadaan</a></li>
+                    <li><a href="karir" style="color:#666; text-decoration:none;">Karir</a></li>
+                    <li><a href="berita" style="color:#666; text-decoration:none;">Berita</a></li>
+                    <li><a href="video" style="color:#666; text-decoration:none;">Video</a></li>
                 </ul>
 
                 <h6 class="fw-bold mt-3 mb-2">Informasi Legal</h6>
@@ -2050,47 +2050,50 @@ body {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
-<!-- ================= FLOATING BAR FINAL ================= -->
-<style>
 
-/* FLOATING BAR */
+
+<style>
+/* ===============================
+   FLOATING BAR DESKTOP
+================================= */
 .floating-bar{
     position: fixed;
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 99999999 !important;
-
+    z-index: 999999;
     display: flex;
     overflow: hidden;
-
-    border-radius: 60px; /* lebih rounded */
+    border-radius: 60px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.18);
 }
 
-/* ITEM */
+/* SEMUA ITEM SAMA UKURAN */
 .floating-item{
+    width: 210px;
+    height: 60px;
+
     display: flex;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
+    gap: 10px;
 
-    padding: 12px 24px;
     font-size: 14px;
-    font-weight: 500;
-
+    font-weight: 600;
     text-decoration: none;
+
     background: #eaeaea;
     color: #000;
 
     transition: 0.3s ease;
+    box-sizing: border-box;
 }
 
-/* KIRI */
+/* KIRI & KANAN */
 .floating-item:first-child{
     border-radius: 60px 0 0 60px;
 }
 
-/* KANAN */
 .floating-item:last-child{
     border-radius: 0 60px 60px 0;
 }
@@ -2103,51 +2106,141 @@ body {
 
 /* TENGAH */
 .floating-item.middle{
-    background: #e5e5e5;
+    background: #f2f2f2;
     color: #000;
 }
 
-/* ICON */
 .floating-item i{
     font-size: 18px;
 }
 
-/* HOVER */
 .floating-item:hover{
     transform: translateY(-2px);
     opacity: .95;
 }
 
-/* RESPONSIVE */
-@media(max-width:768px){
+/* ===============================
+   MOBILE VERSION
+================================= */
+@media (max-width:768px){
 
-    .floating-item span{
-        display:none;
+    body{
+        padding-bottom: 85px;
+    }
+
+    .floating-bar{
+        left: 0;
+        bottom: 0;
+        transform: none;
+        width: 100%;
+        height: 72px;
+        border-radius: 0;
+        background: #fff;
+        box-shadow: 0 -4px 12px rgba(0,0,0,.08);
+        justify-content: space-around;
+        align-items: center;
+        overflow: visible;
     }
 
     .floating-item{
-        padding:12px 15px;
+        width: auto;
+        height: auto;
+        flex: 1;
+        padding: 8px;
+        background: transparent !important;
+        color: #555 !important;
+        border-radius: 0 !important;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+
+        font-size: 11px;
+    }
+
+    /* ICON BULAT DEFAULT */
+    .floating-item i{
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 18px;
+
+        background: #b7ff0049;
+        color: #8fc700;
+    }
+
+    .floating-item span{
+        font-size: 11px;
+        line-height: 1;
+    }
+
+    /* TOMBOL TENGAH */
+    .floating-item.middle{
+        position: relative;
+        top: -18px;
+        width: 64px;
+        height: 64px;
+        flex: unset;
+
+        border-radius: 50% !important;
+        background: #1C145C !important;
+        color: #fff !important;
+
+        box-shadow: 0 8px 18px rgba(0,0,0,.18);
+    }
+
+    .floating-item.middle i{
+        width: 42px;
+        height: 42px;
+        background: rgba(255,255,255,.18);
+        color: #fff;
+        font-size: 20px;
+    }
+
+    .floating-item.middle span{
+        font-size: 10px;
+    }
+
+    /* MERAH UNTUK IGD & ALAMAT */
+    .floating-item.active i,
+    .floating-item.red i{
+        background: rgba(220,53,69,.12);
+        color: #dc3545;
+    }
+
+    .floating-item:hover{
+        transform: none;
     }
 }
 </style>
 
+
 <div class="floating-bar">
 
+    <!-- IGD -->
     <a href="tel:0834325542" class="floating-item active">
         <i class="bi bi-hospital"></i>
         <span>IGD 24 JAM</span>
     </a>
 
+    <!-- Tengah -->
     <a href="{{ url('/jadwaldokter') }}" class="floating-item middle">
         <i class="bi bi-calendar-check"></i>
-        <span>Jadwal Praktik</span>
+        <span>Jadwal</span>
     </a>
 
-    <a href="https://maps.google.com" target="_blank" class="floating-item active">
+    <!-- Alamat Merah Juga -->
+    <a href="https://maps.app.goo.gl/4yvn64pEuhWg35mX6" target="_blank" class="floating-item active">
         <i class="bi bi-geo-alt-fill"></i>
         <span>Alamat</span>
     </a>
 
-</div>
 </div>
 </html>

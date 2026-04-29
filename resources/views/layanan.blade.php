@@ -15,12 +15,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 </head>
-
+<body>
+    
+</body> 
 <!-- ✅ Navbar -->
 
 <style>
 
-        
+   
 body {
     font-family: 'Segoe UI', sans-serif;
     padding-top: 90px;
@@ -313,7 +315,7 @@ body{
 
 /* CONTENT */
 .layanan-content{
-    padding:20px;
+    padding:25px 30px;
     display:flex;
     flex-direction:column;
     height:100%;
@@ -352,7 +354,6 @@ body{
 
 
 </style>
-</head>
 
 <body>
 
@@ -388,186 +389,69 @@ Pilih poliklinik yang Anda butuhkan dan buat janji temu dengan mudah.
 </div>
 </section>
 
-<!-- ================= CARD ================= -->
-<div class="container py-5">
-<div class="row g-4">
+<!-- ================= CARD LAYANAN ================= -->
+<div class="container py-5 px-4">
+    <div class="row g-4 justify-content-center">
 
-<!-- CARD 1 -->
-<div class="col-md-6 d-flex">
-<div class="layanan-card w-100">
-<div class="row g-0 h-100">
+        @foreach($layanan as $item)
 
-<div class="col-md-5">
-<div class="layanan-img-wrapper">
-<img src="{{ asset('images/layanan/jantung.png') }}" class="layanan-img">
-</div>
-</div>
+        <div class="col-md-6 px-3 d-flex">
+            <div class="layanan-card w-100">
 
-<div class="col-md-7 d-flex">
-<div class="layanan-content">
+                <div class="row g-3 h-100">
 
-<div class="layanan-card-title">
-Poliklinik Spesialis Jantung & Pembuluh Darah
-</div>
+                    <!-- GAMBAR -->
+                    <div class="col-md-5">
+                        <div class="layanan-img-wrapper">
+                            <img src="{{ asset('images/layanan/'.$item->gambar) }}" class="layanan-img">
+                        </div>
+                    </div>
 
+                    <!-- KONTEN -->
+                    <div class="col-md-7 d-flex">
+                        <div class="layanan-content">
 
+                            <!-- JUDUL -->
+                            <div class="layanan-card-title">
+                                {{ $item->nama }}
+                            </div>
 
-<div class="layanan-jadwal">
-<b>dr. M. Adrin Aefiansyah P., Sp.JP</b><br>
-Selasa & Kamis: 13.00 - 19.00 WIB<br>
-Senin, Rabu & Jumat: 07.00 - 12.00 WIB<br>
-Sabtu: 07.00 - 10.00 WIB
-</div>
+                            <!-- MULTI DOKTER + MULTI JADWAL -->
+                            <div class="layanan-jadwal">
 
-<div class="layanan-contact">
-<i class="bi bi-telephone-fill"></i>
-0852 9222 4886
-</div>
+                                @php
+                                    $dokters = preg_split('/\r\n|\r|\n/', trim($item->dokter));
+                                    $jadwals = preg_split('/\r\n|\r|\n/', trim($item->jadwal));
+                                @endphp
 
-</div>
-</div>
+                                @foreach($dokters as $index => $dokter)
 
-</div>
-</div>
-</div>
+                                    <div class="mb-2">
+                                        <b>{{ trim($dokter) }}</b><br>
+                                        {{ $jadwals[$index] ?? '' }}
+                                    </div>
 
-<!-- CARD 2 -->
-<div class="col-md-6 d-flex">
-<div class="layanan-card w-100">
-<div class="row g-0 h-100">
+                                @endforeach
 
-<div class="col-md-5">
-<div class="layanan-img-wrapper">
-<img src="{{ asset('images/layanan/anak.png') }}" class="layanan-img">
-</div>
-</div>
+                            </div>
 
-<div class="col-md-7 d-flex">
-<div class="layanan-content">
+                            <!-- TELEPON -->
+                            <div class="layanan-contact">
+                                <i class="bi bi-telephone-fill"></i>
+                                {{ $item->telepon }}
+                            </div>
 
-<div class="layanan-card-title">
-Poliklinik Spesialis Anak
-</div>
+                        </div>
+                    </div>
 
+                </div>
 
-<div class="layanan-jadwal">
-<b>dr. Deddy Hediyanto, Sp.A</b><br>
-Senin - Jumat: 14.00 - 18.00 WIB<br>
-Selasa & Kamis: 10.00 - 13.00 WIB
-</div>
+            </div>
+        </div>
 
-<div class="layanan-jadwal">
-<b>dr. Ayu Asyifa Rahmi Fauziah, Sp.A</b><br>
-Senin & Jumat: 08.00 - 12.00 WIB
-</div>
+        @endforeach
 
-<div class="layanan-contact">
-<i class="bi bi-telephone-fill"></i>
-0852 9222 4886
-</div>
-
-</div>
-</div>
-
-</div>
-</div>
-</div>
-
-<!-- CARD 3 -->
-<div class="col-md-6 d-flex">
-<div class="layanan-card w-100">
-<div class="row g-0 h-100">
-
-<div class="col-md-5">
-<div class="layanan-img-wrapper">
-<img src="{{ asset('images/layanan/dalam.png') }}" class="layanan-img">
-</div>
-</div>
-
-<div class="col-md-7 d-flex">
-<div class="layanan-content">
-
-<div class="layanan-card-title">
-Poliklinik Spesialis Penyakit Dalam
-</div>
-
-
-<div class="layanan-jadwal">
-<b>dr. Rahmat Santosa, Sp.PD</b><br>
-Senin, Rabu & Jumat: 16.00 - 20.00 WIB<br>
-</div>
-
-<div class="layanan-jadwal">
-<b>dr. Rakhmat Tajudin, Sp.PD</b><br>
-Senin - Sabtu: 06.30 - 09.00 WIB<br>
-</div>
-
-<div class="layanan-jadwal">
-<b>dr. Gigih Fitriawan, Sp.PD</b><br>
-Senin - Sabtu: 06.30 - 09.00 WIB<br>
-</div>
-
-<div class="layanan-jadwal">
-<b>dr. Artono Tri Pamungkas, Sp.PD</b><br>
-Senin - Jumat: 09.00 - 15.00 WIB
-Sabtu: 09.00 - 12.00 WIB<br>
-</div>
-
-<div class="layanan-contact">
-<i class="bi bi-telephone-fill"></i>
-0852 9222 4886
-</div>
-
-</div>
-</div>
-
-</div>
-</div>
-</div>
-
-<!-- CARD 3 -->
-<div class="col-md-6 d-flex">
-<div class="layanan-card w-100">
-<div class="row g-0 h-100">
-
-<div class="col-md-5">
-<div class="layanan-img-wrapper">
-<img src="{{ asset('images/layanan/tht.png') }}" class="layanan-img">
-</div>
-</div>
-
-<div class="col-md-7 d-flex">
-<div class="layanan-content">
-
-<div class="layanan-card-title">
-Poliklinik Spesialis THT
-</div>
-
-
-<div class="layanan-jadwal">
-<b>dr. Bambang Sudiratma, Sp.THT-KL</b><br>
-Selasa: 09.00 - 12.00 WIB<br>
-</div>
-
-<div class="layanan-jadwal">
-<b>dr. Wawan Siswadi, Sp.THT-KL</b><br>
-Senin dan Jumat: 15.30 - 17.30 WIB<br>
-</div>
-
-
-<div class="layanan-contact">
-<i class="bi bi-telephone-fill"></i>
-0852 9222 4886
-</div>
-
-</div>
-</div>
-
-</div>
-</div>
-</div>
-
-</div>
+    </div>
 </div>
 <!-- footer -->
 <footer style="background:#FFFFFF; color:black; padding:50px 0 20px;">

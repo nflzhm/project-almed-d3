@@ -46,7 +46,6 @@ body{
     z-index:9998;
 }
 
-/* ================= DESKTOP GAP ================= */
 .nav-gap{
     gap:18px;
 }
@@ -66,7 +65,7 @@ body{
     border:1px solid #ececec;
 }
 
-/* SEARCH */
+/* ================= SEARCH ================= */
 .search-wrap{
     display:flex;
     gap:10px;
@@ -90,9 +89,11 @@ body{
     padding:0 22px;
     font-size:14px;
     font-weight:600;
+    height:44px;
+    white-space:nowrap;
 }
 
-/* FILTER */
+/* ================= FILTER ================= */
 .filter-title{
     font-size:13px;
     font-weight:700;
@@ -120,14 +121,14 @@ body{
     color:#fff;
 }
 
-/* INFO */
+/* ================= INFO ================= */
 .schedule-info{
     font-size:14px;
     margin-bottom:15px;
     color:#222;
 }
 
-/* BOX */
+/* ================= BOX ================= */
 .schedule-box{
     background:#fff;
     border-radius:18px;
@@ -137,14 +138,14 @@ body{
     margin-bottom:12px;
 }
 
-/* GRID */
+/* ================= GRID ================= */
 .schedule-grid{
     display:grid;
     grid-template-columns:260px 1fr;
     gap:18px;
 }
 
-/* LEFT CARD */
+/* ================= LEFT CARD ================= */
 .doctor-card{
     background:linear-gradient(135deg,#1C145C,#2d2391);
     border-radius:18px;
@@ -176,7 +177,7 @@ body{
     line-height:1.4;
 }
 
-/* RIGHT */
+/* ================= RIGHT ================= */
 .practice-title{
     font-size:16px;
     font-weight:800;
@@ -190,7 +191,7 @@ body{
     gap:10px;
 }
 
-/* CARD HARI */
+/* ================= CARD HARI ================= */
 .day-col{
     background:#fff;
     border-radius:12px;
@@ -303,40 +304,136 @@ body{
         transform:translateY(0);
     }
 
+    /* Card mobile */
+    .schedule-box{
+        padding:14px;
+        margin-bottom:10px;
+    }
+
     .schedule-grid{
-        grid-template-columns:1fr;
+        display:block;
     }
 
-    .day-row{
-        grid-template-columns:repeat(2,1fr);
-    }
-}
-
-@media(max-width:576px){
-
-    .search-wrap{
-        flex-direction:column;
-    }
-
-    .search-btn{
-        height:42px;
+    .doctor-card{
+        display:flex;
+        align-items:center;
+        gap:14px;
+        text-align:left;
+        padding:14px;
+        border-radius:16px;
+        position:relative;
+        cursor:pointer;
     }
 
-    .day-row{
-        grid-template-columns:1fr;
+    .doctor-card img{
+        width:68px;
+        height:68px;
+        margin:0;
+        flex-shrink:0;
     }
 
     .doctor-name{
         font-size:13px;
+        line-height:1.4;
+        margin-bottom:4px;
     }
 
     .doctor-specialist{
         font-size:11px;
+        margin-top:0;
+    }
+
+    .doctor-card::after{
+        content:"▼";
+        position:absolute;
+        right:14px;
+        top:50%;
+        transform:translateY(-50%);
+        font-size:12px;
+        color:#fff;
+        transition:.3s;
+    }
+
+    .schedule-box.active .doctor-card::after{
+        transform:translateY(-50%) rotate(180deg);
+    }
+
+    .practice-area{
+        display:none;
+        margin-top:12px;
+    }
+
+    .schedule-box.active .practice-area{
+        display:block;
+    }
+
+    .practice-title{
+        font-size:14px;
+        margin-bottom:10px;
+    }
+
+    .day-row{
+        grid-template-columns:1fr;
+        gap:8px;
+    }
+
+    .day-head{
+        font-size:12px;
+        padding:8px;
+    }
+
+    .day-body{
+        padding:10px;
+    }
+
+    .clinic{
+        min-height:auto;
+        font-size:12px;
+    }
+
+    .time{
+        font-size:13px;
+    }
+
+    .note{
+        font-size:11px;
+    }
+}
+
+/* ================= SMALL MOBILE ================= */
+@media(max-width:576px){
+
+    /* SEARCH tetap sejajar */
+    .search-wrap{
+        flex-direction:row;
+        align-items:center;
+        gap:8px;
+    }
+
+    .search-input{
+        height:44px;
+        font-size:13px;
+    }
+
+    .search-btn{
+        height:44px;
+        padding:0 16px;
+        font-size:13px;
+    }
+
+    /* Filter hari diperkecil */
+    .day-list{
+        gap:6px;
+    }
+
+    .day-list a{
+        padding:4px 10px;
+        font-size:11px;
+        border-radius:20px;
     }
 }
 
 </style>
-
 
 
 
@@ -447,139 +544,64 @@ body{
 
     </div>
 
-    <!-- INFO -->
-    <div class="schedule-info">
-        Menampilkan halaman - total <b>50</b> dokter jadwal <b>minggu ini</b>
-    </div>
-
-@php
-$hariList = ['Senin','Selasa','Rabu','Kamis','Jumat','Sabtu','Minggu'];
-
-$dokters = [
-
-[
-'nama'=>'dr. Ferry Gunawan, Sp.OG',
-'sp'=>'Dokter Spesialis Kandungan',
-'jadwal'=>[
-['hari'=>'Senin','klinik'=>'Kandungan','jam'=>'08:00 - 12:00','note'=>'Umum / BPJS'],
-['hari'=>'Selasa','klinik'=>'Kandungan','jam'=>'09:00 - 13:00','note'=>'Umum'],
-['hari'=>'Rabu','klinik'=>'Kandungan','jam'=>'08:00 - 12:00','note'=>'BPJS'],
-['hari'=>'Kamis','klinik'=>'Kandungan','jam'=>'09:00 - 12:00','note'=>'Umum'],
-['hari'=>'Jumat','klinik'=>'Libur','jam'=>'-','note'=>'Tidak Praktik'],
-['hari'=>'Sabtu','klinik'=>'Kandungan','jam'=>'08:00 - 11:00','note'=>'BPJS'],
-['hari'=>'Minggu','klinik'=>'Libur','jam'=>'-','note'=>'Tidak Praktik'],
-]
-],
-
-[
-'nama'=>'dr. Andi Saputra, Sp.PD',
-'sp'=>'Dokter Spesialis Penyakit Dalam',
-'jadwal'=>[
-['hari'=>'Senin','klinik'=>'Libur','jam'=>'-','note'=>'Tidak Praktik'],
-['hari'=>'Selasa','klinik'=>'Penyakit Dalam','jam'=>'10:00 - 14:00','note'=>'Umum'],
-['hari'=>'Rabu','klinik'=>'Penyakit Dalam','jam'=>'08:00 - 12:00','note'=>'BPJS'],
-['hari'=>'Kamis','klinik'=>'Penyakit Dalam','jam'=>'08:00 - 12:00','note'=>'Umum'],
-['hari'=>'Jumat','klinik'=>'Penyakit Dalam','jam'=>'09:00 - 12:00','note'=>'BPJS'],
-['hari'=>'Sabtu','klinik'=>'Libur','jam'=>'-','note'=>'Tidak Praktik'],
-['hari'=>'Minggu','klinik'=>'Libur','jam'=>'-','note'=>'Tidak Praktik'],
-]
-],
-
-[
-'nama'=>'dr. Rina Amelia, Sp.A',
-'sp'=>'Dokter Spesialis Anak',
-'jadwal'=>[
-['hari'=>'Senin','klinik'=>'Anak','jam'=>'08:00 - 11:00','note'=>'Umum'],
-['hari'=>'Selasa','klinik'=>'Anak','jam'=>'09:00 - 12:00','note'=>'BPJS'],
-['hari'=>'Rabu','klinik'=>'Libur','jam'=>'-','note'=>'Tidak Praktik'],
-['hari'=>'Kamis','klinik'=>'Anak','jam'=>'08:00 - 11:00','note'=>'Umum'],
-['hari'=>'Jumat','klinik'=>'Anak','jam'=>'13:00 - 16:00','note'=>'BPJS'],
-['hari'=>'Sabtu','klinik'=>'Anak','jam'=>'09:00 - 12:00','note'=>'Umum'],
-['hari'=>'Minggu','klinik'=>'Libur','jam'=>'-','note'=>'Tidak Praktik'],
-]
-],
-
-[
-'nama'=>'dr. Budi Santoso, Sp.B',
-'sp'=>'Dokter Spesialis Bedah',
-'jadwal'=>[
-['hari'=>'Senin','klinik'=>'Bedah','jam'=>'08:00 - 11:00','note'=>'Umum'],
-['hari'=>'Selasa','klinik'=>'Libur','jam'=>'-','note'=>'Tidak Praktik'],
-['hari'=>'Rabu','klinik'=>'Bedah','jam'=>'09:00 - 12:00','note'=>'Umum'],
-['hari'=>'Kamis','klinik'=>'Bedah','jam'=>'10:00 - 13:00','note'=>'BPJS'],
-['hari'=>'Jumat','klinik'=>'Bedah','jam'=>'08:00 - 11:00','note'=>'Umum'],
-['hari'=>'Sabtu','klinik'=>'Bedah','jam'=>'10:00 - 13:00','note'=>'BPJS'],
-['hari'=>'Minggu','klinik'=>'Libur','jam'=>'-','note'=>'Tidak Praktik'],
-]
-],
-
-[
-'nama'=>'dr. Maya Putri, Sp.THT',
-'sp'=>'Dokter Spesialis THT',
-'jadwal'=>[
-['hari'=>'Senin','klinik'=>'THT','jam'=>'08:00 - 10:00','note'=>'Umum'],
-['hari'=>'Selasa','klinik'=>'THT','jam'=>'09:00 - 12:00','note'=>'BPJS'],
-['hari'=>'Rabu','klinik'=>'THT','jam'=>'08:00 - 11:00','note'=>'Umum'],
-['hari'=>'Kamis','klinik'=>'THT','jam'=>'11:00 - 14:00','note'=>'BPJS'],
-['hari'=>'Jumat','klinik'=>'Libur','jam'=>'-','note'=>'Tidak Praktik'],
-['hari'=>'Sabtu','klinik'=>'THT','jam'=>'09:00 - 11:00','note'=>'Umum'],
-['hari'=>'Minggu','klinik'=>'Libur','jam'=>'-','note'=>'Tidak Praktik'],
-]
-],
-
-];
-@endphp
-
-
-@foreach($dokters as $dokter)
-
-<section class="schedule-section">
-<div class="container">
+    @foreach($dokter as $item)
 
 <div class="schedule-box">
+    <div class="schedule-grid">
 
-<div class="schedule-grid">
+        <!-- LEFT -->
+        <div class="doctor-card">
 
-<!-- LEFT -->
-<div class="doctor-card">
+            <img src="{{ asset('images/beranda/' . $item->foto) }}">
 
-<img src="{{ asset('images/beranda/drferry-1740452082.png') }}">
+            <div>
+                <div class="doctor-name">{{ $item->nama }}</div>
+                <div class="doctor-specialist">{{ $item->sp }}</div>
+            </div>
 
-<div class="doctor-name">{{ $dokter['nama'] }}</div>
+        </div>
 
-<div class="doctor-specialist">{{ $dokter['sp'] }}</div>
+        <!-- RIGHT -->
+        <div class="practice-area">
 
-</div>
+            <div class="practice-title">JADWAL PRAKTEK</div>
 
-<!-- RIGHT -->
-<div>
+            @php
+                $jadwalList = explode("\n", trim($item->jadwal));
+            @endphp
 
-<div class="practice-title">JADWAL PRAKTEK</div>
+            @foreach($jadwalList as $jadwal)
+                <div class="day-row">
+                    <div class="day-body">
+                        {{ $jadwal }}
+                    </div>
+                </div>
+            @endforeach
 
-<div class="day-row">
+        </div>
 
-@foreach($dokter['jadwal'] as $item)
-
-<div class="day-col">
-<div class="day-head">{{ $item['hari'] }}</div>
-
-<div class="day-body">
-<div class="clinic">{{ $item['klinik'] }}</div>
-<div class="time">{{ $item['jam'] }}</div>
-<div class="note">{{ $item['note'] }}</div>
-</div>
-
+    </div>
 </div>
 
 @endforeach
 
-</div>
-</div>
 
-</div>
-</div>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
+<script>
+document.querySelectorAll('.doctor-card').forEach(function(card){
+
+    card.addEventListener('click', function(){
+
+        if(window.innerWidth <= 991){
+            card.closest('.schedule-box').classList.toggle('active');
+        }
+
+    });
+
+});
+</script>
 </div>
 </section>
 
-@endforeach

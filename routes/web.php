@@ -1,6 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\LayananController;
+use App\Http\Controllers\DokterController;
+
+Route::get('/jadwaldokter', [DokterController::class, 'index']);
+Route::get('/layanan', [LayananController::class, 'index']);
+Route::get('/berita', [BeritaController::class, 'index']);
+
 
 Route::get('/', function () {
     return view('beranda');
@@ -8,10 +16,6 @@ Route::get('/', function () {
 
 Route::get('/tentang', function () {
     return view('tentang');
-});
-
-Route::get('/layanan', function () {
-    return view('layanan');
 });
 
 Route::get('/download', function () {
@@ -30,14 +34,9 @@ Route::get('/karir', function () {
     return view('karir');
 })->name('karir');
 
-Route::get('/berita', function () {
-    return view('berita');
-})->name('berita');
+Route::get('/berita', [BeritaController::class, 'index'])->name('berita');
 
 Route::get('/video', function () {
     return view('video');
 })->name('video');
 
-Route::get('/jadwaldokter', function () {
-    return view('jadwaldokter');
-});

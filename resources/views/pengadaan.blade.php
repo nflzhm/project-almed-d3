@@ -209,13 +209,17 @@ body {
 
 <!-- ================= PENGADAAN HEADER ================= -->
 <style>
+
+/* ================= SECTION ================= */
 .pengadaan-section{
     padding:60px 0 40px;
 }
+
 body{
     padding-top:100px;
 }
 
+/* ================= HEADER ================= */
 .pengadaan-label{
     font-size:12px;
     font-weight:600;
@@ -235,6 +239,7 @@ body{
     font-size:14px;
     color:#444;
     max-width:650px;
+    line-height:1.7;
 }
 
 /* ================= STATS ================= */
@@ -249,18 +254,18 @@ body{
     width:120px;
     height:120px;
     border-radius:16px;
-    background:rgba(28, 20, 92, 0.05);
+    background:rgba(28,20,92,.05);
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
     text-align:center;
-    transition:0.3s;
+    transition:.3s;
 }
 
 .stat-card:hover{
     transform:translateY(-5px);
-    background:rgba(28, 20, 92, 0.1);
+    background:rgba(28,20,92,.1);
 }
 
 .stat-number{
@@ -274,15 +279,238 @@ body{
     color:#555;
     margin-top:5px;
 }
+
+/* ================= ALERT ================= */
+.alert-urgent{
+    background:#ffe5e5;
+    border:1px solid #ff4d4d;
+    color:#b30000;
+    border-radius:12px;
+    padding:15px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    margin-top:30px;
+}
+
+.alert-urgent strong{
+    display:block;
+    font-size:14px;
+    margin-bottom:4px;
+}
+
+.badge-urgent{
+    background:#ff1a1a;
+    color:#fff;
+    padding:6px 14px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:600;
+    white-space:nowrap;
+}
+
+/* ================= WRAPPER ================= */
+.pengadaan-wrapper{
+    display:flex;
+    gap:20px;
+    margin-top:25px;
+    align-items:flex-start;
+}
+
+/* ================= TABLE CARD ================= */
+.pengadaan-table-card{
+    flex:2;
+    background:#f9f9f9;
+    border-radius:16px;
+    padding:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,.05);
+    overflow:hidden;
+}
+
+.pengadaan-title{
+    font-weight:700;
+    font-size:16px;
+}
+
+.pengadaan-sub{
+    font-size:12px;
+    color:#777;
+}
+
+.badge-total{
+    background:#e6e0ff;
+    color:#4b3cc9;
+    padding:5px 12px;
+    border-radius:20px;
+    font-size:12px;
+    white-space:nowrap;
+}
+
+/* ================= TABLE ================= */
+.table-wrap{
+    overflow-x:auto;
+}
+
+.table-custom{
+    min-width:600px;
+}
+
+.table-custom th{
+    font-size:12px;
+    color:#666;
+    white-space:nowrap;
+}
+
+.table-custom td{
+    font-size:13px;
+    white-space:nowrap;
+}
+
+/* ================= QR CARD ================= */
+.qr-card{
+    flex:1;
+    background:#fff;
+    border-radius:16px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.qr-card img{
+    width:100%;
+    max-width:230px;
+}
+
+.qr-text{
+    font-size:12px;
+    color:#555;
+    margin-top:10px;
+    line-height:1.6;
+}
+
+/* ================= TABLET ================= */
+@media(max-width:991px){
+
+    .pengadaan-wrapper{
+        flex-direction:column;
+    }
+
+    .pengadaan-table-card,
+    .qr-card{
+        width:100%;
+    }
+
+    .pengadaan-stats{
+        gap:12px;
+    }
+
+    .stat-card{
+        width:calc(33.33% - 8px);
+        height:105px;
+    }
+
+    .stat-number{
+        font-size:22px;
+    }
+
+    .alert-urgent{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .badge-urgent{
+        align-self:flex-start;
+    }
+
+    .header-flex{
+        flex-direction:column;
+        align-items:flex-start !important;
+        gap:10px;
+    }
+}
+
+/* ================= MOBILE ================= */
+@media(max-width:576px){
+
+    .pengadaan-section{
+        padding:40px 0 25px;
+    }
+
+    .pengadaan-heading{
+        font-size:24px;
+        line-height:1.3;
+    }
+
+    .pengadaan-desc{
+        font-size:13px;
+    }
+
+    .pengadaan-stats{
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+        gap:10px;
+    }
+
+    .stat-card{
+        width:100%;
+        height:95px;
+    }
+
+    .stat-number{
+        font-size:20px;
+    }
+
+    .stat-text{
+        font-size:11px;
+    }
+
+    .pengadaan-table-card,
+    .qr-card{
+        padding:16px;
+        border-radius:14px;
+    }
+
+    .pengadaan-title{
+        font-size:14px;
+    }
+
+    .badge-total{
+        font-size:11px;
+        padding:5px 10px;
+    }
+
+    .table-custom th,
+    .table-custom td{
+        font-size:12px;
+    }
+
+    .alert-urgent{
+        padding:14px;
+    }
+
+    .alert-urgent small{
+        font-size:12px;
+        line-height:1.6;
+    }
+
+    .qr-card img{
+        max-width:180px;
+    }
+
+    .qr-text{
+        font-size:11px;
+    }
+}
+
 </style>
 
+<!-- ================= HEADER ================= -->
 <section class="pengadaan-section">
 <div class="container">
 
-    <!-- WRAPPER BIAR SEJAJAR -->
     <div class="text-start" style="max-width:600px;">
 
-        <!-- TEXT -->
         <span class="pengadaan-label">Pengadaan Alat Kesehatan</span>
 
         <h2 class="pengadaan-heading">
@@ -319,113 +547,19 @@ body{
 </div>
 </section>
 
-
-
-<Style>
-.alert-urgent{
-    background:#ffe5e5;
-    border:1px solid #ff4d4d;
-    color:#b30000;
-    border-radius:12px;
-    padding:15px 20px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-top:30px;
-}
-
-.alert-urgent strong{
-    display:block;
-    font-size:14px;
-}
-
-.badge-urgent{
-    background:#ff1a1a;
-    color:#fff;
-    padding:6px 14px;
-    border-radius:20px;
-    font-size:12px;
-    font-weight:600;
-}
-
-/* ================= TABLE CARD ================= */
-.pengadaan-wrapper{
-    display:flex;
-    gap:20px;
-    margin-top:25px;
-    flex-wrap:wrap;
-}
-
-.pengadaan-table-card{
-    flex:2;
-    background:#f9f9f9;
-    border-radius:16px;
-    padding:20px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.05);
-}
-
-.pengadaan-title{
-    font-weight:700;
-    font-size:16px;
-}
-
-.pengadaan-sub{
-    font-size:12px;
-    color:#777;
-}
-
-.badge-total{
-    background:#e6e0ff;
-    color:#4b3cc9;
-    padding:5px 12px;
-    border-radius:20px;
-    font-size:12px;
-}
-
-/* TABLE */
-.table-custom th{
-    font-size:12px;
-    color:#666;
-}
-
-.table-custom td{
-    font-size:13px;
-}
-
-/* ================= QR CARD ================= */
-.qr-card{
-    flex:1;
-    background:#fff;
-    border-radius:16px;
-    padding:20px;
-    text-align:center;
-    box-shadow:0 5px 15px rgba(0,0,0,0.08);
-}
-
-.qr-card img{
-    width:100%;
-    max-width:400px;
-}
-
-.qr-text{
-    font-size:12px;
-    color:#555;
-    margin-top:10px;
-}
-</Style>
-
-
-
+<!-- ================= CONTENT ================= -->
 <div class="container">
 
+    <!-- ALERT -->
     <div class="alert-urgent">
         <div>
             <strong>Dibutuhkan Segera</strong>
             <small>
-                Pengiriman penawaran maksimal 1 bulan sejak permintaan diterima. 
+                Pengiriman penawaran maksimal 1 bulan sejak permintaan diterima.
                 Prioritas diberikan kepada vendor lokal Bumiayu.
             </small>
         </div>
+
         <div class="badge-urgent">Urgent</div>
     </div>
 
@@ -435,33 +569,84 @@ body{
         <!-- TABLE -->
         <div class="pengadaan-table-card">
 
-            <div class="d-flex justify-content-between align-items-center mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-3 header-flex">
                 <div>
-                    <div class="pengadaan-title">Daftar Kebutuhan Alat Kesehatan</div>
-                    <div class="pengadaan-sub">Periode April – Mei 2026</div>
+                    <div class="pengadaan-title">
+                        Daftar Kebutuhan Alat Kesehatan
+                    </div>
+                    <div class="pengadaan-sub">
+                        Periode April – Mei 2026
+                    </div>
                 </div>
-                <div class="badge-total">7 Item • 29 Unit</div>
+
+                <div class="badge-total">
+                    7 Item • 29 Unit
+                </div>
             </div>
 
-            <table class="table table-borderless table-custom">
-                <thead>
-                    <tr>
-                        <th>NO</th>
-                        <th>NAMA BARANG</th>
-                        <th>JUMLAH</th>
-                        <th>PERIODE</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>01</td><td>Bedside Monitor</td><td>8 Unit</td><td>April - Mei 2026</td></tr>
-                    <tr><td>02</td><td>Vein Viewer</td><td>1 Unit</td><td>April - Mei 2026</td></tr>
-                    <tr><td>03</td><td>Bed 3 Crank</td><td>7 Unit</td><td>April - Mei 2026</td></tr>
-                    <tr><td>04</td><td>Syringe Pump</td><td>6 Unit</td><td>April - Mei 2026</td></tr>
-                    <tr><td>05</td><td>Infuse Pump</td><td>3 Unit</td><td>April - Mei 2026</td></tr>
-                    <tr><td>06</td><td>Defibrillator</td><td>2 Unit</td><td>April - Mei 2026</td></tr>
-                    <tr><td>07</td><td>Oximetri Monitor</td><td>1 Unit</td><td>April - Mei 2026</td></tr>
-                </tbody>
-            </table>
+            <div class="table-wrap">
+                <table class="table table-borderless table-custom">
+                    <thead>
+                        <tr>
+                            <th>NO</th>
+                            <th>NAMA BARANG</th>
+                            <th>JUMLAH</th>
+                            <th>PERIODE</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>01</td>
+                            <td>Bedside Monitor</td>
+                            <td>8 Unit</td>
+                            <td>April - Mei 2026</td>
+                        </tr>
+
+                        <tr>
+                            <td>02</td>
+                            <td>Vein Viewer</td>
+                            <td>1 Unit</td>
+                            <td>April - Mei 2026</td>
+                        </tr>
+
+                        <tr>
+                            <td>03</td>
+                            <td>Bed 3 Crank</td>
+                            <td>7 Unit</td>
+                            <td>April - Mei 2026</td>
+                        </tr>
+
+                        <tr>
+                            <td>04</td>
+                            <td>Syringe Pump</td>
+                            <td>6 Unit</td>
+                            <td>April - Mei 2026</td>
+                        </tr>
+
+                        <tr>
+                            <td>05</td>
+                            <td>Infuse Pump</td>
+                            <td>3 Unit</td>
+                            <td>April - Mei 2026</td>
+                        </tr>
+
+                        <tr>
+                            <td>06</td>
+                            <td>Defibrillator</td>
+                            <td>2 Unit</td>
+                            <td>April - Mei 2026</td>
+                        </tr>
+
+                        <tr>
+                            <td>07</td>
+                            <td>Oximetri Monitor</td>
+                            <td>1 Unit</td>
+                            <td>April - Mei 2026</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
             <small style="color:#777;">
                 Kirim penawaran via form atau WhatsApp <br>
@@ -473,6 +658,7 @@ body{
         <!-- QR -->
         <div class="qr-card">
             <img src="{{ asset('images/pengadaan/qr.png') }}" alt="QR Code">
+
             <div class="qr-text">
                 Atau scan QR di atas <br>
                 untuk mengirimkan penawaran
@@ -482,7 +668,6 @@ body{
     </div>
 
 </div>
-
 <!-- footer -->
 <footer style="background:#FFFFFF; color:black; padding:50px 0 20px;">
 
