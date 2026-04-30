@@ -551,32 +551,52 @@ body{
 
         <!-- LEFT -->
         <div class="doctor-card">
-
             <img src="{{ asset('images/beranda/' . $item->foto) }}">
-
             <div>
                 <div class="doctor-name">{{ $item->nama }}</div>
-                <div class="doctor-specialist">{{ $item->sp }}</div>
+                <div class="doctor-specialist">{{ $item->spesialis }}</div>
             </div>
-
         </div>
 
         <!-- RIGHT -->
         <div class="practice-area">
-
             <div class="practice-title">JADWAL PRAKTEK</div>
 
             @php
-                $jadwalList = explode("\n", trim($item->jadwal));
+                $hariList = ['Senin','Selasa','Rabu','Kamis','Jumat','Sabtu','Minggu'];
+
+                // grouping biar lebih cepat & aman
+                $jadwalGrouped = $item->jadwal->keyBy(function ($j) {
+                    return strtolower(trim($j->hari));
+                });
             @endphp
 
-            @foreach($jadwalList as $jadwal)
-                <div class="day-row">
-                    <div class="day-body">
-                        {{ $jadwal }}
+            <div class="day-row">
+                @foreach($hariList as $h)
+
+                    @php
+                        $jadwal = $jadwalGrouped[strtolower($h)] ?? null;
+                    @endphp
+
+                    <div class="day-col {{ !$jadwal ? 'libur' : '' }}">
+
+                        <div class="day-head">{{ $h }}</div>
+
+                        <div class="day-body">
+                            @if($jadwal)
+                                <div class="clinic">{{ $jadwal->klinik }}</div>
+                                <div class="time">{{ $jadwal->jam }}</div>
+                                <div class="note">{{ $jadwal->note }}</div>
+                            @else
+                                <div class="clinic">-</div>
+                                <div class="time">Libur</div>
+                            @endif
+                        </div>
+
                     </div>
-                </div>
-            @endforeach
+
+                @endforeach
+            </div>
 
         </div>
 

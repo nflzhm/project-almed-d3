@@ -1962,7 +1962,7 @@ body {
 
                 <ul style="list-style:none; padding:0; font-size:13px; line-height:1.9;">
                     <li><a href="beranda" style="color:#666; text-decoration:none;">Beranda</a></li>
-                    <li><a href="tentang-kami" style="color:#666; text-decoration:none;">Tentang Kami</a></li>
+                    <li><a href="tentang" style="color:#666; text-decoration:none;">Tentang Kami</a></li>
                     <li><a href="video" style="color:#666; text-decoration:none;">Video</a></li>
                     <li><a href="kontak" style="color:#666; text-decoration:none;">Kontak</a></li>
                 </ul>

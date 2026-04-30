@@ -8,7 +8,7 @@ class DokterController extends Controller
 {
     public function index()
     {
-        $dokter = Dokter::all();
+        $dokter = Dokter::with('jadwal')->get();
 
         return view('jadwaldokter', compact('dokter'));
     }
