@@ -15,9 +15,8 @@ class Dokter extends Model
         'foto'
     ];
 
-    
     public function jadwal()
     {
-        return $this->hasMany(Jadwal::class, 'dokter_id');
+        return $this->hasMany(Jadwal::class, 'dokter_id', 'id');
     }
 }

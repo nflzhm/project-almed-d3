@@ -533,13 +533,14 @@ body{
         <div class="filter-title">Filter Hari</div>
 
         <div class="day-list">
-            <a href="#" class="active">Semua Hari</a>
-            <a href="#">Senin</a>
-            <a href="#">Selasa</a>
-            <a href="#">Rabu</a>
-            <a href="#">Kamis</a>
-            <a href="#">Jumat</a>
-            <a href="#">Sabtu</a>
+            <a href="{{ url('/jadwaldokter') }}" class="{{ request('hari') ? '' : 'active' }}">Semua Hari</a>
+
+            <a href="{{ url('/jadwaldokter?hari=Senin') }}" class="{{ request('hari') == 'Senin' ? 'active' : '' }}">Senin</a>
+            <a href="{{ url('/jadwaldokter?hari=Selasa') }}" class="{{ request('hari') == 'Selasa' ? 'active' : '' }}">Selasa</a>
+            <a href="{{ url('/jadwaldokter?hari=Rabu') }}" class="{{ request('hari') == 'Rabu' ? 'active' : '' }}">Rabu</a>
+            <a href="{{ url('/jadwaldokter?hari=Kamis') }}" class="{{ request('hari') == 'Kamis' ? 'active' : '' }}">Kamis</a>
+            <a href="{{ url('/jadwaldokter?hari=Jumat') }}" class="{{ request('hari') == 'Jumat' ? 'active' : '' }}">Jumat</a>
+            <a href="{{ url('/jadwaldokter?hari=Sabtu') }}" class="{{ request('hari') == 'Sabtu' ? 'active' : '' }}">Sabtu</a>
         </div>
 
     </div>
@@ -565,9 +566,8 @@ body{
             @php
                 $hariList = ['Senin','Selasa','Rabu','Kamis','Jumat','Sabtu','Minggu'];
 
-                // grouping biar lebih cepat & aman
-                $jadwalGrouped = $item->jadwal->keyBy(function ($j) {
-                    return strtolower(trim($j->hari));
+                $jadwalGrouped = $item->jadwal->groupBy(function ($j) {
+                    return ucfirst(strtolower(trim($j->hari)));
                 });
             @endphp
 
@@ -575,7 +575,7 @@ body{
                 @foreach($hariList as $h)
 
                     @php
-                        $jadwal = $jadwalGrouped[strtolower($h)] ?? null;
+                        $jadwal = $jadwalGrouped[$h][0] ?? null;
                     @endphp
 
                     <div class="day-col {{ !$jadwal ? 'libur' : '' }}">
@@ -586,7 +586,7 @@ body{
                             @if($jadwal)
                                 <div class="clinic">{{ $jadwal->klinik }}</div>
                                 <div class="time">{{ $jadwal->jam }}</div>
-                                <div class="note">{{ $jadwal->note }}</div>
+                                <div class="note">{{ $jadwal->note ?? '-' }}</div>
                             @else
                                 <div class="clinic">-</div>
                                 <div class="time">Libur</div>

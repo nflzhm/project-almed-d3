@@ -2,14 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\Dokter;
 
 class DokterController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $dokter = Dokter::with('jadwal')->get();
+        $hari = $request->hari;
 
-        return view('jadwaldokter', compact('dokter'));
+        $dokter = Dokter::with(['jadwal' => function ($query) use ($hari) {
+            if ($hari && $hari != 'Semua') {
+                $query->where('hari', $hari);
+            }
+        }])->get();
+
+        return view('jadwaldokter', compact('dokter', 'hari'));
     }
 }

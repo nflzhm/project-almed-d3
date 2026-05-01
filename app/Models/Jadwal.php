@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Dokter;
 
 class Jadwal extends Model
 {
@@ -15,4 +16,9 @@ class Jadwal extends Model
         'jam',
         'note'
     ];
+
+    public function dokter()
+    {
+        return $this->belongsTo(Dokter::class, 'dokter_id', 'id');
+    }
 }

@@ -575,12 +575,12 @@ body{
                         Daftar Kebutuhan Alat Kesehatan
                     </div>
                     <div class="pengadaan-sub">
-                        Periode April – Mei 2026
+                        Periode April - Mei 2026
                     </div>
                 </div>
 
                 <div class="badge-total">
-                    7 Item • 29 Unit
+                    {{ count($data) }} Item • {{ $data->sum('jumlah') }} Unit
                 </div>
             </div>
 
@@ -595,62 +595,26 @@ body{
                         </tr>
                     </thead>
 
-                    <tbody>
-                        <tr>
-                            <td>01</td>
-                            <td>Bedside Monitor</td>
-                            <td>8 Unit</td>
-                            <td>April - Mei 2026</td>
-                        </tr>
-
-                        <tr>
-                            <td>02</td>
-                            <td>Vein Viewer</td>
-                            <td>1 Unit</td>
-                            <td>April - Mei 2026</td>
-                        </tr>
-
-                        <tr>
-                            <td>03</td>
-                            <td>Bed 3 Crank</td>
-                            <td>7 Unit</td>
-                            <td>April - Mei 2026</td>
-                        </tr>
-
-                        <tr>
-                            <td>04</td>
-                            <td>Syringe Pump</td>
-                            <td>6 Unit</td>
-                            <td>April - Mei 2026</td>
-                        </tr>
-
-                        <tr>
-                            <td>05</td>
-                            <td>Infuse Pump</td>
-                            <td>3 Unit</td>
-                            <td>April - Mei 2026</td>
-                        </tr>
-
-                        <tr>
-                            <td>06</td>
-                            <td>Defibrillator</td>
-                            <td>2 Unit</td>
-                            <td>April - Mei 2026</td>
-                        </tr>
-
-                        <tr>
-                            <td>07</td>
-                            <td>Oximetri Monitor</td>
-                            <td>1 Unit</td>
-                            <td>April - Mei 2026</td>
-                        </tr>
-                    </tbody>
+                                <tbody>
+                @foreach($data as $index => $item)
+                <tr>
+                    <td>{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</td>
+                    <td>{{ $item->nama_barang }}</td>
+                    <td>{{ $item->jumlah }} Unit</td>
+                    <td>{{ $item->periode }}</td>
+                </tr>
+                @endforeach
+            </tbody>
                 </table>
             </div>
 
             <small style="color:#777;">
                 Kirim penawaran via form atau WhatsApp <br>
-                <b>Link: s.id/PengadaanAllamMedica</b>
+                <b>
+                    <a href="https://s.id/PengadaanAllamMedica" target="_blank" style="color:#1C145C; text-decoration:none;">
+                        s.id/PengadaanAllamMedica
+                    </a>
+                </b>
             </small>
 
         </div>

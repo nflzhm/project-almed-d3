@@ -4,10 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\DokterController;
+use App\Http\Controllers\PengadaanController;
 
 Route::get('/jadwaldokter', [DokterController::class, 'index']);
 Route::get('/layanan', [LayananController::class, 'index']);
 Route::get('/berita', [BeritaController::class, 'index']);
+Route::resource('pengadaan', PengadaanController::class);
 
 
 Route::get('/', function () {
@@ -25,10 +27,6 @@ Route::get('/download', function () {
 Route::get('/kontak', function () {
     return view('kontak');
 });
-
-Route::get('/pengadaan', function () {
-    return view('pengadaan');
-})->name('pengadaan');
 
 Route::get('/karir', function () {
     return view('karir');
