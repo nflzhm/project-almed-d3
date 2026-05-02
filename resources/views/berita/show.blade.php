@@ -1,11 +1,8 @@
-@php
-use Illuminate\Support\Str;
-@endphp
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>RSU Allam Medica - Berita</title>
+    <title>RSU Allam Medica - Beranda</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap CSS -->
@@ -209,187 +206,46 @@ body {
     </div>
 </nav>
 
-<!-- ================= BERITA HEADER ================= -->
-<style>
 
-.berita-section{
-    padding:60px 0 40px;
-}
+@extends('layouts.app')
 
-.berita-wrap{
-    max-width: 900px;   
-    text-align: left;
-}
+@section('content')
 
-/* LABEL */
-.berita-label{
-    font-size:12px;
-    font-weight:600;
-    color:#888;
-    letter-spacing:2px;
-    text-transform:uppercase;
-}
+<div class="container">
 
-/* JUDUL */
-.berita-heading{
-    font-size:32px;
-    font-weight:800;
-    color:#1C145C;
-    margin:10px 0;
-}
+    <!-- Judul Berita -->
+    <h1 class="judul-berita">
+        {{ $berita->judul }}
+    </h1>
 
-/* PARAGRAF FIX */
-.berita-desc{
-    font-size:14px;
-    color:#444;
-    margin:0;
-    padding:0;
-    line-height:1.6;
-    white-space: normal;
-    display: block;
-    width: 100%;
-}
-</style>
-
-<section class="berita-section">
-    <div class="container">
-
-        <!-- WRAPPER FULL WIDTH CONTROL -->
-        <div class="berita-wrap">
-
-            <span class="berita-label">Buletin Allam Medica</span>
-
-            <h2 class="berita-heading">
-                Informasi Kesehatan Terpercaya untuk Anda
-            </h2>
-
-            <p class="berita-desc">
-                Artikel kesehatan, tips medis, dan informasi layanan RS terkini dari tim dokter dan tenaga kesehatan kami.
-            </p>
-
-        </div>
-
+    <!-- Info kecil (tanggal / kategori kalau ada) -->
+    <div class="meta-berita">
+        <small>
+            Dipublish: {{ $berita->created_at->format('d M Y') }}
+        </small>
     </div>
-</section>
 
-<!-- MEDIA INFORMASI -->
-<section style="background:#fff; padding:50px 0;">
-    <div class="container">
-        <div class="row g-4">
-
-            @foreach($berita as $item)
-
-            <div class="col-md-3 col-12">
-                <div style="
-                    border:1px solid #eee;
-                    border-radius:20px;
-                    overflow:hidden;
-                    background:#fff;
-                    height:100%;
-                ">
-
-                    <img src="{{ asset('storage/'.$item->gambar) }}"
-                         style="width:100%; height:auto; display:block;">
-
-                    <div style="padding:15px; text-align:center;">
-
-                        <h6 class="fw-bold">
-                            {{ $item->judul }}
-                        </h6>
-
-                        <p style="font-size:13px; color:#666;">
-                            {{ \Illuminate\Support\Str::limit($item->deskripsi, 95) }}
-                        </p>
-
-                        <a href="{{ url('/berita/'.$item->slug) }}"
-                           style="
-                                display:inline-block;
-                                margin-top:8px;
-                                padding:6px 12px;
-                                background:#1C145C;
-                                color:white;
-                                text-decoration:none;
-                                border-radius:20px;
-                                font-size:12px;
-                           ">
-                            Baca Selengkapnya
-                        </a>
-
-                    </div>
-                </div>
-            </div>
-
-            @endforeach
-
+    <!-- Gambar Berita -->
+    @if($berita->gambar)
+        <div class="gambar-berita">
+            <img src="{{ asset('images/berita/' . $berita->gambar) }}" alt="{{ $berita->judul }}">
         </div>
+    @endif
+
+    <!-- Isi Berita -->
+    <div class="isi-berita">
+        {!! nl2br(e($berita->isi)) !!}
     </div>
-</section>
 
-<!-- ================= PAGINATION ================= -->
-<style>
-.custom-pagination{
-    display: flex;
-    justify-content: center;   /* tengah */
-    align-items: center;
-    gap: 8px;
-    margin-top: 25px;
-}
-
-.custom-pagination a,
-.custom-pagination span{
-    width: 34px;      /* diperkecil */
-    height: 34px;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 13px;
-    transition: 0.3s;
-}
-
-/* Tombol biasa */
-.custom-pagination a{
-    background: #e9e9e9;
-    color: #8b8b8b;
-}
-
-/* Hover */
-.custom-pagination a:hover{
-    background: #dcdcdc;
-}
-
-/* Active */
-.custom-pagination .active{
-    background: #1C145C;
-    color: #fff;
-}
-
-/* Disabled */
-.custom-pagination .disabled{
-    background: #f3f3f3;
-    color: #bdbdbd;
-    pointer-events: none;
-}
-</style>
-
-<!-- HTML -->
-<div class="custom-pagination">
-
-    <span class="disabled">
-        <i class="bi bi-chevron-left"></i>
-    </span>
-
-    <a href="#" class="active">1</a>
-
-    <a href="#">2</a>
-
-    <a href="#">
-        <i class="bi bi-chevron-right"></i>
+    <!-- Tombol kembali -->
+    <a href="{{ url('/berita') }}" class="btn-kembali">
+        ← Kembali ke daftar berita
     </a>
 
 </div>
+
+@endsection
+
 
 <!-- footer -->
 <footer style="background:#FFFFFF; color:black; padding:50px 0 20px;">
@@ -434,16 +290,16 @@ body {
                 <h6 class="fw-bold mb-3">Tautan Cepat</h6>
 
                 <ul style="list-style:none; padding:0; font-size:13px; line-height:1.9;">
-                    <li><a href="#" style="color:#666; text-decoration:none;">Beranda</a></li>
-                    <li><a href="#" style="color:#666; text-decoration:none;">Tentang Kami</a></li>
-                    <li><a href="#" style="color:#666; text-decoration:none;">Video</a></li>
-                    <li><a href="#" style="color:#666; text-decoration:none;">Kontak</a></li>
+                    <li><a href="beranda" style="color:#666; text-decoration:none;">Beranda</a></li>
+                    <li><a href="tentang" style="color:#666; text-decoration:none;">Tentang Kami</a></li>
+                    <li><a href="video" style="color:#666; text-decoration:none;">Video</a></li>
+                    <li><a href="kontak" style="color:#666; text-decoration:none;">Kontak</a></li>
                 </ul>
 
                 <h6 class="fw-bold mt-3 mb-2">Download</h6>
                 <ul style="list-style:none; padding:0; font-size:13px; line-height:1.9;">
-                    <li><a href="#" style="color:#666; text-decoration:none;">Download List Pengadaan</a></li>
-                    <li><a href="#" style="color:#666; text-decoration:none;">Lihat Semua Data</a></li>
+                    <li><a href="download" style="color:#666; text-decoration:none;">Download List Pengadaan</a></li>
+                    <li><a href="download" style="color:#666; text-decoration:none;">Lihat Semua Data</a></li>
                 </ul>
             </div>
 
@@ -452,10 +308,10 @@ body {
                 <h6 class="fw-bold mb-3">Menu</h6>
 
                 <ul style="list-style:none; padding:0; font-size:13px; line-height:1.9;">
-                    <li><a href="#" style="color:#666; text-decoration:none;">Beranda</a></li>
-                    <li><a href="#" style="color:#666; text-decoration:none;">Layanan</a></li>
-                    <li><a href="#" style="color:#666; text-decoration:none;">Dokter</a></li>
-                    <li><a href="#" style="color:#666; text-decoration:none;">Kontak</a></li>
+                    <li><a href="pengadaan" style="color:#666; text-decoration:none;">Pengadaan</a></li>
+                    <li><a href="karir" style="color:#666; text-decoration:none;">Karir</a></li>
+                    <li><a href="berita" style="color:#666; text-decoration:none;">Berita</a></li>
+                    <li><a href="video" style="color:#666; text-decoration:none;">Video</a></li>
                 </ul>
 
                 <h6 class="fw-bold mt-3 mb-2">Informasi Legal</h6>
@@ -517,10 +373,3 @@ body {
     </div>
 
 </footer>
-
-
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-</body>
-</html>
