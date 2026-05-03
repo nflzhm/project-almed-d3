@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\LayananController;
@@ -14,8 +13,18 @@ use App\Http\Controllers\Admin\JadwalController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\VideoController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BeritaAdminController;
+use App\Http\Controllers\Admin\DownloadPengadaanController;
 
 use App\Http\Controllers\AuthController;
+
+
+
+/*
+|--------------------------------------------------------------------------
+| FRONTEND (USER)
+|--------------------------------------------------------------------------
+*/
 
 Route::get('/', [IklanSliderController::class, 'index']);
 
@@ -33,9 +42,23 @@ Route::view('/kontak', 'kontak');
 Route::view('/karir', 'karir')->name('karir');
 Route::view('/video', 'video')->name('video');
 
+
+/*
+|--------------------------------------------------------------------------
+| AUTH
+|--------------------------------------------------------------------------
+*/
+
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
+/*
+|--------------------------------------------------------------------------
+| ADMIN
+|--------------------------------------------------------------------------
+*/
 
 Route::prefix('admin')
     ->middleware('auth')
@@ -44,7 +67,8 @@ Route::prefix('admin')
 
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::resource('berita', BeritaController::class);
+    Route::resource('berita', BeritaAdminController::class);
+
     Route::resource('layanan', LayananController::class);
     Route::resource('dokter', DokterController::class);
     Route::resource('pengadaan', PengadaanController::class);
@@ -57,3 +81,21 @@ Route::prefix('admin')
     Route::get('/settings', [AdminController::class, 'settings'])->name('settings');
 });
 
+
+Route::prefix('admin')->name('admin.')->group(function () {
+
+    Route::get('/pengadaan', [DownloadPengadaanController::class, 'index'])
+        ->name('pengadaan.index');
+
+    Route::post('/pengadaan', [DownloadPengadaanController::class, 'store'])
+        ->name('pengadaan.store');
+
+    Route::put('/pengadaan/{id}', [DownloadPengadaanController::class, 'update'])
+        ->name('pengadaan.update');
+
+    Route::delete('/pengadaan/{id}', [DownloadPengadaanController::class, 'destroy'])
+        ->name('pengadaan.destroy');
+
+    Route::get('/pengadaan/download/{id}', [DownloadPengadaanController::class, 'download'])
+        ->name('pengadaan.download');
+});

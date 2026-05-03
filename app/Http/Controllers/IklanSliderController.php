@@ -1,7 +1,15 @@
 <?php
 
-public function index()
+namespace App\Http\Controllers;
+
+use App\Models\IklanSlider;
+use Illuminate\Http\Request;
+
+class IklanSliderController extends Controller
 {
-    $iklan = IklanSlider::all();
-    return view('beranda', compact('iklan'));
+    public function index()
+    {
+        $iklan = IklanSlider::all();
+        return view('beranda', compact('iklan'));
+    }
 }
