@@ -715,6 +715,11 @@
                     <span class="submenu-dot"></span>
                     <span class="sidebar-label">Video YouTube</span>
                 </a>
+                <a href="{{ route('admin.loker.index') }}"
+                   class="nav-link {{ request()->routeIs('admin.loker.*') ? 'active' : '' }}">
+                    <span class="submenu-dot"></span>
+                    <span class="sidebar-label">Loker</span>
+                </a>
             </div>
         </div>
 

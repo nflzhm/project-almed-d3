@@ -188,7 +188,6 @@ body {
                     </a>
 
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ url('/pengadaan') }}">Pengadaan</a></li>
                         <li><a class="dropdown-item" href="{{ url('/karir') }}">Karir</a></li>
                         <li><a class="dropdown-item" href="{{ url('/berita') }}">Berita</a></li>
                         <li><a class="dropdown-item" href="{{ url('/video') }}">Video</a></li>
@@ -213,22 +212,22 @@ body {
 <style>
 /* ================= FIX NAVBAR SPACE ================= */
 body{
-    padding-top:80px; /* tinggi total navbar */
+    padding-top:80px;
 }
 
 /* ================= FULL BANNER ================= */
+
 .banner-download{
     position:relative;
-    height:200px;
+    height:240px;
     width:100%;
     display:flex;
     align-items:center;
     color:#fff;
     overflow:hidden;
+    border-radius:0 0 30px 30px;
 }
 
-
-/* IMAGE */
 .banner-download img{
     position:absolute;
     width:100%;
@@ -237,41 +236,40 @@ body{
     top:0;
     left:0;
     z-index:1;
+    transform:scale(1.05);
 }
 
-/* GRADIENT */
 .banner-overlay{
     position:absolute;
     width:100%;
     height:100%;
     background:linear-gradient(
-        to right,
-        rgba(28,20,92,0.85),
-        rgba(28,20,92,0.6),
-        rgba(28,20,92,0.2)
+        120deg,
+        rgba(28,20,92,0.92),
+        rgba(28,20,92,0.65),
+        rgba(0,0,0,0.2)
     );
     z-index:2;
 }
 
-/* CONTENT */
 .banner-content{
     position:relative;
     z-index:3;
-    padding-left:60px;
-    max-width:1000px; /* 🔥 diperlebar */
+    padding-left:70px;
+    max-width:900px;
 }
 
-/* TEXT */
 .banner-title{
-    font-size:24px;
-    font-weight:700;
+    font-size:28px;
+    font-weight:800;
+    letter-spacing:0.5px;
     margin-bottom:8px;
 }
 
 .banner-desc{
-    font-size:13px;
+    font-size:14px;
     line-height:1.7;
-    text-align:justify; /* 🔥 biar rata kiri kanan */
+    opacity:0.9;
 }
 .download-card{
     display:flex;
@@ -301,245 +299,242 @@ body{
 
 
 <style>
-/* WRAPPER (LEBIH LEBAR) */
 .download-wrapper{
-    max-width:1300px; /* 🔥 lebih lebar dari sebelumnya */
+    max-width:1250px;
     margin:auto;
 }
 
-/* CARD */
 .download-card{
-    display:flex;
-    flex-direction:column;
     background:#fff;
-    border-radius:14px;
-    padding:16px;
-    box-shadow:0 8px 20px rgba(0,0,0,0.05);
-    transition:0.3s;
+    border-radius:16px;
+    padding:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.06);
+    transition:0.3s ease;
     height:100%;
+    border:1px solid rgba(0,0,0,0.04);
+    position:relative;
+    overflow:hidden;
 }
 
 .download-card:hover{
-    transform:translateY(-4px);
+    transform:translateY(-6px);
+    box-shadow:0 18px 35px rgba(0,0,0,0.12);
 }
 
-/* HEADER */
-.download-header{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    margin-bottom:8px;
-}
-
-/* ICON */
 .download-icon{
-    width:36px;
-    height:36px;
+    width:42px;
+    height:42px;
+    border-radius:12px;
+    background:linear-gradient(135deg,#198754,#20c997);
+    color:#fff;
     display:flex;
     align-items:center;
     justify-content:center;
-    border-radius:8px;
-    background:rgba(25,135,84,0.1);
-    color:#198754;
-    font-size:16px;
+    font-size:18px;
+    flex-shrink:0;
 }
 
-/* TITLE */
+.download-header{
+    display:flex;
+    gap:12px;
+    align-items:center;
+    margin-bottom:10px;
+}
+
 .download-title{
-    font-size:14px;
+    font-size:15px;
     font-weight:700;
+    color:#222;
+    line-height:1.3;
 }
 
-/* SUBTITLE */
 .download-subtitle{
     font-size:12px;
-    font-weight:600;
     color:#1C145C;
+    font-weight:600;
+    margin-bottom:8px;
+}
+
+.download-desc{
+    font-size:12.5px;
+    color:#555;
+    line-height:1.6;
+    margin-bottom:10px;
+}
+
+.download-info{
+    font-size:11.5px;
+    color:#888;
+    display:flex;
+    align-items:center;
+    gap:6px;
     margin-bottom:4px;
 }
 
-/* DESC */
-.download-desc{
-    font-size:12px;
-    color:#444;
-    line-height:1.5;
-}
-
-/* LINE */
 .download-line{
     height:1px;
     background:#eee;
     margin:10px 0;
 }
 
-/* INFO */
-.download-info{
-    font-size:11px;
-    color:#888;
-    line-height:1.5;
-}
-
-/* BUTTON */
 .btn-download{
-    margin-top:auto;
-    background:#198754;
-    color:#fff;
+    width:100%;
+    margin-top:12px;
+    background:linear-gradient(135deg,#198754,#157347);
     border:none;
-    border-radius:6px;
-    padding:7px;
-    font-size:12px;
+    color:#fff;
+    padding:8px;
+    border-radius:10px;
+    font-size:13px;
     font-weight:600;
     display:flex;
     align-items:center;
     justify-content:center;
-    gap:5px;
+    gap:6px;
+    transition:0.3s;
 }
 
 .btn-download:hover{
-    background:#157347;
+    opacity:0.9;
+    transform:scale(1.02);
 }
+
+@media (max-width: 992px){
+    .banner-content{
+        padding-left:40px;
+        padding-right:20px;
+    }
+
+    .banner-title{
+        font-size:24px;
+    }
+
+    .banner-desc{
+        font-size:13px;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 768px){
+
+
+    .banner-download{
+        height:180px;
+        text-align:left;
+    }
+
+    .banner-content{
+        padding-left:20px;
+        padding-right:20px;
+    }
+
+    .banner-title{
+        font-size:18px;
+    }
+
+    .banner-desc{
+        font-size:12px;
+        line-height:1.5;
+    }
+
+    .download-wrapper{
+        padding:0 12px;
+    }
+
+    .download-wrapper .col-lg-4,
+    .download-wrapper .col-md-6{
+        width:100% !important;
+    }
+
+    .download-card{
+        padding:14px;
+        border-radius:14px;
+    }
+
+    .download-title{
+        font-size:14px;
+    }
+
+    .download-desc{
+        font-size:12px;
+    }
+
+    .btn-download{
+        font-size:12px;
+        padding:10px;
+    }
+}
+
+/* SMALL MOBILE */
+@media (max-width: 480px){
+
+    .banner-download{
+        height:160px;
+    }
+
+    .banner-title{
+        font-size:16px;
+    }
+
+    .banner-desc{
+        display:none; 
+    }
+
+    .download-icon{
+        width:38px;
+        height:38px;
+        font-size:16px;
+    }
+}
+
 </style>
 
 
 <div class="container-fluid py-5 download-wrapper">
-<div class="row g-3">
+    <div class="row g-3">
 
-<!-- CARD 1 -->
-<div class="col-lg-4 col-md-6">
-<div class="download-card">
-<div class="download-header">
-<div class="download-icon"><i class="bi bi-file-earmark-text-fill"></i></div>
-<div class="download-title">Kebutuhan Alat Kesehatan</div>
-</div>
-<div class="download-subtitle">Bulan April 2026 - Mei 2026</div>
-<div class="download-desc">Surat Kebutuhan Alat Kesehatan RSU Allam Medica Bumiayu</div>
-<div class="download-line"></div>
-<div class="download-info"><i class="bi bi-clock"></i> Diunggah: 1 April 2026 <br> PDF 1,5 MB</div>
-<button class="btn-download"><i class="bi bi-download"></i> Download</button>
-</div>
-</div>
+        @foreach($data as $item)
+        <div class="col-lg-4 col-md-6">
+            <div class="download-card">
 
-<!-- CARD 2 -->
-<div class="col-lg-4 col-md-6">
-<div class="download-card">
-<div class="download-header">
-<div class="download-icon"><i class="bi bi-file-earmark-text-fill"></i></div>
-<div class="download-title">Kebutuhan Obat Rumah Sakit</div>
-</div>
-<div class="download-subtitle">Bulan Mei 2026</div>
-<div class="download-desc">Daftar kebutuhan obat RSU Allam Medica Bumiayu</div>
-<div class="download-line"></div>
-<div class="download-info"><i class="bi bi-clock"></i> Diunggah: 3 April 2026 <br> PDF 2,1 MB</div>
-<button class="btn-download"><i class="bi bi-download"></i> Download</button>
-</div>
-</div>
+                <div class="download-header">
+                    <div class="download-icon">
+                        <i class="bi bi-file-earmark-text-fill"></i>
+                    </div>
 
-<!-- CARD 3 -->
-<div class="col-lg-4 col-md-6">
-<div class="download-card">
-<div class="download-header">
-<div class="download-icon"><i class="bi bi-file-earmark-text-fill"></i></div>
-<div class="download-title">Pengadaan Alat Laboratorium</div>
-</div>
-<div class="download-subtitle">Bulan Juni 2026</div>
-<div class="download-desc">Dokumen pengadaan alat laboratorium terbaru</div>
-<div class="download-line"></div>
-<div class="download-info"><i class="bi bi-clock"></i> Diunggah: 5 April 2026 <br> PDF 1,8 MB</div>
-<button class="btn-download"><i class="bi bi-download"></i> Download</button>
-</div>
-</div>
+                    <div class="download-title">
+                        {{ $item->judul }}
+                    </div>
+                </div>
 
-<!-- CARD 4 -->
-<div class="col-lg-4 col-md-6">
-<div class="download-card">
-<div class="download-header">
-<div class="download-icon"><i class="bi bi-file-earmark-text-fill"></i></div>
-<div class="download-title">Pengadaan Alat Radiologi</div>
-</div>
-<div class="download-subtitle">Bulan Juni 2026</div>
-<div class="download-desc">Dokumen kebutuhan alat radiologi RSU</div>
-<div class="download-line"></div>
-<div class="download-info"><i class="bi bi-clock"></i> Diunggah: 6 April 2026 <br> PDF 2,5 MB</div>
-<button class="btn-download"><i class="bi bi-download"></i> Download</button>
-</div>
-</div>
+                <div class="download-subtitle">
+                    {{ $item->kategori }} - {{ $item->periode }}
+                </div>
 
-<!-- CARD 5 -->
-<div class="col-lg-4 col-md-6">
-<div class="download-card">
-<div class="download-header">
-<div class="download-icon"><i class="bi bi-file-earmark-text-fill"></i></div>
-<div class="download-title">Pengadaan ATK</div>
-</div>
-<div class="download-subtitle">Bulan April 2026</div>
-<div class="download-desc">Daftar kebutuhan alat tulis kantor RSU</div>
-<div class="download-line"></div>
-<div class="download-info"><i class="bi bi-clock"></i> Diunggah: 7 April 2026 <br> PDF 900 KB</div>
-<button class="btn-download"><i class="bi bi-download"></i> Download</button>
-</div>
-</div>
+                <div class="download-desc">
+                    {{ $item->deskripsi }}
+                </div>
 
-<!-- CARD 6 -->
-<div class="col-lg-4 col-md-6">
-<div class="download-card">
-<div class="download-header">
-<div class="download-icon"><i class="bi bi-file-earmark-text-fill"></i></div>
-<div class="download-title">Pengadaan Peralatan IT</div>
-</div>
-<div class="download-subtitle">Bulan Mei 2026</div>
-<div class="download-desc">Dokumen kebutuhan perangkat IT rumah sakit</div>
-<div class="download-line"></div>
-<div class="download-info"><i class="bi bi-clock"></i> Diunggah: 8 April 2026 <br> PDF 3,2 MB</div>
-<button class="btn-download"><i class="bi bi-download"></i> Download</button>
-</div>
-</div>
+                <div class="download-line"></div>
 
-<!-- CARD 7 -->
-<div class="col-lg-4 col-md-6">
-<div class="download-card">
-<div class="download-header">
-<div class="download-icon"><i class="bi bi-file-earmark-text-fill"></i></div>
-<div class="download-title">Pengadaan Ambulance</div>
-</div>
-<div class="download-subtitle">Bulan Juli 2026</div>
-<div class="download-desc">Rencana pengadaan kendaraan ambulance</div>
-<div class="download-line"></div>
-<div class="download-info"><i class="bi bi-clock"></i> Diunggah: 9 April 2026 <br> PDF 4,1 MB</div>
-<button class="btn-download"><i class="bi bi-download"></i> Download</button>
-</div>
-</div>
+                <div class="download-info">
+                    <i class="bi bi-clock"></i>
+                    Diunggah: {{ optional($item->tanggal_upload)->format('d M Y') }}
+                </div>
 
-<!-- CARD 8 -->
-<div class="col-lg-4 col-md-6">
-<div class="download-card">
-<div class="download-header">
-<div class="download-icon"><i class="bi bi-file-earmark-text-fill"></i></div>
-<div class="download-title">Pengadaan Alat Operasi</div>
-</div>
-<div class="download-subtitle">Bulan Juni 2026</div>
-<div class="download-desc">Daftar kebutuhan alat operasi rumah sakit</div>
-<div class="download-line"></div>
-<div class="download-info"><i class="bi bi-clock"></i> Diunggah: 10 April 2026 <br> PDF 2,7 MB</div>
-<button class="btn-download"><i class="bi bi-download"></i> Download</button>
-</div>
-</div>
+                <div class="download-info">
+                    <i class="bi bi-hdd"></i>
+                    Ukuran: {{ $item->ukuran }}
+                </div>
+                 <button onclick="window.location='{{ route('download.file', $item->id) }}'" class="btn-download">
+                    <i class="bi bi-download"></i> Download File
+                </button>
 
-<!-- CARD 9 -->
-<div class="col-lg-4 col-md-6">
-<div class="download-card">
-<div class="download-header">
-<div class="download-icon"><i class="bi bi-file-earmark-text-fill"></i></div>
-<div class="download-title">Pengadaan Peralatan ICU</div>
-</div>
-<div class="download-subtitle">Bulan Juli 2026</div>
-<div class="download-desc">Dokumen kebutuhan peralatan ICU terbaru</div>
-<div class="download-line"></div>
-<div class="download-info"><i class="bi bi-clock"></i> Diunggah: 12 April 2026 <br> PDF 3,8 MB</div>
-<button class="btn-download"><i class="bi bi-download"></i> Download</button>
-</div>
-</div>
+            </div>
+        </div>
+        @endforeach
 
-</div>
+    </div>
 </div>
 
 

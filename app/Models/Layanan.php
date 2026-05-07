@@ -2,17 +2,21 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Layanan extends Model
 {
+    use HasFactory;
+
     protected $table = 'layanan';
 
     protected $fillable = [
-        'judul',
-        'dokter',
-        'jadwal',
-        'kontak',
-        'gambar'
+        'poli',
+        'deskripsi',
+        'no_hp',
+        'no_wa',
+        'gambar',
+        'status',
     ];
 }

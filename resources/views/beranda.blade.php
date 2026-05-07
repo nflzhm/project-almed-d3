@@ -187,7 +187,6 @@ body {
                     </a>
 
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ url('/pengadaan') }}">Pengadaan</a></li>
                         <li><a class="dropdown-item" href="{{ url('/karir') }}">Karir</a></li>
                         <li><a class="dropdown-item" href="{{ url('/berita') }}">Berita</a></li>
                         <li><a class="dropdown-item" href="{{ url('/video') }}">Video</a></li>
@@ -286,30 +285,19 @@ body {
 
 </section>
 
-<!-- IKLAN SLIDER -->
 <section style="background:#fff; padding:0; margin:0; overflow:hidden;">
 
     <div id="adCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500">
 
         <div class="carousel-inner m-0 p-0">
 
-            <div class="carousel-item active">
-                <img src="{{ asset('images/beranda/iklan1.png') }}"
+            @foreach($banners as $key => $item)
+            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                <img src="{{ asset('storage/'.$item->gambar) }}"
                      class="d-block w-100"
                      style="height:auto; display:block;">
             </div>
-
-            <div class="carousel-item">
-                <img src="{{ asset('images/beranda/iklan2.png') }}"
-                     class="d-block w-100"
-                     style="height:auto; display:block;">
-            </div>
-
-            <div class="carousel-item">
-                <img src="{{ asset('images/beranda/iklan3.png') }}"
-                     class="d-block w-100"
-                     style="height:auto; display:block;">
-            </div>
+            @endforeach
 
         </div>
 

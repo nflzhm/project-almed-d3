@@ -9,9 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 class DownloadPengadaanController extends Controller
 {
-    // ==============================
-    // INDEX
-    // ==============================
+
     public function index()
     {
         $pengadaan = DownloadPengadaan::latest()->paginate(9);
@@ -28,9 +26,7 @@ class DownloadPengadaanController extends Controller
         ));
     }
 
-    // ==============================
-    // STORE
-    // ==============================
+
     public function store(Request $request)
     {
         $request->validate([
@@ -58,9 +54,7 @@ class DownloadPengadaanController extends Controller
         return back()->with('success', 'Dokumen berhasil ditambahkan');
     }
 
-    // ==============================
-    // UPDATE
-    // ==============================
+
     public function update(Request $request, $id)
     {
         $data = DownloadPengadaan::findOrFail($id);
@@ -95,9 +89,7 @@ class DownloadPengadaanController extends Controller
         return back()->with('success', 'Dokumen berhasil diupdate');
     }
 
-    // ==============================
-    // DELETE
-    // ==============================
+
     public function destroy($id)
     {
         $data = DownloadPengadaan::findOrFail($id);
@@ -111,9 +103,7 @@ class DownloadPengadaanController extends Controller
         return back()->with('success', 'Dokumen berhasil dihapus');
     }
 
-    // ==============================
-    // DOWNLOAD + COUNT
-    // ==============================
+
     public function download($id)
     {
         $data = DownloadPengadaan::findOrFail($id);

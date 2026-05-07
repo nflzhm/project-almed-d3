@@ -1,64 +1,73 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+use App\Models\Video;
 use Illuminate\Http\Request;
 
 class VideoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $video = Video::latest()->paginate(9);
+
+        $totalFeatured = Video::where('featured', true)->count();
+        $totalViews = Video::sum('views');
+        $totalKategori = Video::select('kategori')->distinct()->count();
+
+        return view('admin.video', compact(
+            'video',
+            'totalFeatured',
+            'totalViews',
+            'totalKategori'
+        ));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'judul' => 'required',
+            'youtube_url' => 'required',
+            'kategori' => 'required',
+        ]);
+
+        Video::create([
+            'judul' => $request->judul,
+            'deskripsi' => $request->deskripsi,
+            'youtube_url' => $request->youtube_url,
+            'youtube_id' => $request->youtube_id,
+            'kategori' => $request->kategori,
+            'durasi' => $request->durasi,
+            'featured' => $request->featured ?? false,
+            'views' => 0,
+        ]);
+
+        return redirect()->back()->with('success', 'Video berhasil ditambahkan');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $video = Video::findOrFail($id);
+
+        $video->update([
+            'judul' => $request->judul,
+            'deskripsi' => $request->deskripsi,
+            'youtube_url' => $request->youtube_url,
+            'youtube_id' => $request->youtube_id,
+            'kategori' => $request->kategori,
+            'durasi' => $request->durasi,
+            'featured' => $request->featured ?? false,
+        ]);
+
+        return redirect()->back()->with('success', 'Video berhasil diupdate');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function destroy($id)
     {
-        //
-    }
+        $video = Video::findOrFail($id);
+        $video->delete();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->back()->with('success', 'Video berhasil dihapus');
     }
 }

@@ -292,10 +292,29 @@
 /* ============================================================
    MODAL
 ============================================================ */
-.am-modal .modal-dialog { max-width: 660px; }
+
+.am-modal .modal-body {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    min-height: 0;
+    max-height: calc(90vh - 140px); /* header + footer space */
+    scrollbar-width: thin;
+}
+.am-modal .modal-dialog {
+    max-height: 90vh;
+    display: flex;
+    align-items: center;
+}
+
 .am-modal .modal-content {
-    border: none; border-radius: var(--radius);
-    box-shadow: 0 24px 64px rgba(0,0,0,.18); overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    max-height: 90vh;
+    width: 100%;
+    border: none;
+    border-radius: var(--radius);
+    box-shadow: 0 24px 64px rgba(0,0,0,.18);
+    overflow: hidden;
 }
 .am-modal .modal-header {
     background: linear-gradient(135deg, var(--sidebar-bg) 0%, #1e3a5f 100%);
@@ -602,20 +621,7 @@
     </div>
 </div>
 
-{{-- ================================================================
-     SLIDER PREVIEW DEMO
-================================================================ --}}
-@php
-$bannerDummy = [
-    ['id'=>1,'judul'=>'Promo Kesehatan Gratis','caption'=>'Cek kesehatan gratis setiap Sabtu','gambar'=>null,'link'=>'#promo','urutan'=>1,'status'=>'active','tanggal_mulai'=>'01 Mei 2025','tanggal_selesai'=>'31 Mei 2025'],
-    ['id'=>2,'judul'=>'Layanan Poli Spesialis','caption'=>'Dokter spesialis siap melayani Anda','gambar'=>null,'link'=>'#layanan','urutan'=>2,'status'=>'active','tanggal_mulai'=>'01 Mei 2025','tanggal_selesai'=>'30 Jun 2025'],
-    ['id'=>3,'judul'=>'Jadwal Dokter Terbaru','caption'=>'Lihat jadwal dokter bulan ini','gambar'=>null,'link'=>'#jadwal','urutan'=>3,'status'=>'active','tanggal_mulai'=>'01 Mei 2025','tanggal_selesai'=>'31 Mei 2025'],
-    ['id'=>4,'judul'=>'Fasilitas Laboratorium','caption'=>'Lab lengkap, hasil cepat & akurat','gambar'=>null,'link'=>null,'urutan'=>4,'status'=>'active','tanggal_mulai'=>'15 Apr 2025','tanggal_selesai'=>'15 Jun 2025'],
-    ['id'=>5,'judul'=>'Pendaftaran Online','caption'=>'Daftar antrian dari rumah, mudah & praktis','gambar'=>null,'link'=>'#daftar','urutan'=>5,'status'=>'inactive','tanggal_mulai'=>'01 Jun 2025','tanggal_selesai'=>'30 Jun 2025'],
-];
-$listBanner = isset($banner) ? $banner->items() : $bannerDummy;
-$activeBanners = array_filter($listBanner, fn($b) => ($b['status'] ?? $b->status ?? 'inactive') === 'active');
-@endphp
+
 
 <div class="slider-preview-demo">
     <div class="spd-label">

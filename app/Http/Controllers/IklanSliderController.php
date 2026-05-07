@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\IklanSlider;
 use Illuminate\Http\Request;
+use App\Models\banneradmin;
 
 class IklanSliderController extends Controller
 {
     public function index()
     {
-        $iklan = IklanSlider::all();
-        return view('beranda', compact('iklan'));
+        $banners = banneradmin::where('status', 'active')
+            ->orderBy('urutan', 'asc')
+            ->get();
+
+        return view('beranda', compact('banners'));
     }
 }

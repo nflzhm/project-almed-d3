@@ -353,14 +353,22 @@
    MODAL STYLES
 ============================================================ */
 .am-modal .modal-dialog {
-    max-width: 640px;
+    max-height: 90vh;
+    display: flex;
+    align-items: center;
 }
 
 .am-modal .modal-content {
-    border: none;
-    border-radius: var(--radius);
-    box-shadow: 0 24px 64px rgba(0,0,0,.18);
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
+}
+.am-modal .modal-body {
+    flex: 1;
+    overflow-y: auto;
+    max-height: calc(90vh - 140px); /* header + footer space */
+    padding-right: 10px;
 }
 
 .am-modal .modal-header {
@@ -399,9 +407,9 @@
 }
 
 .am-modal .modal-footer {
-    padding: 16px 28px 24px;
-    border: none;
-    gap: 10px;
+    flex-shrink: 0;
+    background: #fff;
+    z-index: 2;
 }
 
 /* Form inside modal */
@@ -812,9 +820,6 @@
     </div>
 </div>
 
-{{-- ================================================================
-     BERITA GRID
-================================================================ --}}
 <div class="berita-grid" id="beritaGrid">
 
     @php

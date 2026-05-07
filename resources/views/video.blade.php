@@ -187,7 +187,6 @@ body {
                     </a>
 
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ url('/pengadaan') }}">Pengadaan</a></li>
                         <li><a class="dropdown-item" href="{{ url('/karir') }}">Karir</a></li>
                         <li><a class="dropdown-item" href="{{ url('/berita') }}">Berita</a></li>
                         <li><a class="dropdown-item" href="{{ url('/video') }}">Video</a></li>
@@ -371,13 +370,35 @@ body {
 <section class="pb-5">
 <div class="container">
 
+<div class="row">
+
+@foreach($videos as $video)
+
+@php
+    $url = $video->youtube_url;
+
+    preg_match('/(?:youtu\.be\/|v=)([^&]+)/', $url, $match);
+
+    $id = $match[1] ?? null;
+@endphp
+
+<div class="col-12 mb-4">
+
 <div class="card video-card">
 <div class="row g-0 align-items-stretch">
 
-    <!-- GAMBAR -->
+    <!-- VIDEO -->
     <div class="col-lg-5">
         <div class="video-img">
-            <img src="{{ asset('images/vid/codered.png') }}" alt="Code Red RSU Allam Medica">
+            @if($id)
+                <iframe width="100%" height="100%"
+                    src="https://www.youtube.com/embed/{{ $id }}"
+                    frameborder="0"
+                    allowfullscreen>
+                </iframe>
+            @else
+                <p class="p-3">Video tidak valid</p>
+            @endif
         </div>
     </div>
 
@@ -385,19 +406,12 @@ body {
     <div class="col-lg-7">
         <div class="card-body">
 
-            <h3>Code Red RSU Allam Medica Bumiayu</h3>
+            <h3>{{ $video->judul }}</h3>
 
-            <p>
-                Dokumentasi simulasi penanganan darurat Code Red di RSU Allam Medica 
-                Bumiayu yang menggambarkan kesiapsiagaan serta koordinasi tim medis 
-                dalam menghadapi situasi kebakaran atau kondisi darurat lainnya. 
-                Simulasi ini mencakup penerapan prosedur tanggap darurat secara 
-                sistematis, mulai dari deteksi awal, evakuasi pasien, hingga 
-                penanganan risiko untuk meminimalisir dampak yang ditimbulkan.
-            </p>
+            <p>{{ $video->deskripsi }}</p>
 
             <div class="btn-wrap">
-                <a href="https://youtube.com/" target="_blank" class="btn-youtube">
+                <a href="{{ $video->youtube_url }}" target="_blank" class="btn-youtube">
                     <i class="bi bi-youtube"></i> Tonton di YouTube
                 </a>
             </div>
@@ -409,46 +423,9 @@ body {
 </div>
 
 </div>
-</section>
 
-<section class="pb-5">
-<div class="container">
+@endforeach
 
-<div class="card video-card">
-<div class="row g-0 align-items-stretch">
-
-    <!-- GAMBAR -->
-    <div class="col-lg-5">
-        <div class="video-img">
-            <img src="{{ asset('images/vid/codeblue.png') }}" alt="Code Red RSU Allam Medica">
-        </div>
-    </div>
-
-    <!-- DESKRIPSI -->
-    <div class="col-lg-7">
-        <div class="card-body">
-
-            <h3>Code Blue RSU Allam Medica Bumiayu</h3>
-
-            <p>
-                Code Blue RSU Allam Medica Bumiayu merupakan prosedur 
-                penanganan darurat untuk kondisi henti jantung atau pernapasan 
-                yang membutuhkan respon cepat dari tim medis. Pelaksanaan Code 
-                Blue menekankan koordinasi yang sigap, tindakan resusitasi yang 
-                tepat, serta kesiapan peralatan medis guna meningkatkan peluang 
-                keselamatan pasien dalam situasi kritis.
-            </p>
-
-            <div class="btn-wrap">
-                <a href="https://youtube.com/" target="_blank" class="btn-youtube">
-                    <i class="bi bi-youtube"></i> Tonton di YouTube
-                </a>
-            </div>
-
-        </div>
-    </div>
-
-</div>
 </div>
 
 </div>

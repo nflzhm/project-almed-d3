@@ -496,7 +496,6 @@ body{
                     </a>
 
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ url('/pengadaan') }}">Pengadaan</a></li>
                         <li><a class="dropdown-item" href="{{ url('/karir') }}">Karir</a></li>
                         <li><a class="dropdown-item" href="{{ url('/berita') }}">Berita</a></li>
                         <li><a class="dropdown-item" href="{{ url('/video') }}">Video</a></li>

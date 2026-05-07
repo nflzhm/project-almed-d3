@@ -3,27 +3,33 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\banneradmin; 
+use App\Models\banneradmin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class BannerController extends Controller
 {
     public function index()
-    {
-        $banner = banneradmin::latest()->paginate(6); 
+{
+    $banner = banneradmin::latest()->paginate(6);
 
-        $totalActive = banneradmin::where('status', 'active')->count();
-        $totalInactive = banneradmin::where('status', 'inactive')->count();
-        $sliderSpeed = 5;
+    $listBanner = banneradmin::orderBy('urutan')->get(); // untuk slider preview
 
-        return view('admin.banner', compact(
-            'banner',
-            'totalActive',
-            'totalInactive',
-            'sliderSpeed'
-        ));
-    }
+    $activeBanners = banneradmin::where('status', 'active')
+        ->orderBy('urutan')
+        ->get();
+
+    $totalActive = banneradmin::where('status', 'active')->count();
+    $totalInactive = banneradmin::where('status', 'inactive')->count();
+
+    return view('admin.banner', compact(
+        'banner',
+        'listBanner',
+        'activeBanners',
+        'totalActive',
+        'totalInactive'
+    ));
+}
 
     public function store(Request $request)
     {
@@ -51,7 +57,7 @@ class BannerController extends Controller
             'tanggal_selesai' => $request->tanggal_selesai,
         ]);
 
-        return redirect()->back()->with('success', 'Banner berhasil ditambahkan');
+        return back()->with('success', 'Banner berhasil ditambahkan');
     }
 
     public function update(Request $request, $id)
@@ -69,15 +75,7 @@ class BannerController extends Controller
             'tanggal_selesai' => 'required|date|after_or_equal:tanggal_mulai',
         ]);
 
-        if ($request->hasFile('gambar')) {
-            if ($banner->gambar && Storage::disk('public')->exists($banner->gambar)) {
-                Storage::disk('public')->delete($banner->gambar);
-            }
-
-            $banner->gambar = $request->file('gambar')->store('banner', 'public');
-        }
-
-        $banner->update([
+        $data = [
             'judul' => $request->judul,
             'caption' => $request->caption,
             'link' => $request->link,
@@ -85,9 +83,19 @@ class BannerController extends Controller
             'status' => $request->status,
             'tanggal_mulai' => $request->tanggal_mulai,
             'tanggal_selesai' => $request->tanggal_selesai,
-        ]);
+        ];
 
-        return redirect()->back()->with('success', 'Banner berhasil diupdate');
+        if ($request->hasFile('gambar')) {
+            if ($banner->gambar && Storage::disk('public')->exists($banner->gambar)) {
+                Storage::disk('public')->delete($banner->gambar);
+            }
+
+            $data['gambar'] = $request->file('gambar')->store('banner', 'public');
+        }
+
+        $banner->update($data);
+
+        return back()->with('success', 'Banner berhasil diupdate');
     }
 
     public function destroy($id)
@@ -100,7 +108,7 @@ class BannerController extends Controller
 
         $banner->delete();
 
-        return redirect()->back()->with('success', 'Banner berhasil dihapus');
+        return back()->with('success', 'Banner berhasil dihapus');
     }
 
     public function toggle($id)
@@ -110,6 +118,6 @@ class BannerController extends Controller
         $banner->status = $banner->status === 'active' ? 'inactive' : 'active';
         $banner->save();
 
-        return redirect()->back()->with('success', 'Status banner berhasil diubah');
+        return back()->with('success', 'Status banner berhasil diubah');
     }
 }
