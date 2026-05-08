@@ -411,7 +411,7 @@ body {
             <div>
                 <div class="info-title">Jam Operasional</div>
                 <div class="info-desc">
-                    IGD: 24 Jam Rawat Jalan: Sen - Sab 07.00 - 21.00<br>
+                    IGD: 24 Jam<br>
                 </div>
             </div>
         </div>

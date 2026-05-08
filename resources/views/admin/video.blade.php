@@ -711,10 +711,7 @@ $listVideo = isset($video) ? $video->items() : $dummyVideo;
 
 </div>
 
-{{-- Pagination --}}
-@if(isset($video) && $video->hasPages())
-<div style="margin-top:24px;">{{ $video->withQueryString()->links() }}</div>
-@endif
+
 
 
 {{-- ================================================================

@@ -346,13 +346,13 @@
     </div>
     <div class="row g-2">
         <div class="col-6 col-sm-4 col-md-2">
-            <a href="{{ route('admin.berita.create') }}" class="quick-action">
-                <div class="qa-icon" style="background:#e0f2fe;color:#0284c7;">
-                    <i class="fa-solid fa-plus"></i>
-                </div>
-                Tambah Berita
-            </a>
+    <a href="{{ route('admin.berita.create') }}" class="quick-action">
+        <div class="qa-icon" style="background:#e0f2fe;color:#0284c7;">
+            <i class="fa-solid fa-plus"></i>
         </div>
+        Tambah Berita
+    </a>
+</div>
         <div class="col-6 col-sm-4 col-md-2">
             <a href="{{ route('admin.dokter.create') }}" class="quick-action">
                 <div class="qa-icon" style="background:#cffafe;color:#0891b2;">

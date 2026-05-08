@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\Jadwal;
+use App\Models\Dokter;
 
 class JadwalController extends Controller
 {
@@ -12,54 +14,92 @@ class JadwalController extends Controller
      */
     public function index()
     {
-        //
+        $dokterList = Dokter::with('jadwal')->get();
+
+        // statistik (sesuai blade kamu)
+        $totalJadwal = Jadwal::count();
+        $totalDokterAktif = Dokter::has('jadwal')->count();
+        $jadwalHariIni = Jadwal::where('hari', now()->format('l'))->count();
+        $totalSesi = Jadwal::distinct('sesi')->count('sesi');
+
+        return view('admin.jadwal', compact(
+            'dokterList',
+            'totalJadwal',
+            'totalDokterAktif',
+            'jadwalHariIni',
+            'totalSesi'
+        ));
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * Store new jadwal (bisa multi hari)
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'dokter_id'    => 'required|exists:dokters,id',
+            'hari'         => 'required|array',
+            'poli'         => 'required|string',
+            'jam_mulai'    => 'required',
+            'jam_selesai'  => 'required',
+            'sesi'         => 'required',
+        ]);
+
+        foreach ($request->hari as $hari) {
+            Jadwal::create([
+                'dokter_id'   => $request->dokter_id,
+                'hari'        => $hari,
+                'poli'        => $request->poli,
+                'jam_mulai'   => $request->jam_mulai,
+                'jam_selesai' => $request->jam_selesai,
+                'sesi'        => $request->sesi,
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Jadwal berhasil ditambahkan');
     }
 
     /**
-     * Display the specified resource.
+     * Show edit data (optional kalau pakai modal)
      */
-    public function show(string $id)
+    public function edit($id)
     {
-        //
+        $jadwal = Jadwal::findOrFail($id);
+        return response()->json($jadwal);
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Update jadwal
      */
-    public function edit(string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'poli'         => 'required|string',
+            'jam_mulai'    => 'required',
+            'jam_selesai'  => 'required',
+            'sesi'         => 'required',
+        ]);
+
+        $jadwal = Jadwal::findOrFail($id);
+
+        $jadwal->update([
+            'poli'        => $request->poli,
+            'jam_mulai'   => $request->jam_mulai,
+            'jam_selesai' => $request->jam_selesai,
+            'sesi'        => $request->sesi,
+        ]);
+
+        return redirect()->back()->with('success', 'Jadwal berhasil diperbarui');
     }
 
     /**
-     * Update the specified resource in storage.
+     * Delete jadwal
      */
-    public function update(Request $request, string $id)
+    public function destroy($id)
     {
-        //
-    }
+        $jadwal = Jadwal::findOrFail($id);
+        $jadwal->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->back()->with('success', 'Jadwal berhasil dihapus');
     }
 }

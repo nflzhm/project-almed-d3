@@ -17,9 +17,42 @@
 </head>
 
 <body>
-    <style>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
 
-        
+    let currentItems = 12;
+
+    const items = document.querySelectorAll('.dokter-item');
+    const btn = document.getElementById('loadMoreDokter');
+
+    if(btn){
+
+        btn.addEventListener('click', function(){
+
+            for(let i = currentItems; i < currentItems + 9; i++){
+
+                if(items[i]){
+                    items[i].style.display = 'block';
+                }
+
+            }
+
+            currentItems += 9;
+
+            if(currentItems >= items.length){
+                btn.style.display = 'none';
+            }
+
+        });
+
+    }
+
+});
+</script>
+
+
+<style>
+    
 body {
     font-family: 'Segoe UI', sans-serif;
     padding-top: 90px;
@@ -349,7 +382,8 @@ body {
 <!-- DOKTER SPESIALIS -->
 <section style="background:#fff; padding:50px 0;">
     <div class="container">
-        <!-- Judul -->
+
+        {{-- TITLE --}}
         <div class="text-center mb-5">
             <h2 class="fw-bold">Dokter Spesialis</h2>
 
@@ -362,1073 +396,128 @@ body {
             "></div>
         </div>
 
+        {{-- GRID --}}
         <div class="row g-4">
 
-            <div class="row g-4">
+            @foreach($dokter as $index => $item)
+            <div class="col-lg-4 col-md-6 col-12 dokter-item"
+                 style="{{ $index >= 12 ? 'display:none;' : '' }}">
 
-    <!-- DOKTER 1 -->
-    <div class="col-md-4 col-12">
+                <div style="
+                    display:flex;
+                    gap:15px;
+                    padding:15px;
+                    border:1px solid #eee;
+                    border-radius:12px;
+                    align-items:center;
+                    height:100%;
+                    background:#fff;
+                    transition:.3s;
+                "
+                onmouseover="this.style.boxShadow='0 10px 25px rgba(0,0,0,.08)'"
+                onmouseout="this.style.boxShadow='none'">
 
-        <div style="
-            display:flex;
-            gap:15px;
-            padding:15px;
-            border:1px solid #eee;
-            border-radius:12px;
-            align-items:center;
-            height:100%;
-        ">
+                    {{-- FOTO --}}
+                    @if($item->foto)
+                        <img
+                            src="{{ asset('uploads/dokter/'.$item->foto) }}"
+                            loading="lazy"
+                            alt="{{ $item->nama }}"
+                            style="
+                                width:90px;
+                                height:90px;
+                                border-radius:50%;
+                                object-fit:cover;
+                                border:3px solid #1C145C;
+                                flex-shrink:0;
+                            ">
+                    @else
+                        <div style="
+                            width:90px;
+                            height:90px;
+                            border-radius:50%;
+                            background:#e2e8f0;
+                            display:flex;
+                            align-items:center;
+                            justify-content:center;
+                            font-size:30px;
+                            font-weight:700;
+                            color:#475569;
+                            border:3px solid #1C145C;
+                            flex-shrink:0;
+                        ">
+                            {{ strtoupper(substr($item->nama,0,1)) }}
+                        </div>
+                    @endif
+                    {{-- INFO --}}
+                    <div style="
+                        display:flex;
+                        flex-direction:column;
+                        justify-content:space-between;
+                        height:100%;
+                        width:100%;
+                    ">
 
-            <!-- FOTO -->
-            <img src="{{ asset('images/beranda/drferry-1740452082.png') }}"
-                 style="
-                    width:90px;
-                    height:90px;
-                    border-radius:50%;
-                    object-fit:cover;
-                    border:3px solid #1C145C;
-                 ">
+                        <div>
+                            <h5 class="fw-bold mb-1"
+                                style="
+                                    font-size:16px;
+                                    line-height:1.4;
+                                ">
+                                {{ $item->nama }}
+                            </h5>
 
-            <!-- INFO -->
-            <div style="display:flex; flex-direction:column; justify-content:space-between; height:100%;">
+                            <small style="
+                                color:gray;
+                                font-size:13px;
+                            ">
+                                {{ $item->spesialis }}
+                            </small>
+                        </div>
 
-                <div>
-                    <h5 class="fw-bold mb-0">dr. Ferry Gunawan, Sp. OG</h5>
-                    <small style="color:gray;">Dokter Spesialis Kandungan</small>
+                        <a href="#"
+                           style="
+                                margin-top:10px;
+                                display:inline-block;
+                                padding:6px 14px;
+                                background:#1C145C;
+                                color:white;
+                                text-decoration:none;
+                                border-radius:20px;
+                                font-size:12px;
+                                width:max-content;
+                                transition:.3s;
+                           ">
+                            Cek Jadwal
+                        </a>
+
+                    </div>
+
                 </div>
 
-                <a href="#"
-                   style="
-                        margin-top:10px;
-                        display:inline-block;
-                        padding:6px 12px;
+            </div>
+            @endforeach
+
+        </div>
+
+        {{-- LOAD MORE --}}
+        @if(count($dokter) > 12)
+        <div class="text-center mt-5">
+            <button id="loadMoreDokter"
+                    style="
+                        border:none;
                         background:#1C145C;
-                        color:white;
-                        text-decoration:none;
-                        border-radius:20px;
-                        font-size:12px;
-                        width:max-content;
-                   ">
-                    Cek Jadwal
-                </a>
-
-            </div>
-
+                        color:#fff;
+                        padding:12px 26px;
+                        border-radius:30px;
+                        font-weight:600;
+                    ">
+                Lihat Dokter Lainnya
+            </button>
         </div>
+        @endif
 
     </div>
-
-    <!-- DOKTER 2 -->
-    <div class="col-md-4 col-12">
-
-        <div style="
-            display:flex;
-            gap:15px;
-            padding:15px;
-            border:1px solid #eee;
-            border-radius:12px;
-            align-items:center;
-            height:100%;
-        ">
-
-            <img src="{{ asset('images/beranda/drrohmawati-1740454754.png') }}"
-                 style="
-                    width:90px;
-                    height:90px;
-                    border-radius:50%;
-                    object-fit:cover;
-                    border:3px solid #1C145C;
-                 ">
-
-            <div style="display:flex; flex-direction:column; justify-content:space-between; height:100%;">
-
-                <div>
-                    <h5 class="fw-bold mb-0">dr. Rochmawati I, Sp. Rad.</h5>
-                    <small style="color:gray;">Dokter Spesialis Radiologi</small>
-                </div>
-
-                <a href="#"
-                   style="
-                        margin-top:10px;
-                        display:inline-block;
-                        padding:6px 12px;
-                        background:#1C145C;
-                        color:white;
-                        text-decoration:none;
-                        border-radius:20px;
-                        font-size:12px;
-                        width:max-content;
-                   ">
-                    Cek Jadwal
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- DOKTER 3 -->
-    <div class="col-md-4 col-12">
-
-        <div style="
-            display:flex;
-            gap:15px;
-            padding:15px;
-            border:1px solid #eee;
-            border-radius:12px;
-            align-items:center;
-            height:100%;
-        ">
-
-            <img src="{{ asset('images/beranda/drrahmat-1740454700.png') }}"
-                 style="
-                    width:90px;
-                    height:90px;
-                    border-radius:50%;
-                    object-fit:cover;
-                    border:3px solid #1C145C;
-                 ">
-
-            <div style="display:flex; flex-direction:column; justify-content:space-between; height:100%;">
-
-                <div>
-                    <h5 class="fw-bold mb-0">dr. Rahmat Santosa, Sp.PD</h5>
-                    <small style="color:gray;">Dokter Spesialis Penyakit Dalam</small>
-                </div>
-
-                <a href="#"
-                   style="
-                        margin-top:10px;
-                        display:inline-block;
-                        padding:6px 12px;
-                        background:#1C145C;
-                        color:white;
-                        text-decoration:none;
-                        border-radius:20px;
-                        font-size:12px;
-                        width:max-content;
-                   ">
-                    Cek Jadwal
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- DOKTER 4 -->
-    <div class="col-md-4 col-12">
-
-        <div style="
-            display:flex;
-            gap:15px;
-            padding:15px;
-            border:1px solid #eee;
-            border-radius:12px;
-            align-items:center;
-            height:100%;
-        ">
-
-            <img src="{{ asset('images/beranda/drnasriatul-mawadah-1740452639.png') }}"
-                 style="
-                    width:90px;
-                    height:90px;
-                    border-radius:50%;
-                    object-fit:cover;
-                    border:3px solid #1C145C;
-                 ">
-
-            <div style="display:flex; flex-direction:column; justify-content:space-between; height:100%;">
-
-                <div>
-                    <h5 class="fw-bold mb-0">drg. Nashriatul Mawaddah</h5>
-                    <small style="color:gray;">Dokter Gigi</small>
-                </div>
-
-                <a href="#"
-                   style="
-                        margin-top:10px;
-                        display:inline-block;
-                        padding:6px 12px;
-                        background:#1C145C;
-                        color:white;
-                        text-decoration:none;
-                        border-radius:20px;
-                        font-size:12px;
-                        width:max-content;
-                   ">
-                    Cek Jadwal
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- DOKTER 5 -->
-    <div class="col-md-4 col-12">
-
-        <div style="
-            display:flex;
-            gap:15px;
-            padding:15px;
-            border:1px solid #eee;
-            border-radius:12px;
-            align-items:center;
-            height:100%;
-        ">
-
-            <img src="{{ asset('images/beranda/drlizaldi-1740452597.png') }}"
-                 style="
-                    width:90px;
-                    height:90px;
-                    border-radius:50%;
-                    object-fit:cover;
-                    border:3px solid #1C145C;
-                 ">
-
-            <div style="display:flex; flex-direction:column; justify-content:space-between; height:100%;">
-
-                <div>
-                    <h5 class="fw-bold mb-0">dr. Lizaldi Ushan, Sp.B</h5>
-                    <small style="color:gray;">Dokter Spesialis Bedah</small>
-                </div>
-
-                <a href="#"
-                   style="
-                        margin-top:10px;
-                        display:inline-block;
-                        padding:6px 12px;
-                        background:#1C145C;
-                        color:white;
-                        text-decoration:none;
-                        border-radius:20px;
-                        font-size:12px;
-                        width:max-content;
-                   ">
-                    Cek Jadwal
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- DOKTER 6 -->
-    <div class="col-md-4 col-12">
-
-        <div style="
-            display:flex;
-            gap:15px;
-            padding:15px;
-            border:1px solid #eee;
-            border-radius:12px;
-            align-items:center;
-            height:100%;
-        ">
-
-            <img src="{{ asset('images/beranda/drizzah-1740452426.png') }}"
-                 style="
-                    width:90px;
-                    height:90px;
-                    border-radius:50%;
-                    object-fit:cover;
-                    border:3px solid #1C145C;
-                 ">
-
-            <div style="display:flex; flex-direction:column; justify-content:space-between; height:100%;">
-
-                <div>
-                    <h5 class="fw-bold mb-0">drg. Izzah Dina Syamila</h5>
-                    <small style="color:gray;">Dokter Gigi</small>
-                </div>
-
-                <a href="#"
-                   style="
-                        margin-top:10px;
-                        display:inline-block;
-                        padding:6px 12px;
-                        background:#1C145C;
-                        color:white;
-                        text-decoration:none;
-                        border-radius:20px;
-                        font-size:12px;
-                        width:max-content;
-                   ">
-                    Cek Jadwal
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- DOKTER 7 -->
-    <div class="col-md-4 col-12">
-
-        <div style="
-            display:flex;
-            gap:15px;
-            padding:15px;
-            border:1px solid #eee;
-            border-radius:12px;
-            align-items:center;
-            height:100%;
-        ">
-
-            <img src="{{ asset('images/beranda/drhermanto-1740452359.png') }}"
-                 style="
-                    width:90px;
-                    height:90px;
-                    border-radius:50%;
-                    object-fit:cover;
-                    border:3px solid #1C145C;
-                 ">
-
-            <div style="display:flex; flex-direction:column; justify-content:space-between; height:100%;">
-
-                <div>
-                    <h5 class="fw-bold mb-0">dr. Hermanto, Sp.N</h5>
-                    <small style="color:gray;">Dokter Spesialis Saraf</small>
-                </div>
-
-                <a href="#"
-                   style="
-                        margin-top:10px;
-                        display:inline-block;
-                        padding:6px 12px;
-                        background:#1C145C;
-                        color:white;
-                        text-decoration:none;
-                        border-radius:20px;
-                        font-size:12px;
-                        width:max-content;
-                   ">
-                    Cek Jadwal
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- DOKTER 8 -->
-    <div class="col-md-4 col-12">
-
-        <div style="
-            display:flex;
-            gap:15px;
-            padding:15px;
-            border:1px solid #eee;
-            border-radius:12px;
-            align-items:center;
-            height:100%;
-        ">
-
-            <img src="{{ asset('images/beranda/drtajudin-1740454829.png') }}"
-                 style="
-                    width:90px;
-                    height:90px;
-                    border-radius:50%;
-                    object-fit:cover;
-                    border:3px solid #1C145C;
-                 ">
-
-            <div style="display:flex; flex-direction:column; justify-content:space-between; height:100%;">
-
-                <div>
-                    <h5 class="fw-bold mb-0">dr. Rakhmat Tajudin, Sp. PD</h5>
-                    <small style="color:gray;">Dokter Spesialis Penyakit Dalam</small>
-                </div>
-
-                <a href="#"
-                   style="
-                        margin-top:10px;
-                        display:inline-block;
-                        padding:6px 12px;
-                        background:#1C145C;
-                        color:white;
-                        text-decoration:none;
-                        border-radius:20px;
-                        font-size:12px;
-                        width:max-content;
-                   ">
-                    Cek Jadwal
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- DOKTER 9 -->
-    <div class="col-md-4 col-12">
-
-        <div style="
-            display:flex;
-            gap:15px;
-            padding:15px;
-            border:1px solid #eee;
-            border-radius:12px;
-            align-items:center;
-            height:100%;
-        ">
-
-            <img src="{{ asset('images/beranda/drgigih-1740452182.png') }}"
-                 style="
-                    width:90px;
-                    height:90px;
-                    border-radius:50%;
-                    object-fit:cover;
-                    border:3px solid #1C145C;
-                 ">
-
-            <div style="display:flex; flex-direction:column; justify-content:space-between; height:100%;">
-
-                <div>
-                    <h5 class="fw-bold mb-0">dr. Gigih Fitriawan, Sp. PD</h5>
-                    <small style="color:gray;">Dokter Spesialis Penyakit Dalam</small>
-                </div>
-
-                <a href="#"
-                   style="
-                        margin-top:10px;
-                        display:inline-block;
-                        padding:6px 12px;
-                        background:#1C145C;
-                        color:white;
-                        text-decoration:none;
-                        border-radius:20px;
-                        font-size:12px;
-                        width:max-content;
-                   ">
-                    Cek Jadwal
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- DOKTER 10 -->
-    <div class="col-md-4 col-12">
-
-        <div style="
-            display:flex;
-            gap:15px;
-            padding:15px;
-            border:1px solid #eee;
-            border-radius:12px;
-            align-items:center;
-            height:100%;
-        ">
-
-            <img src="{{ asset('images/beranda/dredith-1740452005.png') }}"
-                 style="
-                    width:90px;
-                    height:90px;
-                    border-radius:50%;
-                    object-fit:cover;
-                    border:3px solid #1C145C;
-                 ">
-
-            <div style="display:flex; flex-direction:column; justify-content:space-between; height:100%;">
-
-                <div>
-                    <h5 class="fw-bold mb-0">dr. Edith Fitriyana G, Sp. N</h5>
-                    <small style="color:gray;">Dokter Spesialis Saraf</small>
-                </div>
-
-                <a href="#"
-                   style="
-                        margin-top:10px;
-                        display:inline-block;
-                        padding:6px 12px;
-                        background:#1C145C;
-                        color:white;
-                        text-decoration:none;
-                        border-radius:20px;
-                        font-size:12px;
-                        width:max-content;
-                   ">
-                    Cek Jadwal
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- DOKTER 11 -->
-    <div class="col-md-4 col-12">
-
-        <div style="
-            display:flex;
-            gap:15px;
-            padding:15px;
-            border:1px solid #eee;
-            border-radius:12px;
-            align-items:center;
-            height:100%;
-        ">
-
-            <img src="{{ asset('images/beranda/drdessy-1740451944.png') }}"
-                 style="
-                    width:90px;
-                    height:90px;
-                    border-radius:50%;
-                    object-fit:cover;
-                    border:3px solid #1C145C;
-                 ">
-
-            <div style="display:flex; flex-direction:column; justify-content:space-between; height:100%;">
-
-                <div>
-                    <h5 class="fw-bold mb-0">dr. Dessy Wulandari, Sp. OG</h5>
-                    <small style="color:gray;">Dokter Spesialis Kandungan</small>
-                </div>
-
-                <a href="#"
-                   style="
-                        margin-top:10px;
-                        display:inline-block;
-                        padding:6px 12px;
-                        background:#1C145C;
-                        color:white;
-                        text-decoration:none;
-                        border-radius:20px;
-                        font-size:12px;
-                        width:max-content;
-                   ">
-                    Cek Jadwal
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- DOKTER 12 -->
-    <div class="col-md-4 col-12">
-
-        <div style="
-            display:flex;
-            gap:15px;
-            padding:15px;
-            border:1px solid #eee;
-            border-radius:12px;
-            align-items:center;
-            height:100%;
-        ">
-
-            <img src="{{ asset('images/beranda/drwawan-1740454865.png') }}"
-                 style="
-                    width:90px;
-                    height:90px;
-                    border-radius:50%;
-                    object-fit:cover;
-                    border:3px solid #1C145C;
-                 ">
-
-            <div style="display:flex; flex-direction:column; justify-content:space-between; height:100%;">
-
-                <div>
-                    <h5 class="fw-bold mb-0">dr. Wawan S, Sp.THT-KL</h5>
-                    <small style="color:gray;">Dokter Spesialis THT-KL</small>
-                </div>
-
-                <a href="#"
-                   style="
-                        margin-top:10px;
-                        display:inline-block;
-                        padding:6px 12px;
-                        background:#1C145C;
-                        color:white;
-                        text-decoration:none;
-                        border-radius:20px;
-                        font-size:12px;
-                        width:max-content;
-                   ">
-                    Cek Jadwal
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- DOKTER 13 -->
-    <div class="col-md-4 col-12">
-
-        <div style="
-            display:flex;
-            gap:15px;
-            padding:15px;
-            border:1px solid #eee;
-            border-radius:12px;
-            align-items:center;
-            height:100%;
-        ">
-
-            <img src="{{ asset('images/beranda/drbambang-1740451759.png') }}"
-                 style="
-                    width:90px;
-                    height:90px;
-                    border-radius:50%;
-                    object-fit:cover;
-                    border:3px solid #1C145C;
-                 ">
-
-            <div style="display:flex; flex-direction:column; justify-content:space-between; height:100%;">
-
-                <div>
-                    <h5 class="fw-bold mb-0">dr. Bambang S, Sp. THT-KL</h5>
-                    <small style="color:gray;">Dokter Spesialis THT-KL</small>
-                </div>
-
-                <a href="#"
-                   style="
-                        margin-top:10px;
-                        display:inline-block;
-                        padding:6px 12px;
-                        background:#1C145C;
-                        color:white;
-                        text-decoration:none;
-                        border-radius:20px;
-                        font-size:12px;
-                        width:max-content;
-                   ">
-                    Cek Jadwal
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- DOKTER 14 -->
-    <div class="col-md-4 col-12">
-
-        <div style="
-            display:flex;
-            gap:15px;
-            padding:15px;
-            border:1px solid #eee;
-            border-radius:12px;
-            align-items:center;
-            height:100%;
-        ">
-
-            <img src="{{ asset('images/beranda/drwiwin-1740454906.png') }}"
-                 style="
-                    width:90px;
-                    height:90px;
-                    border-radius:50%;
-                    object-fit:cover;
-                    border:3px solid #1C145C;
-                 ">
-
-            <div style="display:flex; flex-direction:column; justify-content:space-between; height:100%;">
-
-                <div>
-                    <h5 class="fw-bold mb-0">drg. Wiwin Yuniastri H</h5>
-                    <small style="color:gray;">Dokter Gigi</small>
-                </div>
-
-                <a href="#"
-                   style="
-                        margin-top:10px;
-                        display:inline-block;
-                        padding:6px 12px;
-                        background:#1C145C;
-                        color:white;
-                        text-decoration:none;
-                        border-radius:20px;
-                        font-size:12px;
-                        width:max-content;
-                   ">
-                    Cek Jadwal
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- DOKTER 15 -->
-    <div class="col-md-4 col-12">
-
-        <div style="
-            display:flex;
-            gap:15px;
-            padding:15px;
-            border:1px solid #eee;
-            border-radius:12px;
-            align-items:center;
-            height:100%;
-        ">
-
-            <img src="{{ asset('images/beranda/dr-haikal-bulat-1746602010.png') }}"
-                 style="
-                    width:90px;
-                    height:90px;
-                    border-radius:50%;
-                    object-fit:cover;
-                    border:3px solid #1C145C;
-                 ">
-
-            <div style="display:flex; flex-direction:column; justify-content:space-between; height:100%;">
-
-                <div>
-                    <h5 class="fw-bold mb-0">drg. M Haikal Mahardhika, Sp.Ort</h5>
-                    <small style="color:gray;">Dokter Spesialis Ortodonti</small>
-                </div>
-
-                <a href="#"
-                   style="
-                        margin-top:10px;
-                        display:inline-block;
-                        padding:6px 12px;
-                        background:#1C145C;
-                        color:white;
-                        text-decoration:none;
-                        border-radius:20px;
-                        font-size:12px;
-                        width:max-content;
-                   ">
-                    Cek Jadwal
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- DOKTER 16 -->
-    <div class="col-md-4 col-12">
-
-        <div style="
-            display:flex;
-            gap:15px;
-            padding:15px;
-            border:1px solid #eee;
-            border-radius:12px;
-            align-items:center;
-            height:100%;
-        ">
-
-            <img src="{{ asset('images/beranda/dradrin-1740387292.png') }}"
-                 style="
-                    width:90px;
-                    height:90px;
-                    border-radius:50%;
-                    object-fit:cover;
-                    border:3px solid #1C145C;
-                 ">
-
-            <div style="display:flex; flex-direction:column; justify-content:space-between; height:100%;">
-
-                <div>
-                    <h5 class="fw-bold mb-0">dr. Adrin Aefiansyah, Sp. JP</h5>
-                    <small style="color:gray;">Dokter Spesialis Jantung dan Paru</small>
-                </div>
-
-                <a href="#"
-                   style="
-                        margin-top:10px;
-                        display:inline-block;
-                        padding:6px 12px;
-                        background:#1C145C;
-                        color:white;
-                        text-decoration:none;
-                        border-radius:20px;
-                        font-size:12px;
-                        width:max-content;
-                   ">
-                    Cek Jadwal
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- DOKTER 17 -->
-    <div class="col-md-4 col-12">
-
-        <div style="
-            display:flex;
-            gap:15px;
-            padding:15px;
-            border:1px solid #eee;
-            border-radius:12px;
-            align-items:center;
-            height:100%;
-        ">
-
-            <img src="{{ asset('images/beranda/dradhyatma-1740387212.png') }}"
-                 style="
-                    width:90px;
-                    height:90px;
-                    border-radius:50%;
-                    object-fit:cover;
-                    border:3px solid #1C145C;
-                 ">
-
-            <div style="display:flex; flex-direction:column; justify-content:space-between; height:100%;">
-
-                <div>
-                    <h5 class="fw-bold mb-0">dr. Adhyatma, Sp.M</h5>
-                    <small style="color:gray;">Dokter Spesialis Mata</small>
-                </div>
-
-                <a href="#"
-                   style="
-                        margin-top:10px;
-                        display:inline-block;
-                        padding:6px 12px;
-                        background:#1C145C;
-                        color:white;
-                        text-decoration:none;
-                        border-radius:20px;
-                        font-size:12px;
-                        width:max-content;
-                   ">
-                    Cek Jadwal
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- DOKTER 18 -->
-    <div class="col-md-4 col-12">
-
-        <div style="
-            display:flex;
-            gap:15px;
-            padding:15px;
-            border:1px solid #eee;
-            border-radius:12px;
-            align-items:center;
-            height:100%;
-        ">
-
-            <img src="{{ asset('images/beranda/drayu-1740451662.png') }}"
-                 style="
-                    width:90px;
-                    height:90px;
-                    border-radius:50%;
-                    object-fit:cover;
-                    border:3px solid #1C145C;
-                 ">
-
-            <div style="display:flex; flex-direction:column; justify-content:space-between; height:100%;">
-
-                <div>
-                    <h5 class="fw-bold mb-0">dr. Ayu Asyifa Rahmi F, Sp.A</h5>
-                    <small style="color:gray;">Dokter Spesialis Anak</small>
-                </div>
-
-                <a href="#"
-                   style="
-                        margin-top:10px;
-                        display:inline-block;
-                        padding:6px 12px;
-                        background:#1C145C;
-                        color:white;
-                        text-decoration:none;
-                        border-radius:20px;
-                        font-size:12px;
-                        width:max-content;
-                   ">
-                    Cek Jadwal
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- DOKTER 19 -->
-    <div class="col-md-4 col-12">
-
-        <div style="
-            display:flex;
-            gap:15px;
-            padding:15px;
-            border:1px solid #eee;
-            border-radius:12px;
-            align-items:center;
-            height:100%;
-        ">
-
-            <img src="{{ asset('images/beranda/dradika-1740451454.png') }}"
-                 style="
-                    width:90px;
-                    height:90px;
-                    border-radius:50%;
-                    object-fit:cover;
-                    border:3px solid #1C145C;
-                 ">
-
-            <div style="display:flex; flex-direction:column; justify-content:space-between; height:100%;">
-
-                <div>
-                    <h5 class="fw-bold mb-0">dr. Adhika S. PK</h5>
-                    <small style="color:gray;">Dokter Spesialis Patologi Klinis</small>
-                </div>
-
-                <a href="#"
-                   style="
-                        margin-top:10px;
-                        display:inline-block;
-                        padding:6px 12px;
-                        background:#1C145C;
-                        color:white;
-                        text-decoration:none;
-                        border-radius:20px;
-                        font-size:12px;
-                        width:max-content;
-                   ">
-                    Cek Jadwal
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- DOKTER 20 -->
-    <div class="col-md-4 col-12">
-
-        <div style="
-            display:flex;
-            gap:15px;
-            padding:15px;
-            border:1px solid #eee;
-            border-radius:12px;
-            align-items:center;
-            height:100%;
-        ">
-
-            <img src="{{ asset('images/beranda/drdedi-1740451848.png') }}"
-                 style="
-                    width:90px;
-                    height:90px;
-                    border-radius:50%;
-                    object-fit:cover;
-                    border:3px solid #1C145C;
-                 ">
-
-            <div style="display:flex; flex-direction:column; justify-content:space-between; height:100%;">
-
-                <div>
-                    <h5 class="fw-bold mb-0">dr. Deddy Hediyanto, M.Sc.,Sp.A</h5>
-                    <small style="color:gray;">Dokter Spesialis Anak</small>
-                </div>
-
-                <a href="#"
-                   style="
-                        margin-top:10px;
-                        display:inline-block;
-                        padding:6px 12px;
-                        background:#1C145C;
-                        color:white;
-                        text-decoration:none;
-                        border-radius:20px;
-                        font-size:12px;
-                        width:max-content;
-                   ">
-                    Cek Jadwal
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- DOKTER 21 -->
-    <div class="col-md-4 col-12">
-
-        <div style="
-            display:flex;
-            gap:15px;
-            padding:15px;
-            border:1px solid #eee;
-            border-radius:12px;
-            align-items:center;
-            height:100%;
-        ">
-
-            <img src="{{ asset('images/beranda/drheri-1740452278.png') }}"
-                 style="
-                    width:90px;
-                    height:90px;
-                    border-radius:50%;
-                    object-fit:cover;
-                    border:3px solid #1C145C;
-                 ">
-
-            <div style="display:flex; flex-direction:column; justify-content:space-between; height:100%;">
-
-                <div>
-                    <h5 class="fw-bold mb-0">dr. Heri Sugianto, M.Si.Med.,Sp.B</h5>
-                    <small style="color:gray;">Dokter Spesialis Bedah</small>
-                </div>
-
-                <a href="#"
-                   style="
-                        margin-top:10px;
-                        display:inline-block;
-                        padding:6px 12px;
-                        background:#1C145C;
-                        color:white;
-                        text-decoration:none;
-                        border-radius:20px;
-                        font-size:12px;
-                        width:max-content;
-                   ">
-                    Cek Jadwal
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    
-
-</div>
-
-            </div>
-
-        </div>
-
-    </div>
-
 </section>
 
 
@@ -1451,156 +540,60 @@ body {
 
         <div class="row g-4">
 
-            <!-- CARD 1 -->
-            <div class="col-md-3 col-12">
-                <div style="
-                    border:1px solid #eee;
-                    border-radius:20px;
-                    overflow:hidden;
-                    background:#fff;
-                    height:100%;
-                ">
+            @foreach($beritaTerbaru as $item)
+            <div class="col-lg-3 col-md-6 col-12">
 
-                    <img src="{{ asset('images/beranda/gambar1.jpeg') }}"
-                         style="width:100%; height:auto; display:block;">
+                <div class="card border-0 shadow-sm h-100 rounded-4 overflow-hidden">
 
-                    <div style="padding:15px; text-align:center;">
-                        <h6 class="fw-bold">Judul Informasi 1</h6>
+                    <!-- IMAGE FIX (SAMA UKURAN SEPERTI CONTOH) -->
+                    <div style="
+                        width:100%;
+                        aspect-ratio: 4 / 5;
+                        overflow:hidden;
+                        background:#f3f3f3;
+                    ">
+                        <img src="{{ asset('storage/'.$item->gambar) }}"
+                             style="
+                                width:100%;
+                                height:100%;
+                                object-fit:cover;
+                                display:block;
+                             ">
+                    </div>
 
-                        <p style="font-size:13px; color:#666;">
-                            Ringkasan singkat informasi atau berita rumah sakit.
+                    <!-- BODY -->
+                    <div class="card-body d-flex flex-column text-center">
+
+                        <!-- JUDUL -->
+                        <h6 class="fw-bold mb-2">
+                            {{ $item->judul }}
+                        </h6>
+
+                        <!-- DESKRIPSI -->
+                        <p class="text-muted small mb-3">
+                            {{ Str::limit($item->deskripsi, 90) }}
                         </p>
 
-                        <a href="#"
-                           style="
-                                display:inline-block;
-                                margin-top:8px;
-                                padding:6px 12px;
-                                background:#1C145C;
-                                color:white;
-                                text-decoration:none;
-                                border-radius:20px;
-                                font-size:12px;
-                           ">
-                            Baca Selengkapnya
-                        </a>
+                        <!-- BUTTON -->
+                        <div class="mt-auto">
+                            <a href="{{ url('/berita/'.$item->slug) }}"
+                               class="btn btn-sm"
+                               style="background:#1C145C; color:#fff; border-radius:20px; padding:6px 14px;">
+                                Baca Selengkapnya
+                            </a>
+                        </div>
+
                     </div>
+
                 </div>
+
             </div>
-
-            <!-- CARD 2 -->
-            <div class="col-md-3 col-12">
-                <div style="
-                    border:1px solid #eee;
-                    border-radius:20px;
-                    overflow:hidden;
-                    background:#fff;
-                    height:100%;
-                ">
-
-                    <img src="{{ asset('images/beranda/gambar2.jpeg') }}"
-                         style="width:100%; height:auto; display:block;">
-
-                    <div style="padding:15px; text-align:center;">
-                        <h6 class="fw-bold">Judul Informasi 2</h6>
-                        <p style="font-size:13px; color:#666;">
-                            Ringkasan singkat informasi atau berita rumah sakit.
-                        </p>
-
-                        <a href="#"
-                           style="
-                                display:inline-block;
-                                margin-top:8px;
-                                padding:6px 12px;
-                                background:#1C145C;
-                                color:white;
-                                text-decoration:none;
-                                border-radius:20px;
-                                font-size:12px;
-                           ">
-                            Baca Selengkapnya
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CARD 3 -->
-            <div class="col-md-3 col-12">
-                <div style="
-                    border:1px solid #eee;
-                    border-radius:20px;
-                    overflow:hidden;
-                    background:#fff;
-                    height:100%;
-                ">
-
-                    <img src="{{ asset('images/beranda/gambar3.jpeg') }}"
-                         style="width:100%; height:auto; display:block;">
-
-                    <div style="padding:15px; text-align:center;">
-                        <h6 class="fw-bold">Judul Informasi 3</h6>
-                        <p style="font-size:13px; color:#666;">
-                            Ringkasan singkat informasi atau berita rumah sakit.
-                        </p>
-
-                        <a href="#"
-                           style="
-                                display:inline-block;
-                                margin-top:8px;
-                                padding:6px 12px;
-                                background:#1C145C;
-                                color:white;
-                                text-decoration:none;
-                                border-radius:20px;
-                                font-size:12px;
-                           ">
-                            Baca Selengkapnya
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CARD 4 -->
-            <div class="col-md-3 col-12">
-                <div style="
-                    border:1px solid #eee;
-                    border-radius:20px;
-                    overflow:hidden;
-                    background:#fff;
-                    height:100%;
-                ">
-
-                    <img src="{{ asset('images/beranda/gambar4.jpeg') }}"
-                         style="width:100%; height:auto; display:block;">
-
-                    <div style="padding:15px; text-align:center;">
-                        <h6 class="fw-bold">Judul Informasi 4</h6>
-                        <p style="font-size:13px; color:#666;">
-                            Ringkasan singkat informasi atau berita rumah sakit.
-                        </p>
-
-                        <a href="#"
-                           style="
-                                display:inline-block;
-                                margin-top:8px;
-                                padding:6px 12px;
-                                background:#1C145C;
-                                color:white;
-                                text-decoration:none;
-                                border-radius:20px;
-                                font-size:12px;
-                           ">
-                            Baca Selengkapnya
-                        </a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
 
         </div>
 
     </div>
 </section>
-
 
 <!-- BUTTON LIHAT BERITA LAINNYA -->
 <div class="text-center mt-4" style="margin-bottom:40px;">
@@ -2213,7 +1206,7 @@ body {
 <div class="floating-bar">
 
     <!-- IGD -->
-    <a href="tel:0834325542" class="floating-item active">
+    <a href="tel:085292224886" class="floating-item active">
         <i class="bi bi-hospital"></i>
         <span>IGD 24 JAM</span>
     </a>

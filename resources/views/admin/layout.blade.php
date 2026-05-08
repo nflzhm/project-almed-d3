@@ -720,6 +720,7 @@
                     <span class="submenu-dot"></span>
                     <span class="sidebar-label">Loker</span>
                 </a>
+                
             </div>
         </div>
 
@@ -739,38 +740,17 @@
             <span class="sidebar-label">Data Dokter</span>
         </a>
 
-        {{-- ---- JADWAL PRAKTIK dropdown ---- --}}
-        <a class="nav-link"
-           data-bs-toggle="collapse"
-           href="#menuJadwal"
-           role="button"
-           aria-expanded="{{ request()->routeIs('admin.jadwal.*') ? 'true' : 'false' }}">
+        <a href="{{ route('admin.jadwal.index') }}"
+        class="nav-link {{ request()->routeIs('admin.jadwal.*') ? 'active' : '' }}">
             <span class="nav-icon"><i class="fa-solid fa-calendar-days"></i></span>
             <span class="sidebar-label">Jadwal Praktik</span>
-            <i class="fa-solid fa-chevron-right dropdown-arrow ms-auto"></i>
         </a>
-
-        <div class="collapse {{ request()->routeIs('admin.jadwal.*') ? 'show' : '' }}"
-             id="menuJadwal">
-            <div class="sidebar-submenu">
-                <a href="{{ route('admin.jadwal.index') }}"
-                   class="nav-link {{ request()->routeIs('admin.jadwal.index') ? 'active' : '' }}">
-                    <span class="submenu-dot"></span>
-                    <span class="sidebar-label">Semua Jadwal</span>
-                </a>
-                <a href="{{ route('admin.jadwal.create') }}"
-                   class="nav-link {{ request()->routeIs('admin.jadwal.create') ? 'active' : '' }}">
-                    <span class="submenu-dot"></span>
-                    <span class="sidebar-label">Tambah Jadwal</span>
-                </a>
-            </div>
-        </div>
 
         {{-- ---- PENGGUNA ---- --}}
         <div class="sidebar-section-label">Sistem</div>
 
-        <a href="{{ route('admin.dashboard') }}"
-           class="nav-link {{ request()->routeIs('admin.pengguna.*') ? 'active' : '' }}">
+        <a href="{{ route('admin.pengguna.index') }}"
+        class="nav-link {{ request()->routeIs('admin.pengguna.*') ? 'active' : '' }}">
             <span class="nav-icon"><i class="fa-solid fa-users"></i></span>
             <span class="sidebar-label">Pengguna Web</span>
         </a>

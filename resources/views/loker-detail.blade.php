@@ -728,9 +728,9 @@
                                     </div>
                                     <div style="font-size:13px;color:var(--text-muted);line-height:1.6;">
                                         Email ke
-                                        <a href="mailto:allam.medica@yahoo.co.id"
+                                        <a href="mailto:kepegawaianallammedica@gmail.com"
                                            style="color:var(--blue);font-weight:700;text-decoration:none;">
-                                            allam.medica@yahoo.co.id
+                                            kepegawaianallammedica@gmail.com
                                         </a>
                                         dengan subject <strong>"Lamaran — {{ $loker->judul }}"</strong>,
                                         atau antar langsung ke bagian HRD RSU Allam Medica.
@@ -778,14 +778,14 @@
                     <div class="apply-card-sub">
                         Kirimkan lamaran Anda sekarang dan bergabunglah bersama tim RSU Allam Medica.
                     </div>
-                    <a href="mailto:allam.medica@yahoo.co.id?subject=Lamaran — {{ urlencode($loker->judul) }}"
+                    <a href="mailto:kepegawaianallammedica@gmail.com?subject=Lamaran — {{ urlencode($loker->judul) }}"
                        class="btn-apply">
                         <i class="fa-solid fa-paper-plane"></i>
                         Kirim Lamaran Sekarang
                     </a>
                     <div class="apply-email-note">
                         <i class="fa-regular fa-envelope" style="font-size:11px;"></i>
-                        allam.medica@yahoo.co.id
+                        kepegawaianallammedica@gmail.com
                     </div>
                 </div>
 
@@ -869,7 +869,7 @@
                         Hubungi HRD
                     </div>
                     <div class="sc-body">
-                        <a href="tel:62289430822"
+                        <a href="tel:085292224886"
                            style="display:flex;align-items:center;gap:10px;padding:10px 0;text-decoration:none;border-bottom:1px solid var(--border);">
                             <div style="width:36px;height:36px;border-radius:8px;background:#d1fae5;color:#059669;
                                         display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;">
@@ -877,10 +877,10 @@
                             </div>
                             <div>
                                 <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;">Telepon</div>
-                                <div style="font-size:13.5px;font-weight:700;color:var(--text-main);margin-top:2px;">(0289) 430822</div>
+                                <div style="font-size:13.5px;font-weight:700;color:var(--text-main);margin-top:2px;">085292224886</div>
                             </div>
                         </a>
-                        <a href="mailto:allam.medica@yahoo.co.id"
+                        <a href="mailto:kepegawaianallammedica@gmail.com"
                            style="display:flex;align-items:center;gap:10px;padding:10px 0;text-decoration:none;">
                             <div style="width:36px;height:36px;border-radius:8px;background:#e0f2fe;color:#0284c7;
                                         display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;">
@@ -888,7 +888,7 @@
                             </div>
                             <div>
                                 <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;">Email</div>
-                                <div style="font-size:12.5px;font-weight:700;color:var(--text-main);margin-top:2px;">allam.medica@yahoo.co.id</div>
+                                <div style="font-size:12.5px;font-weight:700;color:var(--text-main);margin-top:2px;">kepegawaianallammedica@gmail.com</div>
                             </div>
                         </a>
                     </div>

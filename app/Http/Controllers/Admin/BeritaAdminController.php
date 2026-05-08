@@ -16,6 +16,19 @@ class BeritaAdminController extends Controller
         return view('admin.beritaadmin', compact('berita'));
     }
 
+    // ✅ TAMBAHAN WAJIB (INI YANG KAMU KURANG)
+    public function create()
+    {
+        return view('admin.beritaadmin');
+    }
+
+    // (OPSIONAL TAPI DISARANKAN ADA)
+    public function edit($id)
+    {
+        $berita = Berita::findOrFail($id);
+        return view('admin.berita.edit', compact('berita'));
+    }
+
     public function store(Request $request)
     {
         $request->validate([

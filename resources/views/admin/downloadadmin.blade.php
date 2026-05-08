@@ -583,10 +583,7 @@ $listPgd = isset($pengadaan) ? $pengadaan->items() : $dummyData;
     @endforelse
 </div>
 
-{{-- Pagination --}}
-@if(isset($pengadaan) && $pengadaan->hasPages())
-<div style="margin-top:24px;">{{ $pengadaan->withQueryString()->links() }}</div>
-@endif
+
 
 
 {{-- ================================================================

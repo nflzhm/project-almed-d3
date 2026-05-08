@@ -615,7 +615,7 @@
             <i class="fa-solid fa-rotate"></i>
         </div>
         <div class="bs-info">
-            <div class="bs-val">{{ $sliderSpeed ?? 5 }}s</div>
+            <div class="bs-val">{{ $sliderSpeed ?? 3 }}s</div>
             <div class="bs-lbl">Kecepatan Slide</div>
         </div>
     </div>
@@ -680,7 +680,7 @@
     <div>
         Banner yang berstatus <strong>Aktif</strong> akan otomatis tampil dalam slider beranda sesuai urutan yang ditentukan.
         Banner dapat diatur ulang urutannya dengan mengubah nomor urut pada form edit.
-        Durasi tampil tiap slide adalah <strong>{{ $sliderSpeed ?? 5 }} detik</strong>.
+        Durasi tampil tiap slide adalah <strong>{{ $sliderSpeed ?? 3 }} detik</strong>.
     </div>
 </div>
 
@@ -805,10 +805,7 @@
 
 </div>
 
-{{-- Pagination --}}
-@if(isset($banner) && $banner->hasPages())
-<div style="margin-top:24px;">{{ $banner->withQueryString()->links() }}</div>
-@endif
+
 
 
 {{-- ================================================================

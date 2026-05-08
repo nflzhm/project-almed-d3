@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\banneradmin;
+use App\Models\Berita;
+use App\Models\AdminDataDokter;
 
 class IklanSliderController extends Controller
 {
@@ -13,6 +15,17 @@ class IklanSliderController extends Controller
             ->orderBy('urutan', 'asc')
             ->get();
 
-        return view('beranda', compact('banners'));
+        $beritaTerbaru = Berita::where('status', 'published')
+            ->latest()
+            ->take(4)
+            ->get();
+
+        $dokter = AdminDataDokter::latest()->get();
+
+        return view('beranda', compact(
+            'banners',
+            'beritaTerbaru',
+            'dokter'
+        ));
     }
 }

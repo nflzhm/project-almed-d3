@@ -532,9 +532,7 @@
 
 @section('content')
 
-{{-- ================================================================
-     PAGE HEADER
-================================================================ --}}
+
 <div class="page-header">
     <div class="page-header-left">
         <div class="ph-title">Manajemen Layanan</div>
@@ -546,9 +544,7 @@
     </button>
 </div>
 
-{{-- ================================================================
-     STATS STRIP
-================================================================ --}}
+
 <div class="lay-stats">
     <div class="lay-stat">
         <div class="lay-stat-icon" style="background:#e0f2fe;color:#0284c7;">
@@ -608,20 +604,27 @@
     </select>
 </div>
 
-{{-- ================================================================
-     CARD GRID
-================================================================ --}}
+
 <div class="lay-grid" id="layGrid">
 
     @forelse($layanan as $i => $item)
     @php
-        $id     = $item['id'] ?? $item->id;
-        $poli   = $item['poli'] ?? $item->poli;
-        $desc   = $item['deskripsi'] ?? $item->deskripsi ?? '';
-        $hp     = $item['no_hp'] ?? $item->no_hp ?? '';
-        $wa     = $item['whatsapp'] ?? $item->whatsapp ?? '';
-        $status = $item['status'] ?? $item->status ?? 'aktif';
-        $gambar = $item['gambar'] ?? $item->gambar ?? null;
+    $id     = $item['id'] ?? $item->id;
+    $poli   = $item['poli'] ?? $item->poli;
+    $desc   = $item['deskripsi'] ?? $item->deskripsi ?? '';
+    $hp     = $item['no_hp'] ?? $item->no_hp ?? '';
+    $wa     = $item['no_wa'] ?? $item->no_wa ?? '';
+    $status = $item['status'] ?? $item->status ?? 'aktif';
+    $gambar = $item['gambar'] ?? $item->gambar ?? null;
+
+    $imgUrl = $gambar ? asset('storage/' . $gambar) : null;
+
+    // fallback icon config
+    $ic = [
+        'bg'    => '#e0f2fe',
+        'color' => '#0284c7',
+        'icon'  => 'fa-solid fa-stethoscope'
+    ];
     @endphp
 
     <div class="lay-card"
@@ -740,15 +743,8 @@
 
 </div>
 
-{{-- Pagination --}}
-@if(isset($layanan) && $layanan->hasPages())
-<div style="margin-top:24px;">{{ $layanan->withQueryString()->links() }}</div>
-@endif
 
 
-{{-- ================================================================
-     MODAL: TAMBAH LAYANAN
-================================================================ --}}
 <div class="modal fade am-modal" id="modalTambah" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
@@ -816,7 +812,7 @@
                             <i class="fa-solid fa-stethoscope"></i>
                             Nama Poliklinik / Layanan <span class="req">*</span>
                         </div>
-                        <input type="text" name="nama_poli" class="mfg-input" id="tambahNama"
+                        <input type="text" name="poli" class="mfg-input" id="tambahNama"
                             placeholder="Contoh: Poliklinik Spesialis Anak"
                             maxlength="100" required
                             oninput="syncPreview('tambah')">
@@ -941,9 +937,7 @@
 </div>
 
 
-{{-- ================================================================
-     MODAL: EDIT LAYANAN
-================================================================ --}}
+
 <div class="modal fade am-modal" id="modalEdit" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
@@ -1032,34 +1026,50 @@
 
                     {{-- No HP & WhatsApp --}}
                     <div class="mfg-row mfg">
+
+                        {{-- ===================== NO HP ===================== --}}
                         <div>
                             <div class="mfg-label">
                                 <i class="fa-solid fa-phone"></i>
                                 No. HP / Telepon <span class="opt">(opsional)</span>
                             </div>
+
                             <div class="phone-wrap">
                                 <div class="phone-prefix">
                                     <i class="fa-solid fa-phone" style="font-size:10px;"></i>
                                     +62
                                 </div>
-                                <input type="tel" name="no_wa" class="mfg-input"
-                                    id="editWa" placeholder="8289430822" inputmode="numeric">
+
+                                <input type="tel"
+                                    name="no_hp"
+                                    class="mfg-input"
+                                    id="editHp"
+                                    placeholder="289-430822 ext 1">
                             </div>
                         </div>
+
+                        {{-- ===================== WHATSAPP ===================== --}}
                         <div>
                             <div class="mfg-label">
                                 <i class="fa-brands fa-whatsapp" style="color:#25D366;font-size:12px;"></i>
                                 Nomor WhatsApp <span class="opt">(opsional)</span>
                             </div>
+
                             <div class="phone-wrap">
                                 <div class="phone-prefix">
                                     <i class="fa-brands fa-whatsapp" style="font-size:11px;color:#25D366;"></i>
                                     +62
                                 </div>
-                                <input type="tel" name="whatsapp" class="mfg-input"
-                                    id="editWa" placeholder="8289430822" inputmode="numeric">
+
+                                <input type="tel"
+                                    name="no_wa"
+                                    class="mfg-input"
+                                    id="editWa"
+                                    placeholder="8289430822"
+                                    inputmode="numeric">
                             </div>
                         </div>
+
                     </div>
 
                     {{-- Status --}}
@@ -1109,9 +1119,7 @@
 </div>
 
 
-{{-- ================================================================
-     MODAL: HAPUS
-================================================================ --}}
+
 <div class="modal fade am-modal" id="modalHapus" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" style="max-width:420px;">
         <div class="modal-content">
@@ -1145,10 +1153,6 @@
     </div>
 </div>
 
-
-{{-- ================================================================
-     MODAL: DETAIL LAYANAN
-================================================================ --}}
 <div class="modal fade am-modal" id="modalDetail" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" style="max-width:500px;">
         <div class="modal-content">

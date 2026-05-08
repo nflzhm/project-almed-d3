@@ -574,21 +574,7 @@ use Carbon\Carbon;
 
 </div>
 
-{{-- ================================================================
-     PAGINATION
-================================================================ --}}
-@if($loker instanceof \Illuminate\Pagination\LengthAwarePaginator && $loker->hasPages())
 
-<div class="loker-pagination">
-    <div class="pag-info">
-        Menampilkan {{ $loker->firstItem() }}–{{ $loker->lastItem() }}
-        dari {{ $loker->total() }} lowongan
-    </div>
-
-    {{ $loker->withQueryString()->links() }}
-</div>
-
-@endif
 
 
 {{-- ================================================================

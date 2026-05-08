@@ -15,10 +15,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 </head>
-<body>
-    
-</body> 
-<!-- ✅ Navbar -->
 
 <style>
 
@@ -352,7 +348,7 @@ body{
 
 </style>
 
-<body>
+
 
 <!-- ================= HEADER ================= -->
 <section class="layanan-section">
@@ -400,7 +396,7 @@ Pilih poliklinik yang Anda butuhkan dan buat janji temu dengan mudah.
                     <!-- GAMBAR -->
                     <div class="col-md-5">
                         <div class="layanan-img-wrapper">
-                            <img src="{{ asset('images/layanan/'.$item->gambar) }}" class="layanan-img">
+                            <img src="{{ $item->gambar ? asset('storage/' . $item->gambar) : asset('images/no-image.png') }}"class="layanan-img">
                         </div>
                     </div>
 
@@ -410,32 +406,24 @@ Pilih poliklinik yang Anda butuhkan dan buat janji temu dengan mudah.
 
                             <!-- JUDUL -->
                             <div class="layanan-card-title">
-                                {{ $item->nama }}
+                                {{ $item->poli }}
                             </div>
 
-                            <!-- MULTI DOKTER + MULTI JADWAL -->
-                            <div class="layanan-jadwal">
-
-                                @php
-                                    $dokters = preg_split('/\r\n|\r|\n/', trim($item->dokter));
-                                    $jadwals = preg_split('/\r\n|\r|\n/', trim($item->jadwal));
-                                @endphp
-
-                                @foreach($dokters as $index => $dokter)
-
-                                    <div class="mb-2">
-                                        <b>{{ trim($dokter) }}</b><br>
-                                        {{ $jadwals[$index] ?? '' }}
-                                    </div>
-
-                                @endforeach
-
+                            <!-- DESKRIPSI -->
+                            <div class="layanan-text">
+                                {{ $item->deskripsi }}
                             </div>
 
-                            <!-- TELEPON -->
+                            <!-- KONTAK -->
                             <div class="layanan-contact">
                                 <i class="bi bi-telephone-fill"></i>
-                                {{ $item->telepon }}
+                                {{ $item->no_hp ?? '-' }}
+                            </div>
+
+                            <!-- WHATSAPP -->
+                            <div class="layanan-contact mt-2">
+                                <i class="bi bi-whatsapp"></i>
+                                {{ $item->no_wa ?? '-' }}
                             </div>
 
                         </div>
@@ -450,6 +438,9 @@ Pilih poliklinik yang Anda butuhkan dan buat janji temu dengan mudah.
 
     </div>
 </div>
+
+
+
 <!-- footer -->
 <footer style="background:#FFFFFF; color:black; padding:50px 0 20px;">
 

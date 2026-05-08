@@ -12,12 +12,9 @@ return new class extends Migration {
 
             $table->string('poli', 100);
             $table->text('deskripsi');
-
             $table->string('no_hp', 20)->nullable();
             $table->string('no_wa', 20)->nullable();
-
             $table->string('gambar')->nullable();
-
             $table->enum('status', ['aktif', 'nonaktif'])->default('aktif');
 
             $table->timestamps();

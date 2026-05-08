@@ -3,63 +3,84 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class PenggunaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $users = User::latest()->paginate(10);
+
+        $totalAdmin = User::where('role', 'admin')->count();
+        $totalUser = User::where('role', 'user')->count();
+        $newThisMonth = User::whereMonth('created_at', now()->month)->count();
+
+        return view('admin.pengguna', compact(
+            'users',
+            'totalAdmin',
+            'totalUser',
+            'newThisMonth'
+        ));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_lengkap' => 'required|max:100',
+            'email' => 'required|email|unique:users,email',
+            'username' => 'required|unique:users,username',
+            'password' => 'required|confirmed|min:8',
+            'role' => 'required'
+        ]);
+
+        User::create([
+            'name' => $request->username,
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'role' => $request->role,
+        ]);
+
+        return redirect()->route('admin.pengguna.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $request->validate([
+            'nama_lengkap' => 'required|max:100',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'username' => 'required|unique:users,username,' . $id,
+            'role' => 'required'
+        ]);
+
+        $data = [
+            'nama_lengkap' => $request->nama_lengkap,
+            'email' => $request->email,
+            'username' => $request->username,
+            'role' => $request->role,
+        ];
+
+        if ($request->password) {
+            $request->validate([
+                'password' => 'confirmed|min:8'
+            ]);
+
+            $data['password'] = Hash::make($request->password);
+        }
+
+        $user->update($data);
+
+        return redirect()->route('admin.pengguna.index');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function destroy($id)
     {
-        //
-    }
+        User::findOrFail($id)->delete();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->route('admin.pengguna.index');
     }
 }

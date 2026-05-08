@@ -21,99 +21,141 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BeritaAdminController;
 use App\Http\Controllers\Admin\DownloadPengadaanController as AdminPengadaanController;
 use App\Http\Controllers\Admin\LayananController as AdminLayananController;
-
-/* =========================
-   FRONTEND ROUTES
-========================= */
+use App\Http\Controllers\Admin\PenggunaController;
+use App\Http\Controllers\Admin\AdminDokterController;
 
 Route::get('/', [IklanSliderController::class, 'index']);
 
-Route::get('/jadwaldokter', [DokterController::class, 'index']);
+Route::get('/jadwaldokter', [DokterController::class, 'index'])
+    ->name('jadwaldokter');
+
 Route::get('/layanan', [LayananController::class, 'index']);
 
-/* =========================
-   LOKER / KARIR (FIXED CLEAN)
-========================= */
-
-// INDEX
 Route::get('/loker', [LokerController::class, 'index'])
     ->name('loker.index');
 
-// DETAIL
 Route::get('/loker/{id}', [LokerController::class, 'show'])
     ->name('loker.detail');
 
-    // KARIR INDEX
 Route::get('/karir', [LokerController::class, 'index'])
     ->name('karir.index');
 
-// KARIR DETAIL
 Route::get('/karir/{id}', [LokerController::class, 'show'])
     ->name('karir.detail');
 
-Route::get('/berita', [BeritaController::class, 'index'])->name('berita');
-Route::get('/berita/{slug}', [BeritaController::class, 'show']);
+Route::get('/berita', [BeritaController::class, 'index'])
+    ->name('berita');
 
-Route::get('/pengadaan', [PengadaanController::class, 'index'])->name('pengadaan');
+Route::get('/berita/{slug}', [BeritaController::class, 'show'])
+    ->name('berita.detail');
 
-Route::get('/download', [DownloadController::class, 'index'])->name('download');
-Route::get('/download/file/{id}', [DownloadController::class, 'download'])->name('download.file');
+Route::get('/pengadaan', [PengadaanController::class, 'index'])
+    ->name('pengadaan');
+
+Route::get('/download', [DownloadController::class, 'index'])
+    ->name('download');
+
+Route::get('/download/file/{id}', [DownloadController::class, 'download'])
+    ->name('download.file');
 
 Route::view('/tentang', 'tentang');
-Route::view('/kontak', 'kontak');
 
-/* =========================
-   VIDEO
-========================= */
+Route::view('/kontak', 'kontak');
 
 Route::get('/video', function () {
     $videos = Video::all();
     return view('video', compact('videos'));
 })->name('video');
 
-/* =========================
-   AUTH
-========================= */
+Route::get('/login', [AuthController::class, 'showLogin'])
+    ->name('login');
 
-Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-Route::post('/login', [AuthController::class, 'login'])->name('login.post');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/login', [AuthController::class, 'login'])
+    ->name('login.post');
 
-/* =========================
-   ADMIN
-========================= */
+Route::post('/logout', [AuthController::class, 'logout'])
+    ->name('logout');
 
-Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+Route::prefix('admin')
+    ->name('admin.')
+    ->middleware('auth')
+    ->group(function () {
 
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/', [DashboardController::class, 'index'])
+            ->name('dashboard');
 
-    Route::resource('berita', BeritaAdminController::class);
-    Route::resource('layanan', AdminLayananController::class);
-    Route::resource('dokter', DokterController::class);
-    Route::resource('jadwal', JadwalController::class);
-    Route::resource('banner', BannerController::class);
+        Route::resource('berita', BeritaAdminController::class);
 
-    Route::patch('banner/{id}/toggle', [BannerController::class, 'toggle'])
-        ->name('banner.toggle');
+        Route::resource('layanan', AdminLayananController::class);
 
-    Route::prefix('video')->name('video.')->group(function () {
-        Route::get('/', [VideoController::class, 'index'])->name('index');
-        Route::post('/', [VideoController::class, 'store'])->name('store');
-        Route::put('/{id}', [VideoController::class, 'update'])->name('update');
-        Route::delete('/{id}', [VideoController::class, 'destroy'])->name('destroy');
+        Route::resource('dokter', AdminDokterController::class);
+
+        Route::resource('jadwal', JadwalController::class);
+
+        Route::resource('banner', BannerController::class);
+
+        Route::patch('banner/{id}/toggle', [BannerController::class, 'toggle'])
+            ->name('banner.toggle');
+
+        Route::prefix('video')
+            ->name('video.')
+            ->group(function () {
+
+                Route::get('/', [VideoController::class, 'index'])
+                    ->name('index');
+
+                Route::post('/', [VideoController::class, 'store'])
+                    ->name('store');
+
+                Route::put('/{id}', [VideoController::class, 'update'])
+                    ->name('update');
+
+                Route::delete('/{id}', [VideoController::class, 'destroy'])
+                    ->name('destroy');
+            });
+
+        Route::resource('loker', AdminLokerController::class);
+
+        Route::prefix('pengguna')
+            ->name('pengguna.')
+            ->group(function () {
+
+                Route::get('/', [PenggunaController::class, 'index'])
+                    ->name('index');
+
+                Route::post('/', [PenggunaController::class, 'store'])
+                    ->name('store');
+
+                Route::put('/{id}', [PenggunaController::class, 'update'])
+                    ->name('update');
+
+                Route::delete('/{id}', [PenggunaController::class, 'destroy'])
+                    ->name('destroy');
+            });
+
+        Route::get('/profile', [AdminController::class, 'profile'])
+            ->name('profile');
+
+        Route::get('/settings', [AdminController::class, 'settings'])
+            ->name('settings');
+
+        Route::prefix('pengadaan')
+            ->name('pengadaan.')
+            ->group(function () {
+
+                Route::get('/', [AdminPengadaanController::class, 'index'])
+                    ->name('index');
+
+                Route::post('/', [AdminPengadaanController::class, 'store'])
+                    ->name('store');
+
+                Route::put('/{id}', [AdminPengadaanController::class, 'update'])
+                    ->name('update');
+
+                Route::delete('/{id}', [AdminPengadaanController::class, 'destroy'])
+                    ->name('destroy');
+
+                Route::get('/download/{id}', [AdminPengadaanController::class, 'download'])
+                    ->name('download');
+            });
     });
-
-    Route::resource('loker', AdminLokerController::class);
-
-    Route::get('/profile', [AdminController::class, 'profile'])->name('profile');
-    Route::get('/settings', [AdminController::class, 'settings'])->name('settings');
-
-    Route::prefix('pengadaan')->name('pengadaan.')->group(function () {
-        Route::get('/', [AdminPengadaanController::class, 'index'])->name('index');
-        Route::post('/', [AdminPengadaanController::class, 'store'])->name('store');
-        Route::put('/{id}', [AdminPengadaanController::class, 'update'])->name('update');
-        Route::delete('/{id}', [AdminPengadaanController::class, 'destroy'])->name('destroy');
-        Route::get('/download/{id}', [AdminPengadaanController::class, 'download'])->name('download');
-    });
-
-});

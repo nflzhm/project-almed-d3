@@ -714,6 +714,126 @@
     .am-modal .modal-body { padding: 20px 18px 8px; }
     .am-modal .modal-footer { padding: 12px 18px 20px; }
 }
+
+/* =========================================================
+   PAGINATION BERITA
+========================================================= */
+/* =========================================================
+   PAGINATION BERITA
+========================================================= */
+
+.berita-pagination{
+    margin-top: 24px;
+    padding: 20px 24px;
+    background: #fff;
+    border: 1px solid #edf1f7;
+    border-radius: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+
+    box-shadow: 0 4px 14px rgba(15,23,42,.04);
+}
+
+/* Info kiri */
+.berita-pagination .pag-info{
+    font-size: 14px;
+    font-weight: 600;
+    color: #64748b;
+}
+
+/* Sembunyikan tulisan bawaan Laravel */
+.berita-pagination .small{
+    display: none !important;
+}
+
+/* nav */
+.berita-pagination nav{
+    margin-left: auto;
+}
+
+/* pagination */
+.berita-pagination .pagination{
+    margin: 0;
+    gap: 10px;
+    align-items: center;
+}
+
+/* item */
+.berita-pagination .page-item{
+    list-style: none;
+}
+
+/* tombol */
+.berita-pagination .page-link{
+    width: 46px;
+    height: 46px;
+
+    border: none !important;
+    border-radius: 14px !important;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f8fafc;
+    color: #334155;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    transition: all .2s ease;
+    box-shadow: none !important;
+}
+
+/* hover */
+.berita-pagination .page-link:hover{
+    background: #2563eb;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* active */
+.berita-pagination .active .page-link{
+    background: linear-gradient(135deg,#2563eb,#1d4ed8);
+    color: #fff;
+    box-shadow: 0 10px 20px rgba(37,99,235,.25) !important;
+}
+
+/* disabled */
+.berita-pagination .disabled .page-link{
+    background: #f1f5f9;
+    color: #94a3b8;
+    opacity: .7;
+}
+
+/* icon */
+.berita-pagination svg{
+    width: 16px !important;
+    height: 16px !important;
+}
+
+/* mobile */
+@media(max-width:768px){
+
+    .berita-pagination{
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .berita-pagination nav{
+        margin-left: 0;
+    }
+
+    .berita-pagination .pagination{
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
 </style>
 @endpush
 
