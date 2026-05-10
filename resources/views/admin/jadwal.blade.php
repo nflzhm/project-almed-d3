@@ -186,7 +186,6 @@
     border-radius: var(--radius-sm);
     letter-spacing: .3px;
 }
-.jdw-day-header.today { background: var(--primary); }
 
 /* Slot card (sesuai output user) */
 .jdw-slot {
@@ -405,6 +404,31 @@
     .am-modal .modal-body   { padding: 18px 16px 8px; }
     .am-modal .modal-footer { padding: 12px 16px 20px; }
 }
+.jdw-day-header.minggu-libur{
+    background:#ef4444;
+    color:#fff;
+}
+
+#modalTambah .modal-content{
+    max-height: 90vh;
+    overflow: hidden;
+}
+
+#modalTambah .modal-body{
+    overflow-y: auto;
+    max-height: calc(90vh - 140px);
+    padding-right: 8px;
+}
+
+/* scrollbar */
+#modalTambah .modal-body::-webkit-scrollbar{
+    width: 6px;
+}
+
+#modalTambah .modal-body::-webkit-scrollbar-thumb{
+    background: #cbd5e1;
+    border-radius: 10px;
+}
 </style>
 @endpush
 
@@ -494,12 +518,44 @@
 </div>
 
 {{-- ================================================================
-     DUMMY DATA
+     DATA
 ================================================================ --}}
 @php
-$hariList = ['Senin','Selasa','Rabu','Kamis','Jumat','Sabtu','Minggu'];
-$todayIdx = date('N') - 1; // 0=Senin, 6=Minggu
 
+$hariList = [
+    'Senin',
+    'Selasa',
+    'Rabu',
+    'Kamis',
+    'Jumat',
+    'Sabtu',
+    'Minggu'
+];
+
+/*
+|--------------------------------------------------------------------------
+| Penanda hari sekarang
+|--------------------------------------------------------------------------
+| Senin = 0
+| Minggu = 6
+*/
+$todayMap = [
+    'Monday'    => 0,
+    'Tuesday'   => 1,
+    'Wednesday' => 2,
+    'Thursday'  => 3,
+    'Friday'    => 4,
+    'Saturday'  => 5,
+    'Sunday'    => 6,
+];
+
+$todayIdx = $todayMap[date('l')] ?? 0;
+
+/*
+|--------------------------------------------------------------------------
+| Gradient avatar dokter
+|--------------------------------------------------------------------------
+*/
 $gradients = [
     'linear-gradient(135deg,#0ea5e9,#06b6d4)',
     'linear-gradient(135deg,#8b5cf6,#6d28d9)',
@@ -508,65 +564,40 @@ $gradients = [
     'linear-gradient(135deg,#ef4444,#dc2626)',
 ];
 
-$dummyDokter = [
-    [
-        'id'        => 1,
-        'nama'      => 'dr. Ferry Gunawan, Sp.OG',
-        'spesialis' => 'Dokter Spesialis Kandungan',
-        'gambar'    => null,
-        'jadwal'    => [
-            'Senin'  => ['poli'=>'Poli Umum', 'jam_mulai'=>'08:00','jam_selesai'=>'12:00','sesi'=>'Pagi',  'jadwal_id'=>1],
-            'Selasa' => ['poli'=>'Poli Umum', 'jam_mulai'=>'10:00','jam_selesai'=>'14:00','sesi'=>'Siang', 'jadwal_id'=>2],
-            'Rabu'   => null,'Kamis'=>null,'Jumat'=>null,'Sabtu'=>null,'Minggu'=>null,
-        ],
-    ],
-    [
-        'id'        => 2,
-        'nama'      => 'dr. Sari Dewi, Sp.A',
-        'spesialis' => 'Spesialis Anak',
-        'gambar'    => null,
-        'jadwal'    => [
-            'Senin'  => null,
-            'Selasa' => ['poli'=>'Poli Anak','jam_mulai'=>'08:00','jam_selesai'=>'11:00','sesi'=>'Pagi',  'jadwal_id'=>3],
-            'Rabu'   => ['poli'=>'Poli Anak','jam_mulai'=>'08:00','jam_selesai'=>'11:00','sesi'=>'Pagi',  'jadwal_id'=>4],
-            'Kamis'  => null,
-            'Jumat'  => ['poli'=>'Poli Anak','jam_mulai'=>'13:00','jam_selesai'=>'17:00','sesi'=>'Siang', 'jadwal_id'=>5],
-            'Sabtu'  => null,'Minggu'=>null,
-        ],
-    ],
-    [
-        'id'        => 3,
-        'nama'      => 'dr. Hendra Kusuma',
-        'spesialis' => 'Dokter Umum',
-        'gambar'    => null,
-        'jadwal'    => [
-            'Senin'  => ['poli'=>'Poli Umum','jam_mulai'=>'08:00','jam_selesai'=>'14:00','sesi'=>'Pagi',  'jadwal_id'=>6],
-            'Selasa' => ['poli'=>'Poli Umum','jam_mulai'=>'08:00','jam_selesai'=>'14:00','sesi'=>'Pagi',  'jadwal_id'=>7],
-            'Rabu'   => ['poli'=>'Poli Umum','jam_mulai'=>'08:00','jam_selesai'=>'14:00','sesi'=>'Pagi',  'jadwal_id'=>8],
-            'Kamis'  => ['poli'=>'Poli Umum','jam_mulai'=>'08:00','jam_selesai'=>'14:00','sesi'=>'Pagi',  'jadwal_id'=>9],
-            'Jumat'  => ['poli'=>'Poli Umum','jam_mulai'=>'08:00','jam_selesai'=>'11:00','sesi'=>'Pagi',  'jadwal_id'=>10],
-            'Sabtu'  => null,'Minggu'=>null,
-        ],
-    ],
-];
-$dokterList = isset($jadwalPerDokter) ? $jadwalPerDokter : $dummyDokter;
+/*
+|--------------------------------------------------------------------------
+| Data dokter dari database
+|--------------------------------------------------------------------------
+*/
+$dokterList = $dokterList ?? [];
+
 @endphp
 
-{{-- ================================================================
-     JADWAL CARDS PER DOKTER
-================================================================ --}}
 <div id="jadwalContainer">
 
 @forelse($dokterList as $i => $dok)
+
 @php
-    $dokId     = $dok['id']        ?? $dok->id;
-    $nama      = $dok['nama']      ?? $dok->nama;
-    $spesialis = $dok['spesialis'] ?? $dok->spesialis;
-    $gambar    = $dok['gambar']    ?? $dok->gambar    ?? null;
-    $imgUrl    = $gambar ? asset('storage/'.$gambar) : null;
-    $inisial   = strtoupper(substr(ltrim($nama, 'dr. drg. '), 0, 1));
-    $grad      = $gradients[$i % count($gradients)];
-    $jadwal    = $dok['jadwal']    ?? [];
+    $dokId     = $dok->id;
+    $nama      = $dok->nama;
+    $spesialis = $dok->spesialis;
+    $gambar    = $dok->foto;
+    $imgUrl    = $gambar ? asset('storage/' . $gambar) : null;
+
+    $inisial = strtoupper(substr($nama, 0, 1));
+
+    $gradients = [
+        'linear-gradient(135deg,#0ea5e9,#06b6d4)',
+        'linear-gradient(135deg,#8b5cf6,#6d28d9)',
+        'linear-gradient(135deg,#10b981,#059669)',
+        'linear-gradient(135deg,#f59e0b,#d97706)',
+        'linear-gradient(135deg,#ef4444,#dc2626)',
+    ];
+
+    $grad = $gradients[$loop->index % count($gradients)];
+
+    // jadwal tetap object (collection)
+    $jadwal = $dok->jadwal->keyBy('hari');
 @endphp
 
 <div class="jdw-card" data-dok-nama="{{ strtolower($nama) }}">
@@ -606,90 +637,155 @@ $dokterList = isset($jadwalPerDokter) ? $jadwalPerDokter : $dummyDokter;
 
     </div>
 
-    {{-- Jadwal table --}}
-    <div class="jdw-table-wrap" id="jadwal-body-{{ $dokId }}">
-        <div class="jdw-hari-table">
+<div class="jdw-table-wrap" id="jadwal-body-{{ $dokId }}">
+    <div class="jdw-hari-table">
 
-            @foreach($hariList as $hIdx => $hari)
-            @php $slot = $jadwal[$hari] ?? null; @endphp
+        @foreach($hariList as $hari)
 
-            <div class="jdw-day-col">
-                {{-- Day header --}}
-                <div class="jdw-day-header {{ $hIdx === $todayIdx ? 'today' : '' }}">
-                    {{ $hari }}
-                </div>
+        @php
+            $slot = $jadwal[$hari] ?? null;
 
-                {{-- Slot --}}
-                <div class="jdw-slot {{ $slot ? '' : 'libur' }}">
+            $jamMulai = '';
+            $jamSelesai = '';
 
-                    @if($slot)
-                        {{-- Action buttons --}}
-                        <div class="slot-actions">
-                            <button class="slot-btn slot-btn-edit" title="Edit jadwal"
-                                onclick="openEditModal(
-                                    '{{ $slot['jadwal_id'] ?? '' }}',
-                                    '{{ $dokId }}',
-                                    `{{ addslashes($nama) }}`,
-                                    '{{ $hari }}',
-                                    '{{ addslashes($slot['poli'] ?? '') }}',
-                                    '{{ $slot['jam_mulai'] ?? '' }}',
-                                    '{{ $slot['jam_selesai'] ?? '' }}',
-                                    '{{ $slot['sesi'] ?? '' }}'
-                                )">
-                                <i class="fa-solid fa-pen"></i>
-                            </button>
-                            <button class="slot-btn slot-btn-delete" title="Hapus jadwal"
-                                onclick="openDeleteModal(
-                                    '{{ $slot['jadwal_id'] ?? '' }}',
-                                    `{{ addslashes($nama) }}`,
-                                    '{{ $hari }}'
-                                )">
-                                <i class="fa-solid fa-trash-can"></i>
-                            </button>
-                        </div>
+            if($slot && isset($slot['jam'])){
 
-                        <div class="slot-poli">{{ $slot['poli'] ?? '-' }}</div>
-                        <div class="slot-jam">{{ $slot['jam_mulai'] ?? '' }} - {{ $slot['jam_selesai'] ?? '' }}</div>
-                        <div class="slot-sesi">{{ $slot['sesi'] ?? '' }}</div>
+                $pecahJam = explode(' - ', $slot['jam']);
 
-                    @else
-                        {{-- Add button for empty slot --}}
-                        <div class="slot-actions">
-                            <button class="slot-btn slot-btn-add" title="Tambah jadwal hari ini"
-                                onclick="openTambahModalHari('{{ $dokId }}', `{{ addslashes($nama) }}`, '{{ $hari }}')">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                        </div>
-                        <div class="slot-libur-text">Libur</div>
-                    @endif
+                $jamMulai = $pecahJam[0] ?? '';
+                $jamSelesai = $pecahJam[1] ?? '';
+            }
+        @endphp
 
-                </div>
+        <div class="jdw-day-col">
+
+            <div class="jdw-day-header {{ $hari == 'Minggu' ? 'minggu-libur' : '' }}">
+                {{ $hari }}
             </div>
-            @endforeach
+
+            <div class="jdw-slot {{ $slot ? '' : 'libur' }}">
+
+                @if($slot)
+
+                    <div class="slot-actions">
+
+                    <button
+                        class="slot-btn slot-btn-edit"
+                        title="Edit jadwal"
+
+                        onclick="openEditModal(
+                            '{{ data_get($slot, 'id') }}',
+                            '{{ $dokId }}',
+                            `{{ addslashes($nama) }}`,
+                            '{{ $hari }}',
+                            '{{ addslashes(data_get($slot,'klinik')) }}',
+                            '{{ data_get($slot,'jam_mulai') }}',
+                            '{{ data_get($slot,'jam_selesai') }}',
+                            '{{ data_get($slot,'sesi') }}'
+                        )">
+                        <i class="fa-solid fa-pen"></i>
+
+                    </button>
+
+                    <button
+    class="slot-btn slot-btn-delete"
+    title="Hapus jadwal"
+
+    onclick="openDeleteModal(
+    '{{ data_get($slot, 'id') }}',
+    `{{ addslashes($nama) }}`,
+    '{{ $hari }}'
+)">
+
+    <i class="fa-solid fa-trash-can"></i>
+</button>
+
+                </div>
+
+                    <div class="slot-poli">
+                        {{ $slot->klinik }}
+                    </div>
+
+                    <div class="slot-jam">
+                        {{ $slot->jam }}
+                    </div>
+
+                @else
+
+                    <div class="slot-actions">
+
+                        <button
+                            class="slot-btn slot-btn-add"
+                            title="Tambah jadwal"
+
+                            onclick="openTambahModalHari(
+                                '{{ $dokId }}',
+                                `{{ addslashes($nama) }}`,
+                                '{{ $hari }}'
+                            )">
+
+                            <i class="fa-solid fa-plus"></i>
+
+                        </button>
+
+                    </div>
+
+                    <div class="slot-libur-text">
+                        Libur
+                    </div>
+
+                @endif
+
+            </div>
 
         </div>
+
+        @endforeach
+
     </div>
+</div>
 
 </div>
+
 @empty
+
 <div class="empty-state">
-    <div class="es-icon"><i class="fa-solid fa-calendar-days"></i></div>
-    <div class="es-title">Belum Ada Jadwal</div>
-    <div class="es-sub">Tambahkan jadwal praktik dokter agar tampil di website.</div>
-    <button class="btn-primary-am" data-bs-toggle="modal" data-bs-target="#modalTambah">
-        <i class="fa-solid fa-plus"></i> Tambah Jadwal
+
+    <div class="es-icon">
+        <i class="fa-solid fa-calendar-days"></i>
+    </div>
+
+    <div class="es-title">
+        Belum Ada Jadwal
+    </div>
+
+    <div class="es-sub">
+        Tambahkan jadwal praktik dokter agar tampil di website.
+    </div>
+
+    <button
+        class="btn-primary-am"
+        data-bs-toggle="modal"
+        data-bs-target="#modalTambah">
+
+        <i class="fa-solid fa-plus"></i>
+        Tambah Jadwal
+
     </button>
+
 </div>
+
 @endforelse
 
 </div>
+
 
 
 {{-- ================================================================
      MODAL: TAMBAH JADWAL
 ================================================================ --}}
 <div class="modal fade am-modal" id="modalTambah" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">
@@ -754,10 +850,10 @@ $dokterList = isset($jadwalPerDokter) ? $jadwalPerDokter : $dummyDokter;
                         <select name="poli" class="mfg-select" id="tambahPoli" required
                                 onchange="updateJadwalPreview()">
                             <option value="">-- Pilih Poli --</option>
-                            <option value="Poli Umum">Poli Umum</option>
-                            <option value="Poli Anak">Poli Anak</option>
+                            <option value="Poli Spesialis Obgyn">Poli Spesialis Obgyn</option>
+                            <option value="Poli Spesialis Anak">Poli Spesialis Anak</option>
                             <option value="Poli Gigi">Poli Gigi</option>
-                            <option value="Poli Kandungan">Poli Kandungan</option>
+                            <option value="Poli Orthodonti">Poli Orthodonti</option>
                             <option value="Poli Mata">Poli Mata</option>
                             <option value="Poli THT">Poli THT</option>
                             <option value="Poli Kulit">Poli Kulit</option>
@@ -771,24 +867,41 @@ $dokterList = isset($jadwalPerDokter) ? $jadwalPerDokter : $dummyDokter;
 
                     {{-- Jam Mulai & Selesai --}}
                     <div class="mfg-row mfg">
+
+                        {{-- Jam Mulai --}}
                         <div>
                             <div class="mfg-label">
                                 <i class="fa-regular fa-clock"></i>
                                 Jam Mulai <span class="req">*</span>
                             </div>
-                            <input type="time" name="jam_mulai" class="mfg-input"
-                                   id="tambahJamMulai" required
-                                   oninput="autoSetSesi(); updateJadwalPreview();">
+
+                            <input type="text"
+                                name="jam_mulai"
+                                class="mfg-input"
+                                id="tambahJamMulai"
+                                placeholder="08:00"
+                                maxlength="5"
+                                required
+                                oninput="formatJam(this); autoSetSesi(); updateJadwalPreview();">
                         </div>
+
+                        {{-- Jam Selesai --}}
                         <div>
                             <div class="mfg-label">
                                 <i class="fa-regular fa-clock"></i>
                                 Jam Selesai <span class="req">*</span>
                             </div>
-                            <input type="time" name="jam_selesai" class="mfg-input"
-                                   id="tambahJamSelesai" required
-                                   oninput="updateJadwalPreview()">
+
+                            <input type="text"
+                                name="jam_selesai"
+                                class="mfg-input"
+                                id="tambahJamSelesai"
+                                placeholder="14:00"
+                                maxlength="5"
+                                required
+                                oninput="formatJam(this); updateJadwalPreview();">
                         </div>
+
                     </div>
 
                     {{-- Sesi --}}
@@ -1102,7 +1215,8 @@ function openEditModal(jadwalId, dokId, nama, hari, poli, mulai, selesai, sesi) 
     document.getElementById('editHariNama').textContent   = hari;
     document.getElementById('editJamMulai').value    = mulai;
     document.getElementById('editJamSelesai').value  = selesai;
-    document.getElementById('formEdit').action = '{{ url("admin/jadwal") }}/' + jadwalId;
+    document.getElementById('formEdit').action =
+    '{{ url("admin/jadwal") }}/' + (jadwalId ?? '');
 
     // Set poli select
     const poliSel = document.getElementById('editPoli');
@@ -1118,11 +1232,21 @@ function openEditModal(jadwalId, dokId, nama, hari, poli, mulai, selesai, sesi) 
 
 /* ---- Open DELETE modal ---- */
 function openDeleteModal(jadwalId, nama, hari) {
-    document.getElementById('formHapus').action      = '{{ url("admin/jadwal") }}/' + jadwalId;
+
+    console.log('JADWAL ID:', jadwalId);
+
+    if (!jadwalId) {
+        alert('ID jadwal tidak ditemukan!');
+        return;
+    }
+
+    document.getElementById('formHapus').action =
+        `{{ url('admin/jadwal') }}/${jadwalId}`;
+
     document.getElementById('delTarget').textContent = `${nama} — ${hari}`;
+
     new bootstrap.Modal(document.getElementById('modalHapus')).show();
 }
-
 /* ---- Reset tambah modal on close ---- */
 document.getElementById('modalTambah').addEventListener('hidden.bs.modal', function() {
     document.getElementById('formTambah').reset();
@@ -1138,6 +1262,18 @@ document.getElementById('searchJdw').addEventListener('input', function() {
         card.style.display = (!q || n.includes(q)) ? '' : 'none';
     });
 });
+
+/* ---- Format jam Indonesia 24 jam ---- */
+function formatJam(input) {
+
+    let val = input.value.replace(/\D/g, '');
+
+    if (val.length >= 3) {
+        val = val.substring(0,2) + ':' + val.substring(2,4);
+    }
+
+    input.value = val;
+}
 
 /* ---- Watch jam mulai on add modal ---- */
 document.getElementById('tambahJamMulai')?.addEventListener('input', updateJadwalPreview);

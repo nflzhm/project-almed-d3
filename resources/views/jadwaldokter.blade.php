@@ -519,30 +519,75 @@ body{
 <div class="container">
 
     <!-- FILTER BOX -->
-    <div class="schedule-filter">
+<div class="schedule-filter">
+
+    <form action="{{ url('/jadwaldokter') }}" method="GET">
 
         <div class="search-wrap">
-            <input type="text" class="search-input" placeholder="cari nama dokter atau spesialisasi">
 
-            <button class="search-btn">
+            {{-- supaya filter hari tidak hilang saat search --}}
+            @if(request('hari'))
+                <input type="hidden" name="hari" value="{{ request('hari') }}">
+            @endif
+
+            <input
+                type="text"
+                name="search"
+                class="search-input"
+                placeholder="Cari nama dokter atau spesialisasi"
+                value="{{ request('search') }}"
+            >
+
+            <button type="submit" class="search-btn">
                 <i class="bi bi-search"></i> Cari
             </button>
+
         </div>
 
-        <div class="filter-title">Filter Hari</div>
+    </form>
 
-        <div class="day-list">
-            <a href="{{ url('/jadwaldokter') }}" class="{{ request('hari') ? '' : 'active' }}">Semua Hari</a>
+    <div class="filter-title">Filter Hari</div>
 
-            <a href="{{ url('/jadwaldokter?hari=Senin') }}" class="{{ request('hari') == 'Senin' ? 'active' : '' }}">Senin</a>
-            <a href="{{ url('/jadwaldokter?hari=Selasa') }}" class="{{ request('hari') == 'Selasa' ? 'active' : '' }}">Selasa</a>
-            <a href="{{ url('/jadwaldokter?hari=Rabu') }}" class="{{ request('hari') == 'Rabu' ? 'active' : '' }}">Rabu</a>
-            <a href="{{ url('/jadwaldokter?hari=Kamis') }}" class="{{ request('hari') == 'Kamis' ? 'active' : '' }}">Kamis</a>
-            <a href="{{ url('/jadwaldokter?hari=Jumat') }}" class="{{ request('hari') == 'Jumat' ? 'active' : '' }}">Jumat</a>
-            <a href="{{ url('/jadwaldokter?hari=Sabtu') }}" class="{{ request('hari') == 'Sabtu' ? 'active' : '' }}">Sabtu</a>
-        </div>
+    <div class="day-list">
+
+        <a href="{{ url('/jadwaldokter') }}"
+           class="{{ request('hari') ? '' : 'active' }}">
+            Semua Hari
+        </a>
+
+        <a href="{{ url('/jadwaldokter?hari=Senin&search='.request('search')) }}"
+           class="{{ request('hari') == 'Senin' ? 'active' : '' }}">
+            Senin
+        </a>
+
+        <a href="{{ url('/jadwaldokter?hari=Selasa&search='.request('search')) }}"
+           class="{{ request('hari') == 'Selasa' ? 'active' : '' }}">
+            Selasa
+        </a>
+
+        <a href="{{ url('/jadwaldokter?hari=Rabu&search='.request('search')) }}"
+           class="{{ request('hari') == 'Rabu' ? 'active' : '' }}">
+            Rabu
+        </a>
+
+        <a href="{{ url('/jadwaldokter?hari=Kamis&search='.request('search')) }}"
+           class="{{ request('hari') == 'Kamis' ? 'active' : '' }}">
+            Kamis
+        </a>
+
+        <a href="{{ url('/jadwaldokter?hari=Jumat&search='.request('search')) }}"
+           class="{{ request('hari') == 'Jumat' ? 'active' : '' }}">
+            Jumat
+        </a>
+
+        <a href="{{ url('/jadwaldokter?hari=Sabtu&search='.request('search')) }}"
+           class="{{ request('hari') == 'Sabtu' ? 'active' : '' }}">
+            Sabtu
+        </a>
 
     </div>
+
+</div>
 
     @foreach($dokter as $item)
 

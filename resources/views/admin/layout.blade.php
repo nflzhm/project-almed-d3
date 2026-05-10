@@ -720,6 +720,11 @@
                     <span class="submenu-dot"></span>
                     <span class="sidebar-label">Loker</span>
                 </a>
+                <a href="{{ route('admin.artikel.index') }}"
+                   class="nav-link {{ request()->routeIs('admin.artikel.*') ? 'active' : '' }}">
+                    <span class="submenu-dot"></span>
+                    <span class="sidebar-label">Artikel</span>
+                </a>
                 
             </div>
         </div>

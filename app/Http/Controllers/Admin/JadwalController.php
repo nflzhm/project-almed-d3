@@ -9,97 +9,101 @@ use App\Models\Dokter;
 
 class JadwalController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
-    {
-        $dokterList = Dokter::with('jadwal')->get();
+{
+    $dokterList = Dokter::with('jadwal')->get();
 
-        // statistik (sesuai blade kamu)
-        $totalJadwal = Jadwal::count();
-        $totalDokterAktif = Dokter::has('jadwal')->count();
-        $jadwalHariIni = Jadwal::where('hari', now()->format('l'))->count();
-        $totalSesi = Jadwal::distinct('sesi')->count('sesi');
+    $totalJadwal = Jadwal::count();
+    $totalDokterAktif = Dokter::has('jadwal')->count();
 
-        return view('admin.jadwal', compact(
-            'dokterList',
-            'totalJadwal',
-            'totalDokterAktif',
-            'jadwalHariIni',
-            'totalSesi'
-        ));
-    }
+    $hariIni = [
+        'Sunday'    => 'Minggu',
+        'Monday'    => 'Senin',
+        'Tuesday'   => 'Selasa',
+        'Wednesday' => 'Rabu',
+        'Thursday'  => 'Kamis',
+        'Friday'    => 'Jumat',
+        'Saturday'  => 'Sabtu',
+    ][now()->format('l')];
 
-    /**
-     * Store new jadwal (bisa multi hari)
-     */
+    $jadwalHariIni = Jadwal::where('hari', $hariIni)->count();
+
+    return view('admin.jadwal', compact(
+        'dokterList',
+        'totalJadwal',
+        'totalDokterAktif',
+        'jadwalHariIni'
+    ));
+}
+
     public function store(Request $request)
     {
         $request->validate([
-            'dokter_id'    => 'required|exists:dokters,id',
-            'hari'         => 'required|array',
-            'poli'         => 'required|string',
-            'jam_mulai'    => 'required',
-            'jam_selesai'  => 'required',
-            'sesi'         => 'required',
+            'dokter_id'   => 'required|exists:dokter,id',
+            'hari'        => 'required|array',
+            'poli'        => 'required|string',
+            'jam_mulai'   => 'required',
+            'jam_selesai' => 'required',
         ]);
 
         foreach ($request->hari as $hari) {
+
             Jadwal::create([
-                'dokter_id'   => $request->dokter_id,
-                'hari'        => $hari,
-                'poli'        => $request->poli,
-                'jam_mulai'   => $request->jam_mulai,
-                'jam_selesai' => $request->jam_selesai,
-                'sesi'        => $request->sesi,
+                'dokter_id' => $request->dokter_id,
+                'hari'      => $hari,
+
+                // masuk ke kolom klinik
+                'klinik'    => $request->poli,
+
+                // gabung jam
+                'jam'       => $request->jam_mulai . ' - ' . $request->jam_selesai,
+
+                'note'      => null,
             ]);
         }
 
-        return redirect()->back()->with('success', 'Jadwal berhasil ditambahkan');
+        return redirect()->back()
+            ->with('success', 'Jadwal berhasil ditambahkan');
     }
 
-    /**
-     * Show edit data (optional kalau pakai modal)
-     */
     public function edit($id)
     {
         $jadwal = Jadwal::findOrFail($id);
+
         return response()->json($jadwal);
     }
 
-    /**
-     * Update jadwal
-     */
     public function update(Request $request, $id)
     {
         $request->validate([
             'poli'         => 'required|string',
             'jam_mulai'    => 'required',
             'jam_selesai'  => 'required',
-            'sesi'         => 'required',
         ]);
 
         $jadwal = Jadwal::findOrFail($id);
 
         $jadwal->update([
-            'poli'        => $request->poli,
-            'jam_mulai'   => $request->jam_mulai,
-            'jam_selesai' => $request->jam_selesai,
-            'sesi'        => $request->sesi,
+            'klinik' => $request->poli,
+
+            'jam' => $request->jam_mulai .
+                     ' - ' .
+                     $request->jam_selesai,
+
+            'note' => null,
         ]);
 
-        return redirect()->back()->with('success', 'Jadwal berhasil diperbarui');
+        return redirect()->back()
+            ->with('success', 'Jadwal berhasil diperbarui');
     }
 
-    /**
-     * Delete jadwal
-     */
     public function destroy($id)
     {
         $jadwal = Jadwal::findOrFail($id);
+
         $jadwal->delete();
 
-        return redirect()->back()->with('success', 'Jadwal berhasil dihapus');
+        return redirect()->back()
+            ->with('success', 'Jadwal berhasil dihapus');
     }
 }

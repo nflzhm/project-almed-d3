@@ -7,7 +7,7 @@ use App\Http\Controllers\IklanSliderController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\DokterController;
-use App\Http\Controllers\PengadaanController;
+use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\LokerController;
 use App\Http\Controllers\AuthController;
@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\DownloadPengadaanController as AdminPengadaanCont
 use App\Http\Controllers\Admin\LayananController as AdminLayananController;
 use App\Http\Controllers\Admin\PenggunaController;
 use App\Http\Controllers\Admin\AdminDokterController;
+use App\Http\Controllers\Admin\ArtikelAdminController;
 
 Route::get('/', [IklanSliderController::class, 'index']);
 
@@ -49,8 +50,15 @@ Route::get('/berita', [BeritaController::class, 'index'])
 Route::get('/berita/{slug}', [BeritaController::class, 'show'])
     ->name('berita.detail');
 
-Route::get('/pengadaan', [PengadaanController::class, 'index'])
-    ->name('pengadaan');
+/* ================= ARTIKEL ================= */
+
+Route::get('/artikel', [ArtikelController::class, 'index'])
+    ->name('artikel');
+
+Route::get('/artikel/{id}', [ArtikelController::class, 'show'])
+    ->name('artikel.detail');
+
+/* =========================================== */
 
 Route::get('/download', [DownloadController::class, 'index'])
     ->name('download');
@@ -91,6 +99,8 @@ Route::prefix('admin')
         Route::resource('dokter', AdminDokterController::class);
 
         Route::resource('jadwal', JadwalController::class);
+
+        Route::resource('artikel', ArtikelAdminController::class);
 
         Route::resource('banner', BannerController::class);
 

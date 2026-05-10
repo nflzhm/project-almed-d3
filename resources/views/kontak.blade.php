@@ -19,113 +19,256 @@
 <!-- ✅ Navbar -->
 
 <style>
-
-        
-body {
-    font-family: 'Segoe UI', sans-serif;
-    padding-top: 90px;
+body{
+    font-family:'Segoe UI',sans-serif;
+    padding-top:90px;
+    background:#f5f7fb;
+    overflow-x:hidden;
+    background: #fff !important;
 }
 
 /* ================= TOP BAR ================= */
-.topbar {
+.topbar{
     background:#1C145C;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 9999;
-    height: 40px;
-    padding: 2px 0;
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:9999;
+    height:40px;
+    display:flex;
+    align-items:center;
+}
+
+.topbar .container{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.topbar .navbar-nav{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    margin:0;
+    padding:0;
+}
+
+.topbar .nav-item{
+    list-style:none;
+}
+
+.topbar span{
+    color:#fff;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-size:13px;
+    padding:0 10px;
+    white-space:nowrap;
+}
+
+.topbar .nav-link{
+    color:#fff !important;
+    padding:0 6px !important;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    opacity:.9;
+    transition:.3s;
+}
+
+.topbar .nav-link:hover{
+    opacity:1;
+    transform:translateY(-1px);
 }
 
 /* ================= NAVBAR ================= */
-.navbar-main {
-    background: #fff;
-    border-radius: 0 0 20px 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    position: fixed;
-    top: 40px;
-    width: 100%;
-    z-index: 9998;
+.navbar-main{
+    background:#fff;
+    border-radius:0 0 20px 20px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+    position:fixed;
+    top:40px;
+    width:100%;
+    z-index:9998;
+    padding:10px 0;
 }
 
-/* ================= DESKTOP GAP ================= */
-.nav-gap {
-    gap: 18px;
+/* ================= NAV MENU ================= */
+.navbar-main .nav-gap{
+    gap:18px;
 }
 
-/* ================= DROPDOWN DESKTOP ================= */
-@media (min-width: 992px) {
+.navbar-main .nav-link{
+    color:#334155 !important;
+    font-weight:500;
+    transition:.3s;
+}
 
-    .dropdown-menu {
-        display: block;
-        opacity: 0;
-        transform: translateY(10px);
-        visibility: hidden;
-        transition: all 0.3s ease;
+.navbar-main .nav-link:hover{
+    color:#1C145C !important;
+}
 
-        border-radius: 12px;
-        border: none;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        padding: 10px 0;
+/* ================= DESKTOP DROPDOWN ================= */
+@media (min-width:992px){
+
+    .navbar-main .dropdown-menu{
+        display:block;
+        opacity:0;
+        visibility:hidden;
+        transform:translateY(10px);
+        transition:all .3s ease;
+
+        border:none;
+        border-radius:16px;
+        padding:10px;
+        min-width:220px;
+
+        box-shadow:0 10px 25px rgba(0,0,0,0.08);
     }
 
-    .nav-item.dropdown:hover .dropdown-menu {
-        opacity: 1;
-        transform: translateY(0);
-        visibility: visible;
+    .navbar-main .nav-item.dropdown:hover .dropdown-menu{
+        opacity:1;
+        visibility:visible;
+        transform:translateY(0);
+    }
+
+    .navbar-main .dropdown-item{
+        border-radius:10px;
+        padding:10px 14px;
+        transition:.25s;
+    }
+
+    .navbar-main .dropdown-item:hover{
+        background:#f1f5ff;
+        color:#1C145C;
     }
 }
 
-/* ================= MOBILE FIX ================= */
-@media (max-width: 991px) {
+/* ================= MOBILE ================= */
+@media (max-width:991px){
 
-    body {
-        padding-top: 100px;
+    body{
+        padding-top:100px;
     }
 
-    /* HAPUS JARAK MENU */
-    .navbar-nav.nav-gap {
-        gap: 0 !important;
-        width: 100%;
+    /* TOPBAR */
+    .topbar{
+        height:40px;
     }
 
-    .navbar-nav .nav-item {
-        padding: 0;
+    .topbar .container{
+        flex-direction:row;
+        justify-content:space-between;
+        align-items:center;
     }
 
-    .navbar-nav .nav-link {
-        padding: 10px 0;
+    .topbar span{
+        font-size:11px;
+        padding:0 4px;
     }
 
-    /* ================= DROPDOWN SMOOTH MOBILE ================= */
-    .dropdown-menu {
-        position: static;
-        display: block !important;
-
-        max-height: 0;
-        overflow: hidden;
-
-        opacity: 0;
-        visibility: hidden;
-
-        transform: translateY(-5px);
-
-        transition: all 0.35s ease;
-
-        box-shadow: none;
-        border: none;
-        padding-left: 15px;
+    /* NAVBAR */
+    .navbar-main{
+        top:40px;
+        border-radius:0 0 18px 18px;
     }
 
-    .dropdown-menu.show {
-        max-height: 500px;
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
+    /* BOX MENU */
+    .navbar-main .navbar-collapse{
+        background:#fff;
+        margin-top:15px;
+        border-radius:18px;
+        padding:15px;
+        box-shadow:0 8px 25px rgba(0,0,0,0.08);
+    }
+
+    /* MENU */
+    .navbar-main .navbar-nav.nav-gap{
+        gap:0 !important;
+        width:100%;
+    }
+
+    .navbar-main .navbar-nav .nav-item{
+        width:100%;
+        border-bottom:1px solid #eef2f7;
+    }
+
+    .navbar-main .navbar-nav .nav-item:last-child{
+        border-bottom:none;
+    }
+
+    .navbar-main .navbar-nav .nav-link{
+        padding:14px 5px;
+        font-size:15px;
+    }
+
+    /* DROPDOWN */
+    .navbar-main .dropdown-toggle{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+    }
+
+    .navbar-main .dropdown-menu{
+        position:static !important;
+        display:block !important;
+
+        border:none;
+        background:#f8fafc;
+        border-radius:14px;
+
+        margin-top:5px;
+        margin-bottom:10px;
+
+        padding:0;
+
+        max-height:0;
+        overflow:hidden;
+
+        opacity:0;
+        visibility:hidden;
+
+        transform:translateY(-5px);
+
+        transition:
+            max-height .35s ease,
+            opacity .3s ease,
+            transform .3s ease,
+            padding .3s ease;
+    }
+
+    .navbar-main .dropdown-menu.show{
+        max-height:400px;
+        opacity:1;
+        visibility:visible;
+        transform:translateY(0);
+        padding:8px;
+    }
+
+    .navbar-main .dropdown-item{
+        padding:12px 14px;
+        border-radius:10px;
+        font-size:14px;
+        color:#334155;
+        transition:.25s;
+    }
+
+    .navbar-main .dropdown-item:hover{
+        background:#e8eeff;
+        color:#1C145C;
+        padding-left:18px;
+    }
+
+    .navbar-main .dropdown-toggle::after{
+        transition:.3s ease;
+    }
+
+    .navbar-main .dropdown-toggle.show::after{
+        transform:rotate(180deg);
     }
 }
-        </style>
-
+</style>
 
 <body>
 
@@ -169,7 +312,7 @@ body {
         </a>
 
         <!-- BURGER -->
-        <button class="navbar-toggler" type="button"
+        <button class="navbar-toggler border-0 shadow-none" type="button"
             data-bs-toggle="collapse"
             data-bs-target="#mainMenu">
             <span class="navbar-toggler-icon"></span>
@@ -180,24 +323,61 @@ body {
 
             <ul class="navbar-nav ms-auto nav-gap">
 
-                <li class="nav-item"><a href="/" class="nav-link">Beranda</a></li>
+                <li class="nav-item">
+                    <a href="/" class="nav-link">Beranda</a>
+                </li>
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+
+                    <a class="nav-link dropdown-toggle"
+                       href="#"
+                       data-bs-toggle="dropdown">
                         Menu
                     </a>
 
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ url('/karir') }}">Karir</a></li>
-                        <li><a class="dropdown-item" href="{{ url('/berita') }}">Berita</a></li>
-                        <li><a class="dropdown-item" href="{{ url('/video') }}">Video</a></li>
+
+                        <li>
+                            <a class="dropdown-item" href="{{ url('/karir') }}">
+                                Karir
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="{{ url('/berita') }}">
+                                Berita
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="{{ url('/video') }}">
+                                Video
+                            </a>
+                        </li>
+
                     </ul>
+
                 </li>
 
-                <li class="nav-item"><a href="/layanan" class="nav-link">Layanan</a></li>
-                <li class="nav-item"><a href="/download" class="nav-link">Download</a></li>
-                <li class="nav-item"><a href="/tentang" class="nav-link">Tentang Kami</a></li>
-                <li class="nav-item"><a href="/kontak" class="nav-link">Kontak</a></li>
+                <li class="nav-item">
+                    <a href="/layanan" class="nav-link">Layanan</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/artikel" class="nav-link">Artikel</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/download" class="nav-link">Download</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/tentang" class="nav-link">Tentang Kami</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/kontak" class="nav-link">Kontak</a>
+                </li>
 
             </ul>
 
@@ -205,6 +385,7 @@ body {
 
     </div>
 </nav>
+
 
 
 

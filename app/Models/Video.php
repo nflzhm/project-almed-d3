@@ -25,4 +25,4 @@ class Video extends Model
     protected $casts = [
         'featured' => 'boolean',
     ];
-}
+}  

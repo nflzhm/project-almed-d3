@@ -9,14 +9,34 @@ class DokterController extends Controller
 {
     public function index(Request $request)
     {
-        $hari = $request->hari;
+        $hari   = $request->hari;
+        $search = $request->search;
 
         $dokter = Dokter::with(['jadwal' => function ($query) use ($hari) {
+
             if ($hari && $hari != 'Semua') {
                 $query->where('hari', $hari);
             }
-        }])->get();
 
-        return view('jadwaldokter', compact('dokter', 'hari'));
+        }])
+
+        ->when($search, function ($query) use ($search) {
+
+            $query->where(function ($q) use ($search) {
+
+                $q->where('nama', 'like', '%' . $search . '%')
+                  ->orWhere('spesialis', 'like', '%' . $search . '%');
+
+            });
+
+        })
+
+        ->get();
+
+        return view('jadwaldokter', compact(
+            'dokter',
+            'hari',
+            'search'
+        ));
     }
 }
