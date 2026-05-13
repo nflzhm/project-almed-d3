@@ -767,7 +767,7 @@ $katColors = [
                                    onchange="previewImg(this,'tambah')">
                             <div class="iuz-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
                             <div class="iuz-title">Klik atau seret gambar sampul</div>
-                            <div class="iuz-sub">JPG, PNG, WebP — Maks. 3 MB — Rasio 16:9 dianjurkan</div>
+                            <div class="iuz-sub">JPG, PNG, WebP — Maks. 7 MB — Rasio 16:9 dianjurkan</div>
                         </div>
                     </div>
 
@@ -791,7 +791,7 @@ $katColors = [
                                 <i class="fa-solid fa-tag"></i>
                                 Kategori <span class="req">*</span>
                             </div>
-                            <select name="kategori" class="mfg-select" id="tambahKategoriSelect"
+                            <select name="_kategori_select" class="mfg-select" id="tambahKategoriSelect"
                                     required onchange="onKategoriChange('tambah')">
                                 <option value="">-- Pilih Kategori --</option>
                                 <option value="Kesehatan">Kesehatan</option>
@@ -928,7 +928,7 @@ $katColors = [
                                    onchange="previewImg(this,'edit')">
                             <div class="iuz-icon"><i class="fa-solid fa-arrow-up-from-bracket"></i></div>
                             <div class="iuz-title">Ganti gambar sampul</div>
-                            <div class="iuz-sub">JPG, PNG, WebP — Maks. 3 MB</div>
+                            <div class="iuz-sub">JPG, PNG, WebP — Maks. 7 MB</div>
                         </div>
                     </div>
 
@@ -1077,6 +1077,15 @@ $katColors = [
 /* ============================================================
    ARTIKEL PAGE — JavaScript
 ============================================================ */
+document.getElementById('formTambah').addEventListener('submit', function() {
+    const sel = document.getElementById('tambahKategoriSelect');
+    const hidden = document.getElementById('tambahKategori');
+
+    if (sel.value !== 'lainnya') {
+        hidden.value = sel.value;
+    }
+});
+
 
 /* ---- Char counters ---- */
 function initCtr(elId, ctrId, max) {
@@ -1164,8 +1173,8 @@ function previewImg(input, prefix) {
     if (!['image/jpeg','image/png','image/webp'].includes(file.type)) {
         alert('Format tidak didukung. Gunakan JPG, PNG, atau WebP.'); input.value = ''; return;
     }
-    if (file.size > 3 * 1024 * 1024) {
-        alert('Ukuran file terlalu besar. Maksimal 3 MB.'); input.value = ''; return;
+    if (file.size > 7 * 1024 * 1024) {
+        alert('Ukuran file terlalu besar. Maksimal 7 MB.'); input.value = ''; return;
     }
     const reader = new FileReader();
     reader.onload = function(e) {

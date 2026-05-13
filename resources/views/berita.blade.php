@@ -504,71 +504,195 @@ body{
     </div>
 </section>
 
-<!-- ================= PAGINATION ================= -->
+
+ <section class="pagination-section">
+
 <style>
-.custom-pagination{
-    display: flex;
-    justify-content: center;   /* tengah */
-    align-items: center;
-    gap: 8px;
-    margin-top: 25px;
+
+/* ================= SECTION ================= */
+.pagination-section{
+    width:100%;
+    background:#fff !important;
+
+    padding:35px 0;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
+
+/* ================= PAGINATION ================= */
+.custom-pagination{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
+
+    flex-wrap:wrap;
+
+    background:#fff !important;
+}
+
+
+/* ITEM */
 .custom-pagination a,
 .custom-pagination span{
-    width: 34px;      /* diperkecil */
-    height: 34px;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 13px;
-    transition: 0.3s;
+    min-width:40px;
+    height:40px;
+    padding:0 14px;
+
+    border-radius:12px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-decoration:none;
+
+    font-size:13px;
+    font-weight:600;
+
+    transition:all .25s ease;
+
+    background:#fff;
 }
 
-/* Tombol biasa */
+
+/* NORMAL */
 .custom-pagination a{
-    background: #e9e9e9;
-    color: #8b8b8b;
+    background:#fff;
+    color:#64748b;
+
+    border:1px solid #e2e8f0;
 }
 
-/* Hover */
+
+/* HOVER */
 .custom-pagination a:hover{
-    background: #dcdcdc;
+    background:#1C145C;
+    color:#fff;
+
+    border-color:#1C145C;
+
+    transform:translateY(-2px);
+
+    box-shadow:0 8px 20px rgba(28,20,92,.15);
 }
 
-/* Active */
+
+/* ACTIVE */
 .custom-pagination .active{
-    background: #1C145C;
-    color: #fff;
+    background:#1C145C;
+    color:#fff;
+
+    border:1px solid #1C145C;
+
+    box-shadow:0 8px 20px rgba(28,20,92,.20);
 }
 
-/* Disabled */
+
+/* DISABLED */
 .custom-pagination .disabled{
-    background: #f3f3f3;
-    color: #bdbdbd;
-    pointer-events: none;
+    background:#fff;
+    color:#cbd5e1;
+
+    border:1px solid #e2e8f0;
+
+    cursor:not-allowed;
 }
+
+
+/* ICON */
+.custom-pagination i{
+    font-size:12px;
+}
+
+
+/* MOBILE */
+@media(max-width:576px){
+
+    .custom-pagination{
+        gap:6px;
+    }
+
+    .custom-pagination a,
+    .custom-pagination span{
+        min-width:36px;
+        height:36px;
+
+        font-size:12px;
+
+        border-radius:10px;
+    }
+}
+
 </style>
 
-<!-- HTML -->
+
+<!-- ================= PAGINATION ================= -->
+@if($berita->hasPages())
+
 <div class="custom-pagination">
 
-    <span class="disabled">
-        <i class="bi bi-chevron-left"></i>
-    </span>
+    {{-- PREVIOUS --}}
+    @if ($berita->onFirstPage())
 
-    <a href="#" class="active">1</a>
+        <span class="disabled">
+            <i class="bi bi-chevron-left"></i>
+        </span>
 
-    <a href="#">2</a>
+    @else
 
-    <a href="#">
-        <i class="bi bi-chevron-right"></i>
-    </a>
+        <a href="{{ $berita->previousPageUrl() }}">
+            <i class="bi bi-chevron-left"></i>
+        </a>
+
+    @endif
+
+
+
+    {{-- PAGE NUMBER --}}
+    @for ($i = 1; $i <= $berita->lastPage(); $i++)
+
+        @if ($i == $berita->currentPage())
+
+            <span class="active">
+                {{ $i }}
+            </span>
+
+        @else
+
+            <a href="{{ $berita->url($i) }}">
+                {{ $i }}
+            </a>
+
+        @endif
+
+    @endfor
+
+
+
+    {{-- NEXT --}}
+    @if ($berita->hasMorePages())
+
+        <a href="{{ $berita->nextPageUrl() }}">
+            <i class="bi bi-chevron-right"></i>
+        </a>
+
+    @else
+
+        <span class="disabled">
+            <i class="bi bi-chevron-right"></i>
+        </span>
+
+    @endif
 
 </div>
+
+@endif
+
+</section>
 
 <style>
 /* ================= FOOTER ================= */

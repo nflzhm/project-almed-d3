@@ -181,10 +181,16 @@
     grid-column: 1/-1; padding: 60px 24px; text-align: center; color: var(--text-muted);
 }
 .empty-state .es-icon {
-    width: 72px; height: 72px; border-radius: 20px;
-    background: #f0fdf4; color: #198754;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 28px; margin: 0 auto 16px;
+    width: 72px; 
+    height: 72px; 
+    border-radius: 20px;
+    background: #f0fdf4; 
+    color: #198754;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    font-size: 28px; 
+    margin: 0 auto 16px;
 }
 .empty-state .es-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 700; color: var(--text-main); margin-bottom: 6px; }
 .empty-state .es-sub   { font-size: 13.5px; color: var(--text-muted); margin-bottom: 20px; }
@@ -573,13 +579,15 @@ $listPgd = isset($pengadaan) ? $pengadaan->items() : $dummyData;
     </div>
     @empty
     <div class="empty-state">
-        <div class="es-icon"><i class="fa-solid fa-file-pdf"></i></div>
-        <div class="es-title">Belum Ada Dokumen Pengadaan</div>
-        <div class="es-sub">Tambahkan dokumen PDF pertama untuk ditampilkan di halaman Download publik.</div>
-        <button class="btn-primary-am" data-bs-toggle="modal" data-bs-target="#modalTambah">
-            <i class="fa-solid fa-plus"></i> Tambah Dokumen Pertama
-        </button>
+    <div class="es-icon">
+        <i class="fa-solid fa-file-pdf"></i>
     </div>
+    <div class="es-title">Belum Ada Dokumen Pengadaan</div>
+    <div class="es-sub">Tambahkan dokumen PDF pertama untuk ditampilkan di halaman Download publik.</div>
+    <button class="btn-primary-am" data-bs-toggle="modal" data-bs-target="#modalTambah">
+        <i class="fa-solid fa-plus"></i> Tambah Dokumen Pertama
+    </button>
+</div>
     @endforelse
 </div>
 

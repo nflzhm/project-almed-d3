@@ -748,9 +748,9 @@ $listUsers = isset($users) ? $users->items() : $dummyUsers;
                             Role / Hak Akses <span class="req">*</span>
                         </div>
                         <div class="role-toggle-group">
-                            <input type="radio" name="role" id="tambahRoleUser" value="user" checked>
+                            <input type="radio" name="role" id="tambahRoleUser" value="superadmin" checked>
                             <label for="tambahRoleUser" class="lbl-user">
-                                <i class="fa-solid fa-user"></i> User
+                                <i class="fa-solid fa-user"></i> Super Admin
                             </label>
                             <input type="radio" name="role" id="tambahRoleAdmin" value="admin">
                             <label for="tambahRoleAdmin" class="lbl-admin">

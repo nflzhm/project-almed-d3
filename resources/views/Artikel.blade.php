@@ -604,37 +604,66 @@ body{
     -webkit-box-orient: vertical; overflow: hidden;
     margin-bottom: 16px;
 }
-.ac-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 16px;
-    border-top: 1px solid #f1f5f9;
-}
-.ac-read-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 8px 18px;
-    border-radius: 10px;
-    background: #1C145C;
-    color: #fff;
-    font-size: 12.5px;
-    font-weight: 700;
-    text-decoration: none;
-    transition: background .2s, transform .2s;
-}
-.ac-read-btn:hover { background: #231a72; color: #fff; transform: translateX(2px); }
-.ac-read-btn i { font-size: 11px; }
-.ac-views {
-    font-size: 12px;
-    color: #94a3b8;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-left: auto; 
+/* Footer */
+.ac-footer{
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+
+    margin-top:16px;
+    padding:14px 20px 18px; /* kasih jarak kiri & bawah */
+
+    border-top:1px solid #eef2f7;
 }
 
+/* ================= BUTTON ================= */
+.ac-read-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+
+    padding:10px 18px;
+    border-radius:12px;
+
+    background:#1C145C;
+    color:#fff;
+    font-size:13px;
+    font-weight:600;
+    text-decoration:none;
+
+    transition:all .25s ease;
+}
+
+.ac-read-btn i{
+    font-size:12px;
+    transition:transform .25s ease;
+}
+
+.ac-read-btn:hover{
+    background:#2a1f7a;
+    transform:translateY(-2px);
+}
+
+.ac-read-btn:hover i{
+    transform:translateX(3px);
+}
+
+/* ================= MOBILE FIX ================= */
+@media (max-width:575px){
+
+    .ac-footer{
+        margin-top:12px;
+        padding:12px 16px 16px; /* mobile lebih rapih */
+    }
+
+    .ac-read-btn{
+        width:100%;
+        padding:11px 16px;
+        font-size:13px;
+        border-radius:10px;
+    }
+}
 /* ---- Search + filter bar ---- */
 .filter-bar {
     background: #fff; border-radius: 14px;
@@ -1192,10 +1221,6 @@ body{
                         Baca Selengkapnya
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
-                    <div class="ac-views">
-                        <i class="fa-regular fa-eye" style="font-size:11px;"></i>
-                        {{ number_format($views) }}
-                    </div>
                 </div>
 
             </div>

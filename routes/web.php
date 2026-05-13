@@ -25,83 +25,22 @@ use App\Http\Controllers\Admin\PenggunaController;
 use App\Http\Controllers\Admin\AdminDokterController;
 use App\Http\Controllers\Admin\ArtikelAdminController;
 
-Route::get('/', [IklanSliderController::class, 'index']);
 
-Route::get('/jadwaldokter', [DokterController::class, 'index'])
-    ->name('jadwaldokter');
-
-Route::get('/layanan', [LayananController::class, 'index']);
-
-Route::get('/loker', [LokerController::class, 'index'])
-    ->name('loker.index');
-
-Route::get('/loker/{id}', [LokerController::class, 'show'])
-    ->name('loker.detail');
-
-Route::get('/karir', [LokerController::class, 'index'])
-    ->name('karir.index');
-
-Route::get('/karir/{id}', [LokerController::class, 'show'])
-    ->name('karir.detail');
-
-Route::get('/berita', [BeritaController::class, 'index'])
-    ->name('berita');
-
-Route::get('/berita/{slug}', [BeritaController::class, 'show'])
-    ->name('berita.detail');
-
-/* ================= ARTIKEL ================= */
-
-Route::get('/artikel', [ArtikelController::class, 'index'])
-    ->name('artikel');
-
-Route::get('/artikel/{id}', [ArtikelController::class, 'show'])
-    ->name('artikel.detail');
-
-/* =========================================== */
-
-Route::get('/download', [DownloadController::class, 'index'])
-    ->name('download');
-
-Route::get('/download/file/{id}', [DownloadController::class, 'download'])
-    ->name('download.file');
-
-Route::view('/tentang', 'tentang');
-
-Route::view('/kontak', 'kontak');
-
-Route::get('/video', function () {
-    $videos = Video::all();
-    return view('video', compact('videos'));
-})->name('video');
-
-Route::get('/login', [AuthController::class, 'showLogin'])
-    ->name('login');
-
-Route::post('/login', [AuthController::class, 'login'])
-    ->name('login.post');
-
-Route::post('/logout', [AuthController::class, 'logout'])
-    ->name('logout');
-
+/* ================= ADMIN ================= */
+/* 🔥 FIX: admin + superadmin bisa masuk */
 Route::prefix('admin')
     ->name('admin.')
-    ->middleware('auth')
+    ->middleware(['auth', 'role:admin,superadmin'])
     ->group(function () {
 
-        Route::get('/', [DashboardController::class, 'index'])
+        Route::get('/', [AdminController::class, 'index'])
             ->name('dashboard');
 
         Route::resource('berita', BeritaAdminController::class);
-
         Route::resource('layanan', AdminLayananController::class);
-
         Route::resource('dokter', AdminDokterController::class);
-
         Route::resource('jadwal', JadwalController::class);
-
         Route::resource('artikel', ArtikelAdminController::class);
-
         Route::resource('banner', BannerController::class);
 
         Route::patch('banner/{id}/toggle', [BannerController::class, 'toggle'])
@@ -128,6 +67,7 @@ Route::prefix('admin')
 
         Route::prefix('pengguna')
             ->name('pengguna.')
+            ->middleware(['role:superadmin'])
             ->group(function () {
 
                 Route::get('/', [PenggunaController::class, 'index'])
@@ -169,3 +109,66 @@ Route::prefix('admin')
                     ->name('download');
             });
     });
+
+/* ================= USER ================= */
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', [HomeController::class, 'index']);
+});
+
+/* ================= PUBLIC ROUTES ================= */
+
+Route::get('/', [IklanSliderController::class, 'index']);
+
+Route::get('/jadwaldokter', [DokterController::class, 'index'])
+    ->name('jadwaldokter');
+
+Route::get('/layanan', [LayananController::class, 'index']);
+
+Route::get('/loker', [LokerController::class, 'index'])
+    ->name('loker.index');
+
+Route::get('/loker/{id}', [LokerController::class, 'show'])
+    ->name('loker.detail');
+
+Route::get('/karir', [LokerController::class, 'index'])
+    ->name('karir.index');
+
+Route::get('/karir/{id}', [LokerController::class, 'show'])
+    ->name('karir.detail');
+
+Route::get('/berita', [BeritaController::class, 'index'])
+    ->name('berita');
+
+Route::get('/berita/{slug}', [BeritaController::class, 'show'])
+    ->name('berita.detail');
+
+Route::get('/artikel', [ArtikelController::class, 'index'])
+    ->name('artikel');
+
+Route::get('/artikel/{id}', [ArtikelController::class, 'show'])
+    ->name('artikel.detail');
+
+Route::get('/download', [DownloadController::class, 'index'])
+    ->name('download');
+
+Route::get('/download/file/{id}', [DownloadController::class, 'download'])
+    ->name('download.file');
+
+Route::view('/tentang', 'tentang');
+Route::view('/kontak', 'kontak');
+
+Route::get('/video', function () {
+    $videos = Video::all();
+    return view('video', compact('videos'));
+})->name('video');
+
+/* ================= AUTH ================= */
+
+Route::get('/login', [AuthController::class, 'showLogin'])
+    ->name('login');
+
+Route::post('/login', [AuthController::class, 'login'])
+    ->name('login.post');
+
+Route::post('/logout', [AuthController::class, 'logout'])
+    ->name('logout');

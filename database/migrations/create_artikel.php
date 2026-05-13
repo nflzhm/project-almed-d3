@@ -12,13 +12,20 @@ return new class extends Migration
             $table->id();
 
             $table->string('judul');
+
             $table->text('deskripsi')->nullable();
+
             $table->longText('isi')->nullable();
 
             $table->string('gambar')->nullable();
 
             $table->string('kategori')->nullable();
 
+            // STATUS ARTIKEL
+            $table->enum('status', ['draft', 'published'])
+                  ->default('draft');
+
+            // JUMLAH VIEW
             $table->integer('views')->default(0);
 
             $table->timestamps();

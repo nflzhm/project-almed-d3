@@ -791,9 +791,7 @@
                         <span>Ingat saya</span>
                     </label>
 
-                    <a href="#" onclick="alert('Fitur belum tersedia')">Lupa password?</a>
-                        Lupa kata sandi?
-                    </a>
+                    
                 </div>
 
                 {{-- Submit --}}
@@ -809,10 +807,7 @@
 
             {{-- Footer --}}
             <div class="login-footer">
-                <div>
-                    Butuh bantuan? Hubungi
-                    <a href="mailto:support@allammedica.com">support@allammedica.com</a>
-                </div>
+                
                 <div>
                     <span class="security-badge">
                         <i class="fa-solid fa-shield-halved"></i>

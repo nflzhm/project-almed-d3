@@ -9,11 +9,12 @@ class Artikel extends Model
     protected $table = 'artikels';
 
     protected $fillable = [
-        'judul',
-        'deskripsi',
-        'isi',
-        'gambar',
-        'kategori',
-        'views'
-    ];
+    'judul',
+    'deskripsi',
+    'isi',
+    'gambar',
+    'kategori',
+    'status',
+    'views'
+];
 }
