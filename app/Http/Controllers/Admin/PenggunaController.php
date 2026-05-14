@@ -10,20 +10,24 @@ use Illuminate\Support\Facades\Hash;
 class PenggunaController extends Controller
 {
     public function index()
-    {
-        $users = User::latest()->paginate(10);
+{
+    $users = User::latest()->paginate(10);
 
-        $totalAdmin = User::where('role', 'admin')->count();
-        $totalUser = User::where('role', 'user')->count();
-        $newThisMonth = User::whereMonth('created_at', now()->month)->count();
+    $totalAdmin = User::where('role', 'admin')->count();
 
-        return view('admin.pengguna', compact(
-            'users',
-            'totalAdmin',
-            'totalUser',
-            'newThisMonth'
-        ));
-    }
+    $totalSuperAdmin = User::where('role', 'superadmin')->count();
+
+    $newThisMonth = User::whereMonth('created_at', now()->month)
+        ->whereYear('created_at', now()->year)
+        ->count();
+
+    return view('admin.pengguna', compact(
+        'users',
+        'totalAdmin',
+        'totalSuperAdmin',
+        'newThisMonth'
+    ));
+}
 
     public function store(Request $request)
     {

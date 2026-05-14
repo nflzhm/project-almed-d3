@@ -86,7 +86,8 @@
 /* Table head */
 .pgn-table-head {
     display: grid;
-    grid-template-columns: 56px 1fr 180px 160px 120px 100px;
+    grid-template-columns: 60px 1.4fr 260px 180px 140px 130px;
+    column-gap: 18px;
     background: var(--body-bg); border-bottom: 1px solid var(--border-color);
     padding: 0 20px;
 }
@@ -99,9 +100,11 @@
 /* Table rows */
 .pgn-row {
     display: grid;
-    grid-template-columns: 56px 1fr 180px 160px 120px 100px;
+    grid-template-columns: 60px 1.4fr 260px 180px 140px 130px;
+    column-gap: 18px;
+
     align-items: center;
-    padding: 0 20px;
+    padding: 0 24px;
     border-bottom: 1px solid var(--border-color);
     transition: background var(--transition);
     animation: rowIn .28s ease both;
@@ -293,7 +296,10 @@
     cursor: pointer; transition: all var(--transition);
     background: var(--body-bg); color: var(--text-muted);
 }
-.role-toggle-group input { display: none; }
+.role-toggle-group input {
+    position: absolute;
+    opacity: 0;
+}
 .role-toggle-group input:checked + label.lbl-admin { background: #ede9fe; border-color: #c4b5fd; color: #6d28d9; }
 .role-toggle-group input:checked + label.lbl-user  { background: #d1fae5; border-color: #6ee7b7; color: #065f46; }
 
@@ -432,8 +438,8 @@
             <i class="fa-solid fa-user"></i>
         </div>
         <div>
-            <div class="pgn-stat-val">{{ $totalUser ?? 9 }}</div>
-            <div class="pgn-stat-lbl">User Biasa</div>
+            <div class="pgn-stat-val">{{ $totalSuperAdmin ?? 9 }}</div>
+            <div class="pgn-stat-lbl">Super Admin</div>
         </div>
     </div>
     <div class="pgn-stat">
@@ -457,7 +463,7 @@
     <select class="filter-select" id="filterRole">
         <option value="">Semua Role</option>
         <option value="admin">Admin</option>
-        <option value="user">User</option>
+        <option value="superadmin">Super Admin</option>
     </select>
     <select class="filter-select" id="filterSort">
         <option value="newest">Terbaru</option>
@@ -567,9 +573,9 @@ $listUsers = isset($users) ? $users->items() : $dummyUsers;
 
         {{-- Role --}}
         <div class="pgn-td">
-            <span class="role-badge {{ $role === 'admin' ? 'role-admin' : 'role-user' }}">
-                <i class="fa-solid {{ $role === 'admin' ? 'fa-user-shield' : 'fa-user' }}" style="font-size:10px;"></i>
-                {{ ucfirst($role) }}
+            <span class="role-badge {{ $role === 'superadmin' ? 'role-admin' : 'role-user' }}">
+                <i class="fa-solid {{ $role === 'superadmin' ? 'fa-user-shield' : 'fa-user' }}" style="font-size:10px;"></i>
+                {{ $role === 'superadmin' ? 'Super Admin' : 'Admin' }}
             </span>
         </div>
 
@@ -903,13 +909,14 @@ $listUsers = isset($users) ? $users->items() : $dummyUsers;
                             Role / Hak Akses <span class="req">*</span>
                         </div>
                         <div class="role-toggle-group">
-                            <input type="radio" name="role" id="editRoleUser" value="user">
-                            <label for="editRoleUser" class="lbl-user">
-                                <i class="fa-solid fa-user"></i> User
+                            <input type="radio" name="role" id="editRoleSuperAdmin" value="superadmin">
+                            <label for="editRoleSuperAdmin" class="lbl-admin">
+                                <i class="fa-solid fa-user-shield"></i> Super Admin
                             </label>
+
                             <input type="radio" name="role" id="editRoleAdmin" value="admin">
-                            <label for="editRoleAdmin" class="lbl-admin">
-                                <i class="fa-solid fa-user-shield"></i> Admin
+                            <label for="editRoleAdmin" class="lbl-user">
+                                <i class="fa-solid fa-user"></i> Admin
                             </label>
                         </div>
                     </div>
@@ -1153,8 +1160,8 @@ function openEditModal(id, nama, email, username, role) {
     document.getElementById('editEmail').value    = email;
     document.getElementById('editUsername').value = username;
 
-    document.getElementById('editRoleUser').checked  = (role === 'user');
-    document.getElementById('editRoleAdmin').checked = (role === 'admin');
+    document.getElementById('editRoleSuperAdmin').checked = (role === 'superadmin');
+    document.getElementById('editRoleAdmin').checked      = (role === 'admin');
 
     document.getElementById('editPassword').value     = '';
     document.getElementById('editPasswordConf').value = '';
@@ -1178,7 +1185,8 @@ function openDetailModal(nama, email, username, role, tgl, gradient) {
     document.getElementById('detNama').textContent     = nama;
     document.getElementById('detUsername').textContent = '@' + username;
     document.getElementById('detEmail').textContent    = email;
-    document.getElementById('detRoleVal').textContent  = role.charAt(0).toUpperCase() + role.slice(1);
+    document.getElementById('detRoleVal').textContent =
+    role === 'superadmin' ? 'Super Admin' : 'Admin';
     document.getElementById('detTgl').textContent      = tgl;
 
     const av = document.getElementById('detAvatar');
@@ -1186,10 +1194,12 @@ function openDetailModal(nama, email, username, role, tgl, gradient) {
     av.style.background = gradient;
 
     const roleBadge = document.getElementById('detRole');
-    roleBadge.className = 'role-badge ' + (role === 'admin' ? 'role-admin' : 'role-user');
-    roleBadge.innerHTML = (role === 'admin'
-        ? '<i class="fa-solid fa-user-shield" style="font-size:10px;"></i> Admin'
-        : '<i class="fa-solid fa-user" style="font-size:10px;"></i> User');
+    roleBadge.className =
+    'role-badge ' + (role === 'superadmin' ? 'role-admin' : 'role-user');
+
+    roleBadge.innerHTML = (role === 'superadmin'
+    ? '<i class="fa-solid fa-user-shield" style="font-size:10px;"></i> Super Admin'
+    : '<i class="fa-solid fa-user" style="font-size:10px;"></i> Admin');
 
     new bootstrap.Modal(document.getElementById('modalDetail')).show();
 }

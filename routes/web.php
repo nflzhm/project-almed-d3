@@ -27,10 +27,9 @@ use App\Http\Controllers\Admin\ArtikelAdminController;
 
 
 /* ================= ADMIN ================= */
-/* 🔥 FIX: admin + superadmin bisa masuk */
 Route::prefix('admin')
     ->name('admin.')
-    ->middleware(['auth', 'role:admin,superadmin'])
+    ->middleware(['auth', 'rolelevel:admin,superadmin'])
     ->group(function () {
 
         Route::get('/', [AdminController::class, 'index'])

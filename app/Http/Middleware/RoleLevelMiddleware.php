@@ -8,22 +8,19 @@ use Symfony\Component\HttpFoundation\Response;
 
 class RoleLevelMiddleware
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
-    public function handle($request, Closure $next, $role)
-{
-    if (!auth()->check()) {
-        return redirect('/login');
-    }
+    public function handle($request, Closure $next, ...$roles): Response
+    {
+        if (!auth()->check()) {
+            return redirect('/login');
+        }
 
-    // hanya role tertentu yang boleh
-    if (auth()->user()->role !== $role) {
-        abort(403, 'Akses ditolak');
-    }
+        $userRole = auth()->user()->role;
 
-    return $next($request);
-}
+        // kalau role tidak termasuk daftar yang diizinkan
+        if (!in_array($userRole, $roles)) {
+            abort(403, 'Akses ditolak');
+        }
+
+        return $next($request);
+    }
 }

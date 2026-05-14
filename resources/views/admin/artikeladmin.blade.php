@@ -11,7 +11,6 @@
 <style>
 /* ============================================================
    ARTIKEL PAGE — Allam Medica Admin
-   Beda dari Berita: ada field Kategori + field Isi (konten panjang)
 ============================================================ */
 
 .page-header {
@@ -104,15 +103,11 @@
 .art-card:nth-child(5){animation-delay:.20s} .art-card:nth-child(6){animation-delay:.24s}
 .art-card:hover { box-shadow: 0 8px 32px rgba(14,165,233,.14); transform: translateY(-3px); }
 
-/* Thumbnail */
 .ac-img-wrap {
     position: relative; overflow: hidden;
     aspect-ratio: 16/9; background: var(--body-bg); flex-shrink: 0;
 }
-.ac-img-wrap img {
-    width: 100%; height: 100%; object-fit: cover;
-    transition: transform .4s ease;
-}
+.ac-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
 .art-card:hover .ac-img-wrap img { transform: scale(1.04); }
 .ac-img-placeholder {
     width: 100%; height: 100%;
@@ -120,57 +115,38 @@
     background: linear-gradient(135deg, #e0f2fe, #cffafe);
     color: var(--primary); font-size: 38px;
 }
-
-/* Kategori badge */
 .ac-kat-badge {
     position: absolute; top: 10px; left: 10px;
-    font-size: 10px; font-weight: 800;
-    text-transform: uppercase; letter-spacing: .7px;
-    padding: 4px 10px; border-radius: 20px;
-    backdrop-filter: blur(8px);
+    font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .7px;
+    padding: 4px 10px; border-radius: 20px; backdrop-filter: blur(8px);
     background: rgba(28,20,92,.82); color: #fff;
 }
-
-/* Reading time badge */
 .ac-read-badge {
     position: absolute; bottom: 8px; right: 8px;
     background: rgba(0,0,0,.6); color: #fff;
-    font-size: 10px; font-weight: 600;
-    padding: 3px 8px; border-radius: 6px;
+    font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 6px;
     display: flex; align-items: center; gap: 4px;
 }
-
-/* Card body */
 .ac-body { padding: 18px 20px; flex: 1; display: flex; flex-direction: column; }
-.ac-meta-row {
-    display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 8px;
-}
+.ac-meta-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
 .ac-date {
     font-size: 11px; color: var(--text-muted); font-weight: 600;
     text-transform: uppercase; letter-spacing: .5px;
     display: flex; align-items: center; gap: 4px;
 }
-.ac-views {
-    font-size: 11px; color: var(--text-muted);
-    display: flex; align-items: center; gap: 4px;
-}
+.ac-views { font-size: 11px; color: var(--text-muted); display: flex; align-items: center; gap: 4px; }
 .ac-title {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 14.5px; font-weight: 700; color: var(--text-main); line-height: 1.4;
-    margin-bottom: 8px;
+    font-size: 14.5px; font-weight: 700; color: var(--text-main); line-height: 1.4; margin-bottom: 8px;
     display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
 }
 .ac-excerpt {
     font-size: 13px; color: var(--text-muted); line-height: 1.55; flex: 1;
-    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
-    margin-bottom: 0;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 0;
 }
-
-/* Card footer */
 .ac-footer {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 12px 20px; border-top: 1px solid var(--border-color);
-    background: #fafbff;
+    padding: 12px 20px; border-top: 1px solid var(--border-color); background: #fafbff;
 }
 .ac-kat-tag {
     display: inline-flex; align-items: center; gap: 5px;
@@ -181,9 +157,7 @@
 .ac-actions { display: flex; gap: 6px; }
 
 /* ---- Empty state ---- */
-.empty-state {
-    grid-column: 1/-1; padding: 64px 24px; text-align: center; color: var(--text-muted);
-}
+.empty-state { grid-column: 1/-1; padding: 64px 24px; text-align: center; color: var(--text-muted); }
 .empty-state .es-icon {
     width: 72px; height: 72px; border-radius: 20px;
     background: var(--primary-light); color: var(--primary);
@@ -194,16 +168,9 @@
 .empty-state .es-sub   { font-size: 13.5px; margin-bottom: 20px; }
 
 /* ============================================================
-   MODAL
+   MODAL BASE
 ============================================================ */
-.am-modal .modal-body {
-    max-height: 70vh;
-    overflow-y: auto;
-    padding-right: 10px;
-}
-
 .am-modal .modal-dialog { max-width: 700px; }
-.am-modal.modal-xl .modal-dialog { max-width: 860px; }
 .am-modal .modal-content {
     border: none; border-radius: var(--radius);
     box-shadow: 0 24px 64px rgba(0,0,0,.18); overflow: hidden;
@@ -224,8 +191,56 @@
 }
 .am-modal .btn-close { filter: invert(1) brightness(2); opacity: .7; }
 .am-modal .btn-close:hover { opacity: 1; }
-.am-modal .modal-body   { padding: 28px 28px 8px; }
+.am-modal .modal-body { padding: 28px 28px 8px; max-height: 70vh; overflow-y: auto; }
 .am-modal .modal-footer { padding: 16px 28px 24px; border: none; gap: 10px; }
+
+/* ============================================================
+   MODAL PREVIEW — Override body padding (gambar full width)
+============================================================ */
+#modalPreview .modal-dialog { max-width: 760px; }
+#modalPreview .modal-body   { padding: 0; max-height: 80vh; overflow-y: auto; }
+
+/* Preview article header image */
+.pv-img-wrap { aspect-ratio: 16/9; overflow: hidden; max-height: 280px; display: none; }
+.pv-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pv-img-placeholder {
+    aspect-ratio: 16/9; max-height: 180px;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, #e0f2fe, #cffafe);
+    color: #0284c7; font-size: 52px;
+}
+
+/* Preview content area */
+.pv-body { padding: 28px 32px 32px; }
+.pv-badges { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+.pv-badge-status {
+    font-size: 10px; font-weight: 800; text-transform: uppercase;
+    letter-spacing: .7px; padding: 4px 10px; border-radius: 20px;
+}
+.pv-badge-kat {
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .6px; padding: 4px 10px; border-radius: 20px;
+    background: #e0f2fe; color: #0284c7;
+}
+.pv-judul {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 22px; font-weight: 800; color: var(--text-main);
+    line-height: 1.35; margin-bottom: 14px; letter-spacing: -.3px;
+}
+.pv-meta {
+    display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+    margin-bottom: 20px; padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+.pv-meta-item {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 12.5px; color: var(--text-muted);
+}
+.pv-meta-item i { color: var(--primary); font-size: 12px; }
+.pv-konten {
+    font-size: 14.5px; color: var(--text-main);
+    line-height: 1.8; white-space: pre-wrap; word-break: break-word;
+}
 
 /* Form */
 .mfg { margin-bottom: 20px; }
@@ -254,9 +269,9 @@
 
 /* Image upload zone */
 .img-upload-zone {
-    border: 2px dashed var(--border-color);
-    border-radius: var(--radius-sm); padding: 24px 20px; text-align: center;
-    cursor: pointer; background: var(--body-bg); position: relative; overflow: hidden;
+    border: 2px dashed var(--border-color); border-radius: var(--radius-sm);
+    padding: 24px 20px; text-align: center; cursor: pointer;
+    background: var(--body-bg); position: relative; overflow: hidden;
     transition: border-color var(--transition), background var(--transition);
 }
 .img-upload-zone:hover, .img-upload-zone.dragover {
@@ -278,15 +293,13 @@
 
 /* Image preview */
 .img-preview-wrap {
-    display: none; position: relative;
-    border-radius: var(--radius-sm); overflow: hidden;
-    border: 1.5px solid var(--border-color);
+    display: none; position: relative; border-radius: var(--radius-sm);
+    overflow: hidden; border: 1.5px solid var(--border-color);
 }
 .img-preview-wrap.show { display: block; }
 .img-preview-wrap img  { width: 100%; height: 180px; object-fit: cover; display: block; }
 .img-preview-overlay {
-    position: absolute; inset: 0;
-    background: rgba(12,26,46,.52);
+    position: absolute; inset: 0; background: rgba(12,26,46,.52);
     display: flex; align-items: center; justify-content: center;
     gap: 8px; opacity: 0; transition: opacity var(--transition);
 }
@@ -294,8 +307,7 @@
 .ppb {
     display: flex; align-items: center; gap: 6px;
     padding: 8px 14px; border-radius: 8px; border: none;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 12px; font-weight: 700; cursor: pointer;
+    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; font-weight: 700; cursor: pointer;
 }
 .ppb-change { background: #fff; color: var(--primary); }
 .ppb-remove { background: #ef4444; color: #fff; }
@@ -304,23 +316,15 @@
     position: absolute; bottom: 0; left: 0; right: 0;
     background: rgba(12,26,46,.75); backdrop-filter: blur(4px);
     color: #fff; font-size: 10.5px; font-weight: 700;
-    padding: 5px 12px; text-align: center;
-    text-transform: uppercase; letter-spacing: .6px;
+    padding: 5px 12px; text-align: center; text-transform: uppercase; letter-spacing: .6px;
 }
 
-/* Char counter */
+/* Char / word counter */
 .char-counter { font-size: 11px; color: var(--text-muted); text-align: right; margin-top: 3px; }
 .char-counter.warn { color: var(--warning); }
 .char-counter.over { color: var(--danger); }
-
-/* Word counter for isi */
-.word-counter {
-    font-size: 11px; color: var(--text-muted); margin-top: 4px;
-    display: flex; align-items: center; gap: 8px;
-}
+.word-counter { font-size: 11px; color: var(--text-muted); margin-top: 4px; display: flex; align-items: center; gap: 8px; }
 .word-counter span { font-weight: 600; color: var(--primary); }
-
-/* Kategori select with custom input */
 .kat-custom-wrap { display: none; margin-top: 8px; }
 
 /* Status toggle */
@@ -329,14 +333,13 @@
     flex: 1; display: flex; align-items: center; justify-content: center; gap: 7px;
     padding: 9px 14px; border: 1.5px solid var(--border-color);
     border-radius: var(--radius-sm); font-size: 13px; font-weight: 600;
-    cursor: pointer; transition: all var(--transition);
-    background: var(--body-bg); color: var(--text-muted);
+    cursor: pointer; transition: all var(--transition); background: var(--body-bg); color: var(--text-muted);
 }
 .status-toggle-group input { display: none; }
 .status-toggle-group input:checked + label.lbl-published { background: #d1fae5; border-color: #6ee7b7; color: #065f46; }
 .status-toggle-group input:checked + label.lbl-draft     { background: #f1f5f9; border-color: #94a3b8; color: #475569; }
 
-/* Preview mini card */
+/* Live preview bar */
 .modal-preview-bar {
     background: linear-gradient(135deg, var(--sidebar-bg), #1e3a5f);
     border-radius: var(--radius-sm); padding: 14px 16px;
@@ -349,8 +352,7 @@
     background: rgba(14,165,233,.08); pointer-events: none;
 }
 .mpb-thumb {
-    width: 60px; height: 44px; border-radius: 8px;
-    object-fit: cover; flex-shrink: 0;
+    width: 60px; height: 44px; border-radius: 8px; object-fit: cover; flex-shrink: 0;
     border: 2px solid rgba(255,255,255,.12);
 }
 .mpb-thumb-placeholder {
@@ -362,21 +364,7 @@
 .mpb-title    { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13.5px; font-weight: 700; color: #fff; }
 .mpb-subtitle { font-size: 11.5px; color: rgba(255,255,255,.5); margin-top: 3px; display: flex; align-items: center; gap: 6px; }
 
-/* Tab pills (untuk section isi & ringkasan) */
-.form-tab-pills {
-    display: flex; gap: 6px; margin-bottom: 16px;
-    border-bottom: 1.5px solid var(--border-color); padding-bottom: 12px;
-}
-.ftab-btn {
-    padding: 7px 16px; border-radius: 8px; border: 1.5px solid var(--border-color);
-    background: var(--body-bg); color: var(--text-muted);
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 12.5px; font-weight: 700; cursor: pointer;
-    transition: all var(--transition);
-}
-.ftab-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; }
-
-/* Modal buttons */
+/* Buttons */
 .btn-cancel {
     padding: 10px 20px; border: 1.5px solid var(--border-color);
     border-radius: var(--radius-sm); background: transparent;
@@ -395,7 +383,6 @@
 }
 .btn-save:hover { transform: translateY(-1px); box-shadow: 0 8px 22px rgba(14,165,233,.4); }
 
-/* Admin action buttons */
 .btn-icon-sm {
     width: 30px; height: 30px; border-radius: 6px;
     display: inline-flex; align-items: center; justify-content: center;
@@ -403,10 +390,10 @@
     transition: background var(--transition), color var(--transition), transform var(--transition);
 }
 .btn-icon-sm:hover { transform: scale(1.08); }
-.btn-edit   { background: #e0f2fe; color: var(--primary); }
-.btn-edit:hover   { background: var(--primary); color: #fff; }
-.btn-delete { background: #fee2e2; color: #ef4444; }
-.btn-delete:hover { background: #ef4444; color: #fff; }
+.btn-edit    { background: #e0f2fe; color: var(--primary); }
+.btn-edit:hover    { background: var(--primary); color: #fff; }
+.btn-delete  { background: #fee2e2; color: #ef4444; }
+.btn-delete:hover  { background: #ef4444; color: #fff; }
 .btn-preview { background: #f0fdf4; color: #059669; }
 .btn-preview:hover { background: #059669; color: #fff; }
 
@@ -435,13 +422,9 @@
 .btn-danger-am:hover { background: #dc2626; box-shadow: 0 6px 20px rgba(239,68,68,.35); }
 
 /* Pagination */
-.art-pagination {
-    display: flex; align-items: center; justify-content: space-between;
-    margin-top: 24px; flex-wrap: wrap; gap: 12px;
-}
+.art-pagination { display: flex; align-items: center; justify-content: space-between; margin-top: 24px; flex-wrap: wrap; gap: 12px; }
 .pag-info { font-size: 13px; color: var(--text-muted); }
 
-/* Responsive */
 @media(max-width:767.98px) {
     .art-grid { grid-template-columns: 1fr; }
     .art-stats { gap: 8px; }
@@ -449,85 +432,79 @@
     .art-toolbar { flex-direction: column; align-items: stretch; }
     .am-modal .modal-body   { padding: 20px 18px 8px; }
     .am-modal .modal-footer { padding: 12px 18px 20px; }
+    #modalPreview .modal-body { padding: 0; }
+    .pv-body { padding: 20px 18px 24px; }
+    .pv-judul { font-size: 18px; }
 }
 </style>
 @endpush
 
 @section('content')
 
-{{-- ================================================================
-     PAGE HEADER
-================================================================ --}}
+{{-- FLASH MESSAGES --}}
+@if(session('success'))
+    <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
+        <i class="fa-solid fa-circle-check me-2"></i>{{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+@endif
+@if(session('error'))
+    <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
+        <i class="fa-solid fa-circle-exclamation me-2"></i>{{ session('error') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+@endif
+@if($errors->any())
+    <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
+        <i class="fa-solid fa-triangle-exclamation me-2"></i>
+        <strong>Gagal menyimpan:</strong>
+        <ul class="mb-0 mt-1">
+            @foreach($errors->all() as $err)<li>{{ $err }}</li>@endforeach
+        </ul>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+@endif
+
+{{-- PAGE HEADER --}}
 <div class="page-header">
     <div class="page-header-left">
         <div class="ph-title">Manajemen Artikel</div>
         <div class="ph-sub">Kelola artikel edukasi & informasi kesehatan RSU Allam Medica</div>
     </div>
     <button class="btn-primary-am" data-bs-toggle="modal" data-bs-target="#modalTambah">
-        <i class="fa-solid fa-plus"></i>
-        Tulis Artikel
+        <i class="fa-solid fa-plus"></i> Tulis Artikel
     </button>
 </div>
 
-{{-- ================================================================
-     STATS STRIP
-================================================================ --}}
+{{-- STATS --}}
 <div class="art-stats">
     <div class="art-stat">
-        <div class="art-stat-icon" style="background:#e0f2fe;color:#0284c7;">
-            <i class="fa-regular fa-newspaper"></i>
-        </div>
-        <div>
-            <div class="art-stat-val">{{ isset($artikel) ? $artikel->count() : 6 }}</div>
-            <div class="art-stat-lbl">Total Artikel</div>
-        </div>
+        <div class="art-stat-icon" style="background:#e0f2fe;color:#0284c7;"><i class="fa-regular fa-newspaper"></i></div>
+        <div><div class="art-stat-val">{{ $artikel->total() }}</div><div class="art-stat-lbl">Total Artikel</div></div>
     </div>
     <div class="art-stat">
-        <div class="art-stat-icon" style="background:#d1fae5;color:#059669;">
-            <i class="fa-solid fa-circle-check"></i>
-        </div>
-        <div>
-            <div class="art-stat-val">{{ $totalPublished ?? 4 }}</div>
-            <div class="art-stat-lbl">Dipublikasikan</div>
-        </div>
+        <div class="art-stat-icon" style="background:#d1fae5;color:#059669;"><i class="fa-solid fa-circle-check"></i></div>
+        <div><div class="art-stat-val">{{ $totalPublished }}</div><div class="art-stat-lbl">Dipublikasikan</div></div>
     </div>
     <div class="art-stat">
-        <div class="art-stat-icon" style="background:#f1f5f9;color:#64748b;">
-            <i class="fa-solid fa-file-pen"></i>
-        </div>
-        <div>
-            <div class="art-stat-val">{{ $totalDraft ?? 2 }}</div>
-            <div class="art-stat-lbl">Draft</div>
-        </div>
+        <div class="art-stat-icon" style="background:#f1f5f9;color:#64748b;"><i class="fa-solid fa-file-pen"></i></div>
+        <div><div class="art-stat-val">{{ $totalDraft }}</div><div class="art-stat-lbl">Draft</div></div>
     </div>
     <div class="art-stat">
-        <div class="art-stat-icon" style="background:#fef3c7;color:#d97706;">
-            <i class="fa-regular fa-eye"></i>
-        </div>
-        <div>
-            <div class="art-stat-val">{{ number_format($totalViews ?? 6894) }}</div>
-            <div class="art-stat-lbl">Total Tayangan</div>
-        </div>
+        <div class="art-stat-icon" style="background:#fef3c7;color:#d97706;"><i class="fa-regular fa-eye"></i></div>
+        <div><div class="art-stat-val">{{ number_format($totalViews) }}</div><div class="art-stat-lbl">Total Tayangan</div></div>
     </div>
     <div class="art-stat">
-        <div class="art-stat-icon" style="background:#ede9fe;color:#7c3aed;">
-            <i class="fa-solid fa-layer-group"></i>
-        </div>
-        <div>
-            <div class="art-stat-val">{{ $totalKategori ?? 4 }}</div>
-            <div class="art-stat-lbl">Kategori</div>
-        </div>
+        <div class="art-stat-icon" style="background:#ede9fe;color:#7c3aed;"><i class="fa-solid fa-layer-group"></i></div>
+        <div><div class="art-stat-val">{{ $totalKategori }}</div><div class="art-stat-lbl">Kategori</div></div>
     </div>
 </div>
 
-{{-- ================================================================
-     TOOLBAR
-================================================================ --}}
+{{-- TOOLBAR --}}
 <div class="art-toolbar">
     <div class="search-wrap">
         <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="search" class="search-input" id="searchArtikel"
-               placeholder="Cari judul artikel...">
+        <input type="search" class="search-input" id="searchArtikel" placeholder="Cari judul artikel...">
     </div>
     <select class="filter-select" id="filterKategori">
         <option value="">Semua Kategori</option>
@@ -544,15 +521,8 @@
         <option value="published">Dipublikasikan</option>
         <option value="draft">Draft</option>
     </select>
-    <select class="filter-select" id="filterSort">
-        <option value="newest">Terbaru</option>
-        <option value="oldest">Terlama</option>
-        <option value="popular">Terpopuler</option>
-        <option value="az">A – Z</option>
-    </select>
     <div style="display:flex;gap:4px;">
-        <button class="topbar-btn" id="viewGrid" title="Grid"
-                style="background:var(--primary-light);color:var(--primary);">
+        <button class="topbar-btn" id="viewGrid" title="Grid" style="background:var(--primary-light);color:var(--primary);">
             <i class="fa-solid fa-grip"></i>
         </button>
         <button class="topbar-btn" id="viewList" title="List">
@@ -561,20 +531,8 @@
     </div>
 </div>
 
-{{-- ================================================================
-     DUMMY DATA
-================================================================ --}}
+{{-- CARDS GRID --}}
 @php
-$dummyArtikel = [
-    ['id'=>1,'judul'=>'Kenali Tanda-Tanda Awal Diabetes dan Cara Mencegahnya','isi'=>'Diabetes mellitus adalah penyakit kronis yang mempengaruhi cara tubuh memproses gula darah. Kenali gejala awal dan langkah pencegahannya sejak dini agar Anda dapat hidup lebih sehat.','gambar'=>null,'kategori'=>'Kesehatan','status'=>'published','created_at'=>'2026-04-10','views'=>1248],
-    ['id'=>2,'judul'=>'Panduan Memilih Dokter Spesialis yang Tepat untuk Kondisi Anda','isi'=>'Memilih dokter spesialis yang sesuai sangat penting untuk mendapatkan penanganan medis yang optimal. Artikel ini memberikan panduan lengkap bagi Anda.','gambar'=>null,'kategori'=>'Informasi','status'=>'published','created_at'=>'2026-04-08','views'=>876],
-    ['id'=>3,'judul'=>'Manfaat Pemeriksaan Kesehatan Rutin Setiap Tahun','isi'=>'Medical check-up tahunan dapat mendeteksi penyakit sejak dini, bahkan sebelum gejala muncul. Simak manfaat lengkap dan panduan pelaksanaannya di artikel ini.','gambar'=>null,'kategori'=>'Tips','status'=>'published','created_at'=>'2026-04-05','views'=>1034],
-    ['id'=>4,'judul'=>'Tips Menjaga Kesehatan Anak di Musim Pancaroba','isi'=>'Perubahan cuaca membuat anak rentan terkena penyakit. Berikut tips praktis dari dokter anak kami untuk menjaga imunitas si kecil tetap optimal sepanjang tahun.','gambar'=>null,'kategori'=>'Edukasi','status'=>'published','created_at'=>'2026-04-02','views'=>756],
-    ['id'=>5,'judul'=>'Layanan Poli Kandungan: Persiapan Menuju Persalinan Aman','isi'=>'Kehamilan yang sehat dimulai dari pemeriksaan rutin yang tepat. Tim dokter kandungan RSU Allam Medica siap mendampingi Anda selama masa kehamilan.','gambar'=>null,'kategori'=>'Layanan','status'=>'published','created_at'=>'2026-03-28','views'=>923],
-    ['id'=>6,'judul'=>'Hipertensi: Penyebab, Gejala, dan Penanganan Modern','isi'=>'Hipertensi atau tekanan darah tinggi sering disebut silent killer karena sering tidak bergejala. Pelajari cara mengelola dan mencegah komplikasinya bersama tim kami.','gambar'=>null,'kategori'=>'Kesehatan','status'=>'draft','created_at'=>'2026-03-24','views'=>0],
-];
-$listArtikel = $artikel ?? collect($dummyArtikel);
-
 $katColors = [
     'Kesehatan' => ['bg'=>'#fee2e2','color'=>'#dc2626'],
     'Informasi' => ['bg'=>'#e0f2fe','color'=>'#0284c7'],
@@ -586,113 +544,91 @@ $katColors = [
 ];
 @endphp
 
-{{-- ================================================================
-     CARDS GRID
-================================================================ --}}
 <div class="art-grid" id="artikelGrid">
-
-    @forelse($listArtikel as $item)
+    @forelse($artikel as $item)
     @php
-        $id       = $item['id']          ?? $item->id;
-        $judul    = $item['judul']       ?? $item->judul;
-        $isi      = $item['isi']         ?? $item->isi ?? $item->deskripsi ?? '';
-        $gambar   = $item['gambar']      ?? $item->gambar      ?? null;
-        $kategori = $item['kategori']    ?? $item->kategori    ?? 'Lainnya';
-        $status   = $item['status']      ?? $item->status      ?? 'draft';
-        $views    = $item['views']       ?? $item->views       ?? 0;
-        $tgl      = $item['created_at']  ?? $item->created_at  ?? null;
-        $imgUrl   = $gambar ? asset('storage/'.$gambar) : null;
-        $tglFmt   = $tgl ? \Carbon\Carbon::parse($tgl)->translatedFormat('d M Y') : '-';
-        $wc       = str_word_count(strip_tags($isi));
+        $imgUrl   = $item->gambar ? asset('storage/'.$item->gambar) : null;
+        $tglFmt   = $item->created_at ? $item->created_at->translatedFormat('d M Y') : '-';
+        $konten   = $item->deskripsi ?? '';
+        $wc       = str_word_count(strip_tags($konten));
         $readTime = max(1, ceil($wc / 200));
-        $kc       = $katColors[$kategori] ?? $katColors['Lainnya'];
+        $kc       = $katColors[$item->kategori] ?? $katColors['Lainnya'];
     @endphp
 
     <div class="art-card"
-         data-id="{{ $id }}"
-         data-judul="{{ strtolower($judul) }}"
-         data-kategori="{{ strtolower($kategori) }}"
-         data-status="{{ $status }}">
+         data-id="{{ $item->id }}"
+         data-judul="{{ strtolower($item->judul) }}"
+         data-kategori="{{ strtolower($item->kategori ?? '') }}"
+         data-status="{{ $item->status }}">
 
-        {{-- Thumbnail --}}
         <div class="ac-img-wrap">
             @if($imgUrl)
-                <img src="{{ $imgUrl }}" alt="{{ $judul }}" loading="lazy">
+                <img src="{{ $imgUrl }}" alt="{{ $item->judul }}" loading="lazy">
             @else
-                <div class="ac-img-placeholder">
-                    <i class="fa-regular fa-newspaper"></i>
-                </div>
+                <div class="ac-img-placeholder"><i class="fa-regular fa-newspaper"></i></div>
             @endif
-
-            {{-- Kategori badge --}}
-            <span class="ac-kat-badge">{{ $kategori }}</span>
-
-            {{-- Status badge --}}
-            <span style="position:absolute;top:10px;right:10px;
-                         font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;
-                         padding:3px 9px;border-radius:20px;backdrop-filter:blur(8px);
-                         background:{{ $status === 'published' ? 'rgba(16,185,129,.85)' : 'rgba(100,116,139,.8)' }};
-                         color:#fff;">
-                {{ $status === 'published' ? 'Publik' : 'Draft' }}
+            <span class="ac-kat-badge">{{ $item->kategori ?? 'Umum' }}</span>
+            <span style="position:absolute;top:10px;right:10px;font-size:10px;font-weight:700;
+                         text-transform:uppercase;letter-spacing:.6px;padding:3px 9px;border-radius:20px;
+                         backdrop-filter:blur(8px);color:#fff;
+                         background:{{ $item->status === 'published' ? 'rgba(16,185,129,.85)' : 'rgba(100,116,139,.8)' }};">
+                {{ $item->status === 'published' ? 'Publik' : 'Draft' }}
             </span>
-
-            {{-- Read time --}}
             <div class="ac-read-badge">
-                <i class="fa-regular fa-clock" style="font-size:9px;"></i>
-                {{ $readTime }} mnt
+                <i class="fa-regular fa-clock" style="font-size:9px;"></i> {{ $readTime }} mnt
             </div>
         </div>
 
-        {{-- Body --}}
         <div class="ac-body">
             <div class="ac-meta-row">
-                <div class="ac-date">
-                    <i class="fa-regular fa-calendar" style="font-size:10px;"></i>
-                    {{ $tglFmt }}
-                </div>
-                <div class="ac-views">
-                    <i class="fa-regular fa-eye" style="font-size:10px;"></i>
-                    {{ number_format($views) }}
-                </div>
+                <div class="ac-date"><i class="fa-regular fa-calendar" style="font-size:10px;"></i> {{ $tglFmt }}</div>
+                <div class="ac-views"><i class="fa-regular fa-eye" style="font-size:10px;"></i> {{ number_format($item->views) }}</div>
             </div>
-            <div class="ac-title">{{ $judul }}</div>
-            <div class="ac-excerpt">{{ Str::limit(strip_tags($isi), 120) }}</div>
+            <div class="ac-title">{{ $item->judul }}</div>
+            <div class="ac-excerpt">{{ Str::limit(strip_tags($konten), 120) }}</div>
         </div>
 
-        {{-- Footer --}}
         <div class="ac-footer">
-            <span class="ac-kat-tag"
-                  style="background:{{ $kc['bg'] }};color:{{ $kc['color'] }};border-color:{{ $kc['bg'] }};">
-                <i class="fa-solid fa-tag" style="font-size:9px;"></i>
-                {{ $kategori }}
+            <span class="ac-kat-tag" style="background:{{ $kc['bg'] }};color:{{ $kc['color'] }};border-color:{{ $kc['bg'] }};">
+                <i class="fa-solid fa-tag" style="font-size:9px;"></i> {{ $item->kategori ?? 'Umum' }}
             </span>
             <div class="ac-actions">
-                {{-- Preview --}}
-                <a href="{{ route('artikel.detail', $id) }}" target="_blank"
-                   class="btn-icon-sm btn-preview" title="Lihat di website">
+
+                {{-- ✅ TOMBOL VIEW → MODAL PREVIEW (bukan link ke website) --}}
+                <button class="btn-icon-sm btn-preview" title="Preview artikel"
+                    onclick="openPreviewModal(
+                        `{{ addslashes($item->judul) }}`,
+                        `{{ addslashes($konten) }}`,
+                        '{{ $imgUrl ?? '' }}',
+                        '{{ $item->kategori ?? 'Umum' }}',
+                        '{{ $item->status }}',
+                        '{{ $tglFmt }}',
+                        {{ $item->views ?? 0 }},
+                        {{ $readTime }}
+                    )">
                     <i class="fa-solid fa-eye"></i>
-                </a>
-                {{-- Edit --}}
+                </button>
+
                 <button class="btn-icon-sm btn-edit" title="Edit artikel"
                     onclick="openEditModal(
-                        '{{ $id }}',
-                        `{{ addslashes($judul) }}`,
-                        `{{ addslashes($isi) }}`,
+                        '{{ $item->id }}',
+                        `{{ addslashes($item->judul) }}`,
+                        `{{ addslashes($konten) }}`,
                         '{{ $imgUrl ?? '' }}',
-                        '{{ $kategori }}',
-                        '{{ $status }}'
+                        '{{ $item->kategori ?? '' }}',
+                        '{{ $item->status }}'
                     )">
                     <i class="fa-solid fa-pen"></i>
                 </button>
-                {{-- Delete --}}
+
                 <button class="btn-icon-sm btn-delete" title="Hapus artikel"
-                    onclick="openDeleteModal('{{ $id }}', `{{ addslashes($judul) }}`)">
+                    onclick="openDeleteModal('{{ $item->id }}', `{{ addslashes($item->judul) }}`)">
                     <i class="fa-solid fa-trash-can"></i>
                 </button>
             </div>
         </div>
-
     </div>
+
     @empty
     <div class="empty-state">
         <div class="es-icon"><i class="fa-regular fa-newspaper"></i></div>
@@ -703,11 +639,10 @@ $katColors = [
         </button>
     </div>
     @endforelse
-
 </div>
 
 {{-- Pagination --}}
-@if(isset($artikel) && $artikel->hasPages())
+@if($artikel->hasPages())
 <div class="art-pagination">
     <div class="pag-info">
         Menampilkan {{ $artikel->firstItem() }}–{{ $artikel->lastItem() }}
@@ -716,6 +651,69 @@ $katColors = [
     {{ $artikel->withQueryString()->links() }}
 </div>
 @endif
+
+
+{{-- ================================================================
+     MODAL: PREVIEW ARTIKEL
+================================================================ --}}
+<div class="modal fade am-modal" id="modalPreview" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header" style="background:linear-gradient(135deg,#064e3b 0%,#059669 100%);">
+                <h5 class="modal-title">
+                    <span class="mt-icon"><i class="fa-solid fa-eye"></i></span>
+                    Preview Artikel
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                {{-- Gambar header --}}
+                <div class="pv-img-wrap" id="pvImgWrap">
+                    <img id="pvImg" src="" alt="">
+                </div>
+                <div class="pv-img-placeholder" id="pvImgPlaceholder">
+                    <i class="fa-regular fa-newspaper"></i>
+                </div>
+
+                {{-- Konten --}}
+                <div class="pv-body">
+                    {{-- Badge --}}
+                    <div class="pv-badges">
+                        <span class="pv-badge-status" id="pvStatus"></span>
+                        <span class="pv-badge-kat"    id="pvKategori"></span>
+                    </div>
+
+                    {{-- Judul --}}
+                    <div class="pv-judul" id="pvJudul"></div>
+
+                    {{-- Meta --}}
+                    <div class="pv-meta">
+                        <div class="pv-meta-item">
+                            <i class="fa-regular fa-calendar"></i>
+                            <span id="pvTanggal">—</span>
+                        </div>
+                        <div class="pv-meta-item">
+                            <i class="fa-regular fa-clock"></i>
+                            <span id="pvReadTime">—</span>
+                        </div>
+                        <div class="pv-meta-item">
+                            <i class="fa-regular fa-eye"></i>
+                            <span id="pvViews">—</span>
+                        </div>
+                    </div>
+
+                    {{-- Isi konten --}}
+                    <div class="pv-konten" id="pvKonten"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-cancel" data-bs-dismiss="modal">
+                    <i class="fa-solid fa-xmark me-1"></i> Tutup
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 {{-- ================================================================
@@ -731,68 +729,46 @@ $katColors = [
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-
-            <form action="{{ route('admin.artikel.store') }}" method="POST"
-                  enctype="multipart/form-data" id="formTambah">
+            <form action="{{ route('admin.artikel.store') }}" method="POST" enctype="multipart/form-data" id="formTambah">
                 @csrf
                 <div class="modal-body">
 
-                    {{-- Gambar (sampul) --}}
                     <div class="mfg">
-                        <div class="mfg-label">
-                            <i class="fa-solid fa-image"></i>
-                            Gambar Sampul Artikel <span class="opt">(opsional)</span>
-                        </div>
-
+                        <div class="mfg-label"><i class="fa-solid fa-image"></i> Gambar Sampul <span class="opt">(opsional)</span></div>
                         <div class="img-preview-wrap" id="tambahPreviewWrap">
                             <img src="" id="tambahPreviewImg" alt="Preview">
                             <div class="img-preview-label">Preview Sampul</div>
                             <div class="img-preview-overlay">
-                                <label class="ppb ppb-change">
+                                <label class="ppb ppb-change" onclick="document.getElementById('tambahGambar').click()">
                                     <i class="fa-solid fa-arrow-up-from-bracket"></i> Ganti
-                                    <input type="file" name="gambar" id="tambahGambar2"
-                                           accept="image/jpeg,image/png,image/webp"
-                                           onchange="previewImg(this,'tambah')">
                                 </label>
-                                <button type="button" class="ppb ppb-remove"
-                                        onclick="removeImg('tambah')">
+                                <button type="button" class="ppb ppb-remove" onclick="removeImg('tambah')">
                                     <i class="fa-solid fa-trash-can"></i> Hapus
                                 </button>
                             </div>
                         </div>
-
                         <div class="img-upload-zone" id="tambahUploadZone">
                             <input type="file" name="gambar" id="tambahGambar"
                                    accept="image/jpeg,image/png,image/webp"
                                    onchange="previewImg(this,'tambah')">
                             <div class="iuz-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
                             <div class="iuz-title">Klik atau seret gambar sampul</div>
-                            <div class="iuz-sub">JPG, PNG, WebP — Maks. 7 MB — Rasio 16:9 dianjurkan</div>
+                            <div class="iuz-sub">JPG, PNG, WebP — Maks. 3 MB — Rasio 16:9 dianjurkan</div>
                         </div>
                     </div>
 
-                    {{-- Judul --}}
                     <div class="mfg">
-                        <div class="mfg-label">
-                            <i class="fa-solid fa-heading"></i>
-                            Judul Artikel <span class="req">*</span>
-                        </div>
+                        <div class="mfg-label"><i class="fa-solid fa-heading"></i> Judul Artikel <span class="req">*</span></div>
                         <input type="text" name="judul" class="mfg-input" id="tambahJudul"
-                               placeholder="Tulis judul artikel yang menarik..."
-                               maxlength="200" required
+                               placeholder="Tulis judul artikel yang menarik..." maxlength="200" required
                                oninput="syncPreview('tambah')">
                         <div class="char-counter" id="tambahJudulCtr">0 / 200</div>
                     </div>
 
-                    {{-- Kategori & Status (2 col) --}}
                     <div class="mfg-row mfg">
                         <div>
-                            <div class="mfg-label">
-                                <i class="fa-solid fa-tag"></i>
-                                Kategori <span class="req">*</span>
-                            </div>
-                            <select name="_kategori_select" class="mfg-select" id="tambahKategoriSelect"
-                                    required onchange="onKategoriChange('tambah')">
+                            <div class="mfg-label"><i class="fa-solid fa-tag"></i> Kategori <span class="opt">(opsional)</span></div>
+                            <select name="_kategori_select" class="mfg-select" id="tambahKategoriSelect" onchange="onKategoriChange('tambah')">
                                 <option value="">-- Pilih Kategori --</option>
                                 <option value="Kesehatan">Kesehatan</option>
                                 <option value="Informasi">Informasi</option>
@@ -803,72 +779,48 @@ $katColors = [
                                 <option value="lainnya">+ Lainnya</option>
                             </select>
                             <div class="kat-custom-wrap" id="tambahKatCustomWrap">
-                                <input type="text" class="mfg-input" id="tambahKatCustom"
-                                       placeholder="Tulis kategori..." style="margin-top:8px;">
+                                <input type="text" class="mfg-input" id="tambahKatCustom" placeholder="Tulis kategori...">
                             </div>
                             <input type="hidden" name="kategori" id="tambahKategori">
                         </div>
                         <div>
-                            <div class="mfg-label">
-                                <i class="fa-solid fa-toggle-on"></i>
-                                Status Publikasi
-                            </div>
+                            <div class="mfg-label"><i class="fa-solid fa-toggle-on"></i> Status Publikasi</div>
                             <div class="status-toggle-group" style="margin-top:2px;">
                                 <input type="radio" name="status" id="tambahPublished" value="published" checked>
-                                <label for="tambahPublished" class="lbl-published">
-                                    <i class="fa-solid fa-circle-check"></i> Publik
-                                </label>
+                                <label for="tambahPublished" class="lbl-published"><i class="fa-solid fa-circle-check"></i> Publik</label>
                                 <input type="radio" name="status" id="tambahDraft" value="draft">
-                                <label for="tambahDraft" class="lbl-draft">
-                                    <i class="fa-solid fa-file-pen"></i> Draft
-                                </label>
+                                <label for="tambahDraft" class="lbl-draft"><i class="fa-solid fa-file-pen"></i> Draft</label>
                             </div>
                         </div>
                     </div>
 
-                    {{-- Isi Artikel --}}
                     <div class="mfg">
-                        <div class="mfg-label">
-                            <i class="fa-solid fa-align-left"></i>
-                            Isi / Konten Artikel <span class="req">*</span>
-                        </div>
-                        <textarea name="isi" class="mfg-textarea" id="tambahIsi"
-                                  placeholder="Tulis konten artikel di sini...&#10;&#10;Anda bisa menggunakan paragraf, poin-poin, atau susunan konten bebas. Artikel yang baik memuat informasi yang jelas, mudah dipahami, dan bermanfaat bagi pembaca."
-                                  style="min-height:200px;"
-                                  required
-                                  oninput="updateWordCount('tambah')"></textarea>
+                        <div class="mfg-label"><i class="fa-solid fa-align-left"></i> Isi / Konten Artikel <span class="req">*</span></div>
+                        <textarea name="deskripsi" class="mfg-textarea" id="tambahIsi"
+                                  placeholder="Tulis konten artikel di sini..." style="min-height:200px;"
+                                  required oninput="updateWordCount('tambah')"></textarea>
                         <div class="word-counter">
                             Kata: <span id="tambahWordCount">0</span> &nbsp;·&nbsp;
                             Estimasi baca: <span id="tambahReadTime">0</span> menit
                         </div>
                     </div>
 
-                    {{-- Live preview --}}
                     <div class="modal-preview-bar">
                         <img src="" id="tambahMpbThumb" class="mpb-thumb" alt="" style="display:none;">
-                        <div class="mpb-thumb-placeholder" id="tambahMpbPlaceholder">
-                            <i class="fa-regular fa-newspaper"></i>
-                        </div>
+                        <div class="mpb-thumb-placeholder" id="tambahMpbPlaceholder"><i class="fa-regular fa-newspaper"></i></div>
                         <div>
-                            <div class="mpb-title"  id="tambahMpbTitle">Judul Artikel</div>
+                            <div class="mpb-title" id="tambahMpbTitle">Judul Artikel</div>
                             <div class="mpb-subtitle" id="tambahMpbSub">
                                 <i class="fa-solid fa-tag" style="font-size:9px;color:var(--primary);"></i>
-                                Kategori
-                                &nbsp;·&nbsp;
-                                <i class="fa-regular fa-clock" style="font-size:9px;"></i>
-                                0 menit baca
+                                Kategori &nbsp;·&nbsp; <i class="fa-regular fa-clock" style="font-size:9px;"></i> 0 menit baca
                             </div>
                         </div>
                     </div>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn-cancel" data-bs-dismiss="modal">
-                        <i class="fa-solid fa-xmark me-1"></i> Batal
-                    </button>
-                    <button type="submit" class="btn-save">
-                        <i class="fa-solid fa-floppy-disk"></i> Simpan Artikel
-                    </button>
+                    <button type="button" class="btn-cancel" data-bs-dismiss="modal"><i class="fa-solid fa-xmark me-1"></i> Batal</button>
+                    <button type="submit" class="btn-save"><i class="fa-solid fa-floppy-disk"></i> Simpan Artikel</button>
                 </div>
             </form>
         </div>
@@ -889,70 +841,49 @@ $katColors = [
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-
             <form action="" method="POST" enctype="multipart/form-data" id="formEdit">
                 @csrf @method('PUT')
-                <input type="hidden" name="id"            id="editId">
-                <input type="hidden" name="hapus_gambar"  id="editHapusGambar" value="0">
-                <input type="hidden" name="kategori"      id="editKategori">
+                <input type="hidden" name="hapus_gambar" id="editHapusGambar" value="0">
+                <input type="hidden" name="kategori"     id="editKategori">
 
                 <div class="modal-body">
 
-                    {{-- Gambar --}}
                     <div class="mfg">
-                        <div class="mfg-label">
-                            <i class="fa-solid fa-image"></i>
-                            Gambar Sampul <span class="opt">(kosongkan jika tidak diganti)</span>
-                        </div>
-
+                        <div class="mfg-label"><i class="fa-solid fa-image"></i> Gambar Sampul <span class="opt">(kosongkan jika tidak diganti)</span></div>
                         <div class="img-preview-wrap" id="editPreviewWrap">
                             <img src="" id="editPreviewImg" alt="Preview">
                             <div class="img-preview-label" id="editPreviewLabel">Gambar Saat Ini</div>
                             <div class="img-preview-overlay">
-                                <label class="ppb ppb-change">
+                                <label class="ppb ppb-change" onclick="document.getElementById('editGambar').click()">
                                     <i class="fa-solid fa-arrow-up-from-bracket"></i> Ganti
-                                    <input type="file" name="gambar" id="editGambar2"
-                                           accept="image/jpeg,image/png,image/webp"
-                                           onchange="previewImg(this,'edit')">
                                 </label>
-                                <button type="button" class="ppb ppb-remove"
-                                        onclick="removeImg('edit')">
+                                <button type="button" class="ppb ppb-remove" onclick="removeImg('edit')">
                                     <i class="fa-solid fa-trash-can"></i> Hapus
                                 </button>
                             </div>
                         </div>
-
                         <div class="img-upload-zone" id="editUploadZone">
                             <input type="file" name="gambar" id="editGambar"
                                    accept="image/jpeg,image/png,image/webp"
                                    onchange="previewImg(this,'edit')">
                             <div class="iuz-icon"><i class="fa-solid fa-arrow-up-from-bracket"></i></div>
                             <div class="iuz-title">Ganti gambar sampul</div>
-                            <div class="iuz-sub">JPG, PNG, WebP — Maks. 7 MB</div>
+                            <div class="iuz-sub">JPG, PNG, WebP — Maks. 3 MB</div>
                         </div>
                     </div>
 
-                    {{-- Judul --}}
                     <div class="mfg">
-                        <div class="mfg-label">
-                            <i class="fa-solid fa-heading"></i>
-                            Judul Artikel <span class="req">*</span>
-                        </div>
+                        <div class="mfg-label"><i class="fa-solid fa-heading"></i> Judul Artikel <span class="req">*</span></div>
                         <input type="text" name="judul" class="mfg-input" id="editJudul"
                                placeholder="Judul artikel..." maxlength="200" required
                                oninput="syncPreview('edit')">
                         <div class="char-counter" id="editJudulCtr">0 / 200</div>
                     </div>
 
-                    {{-- Kategori & Status --}}
                     <div class="mfg-row mfg">
                         <div>
-                            <div class="mfg-label">
-                                <i class="fa-solid fa-tag"></i>
-                                Kategori <span class="req">*</span>
-                            </div>
-                            <select name="_kategori_sel" class="mfg-select" id="editKategoriSelect"
-                                    onchange="onKategoriChange('edit')">
+                            <div class="mfg-label"><i class="fa-solid fa-tag"></i> Kategori <span class="opt">(opsional)</span></div>
+                            <select name="_kategori_sel" class="mfg-select" id="editKategoriSelect" onchange="onKategoriChange('edit')">
                                 <option value="">-- Pilih Kategori --</option>
                                 <option value="Kesehatan">Kesehatan</option>
                                 <option value="Informasi">Informasi</option>
@@ -964,53 +895,37 @@ $katColors = [
                             </select>
                             <div class="kat-custom-wrap" id="editKatCustomWrap">
                                 <input type="text" class="mfg-input" id="editKatCustom"
-                                       placeholder="Tulis kategori..." style="margin-top:8px;"
-                                       oninput="document.getElementById('editKategori').value = this.value;">
+                                       placeholder="Tulis kategori..."
+                                       oninput="document.getElementById('editKategori').value = this.value; syncPreview('edit');">
                             </div>
                         </div>
                         <div>
-                            <div class="mfg-label">
-                                <i class="fa-solid fa-toggle-on"></i>
-                                Status Publikasi
-                            </div>
+                            <div class="mfg-label"><i class="fa-solid fa-toggle-on"></i> Status Publikasi</div>
                             <div class="status-toggle-group" style="margin-top:2px;">
                                 <input type="radio" name="status" id="editPublished" value="published">
-                                <label for="editPublished" class="lbl-published">
-                                    <i class="fa-solid fa-circle-check"></i> Publik
-                                </label>
+                                <label for="editPublished" class="lbl-published"><i class="fa-solid fa-circle-check"></i> Publik</label>
                                 <input type="radio" name="status" id="editDraft" value="draft">
-                                <label for="editDraft" class="lbl-draft">
-                                    <i class="fa-solid fa-file-pen"></i> Draft
-                                </label>
+                                <label for="editDraft" class="lbl-draft"><i class="fa-solid fa-file-pen"></i> Draft</label>
                             </div>
                         </div>
                     </div>
 
-                    {{-- Isi --}}
                     <div class="mfg">
-                        <div class="mfg-label">
-                            <i class="fa-solid fa-align-left"></i>
-                            Isi / Konten Artikel <span class="req">*</span>
-                        </div>
-                        <textarea name="isi" class="mfg-textarea" id="editIsi"
-                                  placeholder="Konten artikel..."
-                                  style="min-height:200px;"
-                                  required
-                                  oninput="updateWordCount('edit')"></textarea>
+                        <div class="mfg-label"><i class="fa-solid fa-align-left"></i> Isi / Konten Artikel <span class="req">*</span></div>
+                        <textarea name="deskripsi" class="mfg-textarea" id="editIsi"
+                                  placeholder="Konten artikel..." style="min-height:200px;"
+                                  required oninput="updateWordCount('edit')"></textarea>
                         <div class="word-counter">
                             Kata: <span id="editWordCount">0</span> &nbsp;·&nbsp;
                             Estimasi baca: <span id="editReadTime">0</span> menit
                         </div>
                     </div>
 
-                    {{-- Live preview --}}
                     <div class="modal-preview-bar">
                         <img src="" id="editMpbThumb" class="mpb-thumb" alt="" style="display:none;">
-                        <div class="mpb-thumb-placeholder" id="editMpbPlaceholder">
-                            <i class="fa-regular fa-newspaper"></i>
-                        </div>
+                        <div class="mpb-thumb-placeholder" id="editMpbPlaceholder"><i class="fa-regular fa-newspaper"></i></div>
                         <div>
-                            <div class="mpb-title"   id="editMpbTitle">—</div>
+                            <div class="mpb-title" id="editMpbTitle">—</div>
                             <div class="mpb-subtitle" id="editMpbSub">
                                 <i class="fa-solid fa-tag" style="font-size:9px;color:var(--primary);"></i>—
                             </div>
@@ -1019,12 +934,8 @@ $katColors = [
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn-cancel" data-bs-dismiss="modal">
-                        <i class="fa-solid fa-xmark me-1"></i> Batal
-                    </button>
-                    <button type="submit" class="btn-save">
-                        <i class="fa-solid fa-floppy-disk"></i> Perbarui Artikel
-                    </button>
+                    <button type="button" class="btn-cancel" data-bs-dismiss="modal"><i class="fa-solid fa-xmark me-1"></i> Batal</button>
+                    <button type="submit" class="btn-save"><i class="fa-solid fa-floppy-disk"></i> Perbarui Artikel</button>
                 </div>
             </form>
         </div>
@@ -1050,19 +961,12 @@ $katColors = [
                 <div class="del-body">
                     <div class="del-icon"><i class="fa-regular fa-newspaper"></i></div>
                     <div class="del-title">Hapus Artikel Ini?</div>
-                    <div class="del-sub">
-                        Artikel berikut akan dihapus secara permanen beserta gambar sampulnya.
-                        Tindakan ini tidak dapat dibatalkan.
-                    </div>
+                    <div class="del-sub">Artikel berikut akan dihapus secara permanen beserta gambar sampulnya. Tindakan ini tidak dapat dibatalkan.</div>
                     <div class="del-target" id="delTarget">—</div>
                 </div>
                 <div class="modal-footer" style="justify-content:center;gap:12px;">
-                    <button type="button" class="btn-cancel" data-bs-dismiss="modal">
-                        <i class="fa-solid fa-xmark me-1"></i> Batal
-                    </button>
-                    <button type="submit" class="btn-danger-am">
-                        <i class="fa-solid fa-trash-can"></i> Ya, Hapus
-                    </button>
+                    <button type="button" class="btn-cancel" data-bs-dismiss="modal"><i class="fa-solid fa-xmark me-1"></i> Batal</button>
+                    <button type="submit" class="btn-danger-am"><i class="fa-solid fa-trash-can"></i> Ya, Hapus</button>
                 </div>
             </form>
         </div>
@@ -1077,17 +981,20 @@ $katColors = [
 /* ============================================================
    ARTIKEL PAGE — JavaScript
 ============================================================ */
+
+/* ---- Sync kategori saat submit ---- */
 document.getElementById('formTambah').addEventListener('submit', function() {
     const sel = document.getElementById('tambahKategoriSelect');
-    const hidden = document.getElementById('tambahKategori');
-
-    if (sel.value !== 'lainnya') {
-        hidden.value = sel.value;
-    }
+    document.getElementById('tambahKategori').value = (sel.value === 'lainnya')
+        ? document.getElementById('tambahKatCustom').value
+        : sel.value;
+});
+document.getElementById('formEdit').addEventListener('submit', function() {
+    const sel = document.getElementById('editKategoriSelect');
+    if (sel.value !== 'lainnya') document.getElementById('editKategori').value = sel.value;
 });
 
-
-/* ---- Char counters ---- */
+/* ---- Char counter ---- */
 function initCtr(elId, ctrId, max) {
     const el = document.getElementById(elId);
     const ct = document.getElementById(ctrId);
@@ -1102,30 +1009,26 @@ function initCtr(elId, ctrId, max) {
 initCtr('tambahJudul', 'tambahJudulCtr', 200);
 initCtr('editJudul',   'editJudulCtr',   200);
 
-/* ---- Word counter + reading time ---- */
+/* ---- Word counter ---- */
 function updateWordCount(prefix) {
-    const isi  = document.getElementById(prefix + 'Isi')?.value || '';
-    const wc   = isi.trim() ? isi.trim().split(/\s+/).length : 0;
-    const rt   = Math.max(1, Math.ceil(wc / 200));
+    const isi = document.getElementById(prefix + 'Isi')?.value || '';
+    const wc  = isi.trim() ? isi.trim().split(/\s+/).length : 0;
+    const rt  = Math.max(1, Math.ceil(wc / 200));
     const wcEl = document.getElementById(prefix + 'WordCount');
     const rtEl = document.getElementById(prefix + 'ReadTime');
     if (wcEl) wcEl.textContent = wc.toLocaleString('id-ID');
     if (rtEl) rtEl.textContent = rt;
-
-    // Update preview subtitle
     syncPreview(prefix);
 }
 
-/* ---- Kategori select logic ---- */
+/* ---- Kategori select ---- */
 function onKategoriChange(prefix) {
     const sel   = document.getElementById(prefix + 'KategoriSelect');
     const custW = document.getElementById(prefix + 'KatCustomWrap');
     const custI = document.getElementById(prefix + 'KatCustom');
     const hid   = document.getElementById(prefix + 'Kategori');
-
     if (sel.value === 'lainnya') {
-        custW.style.display = 'block';
-        custI?.focus();
+        custW.style.display = 'block'; custI?.focus();
         if (hid) hid.value = '';
     } else {
         custW.style.display = 'none';
@@ -1134,36 +1037,21 @@ function onKategoriChange(prefix) {
     }
 }
 
-/* custom kat input sync */
-['tambahKatCustom','editKatCustom'].forEach(function(id) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.addEventListener('input', function() {
-        const p   = id.includes('tambah') ? 'tambah' : 'edit';
-        const hid = document.getElementById(p + 'Kategori');
-        if (hid) hid.value = this.value;
-        syncPreview(p);
-    });
-});
-
-/* ---- Sync live preview bar ---- */
+/* ---- Live preview bar ---- */
 function syncPreview(prefix) {
-    const judul = document.getElementById(prefix + 'Judul')?.value    || 'Judul Artikel';
+    const judul  = document.getElementById(prefix + 'Judul')?.value || 'Judul Artikel';
     const katSel = document.getElementById(prefix + 'KategoriSelect');
-    let kat = katSel?.value === 'lainnya'
-                ? (document.getElementById(prefix + 'KatCustom')?.value || 'Lainnya')
-                : (katSel?.value || 'Kategori');
-
+    const kat    = (katSel?.value === 'lainnya')
+                    ? (document.getElementById(prefix + 'KatCustom')?.value || 'Lainnya')
+                    : (katSel?.value || 'Kategori');
     const wc = document.getElementById(prefix + 'Isi')?.value?.trim()?.split(/\s+/).length || 0;
     const rt = Math.max(1, Math.ceil(wc / 200));
-
     const titleEl = document.getElementById(prefix + 'MpbTitle');
     const subEl   = document.getElementById(prefix + 'MpbSub');
-    if (titleEl) titleEl.textContent = judul || 'Judul Artikel';
+    if (titleEl) titleEl.textContent = judul;
     if (subEl)   subEl.innerHTML =
         `<i class="fa-solid fa-tag" style="font-size:9px;color:var(--primary);"></i> ${kat}
-         &nbsp;·&nbsp;
-         <i class="fa-regular fa-clock" style="font-size:9px;"></i> ${rt} menit baca`;
+         &nbsp;·&nbsp; <i class="fa-regular fa-clock" style="font-size:9px;"></i> ${rt} menit baca`;
 }
 
 /* ---- Image preview ---- */
@@ -1173,8 +1061,8 @@ function previewImg(input, prefix) {
     if (!['image/jpeg','image/png','image/webp'].includes(file.type)) {
         alert('Format tidak didukung. Gunakan JPG, PNG, atau WebP.'); input.value = ''; return;
     }
-    if (file.size > 7 * 1024 * 1024) {
-        alert('Ukuran file terlalu besar. Maksimal 7 MB.'); input.value = ''; return;
+    if (file.size > 3 * 1024 * 1024) {
+        alert('Ukuran file terlalu besar. Maksimal 3 MB.'); input.value = ''; return;
     }
     const reader = new FileReader();
     reader.onload = function(e) {
@@ -1184,38 +1072,29 @@ function previewImg(input, prefix) {
         const label = document.getElementById(prefix + 'PreviewLabel');
         const mpbT  = document.getElementById(prefix + 'MpbThumb');
         const mpbP  = document.getElementById(prefix + 'MpbPlaceholder');
-
         img.src = e.target.result;
         wrap.classList.add('show');
         zone.style.display = 'none';
         if (label) label.textContent = 'Gambar Baru — Belum Tersimpan';
         if (mpbT)  { mpbT.src = e.target.result; mpbT.style.display = 'block'; }
         if (mpbP)  mpbP.style.display = 'none';
-        if (prefix === 'edit') {
-            const hf = document.getElementById('editHapusGambar');
-            if (hf) hf.value = '0';
-        }
+        if (prefix === 'edit') document.getElementById('editHapusGambar').value = '0';
     };
     reader.readAsDataURL(file);
 }
 
 function removeImg(prefix) {
-    const wrap  = document.getElementById(prefix + 'PreviewWrap');
-    const img   = document.getElementById(prefix + 'PreviewImg');
-    const zone  = document.getElementById(prefix + 'UploadZone');
-    const mpbT  = document.getElementById(prefix + 'MpbThumb');
-    const mpbP  = document.getElementById(prefix + 'MpbPlaceholder');
-
+    const masterInput = document.getElementById(prefix + 'Gambar');
+    if (masterInput) masterInput.value = '';
+    const wrap = document.getElementById(prefix + 'PreviewWrap');
+    const img  = document.getElementById(prefix + 'PreviewImg');
+    const zone = document.getElementById(prefix + 'UploadZone');
+    const mpbT = document.getElementById(prefix + 'MpbThumb');
+    const mpbP = document.getElementById(prefix + 'MpbPlaceholder');
     img.src = ''; wrap.classList.remove('show'); zone.style.display = '';
-    ['Gambar','Gambar2'].forEach(s => {
-        const el = document.getElementById(prefix + s); if (el) el.value = '';
-    });
-    if (mpbT)  { mpbT.src = ''; mpbT.style.display = 'none'; }
-    if (mpbP)  mpbP.style.display = 'flex';
-    if (prefix === 'edit') {
-        const hf = document.getElementById('editHapusGambar');
-        if (hf) hf.value = '1';
-    }
+    if (mpbT) { mpbT.src = ''; mpbT.style.display = 'none'; }
+    if (mpbP) mpbP.style.display = 'flex';
+    if (prefix === 'edit') document.getElementById('editHapusGambar').value = '1';
 }
 
 /* ---- Drag & drop ---- */
@@ -1226,24 +1105,68 @@ function removeImg(prefix) {
     zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
     zone.addEventListener('drop', function(e) {
         e.preventDefault(); zone.classList.remove('dragover');
-        const inp = zone.querySelector('input[type="file"]');
-        if (e.dataTransfer.files.length) { inp.files = e.dataTransfer.files; previewImg(inp, p); }
+        const inp = document.getElementById(p + 'Gambar');
+        if (e.dataTransfer.files.length) {
+            const dt = new DataTransfer();
+            dt.items.add(e.dataTransfer.files[0]);
+            inp.files = dt.files;
+            previewImg(inp, p);
+        }
     });
 });
 
-/* ---- Open EDIT modal ---- */
-function openEditModal(id, judul, isi, imgUrl, kategori, status) {
-    document.getElementById('editId').value      = id;
-    document.getElementById('editJudul').value   = judul;
-    document.getElementById('editIsi').value     = isi;
-    document.getElementById('editHapusGambar').value = '0';
-    document.getElementById('formEdit').action   = '{{ url("admin/artikel") }}/' + id;
+/* ================================================================
+   OPEN PREVIEW MODAL
+================================================================ */
+function openPreviewModal(judul, konten, imgUrl, kategori, status, tanggal, views, readTime) {
+    // Gambar
+    const pvImgWrap      = document.getElementById('pvImgWrap');
+    const pvImg          = document.getElementById('pvImg');
+    const pvImgPh        = document.getElementById('pvImgPlaceholder');
+    if (imgUrl && imgUrl.trim() !== '') {
+        pvImg.src = imgUrl;
+        pvImgWrap.style.display  = 'block';
+        pvImgPh.style.display    = 'none';
+    } else {
+        pvImgWrap.style.display  = 'none';
+        pvImgPh.style.display    = 'flex';
+    }
 
-    // Status
+    // Konten teks
+    document.getElementById('pvJudul').textContent   = judul;
+    document.getElementById('pvKonten').textContent  = konten;
+    document.getElementById('pvTanggal').textContent = tanggal;
+    document.getElementById('pvReadTime').textContent = readTime + ' menit baca';
+    document.getElementById('pvViews').textContent   = parseInt(views).toLocaleString('id-ID') + ' tayangan';
+    document.getElementById('pvKategori').textContent = kategori || 'Umum';
+
+    // Status badge
+    const pvStatus = document.getElementById('pvStatus');
+    if (status === 'published') {
+        pvStatus.textContent      = '● Dipublikasikan';
+        pvStatus.style.background = '#d1fae5';
+        pvStatus.style.color      = '#065f46';
+    } else {
+        pvStatus.textContent      = '● Draft';
+        pvStatus.style.background = '#f1f5f9';
+        pvStatus.style.color      = '#475569';
+    }
+
+    new bootstrap.Modal(document.getElementById('modalPreview')).show();
+}
+
+/* ================================================================
+   OPEN EDIT MODAL
+================================================================ */
+function openEditModal(id, judul, isi, imgUrl, kategori, status) {
+    document.getElementById('editJudul').value       = judul;
+    document.getElementById('editIsi').value         = isi;
+    document.getElementById('editHapusGambar').value = '0';
+    document.getElementById('formEdit').action       = '{{ url("admin/artikel") }}/' + id;
+
     document.getElementById('editPublished').checked = (status === 'published');
     document.getElementById('editDraft').checked     = (status !== 'published');
 
-    // Kategori
     const sel    = document.getElementById('editKategoriSelect');
     const custW  = document.getElementById('editKatCustomWrap');
     const custI  = document.getElementById('editKatCustom');
@@ -1259,7 +1182,6 @@ function openEditModal(id, judul, isi, imgUrl, kategori, status) {
     }
     hidden.value = kategori;
 
-    // Image
     const wrap  = document.getElementById('editPreviewWrap');
     const img   = document.getElementById('editPreviewImg');
     const zone  = document.getElementById('editUploadZone');
@@ -1273,18 +1195,15 @@ function openEditModal(id, judul, isi, imgUrl, kategori, status) {
         if (mpbP)  mpbP.style.display = 'none';
     } else {
         img.src = ''; wrap.classList.remove('show'); zone.style.display = '';
-        if (mpbT)  { mpbT.src = ''; mpbT.style.display = 'none'; }
-        if (mpbP)  mpbP.style.display = 'flex';
+        if (mpbT) { mpbT.src = ''; mpbT.style.display = 'none'; }
+        if (mpbP) mpbP.style.display = 'flex';
     }
 
-    // Reset file inputs
-    ['editGambar','editGambar2'].forEach(i => { const el = document.getElementById(i); if (el) el.value = ''; });
+    const masterInput = document.getElementById('editGambar');
+    if (masterInput) masterInput.value = '';
 
-    // Trigger counters
-    ['editJudul','editIsi'].forEach(i => document.getElementById(i).dispatchEvent(new Event('input')));
     updateWordCount('edit');
     syncPreview('edit');
-
     new bootstrap.Modal(document.getElementById('modalEdit')).show();
 }
 
@@ -1295,28 +1214,25 @@ function openDeleteModal(id, judul) {
     new bootstrap.Modal(document.getElementById('modalHapus')).show();
 }
 
-/* ---- Reset tambah modal on close ---- */
+/* ---- Reset form tambah saat modal ditutup ---- */
 document.getElementById('modalTambah').addEventListener('hidden.bs.modal', function() {
     document.getElementById('formTambah').reset();
     removeImg('tambah');
-    document.getElementById('tambahKategori').value = '';
+    document.getElementById('tambahKategori').value              = '';
     document.getElementById('tambahKatCustomWrap').style.display = 'none';
-    document.getElementById('tambahWordCount').textContent = '0';
-    document.getElementById('tambahReadTime').textContent  = '0';
-    document.getElementById('tambahMpbTitle').textContent  = 'Judul Artikel';
+    document.getElementById('tambahWordCount').textContent       = '0';
+    document.getElementById('tambahReadTime').textContent        = '0';
+    document.getElementById('tambahMpbTitle').textContent        = 'Judul Artikel';
+    document.getElementById('tambahJudulCtr').textContent        = '0 / 200';
     document.getElementById('tambahMpbSub').innerHTML =
         '<i class="fa-solid fa-tag" style="font-size:9px;color:var(--primary);"></i> Kategori &nbsp;·&nbsp; <i class="fa-regular fa-clock" style="font-size:9px;"></i> 0 menit baca';
-    ['tambahJudulCtr'].forEach(id => {
-        const el = document.getElementById(id); if (el) el.textContent = '0 / 200';
-    });
 });
 
 /* ---- Live search ---- */
 document.getElementById('searchArtikel').addEventListener('input', function() {
     const q = this.value.toLowerCase();
     document.querySelectorAll('.art-card').forEach(function(card) {
-        const t = card.dataset.judul || '';
-        card.style.display = (!q || t.includes(q)) ? '' : 'none';
+        card.style.display = (!q || (card.dataset.judul || '').includes(q)) ? '' : 'none';
     });
 });
 
@@ -1324,8 +1240,7 @@ document.getElementById('searchArtikel').addEventListener('input', function() {
 document.getElementById('filterKategori').addEventListener('change', function() {
     const val = this.value.toLowerCase();
     document.querySelectorAll('.art-card').forEach(function(card) {
-        const k = card.dataset.kategori || '';
-        card.style.display = (!val || k === val) ? '' : 'none';
+        card.style.display = (!val || (card.dataset.kategori || '') === val) ? '' : 'none';
     });
 });
 
