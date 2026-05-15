@@ -13,10 +13,13 @@ class BeritaAdminController extends Controller
     public function index()
     {
         $berita = Berita::latest()->paginate(6);
-        return view('admin.beritaadmin', compact('berita'));
+        $totalPublished = Berita::where('status', 'published')->count();
+        $totalDraft = Berita::where('status', 'draft')->count();
+        $totalViews = Berita::sum('views');
+
+        return view('admin.beritaadmin', compact('berita', 'totalPublished', 'totalDraft', 'totalViews'));
     }
 
-    // ✅ TAMBAHAN WAJIB (INI YANG KAMU KURANG)
     public function create()
     {
         return view('admin.beritaadmin');

@@ -293,9 +293,9 @@ body{
         </ul>
 
         <ul class="navbar-nav flex-row ms-auto">
-            <li class="nav-item"><a class="nav-link text-white p-1" href="#"><i class="bi bi-tiktok"></i></a></li>
-            <li class="nav-item"><a class="nav-link text-white p-1" href="#"><i class="bi bi-facebook"></i></a></li>
-            <li class="nav-item"><a class="nav-link text-white p-1" href="#"><i class="bi bi-instagram"></i></a></li>
+            <li class="nav-item"><a class="nav-link text-white p-1" href="https://www.tiktok.com/@rsuallammedicabumiayu?_t=8fLMQk9idhI&_r=1"><i class="bi bi-tiktok"></i></a></li>
+            <li class="nav-item"><a class="nav-link text-white p-1" href="https://www.facebook.com/allam.medicabmy?mibextid=LQQJ4d"><i class="bi bi-facebook"></i></a></li>
+            <li class="nav-item"><a class="nav-link text-white p-1" href="https://www.instagram.com/allam.medica/"><i class="bi bi-instagram"></i></a></li>
         </ul>
 
     </div>
@@ -615,35 +615,59 @@ body{
 
     <h5 class="mb-3">Kirim Pesan</h5>
 
-    <div class="row g-3">
+    <form action="https://formspree.io/f/mvzljdje" method="POST">
 
-        <div class="col-md-6">
-            <input type="text" class="form-control" placeholder="Nama">
+        <div class="row g-3">
+
+            <div class="col-md-6">
+                <input type="text" 
+                       name="nama" 
+                       class="form-control" 
+                       placeholder="Nama" 
+                       required>
+            </div>
+
+            <div class="col-md-6">
+                <input type="text" 
+                       name="telepon" 
+                       class="form-control" 
+                       placeholder="Telepon" 
+                       required>
+            </div>
+
+            <div class="col-md-6">
+                <input type="email" 
+                       name="email" 
+                       class="form-control" 
+                       placeholder="Email" 
+                       required>
+            </div>
+
+            <div class="col-md-6">
+                <input type="text" 
+                       name="subject" 
+                       class="form-control" 
+                       placeholder="Subject" 
+                       required>
+            </div>
+
+            <div class="col-12">
+                <textarea name="pesan" 
+                          class="form-control" 
+                          rows="4" 
+                          placeholder="Pesan" 
+                          required></textarea>
+            </div>
+
+            <div class="col-12">
+                <button type="submit" class="btn-send">
+                    Kirim Pesan
+                </button>
+            </div>
+
         </div>
 
-        <div class="col-md-6">
-            <input type="text" class="form-control" placeholder="Telepon">
-        </div>
-
-        <div class="col-md-6">
-            <input type="email" class="form-control" placeholder="Email">
-        </div>
-
-        <div class="col-md-6">
-            <input type="text" class="form-control" placeholder="Subject">
-        </div>
-
-        <div class="col-12">
-            <textarea class="form-control" rows="4" placeholder="Pesan"></textarea>
-        </div>
-
-        <div class="col-12">
-            <button class="btn-send">
-                Kirim Pesan
-            </button>
-        </div>
-
-    </div>
+    </form>
 
 </div>
 
@@ -883,9 +907,19 @@ body{
 
                 <!-- SOSIAL -->
                 <div class="footer-social">
-                    <i class="bi bi-tiktok"></i>
-                    <i class="bi bi-facebook"></i>
-                    <i class="bi bi-instagram"></i>
+    
+                    <a href="https://www.tiktok.com/@rsuallammedicabumiayu?_t=8fLMQk9idhI&_r=1" target="_blank">
+                        <i class="bi bi-tiktok"></i>
+                    </a>
+
+                    <a href="https://www.facebook.com/allam.medicabmy?mibextid=LQQJ4d" target="_blank">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+
+                    <a href="https://www.instagram.com/allam.medica/" target="_blank">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+
                 </div>
 
                 <!-- MITRA -->

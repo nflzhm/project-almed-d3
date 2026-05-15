@@ -9,12 +9,30 @@ use Illuminate\Http\Request;
 class LokerController extends Controller
 {
     public function index()
-    {
-        // WAJIB: samakan dengan Blade ($loker)
-        $loker = Loker::latest()->paginate(12);
+{
+    $loker = Loker::latest()->paginate(12);
 
-        return view('admin.loker', compact('loker'));
-    }
+    // Total yang punya gambar
+    $totalDenganGambar = Loker::whereNotNull('gambar')
+        ->where('gambar', '!=', '')
+        ->count();
+
+    // Total posting bulan ini
+    $lokerBulanIni = Loker::whereMonth('created_at', now()->month)
+        ->whereYear('created_at', now()->year)
+        ->count();
+
+    // Total posting hari ini
+    $lokerTerbaru = Loker::whereDate('created_at', today())
+        ->count();
+
+    return view('admin.loker', compact(
+        'loker',
+        'totalDenganGambar',
+        'lokerBulanIni',
+        'lokerTerbaru'
+    ));
+}
 
     public function create()
     {

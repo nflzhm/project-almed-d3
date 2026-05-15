@@ -17,9 +17,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
     <style>
-        /* ============================================================
-           CSS VARIABLES & RESET
-        ============================================================ */
+        
         :root {
             --primary:        #0ea5e9;
             --primary-dark:   #0284c7;
@@ -59,9 +57,7 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
-        /* ============================================================
-           SIDEBAR
-        ============================================================ */
+        
         #sidebar {
             position: fixed;
             top: 0; left: 0;
@@ -85,7 +81,7 @@
         #sidebar.collapsed .nav-link .nav-icon { margin-right: 0; }
         #sidebar.collapsed .collapse { display: none !important; }
 
-        /* Brand */
+
         .sidebar-brand {
             display: flex;
             align-items: center;
@@ -124,7 +120,6 @@
             text-transform: uppercase;
         }
 
-        /* Navigation */
         .sidebar-nav {
             flex: 1;
             overflow-y: auto;
@@ -197,7 +192,7 @@
 
         .nav-link[aria-expanded="true"] .dropdown-arrow { transform: rotate(90deg); }
 
-        /* Sub-menu */
+
         .sidebar-submenu { padding: 4px 0; background: rgba(0,0,0,.15); }
 
         .sidebar-submenu .nav-link {
@@ -217,7 +212,7 @@
             opacity: .6;
         }
 
-        /* Footer / User */
+ 
         .sidebar-footer {
             padding: 12px;
             border-top: 1px solid rgba(255,255,255,.07);
@@ -247,9 +242,7 @@
         .user-info .uname { font-size: 13px; font-weight: 600; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .user-info .urole { font-size: 11px; color: var(--text-sidebar); }
 
-        /* ============================================================
-           TOPBAR
-        ============================================================ */
+        
         #topbar {
             position: fixed;
             top: 0;
@@ -282,7 +275,6 @@
 
         .topbar-toggle:hover { background: var(--primary-light); color: var(--primary-dark); }
 
-        /* Breadcrumb */
         .topbar-breadcrumb {
             flex: 1;
         }
@@ -303,7 +295,6 @@
         .breadcrumb-item a { color: var(--primary); text-decoration: none; }
         .breadcrumb-item.active { color: var(--text-muted); }
 
-        /* Topbar actions */
         .topbar-actions { display: flex; align-items: center; gap: 8px; }
 
         .topbar-btn {
@@ -332,7 +323,6 @@
             background: var(--border-color);
         }
 
-        /* User dropdown */
         .topbar-user {
             display: flex; align-items: center; gap: 8px;
             padding: 4px 8px 4px 4px;
@@ -354,9 +344,7 @@
 
         .topbar-uname { font-size: 13px; font-weight: 600; color: var(--text-main); }
 
-        /* ============================================================
-           MAIN CONTENT WRAPPER
-        ============================================================ */
+
         #main-wrapper {
             margin-left: var(--sidebar-width);
             padding-top: var(--topbar-h);
@@ -370,9 +358,7 @@
             padding: 28px 28px;
         }
 
-        /* ============================================================
-           CARDS
-        ============================================================ */
+
         .am-card {
             background: var(--card-bg);
             border-radius: var(--radius);
@@ -384,7 +370,6 @@
 
         .am-card:hover { box-shadow: var(--shadow-md); }
 
-        /* Stat Cards */
         .stat-card {
             background: var(--card-bg);
             border-radius: var(--radius);
@@ -430,7 +415,7 @@
             font-size: 11.5px; margin-top: 6px; font-weight: 600;
         }
 
-        /* Table */
+    
         .am-table {
             width: 100%; border-collapse: separate; border-spacing: 0;
         }
@@ -455,7 +440,6 @@
         .am-table tbody tr:last-child td { border-bottom: 0; }
         .am-table tbody tr:hover td { background: #f8faff; }
 
-        /* Buttons */
         .btn-primary-am {
             background: var(--primary);
             color: #fff; border: none;
@@ -485,7 +469,7 @@
         .btn-view { background: #d1fae5; color: var(--success); }
         .btn-view:hover { background: var(--success); color: #fff; }
 
-        /* Badge */
+
         .am-badge {
             display: inline-flex; align-items: center;
             padding: 3px 10px; border-radius: 20px;
@@ -497,7 +481,7 @@
         .badge-active { background: #d1fae5; color: #059669; }
         .badge-inactive { background: #fee2e2; color: #dc2626; }
 
-        /* Doctor avatar */
+
         .doc-avatar {
             width: 36px; height: 36px; border-radius: 50%;
             object-fit: cover;
@@ -510,7 +494,6 @@
             color: var(--primary); font-size: 14px; font-weight: 700;
         }
 
-        /* Modal header */
         .am-modal-header {
             background: var(--sidebar-bg);
             border-radius: var(--radius) var(--radius) 0 0;
@@ -534,37 +517,8 @@
 
         .am-form-control:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(14,165,233,.15); }
 
-        /* Notification dropdown */
-        .notif-dropdown {
-            width: 320px;
-            border-radius: var(--radius);
-            border: 1px solid var(--border-color);
-            box-shadow: 0 8px 32px rgba(0,0,0,.12);
-            padding: 0; overflow: hidden;
-        }
-
-        .notif-header {
-            padding: 14px 16px;
-            border-bottom: 1px solid var(--border-color);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 13px; font-weight: 700;
-        }
-
-        .notif-item {
-            display: flex; align-items: flex-start; gap: 10px;
-            padding: 12px 16px;
-            border-bottom: 1px solid var(--border-color);
-            transition: background var(--transition);
-            cursor: pointer;
-        }
-
-        .notif-item:hover { background: var(--body-bg); }
-        .notif-item:last-child { border-bottom: 0; }
-        .notif-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--primary); margin-top: 5px; flex-shrink: 0; }
-        .notif-text { font-size: 12.5px; color: var(--text-main); line-height: 1.4; }
-        .notif-time { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
-
-        /* Section header */
+        
+        
         .section-header {
             display: flex; align-items: center; justify-content: space-between;
             margin-bottom: 20px;
@@ -580,7 +534,6 @@
             font-size: 12.5px; color: var(--text-muted); margin-top: 2px;
         }
 
-        /* Schedule badge */
         .day-badge {
             display: inline-flex; align-items: center;
             padding: 2px 8px; border-radius: 4px;
@@ -589,7 +542,6 @@
             margin: 1px;
         }
 
-        /* Toast/Flash */
         .am-toast-container {
             position: fixed; top: 80px; right: 20px; z-index: 9999;
         }
@@ -610,9 +562,6 @@
             to   { opacity: 1; transform: translateX(0); }
         }
 
-        /* ============================================================
-           OVERLAY (mobile)
-        ============================================================ */
         #sidebar-overlay {
             display: none;
             position: fixed; inset: 0;
@@ -620,9 +569,6 @@
             z-index: 1045;
         }
 
-        /* ============================================================
-           RESPONSIVE
-        ============================================================ */
         @media (max-width: 991.98px) {
             :root { --sidebar-width: 260px; }
 
@@ -651,9 +597,7 @@
 </head>
 <body>
 
-{{-- ================================================================
-     SIDEBAR
-================================================================ --}}
+
 <aside id="sidebar">
 
     {{-- Brand --}}
@@ -777,11 +721,7 @@
         </div>
 
         <ul class="dropdown-menu dropdown-menu-end" style="font-size:13px; border-radius:var(--radius-sm); border:1px solid var(--border-color);">
-            <li>
-                <a class="dropdown-item" href="{{ route('admin.profile') }}">
-                    <i class="fa-solid fa-circle-user me-2 text-primary"></i> Profil Saya
-                </a>
-            </li>
+            
             <li><hr class="dropdown-divider"></li>
             <li>
                 <a class="dropdown-item text-danger" href="{{ route('logout') }}"
@@ -800,9 +740,7 @@
 {{-- Mobile overlay --}}
 <div id="sidebar-overlay" onclick="toggleMobileSidebar()"></div>
 
-{{-- ================================================================
-     TOPBAR
-================================================================ --}}
+
 <header id="topbar">
 
     {{-- Toggle button --}}
@@ -821,64 +759,7 @@
         </nav>
     </div>
 
-    {{-- Actions --}}
-    <div class="topbar-actions">
-
-        {{-- Search --}}
-        <button class="topbar-btn" title="Cari">
-            <i class="fa-solid fa-magnifying-glass"></i>
-        </button>
-
-        {{-- Notifications --}}
-        <div class="position-relative">
-            <button class="topbar-btn" id="notifToggle"
-                    data-bs-toggle="dropdown" aria-expanded="false" title="Notifikasi">
-                <i class="fa-solid fa-bell"></i>
-                <span class="badge-dot"></span>
-            </button>
-
-            <ul class="dropdown-menu notif-dropdown dropdown-menu-end" aria-labelledby="notifToggle">
-                <li>
-                    <div class="notif-header d-flex justify-content-between align-items-center">
-                        <span>Notifikasi</span>
-                        <span class="am-badge badge-admin">3 Baru</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="notif-item">
-                        <div class="notif-dot"></div>
-                        <div>
-                            <div class="notif-text">Dokter baru berhasil ditambahkan ke sistem.</div>
-                            <div class="notif-time">5 menit lalu</div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="notif-item">
-                        <div class="notif-dot"></div>
-                        <div>
-                            <div class="notif-text">Jadwal praktik dr. Anisa diperbarui.</div>
-                            <div class="notif-time">1 jam lalu</div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="notif-item">
-                        <div class="notif-dot" style="background:var(--warning)"></div>
-                        <div>
-                            <div class="notif-text">Pengguna baru mendaftar di website.</div>
-                            <div class="notif-time">3 jam lalu</div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <a href="#" class="dropdown-item text-center text-primary py-2" style="font-size:12.5px; font-weight:600;">
-                        Lihat semua notifikasi
-                    </a>
-                </li>
-            </ul>
-        </div>
-
+    
         <div class="topbar-divider"></div>
 
         {{-- User menu --}}
@@ -891,16 +772,7 @@
         </div>
 
         <ul class="dropdown-menu dropdown-menu-end" style="font-size:13px; border-radius:var(--radius-sm); min-width:180px;">
-            <li>
-                <a class="dropdown-item" href="{{ route('admin.profile') }}">
-                    <i class="fa-regular fa-user me-2 text-primary"></i> Profil Saya
-                </a>
-            </li>
-            <li>
-                <a class="dropdown-item" href="{{ route('admin.settings') }}">
-                    <i class="fa-solid fa-gear me-2 text-secondary"></i> Pengaturan
-                </a>
-            </li>
+            
             <li><hr class="dropdown-divider"></li>
             <li>
                 <a class="dropdown-item text-danger" href="{{ route('logout') }}"
@@ -913,9 +785,7 @@
     </div>
 </header>
 
-{{-- ================================================================
-     MAIN CONTENT
-================================================================ --}}
+
 <div id="main-wrapper">
     <main class="main-content">
 
@@ -942,9 +812,7 @@
     </main>
 </div>
 
-{{-- ================================================================
-     BOOTSTRAP JS
-================================================================ --}}
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>

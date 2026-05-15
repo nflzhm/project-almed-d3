@@ -385,42 +385,51 @@
 
 {{-- STATS STRIP --}}
 <div class="loker-stats">
+
     <div class="ls-item">
         <div class="ls-icon" style="background:#e0f2fe;color:#0284c7;">
             <i class="fa-solid fa-briefcase"></i>
         </div>
+
         <div class="ls-info">
-            <div class="ls-val">{{ isset($loker) ? $loker->total() : 6 }}</div>
+            <div class="ls-val">{{ $loker->total() }}</div>
             <div class="ls-lbl">Total Loker</div>
         </div>
     </div>
+
     <div class="ls-item">
         <div class="ls-icon" style="background:#d1fae5;color:#059669;">
             <i class="fa-solid fa-image"></i>
         </div>
+
         <div class="ls-info">
-            <div class="ls-val">{{ $totalDenganGambar ?? 4 }}</div>
+            <div class="ls-val">{{ $totalDenganGambar }}</div>
             <div class="ls-lbl">Punya Gambar</div>
         </div>
     </div>
+
     <div class="ls-item">
         <div class="ls-icon" style="background:#fef3c7;color:#d97706;">
             <i class="fa-regular fa-clock"></i>
         </div>
+
         <div class="ls-info">
-            <div class="ls-val">{{ $lokerBulanIni ?? 2 }}</div>
+            <div class="ls-val">{{ $lokerBulanIni }}</div>
             <div class="ls-lbl">Bulan Ini</div>
         </div>
     </div>
+
     <div class="ls-item">
         <div class="ls-icon" style="background:#ede9fe;color:#7c3aed;">
             <i class="fa-solid fa-calendar-plus"></i>
         </div>
+
         <div class="ls-info">
-            <div class="ls-val">{{ $lokerTerbaru ?? 1 }}</div>
+            <div class="ls-val">{{ $lokerTerbaru }}</div>
             <div class="ls-lbl">Terbaru Hari Ini</div>
         </div>
     </div>
+
 </div>
 
 {{-- TOOLBAR --}}

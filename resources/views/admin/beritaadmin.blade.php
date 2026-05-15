@@ -861,44 +861,52 @@
      STATS STRIP
 ================================================================ --}}
 <div class="berita-stats">
+    
     <div class="bs-item">
         <div class="bs-icon" style="background:#e0f2fe;color:#0284c7;">
             <i class="fa-solid fa-newspaper"></i>
         </div>
+
         <div class="bs-info">
-            <div class="bs-val">{{ $berita->total() ?? 24 }}</div>
+            <div class="bs-val">{{ $berita->total() }}</div>
             <div class="bs-lbl">Total Berita</div>
         </div>
     </div>
+
     <div class="bs-item">
         <div class="bs-icon" style="background:#d1fae5;color:#059669;">
             <i class="fa-solid fa-circle-check"></i>
         </div>
+
         <div class="bs-info">
-            <div class="bs-val">{{ $totalPublished ?? 18 }}</div>
+            <div class="bs-val">{{ $totalPublished }}</div>
             <div class="bs-lbl">Dipublikasikan</div>
         </div>
     </div>
+
     <div class="bs-item">
         <div class="bs-icon" style="background:#f1f5f9;color:#64748b;">
             <i class="fa-solid fa-file-pen"></i>
         </div>
+
         <div class="bs-info">
-            <div class="bs-val">{{ $totalDraft ?? 6 }}</div>
+            <div class="bs-val">{{ $totalDraft }}</div>
             <div class="bs-lbl">Draft</div>
         </div>
     </div>
+
     <div class="bs-item">
         <div class="bs-icon" style="background:#fef3c7;color:#d97706;">
             <i class="fa-regular fa-eye"></i>
         </div>
+
         <div class="bs-info">
-            <div class="bs-val">{{ number_format($totalViews ?? 4820) }}</div>
+            <div class="bs-val">{{ number_format($totalViews) }}</div>
             <div class="bs-lbl">Total Tayangan</div>
         </div>
     </div>
-</div>
 
+</div>
 {{-- ================================================================
      TOOLBAR
 ================================================================ --}}

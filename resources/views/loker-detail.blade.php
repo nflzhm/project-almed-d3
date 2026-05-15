@@ -668,9 +668,9 @@ body{
         </ul>
 
         <ul class="navbar-nav flex-row ms-auto">
-            <li class="nav-item"><a class="nav-link text-white p-1" href="#"><i class="bi bi-tiktok"></i></a></li>
-            <li class="nav-item"><a class="nav-link text-white p-1" href="#"><i class="bi bi-facebook"></i></a></li>
-            <li class="nav-item"><a class="nav-link text-white p-1" href="#"><i class="bi bi-instagram"></i></a></li>
+            <li class="nav-item"><a class="nav-link text-white p-1" href="https://www.tiktok.com/@rsuallammedicabumiayu?_t=8fLMQk9idhI&_r=1"><i class="bi bi-tiktok"></i></a></li>
+            <li class="nav-item"><a class="nav-link text-white p-1" href="https://www.facebook.com/allam.medicabmy?mibextid=LQQJ4d"><i class="bi bi-facebook"></i></a></li>
+            <li class="nav-item"><a class="nav-link text-white p-1" href="https://www.instagram.com/allam.medica/"><i class="bi bi-instagram"></i></a></li>
         </ul>
 
     </div>
@@ -1370,9 +1370,17 @@ body{
 
                 <!-- SOSIAL -->
                 <div class="footer-social">
-                    <i class="bi bi-tiktok"></i>
-                    <i class="bi bi-facebook"></i>
-                    <i class="bi bi-instagram"></i>
+                    <a href="https://www.tiktok.com/@rsuallammedicabumiayu?_t=8fLMQk9idhI&_r=1" target="_blank">
+                        <i class="bi bi-tiktok"></i>
+                    </a>
+
+                    <a href="https://www.facebook.com/allam.medicabmy?mibextid=LQQJ4d" target="_blank">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+
+                    <a href="https://www.instagram.com/allam.medica/" target="_blank">
+                        <i class="bi bi-instagram"></i>
+                    </a>
                 </div>
 
                 <!-- MITRA -->

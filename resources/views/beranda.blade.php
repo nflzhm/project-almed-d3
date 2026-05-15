@@ -324,9 +324,9 @@ body{
         </ul>
 
         <ul class="navbar-nav flex-row ms-auto">
-            <li class="nav-item"><a class="nav-link text-white p-1" href="#"><i class="bi bi-tiktok"></i></a></li>
-            <li class="nav-item"><a class="nav-link text-white p-1" href="#"><i class="bi bi-facebook"></i></a></li>
-            <li class="nav-item"><a class="nav-link text-white p-1" href="#"><i class="bi bi-instagram"></i></a></li>
+            <li class="nav-item"><a class="nav-link text-white p-1" href="https://www.tiktok.com/@rsuallammedicabumiayu?_t=8fLMQk9idhI&_r=1"><i class="bi bi-tiktok"></i></a></li>
+            <li class="nav-item"><a class="nav-link text-white p-1" href="https://www.facebook.com/allam.medicabmy?mibextid=LQQJ4d"><i class="bi bi-facebook"></i></a></li>
+            <li class="nav-item"><a class="nav-link text-white p-1" href="https://www.instagram.com/allam.medica/"><i class="bi bi-instagram"></i></a></li>
         </ul>
 
     </div>
@@ -726,42 +726,18 @@ body {
     <div class="container">
 
         <div class="row g-4">
-
             @foreach($beritaTerbaru as $item)
             <div class="col-lg-3 col-md-6 col-12">
-
                 <div class="card border-0 shadow-sm h-100 rounded-4 overflow-hidden">
 
-                    <!-- IMAGE FIX (SAMA UKURAN SEPERTI CONTOH) -->
-                    <div style="
-                        width:100%;
-                        aspect-ratio: 4 / 5;
-                        overflow:hidden;
-                        background:#f3f3f3;
-                    ">
+                    <div style="width:100%; aspect-ratio: 4/5; overflow:hidden; background:#f3f3f3;">
                         <img src="{{ asset('storage/'.$item->gambar) }}"
-                             style="
-                                width:100%;
-                                height:100%;
-                                object-fit:cover;
-                                display:block;
-                             ">
+                             style="width:100%; height:100%; object-fit:cover; display:block;">
                     </div>
 
-                    <!-- BODY -->
                     <div class="card-body d-flex flex-column text-center">
-
-                        <!-- JUDUL -->
-                        <h6 class="fw-bold mb-2">
-                            {{ $item->judul }}
-                        </h6>
-
-                        <!-- DESKRIPSI -->
-                        <p class="text-muted small mb-3">
-                            {{ Str::limit($item->deskripsi, 90) }}
-                        </p>
-
-                        <!-- BUTTON -->
+                        <h6 class="fw-bold mb-2">{{ $item->judul }}</h6>
+                        <p class="text-muted small mb-3">{{ Str::limit($item->deskripsi, 90) }}</p>
                         <div class="mt-auto">
                             <a href="{{ url('/berita/'.$item->slug) }}"
                                class="btn btn-sm"
@@ -769,41 +745,33 @@ body {
                                 Baca Selengkapnya
                             </a>
                         </div>
-
                     </div>
 
                 </div>
-
             </div>
             @endforeach
+        </div>
 
+        <!-- BUTTON LIHAT BERITA LAINNYA — dalam container yang sama -->
+        <div class="text-center mt-5">
+            <a href="/berita"
+               style="
+                    display:inline-block;
+                    padding:10px 20px;
+                    background:#1C145C;
+                    color:#fff;
+                    text-decoration:none;
+                    border-radius:20px;
+                    font-size:14px;
+                    transition:0.3s ease;
+               "
+               onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 20px rgba(0,0,0,0.15)'"
+               onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
+                Lihat Berita Lainnya
+            </a>
         </div>
 
     </div>
-</section>
-
-<!-- BUTTON LIHAT BERITA LAINNYA -->
- <section style="background:#fff; padding:50px 0;">
-<div class="text-center mt-4"
-     style="background:#fff; padding:20px 0 40px;">
-
-    <a href="/berita"
-       style="
-            display:inline-block;
-            padding:10px 20px;
-            background:#1C145C;
-            color:#fff;
-            text-decoration:none;
-            border-radius:20px;
-            font-size:14px;
-            transition:0.3s ease;
-       "
-       onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 20px rgba(0,0,0,0.15)'"
-       onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
-        Lihat Berita Lainnya
-    </a>
-
-</div>
 </section>
 
 
@@ -1323,9 +1291,19 @@ body {
 
                 <!-- SOSIAL -->
                 <div class="footer-social">
-                    <i class="bi bi-tiktok"></i>
-                    <i class="bi bi-facebook"></i>
-                    <i class="bi bi-instagram"></i>
+    
+                    <a href="https://www.tiktok.com/@rsuallammedicabumiayu?_t=8fLMQk9idhI&_r=1" target="_blank">
+                        <i class="bi bi-tiktok"></i>
+                    </a>
+
+                    <a href="https://www.facebook.com/allam.medicabmy?mibextid=LQQJ4d" target="_blank">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+
+                    <a href="https://www.instagram.com/allam.medica/" target="_blank">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+
                 </div>
 
                 <!-- MITRA -->
@@ -1586,7 +1564,7 @@ body {
 <div class="floating-bar">
 
     <!-- IGD -->
-    <a href="tel:085292224886" class="floating-item active">
+    <a href="tel:+62289430822" class="floating-item active">
         <i class="bi bi-hospital"></i>
         <span>IGD 24 JAM</span>
     </a>
