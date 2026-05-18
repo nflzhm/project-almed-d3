@@ -150,6 +150,9 @@ Route::get('/artikel/{id}', [ArtikelController::class, 'show'])
 Route::get('/download', [DownloadController::class, 'index'])
     ->name('download');
 
+Route::get('/beranda', [IklanSliderController::class, 'index'])
+    ->name('beranda');
+
 Route::get('/download/file/{id}', [DownloadController::class, 'download'])
     ->name('download.file');
 

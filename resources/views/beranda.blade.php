@@ -51,6 +51,17 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 <style>
+/* ================= FONT GOTHAM BLACK ================= */
+@font-face {
+    font-family: 'GothamBlack';
+    src: url('{{ asset('fonts/Gotham-Black.otf') }}') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'GothamBlack', sans-serif !important;
+}
 body{
     font-family:'Segoe UI',sans-serif;
     padding-top:90px;
@@ -585,16 +596,22 @@ body {
                 <div style="
                     display:flex;
                     gap:15px;
-                    padding:15px;
+                    padding:18px;
                     border:1px solid #eee;
-                    border-radius:12px;
+                    border-radius:28px;
                     align-items:center;
                     height:100%;
                     background:#fff;
                     transition:.3s;
                 "
-                onmouseover="this.style.boxShadow='0 10px 25px rgba(0,0,0,.08)'"
-                onmouseout="this.style.boxShadow='none'">
+                onmouseover="
+                    this.style.boxShadow='0 14px 35px rgba(0,0,0,.08)';
+                    this.style.transform='translateY(-4px)';
+                "
+                onmouseout="
+                    this.style.boxShadow='none';
+                    this.style.transform='translateY(0)';
+                ">
 
                     {{-- FOTO --}}
                     @if($item->foto)
@@ -603,8 +620,8 @@ body {
                             loading="lazy"
                             alt="{{ $item->nama }}"
                             style="
-                                width:90px;
-                                height:90px;
+                                width:95px;
+                                height:95px;
                                 border-radius:50%;
                                 object-fit:cover;
                                 border:3px solid #1C145C;
@@ -612,8 +629,8 @@ body {
                             ">
                     @else
                         <div style="
-                            width:90px;
-                            height:90px;
+                            width:95px;
+                            height:95px;
                             border-radius:50%;
                             background:#e2e8f0;
                             display:flex;
@@ -628,6 +645,7 @@ body {
                             {{ strtoupper(substr($item->nama,0,1)) }}
                         </div>
                     @endif
+
                     {{-- INFO --}}
                     <div style="
                         display:flex;
@@ -642,30 +660,38 @@ body {
                                 style="
                                     font-size:16px;
                                     line-height:1.4;
+                                    color:#1C145C;
                                 ">
                                 {{ $item->nama }}
                             </h5>
 
                             <small style="
-                                color:gray;
+                                color:#64748b;
                                 font-size:13px;
                             ">
                                 {{ $item->spesialis }}
                             </small>
                         </div>
 
-                        <a href="#"
+                        <a href="{{ route('jadwaldokter') }}"
                            style="
-                                margin-top:10px;
+                                margin-top:12px;
                                 display:inline-block;
-                                padding:6px 14px;
+                                padding:8px 16px;
                                 background:#1C145C;
                                 color:white;
                                 text-decoration:none;
-                                border-radius:20px;
+                                border-radius:999px;
                                 font-size:12px;
+                                font-weight:600;
                                 width:max-content;
                                 transition:.3s;
+                           "
+                           onmouseover="
+                                this.style.background='#31248f';
+                           "
+                           onmouseout="
+                                this.style.background='#1C145C';
                            ">
                             Cek Jadwal
                         </a>
@@ -687,9 +713,18 @@ body {
                         border:none;
                         background:#1C145C;
                         color:#fff;
-                        padding:12px 26px;
-                        border-radius:30px;
+                        padding:12px 28px;
+                        border-radius:999px;
                         font-weight:600;
+                        transition:.3s;
+                    "
+                    onmouseover="
+                        this.style.background='#31248f';
+                        this.style.transform='translateY(-2px)';
+                    "
+                    onmouseout="
+                        this.style.background='#1C145C';
+                        this.style.transform='translateY(0)';
                     ">
                 Lihat Dokter Lainnya
             </button>
@@ -722,7 +757,17 @@ body {
         </section>
 
 <!-- MEDIA INFORMASI -->
-<section style="background:#fff; padding:50px 0;">
+<section style="
+    padding:70px 0;
+    background: linear-gradient(
+        to bottom,
+        #ffffff 0%,
+        #fdfcf8 20%,
+        #f5f2e7 50%,
+        #fdfcf8 80%,
+        #ffffff 100%
+    );
+">
     <div class="container">
 
         <div class="row g-4">
@@ -1058,213 +1103,332 @@ body {
 
 </section>
 
-
 <style>
-/* ================= FOOTER ================= */
-.footer-rsu{
-    background:#fff;
-    color:#000;
-    padding:50px 0 20px;
-    border-top:1px solid #eee;
+/* ================= FONT GOTHAM BLACK ================= */
+@font-face {
+    font-family: 'Gotham';
+    src: url('{{ asset('fonts/Gotham-Black.otf') }}') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
 }
 
-.footer-rsu .container-fluid{
-    max-width:1350px;
+/* ================= FADE BAWAH SECTION SLIDER KE FOOTER ================= */
+.section-partner {
+    position: relative;
+    background: #ffffff;
+    padding-bottom: 0;
 }
 
-.footer-rsu .footer-logo{
-    height:50px;
-    margin-bottom:12px;
+.section-partner::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0), #ffffff);
+    pointer-events: none;
+    z-index: 1;
 }
 
-.footer-rsu .footer-title{
-    font-size:18px;
-    font-weight:700;
-    margin-bottom:10px;
-    color:#111;
+/* ================= FOOTER RSU ALLAM MEDICA ================= */
+.footer-rsu {
+    background: linear-gradient(
+        to bottom,
+        #ffffff  0%,
+        #fefefd  3%,
+        #fdfcf6  8%,
+        #fcfbf3  13%,
+        #faf8ee  20%,
+        #f7f5e8  30%,
+        #f3f0e1  45%,
+        #ede9d9  65%,
+        #e8e3d2  85%,
+        #e3deca  100%
+    );
+    color: #1C145C;
+    padding: 56px 0 0;
+    position: relative;
+    overflow: hidden;
 }
 
-.footer-rsu .footer-desc{
-    font-size:13px;
-    line-height:1.7;
-    color:#666;
-    margin-bottom:15px;
-    max-width:320px;
+.footer-rsu .footer-ornament {
+    position: absolute;
+    right: -80px;
+    bottom: -150px; /* diturunkan */
+    width: 420px;
+    height: 420px;
+    opacity: 0.07;
+    background-image: url('{{ asset('images/beranda/ornamen.png') }}');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+    z-index: 0;
 }
 
-.footer-rsu .footer-heading{
-    font-size:16px;
-    font-weight:700;
-    margin-bottom:18px;
-    color:#111;
+.footer-rsu .footer-ornament2 {
+    position: absolute;
+    left: -100px;
+    top: 40px; /* sebelumnya -80px */
+    width: 340px;
+    height: 340px;
+    opacity: 0.04;
+    background-image: url('{{ asset('images/beranda/ornamen.png') }}');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+    z-index: 0;
 }
 
-.footer-rsu ul{
-    list-style:none;
-    padding:0;
-    margin:0;
+.footer-rsu .container-fluid {
+    max-width: 1100px;
+    position: relative;
+    z-index: 1;
 }
 
-.footer-rsu ul li{
-    margin-bottom:10px;
-    font-size:13px;
+/* ================= LOGO ================= */
+.footer-rsu .footer-logo {
+    height: 50px;
+    display: block;
+    margin-bottom: 16px;
 }
 
-.footer-rsu a{
-    color:#666;
-    text-decoration:none;
-    transition:.2s ease;
+/* ================= BRAND ================= */
+.footer-rsu .footer-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1C145C;
+    margin-bottom: 8px;
 }
 
-.footer-rsu a:hover{
-    color:#1C145C;
-    padding-left:3px;
+.footer-rsu .footer-desc {
+    font-size: 13px;
+    line-height: 1.8;
+    color: #5a5480;
+    margin-bottom: 20px;
+    max-width: 290px;
 }
 
 /* ================= SOSIAL ================= */
-.footer-rsu .footer-social{
-    display:flex;
-    gap:14px;
-    margin-bottom:18px;
+.footer-rsu .footer-social {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 22px;
 }
 
-.footer-rsu .footer-social i{
-    font-size:18px;
-    color:#666;
-    transition:.2s ease;
-    cursor:pointer;
+.footer-rsu .footer-social a {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(28, 20, 92, 0.07);
+    border: 1px solid rgba(28, 20, 92, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1C145C;
+    text-decoration: none;
+    font-size: 15px;
+    transition: .2s ease;
 }
 
-.footer-rsu .footer-social i:hover{
-    color:#1C145C;
-    transform:translateY(-2px);
+.footer-rsu .footer-social a:hover {
+    background: #1C145C;
+    color: #FEFCF1;
+    transform: translateY(-2px);
 }
 
 /* ================= MITRA ================= */
-.footer-rsu .footer-mitra{
-    display:flex;
-    gap:12px;
-    align-items:center;
-    margin-top:10px;
-    flex-wrap:wrap;
+.footer-rsu .footer-mitra-label {
+    font-size: 11px;
+    color: #9994bb;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    margin-bottom: 10px;
 }
 
-.footer-rsu .footer-mitra img:nth-child(1){
-    height:35px;
+.footer-rsu .footer-mitra {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
-.footer-rsu .footer-mitra img:nth-child(2){
-    height:25px;
+.footer-rsu .footer-mitra img:nth-child(1) { height: 35px; }
+.footer-rsu .footer-mitra img:nth-child(2) { height: 26px; }
+
+/* ================= HEADING KOLOM ================= */
+.footer-rsu .footer-heading {
+    font-family: 'Gotham', 'Arial Black', sans-serif;
+    font-weight: 900;
+    font-size: 12px;
+    color: #1C145C;
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1.5px solid rgba(28, 20, 92, 0.12);
 }
 
-/* ================= CONTACT ================= */
-.footer-rsu .footer-contact p{
-    color:#666;
-    font-size:13px;
-    margin-bottom:14px;
-    line-height:1.7;
-    display:flex;
-    align-items:flex-start;
-    gap:10px;
+/* ================= LINKS ================= */
+.footer-rsu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-.footer-rsu hr{
-    border-color:#ddd;
-    margin:25px 0 15px;
+.footer-rsu ul li {
+    margin-bottom: 9px;
 }
 
-.footer-rsu .footer-copy{
-    font-size:13px;
-    color:#666;
+.footer-rsu a {
+    color: #5a5480;
+    text-decoration: none;
+    font-size: 13.5px;
+    transition: .2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
 }
 
-/* ================= DESKTOP SPACING ================= */
-.footer-rsu .footer-links{
-    padding-left:20px;
+.footer-rsu ul li a::before {
+    content: '›';
+    color: #1C145C;
+    opacity: .4;
+    font-size: 15px;
+    line-height: 1;
 }
 
-.footer-rsu .footer-contact{
-    padding-left:0;
-    margin-left:-40px;
+.footer-rsu a:hover {
+    color: #1C145C;
+    padding-left: 3px;
+}
+
+/* ================= KONTAK ================= */
+.footer-rsu .footer-contact-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    margin-bottom: 13px;
+}
+
+.footer-rsu .footer-contact-icon {
+    width: 33px;
+    height: 33px;
+    border-radius: 8px;
+    background: rgba(28, 20, 92, 0.07);
+    border: 1px solid rgba(28, 20, 92, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #1C145C;
+    flex-shrink: 0;
+}
+
+.footer-rsu .footer-contact-text {
+    font-size: 13px;
+    color: #5a5480;
+    line-height: 1.65;
+    padding-top: 4px;
+}
+
+/* ================= DIVIDER ================= */
+.footer-rsu hr {
+    height: 1px;
+    background: linear-gradient(90deg,
+        rgba(28,20,92,0) 0%,
+        rgba(28,20,92,0.12) 30%,
+        rgba(28,20,92,0.12) 70%,
+        rgba(28,20,92,0) 100%
+    );
+    border: none;
+    margin: 36px 0 0;
+}
+
+/* ================= BOTTOM BAR ================= */
+.footer-rsu .footer-bottom {
+    background: rgba(28, 20, 92, 0.05);
+    padding: 15px 36px;
+    position: relative;
+    z-index: 1;
+}
+
+.footer-rsu .footer-copy {
+    font-size: 12.5px;
+    color: #9994bb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.footer-rsu .footer-copy-badge {
+    background: rgba(28, 20, 92, 0.06);
+    border: 1px solid rgba(28, 20, 92, 0.12);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 11.5px;
+    color: #7a74a0;
+    white-space: nowrap;
+}
+
+.footer-rsu .footer-accent-dot {
+    display: inline-block;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #1C145C;
+    opacity: .25;
+    margin: 0 8px;
+    vertical-align: middle;
 }
 
 /* ================= TABLET ================= */
-@media (max-width: 991px){
-
-    .footer-rsu{
-        padding:45px 0 20px;
+@media (max-width: 991px) {
+    .footer-rsu {
+        padding: 45px 0 0;
     }
 
-    .footer-rsu .row > div{
-        margin-bottom:30px;
+    .footer-rsu .row > div {
+        margin-bottom: 28px;
     }
 
-    .footer-rsu .footer-title{
-        font-size:17px;
-    }
-
-    .footer-rsu .footer-heading{
-        font-size:15px;
-    }
-
-    .footer-rsu .footer-desc{
-        max-width:100%;
-    }
-
-    .footer-rsu .footer-contact{
-        margin-left:0;
-    }
-
-    .footer-rsu .footer-links{
-        padding-left:0;
+    .footer-rsu .footer-desc {
+        max-width: 100%;
     }
 }
 
 /* ================= MOBILE ================= */
-@media (max-width: 767px){
-
-    .footer-rsu{
-        text-align:left;
-        padding:40px 0 20px;
+@media (max-width: 767px) {
+    .footer-rsu {
+        padding: 40px 0 0;
     }
 
-    .footer-rsu .container-fluid{
-        padding-left:20px !important;
-        padding-right:20px !important;
+    .footer-rsu .container-fluid {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
     }
 
-    .footer-rsu .row{
-        gap:5px;
+    .footer-rsu .footer-social,
+    .footer-rsu .footer-mitra {
+        justify-content: flex-start;
     }
 
-    .footer-rsu .footer-social{
-        justify-content:flex-start;
+    .footer-rsu .footer-copy {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
     }
 
-    .footer-rsu .footer-mitra{
-        justify-content:flex-start;
+    .footer-rsu .footer-bottom {
+        padding: 15px 20px;
     }
 
-    .footer-rsu .footer-contact p{
-        justify-content:flex-start;
-        text-align:left;
-    }
-
-    .footer-rsu .footer-copy{
-        text-align:left;
-    }
-
-    .footer-rsu .footer-desc{
-        margin-left:0;
-        margin-right:0;
-    }
-
-    .footer-rsu .footer-contact{
-        margin-left:0;
-    }
-
-    .footer-rsu a:hover{
-        padding-left:0;
+    .footer-rsu a:hover {
+        padding-left: 0;
     }
 }
 </style>
@@ -1272,15 +1436,19 @@ body {
 <!-- FOOTER -->
 <footer class="footer-rsu">
 
+    {{-- Ornamen watermark --}}
+    <div class="footer-ornament"></div>
+    <div class="footer-ornament2"></div>
+
     <div class="container-fluid px-lg-5 px-4">
 
         <div class="row justify-content-between">
 
-            <!-- LOGO -->
+            <!-- BRAND / LOGO -->
             <div class="col-lg-4 col-md-6">
 
                 <img src="{{ asset('images/beranda/logo-almed.png') }}"
-                     class="footer-logo">
+                     class="footer-logo" alt="Logo RSU Allam Medica">
 
                 <h5 class="footer-title">RSU Allam Medica Bumiayu</h5>
 
@@ -1291,38 +1459,33 @@ body {
 
                 <!-- SOSIAL -->
                 <div class="footer-social">
-    
-                    <a href="https://www.tiktok.com/@rsuallammedicabumiayu?_t=8fLMQk9idhI&_r=1" target="_blank">
+                    <a href="https://www.tiktok.com/@rsuallammedicabumiayu?_t=8fLMQk9idhI&_r=1" target="_blank" title="TikTok">
                         <i class="bi bi-tiktok"></i>
                     </a>
-
-                    <a href="https://www.facebook.com/allam.medicabmy?mibextid=LQQJ4d" target="_blank">
+                    <a href="https://www.facebook.com/allam.medicabmy?mibextid=LQQJ4d" target="_blank" title="Facebook">
                         <i class="bi bi-facebook"></i>
                     </a>
-
-                    <a href="https://www.instagram.com/allam.medica/" target="_blank">
+                    <a href="https://www.instagram.com/allam.medica/" target="_blank" title="Instagram">
                         <i class="bi bi-instagram"></i>
                     </a>
-
                 </div>
 
                 <!-- MITRA -->
-                <small style="color:#666;">Akreditasi & Mitra</small>
-
+                <div class="footer-mitra-label">Akreditasi & Mitra</div>
                 <div class="footer-mitra">
-                    <img src="{{ asset('images/beranda/paripurna.png') }}">
-                    <img src="{{ asset('images/beranda/bpjs.png') }}">
+                    <img src="{{ asset('images/beranda/paripurna.png') }}" alt="Akreditasi Paripurna">
+                    <img src="{{ asset('images/beranda/bpjs.png') }}" alt="BPJS Kesehatan">
                 </div>
 
             </div>
 
-            <!-- TAUTAN -->
-            <div class="col-lg-2 col-md-6 footer-links">
+            <!-- TAUTAN CEPAT -->
+            <div class="col-lg-2 col-md-6">
 
                 <h6 class="footer-heading">Tautan Cepat</h6>
 
                 <ul>
-                    <li><a href="beranda">Beranda</a></li>
+                    <li><a href="{{ route('beranda') }}">Beranda</a></li>
                     <li><a href="layanan">Layanan</a></li>
                     <li><a href="artikel">Artikel</a></li>
                     <li><a href="download">Download</a></li>
@@ -1333,7 +1496,7 @@ body {
             </div>
 
             <!-- MENU -->
-            <div class="col-lg-2 col-md-6 footer-links">
+            <div class="col-lg-2 col-md-6">
 
                 <h6 class="footer-heading">Menu</h6>
 
@@ -1345,30 +1508,44 @@ body {
 
             </div>
 
-            <!-- HUBUNGI -->
-            <div class="col-lg-4 col-md-12 footer-contact">
+            <!-- HUBUNGI KAMI -->
+            <div class="col-lg-3 col-md-12">
 
                 <h6 class="footer-heading">Hubungi Kami</h6>
 
-                <p>
-                    <i class="bi bi-telephone-fill"></i>
-                    <span>(0289) 430822</span>
-                </p>
+                <div class="footer-contact-row">
+                    <div class="footer-contact-icon">
+                        <i class="bi bi-telephone-fill"></i>
+                    </div>
+                    <div class="footer-contact-text">(0289) 430822</div>
+                </div>
 
-                <p>
-                    <i class="bi bi-envelope-fill"></i>
-                    <span>allam.medica@yahoo.co.id</span>
-                </p>
+                <div class="footer-contact-row">
+                    <div class="footer-contact-icon">
+                        <i class="bi bi-envelope-fill"></i>
+                    </div>
+                    <div class="footer-contact-text">allam.medica@yahoo.co.id</div>
+                </div>
 
-                <p>
-                    <i class="bi bi-clock-fill"></i>
-                    <span>IGD: 24 Jam | Rawat Jalan: Sen - Sab 07.00 – 21.00</span>
-                </p>
+                <div class="footer-contact-row">
+                    <div class="footer-contact-icon">
+                        <i class="bi bi-clock-fill"></i>
+                    </div>
+                    <div class="footer-contact-text">
+                        IGD: 24 Jam<br>
+                        Rawat Jalan: Sen – Sab 07.00 – 21.00
+                    </div>
+                </div>
 
-                <p>
-                    <i class="bi bi-geo-alt-fill"></i>
-                    <span>Jl. Pangeran Diponegoro No.609, Bumiayu, Brebes</span>
-                </p>
+                <div class="footer-contact-row">
+                    <div class="footer-contact-icon">
+                        <i class="bi bi-geo-alt-fill"></i>
+                    </div>
+                    <div class="footer-contact-text">
+                        Jl. Pangeran Diponegoro No.609,<br>
+                        Bumiayu, Brebes
+                    </div>
+                </div>
 
             </div>
 
@@ -1376,13 +1553,26 @@ body {
 
         <hr>
 
-        <div class="footer-copy">
-            © 2026 RSU Allam Medica. Hak Cipta Dilindungi.
-        </div>
+    </div>
 
+    <!-- BOTTOM BAR -->
+    <div class="footer-bottom">
+        <div class="container-fluid px-lg-5 px-4">
+            <div class="footer-copy">
+                <span>
+                    © 2026 RSU Allam Medica
+                    <span class="footer-accent-dot"></span>
+                    Hak Cipta Dilindungi
+                </span>
+                <span class="footer-copy-badge">Melayani dengan Sepenuh Hati</span>
+            </div>
+        </div>
     </div>
 
 </footer>
+
+
+
 
 
 <!-- Bootstrap JS -->
