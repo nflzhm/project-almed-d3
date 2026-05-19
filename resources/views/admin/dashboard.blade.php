@@ -248,7 +248,7 @@
 ================================================================ --}}
 <div class="dash-greeting">
     <div class="greeting-text" style="position:relative;z-index:1;">
-        <div class="hello">Selamat datang kembali 👋</div>
+        <div class="hello">Selamat datang kembali</div>
         <div class="name">{{ auth()->user()->name ?? 'Administrator' }}</div>
         <div class="sub">
             Berikut ringkasan aktivitas terkini Klinik Allam Medica hari ini.

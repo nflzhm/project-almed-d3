@@ -479,15 +479,7 @@
             <div class="jdw-stat-lbl">Praktik Hari Ini</div>
         </div>
     </div>
-    <div class="jdw-stat">
-        <div class="jdw-stat-icon" style="background:#ede9fe;color:#7c3aed;">
-            <i class="fa-solid fa-clock"></i>
-        </div>
-        <div>
-            <div class="jdw-stat-val">{{ $totalSesi ?? 8 }}</div>
-            <div class="jdw-stat-lbl">Total Sesi</div>
-        </div>
-    </div>
+    
 </div>
 
 {{-- ================================================================
@@ -855,13 +847,13 @@ $dokterList = $dokterList ?? [];
                             <option value="Poli Gigi">Poli Gigi</option>
                             <option value="Poli Orthodonti">Poli Orthodonti</option>
                             <option value="Poli Mata">Poli Mata</option>
-                            <option value="Poli THT">Poli THT</option>
+                            <option value="Poli Spesialis THT">Poli Spesialis THT</option>
                             <option value="Poli Kulit">Poli Kulit</option>
                             <option value="Poli Jantung">Poli Jantung</option>
                             <option value="Poli Saraf">Poli Saraf</option>
                             <option value="Poli Bedah">Poli Bedah</option>
                             <option value="Poli Dalam">Poli Penyakit Dalam</option>
-                            <option value="Laboratorium">Laboratorium</option>
+                            <option value="Poli Bedah">Poli Bedah</option>
                         </select>
                     </div>
 

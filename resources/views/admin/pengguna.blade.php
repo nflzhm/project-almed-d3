@@ -424,24 +424,29 @@
             <div class="pgn-stat-lbl">Total Pengguna</div>
         </div>
     </div>
+
+    <!-- ADMIN -->
     <div class="pgn-stat">
-        <div class="pgn-stat-icon" style="background:#ede9fe;color:#6d28d9;">
-            <i class="fa-solid fa-user-shield"></i>
+        <div class="pgn-stat-icon" style="background:#d1fae5;color:#059669;">
+            <i class="fa-solid fa-user"></i>
         </div>
         <div>
             <div class="pgn-stat-val">{{ $totalAdmin ?? 3 }}</div>
             <div class="pgn-stat-lbl">Admin</div>
         </div>
     </div>
+
+    <!-- SUPER ADMIN -->
     <div class="pgn-stat">
-        <div class="pgn-stat-icon" style="background:#d1fae5;color:#059669;">
-            <i class="fa-solid fa-user"></i>
+        <div class="pgn-stat-icon" style="background:#ede9fe;color:#6d28d9;">
+            <i class="fa-solid fa-user-shield"></i>
         </div>
         <div>
             <div class="pgn-stat-val">{{ $totalSuperAdmin ?? 9 }}</div>
             <div class="pgn-stat-lbl">Super Admin</div>
         </div>
     </div>
+
     <div class="pgn-stat">
         <div class="pgn-stat-icon" style="background:#fef3c7;color:#d97706;">
             <i class="fa-solid fa-calendar-plus"></i>
