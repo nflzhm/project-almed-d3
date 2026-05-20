@@ -9,32 +9,45 @@ use App\Models\Dokter;
 
 class JadwalController extends Controller
 {
+    // ── Helper: tentukan sesi berdasarkan jam_mulai ──────────────────
+    private function getNote(string $jamMulai): string
+    {
+        $hour = (int) explode(':', $jamMulai)[0];
+
+        return match(true) {
+            $hour >= 5  && $hour < 12 => 'Pagi',
+            $hour >= 12 && $hour < 15 => 'Siang',
+            $hour >= 15 && $hour < 19 => 'Sore',
+            default                   => 'Malam',
+        };
+    }
+
     public function index()
-{
-    $dokterList = Dokter::with('jadwal')->get();
+    {
+        $dokterList = Dokter::with('jadwal')->get();
 
-    $totalJadwal = Jadwal::count();
-    $totalDokterAktif = Dokter::has('jadwal')->count();
+        $totalJadwal       = Jadwal::count();
+        $totalDokterAktif  = Dokter::has('jadwal')->count();
 
-    $hariIni = [
-        'Sunday'    => 'Minggu',
-        'Monday'    => 'Senin',
-        'Tuesday'   => 'Selasa',
-        'Wednesday' => 'Rabu',
-        'Thursday'  => 'Kamis',
-        'Friday'    => 'Jumat',
-        'Saturday'  => 'Sabtu',
-    ][now()->format('l')];
+        $hariIni = [
+            'Sunday'    => 'Minggu',
+            'Monday'    => 'Senin',
+            'Tuesday'   => 'Selasa',
+            'Wednesday' => 'Rabu',
+            'Thursday'  => 'Kamis',
+            'Friday'    => 'Jumat',
+            'Saturday'  => 'Sabtu',
+        ][now()->format('l')];
 
-    $jadwalHariIni = Jadwal::where('hari', $hariIni)->count();
+        $jadwalHariIni = Jadwal::where('hari', $hariIni)->count();
 
-    return view('admin.jadwal', compact(
-        'dokterList',
-        'totalJadwal',
-        'totalDokterAktif',
-        'jadwalHariIni'
-    ));
-}
+        return view('admin.jadwal', compact(
+            'dokterList',
+            'totalJadwal',
+            'totalDokterAktif',
+            'jadwalHariIni'
+        ));
+    }
 
     public function store(Request $request)
     {
@@ -47,18 +60,12 @@ class JadwalController extends Controller
         ]);
 
         foreach ($request->hari as $hari) {
-
             Jadwal::create([
                 'dokter_id' => $request->dokter_id,
                 'hari'      => $hari,
-
-                // masuk ke kolom klinik
                 'klinik'    => $request->poli,
-
-                // gabung jam
                 'jam'       => $request->jam_mulai . ' - ' . $request->jam_selesai,
-
-                'note'      => null,
+                'note'      => $this->getNote($request->jam_mulai), // ← otomatis
             ]);
         }
 
@@ -76,21 +83,17 @@ class JadwalController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'poli'         => 'required|string',
-            'jam_mulai'    => 'required',
-            'jam_selesai'  => 'required',
+            'poli'        => 'required|string',
+            'jam_mulai'   => 'required',
+            'jam_selesai' => 'required',
         ]);
 
         $jadwal = Jadwal::findOrFail($id);
 
         $jadwal->update([
             'klinik' => $request->poli,
-
-            'jam' => $request->jam_mulai .
-                     ' - ' .
-                     $request->jam_selesai,
-
-            'note' => null,
+            'jam'    => $request->jam_mulai . ' - ' . $request->jam_selesai,
+            'note'   => $this->getNote($request->jam_mulai), // ← otomatis
         ]);
 
         return redirect()->back()
@@ -100,7 +103,6 @@ class JadwalController extends Controller
     public function destroy($id)
     {
         $jadwal = Jadwal::findOrFail($id);
-
         $jadwal->delete();
 
         return redirect()->back()

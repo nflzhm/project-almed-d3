@@ -51,7 +51,6 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 <style>
-/* ================= FONT GOTHAM BLACK ================= */
 @font-face {
     font-family: 'GothamBlack';
     src: url('{{ asset('fonts/Gotham-Black.otf') }}') format('opentype');
@@ -62,371 +61,698 @@ document.addEventListener('DOMContentLoaded', function () {
 h1, h2, h3, h4, h5 {
     font-family: 'GothamBlack', sans-serif !important;
 }
-body{
-    font-family:'Segoe UI',sans-serif;
-    padding-top:90px;
-    background:#f5f7fb;
-    overflow-x:hidden;
+
+/* ========================================
+   BASE
+======================================== */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f5f7fb;
+    overflow-x: hidden;
+    padding-top: calc(38px + 70px);
 }
 
-/* ================= TOP BAR ================= */
-.topbar{
-    background:#1C145C;
-    position:fixed;
-    top:0;
-    width:100%;
-    z-index:9999;
-    height:40px;
-    display:flex;
-    align-items:center;
+/* ========================================
+   TOPBAR
+======================================== */
+.topbar {
+    background: linear-gradient(
+        90deg,
+        #1C145C 0%,
+        #34258d 50%,
+        #1C145C 100%
+    );
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 38px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
 }
 
-.topbar .container{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+.topbar .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.topbar .navbar-nav{
-    display:flex;
-    flex-direction:row;
-    align-items:center;
-    margin:0;
-    padding:0;
+.topbar-info {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: nowrap;
 }
 
-.topbar .nav-item{
-    list-style:none;
+.topbar-info span {
+    color: rgba(255, 255, 255, .88);
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
 }
 
-.topbar span{
-    color:#fff;
-    display:flex;
-    align-items:center;
-    gap:6px;
-    font-size:13px;
-    padding:0 10px;
-    white-space:nowrap;
+.topbar-info i {
+    font-size: 11px;
+    opacity: .8;
 }
 
-.topbar .nav-link{
-    color:#fff !important;
-    padding:0 6px !important;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    opacity:.9;
-    transition:.3s;
+.topbar-social {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
-.topbar .nav-link:hover{
-    opacity:1;
-    transform:translateY(-1px);
+.topbar-social a {
+    color: rgba(255, 255, 255, .75);
+    font-size: 14px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: .2s;
 }
 
-/* ================= NAVBAR ================= */
-.navbar-main{
-    background:#fff;
-    border-radius:0 0 20px 20px;
-    box-shadow:0 4px 12px rgba(0,0,0,0.08);
-    position:fixed;
-    top:40px;
-    width:100%;
-    z-index:9998;
-    padding:10px 0;
+.topbar-social a:hover {
+    color: #fff;
+    transform: translateY(-1px);
 }
 
-/* ================= NAV MENU ================= */
-.navbar-main .nav-gap{
-    gap:18px;
+/* ========================================
+   FLOAT WRAP
+======================================== */
+.navbar-float-wrap {
+    position: fixed;
+    top: 38px;
+    left: 0;
+    width: 100%;
+    z-index: 9998;
+    padding: 12px 20px;
 }
 
-.navbar-main .nav-link{
-    color:#334155 !important;
-    font-weight:500;
-    transition:.3s;
+/* ========================================
+   NAVBAR FLOAT — GLASS
+======================================== */
+.navbar-float {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 14px 10px 22px;
+    border-radius: 60px;
+
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(22px) saturate(180%);
+    -webkit-backdrop-filter: blur(22px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    box-shadow:
+        0 8px 32px rgba(15, 23, 42, .08),
+        inset 0 1px 0 rgba(255, 255, 255, .22);
+
+    transition: background .3s ease, border .3s ease, box-shadow .3s ease;
 }
 
-.navbar-main .nav-link:hover{
-    color:#1C145C !important;
+.navbar-float.scrolled {
+    background: rgba(255, 255, 255, .14);
+    backdrop-filter: blur(26px) saturate(200%);
+    -webkit-backdrop-filter: blur(26px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, .22);
+    box-shadow:
+        0 10px 40px rgba(15, 23, 42, .10),
+        inset 0 1px 0 rgba(255, 255, 255, .28);
 }
 
-/* ================= DESKTOP DROPDOWN ================= */
-@media (min-width:992px){
+.navbar-float::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, .20),
+        rgba(255, 255, 255, .02)
+    );
+    pointer-events: none;
+}
 
-    .navbar-main .dropdown-menu{
-        display:block;
-        opacity:0;
-        visibility:hidden;
-        transform:translateY(10px);
-        transition:all .3s ease;
+/* ========================================
+   LOGO
+======================================== */
+.nav-logo {
+    position: relative;
+    z-index: 2;
+}
 
-        border:none;
-        border-radius:16px;
-        padding:10px;
-        min-width:220px;
+.navbar-float .nav-logo img {
+    height: 38px;
+    object-fit: contain;
+    display: block;
+}
 
-        box-shadow:0 10px 25px rgba(0,0,0,0.08);
-    }
+/* ========================================
+   NAV LINKS
+======================================== */
+.nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    gap: 2px;
+    position: relative;
+    z-index: 2;
+}
 
-    .navbar-main .nav-item.dropdown:hover .dropdown-menu{
-        opacity:1;
-        visibility:visible;
-        transform:translateY(0);
-    }
+.nav-link-pill {
+    padding: 8px 15px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #0f172a;
+    text-decoration: none;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: background .2s, color .2s, transform .2s;
+}
 
-    .navbar-main .dropdown-item{
-        border-radius:10px;
-        padding:10px 14px;
-        transition:.25s;
-    }
+.nav-link-pill:hover {
+    background: rgba(255, 255, 255, .25);
+    color: #1C145C;
+    transform: translateY(-1px);
+}
 
-    .navbar-main .dropdown-item:hover{
-        background:#f1f5ff;
-        color:#1C145C;
+.nav-link-pill.active {
+    background: rgba(255, 255, 255, .35);
+    color: #1C145C;
+    font-weight: 600;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .4),
+        0 4px 10px rgba(255, 255, 255, .12);
+}
+
+/* ========================================
+   DROPDOWN
+======================================== */
+.drop-wrap {
+    position: relative;
+}
+
+.drop-menu {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%) translateY(8px);
+    min-width: 180px;
+    padding: 8px;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, .70);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, .35);
+    box-shadow: 0 12px 35px rgba(15, 23, 42, .12);
+    opacity: 0;
+    visibility: hidden;
+    transition: .22s ease;
+    z-index: 100;
+}
+
+.drop-wrap:hover .drop-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.drop-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border-radius: 14px;
+    font-size: 14px;
+    color: #334155;
+    text-decoration: none;
+    transition: .18s;
+}
+
+.drop-item:hover {
+    background: rgba(255, 255, 255, .55);
+    color: #1C145C;
+}
+
+.chevron {
+    font-size: 11px;
+    opacity: .6;
+    transition: .25s;
+}
+
+.drop-wrap:hover .chevron {
+    transform: rotate(180deg);
+}
+
+/* ========================================
+   CTA BUTTON
+======================================== */
+.nav-cta {
+    position: relative;
+    z-index: 2;
+}
+
+.btn-kontak {
+    padding: 10px 22px;
+    border-radius: 50px;
+    background: #1C145C;
+    color: #fff !important;
+    text-decoration: none !important;
+    font-size: 14px;
+    font-weight: 600;
+    display: inline-block;
+    border: none;
+    box-shadow: 0 8px 20px rgba(28, 20, 92, .25);
+    transition: .2s;
+}
+
+.btn-kontak:hover {
+    background: #2a1e8a;
+    transform: translateY(-1px);
+}
+
+/* ========================================
+   BURGER
+======================================== */
+.nav-burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    padding: 6px;
+    position: relative;
+    z-index: 1000;
+}
+
+.nav-burger span {
+    width: 22px;
+    height: 2px;
+    background: #1C145C;
+    border-radius: 2px;
+    display: block;
+    transition: .3s;
+}
+
+.nav-burger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.nav-burger.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-burger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ========================================
+   MOBILE MENU — SOLID GLASS
+======================================== */
+.mobile-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 0;
+    right: 0;
+    padding: 10px;
+    border-radius: 26px;
+
+    /* SOLID — nav link terbaca jelas */
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 14px 40px rgba(15, 23, 42, .15);
+
+    z-index: 999;
+}
+
+.mobile-menu.open {
+    display: block;
+}
+
+.m-link {
+    display: block;
+    padding: 13px 16px;
+    border-radius: 14px;
+    color: #1e293b;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    transition: .18s;
+}
+
+.m-link:hover,
+.m-link.active {
+    background: rgba(28, 20, 92, 0.07);
+    color: #1C145C;
+}
+
+.m-group-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #94a3b8;
+    letter-spacing: .8px;
+    text-transform: uppercase;
+    padding: 12px 16px 6px;
+}
+
+.m-sub {
+    padding-left: 6px;
+}
+
+.mobile-menu .btn-kontak {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    border-radius: 16px;
+    box-sizing: border-box;
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+@media (max-width: 1100px) {
+    .nav-link-pill {
+        padding: 7px 11px;
+        font-size: 13px;
     }
 }
 
-/* ================= MOBILE ================= */
-@media (max-width:991px){
-
-    body{
-        padding-top:100px;
+@media (max-width: 991px) {
+    body {
+        padding-top: calc(38px + 64px);
     }
 
-    /* TOPBAR */
-    .topbar{
-        height:40px;
+    .navbar-float-wrap {
+        padding: 10px 12px;
     }
 
-    .topbar .container{
-        flex-direction:row;
-        justify-content:space-between;
-        align-items:center;
+    .navbar-float {
+        border-radius: 26px;
+        padding: 10px 14px;
     }
 
-    .topbar span{
-        font-size:11px;
-        padding:0 4px;
+    .nav-links,
+    .nav-cta {
+        display: none;
     }
 
-    /* NAVBAR */
-    .navbar-main{
-        top:40px;
-        border-radius:0 0 18px 18px;
+    .nav-burger {
+        display: flex;
     }
 
-    /* BOX MENU */
-    .navbar-main .navbar-collapse{
-        background:#fff;
-        margin-top:15px;
-        border-radius:18px;
-        padding:15px;
-        box-shadow:0 8px 25px rgba(0,0,0,0.08);
+    .topbar-info span {
+        font-size: 10px;
     }
 
-    /* MENU */
-    .navbar-main .navbar-nav.nav-gap{
-        gap:0 !important;
-        width:100%;
+    .topbar-social {
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .topbar .container {
+        gap: 8px;
     }
 
-    .navbar-main .navbar-nav .nav-item{
-        width:100%;
-        border-bottom:1px solid #eef2f7;
+    .topbar-info {
+        gap: 8px;
     }
 
-    .navbar-main .navbar-nav .nav-item:last-child{
-        border-bottom:none;
+    .topbar-info span {
+        font-size: 9px;
     }
 
-    .navbar-main .navbar-nav .nav-link{
-        padding:14px 5px;
-        font-size:15px;
+    .topbar-social a {
+        font-size: 12px;
     }
 
-    /* DROPDOWN */
-    .navbar-main .dropdown-toggle{
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-    }
-
-    .navbar-main .dropdown-menu{
-        position:static !important;
-        display:block !important;
-
-        border:none;
-        background:#f8fafc;
-        border-radius:14px;
-
-        margin-top:5px;
-        margin-bottom:10px;
-
-        padding:0;
-
-        max-height:0;
-        overflow:hidden;
-
-        opacity:0;
-        visibility:hidden;
-
-        transform:translateY(-5px);
-
-        transition:
-            max-height .35s ease,
-            opacity .3s ease,
-            transform .3s ease,
-            padding .3s ease;
-    }
-
-    .navbar-main .dropdown-menu.show{
-        max-height:400px;
-        opacity:1;
-        visibility:visible;
-        transform:translateY(0);
-        padding:8px;
-    }
-
-    .navbar-main .dropdown-item{
-        padding:12px 14px;
-        border-radius:10px;
-        font-size:14px;
-        color:#334155;
-        transition:.25s;
-    }
-
-    .navbar-main .dropdown-item:hover{
-        background:#e8eeff;
-        color:#1C145C;
-        padding-left:18px;
-    }
-
-    .navbar-main .dropdown-toggle::after{
-        transition:.3s ease;
-    }
-
-    .navbar-main .dropdown-toggle.show::after{
-        transform:rotate(180deg);
+    .navbar-float {
+        border-radius: 22px;
     }
 }
 </style>
 
-<body>
 
-<!-- ================= TOP BAR ================= -->
-<nav class="navbar navbar-dark topbar">
+<!-- ========================================
+     TOPBAR
+======================================== -->
+<div class="topbar">
     <div class="container">
 
-        <ul class="navbar-nav flex-row" style="font-size:13px;">
-            <li class="nav-item">
-                <span style="color:#fff;padding:4px 10px;">
-                    <i class="bi bi-telephone-fill" style="margin-right:5px;font-size:12px;"></i>
-                    0834325542
-                </span>
-            </li>
+        <div class="topbar-info">
+            <span>
+                <i class="bi bi-telephone-fill"></i>
+                0834325542
+            </span>
 
-            <li class="nav-item">
-                <span style="color:#fff;padding:4px 10px;">
-                    <i class="bi bi-envelope-fill" style="margin-right:5px;font-size:12px;"></i>
-                    allammedica@gmail.com
-                </span>
-            </li>
-        </ul>
+            <span>
+                <i class="bi bi-envelope-fill"></i>
+                allammedica@gmail.com
+            </span>
+        </div>
 
-        <ul class="navbar-nav flex-row ms-auto">
-            <li class="nav-item"><a class="nav-link text-white p-1" href="https://www.tiktok.com/@rsuallammedicabumiayu?_t=8fLMQk9idhI&_r=1"><i class="bi bi-tiktok"></i></a></li>
-            <li class="nav-item"><a class="nav-link text-white p-1" href="https://www.facebook.com/allam.medicabmy?mibextid=LQQJ4d"><i class="bi bi-facebook"></i></a></li>
-            <li class="nav-item"><a class="nav-link text-white p-1" href="https://www.instagram.com/allam.medica/"><i class="bi bi-instagram"></i></a></li>
-        </ul>
+        <div class="topbar-social">
+            <a href="https://www.tiktok.com/@rsuallammedicabumiayu?_t=8fLMQk9idhI&_r=1"
+               target="_blank">
+                <i class="bi bi-tiktok"></i>
+            </a>
 
-    </div>
-</nav>
+            <a href="https://www.facebook.com/allam.medicabmy?mibextid=LQQJ4d"
+               target="_blank">
+                <i class="bi bi-facebook"></i>
+            </a>
 
-<!-- ================= NAVBAR ================= -->
-<nav class="navbar navbar-expand-lg navbar-light navbar-main">
-
-    <div class="container">
-
-        <!-- LOGO -->
-        <a class="navbar-brand" href="#">
-            <img src="{{ asset('images/beranda/logo-almed.png') }}" height="40">
-        </a>
-
-        <!-- BURGER -->
-        <button class="navbar-toggler border-0 shadow-none" type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#mainMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!-- MENU -->
-        <div class="collapse navbar-collapse" id="mainMenu">
-
-            <ul class="navbar-nav ms-auto nav-gap">
-
-                <li class="nav-item">
-                    <a href="/" class="nav-link">Beranda</a>
-                </li>
-
-                <li class="nav-item dropdown">
-
-                    <a class="nav-link dropdown-toggle"
-                       href="#"
-                       data-bs-toggle="dropdown">
-                        Menu
-                    </a>
-
-                    <ul class="dropdown-menu">
-
-                        <li>
-                            <a class="dropdown-item" href="{{ url('/karir') }}">
-                                Karir
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item" href="{{ url('/berita') }}">
-                                Berita
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item" href="{{ url('/video') }}">
-                                Video
-                            </a>
-                        </li>
-
-                    </ul>
-
-                </li>
-
-                <li class="nav-item">
-                    <a href="/layanan" class="nav-link">Layanan</a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="/artikel" class="nav-link">Artikel</a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="/download" class="nav-link">Download</a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="/tentang" class="nav-link">Tentang Kami</a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="/kontak" class="nav-link">Kontak</a>
-                </li>
-
-            </ul>
-
+            <a href="https://www.instagram.com/allam.medica/"
+               target="_blank">
+                <i class="bi bi-instagram"></i>
+            </a>
         </div>
 
     </div>
-</nav>
+</div>
+
+
+<!-- ========================================
+     FLOATING NAVBAR
+======================================== -->
+<div class="navbar-float-wrap">
+
+    <nav class="navbar-float" id="mainNavbar">
+
+        <!-- LOGO -->
+        <a href="/" class="nav-logo">
+            <img src="{{ asset('images/beranda/logo-almed.png') }}" alt="RSU Allam Medica">
+        </a>
+
+        <!-- DESKTOP MENU -->
+        <div class="nav-links">
+
+            <a href="/"
+               class="nav-link-pill {{ request()->is('/') ? 'active' : '' }}">
+                Beranda
+            </a>
+
+            <div class="drop-wrap">
+
+                <a href="#"
+                   class="nav-link-pill {{ request()->is('karir*','berita*','video*') ? 'active' : '' }}">
+                    Menu
+                    <i class="bi bi-chevron-down chevron"></i>
+                </a>
+
+                <div class="drop-menu">
+
+                    <a href="{{ url('/karir') }}" class="drop-item">
+                        <i class="bi bi-briefcase"></i>
+                        Karir
+                    </a>
+
+                    <a href="{{ url('/berita') }}" class="drop-item">
+                        <i class="bi bi-newspaper"></i>
+                        Berita
+                    </a>
+
+                    <a href="{{ url('/video') }}" class="drop-item">
+                        <i class="bi bi-play-circle"></i>
+                        Video
+                    </a>
+
+                </div>
+            </div>
+
+            <a href="/layanan"
+               class="nav-link-pill {{ request()->is('layanan*') ? 'active' : '' }}">
+                Layanan
+            </a>
+
+            <a href="/artikel"
+               class="nav-link-pill {{ request()->is('artikel*') ? 'active' : '' }}">
+                Artikel
+            </a>
+
+            <a href="/download"
+               class="nav-link-pill {{ request()->is('download*') ? 'active' : '' }}">
+                Download
+            </a>
+
+            <a href="/tentang"
+               class="nav-link-pill {{ request()->is('tentang*') ? 'active' : '' }}">
+                Tentang Kami
+            </a>
+
+            <a href="/mutu"
+               class="nav-link-pill {{ request()->is('mutu*') ? 'active' : '' }}">
+                Mutu
+            </a>
+
+        </div>
+
+        <!-- CTA -->
+        <div class="nav-cta">
+            <a href="/kontak" class="btn-kontak">
+                Kontak
+            </a>
+        </div>
+
+        <!-- BURGER -->
+        <button class="nav-burger"
+                id="navBurger"
+                aria-label="Toggle menu">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+        <!-- MOBILE MENU -->
+        <div class="mobile-menu" id="mobileMenu">
+
+            <a href="/"
+               class="m-link {{ request()->is('/') ? 'active' : '' }}">
+                Beranda
+            </a>
+
+            <div class="m-group-label">
+                Menu
+            </div>
+
+            <div class="m-sub">
+
+                <a href="{{ url('/karir') }}"
+                   class="m-link {{ request()->is('karir*') ? 'active' : '' }}">
+                    Karir
+                </a>
+
+                <a href="{{ url('/berita') }}"
+                   class="m-link {{ request()->is('berita*') ? 'active' : '' }}">
+                    Berita
+                </a>
+
+                <a href="{{ url('/video') }}"
+                   class="m-link {{ request()->is('video*') ? 'active' : '' }}">
+                    Video
+                </a>
+
+            </div>
+
+            <a href="/layanan"
+               class="m-link {{ request()->is('layanan*') ? 'active' : '' }}">
+                Layanan
+            </a>
+
+            <a href="/artikel"
+               class="m-link {{ request()->is('artikel*') ? 'active' : '' }}">
+                Artikel
+            </a>
+
+            <a href="/download"
+               class="m-link {{ request()->is('download*') ? 'active' : '' }}">
+                Download
+            </a>
+
+            <a href="/tentang"
+               class="m-link {{ request()->is('tentang*') ? 'active' : '' }}">
+                Tentang Kami
+            </a>
+
+            <a href="/mutu"
+               class="m-link {{ request()->is('mutu*') ? 'active' : '' }}">
+                Mutu
+            </a>
+
+            <a href="/kontak" class="btn-kontak">
+                Kontak
+            </a>
+
+        </div>
+
+    </nav>
+
+</div>
+
+
+<!-- ========================================
+     SCRIPT
+======================================== -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const burger = document.getElementById('navBurger');
+    const menu   = document.getElementById('mobileMenu');
+    const navbar = document.getElementById('mainNavbar');
+
+    // Toggle mobile menu
+    burger.addEventListener('click', function (e) {
+
+        e.stopPropagation();
+
+        burger.classList.toggle('open');
+        menu.classList.toggle('open');
+
+    });
+
+    // Klik di luar navbar = tutup menu
+    document.addEventListener('click', function (e) {
+
+        if (!navbar.contains(e.target)) {
+
+            burger.classList.remove('open');
+            menu.classList.remove('open');
+
+        }
+
+    });
+
+    // Efek scroll navbar
+    window.addEventListener('scroll', function () {
+
+        if (window.scrollY > 10) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+
+    }, { passive: true });
+
+});
+</script>
+</style>
 
 </body>
 
@@ -1403,33 +1729,52 @@ body {
 
 /* ================= MOBILE ================= */
 @media (max-width: 767px) {
-    .footer-rsu {
-        padding: 40px 0 0;
+
+    html,
+    body{
+        margin:0;
+        padding:0;
+        overflow-x:hidden;
+        background:#eceef3;
     }
 
-    .footer-rsu .container-fluid {
-        padding-left: 20px !important;
-        padding-right: 20px !important;
+    /* FOOTER */
+    .footer-rsu{
+        padding:40px 0 0;
+        margin-bottom:0 !important;
+    }
+
+    .footer-rsu .container-fluid{
+        padding-left:20px !important;
+        padding-right:20px !important;
     }
 
     .footer-rsu .footer-social,
-    .footer-rsu .footer-mitra {
-        justify-content: flex-start;
+    .footer-rsu .footer-mitra{
+        justify-content:flex-start;
     }
 
-    .footer-rsu .footer-copy {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
+    .footer-rsu .footer-copy{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:8px;
     }
 
-    .footer-rsu .footer-bottom {
-        padding: 15px 20px;
+    /* FULL SAMPAI BAWAH */
+    .footer-rsu .footer-bottom{
+    padding:15px 20px 110px;
     }
 
-    .footer-rsu a:hover {
-        padding-left: 0;
+    .footer-rsu a:hover{
+        padding-left:0;
     }
+
+    /* HILANGKAN SPACE PUTIH */
+    body{
+        min-height:auto !important;
+        padding-bottom:0 !important;
+    }
+
 }
 </style>
 
@@ -1580,7 +1925,6 @@ body {
 
 </body>
 
-
 <style>
 /* ===============================
    FLOATING BAR DESKTOP
@@ -1591,13 +1935,16 @@ body {
     left: 50%;
     transform: translateX(-50%);
     z-index: 999999;
+
     display: flex;
     overflow: hidden;
+
     border-radius: 60px;
+
     box-shadow: 0 10px 25px rgba(0,0,0,0.18);
 }
 
-/* SEMUA ITEM SAMA UKURAN */
+/* ITEM */
 .floating-item{
     width: 210px;
     height: 60px;
@@ -1627,7 +1974,7 @@ body {
     border-radius: 0 60px 60px 0;
 }
 
-/* MERAH */
+/* ACTIVE */
 .floating-item.active{
     background: #ff1a1a;
     color: #fff;
@@ -1649,107 +1996,171 @@ body {
 }
 
 /* ===============================
-   MOBILE VERSION
+   MOBILE VERSION CLEAN
 ================================= */
 @media (max-width:768px){
 
+    html, body {
+        background-color: #e3deca;
+    }
+
     body{
-        padding-bottom: 85px;
+        padding-bottom: 120px;
     }
 
+    /* WRAPPER */
     .floating-bar{
-        left: 0;
-        bottom: 0;
-        transform: none;
-        width: 100%;
-        height: 72px;
-        border-radius: 0;
-        background: #fff;
-        box-shadow: 0 -4px 12px rgba(0,0,0,.08);
-        justify-content: space-around;
+        position: fixed;
+
+        left: 50%;
+        transform: translateX(-50%);
+
+        bottom: 14px;
+
+        width: calc(100% - 24px);
+        max-width: 390px;
+
+        height: 88px;
+
+        display: flex;
         align-items: center;
+        justify-content: space-between;
+
+        padding: 12px 10px 0;
+
+        /* GLASS EFFECT */
+        background: rgba(255,255,255,.18);
+
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+
+        border: 1px solid rgba(255,255,255,.22);
+
+        border-radius: 28px;
+
+        box-shadow: 0 8px 30px rgba(0,0,0,.10);
+
         overflow: visible;
+
+        z-index: 999999;
     }
 
+    /* ITEM */
     .floating-item{
-        width: auto;
-        height: auto;
         flex: 1;
-        padding: 8px;
-        background: transparent !important;
-        color: #555 !important;
-        border-radius: 0 !important;
+        min-width: 90px;
+        height: 100%;
 
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 4px;
 
-        font-size: 11px;
+        gap: 5px;
+
+        padding: 6px 2px;
+
+        text-decoration: none;
+
+        background: transparent !important;
+        color: #555 !important;
+
+        border-radius: 0 !important;
+
+        transition: .2s ease;
     }
 
-    /* ICON BULAT DEFAULT */
+    /* ICON */
     .floating-item i{
-        width: 38px;
-        height: 38px;
-        border-radius: 50%;
+        width: 42px;
+        height: 42px;
 
         display: flex;
         align-items: center;
         justify-content: center;
 
+        border-radius: 50%;
+
         font-size: 18px;
 
-        background: #b7ff0049;
-        color: #8fc700;
+        background: #f3f4f6;
+        color: #666;
+
+        transition: .2s ease;
     }
 
+    /* TEXT */
     .floating-item span{
-        font-size: 11px;
-        line-height: 1;
+        font-size: 10px;
+        font-weight: 600;
+        line-height: 1.2;
+        text-align: center;
     }
 
-    /* TOMBOL TENGAH */
+    /* ===============================
+       TOMBOL TENGAH
+    ================================= */
     .floating-item.middle{
         position: relative;
-        top: -18px;
-        width: 64px;
-        height: 64px;
-        flex: unset;
+
+        top: -2px;
+
+        width: 72px;
+        height: 72px;
+
+        flex: none;
 
         border-radius: 50% !important;
+
         background: #1C145C !important;
         color: #fff !important;
 
-        box-shadow: 0 8px 18px rgba(0,0,0,.18);
+        box-shadow: 0 10px 24px rgba(28,20,92,.25);
     }
 
     .floating-item.middle i{
-        width: 42px;
-        height: 42px;
-        background: rgba(255,255,255,.18);
+        width: 44px;
+        height: 44px;
+
+        background: rgba(255,255,255,.15);
         color: #fff;
+
         font-size: 20px;
     }
 
     .floating-item.middle span{
-        font-size: 10px;
+        width: 60px;
+
+        font-size: 9px;
+        line-height: 1.2;
+
+        color: #fff;
     }
 
-    /* MERAH UNTUK IGD & ALAMAT */
-    .floating-item.active i,
-    .floating-item.red i{
-        background: rgba(220,53,69,.12);
+    /* MERAH */
+    .floating-item.active i{
+        background: #ffe7eb;
         color: #dc3545;
+    }
+
+    /* EFFECT */
+    .floating-item:active{
+        transform: scale(.96);
     }
 
     .floating-item:hover{
         transform: none;
     }
+
+    /* RESET RADIUS */
+    .floating-item:first-child,
+    .floating-item:last-child{
+        border-radius: 0 !important;
+    }
+
+    
 }
 </style>
-
 
 <div class="floating-bar">
 
@@ -1762,14 +2173,15 @@ body {
     <!-- Tengah -->
     <a href="{{ url('/jadwaldokter') }}" class="floating-item middle">
         <i class="bi bi-calendar-check"></i>
-        <span>Jadwal</span>
+        <span>Cek Jadwal Dokter</span>
     </a>
 
-    <!-- Alamat Merah Juga -->
+    <!-- Alamat -->
     <a href="https://maps.app.goo.gl/4yvn64pEuhWg35mX6" target="_blank" class="floating-item active">
         <i class="bi bi-geo-alt-fill"></i>
         <span>Alamat</span>
     </a>
 
 </div>
+
 </html>

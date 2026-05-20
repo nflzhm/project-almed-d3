@@ -990,40 +990,57 @@ $dokterList = $dokterList ?? [];
                         </div>
                         <select name="poli" class="mfg-select" id="editPoli" required>
                             <option value="">-- Pilih Poli --</option>
-                            <option value="Poli Umum">Poli Umum</option>
-                            <option value="Poli Anak">Poli Anak</option>
+                            <option value="Poli Spesialis Obgyn">Poli Spesialis Obgyn</option>
+                            <option value="Poli Spesialis Anak">Poli Spesialis Anak</option>
                             <option value="Poli Gigi">Poli Gigi</option>
-                            <option value="Poli Kandungan">Poli Kandungan</option>
+                            <option value="Poli Orthodonti">Poli Orthodonti</option>
                             <option value="Poli Mata">Poli Mata</option>
-                            <option value="Poli THT">Poli THT</option>
+                            <option value="Poli Spesialis THT">Poli Spesialis THT</option>
                             <option value="Poli Kulit">Poli Kulit</option>
                             <option value="Poli Jantung">Poli Jantung</option>
                             <option value="Poli Saraf">Poli Saraf</option>
                             <option value="Poli Bedah">Poli Bedah</option>
                             <option value="Poli Dalam">Poli Penyakit Dalam</option>
-                            <option value="Laboratorium">Laboratorium</option>
+                            <option value="Poli Bedah">Poli Bedah</option>
                         </select>
                     </div>
 
                     {{-- Jam --}}
-                    <div class="mfg-row mfg">
-                        <div>
-                            <div class="mfg-label">
-                                <i class="fa-regular fa-clock"></i>
-                                Jam Mulai <span class="req">*</span>
-                            </div>
-                            <input type="time" name="jam_mulai" class="mfg-input"
-                                   id="editJamMulai" required>
-                        </div>
-                        <div>
-                            <div class="mfg-label">
-                                <i class="fa-regular fa-clock"></i>
-                                Jam Selesai <span class="req">*</span>
-                            </div>
-                            <input type="time" name="jam_selesai" class="mfg-input"
-                                   id="editJamSelesai" required>
-                        </div>
-                    </div>
+<div class="mfg-row mfg">
+
+    {{-- Jam Mulai --}}
+    <div>
+        <div class="mfg-label">
+            <i class="fa-regular fa-clock"></i>
+            Jam Mulai <span class="req">*</span>
+        </div>
+        <input type="text"
+               name="jam_mulai"
+               class="mfg-input"
+               id="editJamMulai"
+               placeholder="08:00"
+               maxlength="5"
+               required
+               oninput="formatJam(this); autoSetSesiEdit();">
+    </div>
+
+    {{-- Jam Selesai --}}
+    <div>
+        <div class="mfg-label">
+            <i class="fa-regular fa-clock"></i>
+            Jam Selesai <span class="req">*</span>
+        </div>
+        <input type="text"
+               name="jam_selesai"
+               class="mfg-input"
+               id="editJamSelesai"
+               placeholder="14:00"
+               maxlength="5"
+               required
+               oninput="formatJam(this);">
+    </div>
+
+</div>
 
                     {{-- Sesi --}}
                     <div class="mfg">
@@ -1147,7 +1164,6 @@ function openTambahModal(dokId, nama, spesialis) {
 /* ---- Open TAMBAH modal pre-selected hari ---- */
 function openTambahModalHari(dokId, nama, hari) {
     openTambahModal(dokId, nama, '');
-    // Check the specific day
     const cb = document.getElementById('hari_' + hari.toLowerCase());
     if (cb) { cb.checked = true; updateJadwalPreview(); }
 }
@@ -1159,15 +1175,43 @@ function onDokterChange(prefix) {
     if (hid && sel) hid.value = sel.value;
 }
 
-/* ---- Auto set sesi based on jam mulai ---- */
+/* ---- Format jam Indonesia 24 jam (HH:MM) ---- */
+function formatJam(input) {
+    let val = input.value.replace(/\D/g, '');
+    if (val.length >= 3) {
+        val = val.substring(0, 2) + ':' + val.substring(2, 4);
+    }
+    input.value = val;
+}
+
+/* ---- Helper: ambil sesi dari string jam "HH:MM" ---- */
+function getSesiDariJam(jam) {
+    if (!jam || jam.length < 5) return null;
+    const h = parseInt(jam.split(':')[0], 10);
+    if (h >= 5  && h < 12) return 'Pagi';
+    if (h >= 12 && h < 19) return 'Siang';
+    return 'Malam';
+}
+
+/* ---- Auto set sesi — TAMBAH modal ---- */
 function autoSetSesi() {
-    const jam = document.getElementById('tambahJamMulai')?.value;
-    if (!jam) return;
-    const [h] = jam.split(':').map(Number);
-    if (h >= 5  && h < 12) document.getElementById('sesiPagi').checked  = true;
-    if (h >= 12 && h < 18) document.getElementById('sesiSiang').checked = true;
-    if (h >= 18 || h < 5)  document.getElementById('sesiMalam').checked = true;
+    const jam  = document.getElementById('tambahJamMulai')?.value;
+    const sesi = getSesiDariJam(jam);
+    if (!sesi) return;
+    document.getElementById('sesiPagi').checked  = (sesi === 'Pagi');
+    document.getElementById('sesiSiang').checked = (sesi === 'Siang');
+    document.getElementById('sesiMalam').checked = (sesi === 'Malam');
     updateJadwalPreview();
+}
+
+/* ---- Auto set sesi — EDIT modal ---- */
+function autoSetSesiEdit() {
+    const jam  = document.getElementById('editJamMulai')?.value;
+    const sesi = getSesiDariJam(jam);
+    if (!sesi) return;
+    document.getElementById('editSesiPagi').checked  = (sesi === 'Pagi');
+    document.getElementById('editSesiSiang').checked = (sesi === 'Siang');
+    document.getElementById('editSesiMalam').checked = (sesi === 'Malam');
 }
 
 /* ---- Live preview for tambah modal ---- */
@@ -1201,30 +1245,30 @@ function updateJadwalPreview() {
 
 /* ---- Open EDIT modal (per slot hari) ---- */
 function openEditModal(jadwalId, dokId, nama, hari, poli, mulai, selesai, sesi) {
-    document.getElementById('editJadwalId').value       = jadwalId;
-    document.getElementById('editDokterIdHidden').value = dokId;
+    document.getElementById('editJadwalId').value        = jadwalId;
+    document.getElementById('editDokterIdHidden').value  = dokId;
     document.getElementById('editDokterNama').textContent = nama;
     document.getElementById('editHariNama').textContent   = hari;
-    document.getElementById('editJamMulai').value    = mulai;
-    document.getElementById('editJamSelesai').value  = selesai;
+    document.getElementById('editJamMulai').value   = mulai;
+    document.getElementById('editJamSelesai').value = selesai;
     document.getElementById('formEdit').action =
-    '{{ url("admin/jadwal") }}/' + (jadwalId ?? '');
+        '{{ url("admin/jadwal") }}/' + (jadwalId ?? '');
 
     // Set poli select
     const poliSel = document.getElementById('editPoli');
     for (let opt of poliSel.options) { opt.selected = (opt.value === poli); }
 
-    // Set sesi radio
+    // Set sesi dari data, lalu sync dari jam mulai
     document.getElementById('editSesiPagi').checked  = (sesi === 'Pagi');
     document.getElementById('editSesiSiang').checked = (sesi === 'Siang');
     document.getElementById('editSesiMalam').checked = (sesi === 'Malam');
+    autoSetSesiEdit();
 
     new bootstrap.Modal(document.getElementById('modalEdit')).show();
 }
 
 /* ---- Open DELETE modal ---- */
 function openDeleteModal(jadwalId, nama, hari) {
-
     console.log('JADWAL ID:', jadwalId);
 
     if (!jadwalId) {
@@ -1239,35 +1283,24 @@ function openDeleteModal(jadwalId, nama, hari) {
 
     new bootstrap.Modal(document.getElementById('modalHapus')).show();
 }
+
 /* ---- Reset tambah modal on close ---- */
-document.getElementById('modalTambah').addEventListener('hidden.bs.modal', function() {
+document.getElementById('modalTambah').addEventListener('hidden.bs.modal', function () {
     document.getElementById('formTambah').reset();
     document.getElementById('jadwalPreview').style.display = 'none';
     document.getElementById('jpGrid').innerHTML = '';
 });
 
 /* ---- Live search by dokter name ---- */
-document.getElementById('searchJdw').addEventListener('input', function() {
+document.getElementById('searchJdw').addEventListener('input', function () {
     const q = this.value.toLowerCase();
-    document.querySelectorAll('.jdw-card').forEach(function(card) {
+    document.querySelectorAll('.jdw-card').forEach(function (card) {
         const n = card.dataset.dokNama || '';
         card.style.display = (!q || n.includes(q)) ? '' : 'none';
     });
 });
 
-/* ---- Format jam Indonesia 24 jam ---- */
-function formatJam(input) {
-
-    let val = input.value.replace(/\D/g, '');
-
-    if (val.length >= 3) {
-        val = val.substring(0,2) + ':' + val.substring(2,4);
-    }
-
-    input.value = val;
-}
-
-/* ---- Watch jam mulai on add modal ---- */
+/* ---- Watch perubahan field tambah modal ---- */
 document.getElementById('tambahJamMulai')?.addEventListener('input', updateJadwalPreview);
 document.getElementById('tambahJamSelesai')?.addEventListener('input', updateJadwalPreview);
 document.getElementById('tambahPoli')?.addEventListener('change', updateJadwalPreview);

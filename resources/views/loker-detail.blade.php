@@ -37,11 +37,17 @@
         --shadow-lg:    0 20px 60px rgba(28,20,92,.15);
         --transition:   .22s cubic-bezier(.4,0,.2,1);
     }
+    body {
+        padding-top: 0px;
+    }
 
     .loker-hero {
         background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 50%, #1e40af 100%);
         position: relative; overflow: hidden;
-        padding: 60px 0 80px;
+        padding: 90px 0 80px;
+        margin-top:-90px;
+        padding-top:120px;
+        
     }
 
     /* Decorative shapes */
@@ -163,7 +169,10 @@
     /* ============================================================
        MAIN BODY
     ============================================================ */
-    .loker-body { padding: 56px 0 72px; }
+    .loker-body { 
+        padding: 56px 0 72px;
+        background: #fff; 
+    }
 
     /* ---- Deskripsi card ---- */
     .desc-card {
@@ -389,377 +398,704 @@
 
 
 
-    body {
+    
+@font-face {
+    font-family: 'GothamBlack';
+    src: url('{{ asset('fonts/Gotham-Black.otf') }}') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+/* ========================================
+   BASE
+======================================== */
+body {
     font-family: 'Segoe UI', sans-serif;
-    padding-top: 90px;
+    background: #f5f7fb;
+    overflow-x: hidden;
+    padding-top: calc(38px + 70px);
 }
 
-<style>
-body{
-    font-family:'Segoe UI',sans-serif;
-    padding-top:90px;
-    background:#f5f7fb;
-    overflow-x:hidden;
+/* ========================================
+   TOPBAR
+======================================== */
+.topbar {
+    background: linear-gradient(
+        90deg,
+        #1C145C 0%,
+        #34258d 50%,
+        #1C145C 100%
+    );
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 38px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
 }
 
-/* ================= TOP BAR ================= */
-.topbar{
-    background:#1C145C;
-    position:fixed;
-    top:0;
-    width:100%;
-    z-index:9999;
-    height:40px;
-    display:flex;
-    align-items:center;
+.topbar .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.topbar .container{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+.topbar-info {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: nowrap;
 }
 
-.topbar .navbar-nav{
-    display:flex;
-    flex-direction:row;
-    align-items:center;
-    margin:0;
-    padding:0;
+.topbar-info span {
+    color: rgba(255, 255, 255, .88);
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
 }
 
-.topbar .nav-item{
-    list-style:none;
+.topbar-info i {
+    font-size: 11px;
+    opacity: .8;
 }
 
-.topbar span{
-    color:#fff;
-    display:flex;
-    align-items:center;
-    gap:6px;
-    font-size:13px;
-    padding:0 10px;
-    white-space:nowrap;
+.topbar-social {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
-.topbar .nav-link{
-    color:#fff !important;
-    padding:0 6px !important;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    opacity:.9;
-    transition:.3s;
+.topbar-social a {
+    color: rgba(255, 255, 255, .75);
+    font-size: 14px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: .2s;
 }
 
-.topbar .nav-link:hover{
-    opacity:1;
-    transform:translateY(-1px);
+.topbar-social a:hover {
+    color: #fff;
+    transform: translateY(-1px);
 }
 
-/* ================= NAVBAR ================= */
-.navbar-main{
-    background:#fff;
-    border-radius:0 0 20px 20px;
-    box-shadow:0 4px 12px rgba(0,0,0,0.08);
-    position:fixed;
-    top:40px;
-    width:100%;
-    z-index:9998;
-    padding:10px 0;
+/* ========================================
+   FLOAT WRAP
+======================================== */
+.navbar-float-wrap {
+    position: fixed;
+    top: 38px;
+    left: 0;
+    width: 100%;
+    z-index: 9998;
+    padding: 12px 20px;
 }
 
-/* ================= NAV MENU ================= */
-.navbar-main .nav-gap{
-    gap:18px;
+/* ========================================
+   NAVBAR FLOAT — GLASS
+======================================== */
+.navbar-float {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 14px 10px 22px;
+    border-radius: 60px;
+
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(22px) saturate(180%);
+    -webkit-backdrop-filter: blur(22px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    box-shadow:
+        0 8px 32px rgba(15, 23, 42, .08),
+        inset 0 1px 0 rgba(255, 255, 255, .22);
+
+    transition: background .3s ease, border .3s ease, box-shadow .3s ease;
 }
 
-.navbar-main .nav-link{
-    color:#334155 !important;
-    font-weight:500;
-    transition:.3s;
+.navbar-float.scrolled {
+    background: rgba(255, 255, 255, .14);
+    backdrop-filter: blur(26px) saturate(200%);
+    -webkit-backdrop-filter: blur(26px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, .22);
+    box-shadow:
+        0 10px 40px rgba(15, 23, 42, .10),
+        inset 0 1px 0 rgba(255, 255, 255, .28);
 }
 
-.navbar-main .nav-link:hover{
-    color:#1C145C !important;
+.navbar-float::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, .20),
+        rgba(255, 255, 255, .02)
+    );
+    pointer-events: none;
 }
 
-/* ================= DESKTOP DROPDOWN ================= */
-@media (min-width:992px){
+/* ========================================
+   LOGO
+======================================== */
+.nav-logo {
+    position: relative;
+    z-index: 2;
+}
 
-    .navbar-main .dropdown-menu{
-        display:block;
-        opacity:0;
-        visibility:hidden;
-        transform:translateY(10px);
-        transition:all .3s ease;
+.navbar-float .nav-logo img {
+    height: 38px;
+    object-fit: contain;
+    display: block;
+}
 
-        border:none;
-        border-radius:16px;
-        padding:10px;
-        min-width:220px;
+/* ========================================
+   NAV LINKS
+======================================== */
+.nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    gap: 2px;
+    position: relative;
+    z-index: 2;
+}
 
-        box-shadow:0 10px 25px rgba(0,0,0,0.08);
-    }
+.nav-link-pill {
+    padding: 8px 15px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #0f172a;
+    text-decoration: none;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: background .2s, color .2s, transform .2s;
+}
 
-    .navbar-main .nav-item.dropdown:hover .dropdown-menu{
-        opacity:1;
-        visibility:visible;
-        transform:translateY(0);
-    }
+.nav-link-pill:hover {
+    background: rgba(255, 255, 255, .25);
+    color: #1C145C;
+    transform: translateY(-1px);
+}
 
-    .navbar-main .dropdown-item{
-        border-radius:10px;
-        padding:10px 14px;
-        transition:.25s;
-    }
+.nav-link-pill.active {
+    background: rgba(255, 255, 255, .35);
+    color: #1C145C;
+    font-weight: 600;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .4),
+        0 4px 10px rgba(255, 255, 255, .12);
+}
 
-    .navbar-main .dropdown-item:hover{
-        background:#f1f5ff;
-        color:#1C145C;
+/* ========================================
+   DROPDOWN
+======================================== */
+.drop-wrap {
+    position: relative;
+}
+
+.drop-menu {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%) translateY(8px);
+    min-width: 180px;
+    padding: 8px;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, .70);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, .35);
+    box-shadow: 0 12px 35px rgba(15, 23, 42, .12);
+    opacity: 0;
+    visibility: hidden;
+    transition: .22s ease;
+    z-index: 100;
+}
+
+.drop-wrap:hover .drop-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.drop-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border-radius: 14px;
+    font-size: 14px;
+    color: #334155;
+    text-decoration: none;
+    transition: .18s;
+}
+
+.drop-item:hover {
+    background: rgba(255, 255, 255, .55);
+    color: #1C145C;
+}
+
+.chevron {
+    font-size: 11px;
+    opacity: .6;
+    transition: .25s;
+}
+
+.drop-wrap:hover .chevron {
+    transform: rotate(180deg);
+}
+
+/* ========================================
+   CTA BUTTON
+======================================== */
+.nav-cta {
+    position: relative;
+    z-index: 2;
+}
+
+.btn-kontak {
+    padding: 10px 22px;
+    border-radius: 50px;
+    background: #1C145C;
+    color: #fff !important;
+    text-decoration: none !important;
+    font-size: 14px;
+    font-weight: 600;
+    display: inline-block;
+    border: none;
+    box-shadow: 0 8px 20px rgba(28, 20, 92, .25);
+    transition: .2s;
+}
+
+.btn-kontak:hover {
+    background: #2a1e8a;
+    transform: translateY(-1px);
+}
+
+/* ========================================
+   BURGER
+======================================== */
+.nav-burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    padding: 6px;
+    position: relative;
+    z-index: 1000;
+}
+
+.nav-burger span {
+    width: 22px;
+    height: 2px;
+    background: #1C145C;
+    border-radius: 2px;
+    display: block;
+    transition: .3s;
+}
+
+.nav-burger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.nav-burger.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-burger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ========================================
+   MOBILE MENU — SOLID GLASS
+======================================== */
+.mobile-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 0;
+    right: 0;
+    padding: 10px;
+    border-radius: 26px;
+
+    /* SOLID — nav link terbaca jelas */
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 14px 40px rgba(15, 23, 42, .15);
+
+    z-index: 999;
+}
+
+.mobile-menu.open {
+    display: block;
+}
+
+.m-link {
+    display: block;
+    padding: 13px 16px;
+    border-radius: 14px;
+    color: #1e293b;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    transition: .18s;
+}
+
+.m-link:hover,
+.m-link.active {
+    background: rgba(28, 20, 92, 0.07);
+    color: #1C145C;
+}
+
+.m-group-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #94a3b8;
+    letter-spacing: .8px;
+    text-transform: uppercase;
+    padding: 12px 16px 6px;
+}
+
+.m-sub {
+    padding-left: 6px;
+}
+
+.mobile-menu .btn-kontak {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    border-radius: 16px;
+    box-sizing: border-box;
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+@media (max-width: 1100px) {
+    .nav-link-pill {
+        padding: 7px 11px;
+        font-size: 13px;
     }
 }
 
-/* ================= MOBILE ================= */
-@media (max-width:991px){
-
-    body{
-        padding-top:100px;
+@media (max-width: 991px) {
+    body {
+        padding-top: calc(38px + 64px);
     }
 
-    /* TOPBAR */
-    .topbar{
-        height:40px;
+    .navbar-float-wrap {
+        padding: 10px 12px;
     }
 
-    .topbar .container{
-        flex-direction:row;
-        justify-content:space-between;
-        align-items:center;
+    .navbar-float {
+        border-radius: 26px;
+        padding: 10px 14px;
     }
 
-    .topbar span{
-        font-size:11px;
-        padding:0 4px;
+    .nav-links,
+    .nav-cta {
+        display: none;
     }
 
-    /* NAVBAR */
-    .navbar-main{
-        top:40px;
-        border-radius:0 0 18px 18px;
+    .nav-burger {
+        display: flex;
     }
 
-    /* BOX MENU */
-    .navbar-main .navbar-collapse{
-        background:#fff;
-        margin-top:15px;
-        border-radius:18px;
-        padding:15px;
-        box-shadow:0 8px 25px rgba(0,0,0,0.08);
+    .topbar-info span {
+        font-size: 10px;
     }
 
-    /* MENU */
-    .navbar-main .navbar-nav.nav-gap{
-        gap:0 !important;
-        width:100%;
+    .topbar-social {
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .topbar .container {
+        gap: 8px;
     }
 
-    .navbar-main .navbar-nav .nav-item{
-        width:100%;
-        border-bottom:1px solid #eef2f7;
+    .topbar-info {
+        gap: 8px;
     }
 
-    .navbar-main .navbar-nav .nav-item:last-child{
-        border-bottom:none;
+    .topbar-info span {
+        font-size: 9px;
     }
 
-    .navbar-main .navbar-nav .nav-link{
-        padding:14px 5px;
-        font-size:15px;
+    .topbar-social a {
+        font-size: 12px;
     }
 
-    /* DROPDOWN */
-    .navbar-main .dropdown-toggle{
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-    }
-
-    .navbar-main .dropdown-menu{
-        position:static !important;
-        display:block !important;
-
-        border:none;
-        background:#f8fafc;
-        border-radius:14px;
-
-        margin-top:5px;
-        margin-bottom:10px;
-
-        padding:0;
-
-        max-height:0;
-        overflow:hidden;
-
-        opacity:0;
-        visibility:hidden;
-
-        transform:translateY(-5px);
-
-        transition:
-            max-height .35s ease,
-            opacity .3s ease,
-            transform .3s ease,
-            padding .3s ease;
-    }
-
-    .navbar-main .dropdown-menu.show{
-        max-height:400px;
-        opacity:1;
-        visibility:visible;
-        transform:translateY(0);
-        padding:8px;
-    }
-
-    .navbar-main .dropdown-item{
-        padding:12px 14px;
-        border-radius:10px;
-        font-size:14px;
-        color:#334155;
-        transition:.25s;
-    }
-
-    .navbar-main .dropdown-item:hover{
-        background:#e8eeff;
-        color:#1C145C;
-        padding-left:18px;
-    }
-
-    .navbar-main .dropdown-toggle::after{
-        transition:.3s ease;
-    }
-
-    .navbar-main .dropdown-toggle.show::after{
-        transform:rotate(180deg);
+    .navbar-float {
+        border-radius: 22px;
     }
 }
 </style>
 
-<body>
 
-<!-- ================= TOP BAR ================= -->
-<nav class="navbar navbar-dark topbar">
+<!-- ========================================
+     TOPBAR
+======================================== -->
+<div class="topbar">
     <div class="container">
 
-        <ul class="navbar-nav flex-row" style="font-size:13px;">
-            <li class="nav-item">
-                <span style="color:#fff;padding:4px 10px;">
-                    <i class="bi bi-telephone-fill" style="margin-right:5px;font-size:12px;"></i>
-                    0834325542
-                </span>
-            </li>
+        <div class="topbar-info">
+            <span>
+                <i class="bi bi-telephone-fill"></i>
+                0834325542
+            </span>
 
-            <li class="nav-item">
-                <span style="color:#fff;padding:4px 10px;">
-                    <i class="bi bi-envelope-fill" style="margin-right:5px;font-size:12px;"></i>
-                    allammedica@gmail.com
-                </span>
-            </li>
-        </ul>
+            <span>
+                <i class="bi bi-envelope-fill"></i>
+                allammedica@gmail.com
+            </span>
+        </div>
 
-        <ul class="navbar-nav flex-row ms-auto">
-            <li class="nav-item"><a class="nav-link text-white p-1" href="https://www.tiktok.com/@rsuallammedicabumiayu?_t=8fLMQk9idhI&_r=1"><i class="bi bi-tiktok"></i></a></li>
-            <li class="nav-item"><a class="nav-link text-white p-1" href="https://www.facebook.com/allam.medicabmy?mibextid=LQQJ4d"><i class="bi bi-facebook"></i></a></li>
-            <li class="nav-item"><a class="nav-link text-white p-1" href="https://www.instagram.com/allam.medica/"><i class="bi bi-instagram"></i></a></li>
-        </ul>
+        <div class="topbar-social">
+            <a href="https://www.tiktok.com/@rsuallammedicabumiayu?_t=8fLMQk9idhI&_r=1"
+               target="_blank">
+                <i class="bi bi-tiktok"></i>
+            </a>
 
-    </div>
-</nav>
+            <a href="https://www.facebook.com/allam.medicabmy?mibextid=LQQJ4d"
+               target="_blank">
+                <i class="bi bi-facebook"></i>
+            </a>
 
-<!-- ================= NAVBAR ================= -->
-<nav class="navbar navbar-expand-lg navbar-light navbar-main">
-
-    <div class="container">
-
-        <!-- LOGO -->
-        <a class="navbar-brand" href="#">
-            <img src="{{ asset('images/beranda/logo-almed.png') }}" height="40">
-        </a>
-
-        <!-- BURGER -->
-        <button class="navbar-toggler border-0 shadow-none" type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#mainMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!-- MENU -->
-        <div class="collapse navbar-collapse" id="mainMenu">
-
-            <ul class="navbar-nav ms-auto nav-gap">
-
-                <li class="nav-item">
-                    <a href="/" class="nav-link">Beranda</a>
-                </li>
-
-                <li class="nav-item dropdown">
-
-                    <a class="nav-link dropdown-toggle"
-                       href="#"
-                       data-bs-toggle="dropdown">
-                        Menu
-                    </a>
-
-                    <ul class="dropdown-menu">
-
-                        <li>
-                            <a class="dropdown-item" href="{{ url('/karir') }}">
-                                Karir
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item" href="{{ url('/berita') }}">
-                                Berita
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item" href="{{ url('/video') }}">
-                                Video
-                            </a>
-                        </li>
-
-                    </ul>
-
-                </li>
-
-                <li class="nav-item">
-                    <a href="/layanan" class="nav-link">Layanan</a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="/artikel" class="nav-link">Artikel</a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="/download" class="nav-link">Download</a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="/tentang" class="nav-link">Tentang Kami</a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="/kontak" class="nav-link">Kontak</a>
-                </li>
-
-            </ul>
-
+            <a href="https://www.instagram.com/allam.medica/"
+               target="_blank">
+                <i class="bi bi-instagram"></i>
+            </a>
         </div>
 
     </div>
-</nav>
+</div>
+
+
+<!-- ========================================
+     FLOATING NAVBAR
+======================================== -->
+<div class="navbar-float-wrap">
+
+    <nav class="navbar-float" id="mainNavbar">
+
+        <!-- LOGO -->
+        <a href="/" class="nav-logo">
+            <img src="{{ asset('images/beranda/logo-almed.png') }}" alt="RSU Allam Medica">
+        </a>
+
+        <!-- DESKTOP MENU -->
+        <div class="nav-links">
+
+            <a href="/"
+               class="nav-link-pill {{ request()->is('/') ? 'active' : '' }}">
+                Beranda
+            </a>
+
+            <div class="drop-wrap">
+
+                <a href="#"
+                   class="nav-link-pill {{ request()->is('karir*','berita*','video*') ? 'active' : '' }}">
+                    Menu
+                    <i class="bi bi-chevron-down chevron"></i>
+                </a>
+
+                <div class="drop-menu">
+
+                    <a href="{{ url('/karir') }}" class="drop-item">
+                        <i class="bi bi-briefcase"></i>
+                        Karir
+                    </a>
+
+                    <a href="{{ url('/berita') }}" class="drop-item">
+                        <i class="bi bi-newspaper"></i>
+                        Berita
+                    </a>
+
+                    <a href="{{ url('/video') }}" class="drop-item">
+                        <i class="bi bi-play-circle"></i>
+                        Video
+                    </a>
+
+                </div>
+            </div>
+
+            <a href="/layanan"
+               class="nav-link-pill {{ request()->is('layanan*') ? 'active' : '' }}">
+                Layanan
+            </a>
+
+            <a href="/artikel"
+               class="nav-link-pill {{ request()->is('artikel*') ? 'active' : '' }}">
+                Artikel
+            </a>
+
+            <a href="/download"
+               class="nav-link-pill {{ request()->is('download*') ? 'active' : '' }}">
+                Download
+            </a>
+
+            <a href="/tentang"
+               class="nav-link-pill {{ request()->is('tentang*') ? 'active' : '' }}">
+                Tentang Kami
+            </a>
+
+            <a href="/mutu"
+               class="nav-link-pill {{ request()->is('mutu*') ? 'active' : '' }}">
+                Mutu
+            </a>
+
+        </div>
+
+        <!-- CTA -->
+        <div class="nav-cta">
+            <a href="/kontak" class="btn-kontak">
+                Kontak
+            </a>
+        </div>
+
+        <!-- BURGER -->
+        <button class="nav-burger"
+                id="navBurger"
+                aria-label="Toggle menu">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+        <!-- MOBILE MENU -->
+        <div class="mobile-menu" id="mobileMenu">
+
+            <a href="/"
+               class="m-link {{ request()->is('/') ? 'active' : '' }}">
+                Beranda
+            </a>
+
+            <div class="m-group-label">
+                Menu
+            </div>
+
+            <div class="m-sub">
+
+                <a href="{{ url('/karir') }}"
+                   class="m-link {{ request()->is('karir*') ? 'active' : '' }}">
+                    Karir
+                </a>
+
+                <a href="{{ url('/berita') }}"
+                   class="m-link {{ request()->is('berita*') ? 'active' : '' }}">
+                    Berita
+                </a>
+
+                <a href="{{ url('/video') }}"
+                   class="m-link {{ request()->is('video*') ? 'active' : '' }}">
+                    Video
+                </a>
+
+            </div>
+
+            <a href="/layanan"
+               class="m-link {{ request()->is('layanan*') ? 'active' : '' }}">
+                Layanan
+            </a>
+
+            <a href="/artikel"
+               class="m-link {{ request()->is('artikel*') ? 'active' : '' }}">
+                Artikel
+            </a>
+
+            <a href="/download"
+               class="m-link {{ request()->is('download*') ? 'active' : '' }}">
+                Download
+            </a>
+
+            <a href="/tentang"
+               class="m-link {{ request()->is('tentang*') ? 'active' : '' }}">
+                Tentang Kami
+            </a>
+
+            <a href="/mutu"
+               class="m-link {{ request()->is('mutu*') ? 'active' : '' }}">
+                Mutu
+            </a>
+
+            <a href="/kontak" class="btn-kontak">
+                Kontak
+            </a>
+
+        </div>
+
+    </nav>
+
+</div>
+
+
+<!-- ========================================
+     SCRIPT
+======================================== -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const burger = document.getElementById('navBurger');
+    const menu   = document.getElementById('mobileMenu');
+    const navbar = document.getElementById('mainNavbar');
+
+    // Toggle mobile menu
+    burger.addEventListener('click', function (e) {
+
+        e.stopPropagation();
+
+        burger.classList.toggle('open');
+        menu.classList.toggle('open');
+
+    });
+
+    // Klik di luar navbar = tutup menu
+    document.addEventListener('click', function (e) {
+
+        if (!navbar.contains(e.target)) {
+
+            burger.classList.remove('open');
+            menu.classList.remove('open');
+
+        }
+
+    });
+
+    // Efek scroll navbar
+    window.addEventListener('scroll', function () {
+
+        if (window.scrollY > 10) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+
+    }, { passive: true });
+
+});
+</script>
 
 <section class="loker-hero">
     <div class="hero-dot-grid"></div>
