@@ -983,7 +983,7 @@ body {
 
             <span>
                 <i class="bi bi-envelope-fill"></i>
-                allammedica@gmail.com
+                allam.medica@yahoo.co.id
             </span>
         </div>
 

@@ -11,6 +11,7 @@ use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\LokerController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MutuController;
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\JadwalController;
@@ -164,6 +165,9 @@ Route::get('/video', function () {
     return view('video', compact('videos'));
 })->name('video');
 
+
+Route::get('/mutu', [MutuController::class, 'index'])->name('mutu');
+
 /* ================= AUTH ================= */
 
 Route::get('/login', [AuthController::class, 'showLogin'])
@@ -174,3 +178,4 @@ Route::post('/login', [AuthController::class, 'login'])
 
 Route::post('/logout', [AuthController::class, 'logout'])
     ->name('logout');
+

@@ -866,7 +866,7 @@ body {
 
             <span>
                 <i class="bi bi-envelope-fill"></i>
-                allammedica@gmail.com
+                allam.medica@yahoo.co.id
             </span>
         </div>
 
@@ -1872,9 +1872,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 <h6 class="footer-heading">Menu</h6>
 
                 <ul>
-                    <li><a href="video">Video</a></li>
-                    <li><a href="karir">Karir</a></li>
-                    <li><a href="berita">Berita</a></li>
+                    <li><a href="{{ route('video') }}">Video</a></li>
+                    <li><a href="{{ route('loker.index') }}">Karir</a></li>
+                    <li><a href="{{ route('berita') }}">Berita</a></li>
                 </ul>
 
             </div>

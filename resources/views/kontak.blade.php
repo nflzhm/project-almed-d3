@@ -488,7 +488,7 @@ body {
 
             <span>
                 <i class="bi bi-envelope-fill"></i>
-                allammedica@gmail.com
+                allam.medica@yahoo.co.id
             </span>
         </div>
 
@@ -727,47 +727,108 @@ body {
 
 /* ===== HERO ===== */
 .contact-section {
-    background: linear-gradient(135deg,
-        #0d0a3a 0%, #1C145C 30%, #2a1f7a 60%, #110d46 100%
-    );
-    padding: 85px 20px 80px;
+    background:
+        linear-gradient(
+            to bottom,
+            #120d4f 0%,
+            #1C145C 20%,
+            #2a1f7a 45%,
+            #4f46b8 65%,
+            #9e9ad6 82%,
+            #e8e8f4 93%,
+            #ffffff 100%
+        );
+
+    padding: 120px 20px 120px;
+
     text-align: center;
     color: #fff;
+
     position: relative;
     overflow: hidden;
 }
+
+/* glow kiri atas */
 .contact-section::before {
     content: '';
     position: absolute;
-    top: -120px; left: -120px;
-    width: 400px; height: 400px;
+    top: -120px;
+    left: -120px;
+
+    width: 400px;
+    height: 400px;
+
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(254,252,241,.06) 0%, transparent 70%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(254,252,241,.08) 0%,
+            transparent 70%
+        );
+
     pointer-events: none;
 }
+
+/* glow kanan bawah */
 .contact-section::after {
     content: '';
     position: absolute;
-    bottom: -100px; right: -100px;
-    width: 350px; height: 350px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(90,70,200,.2) 0%, transparent 70%);
+
+    left: 50%;
+    bottom: -180px;
+
+    transform: translateX(-50%);
+
+    width: 120%;
+    height: 320px;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(255,255,255,0.55) 0%,
+            rgba(255,255,255,0.18) 45%,
+            transparent 75%
+        );
+
+    filter: blur(30px);
+
     pointer-events: none;
 }
+/* shimmer */
 .contact-section .contact-shimmer {
     position: absolute;
-    top: 0; left: 0; right: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+
     height: 3px;
-    background: linear-gradient(90deg, transparent, rgba(254,252,241,.55) 50%, transparent);
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(254,252,241,.55) 50%,
+            transparent
+        );
 }
-.contact-section .contact-inner { position: relative; z-index: 1; }
+
+.contact-section .contact-inner {
+    position: relative;
+    z-index: 1;
+}
+
 .contact-section .contact-breadcrumb {
     font-size: 12px;
     color: rgba(254,252,241,.45);
     margin-bottom: 14px;
     letter-spacing: .04em;
 }
-.contact-section .contact-breadcrumb span { color: rgba(254,252,241,.7); }
+
+.contact-section .contact-breadcrumb span {
+    color: rgba(254,252,241,.7);
+}
+
 .contact-section .contact-title {
     font-size: 38px;
     font-weight: 800;

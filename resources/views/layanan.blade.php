@@ -13,6 +13,8 @@
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 </head>
 
@@ -488,7 +490,7 @@ body {
 
             <span>
                 <i class="bi bi-envelope-fill"></i>
-                allammedica@gmail.com
+                allam.medica@yahoo.co.id
             </span>
         </div>
 
@@ -721,192 +723,895 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 <style>
-
-/* ================= NAVBAR SPACE ================= */
-body{
-    padding-top:120px;
-    background: #fff !important;
+@font-face {
+    font-family: 'Gotham';
+    src: url('{{ asset("fonts/Gotham-Black.otf") }}') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
 }
 
-/* ================= HEADER ================= */
-.layanan-section{
-    padding:60px 0 40px;
-    text-align:center;
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    padding-top: 100px;
+    background: #ffffff !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    overflow-x: hidden;
+    color: #1C145C;
 }
 
-.layanan-label{
-    font-size:12px;
-    font-weight:600;
-    color:#888;
-    letter-spacing:2px;
-    text-transform:uppercase;
+/* ============================================================
+   PAGE SWITCHING
+============================================================ */
+#page-list   { display: block; }
+#page-detail { display: none; }
+
+/* ============================================================
+   HERO (LIST PAGE)
+============================================================ */
+.layanan-hero {
+    padding: 60px 0 50px;
+    text-align: center;
+    position: relative;
+}
+.layanan-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(83,74,183,0.07) 0%, transparent 70%);
+    pointer-events: none;
+}
+.layanan-heading {
+    font-family: 'Gotham', -apple-system, sans-serif;
+    font-weight: 900;
+    font-size: clamp(26px, 4vw, 42px);
+    line-height: 1.2;
+    margin: 0 0 14px;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #1C145C 0%, #534AB7 50%, #1C145C 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.layanan-desc {
+    font-size: 14px;
+    color: #7a738f;
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.75;
+}
+.stats-bar {
+    display: inline-flex;
+    margin: 32px auto 0;
+    background: #fff;
+    border-radius: 14px;
+    border: 1px solid #EAE7F5;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(28,20,92,0.06);
+}
+.stat-item {
+    padding: 13px 24px;
+    text-align: center;
+    border-right: 1px solid #F0EDF8;
+}
+.stat-item:last-child { border-right: none; }
+.stat-num {
+    font-family: 'Gotham', sans-serif;
+    font-weight: 900;
+    font-size: 20px;
+    color: #1C145C;
+    display: block;
+}
+.stat-label { font-size: 10px; color: #a09bbf; margin-top: 3px; }
+
+/* ============================================================
+   GRID & CARD
+============================================================ */
+.layanan-grid { padding: 28px 0 70px; }
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+    .layanan-grid {
+        padding: 20px 14px 60px;
+    }
+
+    /* kasih jarak antar card */
+    .layanan-grid .row {
+        --bs-gutter-x: 14px;
+        --bs-gutter-y: 14px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    /* biar card tidak nabrak kanan kiri */
+    .layanan-grid .col-md-6,
+    .layanan-grid .col-6 {
+        padding-left: 7px;
+        padding-right: 7px;
+    }
+
+    .lcard {
+        width: 100%;
+        max-width: 100%;
+    }
 }
 
-.layanan-heading{
-    font-size:32px;
-    font-weight:800;
-    color:#1C145C;
-    margin:10px 0;
+.lcard {
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid #EAE7F5;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: transform 0.25s cubic-bezier(.22,.68,0,1.2), box-shadow 0.25s, border-color 0.25s;
+    height: 100%;
+}
+.lcard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 36px rgba(28,20,92,0.10);
+    border-color: #AFA9EC;
+}
+.lcard-img-wrap {
+    position: relative;
+    background: #F5F3FF;
+    overflow: hidden;
+    line-height: 0;
+    flex-shrink: 0;
+}
+.lcard-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    transition: transform 0.4s;
+}
+.lcard:hover .lcard-img { transform: scale(1.04); }
+.lcard-img-placeholder {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #EEEDFE 0%, #E6F1FB 100%);
+}
+.lcard-img-placeholder i { font-size: 34px; color: #CECBF6; }
+
+
+.lcard-body {
+    padding: 14px 15px 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.lcard-poli {
+    font-family: 'Gotham', sans-serif;
+    font-weight: 900;
+    font-size: 12.5px;
+    color: #1C145C;
+    margin-bottom: 5px;
+    line-height: 1.35;
+}
+.lcard-desc {
+    font-size: 11.5px;
+    color: #9590b0;
+    line-height: 1.6;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.lcard-detail-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 9px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #1C145C;
+    transition: gap 0.2s, color 0.2s;
+}
+.lcard-detail-link:hover { color: #7F77DD; gap: 8px; }
+.lcard-detail-link i { font-size: 11px; }
+
+.lcard-divider { height: 1px; background: #F0EDF8; margin: 12px 0 10px; }
+
+.lcard-contacts { display: flex; flex-direction: column; gap: 6px; }
+.lcard-contact-row {
+    display: flex; align-items: center; gap: 7px;
+    font-size: 11px; color: #a09bbf;
+}
+.lcard-contact-row i { font-size: 12px; color: #7F77DD; flex-shrink: 0; }
+.lcard-contact-row span { color: #3a3260; font-weight: 600; }
+
+.lcard-wa-btn {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin-top: 9px; padding: 6px 11px;
+    border-radius: 8px; font-size: 11px; font-weight: 600;
+    background: #E1F5EE; color: #0F6E56;
+    text-decoration: none; border: 1px solid #9FE1CB;
+    transition: background 0.2s, transform 0.15s; width: fit-content;
+}
+.lcard-wa-btn:hover { background: #9FE1CB; color: #085041; transform: scale(1.02); text-decoration: none; }
+.lcard-wa-btn i { font-size: 13px; }
+
+/* ============================================================
+   DETAIL PAGE
+============================================================ */
+.detail-page {
+    min-height: 80vh;
+    padding-bottom: 80px;
+    animation: fadeUp 0.35s cubic-bezier(.22,.68,0,1.2);
+}
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
-.layanan-desc{
-    font-size:14px;
-    color:#444;
-    max-width:650px;
-    margin:auto;
+/* BACK BUTTON */
+.detail-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 28px 0 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: #534AB7;
+    cursor: pointer;
+    border: none;
+    background: none;
+    transition: gap 0.2s, color 0.2s;
+    font-family: inherit;
+}
+.detail-back:hover { color: #1C145C; gap: 12px; }
+.detail-back i { font-size: 14px; }
+
+/* HERO IMAGE */
+.detail-hero-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 20px;
+    margin: 24px 0 0;
+    border: 1px solid #EAE7F5;
+    background: #F5F3FF;
+}
+.detail-hero-placeholder {
+    width: 100%;
+    height: 260px;
+    border-radius: 20px;
+    margin: 24px 0 0;
+    background: linear-gradient(135deg, #EEEDFE 0%, #E6F1FB 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #EAE7F5;
+}
+.detail-hero-placeholder i { font-size: 64px; color: #CECBF6; }
+
+/* META BAR */
+.detail-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 22px 0 18px;
+}
+.detail-badge {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 13px;
+    border-radius: 999px;
+    background: #EEEDFE;
+    color: #534AB7;
+    border: 1px solid #CECBF6;
+}
+.detail-badge.aktif    { background: #E1F5EE; color: #0F6E56; border-color: #9FE1CB; }
+.detail-badge.nonaktif { background: #F1EFE8; color: #888;    border-color: #D3D1C7; }
+.detail-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: #a09bbf;
+}
+.detail-meta-item i { font-size: 13px; }
+
+/* TITLE */
+.detail-title {
+    font-family: 'Gotham', sans-serif;
+    font-weight: 900;
+    font-size: clamp(22px, 3.5vw, 34px);
+    color: #1C145C;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
 }
 
-
-/* ================= CARD ================= */
-.layanan-card{
-    background:#fff;
-    border-radius:18px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.06);
-    height:100%;
-    overflow:hidden;
-    transition:0.3s;
+/* DIVIDER LINE */
+.detail-line {
+    height: 3px;
+    width: 52px;
+    background: linear-gradient(90deg, #534AB7, #AFA9EC);
+    border-radius: 999px;
+    margin: 18px 0 24px;
 }
 
-.layanan-card:hover{
-    transform:translateY(-5px);
+/* BODY TEXT */
+.detail-body {
+    font-size: 15.5px;
+    color: #3a3260;
+    line-height: 1.85;
+    max-width: 700px;
+}
+.detail-body p { margin-bottom: 1em; }
+
+/* SIDEBAR INFO BOX */
+.detail-sidebar {
+    position: sticky;
+    top: 120px;
+}
+.detail-infobox {
+    background: #fff;
+    border: 1px solid #EAE7F5;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(28,20,92,0.06);
+}
+.detail-infobox-header {
+    background: linear-gradient(135deg, #1C145C 0%, #534AB7 100%);
+    padding: 18px 20px;
+}
+.detail-infobox-header h3 {
+    font-family: 'Gotham', sans-serif;
+    font-weight: 900;
+    font-size: 13px;
+    color: #fff;
+    letter-spacing: 0.3px;
+}
+.detail-infobox-header p {
+    font-size: 11px;
+    color: rgba(255,255,255,0.65);
+    margin-top: 3px;
+}
+.detail-infobox-body { padding: 18px 20px; }
+
+.info-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid #F0EDF8;
+}
+.info-row:last-child { border-bottom: none; padding-bottom: 0; }
+.info-icon {
+    width: 34px; height: 34px;
+    border-radius: 9px;
+    background: #EEEDFE;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+}
+.info-icon i { font-size: 15px; color: #534AB7; }
+.info-icon.green { background: #E1F5EE; }
+.info-icon.green i { color: #0F6E56; }
+.info-text-label { font-size: 10px; color: #a09bbf; font-weight: 600; letter-spacing: 0.3px; text-transform: uppercase; }
+.info-text-val   { font-size: 13px; color: #1C145C; font-weight: 600; margin-top: 1px; }
+
+.detail-wa-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    margin-top: 16px;
+    padding: 13px 20px;
+    border-radius: 12px;
+    font-size: 13.5px;
+    font-weight: 700;
+    background: #1D9E75;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    transition: background 0.2s, transform 0.15s;
+    width: 100%;
+    font-family: inherit;
+}
+.detail-wa-btn:hover { background: #0F6E56; color: #fff; text-decoration: none; transform: scale(1.02); }
+.detail-wa-btn i { font-size: 18px; }
+
+.detail-tel-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    margin-top: 10px;
+    padding: 11px 20px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    background: #ce0000;
+    color: #ffffff;
+    text-decoration: none;
+    border: 1px solid #ff0000;
+    transition: background 0.2s;
+    width: 100%;
+    font-family: inherit;
+    cursor: pointer;
+}
+.detail-tel-btn:hover { background: #ff0000; text-decoration: none; }
+.detail-tel-btn i { font-size: 15px; }
+
+/* OTHER LAYANAN */
+.other-section { margin-top: 52px; }
+.other-section-title {
+    font-family: 'Gotham', sans-serif;
+    font-weight: 900;
+    font-size: 16px;
+    color: #1C145C;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #EAE7F5;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.other-section-title::before {
+    content: '';
+    width: 4px; height: 18px;
+    background: linear-gradient(180deg, #534AB7, #AFA9EC);
+    border-radius: 999px;
+    display: inline-block;
 }
 
-/* IMAGE FIX (ANTI KEPOTONG) */
-.layanan-img-wrapper{
-    height:100%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#fff;
+.other-card {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px;
+    background: #fff;
+    border: 1px solid #EAE7F5;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.2s;
+    text-decoration: none;
+    color: inherit;
+}
+.other-card:hover { border-color: #AFA9EC; transform: translateX(4px); }
+.other-card-img {
+    width: 60px; height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+    background: #F5F3FF;
+    flex-shrink: 0;
+    border: 1px solid #EAE7F5;
+}
+.other-card-placeholder {
+    width: 60px; height: 60px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #EEEDFE, #E6F1FB);
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid #EAE7F5;
+}
+.other-card-placeholder i { font-size: 22px; color: #CECBF6; }
+.other-card-name {
+    font-family: 'Gotham', sans-serif;
+    font-weight: 900;
+    font-size: 12px;
+    color: #1C145C;
+    line-height: 1.35;
+    margin-bottom: 4px;
+}
+.other-card-desc {
+    font-size: 11px;
+    color: #9590b0;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
-.layanan-img{
-    width:100%;
-    height:100%;
-    object-fit:contain;
-    padding:10px;
+/* ============================================================
+   EMPTY & RESPONSIVE
+============================================================ */
+.empty-state {
+    text-align: center;
+    padding: 80px 20px;
+    color: #aaa;
 }
 
-/* CONTENT */
-.layanan-content{
-    padding:25px 30px;
-    display:flex;
-    flex-direction:column;
-    height:100%;
+.empty-state i {
+    font-size: 48px;
+    display: block;
+    margin-bottom: 14px;
+    color: #AFA9EC;
 }
 
-/* TEXT */
-.layanan-card-title{
-    font-size:14px;
-    font-weight:700;
-    margin-bottom:8px;
-    color:#000;
+/* ============================================================
+   MOBILE
+============================================================ */
+@media (max-width: 768px) {
+
+    body {
+        padding-top: 85px;
+    }
+
+    .layanan-hero {
+        padding: 42px 0 34px;
+    }
+
+    /* ===== STATS BAR ===== */
+    .stats-bar {
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        flex-wrap: nowrap;
+
+        width: 100%;
+        max-width: calc(100% - 28px);
+
+        margin: 24px auto 0;
+
+        background: #fff;
+        border: 1px solid #EEEDFE;
+        border-radius: 16px;
+
+        overflow: hidden;
+
+        box-shadow: 0 8px 24px rgba(83,74,183,0.08);
+    }
+
+    .stat-item {
+        flex: 1;
+        padding: 14px 10px;
+        border-right: 1px solid #EEEDFE;
+    }
+
+    .stat-item:last-child {
+        border-right: none;
+    }
+
+    .stat-num {
+        font-size: 18px;
+    }
+
+    .stat-label {
+        font-size: 10px;
+        line-height: 1.4;
+    }
+
+    /* ===== DETAIL SIDEBAR ===== */
+    .detail-sidebar {
+        position: static;
+        margin-top: 28px;
+    }
 }
-
-.layanan-text{
-    font-size:12px;
-    color:#000;
-    line-height:1.5;
-    flex-grow:1;
-}
-
-.layanan-jadwal{
-    font-size:11px;
-    margin-top:8px;
-    color:#000;
-}
-
-.layanan-contact{
-    font-size:12px;
-    margin-top:auto; /* bikin selalu ke bawah */
-    font-weight:600;
-    display:flex;
-    align-items:center;
-    gap:6px;
-    color:#000;
-}
-
-
 </style>
 
+{{-- ============================================================
+     PAGE: LIST
+============================================================ --}}
+<div id="page-list">
 
+    <!-- HERO -->
+    <section class="layanan-hero">
+        <div class="container">
 
-<!-- ================= HEADER ================= -->
-<section class="layanan-section">
-<div class="container">
+            <h1 class="layanan-heading">
+                Poliklinik &amp; Layanan<br>RSU Allam Medica
+            </h1>
+            <p class="layanan-desc">
+                Kami menyediakan layanan kesehatan lengkap dengan dokter spesialis berpengalaman.
+                Pilih poliklinik yang Anda butuhkan dan buat janji temu dengan mudah.
+            </p>
 
-<span class="layanan-label">Layanan Kami</span>
+            @php
+                $aktifCount = $layanan->where('status', 'aktif')->count();
+                $totalCount = $layanan->count();
+            @endphp
 
-<h2 class="layanan-heading">
-Poliklinik & Layanan <br>
-RSU Allam Medica
-</h2>
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <span class="stat-num">{{ $totalCount }}</span>
+                    <div class="stat-label">Total Layanan</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num">{{ $aktifCount }}</span>
+                    <div class="stat-label">Layanan Aktif</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num">24<small style="font-size:12px">/7</small></span>
+                    <div class="stat-label">IGD Siaga</div>
+                </div>
+            </div>
 
-<p class="layanan-desc">
-Kami menyediakan layanan kesehatan lengkap dengan dokter spesialis berpengalaman. 
-Pilih poliklinik yang Anda butuhkan dan buat janji temu dengan mudah.
-</p>
+        </div>
+    </section>
 
-</div>
-</section>
+    <!-- GRID -->
+    <div class="container layanan-grid">
 
+        @if($layanan->isEmpty())
+            <div class="empty-state">
+                <i class="bi bi-hospital"></i>
+                <p>Belum ada layanan yang tersedia.</p>
+            </div>
+        @else
 
-<!-- ================= CARD LAYANAN ================= -->
-<div class="container py-5 px-4">
-    <div class="row g-4 justify-content-center">
+            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3 justify-content-center">
 
-        @foreach($layanan as $item)
+                @foreach($layanan as $item)
+                @if($item->status === 'aktif')
 
-        <div class="col-md-6 px-3 d-flex">
-            <div class="layanan-card w-100">
+                @php
+                    $imgUrl  = $item->gambar ? asset('storage/' . $item->gambar) : '';
+                    $noWa    = preg_replace('/[^0-9]/', '', $item->no_wa ?? '');
+                    $waLink  = $noWa ? 'https://wa.me/' . $noWa : '';
+                @endphp
 
-                <div class="row g-3 h-100">
+                <div class="col d-flex">
+                    <div class="lcard w-100"
+                         onclick="showDetail({{ $item->id }})">
 
-                    <!-- GAMBAR -->
-                    <div class="col-md-5">
-                        <div class="layanan-img-wrapper">
-                            <img src="{{ $item->gambar ? asset('storage/' . $item->gambar) : asset('images/no-image.png') }}"class="layanan-img">
+                        <div class="lcard-img-wrap">
+                            @if($item->gambar)
+                                <img src="{{ $imgUrl }}" alt="{{ $item->poli }}" class="lcard-img" loading="lazy">
+                            @else
+                                <div class="lcard-img-placeholder">
+                                    <i class="bi bi-hospital"></i>
+                                </div>
+                            @endif
+                            <span class="lcard-status aktif">Aktif</span>
                         </div>
-                    </div>
 
-                    <!-- KONTEN -->
-                    <div class="col-md-7 d-flex">
-                        <div class="layanan-content">
-
-                            <!-- JUDUL -->
-                            <div class="layanan-card-title">
-                                {{ $item->poli }}
-                            </div>
-
-                            <!-- DESKRIPSI -->
-                            <div class="layanan-text">
-                                {{ $item->deskripsi }}
-                            </div>
-
-                            <!-- KONTAK -->
-                            <div class="layanan-contact">
-                                <i class="bi bi-telephone-fill"></i>
-                                {{ $item->no_hp ?? '-' }}
-                            </div>
-
-                            <!-- WHATSAPP -->
-                            <div class="layanan-contact mt-2">
-                                <i class="bi bi-whatsapp"></i>
-                                {{ $item->no_wa ?? '-' }}
-                            </div>
-
+                        <div class="lcard-body">
+                            <div class="lcard-poli">{{ $item->poli }}</div>
+                            @if($item->deskripsi)
+                                <p class="lcard-desc">{{ $item->deskripsi }}</p>
+                            @endif
+                            <span class="lcard-detail-link">
+                                Lihat Detail <i class="bi bi-arrow-right"></i>
+                            </span>
+                            @if($item->no_hp || $item->no_wa)
+                                <div class="lcard-divider"></div>
+                                <div class="lcard-contacts">
+                                    @if($item->no_hp)
+                                    <div class="lcard-contact-row">
+                                        <i class="bi bi-telephone-fill"></i>
+                                        <span>{{ $item->no_hp }}</span>
+                                    </div>
+                                    @endif
+                                    @if($waLink)
+                                    <a href="{{ $waLink }}" target="_blank" rel="noopener"
+                                       class="lcard-wa-btn" onclick="event.stopPropagation()">
+                                        <i class="bi bi-whatsapp"></i> WhatsApp
+                                    </a>
+                                    @endif
+                                </div>
+                            @endif
                         </div>
-                    </div>
 
+                    </div>
                 </div>
 
-            </div>
-        </div>
+                @endif
+                @endforeach
 
-        @endforeach
+            </div>
+        @endif
 
     </div>
 </div>
+
+
+{{-- ============================================================
+     PAGE: DETAIL (hidden, filled by JS)
+============================================================ --}}
+<div id="page-detail">
+    <div class="container">
+        <button class="detail-back" onclick="showList()">
+            <i class="bi bi-arrow-left"></i> Kembali ke Semua Layanan
+        </button>
+    </div>
+
+    <div class="container detail-page">
+        <div class="row g-5">
+
+            {{-- MAIN CONTENT --}}
+            <div class="col-lg-8">
+
+                <div id="det-img-wrap"></div>
+
+                <div class="detail-meta">
+                    <span class="detail-badge" id="det-badge">Poliklinik</span>
+                    <span class="detail-meta-item">
+                        <i class="bi bi-circle-fill" style="font-size:6px;color:#9FE1CB"></i>
+                        <span id="det-status-text"></span>
+                    </span>
+                    <span class="detail-meta-item">
+                        <i class="bi bi-clock"></i>
+                        <span>RSU Allam Medica</span>
+                    </span>
+                </div>
+
+                <h2 class="detail-title" id="det-title"></h2>
+                <div class="detail-line"></div>
+
+                <div class="detail-body" id="det-body"></div>
+
+                {{-- LAYANAN LAINNYA --}}
+                <div class="other-section">
+                    <div class="other-section-title">Layanan Lainnya</div>
+                    <div class="row g-2" id="det-others"></div>
+                </div>
+
+            </div>
+
+            {{-- SIDEBAR --}}
+            <div class="col-lg-4">
+                <div class="detail-sidebar">
+                    <div class="detail-infobox">
+                        <div class="detail-infobox-header">
+                            <h3>Informasi Kontak</h3>
+                            <p>Hubungi kami untuk janji temu</p>
+                        </div>
+                        <div class="detail-infobox-body" id="det-infobox-body">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+{{-- DATA LAYANAN (JSON untuk JS) --}}
+<script>
+@php
+$layananJson = $layanan->where('status', 'aktif')->map(function($item) {
+
+    $wa = preg_replace('/\D/', '', $item->no_wa ?? '');
+
+    return [
+        'id'         => $item->id,
+        'poli'       => $item->poli,
+        'deskripsi'  => $item->deskripsi ?? '',
+        'no_hp'      => $item->no_hp ?? '',
+        'no_wa'      => $wa,
+        'gambar'     => $item->gambar
+                            ? asset('storage/' . $item->gambar)
+                            : '',
+        'status'     => $item->status,
+    ];
+})->values();
+@endphp
+
+
+const layananData = @json($layananJson);
+
+function showDetail(id) {
+
+}
+function showDetail(id) {
+    const item = layananData.find(d => d.id == id);
+    if (!item) return;
+
+    // IMAGE
+    const imgWrap = document.getElementById('det-img-wrap');
+    imgWrap.innerHTML = item.gambar
+        ? `<img src="${item.gambar}" alt="${item.poli}" class="detail-hero-img">`
+        : `<div class="detail-hero-placeholder"><i class="bi bi-hospital"></i></div>`;
+
+    // META
+    document.getElementById('det-title').textContent       = item.poli;
+    document.getElementById('det-status-text').textContent = item.status === 'aktif' ? 'Layanan Aktif' : 'Tidak Aktif';
+
+    const badge = document.getElementById('det-badge');
+    badge.textContent  = 'Poliklinik';
+    badge.className    = 'detail-badge';
+
+    // BODY
+    const bodyEl = document.getElementById('det-body');
+    if (item.deskripsi) {
+        const paragraphs = item.deskripsi.split(/\n+/).filter(p => p.trim());
+        bodyEl.innerHTML = paragraphs.length > 1
+            ? paragraphs.map(p => `<p>${p}</p>`).join('')
+            : `<p>${item.deskripsi}</p>`;
+    } else {
+        bodyEl.innerHTML = '<p style="color:#a09bbf">Deskripsi layanan belum tersedia.</p>';
+    }
+
+    // INFOBOX SIDEBAR
+    let infoHtml = '';
+
+    infoHtml += `
+        <div class="info-row">
+            <div class="info-icon">
+                <i class="bi bi-building-cross"></i>
+            </div>
+            <div>
+                <div class="info-text-label">Layanan</div>
+                <div class="info-text-val">${item.poli}</div>
+            </div>
+        </div>`;
+
+    if (item.no_hp) {
+        infoHtml += `
+        <div class="info-row">
+            <div class="info-icon">
+                <i class="bi bi-telephone-fill"></i>
+            </div>
+            <div>
+                <div class="info-text-label">Telepon</div>
+                <div class="info-text-val">${item.no_hp}</div>
+            </div>
+        </div>`;
+    }
+
+    if (item.no_wa) {
+        infoHtml += `
+        <div class="info-row">
+            <div class="info-icon green">
+                <i class="bi bi-whatsapp"></i>
+            </div>
+            <div>
+                <div class="info-text-label">WhatsApp</div>
+                <div class="info-text-val">+${item.no_wa}</div>
+            </div>
+        </div>`;
+    }
+
+    document.getElementById('det-infobox-body').innerHTML = infoHtml;
+
+    // ACTION BUTTONS
+    let btnHtml = '';
+    if (item.no_wa) {
+        btnHtml += `<a href="https://wa.me/${item.no_wa}" target="_blank" rel="noopener" class="detail-wa-btn">
+            <i class="bi bi-whatsapp"></i> Chat WhatsApp
+        </a>`;
+    }
+    if (item.no_hp) {
+        btnHtml += `<a href="tel:${item.no_hp}" class="detail-tel-btn">
+            <i class="bi bi-telephone-fill"></i> Hubungi via Telepon
+        </a>`;
+    }
+    document.getElementById('det-infobox-body').innerHTML += btnHtml;
+
+    // LAYANAN LAINNYA
+    const others = layananData.filter(d => d.id != id).slice(0, 6);
+    const othersEl = document.getElementById('det-others');
+    othersEl.innerHTML = others.map(o => `
+        <div class="col-12 col-sm-6" onclick="showDetail(${o.id})" style="cursor:pointer">
+            <div class="other-card">
+                ${o.gambar
+                    ? `<img src="${o.gambar}" class="other-card-img" alt="${o.poli}">`
+                    : `<div class="other-card-placeholder"><i class="bi bi-hospital"></i></div>`}
+                <div>
+                    <div class="other-card-name">${o.poli}</div>
+                    <div class="other-card-desc">${o.deskripsi || 'Tidak ada deskripsi.'}</div>
+                </div>
+            </div>
+        </div>
+    `).join('');
+
+    // SWITCH PAGE
+    document.getElementById('page-list').style.display   = 'none';
+    document.getElementById('page-detail').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showList() {
+    document.getElementById('page-detail').style.display = 'none';
+    document.getElementById('page-list').style.display   = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
 
 
 
