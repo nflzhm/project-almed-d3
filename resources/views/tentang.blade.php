@@ -884,125 +884,120 @@ body {
 .medica-a{ background:#FBEAF0; border-color:#ED93B1; color:#72243E; }
 
 /* ================= VISI MISI ================= */
-.visi-misi-section{
-    padding:60px 0;
+.visi-misi-section { padding: 60px 0; background: #fff; }
+
+.visi-block {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background: #1C145C;
+}
+.visi-inner {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    padding: 28px 32px;
+    position: relative;
+    z-index: 1;
+}
+.visi-icon-box {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 22px;
+    color: #fff;
+}
+.visi-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 6px;
+}
+.visi-text {
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.7;
+    margin: 0;
+}
+.visi-deco {
+    position: absolute;
+    right: 24px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 80px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.05);
+    font-family: 'GothamBlack', 'Arial Black', sans-serif;
+    pointer-events: none;
+    line-height: 1;
+    user-select: none;
+    z-index: 0;
 }
 
-/* HEADING */
-.visi-misi-heading{
-    font-weight:700;
-    margin-bottom:20px;
+.misi-block {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1.5px solid #e9ecef;
+    background: #fff;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
 }
-
-/* CARD BASE */
-.vm-card{
-    background:#fff;
-    border-radius:16px;
-    padding:25px;
-    box-shadow:0 8px 25px rgba(0,0,0,0.05);
-    position:relative;
-    overflow:hidden;
-    transition:0.3s;
+.misi-head {
+    display: flex; align-items: center; gap: 14px;
+    padding: 18px 28px;
+    background: #f8f7fb;
+    border-bottom: 1.5px solid #e9ecef;
 }
-
-.vm-card:hover{
-    transform:translateY(-5px);
-    box-shadow:0 15px 30px rgba(0,0,0,0.08);
+.misi-head-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: rgba(28,20,92,0.10);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    color: #1C145C;
+    flex-shrink: 0;
 }
-
-/* LABEL TRANSPARAN (VISI / MISI) */
-.vm-label{
-    position:absolute;
-    top:15px;
-    right:20px;
-    font-size:40px;
-    font-weight:800;
-    color:rgba(0,0,0,0.05);
-    pointer-events:none;
+.misi-head-title { font-size: 15px; font-weight: 700; color: #1C145C; }
+.misi-head-sub   { font-size: 12px; color: #888; margin-top: 1px; }
+.misi-count {
+    margin-left: auto;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.06em;
+    background: rgba(28,20,92,0.08);
+    color: #1C145C;
+    padding: 4px 12px;
+    border-radius: 999px;
 }
-
-/* HEADER */
-.vm-header{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    margin-bottom:15px;
+.misi-body { padding: 8px 28px 20px; }
+.misi-item {
+    display: flex; gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid #f0f0f0;
+    align-items: flex-start;
 }
-
-/* ICON */
-.vm-icon{
-    width:45px;
-    height:45px;
-    border-radius:12px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:18px;
+.misi-item:last-child { border-bottom: none; }
+.misi-num {
+    flex-shrink: 0;
+    width: 30px; height: 30px;
+    border-radius: 8px;
+    background: #1C145C;
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700;
+    margin-top: 2px;
 }
-
-/* WARNA */
-.vm-visi .vm-icon{
-    background:rgba(28,20,92,0.1);
-    color:#1C145C;
+.misi-txt {
+    font-size: 14px;
+    color: #444;
+    line-height: 1.72;
+    margin: 0;
+    padding-top: 5px;
 }
-
-.vm-misi .vm-icon{
-    background:rgba(40,167,69,0.1);
-    color:#28a745;
-}
-
-/* TITLE */
-.vm-title{
-    font-weight:700;
-    font-size:18px;
-}
-
-/* TEXT */
-.vm-text{
-    font-size:14px;
-    color:#555;
-    line-height:1.7;
-}
-
-/* LIST MISI */
-.vm-list{
-    padding-left:18px;
-    font-size:14px;
-    color:#555;
-    line-height:1.7;
-}
-
-.vm-card .vm-text,
-.vm-card .vm-list{
-    flex-grow:1;
-}
-.vm-label{
-    position:absolute;
-    top:20px;
-    right:20px;
-    font-size:12px;
-    font-weight:700;
-    letter-spacing:1px;
-    padding:4px 12px;
-    border-radius:6px;
-    z-index:1;
-}
-
-/* warna beda */
-.vm-visi .vm-label{
-    background:rgba(28,20,92,0.08);
-    color:#1C145C;
-}
-
-.vm-misi .vm-label{
-    background:rgba(40,167,69,0.08);
-    color:#28a745;
-}
-.vm-card{
-    height:100%; /* ini penting */
-    display:flex;
-    flex-direction:column;
-} 
 
 </style>
 
@@ -1139,58 +1134,57 @@ Didukung sistem keamanan aktif yang ramah bagi pengunjung, dengan pendekatan ten
 </section>
 
 
-{{-- ======================== VISI & MISI ======================== --}}
-
 <section class="visi-misi-section">
 <div class="container">
 
-    <h4 class="fw-bold mb-4">Visi & Misi</h4>
+    <h4 class="fw-bold mb-4">Visi &amp; Misi</h4>
 
-    <div class="row g-4 align-items-stretch">
-
-        <!-- VISI -->
-        <div class="col-md-6">
-            <div class="vm-card vm-visi">
-
-                <div class="vm-label">VISI</div>
-
-                <div class="vm-header">
-                    <div class="vm-icon">
-                        <i class="bi bi-eye-fill"></i>
-                    </div>
-                    <div class="vm-title">Visi</div>
-                </div>
-
-                <p class="vm-text">
+    {{-- VISI --}}
+    <div class="visi-block">
+        <div class="visi-deco">VISI</div>
+        <div class="visi-inner">
+            <div class="visi-icon-box">
+                <i class="bi bi-eye-fill"></i>
+            </div>
+            <div>
+                <div class="visi-label">Visi</div>
+                <p class="visi-text">
                     Menjadi Rujukan Utama Pelayanan Kesehatan yang Inovatif, Handal dan Terpercaya di Kabupaten Brebes
                 </p>
-
             </div>
         </div>
+    </div>
 
-        <!-- MISI -->
-        <div class="col-md-6">
-            <div class="vm-card vm-misi">
-
-                <div class="vm-label">MISI</div>
-
-                <div class="vm-header">
-                    <div class="vm-icon">
-                        <i class="bi bi-bullseye"></i>
-                    </div>
-                    <div class="vm-title">Misi</div>
-                </div>
-
-                <ol class="vm-list">
-                    <li>Melaksanakan upaya pelayanan Kesehatan secara profesional dan inovatif melalui adopsi teknologi terbarukan selaras dengan perkembangan zaman.</li>
-                    <li>Mewujudkan layanan Kesehatan yang modern dan berorientasi kepada kepuasan pelanggan sesuai dengan kebutuhan Masyarakat.</li>
-                    <li>Menjalankan prinsip tatakelola perusahaan yang baik guna menciptakan nilai tambah bagi stakeholders (pelanggan, pekerja, mitrakerja, pemilik, dan masyarakat) dan berdampak positif terhadap lingkungan.</li>
-                    <li>Mengembangkan infrastruktur modern dan tatakelola sumberdaya manusia berkualitas guna mencapai SDM yang Unggul, Kompeten dan berdaya saing.</li>
-                </ol>
-
+    {{-- MISI --}}
+    <div class="misi-block">
+        <div class="misi-head">
+            <div class="misi-head-icon">
+                <i class="bi bi-bullseye"></i>
+            </div>
+            <div>
+                <div class="misi-head-title">Misi</div>
+                <div class="misi-head-sub">Langkah strategis pencapaian visi</div>
+            </div>
+            <span class="misi-count">4 Poin</span>
+        </div>
+        <div class="misi-body">
+            <div class="misi-item">
+                <div class="misi-num">1</div>
+                <p class="misi-txt">Melaksanakan upaya pelayanan Kesehatan secara profesional dan inovatif melalui adopsi teknologi terbarukan selaras dengan perkembangan zaman.</p>
+            </div>
+            <div class="misi-item">
+                <div class="misi-num">2</div>
+                <p class="misi-txt">Mewujudkan layanan Kesehatan yang modern dan berorientasi kepada kepuasan pelanggan sesuai dengan kebutuhan Masyarakat.</p>
+            </div>
+            <div class="misi-item">
+                <div class="misi-num">3</div>
+                <p class="misi-txt">Menjalankan prinsip tatakelola perusahaan yang baik guna menciptakan nilai tambah bagi stakeholders (pelanggan, pekerja, mitrakerja, pemilik, dan masyarakat) dan berdampak positif terhadap lingkungan.</p>
+            </div>
+            <div class="misi-item">
+                <div class="misi-num">4</div>
+                <p class="misi-txt">Mengembangkan infrastruktur modern dan tatakelola sumberdaya manusia berkualitas guna mencapai SDM yang Unggul, Kompeten dan berdaya saing.</p>
             </div>
         </div>
-
     </div>
 
 </div>

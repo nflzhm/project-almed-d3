@@ -25,6 +25,27 @@ use App\Http\Controllers\Admin\LayananController as AdminLayananController;
 use App\Http\Controllers\Admin\PenggunaController;
 use App\Http\Controllers\Admin\AdminDokterController;
 use App\Http\Controllers\Admin\ArtikelAdminController;
+use App\Http\Controllers\Admin\MutuController as AdminMutuController;
+use App\Http\Controllers\Admin\FormMutuController;
+
+Route::get('/mutu', [MutuController::class, 'index'])
+    ->name('mutu');
+
+// ── ADMIN MUTU
+Route::prefix('admin')
+    ->name('admin.')
+    ->middleware(['auth'])
+    ->group(function () {
+
+        Route::get('/form-mutu',              [FormMutuController::class, 'index'])  ->name('form_mutu.index');
+        Route::get('/form-mutu/create',       [FormMutuController::class, 'create']) ->name('form_mutu.create');
+        Route::post('/form-mutu',             [FormMutuController::class, 'store'])  ->name('form_mutu.store');
+        Route::get('/form-mutu/{form_mutu}',  [FormMutuController::class, 'show'])   ->name('form_mutu.show');
+        Route::get('/form-mutu/{form_mutu}/edit', [FormMutuController::class, 'edit'])   ->name('form_mutu.edit');
+        Route::put('/form-mutu/{form_mutu}',      [FormMutuController::class, 'update']) ->name('form_mutu.update');
+        Route::delete('/form-mutu/{form_mutu}',   [FormMutuController::class, 'destroy'])->name('form_mutu.destroy');
+
+});
 
 
 /* ================= ADMIN ================= */
@@ -166,7 +187,7 @@ Route::get('/video', function () {
 })->name('video');
 
 
-Route::get('/mutu', [MutuController::class, 'index'])->name('mutu');
+
 
 /* ================= AUTH ================= */
 

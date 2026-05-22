@@ -669,6 +669,11 @@
                     <span class="submenu-dot"></span>
                     <span class="sidebar-label">Artikel</span>
                 </a>
+                <a href="{{ route('admin.form_mutu.index') }}"
+                    class="nav-link {{ request()->routeIs('admin.form_mutu.*') ? 'active' : '' }}">
+                    <span class="submenu-dot"></span>
+                    <span class="sidebar-label">Form Mutu</span>
+                </a>
                 
             </div>
         </div>
