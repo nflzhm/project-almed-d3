@@ -1,261 +1,484 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ isset($mutu) ? 'Edit' : 'Tambah' }} Data Mutu | Admin RSU Allam Medica</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <style>
-        body { background:#f5f7fb; font-family:'Segoe UI',sans-serif; }
+@extends('admin.layout')
 
-        .admin-topbar { background:linear-gradient(90deg,#1C145C,#2d2090); color:#fff; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; }
-        .admin-topbar .brand { font-size:15px; font-weight:700; display:flex; align-items:center; gap:10px; }
-        .admin-topbar .brand i { font-size:20px; opacity:.8; }
-        .admin-topbar .right a { color:rgba(255,255,255,.75); text-decoration:none; font-size:13px; }
-        .admin-topbar .right a:hover { color:#fff; }
+@section('title', (isset($mutu) ? 'Edit' : 'Tambah') . ' Data Mutu')
+@section('page-title', isset($mutu) ? 'Edit Data Mutu' : 'Tambah Data Mutu')
 
-        .admin-breadcrumb { background:#fff; border-bottom:1px solid #e2e8f0; padding:10px 24px; font-size:12.5px; color:#94a3b8; }
-        .admin-breadcrumb a { color:#1C145C; text-decoration:none; }
-        .admin-breadcrumb span { margin:0 6px; }
+@section('breadcrumb')
+    <li class="breadcrumb-item">
+        <a href="{{ route('admin.form_mutu.index') }}">Indikator Mutu</a>
+    </li>
+    <li class="breadcrumb-item active">
+        {{ isset($mutu) ? 'Edit '.$mutu->periode : 'Tambah Data Bulan Baru' }}
+    </li>
+@endsection
 
-        .admin-main { max-width:900px; margin:0 auto; padding:2rem 1.5rem; }
+@push('styles')
+<style>
+/* ============================================================
+   FORM MUTU — Page Styles
+============================================================ */
 
-        .form-card { background:#fff; border:1px solid #e2e8f0; border-radius:16px; overflow:hidden; box-shadow:0 2px 8px rgba(28,20,92,.04); margin-bottom:1.5rem; }
+/* ---- Page header ---- */
+.page-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+.page-header-left .ph-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 20px; font-weight: 800;
+    color: var(--text-main); letter-spacing: -.3px;
+}
+.page-header-left .ph-sub {
+    font-size: 13px; color: var(--text-muted); margin-top: 3px;
+}
 
-        .form-card-header { background:#f8f7ff; border-bottom:1px solid #e2e8f0; padding:1rem 1.4rem; display:flex; align-items:center; gap:10px; }
-        .form-card-header .hnum { width:28px;height:28px; background:#1C145C; color:#fff; border-radius:7px; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; flex-shrink:0; }
-        .form-card-header h2 { font-size:.95rem; font-weight:700; color:#1C145C; margin:0; }
-        .form-card-header p  { font-size:12px; color:#64748b; margin:0; }
+/* ---- Validation errors ---- */
+.alert-validation {
+    background: #fee2e2;
+    border: 1.5px solid #fecaca;
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: #991b1b;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.6;
+}
+.alert-validation i { margin-top: 2px; flex-shrink: 0; }
 
-        .form-card-body { padding:1.4rem; }
+/* ---- Periode card ---- */
+.periode-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    box-shadow: var(--shadow-sm);
+}
+.periode-icon {
+    width: 44px; height: 44px;
+    border-radius: var(--radius-sm);
+    background: var(--primary-light);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--primary); font-size: 18px; flex-shrink: 0;
+}
+.periode-fields { display: flex; gap: 14px; align-items: flex-end; flex-wrap: wrap; }
+.periode-field label {
+    font-size: 12px; font-weight: 700; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: .6px;
+    display: block; margin-bottom: 5px;
+}
+.periode-select {
+    padding: 9px 32px 9px 13px;
+    border: 1.5px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13.5px; color: var(--text-main);
+    background: var(--body-bg);
+    outline: none; cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2364748b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 11px center;
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+.periode-select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(14,165,233,.12);
+    background-color: #fff;
+}
+.error-msg { font-size: 11.5px; color: #dc2626; margin-top: 5px; }
 
-        .form-label-custom { font-size:13px; font-weight:600; color:#334155; margin-bottom:5px; }
-        .form-control, .form-select { font-size:13.5px; border:1px solid #d1d5db; border-radius:10px; padding:9px 12px; color:#1e293b; background:#fafafe; transition:border-color .2s,box-shadow .2s; }
-        .form-control:focus, .form-select:focus { border-color:#1C145C; box-shadow:0 0 0 3px rgba(28,20,92,.08); background:#fff; outline:none; }
+/* ---- Indicator card ---- */
+.indicator-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 16px;
+    transition: box-shadow var(--transition);
+}
+.indicator-card:hover { box-shadow: var(--shadow-md); }
 
-        .num-den-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; align-items:end; }
-        @media(max-width:600px) { .num-den-row { grid-template-columns:1fr 1fr; } }
+.indicator-card-header {
+    background: #f8faff;
+    border-bottom: 1px solid var(--border-color);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.ind-num {
+    width: 30px; height: 30px;
+    border-radius: 8px;
+    background: var(--primary);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13px; font-weight: 800;
+    flex-shrink: 0;
+}
+.ind-label {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px; font-weight: 700;
+    color: var(--text-main); flex: 1;
+}
+.ind-target-badge {
+    font-size: 11px; font-weight: 700;
+    padding: 3px 10px; border-radius: 20px;
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    white-space: nowrap;
+}
 
-        .capaian-display { background:#eeedf8; border:1px solid #c4bfee; border-radius:10px; padding:9px 14px; font-size:1.1rem; font-weight:700; color:#1C145C; text-align:center; min-height:42px; display:flex; align-items:center; justify-content:center; }
+.indicator-card-body { padding: 20px 24px; }
 
-        .target-tag { display:inline-block; font-size:11px; padding:2px 9px; border-radius:12px; background:#eeedf8; color:#2d2090; font-weight:600; margin-left:8px; }
+/* ---- Numerator / Denominator row ---- */
+.num-den-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+    align-items: end;
+    margin-bottom: 18px;
+}
+@media (max-width: 640px) {
+    .num-den-row { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 420px) {
+    .num-den-row { grid-template-columns: 1fr; }
+}
 
-        textarea.form-control { resize:vertical; min-height:70px; }
+/* ---- Capaian display ---- */
+.capaian-display {
+    min-height: 42px;
+    background: var(--primary-light);
+    border: 1.5px solid #bae6fd;
+    border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.05rem; font-weight: 800;
+    color: var(--primary-dark);
+    letter-spacing: -.2px;
+}
 
-        .btn-save { background:#1C145C; color:#fff; border:none; border-radius:10px; padding:11px 28px; font-size:14px; font-weight:700; cursor:pointer; display:inline-flex; align-items:center; gap:8px; transition:.2s; }
-        .btn-save:hover { background:#2d2090; transform:translateY(-1px); }
-        .btn-cancel { background:#f1f0fa; color:#1C145C; border:none; border-radius:10px; padding:11px 22px; font-size:14px; font-weight:600; text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:.2s; }
-        .btn-cancel:hover { background:#e0ddf5; }
+/* ---- Form controls ---- */
+.am-label {
+    font-size: 12px; font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: .6px;
+    display: block; margin-bottom: 5px;
+}
+.am-input, .am-textarea {
+    width: 100%;
+    padding: 9px 13px;
+    border: 1.5px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13.5px; color: var(--text-main);
+    background: var(--body-bg);
+    outline: none;
+    transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+}
+.am-input:focus, .am-textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(14,165,233,.12);
+    background: #fff;
+}
+.am-textarea { resize: vertical; min-height: 78px; line-height: 1.6; }
 
-        .error-msg { font-size:12px; color:#dc2626; margin-top:4px; }
+/* ---- Analisa / RTL grid ---- */
+.analisa-rtl-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+@media (max-width: 640px) {
+    .analisa-rtl-row { grid-template-columns: 1fr; }
+}
 
-        .periode-card { background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:1.25rem 1.4rem; margin-bottom:1.5rem; display:flex; align-items:center; gap:16px; flex-wrap:wrap; box-shadow:0 2px 8px rgba(28,20,92,.04); }
-        .periode-card label { font-size:13px; font-weight:600; color:#1C145C; }
-        .periode-card select { font-size:13.5px; border:1px solid #d1d5db; border-radius:10px; padding:8px 14px; color:#1e293b; }
-    </style>
-</head>
-<body>
+/* ---- Action bar ---- */
+.form-action-bar {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+    box-shadow: var(--shadow-sm);
+    flex-wrap: wrap;
+}
+.btn-save-am {
+    background: var(--primary);
+    color: #fff; border: none;
+    border-radius: var(--radius-sm);
+    padding: 10px 24px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13.5px; font-weight: 700;
+    cursor: pointer;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
+    box-shadow: 0 4px 14px rgba(14,165,233,.25);
+}
+.btn-save-am:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 22px rgba(14,165,233,.35);
+}
+.btn-cancel-am {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1.5px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 10px 20px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13.5px; font-weight: 600;
+    cursor: pointer;
+    display: inline-flex; align-items: center; gap: 8px;
+    text-decoration: none;
+    transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+.btn-cancel-am:hover {
+    background: var(--body-bg);
+    color: var(--text-main);
+    border-color: var(--text-muted);
+}
+</style>
+@endpush
+
+@section('content')
 
 @php
-// ── Bulan ──────────────────────────────────────────────────────────────────
+/* ── Bulan ─────────────────────────────────────────────────────── */
 $bulanList = $bulanList ?? [
-    1  => 'Januari',
-    2  => 'Februari',
-    3  => 'Maret',
-    4  => 'April',
-    5  => 'Mei',
-    6  => 'Juni',
-    7  => 'Juli',
-    8  => 'Agustus',
-    9  => 'September',
-    10 => 'Oktober',
-    11 => 'November',
-    12 => 'Desember',
+    1  => 'Januari',   2  => 'Februari', 3  => 'Maret',
+    4  => 'April',     5  => 'Mei',      6  => 'Juni',
+    7  => 'Juli',      8  => 'Agustus',  9  => 'September',
+    10 => 'Oktober',   11 => 'November', 12 => 'Desember',
 ];
 
-// ── Tahun — FIX: selalu generate default, merge dengan data dari controller ─
+/* ── Tahun ─────────────────────────────────────────────────────── */
 $_tahunDB  = (isset($tahunList) && is_array($tahunList) && count($tahunList) > 0)
-             ? array_map('intval', $tahunList)
-             : [];
-$_tahunDef = array_reverse(range(2020, (int) date('Y')));  // [2026,2025,...,2020]
+             ? array_map('intval', $tahunList) : [];
+$_tahunDef = array_reverse(range(2020, (int) date('Y')));
 $tahunList = array_values(array_unique(array_merge($_tahunDB, $_tahunDef)));
-rsort($tahunList); // pastikan urutan descending
+rsort($tahunList);
+
+/* ── Indikator list ────────────────────────────────────────────── */
+$indicators = [
+    ['kbt', 'Kepatuhan Kebersihan Tangan',           'Target ≥ 85%',    true],
+    ['apd', 'Kepatuhan Penggunaan APD',              'Target 100%',     true],
+    ['idp', 'Kepatuhan Identifikasi Pasien',         'Target 100%',     true],
+    ['sc',  'Waktu Tanggap SC Emergensi',            'Target > 80%',    true],
+    ['wtj', 'Waktu Tunggu Rawat Jalan',              'Target ≥ 80%',    true],
+    ['poe', 'Penundaan Operasi Elektif',             'Target < 5%',     true],
+    ['kvd', 'Kepatuhan Waktu Visite Dokter',         'Target ≥ 80%',    true],
+    ['pkl', 'Pelaporan Hasil Kritis Laboratorium',   'Target 100%',     true],
+    ['kfn', 'Kepatuhan Formularium Nasional',        'Target ≥ 80%',    true],
+    ['kcp', 'Kepatuhan Clinical Pathway',            'Target ≥ 80%',    true],
+    ['prj', 'Pencegahan Risiko Pasien Jatuh',        'Target 100%',     true],
+    ['ktk', 'Kecepatan Tanggap Komplain',            'Target ≥ 80%',    true],
+    ['kep', 'Kepuasan Pasien',                       'Target > 76.61%', false],
+];
 @endphp
 
-<div class="admin-topbar">
-    <div class="brand"><i class="bi bi-hospital"></i>RSU Allam Medica — Panel Admin</div>
-    <div class="right">
-        <a href="{{ route('admin.form_mutu.index') }}" target="_blank"><i class="bi bi-eye"></i> Lihat Publik</a>
+{{-- ================================================================
+     PAGE HEADER
+================================================================ --}}
+<div class="page-header">
+    <div class="page-header-left">
+        <div class="ph-title">
+            {{ isset($mutu) ? 'Edit Data Mutu — '.$mutu->periode : 'Tambah Data Mutu Bulan Baru' }}
+        </div>
+        <div class="ph-sub">
+            {{ isset($mutu)
+                ? 'Perbarui data indikator mutu untuk periode yang dipilih'
+                : 'Isi data numerator, denominator, analisa, dan RTL untuk setiap indikator' }}
+        </div>
     </div>
+    <a href="{{ route('admin.form_mutu.index') }}" class="btn-cancel-am">
+        <i class="fa-solid fa-arrow-left"></i>
+        Kembali ke Daftar
+    </a>
 </div>
 
-<div class="admin-breadcrumb">
-    <a href="{{ route('admin.form_mutu.index') }}">Indikator Mutu</a>
-    <span>›</span>
-    <strong style="color:#1C145C;">{{ isset($mutu) ? 'Edit '.$mutu->periode : 'Tambah Data Bulan Baru' }}</strong>
-</div>
-
-<div class="admin-main">
-
-    @if($errors->any())
-    <div style="background:#fee2e2;border:1px solid #fecaca;border-radius:10px;padding:12px 16px;margin-bottom:1.25rem;font-size:13.5px;color:#991b1b;">
-        <i class="bi bi-exclamation-circle-fill me-2"></i>
-        @foreach($errors->all() as $err) {{ $err }}<br> @endforeach
+{{-- ================================================================
+     VALIDATION ERRORS
+================================================================ --}}
+@if($errors->any())
+<div class="alert-validation">
+    <i class="fa-solid fa-circle-exclamation"></i>
+    <div>
+        <strong>Terdapat kesalahan pada form:</strong><br>
+        @foreach($errors->all() as $err)
+            • {{ $err }}<br>
+        @endforeach
     </div>
-    @endif
+</div>
+@endif
 
-    <form method="POST"
-          action="{{ isset($mutu) ? route('admin.form_mutu.update', $mutu) : route('admin.form_mutu.store') }}">
-        @csrf
-        @if(isset($mutu)) @method('PUT') @endif
+{{-- ================================================================
+     FORM
+================================================================ --}}
+<form method="POST"
+      action="{{ isset($mutu) ? route('admin.form_mutu.update', $mutu) : route('admin.form_mutu.store') }}">
+    @csrf
+    @if(isset($mutu)) @method('PUT') @endif
 
-        {{-- PERIODE --}}
-        <div class="periode-card">
-            <i class="bi bi-calendar3" style="font-size:20px;color:#1C145C;"></i>
-            <div>
-                <div style="font-size:11px;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;">Periode Data</div>
-                <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
-
-                    {{-- BULAN --}}
-                    <div>
-                        <label class="form-label-custom">Bulan</label><br>
-                        <select name="bulan" class="form-select" style="width:160px;" required>
-                            @foreach($bulanList as $num => $nama)
+    {{-- ── PERIODE ────────────────────────────────────────────── --}}
+    <div class="periode-card">
+        <div class="periode-icon">
+            <i class="fa-regular fa-calendar"></i>
+        </div>
+        <div>
+            <div style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.7px;font-weight:700;margin-bottom:10px;">
+                Periode Data
+            </div>
+            <div class="periode-fields">
+                {{-- Bulan --}}
+                <div class="periode-field">
+                    <label>Bulan</label>
+                    <select name="bulan" class="periode-select" required>
+                        @foreach($bulanList as $num => $nama)
                             <option value="{{ $num }}"
                                 {{ (int) old('bulan', $mutu->bulan ?? '') === (int) $num ? 'selected' : '' }}>
                                 {{ $nama }}
                             </option>
-                            @endforeach
-                        </select>
-                    </div>
+                        @endforeach
+                    </select>
+                </div>
 
-                    {{-- TAHUN — FIX: cast ke int dua sisi agar selected tidak meleset --}}
-                    <div>
-                        <label class="form-label-custom">Tahun</label><br>
-                        <select name="tahun" class="form-select" style="width:110px;" required>
-                            @foreach($tahunList as $th)
+                {{-- Tahun --}}
+                <div class="periode-field">
+                    <label>Tahun</label>
+                    <select name="tahun" class="periode-select" required>
+                        @foreach($tahunList as $th)
                             <option value="{{ $th }}"
                                 {{ (int) old('tahun', $mutu->tahun ?? date('Y')) === (int) $th ? 'selected' : '' }}>
                                 {{ $th }}
                             </option>
-                            @endforeach
-                        </select>
-                    </div>
-
+                        @endforeach
+                    </select>
                 </div>
             </div>
+
             @if($errors->has('bulan'))
-            <div class="error-msg w-100">{{ $errors->first('bulan') }}</div>
+                <div class="error-msg">{{ $errors->first('bulan') }}</div>
             @endif
             @if($errors->has('tahun'))
-            <div class="error-msg w-100">{{ $errors->first('tahun') }}</div>
+                <div class="error-msg">{{ $errors->first('tahun') }}</div>
             @endif
         </div>
+    </div>
 
-        {{-- INDIKATOR SATU PER SATU --}}
-        @php
-            $no = 0;
-            $indicators = [
-                ['kbt', 'Kepatuhan Kebersihan Tangan',           'Target ≥ 85%',    true],
-                ['apd', 'Kepatuhan Penggunaan APD',              'Target 100%',     true],
-                ['idp', 'Kepatuhan Identifikasi Pasien',         'Target 100%',     true],
-                ['sc',  'Waktu Tanggap SC Emergensi',            'Target > 80%',    true],
-                ['wtj', 'Waktu Tunggu Rawat Jalan',              'Target ≥ 80%',    true],
-                ['poe', 'Penundaan Operasi Elektif',             'Target < 5%',     true],
-                ['kvd', 'Kepatuhan Waktu Visite Dokter',         'Target ≥ 80%',    true],
-                ['pkl', 'Pelaporan Hasil Kritis Laboratorium',   'Target 100%',     true],
-                ['kfn', 'Kepatuhan Formularium Nasional',        'Target ≥ 80%',    true],
-                ['kcp', 'Kepatuhan Clinical Pathway',            'Target ≥ 80%',    true],
-                ['prj', 'Pencegahan Risiko Pasien Jatuh',        'Target 100%',     true],
-                ['ktk', 'Kecepatan Tanggap Komplain',            'Target ≥ 80%',    true],
-                ['kep', 'Kepuasan Pasien',                       'Target > 76.61%', false],
-            ];
-        @endphp
+    {{-- ── INDIKATOR CARDS ────────────────────────────────────── --}}
+    @foreach($indicators as $no => [$key, $label, $target, $hasNum])
+    <div class="indicator-card">
 
-        @foreach($indicators as [$key, $label, $target, $hasNum])
-        @php $no++; @endphp
-        <div class="form-card">
-            <div class="form-card-header">
-                <div class="hnum">{{ $no }}</div>
+        {{-- Header --}}
+        <div class="indicator-card-header">
+            <div class="ind-num">{{ $no + 1 }}</div>
+            <div class="ind-label">{{ $label }}</div>
+            <span class="ind-target-badge">{{ $target }}</span>
+        </div>
+
+        {{-- Body --}}
+        <div class="indicator-card-body">
+
+            @if($hasNum)
+            {{-- Numerator / Denominator / Capaian --}}
+            <div class="num-den-row">
                 <div>
-                    <h2>{{ $label }} <span class="target-tag">{{ $target }}</span></h2>
+                    <label class="am-label">Numerator</label>
+                    <input type="number" name="{{ $key }}_numerator"
+                           class="am-input"
+                           placeholder="Contoh: 360"
+                           value="{{ old($key.'_numerator', $mutu->{$key.'_numerator'} ?? '') }}"
+                           oninput="hitungCapaian('{{ $key }}')">
+                </div>
+                <div>
+                    <label class="am-label">Denominator</label>
+                    <input type="number" name="{{ $key }}_denominator"
+                           class="am-input"
+                           placeholder="Contoh: 423"
+                           value="{{ old($key.'_denominator', $mutu->{$key.'_denominator'} ?? '') }}"
+                           oninput="hitungCapaian('{{ $key }}')">
+                </div>
+                <div>
+                    <label class="am-label">Capaian (%)</label>
+                    <div class="capaian-display" id="{{ $key }}_preview">
+                        @php $cap = old($key.'_capaian', $mutu->{$key.'_capaian'} ?? null); @endphp
+                        {{ $cap !== null && $cap !== '' ? number_format((float)$cap, 2).'%' : '—' }}
+                    </div>
+                    <input type="hidden" name="{{ $key }}_capaian" id="{{ $key }}_capaian"
+                           value="{{ old($key.'_capaian', $mutu->{$key.'_capaian'} ?? '') }}">
                 </div>
             </div>
-            <div class="form-card-body">
-
-                @if($hasNum)
-                <div class="num-den-row mb-3">
+            @else
+            {{-- Kepuasan pasien: input capaian langsung --}}
+            <div style="margin-bottom:18px;">
+                <div style="display:grid;grid-template-columns:200px 1fr;gap:14px;align-items:end;">
                     <div>
-                        <label class="form-label-custom">Numerator</label>
-                        <input type="number" name="{{ $key }}_numerator"
-                               class="form-control"
-                               placeholder="Contoh: 360"
-                               value="{{ old($key.'_numerator', $mutu->{$key.'_numerator'} ?? '') }}"
-                               oninput="hitungCapaian('{{ $key }}')">
-                    </div>
-                    <div>
-                        <label class="form-label-custom">Denominator</label>
-                        <input type="number" name="{{ $key }}_denominator"
-                               class="form-control"
-                               placeholder="Contoh: 423"
-                               value="{{ old($key.'_denominator', $mutu->{$key.'_denominator'} ?? '') }}"
-                               oninput="hitungCapaian('{{ $key }}')">
-                    </div>
-                    <div>
-                        <label class="form-label-custom">Capaian (%)</label>
-                        <div class="capaian-display" id="{{ $key }}_preview">
-                            @php $cap = old($key.'_capaian', $mutu->{$key.'_capaian'} ?? null); @endphp
-                            {{ $cap !== null && $cap !== '' ? number_format((float)$cap, 2).'%' : '—' }}
-                        </div>
-                        <input type="hidden" name="{{ $key }}_capaian" id="{{ $key }}_capaian"
-                               value="{{ old($key.'_capaian', $mutu->{$key.'_capaian'} ?? '') }}">
-                    </div>
-                </div>
-                @else
-                {{-- Kepuasan pasien: langsung input capaian --}}
-                <div class="row mb-3">
-                    <div class="col-md-4">
-                        <label class="form-label-custom">Capaian (%)</label>
+                        <label class="am-label">Capaian (%)</label>
                         <input type="number" step="0.01" name="{{ $key }}_capaian"
-                               class="form-control"
+                               class="am-input"
                                placeholder="Contoh: 92.5"
                                value="{{ old($key.'_capaian', $mutu->{$key.'_capaian'} ?? '') }}">
                     </div>
+                    <div></div>
                 </div>
-                @endif
-
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <label class="form-label-custom">Analisa</label>
-                        <textarea name="{{ $key }}_analisa" class="form-control"
-                                  placeholder="Tuliskan analisa capaian indikator ini...">{{ old($key.'_analisa', $mutu->{$key.'_analisa'} ?? '') }}</textarea>
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label-custom">Rencana Tindak Lanjut (RTL)</label>
-                        <textarea name="{{ $key }}_rtl" class="form-control"
-                                  placeholder="Tuliskan rencana tindak lanjut...">{{ old($key.'_rtl', $mutu->{$key.'_rtl'} ?? '') }}</textarea>
-                    </div>
-                </div>
-
             </div>
+            @endif
+
+            {{-- Analisa & RTL --}}
+            <div class="analisa-rtl-row">
+                <div>
+                    <label class="am-label">Analisa</label>
+                    <textarea name="{{ $key }}_analisa"
+                              class="am-textarea"
+                              placeholder="Tuliskan analisa capaian indikator ini...">{{ old($key.'_analisa', $mutu->{$key.'_analisa'} ?? '') }}</textarea>
+                </div>
+                <div>
+                    <label class="am-label">Rencana Tindak Lanjut (RTL)</label>
+                    <textarea name="{{ $key }}_rtl"
+                              class="am-textarea"
+                              placeholder="Tuliskan rencana tindak lanjut...">{{ old($key.'_rtl', $mutu->{$key.'_rtl'} ?? '') }}</textarea>
+                </div>
+            </div>
+
         </div>
-        @endforeach
+    </div>
+    @endforeach
 
-        {{-- TOMBOL --}}
-        <div style="display:flex;gap:12px;align-items:center;padding-bottom:3rem;">
-            <button type="submit" class="btn-save">
-                <i class="bi bi-floppy"></i>
-                {{ isset($mutu) ? 'Simpan Perubahan' : 'Simpan Data Bulan Ini' }}
-            </button>
-            <a href="{{ route('admin.form_mutu.index') }}" class="btn-cancel">
-                <i class="bi bi-arrow-left"></i> Batal
-            </a>
-        </div>
+    {{-- ── ACTION BAR ─────────────────────────────────────────── --}}
+    <div class="form-action-bar">
+        <button type="submit" class="btn-save-am">
+            <i class="fa-solid fa-floppy-disk"></i>
+            {{ isset($mutu) ? 'Simpan Perubahan' : 'Simpan Data Bulan Ini' }}
+        </button>
+        <a href="{{ route('admin.form_mutu.index') }}" class="btn-cancel-am">
+            <i class="fa-solid fa-xmark"></i>
+            Batal
+        </a>
+    </div>
 
-    </form>
-</div>
+</form>
+@endsection
 
+
+@push('scripts')
 <script>
 /* Auto-hitung capaian dari numerator / denominator */
 function hitungCapaian(key) {
@@ -274,17 +497,12 @@ function hitungCapaian(key) {
     }
 }
 
-/* Init: hitung semua yang sudah ada value saat edit */
+/* Init: hitung semua yang sudah terisi saat mode edit */
 document.addEventListener('DOMContentLoaded', () => {
-    @php
-        $keys = ['kbt','apd','idp','sc','wtj','poe','kvd','pkl','kfn','kcp','prj','ktk'];
-    @endphp
+    @php $keys = ['kbt','apd','idp','sc','wtj','poe','kvd','pkl','kfn','kcp','prj','ktk']; @endphp
     @foreach($keys as $k)
     hitungCapaian('{{ $k }}');
     @endforeach
 });
 </script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+@endpush

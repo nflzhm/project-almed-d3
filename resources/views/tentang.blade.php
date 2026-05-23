@@ -41,18 +41,13 @@ body {
    TOPBAR
 ======================================== */
 .topbar {
-    background: linear-gradient(
-        90deg,
-        #1C145C 0%,
-        #34258d 50%,
-        #1C145C 100%
-    );
+    background: linear-gradient(90deg, #1C145C 0%, #34258d 50%, #1C145C 100%);
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 38px;
-    z-index: 9999;
+    z-index: 10000;
     display: flex;
     align-items: center;
 }
@@ -156,11 +151,7 @@ body {
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, .20),
-        rgba(255, 255, 255, .02)
-    );
+    background: linear-gradient(180deg, rgba(255, 255, 255, .20), rgba(255, 255, 255, .02));
     pointer-events: none;
 }
 
@@ -179,7 +170,7 @@ body {
 }
 
 /* ========================================
-   NAV LINKS
+   NAV LINKS (Desktop)
 ======================================== */
 .nav-links {
     display: flex;
@@ -221,7 +212,7 @@ body {
 }
 
 /* ========================================
-   DROPDOWN
+   DROPDOWN (Desktop)
 ======================================== */
 .drop-wrap {
     position: relative;
@@ -318,7 +309,7 @@ body {
     background: transparent;
     padding: 6px;
     position: relative;
-    z-index: 1000;
+    z-index: 2;
 }
 
 .nav-burger span {
@@ -330,81 +321,179 @@ body {
     transition: .3s;
 }
 
-.nav-burger.open span:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
+.nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; }
+.nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ========================================
+   OVERLAY
+======================================== */
+.nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0);
+    z-index: 9999990;
+    transition: background .3s ease;
 }
 
-.nav-burger.open span:nth-child(2) {
-    opacity: 0;
-}
-
-.nav-burger.open span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
+.nav-overlay.show {
+    display: block;
+    background: rgba(15, 23, 42, 0.42);
 }
 
 /* ========================================
-   MOBILE MENU — SOLID GLASS
+   SIDE DRAWER (Mobile)
 ======================================== */
-.mobile-menu {
-    display: none;
-    position: absolute;
-    top: calc(100% + 12px);
-    left: 0;
+.nav-drawer {
+    position: fixed;
+    top: 0;
     right: 0;
-    padding: 10px;
-    border-radius: 26px;
+    width: 62%;
+    max-width: 280px;
+    height: 100dvh;
+    z-index: 9999995;
+    transform: translateX(100%);
+    transition: transform .32s cubic-bezier(.4, 0, .2, 1);
 
-    /* SOLID — nav link terbaca jelas */
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    box-shadow: 0 14px 40px rgba(15, 23, 42, .15);
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border-left: 1px solid rgba(255, 255, 255, 0.45);
+    box-shadow: -8px 0 32px rgba(15, 23, 42, .12);
 
-    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overscroll-behavior: contain;
 }
 
-.mobile-menu.open {
-    display: block;
+.nav-drawer.open {
+    transform: translateX(0);
 }
 
-.m-link {
-    display: block;
-    padding: 13px 16px;
-    border-radius: 14px;
-    color: #1e293b;
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: 500;
-    transition: .18s;
+/* DRAWER HEADER */
+.drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 16px 14px;
+    border-bottom: 1px solid rgba(0, 0, 0, .07);
+    flex-shrink: 0;
 }
 
-.m-link:hover,
-.m-link.active {
-    background: rgba(28, 20, 92, 0.07);
-    color: #1C145C;
-}
-
-.m-group-label {
+.drawer-label {
     font-size: 11px;
     font-weight: 700;
     color: #94a3b8;
     letter-spacing: .8px;
     text-transform: uppercase;
-    padding: 12px 16px 6px;
 }
 
-.m-sub {
+.drawer-close-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(28, 20, 92, .08);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1C145C;
+    cursor: pointer;
+    font-size: 14px;
+    transition: .2s;
+}
+
+.drawer-close-btn:hover {
+    background: rgba(28, 20, 92, .14);
+}
+
+/* DRAWER NAV */
+.drawer-nav {
+    flex: 1;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    overflow-y: auto;
+}
+
+.d-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #1e293b;
+    text-decoration: none;
+    transition: .16s;
+}
+
+.d-link:hover {
+    background: rgba(28, 20, 92, .06);
+    color: #1C145C;
+    text-decoration: none;
+}
+
+.d-link.active {
+    background: rgba(28, 20, 92, .09);
+    color: #1C145C;
+    font-weight: 600;
+}
+
+.d-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 7px;
+    background: rgba(28, 20, 92, .08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #1C145C;
+    flex-shrink: 0;
+    transition: .16s;
+}
+
+.d-link.active .d-icon {
+    background: #1C145C;
+    color: #fff;
+}
+
+.d-group-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: #94a3b8;
+    letter-spacing: .7px;
+    text-transform: uppercase;
+    padding: 12px 12px 4px;
+}
+
+.d-sub {
     padding-left: 6px;
 }
 
-.mobile-menu .btn-kontak {
+.d-divider {
+    height: 1px;
+    background: rgba(0, 0, 0, .07);
+    margin: 6px 2px;
+}
+
+/* DRAWER FOOTER */
+.drawer-footer {
+    padding: 12px 14px 24px;
+    border-top: 1px solid rgba(0, 0, 0, .07);
+    flex-shrink: 0;
+}
+
+.drawer-footer .btn-kontak {
+    border-radius: 14px;
     display: block;
-    width: 100%;
     text-align: center;
-    margin-top: 10px;
-    border-radius: 16px;
-    box-sizing: border-box;
+    padding: 12px 22px;
 }
 
 /* ========================================
@@ -484,7 +573,6 @@ body {
                 <i class="bi bi-telephone-fill"></i>
                 0834325542
             </span>
-
             <span>
                 <i class="bi bi-envelope-fill"></i>
                 allam.medica@yahoo.co.id
@@ -492,18 +580,13 @@ body {
         </div>
 
         <div class="topbar-social">
-            <a href="https://www.tiktok.com/@rsuallammedicabumiayu?_t=8fLMQk9idhI&_r=1"
-               target="_blank">
+            <a href="https://www.tiktok.com/@rsuallammedicabumiayu?_t=8fLMQk9idhI&_r=1" target="_blank">
                 <i class="bi bi-tiktok"></i>
             </a>
-
-            <a href="https://www.facebook.com/allam.medicabmy?mibextid=LQQJ4d"
-               target="_blank">
+            <a href="https://www.facebook.com/allam.medicabmy?mibextid=LQQJ4d" target="_blank">
                 <i class="bi bi-facebook"></i>
             </a>
-
-            <a href="https://www.instagram.com/allam.medica/"
-               target="_blank">
+            <a href="https://www.instagram.com/allam.medica/" target="_blank">
                 <i class="bi bi-instagram"></i>
             </a>
         </div>
@@ -527,61 +610,45 @@ body {
         <!-- DESKTOP MENU -->
         <div class="nav-links">
 
-            <a href="/"
-               class="nav-link-pill {{ request()->is('/') ? 'active' : '' }}">
+            <a href="/" class="nav-link-pill {{ request()->is('/') ? 'active' : '' }}">
                 Beranda
             </a>
 
             <div class="drop-wrap">
-
-                <a href="#"
-                   class="nav-link-pill {{ request()->is('karir*','berita*','video*') ? 'active' : '' }}">
+                <a href="#" class="nav-link-pill {{ request()->is('karir*','berita*','video*') ? 'active' : '' }}">
                     Menu
                     <i class="bi bi-chevron-down chevron"></i>
                 </a>
-
                 <div class="drop-menu">
-
                     <a href="{{ url('/karir') }}" class="drop-item">
-                        <i class="bi bi-briefcase"></i>
-                        Karir
+                        <i class="bi bi-briefcase"></i> Karir
                     </a>
-
                     <a href="{{ url('/berita') }}" class="drop-item">
-                        <i class="bi bi-newspaper"></i>
-                        Berita
+                        <i class="bi bi-newspaper"></i> Berita
                     </a>
-
                     <a href="{{ url('/video') }}" class="drop-item">
-                        <i class="bi bi-play-circle"></i>
-                        Video
+                        <i class="bi bi-play-circle"></i> Video
                     </a>
-
                 </div>
             </div>
 
-            <a href="/layanan"
-               class="nav-link-pill {{ request()->is('layanan*') ? 'active' : '' }}">
+            <a href="/layanan" class="nav-link-pill {{ request()->is('layanan*') ? 'active' : '' }}">
                 Layanan
             </a>
 
-            <a href="/artikel"
-               class="nav-link-pill {{ request()->is('artikel*') ? 'active' : '' }}">
+            <a href="/artikel" class="nav-link-pill {{ request()->is('artikel*') ? 'active' : '' }}">
                 Artikel
             </a>
 
-            <a href="/download"
-               class="nav-link-pill {{ request()->is('download*') ? 'active' : '' }}">
+            <a href="/download" class="nav-link-pill {{ request()->is('download*') ? 'active' : '' }}">
                 Download
             </a>
 
-            <a href="/tentang"
-               class="nav-link-pill {{ request()->is('tentang*') ? 'active' : '' }}">
+            <a href="/tentang" class="nav-link-pill {{ request()->is('tentang*') ? 'active' : '' }}">
                 Tentang Kami
             </a>
 
-            <a href="/mutu"
-               class="nav-link-pill {{ request()->is('mutu*') ? 'active' : '' }}">
+            <a href="/mutu" class="nav-link-pill {{ request()->is('mutu*') ? 'active' : '' }}">
                 Mutu
             </a>
 
@@ -589,87 +656,84 @@ body {
 
         <!-- CTA -->
         <div class="nav-cta">
-            <a href="/kontak" class="btn-kontak">
-                Kontak
-            </a>
+            <a href="/kontak" class="btn-kontak">Kontak</a>
         </div>
 
         <!-- BURGER -->
-        <button class="nav-burger"
-                id="navBurger"
-                aria-label="Toggle menu">
-
+        <button class="nav-burger" id="navBurger" aria-label="Toggle menu">
             <span></span>
             <span></span>
             <span></span>
-
         </button>
-
-        <!-- MOBILE MENU -->
-        <div class="mobile-menu" id="mobileMenu">
-
-            <a href="/"
-               class="m-link {{ request()->is('/') ? 'active' : '' }}">
-                Beranda
-            </a>
-
-            <div class="m-group-label">
-                Menu
-            </div>
-
-            <div class="m-sub">
-
-                <a href="{{ url('/karir') }}"
-                   class="m-link {{ request()->is('karir*') ? 'active' : '' }}">
-                    Karir
-                </a>
-
-                <a href="{{ url('/berita') }}"
-                   class="m-link {{ request()->is('berita*') ? 'active' : '' }}">
-                    Berita
-                </a>
-
-                <a href="{{ url('/video') }}"
-                   class="m-link {{ request()->is('video*') ? 'active' : '' }}">
-                    Video
-                </a>
-
-            </div>
-
-            <a href="/layanan"
-               class="m-link {{ request()->is('layanan*') ? 'active' : '' }}">
-                Layanan
-            </a>
-
-            <a href="/artikel"
-               class="m-link {{ request()->is('artikel*') ? 'active' : '' }}">
-                Artikel
-            </a>
-
-            <a href="/download"
-               class="m-link {{ request()->is('download*') ? 'active' : '' }}">
-                Download
-            </a>
-
-            <a href="/tentang"
-               class="m-link {{ request()->is('tentang*') ? 'active' : '' }}">
-                Tentang Kami
-            </a>
-
-            <a href="/mutu"
-               class="m-link {{ request()->is('mutu*') ? 'active' : '' }}">
-                Mutu
-            </a>
-
-            <a href="/kontak" class="btn-kontak">
-                Kontak
-            </a>
-
-        </div>
 
     </nav>
 
 </div>
+
+
+<!-- ========================================
+     OVERLAY
+======================================== -->
+<div class="nav-overlay" id="navOverlay"></div>
+
+
+<!-- ========================================
+     SIDE DRAWER (Mobile)
+======================================== -->
+<aside class="nav-drawer" id="navDrawer" aria-label="Mobile navigation">
+
+    <div class="drawer-header">
+        <span class="drawer-label">Menu</span>
+        <button class="drawer-close-btn" id="drawerClose" aria-label="Tutup menu">
+            <i class="bi bi-x-lg"></i>
+        </button>
+    </div>
+
+    <nav class="drawer-nav">
+
+        <a href="/" class="d-link {{ request()->is('/') ? 'active' : '' }}">
+            <span class="d-icon"><i class="bi bi-house"></i></span>
+            Beranda
+        </a>
+
+        <div class="d-group-label">Konten</div>
+        <div class="d-sub">
+            <a href="{{ url('/karir') }}" class="d-link {{ request()->is('karir*') ? 'active' : '' }}">
+                <span class="d-icon"><i class="bi bi-briefcase"></i></span> Karir
+            </a>
+            <a href="{{ url('/berita') }}" class="d-link {{ request()->is('berita*') ? 'active' : '' }}">
+                <span class="d-icon"><i class="bi bi-newspaper"></i></span> Berita
+            </a>
+            <a href="{{ url('/video') }}" class="d-link {{ request()->is('video*') ? 'active' : '' }}">
+                <span class="d-icon"><i class="bi bi-play-circle"></i></span> Video
+            </a>
+        </div>
+
+        <div class="d-divider"></div>
+
+        <a href="/layanan" class="d-link {{ request()->is('layanan*') ? 'active' : '' }}">
+            <span class="d-icon"><i class="bi bi-hospital"></i></span> Layanan
+        </a>
+        <a href="/artikel" class="d-link {{ request()->is('artikel*') ? 'active' : '' }}">
+            <span class="d-icon"><i class="bi bi-journal-text"></i></span> Artikel
+        </a>
+        <a href="/download" class="d-link {{ request()->is('download*') ? 'active' : '' }}">
+            <span class="d-icon"><i class="bi bi-download"></i></span> Download
+        </a>
+        <a href="/tentang" class="d-link {{ request()->is('tentang*') ? 'active' : '' }}">
+            <span class="d-icon"><i class="bi bi-info-circle"></i></span> Tentang Kami
+        </a>
+        <a href="/mutu" class="d-link {{ request()->is('mutu*') ? 'active' : '' }}">
+            <span class="d-icon"><i class="bi bi-patch-check"></i></span> Mutu
+        </a>
+
+    </nav>
+
+    <div class="drawer-footer">
+        <a href="/kontak" class="btn-kontak">Kontak</a>
+    </div>
+
+</aside>
 
 
 <!-- ========================================
@@ -678,41 +742,45 @@ body {
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 
-    const burger = document.getElementById('navBurger');
-    const menu   = document.getElementById('mobileMenu');
-    const navbar = document.getElementById('mainNavbar');
+    const burger     = document.getElementById('navBurger');
+    const drawer     = document.getElementById('navDrawer');
+    const overlay    = document.getElementById('navOverlay');
+    const closeBtn   = document.getElementById('drawerClose');
+    const navbar     = document.getElementById('mainNavbar');
+    const floatingBar = document.querySelector('.floating-bar');
 
-    // Toggle mobile menu
+    function openDrawer() {
+        burger.classList.add('open');
+        drawer.classList.add('open');
+        overlay.classList.add('show');
+        document.body.style.overflow = 'hidden';
+        if (floatingBar) floatingBar.style.display = 'none';
+    }
+
+    function closeDrawer() {
+        burger.classList.remove('open');
+        drawer.classList.remove('open');
+        overlay.classList.remove('show');
+        document.body.style.overflow = '';
+        if (floatingBar) floatingBar.style.display = '';
+    }
+
     burger.addEventListener('click', function (e) {
-
         e.stopPropagation();
-
-        burger.classList.toggle('open');
-        menu.classList.toggle('open');
-
+        drawer.classList.contains('open') ? closeDrawer() : openDrawer();
     });
 
-    // Klik di luar navbar = tutup menu
-    document.addEventListener('click', function (e) {
+    closeBtn.addEventListener('click', closeDrawer);
+    overlay.addEventListener('click', closeDrawer);
 
-        if (!navbar.contains(e.target)) {
-
-            burger.classList.remove('open');
-            menu.classList.remove('open');
-
-        }
-
+    // Tutup drawer saat link diklik
+    drawer.querySelectorAll('.d-link').forEach(function (link) {
+        link.addEventListener('click', closeDrawer);
     });
 
-    // Efek scroll navbar
+    // Scroll effect navbar
     window.addEventListener('scroll', function () {
-
-        if (window.scrollY > 10) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-
+        navbar.classList.toggle('scrolled', window.scrollY > 10);
     }, { passive: true });
 
 });
