@@ -509,12 +509,6 @@
 </style>
 
 
-
-
-
-
-
-
 <style>
 @font-face {
     font-family: 'GothamBlack';
