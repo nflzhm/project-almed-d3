@@ -200,3 +200,17 @@ Route::post('/login', [AuthController::class, 'login'])
 Route::post('/logout', [AuthController::class, 'logout'])
     ->name('logout');
 
+
+
+   
+
+// ── Publik ────────────────────────────────────────────────
+Route::get('/',        [App\Http\Controllers\IklanSliderController::class, 'index'])->name('beranda');
+Route::get('/layanan', [App\Http\Controllers\LayananController::class, 'index'])->name('layanan');
+// ... route publik lainnya
+
+// ── Admin ─────────────────────────────────────────────────
+Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+    Route::resource('layanan', App\Http\Controllers\Admin\LayananController::class);
+});
+

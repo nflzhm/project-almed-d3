@@ -1264,7 +1264,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         <!-- RIGHT -->
         <div class="practice-area">
-            <div class="practice-title">JADWAL PRAKTEK</div>
+            <div class="practice-title">JADWAL PRAKTEK DOKTER</div>
 
             @php
                 $hariList = ['Senin','Selasa','Rabu','Kamis','Jumat','Sabtu','Minggu'];

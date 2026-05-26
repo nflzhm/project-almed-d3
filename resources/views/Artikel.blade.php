@@ -510,16 +510,7 @@
 
 
 <style>
-@font-face {
-    font-family: 'GothamBlack';
-    src: url('{{ asset('fonts/Gotham-Black.otf') }}') format('opentype');
-    font-weight: 900;
-    font-style: normal;
-}
 
-h1, h2, h3, h4, h5 {
-    font-family: 'GothamBlack', sans-serif !important;
-}
 
 /* ========================================
    BASE

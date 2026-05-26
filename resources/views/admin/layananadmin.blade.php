@@ -634,7 +634,7 @@
 
         {{-- ---- IMAGE AREA ---- --}}
         <div class="lay-card-img"
-             style="{{ !$imgUrl ? 'background:linear-gradient(135deg,'.$ic['bg'].','.adjustBrightness($ic['bg']).')' : '' }}">
+             style="{{ !$imgUrl ? 'background:linear-gradient(135deg,#e0f2fe,#bae6fd)' : '' }}">
 
             @if($imgUrl)
                 <img src="{{ $imgUrl }}" alt="{{ $poli }}" loading="lazy">
@@ -666,12 +666,13 @@
                     <i class="fa-solid fa-eye"></i>
                 </button>
                 <button class="lay-img-action-btn iab-edit" title="Edit layanan"
-                    onclick="openEditModal(
+                   onclick="openEditModal(
                         '{{ $id }}',
                         `{{ addslashes($poli) }}`,
                         `{{ addslashes($desc) }}`,
                         '{{ $hp }}', '{{ $wa }}', '{{ $status }}',
-                        '{{ $imgUrl ?? '' }}'
+                        '{{ $imgUrl ?? '' }}',
+                        '{{ $item->kategori ?? 'poli' }}'
                     )">
                     <i class="fa-solid fa-pen"></i>
                 </button>
@@ -1090,6 +1091,20 @@
                         </div>
                     </div>
 
+                    {{-- Kategori --}}
+                    <div class="mfg">
+                        <div class="mfg-label">
+                            <i class="fa-solid fa-tag"></i>
+                            Kategori Layanan
+                        </div>
+                        <select name="kategori" class="mfg-select" id="tambahKategori">
+                            <option value="poli">Poliklinik</option>
+                            <option value="igd">IGD</option>
+                            <option value="rawat">Rawat Inap</option>
+                            <option value="penunjang">Penunjang Medis</option>
+                        </select>
+                    </div>
+
                     {{-- Live preview --}}
                     <div class="modal-preview-bar">
                         <img src="" id="editMpbImg" alt="" class="mpb-img" style="display:none;">
@@ -1456,5 +1471,14 @@ document.getElementById('filterStatus').addEventListener('change', function () {
         card.style.display = (!val || card.dataset.status === val) ? '' : 'none';
     });
 });
+function openEditModal(id, poli, desc, hp, wa, status, imgUrl, kategori) {
+    // ... kode existing ...
+
+    // Sync kategori
+    const katEl = document.getElementById('editKategori');
+    if (katEl) katEl.value = kategori || 'poli';
+
+    // ...
+}
 </script>
 @endpush

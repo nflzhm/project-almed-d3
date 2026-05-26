@@ -2,17 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Layanan extends Model
 {
-    use HasFactory;
-
-    protected $table = 'layanan';
+    protected $table = 'layanan'; // ← ini yang kurang
 
     protected $fillable = [
         'poli',
+        'kategori',
         'deskripsi',
         'no_hp',
         'no_wa',

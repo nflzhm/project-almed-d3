@@ -27,9 +27,6 @@ h1, h2, h3, h4, h5 {
 ======================================== */
 body {
     font-family: 'Segoe UI', sans-serif;
-    background: #f5f7fb;
-    overflow-x: hidden;
-    padding-top: calc(38px + 70px);
 }
 
 /* ========================================
@@ -781,339 +778,658 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 
+
 <style>
-/* ================= FIX NAVBAR SPACE ================= */
-body{
-    padding-top:38px;
+/* ================= BODY OVERRIDE ================= */
+body {
+    background: #ffffff !important;
+    padding-top: 38px;
 }
 
-/* ================= FULL BANNER ================= */
-
-.banner-download{
-    position:relative;
-    height:240px;
-    width:100%;
-    display:flex;
-    align-items:center;
-    color:#fff;
-    overflow:hidden;
-    border-radius:0 0 30px 30px;
+/* ================================================================
+   BANNER
+================================================================ */
+.banner-download {
+    position: relative;
+    height: 360px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    overflow: hidden;
 }
 
-.banner-download img{
-    position:absolute;
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    top:0;
-    left:0;
-    z-index:1;
-    transform:scale(1.05);
+.banner-download img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    transform: scale(1.04);
+    filter: brightness(0.75);
 }
 
-.banner-overlay{
-    position:absolute;
-    width:100%;
-    height:100%;
-    background:linear-gradient(
-        120deg,
-        rgba(28,20,92,0.92),
-        rgba(28,20,92,0.65),
-        rgba(0,0,0,0.2)
-    );
-    z-index:2;
+/* Overlay 2-layer: gelap kiri + warna brand */
+.banner-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background:
+        linear-gradient(
+            105deg,
+            rgba(28, 20, 92, 0.97) 0%,
+            rgba(28, 20, 92, 0.82) 45%,
+            rgba(28, 20, 92, 0.30) 100%
+        );
+}
+
+/* Noise texture agar tidak flat */
+.banner-overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: .18;
+    pointer-events: none;
+}
+
+/* Dekorasi lingkaran samar di kanan */
+.banner-deco {
+    position: absolute;
+    right: -60px;
+    top: -60px;
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    border: 60px solid rgba(255,255,255,0.04);
+    z-index: 3;
+    pointer-events: none;
+}
+
+.banner-deco-2 {
+    position: absolute;
+    right: 80px;
+    bottom: -100px;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    border: 40px solid rgba(255,255,255,0.03);
+    z-index: 3;
+    pointer-events: none;
 }
 
 .banner-content{
     position:relative;
-    z-index:3;
+    z-index:4;
+    width:100%;
+    max-width:720px;
+    padding:55px 80px 85px;
+}
+@media (max-width:768px){
 
-    padding-left:70px;
-    padding-top:40px; 
+    .banner-content{
+        padding:38px 22px 120px;
+    }
 
-    max-width:900px;
+    .banner-stat-item{
+        width:calc(50% - 6px);
+        border-right:none;
+    }
 }
 
-.banner-title{
-    font-size:28px;
-    font-weight:800;
-    letter-spacing:0.5px;
-    margin-bottom:8px;
+/* Breadcrumb kecil */
+.banner-breadcrumb {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.10);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 50px;
+    padding: 4px 14px;
+    font-size: 11.5px;
+    color: rgba(255,255,255,0.75);
+    letter-spacing: 0.04em;
+    margin-bottom: 14px;
 }
 
-.banner-desc{
-    font-size:14px;
-    line-height:1.7;
-    opacity:0.9;
+.banner-breadcrumb i {
+    font-size: 10px;
+    opacity: 0.7;
 }
-.download-card{
-    display:flex;
-    flex-direction:column;
+
+.banner-title {
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 10px;
+    letter-spacing: -0.3px;
+}
+
+.banner-title span {
+    color: rgba(255,255,255,0.55);
+}
+
+.banner-desc {
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.80);
+    max-width: 520px;
+}
+
+/* Stat strip di bawah banner */
+.banner-stats {
+    position: absolute;
+    bottom: 18px; /* sebelumnya 0 */
+    left: 0;
+    right: 0;
+    z-index: 4;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0;
+
+    padding: 0 80px;
+}
+
+.banner-stat-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 10px 22px 10px 0;
+    margin-right: 22px;
+
+    border-right: 1px solid rgba(255,255,255,0.15);
+}
+
+.banner-stat-item:last-child {
+    border-right: none;
+}
+
+.banner-stat-item i {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+}
+
+.banner-stat-item span {
+    font-size: 12px;
+    color: rgba(255,255,255,0.72);
+}
+
+/* ================================================================
+   SECTION WRAPPER
+================================================================ */
+.download-section {
+    padding: 48px 0 64px;
+}
+
+.download-section-header {
+    text-align: center;
+    margin-bottom: 36px;
+}
+
+.section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(28, 20, 92, 0.07);
+    border: 1px solid rgba(28, 20, 92, 0.12);
+    border-radius: 50px;
+    padding: 5px 16px;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #1C145C;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+}
+
+.section-eyebrow i {
+    font-size: 11px;
+}
+
+.section-title-main {
+    font-size: 26px;
+    font-weight: 800;
+    color: #0f0b3b;
+    letter-spacing: -0.3px;
+    margin-bottom: 8px;
+}
+
+.section-subtitle-main {
+    font-size: 14px;
+    color: #64748b;
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.65;
+}
+
+/* ================================================================
+   DOWNLOAD CARD (Refreshed)
+================================================================ */
+.download-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 22px;
+    box-shadow:
+        0 2px 8px rgba(28, 20, 92, 0.04),
+        0 8px 24px rgba(28, 20, 92, 0.06);
+    border: 1px solid rgba(28, 20, 92, 0.07);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Accent bar atas */
+.download-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #1C145C, #4a3fcc);
+    border-radius: 20px 20px 0 0;
+    opacity: 0;
+    transition: opacity 0.28s ease;
+}
+
+.download-card:hover {
+    transform: translateY(-5px);
+    box-shadow:
+        0 4px 16px rgba(28, 20, 92, 0.06),
+        0 20px 40px rgba(28, 20, 92, 0.11);
+    border-color: rgba(28, 20, 92, 0.14);
+}
+
+.download-card:hover::before {
+    opacity: 1;
+}
+
+/* Header: icon + judul */
+.download-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 14px;
+}
+
+.download-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 13px;
+    background: linear-gradient(135deg, #1C145C, #3d30b0);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 14px rgba(28, 20, 92, 0.25);
+}
+
+.download-title {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: #1a1a2e;
+    line-height: 1.4;
+    flex: 1;
+    padding-top: 2px;
+}
+
+/* Badge kategori */
+.download-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(28, 20, 92, 0.07);
+    color: #1C145C;
+    border-radius: 50px;
+    padding: 4px 12px;
+    font-size: 11.5px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    letter-spacing: 0.02em;
+}
+
+.download-desc {
+    font-size: 13px;
+    color: #64748b;
+    line-height: 1.65;
+    flex: 1;
+    margin-bottom: 0;
+}
+
+/* Divider */
+.download-line {
+    height: 1px;
+    background: linear-gradient(90deg, rgba(28,20,92,0.08), rgba(28,20,92,0.02));
+    margin: 14px 0;
+}
+
+/* Meta info bawah */
+.download-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 14px;
+}
+
+.download-info {
+    font-size: 12px;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.download-info i {
+    color: #1C145C;
+    opacity: 0.45;
+    font-size: 11.5px;
+    width: 14px;
+}
+
+/* Tombol download */
+.btn-download {
+    width: 100%;
+    background: #1C145C;
+    border: none;
+    color: #fff;
+    padding: 11px 16px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: background 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    box-shadow: 0 4px 14px rgba(28, 20, 92, 0.22);
+}
+
+.btn-download:hover {
+    background: #2a1e8a;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(28, 20, 92, 0.32);
+    color: #fff;
+}
+
+.btn-download:active {
+    transform: translateY(0);
+}
+
+/* ================================================================
+   EMPTY STATE
+================================================================ */
+.download-empty {
+    text-align: center;
+    padding: 64px 20px;
+    color: #94a3b8;
+}
+
+.download-empty i {
+    font-size: 48px;
+    color: rgba(28, 20, 92, 0.15);
+    display: block;
+    margin-bottom: 16px;
+}
+
+.download-empty p {
+    font-size: 15px;
+}
+
+/* ================================================================
+   RESPONSIVE
+================================================================ */
+@media (max-width: 992px) {
+    .banner-content {
+        padding-left: 40px;
+        padding-right: 24px;
+    }
+
+    .banner-stats {
+        padding: 0 40px;
+    }
+
+    .banner-title {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .banner-download {
+        height: 50;
+        min-height: auto;
+        padding: 0;
+        display: block;
+        align-items: flex-start;
+    }
+
+    .banner-content {
+        padding: 75px 20px 16px;
+        max-width: 100%;
+    }
+
+    .banner-title {
+        font-size: 20px;
+        margin-bottom: 8px;
+    }
+
+    .banner-desc {
+        font-size: 12.5px;
+    }
+}
+
+@media (max-width: 768px){
+
+    .banner-stats{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 10px 20px 10px;
+    }
+
+    .banner-stat-item{
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 0;
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.12);
+        width: 100%;
+    }
+
+    .banner-stat-item:last-child{
+        border-bottom: none;
+    }
+
+    .banner-stat-item i{
+        font-size: 13px;
+    }
+
+    .banner-stat-item span{
+        font-size: 11px;
+        line-height: 1.4;
+    }
+}
+
+    .download-section {
+        padding: 32px 0 48px;
+    }
+
+    .section-title-main {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner-breadcrumb {
+        font-size: 10.5px;
+    }
+
+    .banner-title {
+        font-size: 18px;
+    }
+
+    .banner-desc {
+        display: none;
+    }
+
+    .banner-deco,
+    .banner-deco-2 {
+        display: none;
+    }
 }
 </style>
 
-<!-- ================= BANNER ================= -->
+
+{{-- ================================================================
+     BANNER
+================================================================ --}}
 <section class="banner-download">
 
-    <img src="{{ asset('images/download/banner.png') }}">
+    <img src="{{ asset('images/download/banner.png') }}" alt="Download Pengadaan">
 
     <div class="banner-overlay"></div>
+    <div class="banner-deco"></div>
+    <div class="banner-deco-2"></div>
 
     <div class="banner-content">
+
+        <div class="banner-breadcrumb">
+            <i class="bi bi-house-fill"></i>
+            Beranda
+            <i class="bi bi-chevron-right"></i>
+            Download
+        </div>
+
         <div class="banner-title">
-            Download List Pengadaan
+            Download List <span>Pengadaan</span>
         </div>
 
         <div class="banner-desc">
-            Pengadaan rumah sakit merupakan langkah strategis dalam meningkatkan akses dan kualitas pelayanan kesehatan bagi masyarakat. Dalam proses ini, berbagai aspek harus dipertimbangkan, mulai dari perencanaan, pembangunan, hingga operasionalisasi rumah sakit agar dapat berfungsi secara optimal sesuai dengan standar pelayanan kesehatan yang ditetapkan.
+            Pengadaan rumah sakit merupakan langkah strategis dalam meningkatkan akses
+            dan kualitas pelayanan kesehatan. Unduh dokumen yang Anda butuhkan di bawah ini.
+        </div>
+
+    </div>
+
+    <div class="banner-stats">
+        <div class="banner-stat-item">
+            <i class="bi bi-file-earmark-text"></i>
+            <span>Dokumen Resmi RSU Allam Medica</span>
+        </div>
+        <div class="banner-stat-item">
+            <i class="bi bi-shield-check"></i>
+            <span>Terverifikasi &amp; Terpercaya</span>
+        </div>
+        <div class="banner-stat-item">
+            <i class="bi bi-download"></i>
+            <span>Akses Gratis</span>
         </div>
     </div>
 
 </section>
 
 
+{{-- ================================================================
+     DOWNLOAD CARDS SECTION
+================================================================ --}}
+<section class="download-section">
+    <div class="container">
 
-<style>
-    body {
-    background: #fff !important;
-}
-.download-wrapper{
-    max-width:1250px;
-    margin:auto;
-}
-
-.download-card{
-    background:#fff;
-    border-radius:16px;
-    padding:18px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.06);
-    transition:0.3s ease;
-    height:100%;
-    border:1px solid rgba(0,0,0,0.04);
-    position:relative;
-    overflow:hidden;
-}
-
-.download-card:hover{
-    transform:translateY(-6px);
-    box-shadow:0 18px 35px rgba(0,0,0,0.12);
-}
-
-.download-icon{
-    width:42px;
-    height:42px;
-    border-radius:12px;
-    background:linear-gradient(135deg,#198754,#20c997);
-    color:#fff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:18px;
-    flex-shrink:0;
-}
-
-.download-header{
-    display:flex;
-    gap:12px;
-    align-items:center;
-    margin-bottom:10px;
-}
-
-.download-title{
-    font-size:15px;
-    font-weight:700;
-    color:#222;
-    line-height:1.3;
-}
-
-.download-subtitle{
-    font-size:12px;
-    color:#1C145C;
-    font-weight:600;
-    margin-bottom:8px;
-}
-
-.download-desc{
-    font-size:12.5px;
-    color:#555;
-    line-height:1.6;
-    margin-bottom:10px;
-}
-
-.download-info{
-    font-size:11.5px;
-    color:#888;
-    display:flex;
-    align-items:center;
-    gap:6px;
-    margin-bottom:4px;
-}
-
-.download-line{
-    height:1px;
-    background:#eee;
-    margin:10px 0;
-}
-
-.btn-download{
-    width:100%;
-    margin-top:12px;
-    background:linear-gradient(135deg,#198754,#157347);
-    border:none;
-    color:#fff;
-    padding:8px;
-    border-radius:10px;
-    font-size:13px;
-    font-weight:600;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:6px;
-    transition:0.3s;
-}
-
-.btn-download:hover{
-    opacity:0.9;
-    transform:scale(1.02);
-}
-
-@media (max-width: 992px){
-    .banner-content{
-        padding-left:40px;
-        padding-right:20px;
-    }
-
-    .banner-title{
-        font-size:24px;
-    }
-
-    .banner-desc{
-        font-size:13px;
-    }
-}
-
-/* MOBILE */
-@media (max-width: 768px){
-
-
-    .banner-download{
-        height:180px;
-        text-align:left;
-    }
-
-    .banner-content{
-        padding-left:20px;
-        padding-right:20px;
-    }
-
-    .banner-title{
-        font-size:18px;
-    }
-
-    .banner-desc{
-        font-size:12px;
-        line-height:1.5;
-    }
-
-    .download-wrapper{
-        padding:0 12px;
-    }
-
-    .download-wrapper .col-lg-4,
-    .download-wrapper .col-md-6{
-        width:100% !important;
-    }
-
-    .download-card{
-        padding:14px;
-        border-radius:14px;
-    }
-
-    .download-title{
-        font-size:14px;
-    }
-
-    .download-desc{
-        font-size:12px;
-    }
-
-    .btn-download{
-        font-size:12px;
-        padding:10px;
-    }
-}
-
-/* SMALL MOBILE */
-@media (max-width: 480px){
-
-    .banner-download{
-        height:160px;
-    }
-
-    .banner-title{
-        font-size:16px;
-    }
-
-    .banner-desc{
-        display:none; 
-    }
-
-    .download-icon{
-        width:38px;
-        height:38px;
-        font-size:16px;
-    }
-}
-
-</style>
-
-
-<div class="container-fluid py-5 download-wrapper">
-    <div class="row g-3">
-
-        @foreach($data as $item)
-        <div class="col-lg-4 col-md-6">
-            <div class="download-card">
-
-                <div class="download-header">
-                    <div class="download-icon">
-                        <i class="bi bi-file-earmark-text-fill"></i>
-                    </div>
-
-                    <div class="download-title">
-                        {{ $item->judul }}
-                    </div>
-                </div>
-
-                <div class="download-subtitle">
-                    {{ $item->kategori }} - {{ $item->periode }}
-                </div>
-
-                <div class="download-desc">
-                    {{ $item->deskripsi }}
-                </div>
-
-                <div class="download-line"></div>
-
-                <div class="download-info">
-                    <i class="bi bi-clock"></i>
-                    Diunggah: {{ optional($item->tanggal_upload)->format('d M Y') }}
-                </div>
-
-                <div class="download-info">
-                    <i class="bi bi-hdd"></i>
-                    Ukuran: {{ $item->ukuran }}
-                </div>
-                 <button onclick="window.location='{{ route('download.file', $item->id) }}'" class="btn-download">
-                    <i class="bi bi-download"></i> Download File
-                </button>
-
+        {{-- Section header --}}
+        <div class="download-section-header">
+            <div class="section-eyebrow">
+                <i class="bi bi-folder2-open"></i>
+                Dokumen Tersedia
             </div>
+            <h2 class="section-title-main">Daftar Dokumen Pengadaan</h2>
+            <p class="section-subtitle-main">
+                Unduh dokumen pengadaan rumah sakit yang telah tersedia.
+                Pastikan perangkat Anda mendukung format file yang diunduh.
+            </p>
         </div>
-        @endforeach
+
+        {{-- Cards --}}
+        <div class="row g-4">
+
+            @forelse($data as $item)
+            <div class="col-lg-4 col-md-6">
+                <div class="download-card">
+
+                    {{-- Header --}}
+                    <div class="download-header">
+                        <div class="download-icon">
+                            <i class="bi bi-file-earmark-text-fill"></i>
+                        </div>
+                        <div class="download-title">
+                            {{ $item->judul }}
+                        </div>
+                    </div>
+
+                    {{-- Badge kategori + periode --}}
+                    <div class="download-badge">
+                        <i class="bi bi-tag-fill"></i>
+                        {{ $item->kategori }}
+                        @if($item->periode)
+                            &bull; {{ $item->periode }}
+                        @endif
+                    </div>
+
+                    {{-- Deskripsi --}}
+                    <p class="download-desc">
+                        {{ $item->deskripsi }}
+                    </p>
+
+                    <div class="download-line"></div>
+
+                    {{-- Meta --}}
+                    <div class="download-meta">
+                        <div class="download-info">
+                            <i class="bi bi-calendar3"></i>
+                            Diunggah: {{ optional($item->tanggal_upload)->format('d M Y') ?? '-' }}
+                        </div>
+                        <div class="download-info">
+                            <i class="bi bi-hdd"></i>
+                            Ukuran: {{ $item->ukuran ?? '-' }}
+                        </div>
+                    </div>
+
+                    {{-- Tombol --}}
+                    <button
+                        class="btn-download"
+                        onclick="window.location='{{ route('download.file', $item->id) }}'">
+                        <i class="bi bi-download"></i>
+                        Download File
+                    </button>
+
+                </div>
+            </div>
+            @empty
+            <div class="col-12">
+                <div class="download-empty">
+                    <i class="bi bi-folder-x"></i>
+                    <p>Belum ada dokumen yang tersedia saat ini.</p>
+                </div>
+            </div>
+            @endforelse
+
+        </div>
 
     </div>
-</div>
+</section>
 
 
 <style>

@@ -853,7 +853,10 @@ $dokterList = $dokterList ?? [];
                             <option value="Poli Saraf">Poli Saraf</option>
                             <option value="Poli Bedah">Poli Bedah</option>
                             <option value="Poli Dalam">Poli Penyakit Dalam</option>
-                            <option value="Poli Bedah">Poli Bedah</option>
+                            <option value="Poli Radiologi">Poli Radiologi</option>
+                            <option value="Poli Umum & MCU">Poli Umum & MCU</option>
+                            <option value="Poli Jiwa">Poli Jiwa</option>
+
                         </select>
                     </div>
 

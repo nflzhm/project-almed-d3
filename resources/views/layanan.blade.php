@@ -1,43 +1,26 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <title>RSU Allam Medica - Beranda</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Bootstrap Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
+<meta charset="UTF-8">
+<title>Layanan — RSU Allam Medica</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 </head>
 
 <style>
-@font-face {
-    font-family: 'GothamBlack';
-    src: url('{{ asset('fonts/Gotham-Black.otf') }}') format('opentype');
-    font-weight: 900;
-    font-style: normal;
-}
-
-h1, h2, h3, h4, h5 {
-    font-family: 'GothamBlack', sans-serif !important;
-}
 
 /* ========================================
    BASE
 ======================================== */
 body {
     font-family: 'Segoe UI', sans-serif;
-    background: #f5f7fb;
+    background: #ffffff;
     overflow-x: hidden;
-    padding-top: calc(38px + 70px);
+    padding-top: 38px;
 }
 
 /* ========================================
@@ -675,13 +658,13 @@ body {
 
 
 <!-- ========================================
-     OVERLAY
+     OVERLAY (satu saja)
 ======================================== -->
 <div class="nav-overlay" id="navOverlay"></div>
 
 
 <!-- ========================================
-     SIDE DRAWER (Mobile)
+     SIDE DRAWER Mobile (satu saja)
 ======================================== -->
 <aside class="nav-drawer" id="navDrawer" aria-label="Mobile navigation">
 
@@ -740,16 +723,16 @@ body {
 
 
 <!-- ========================================
-     SCRIPT
+     SCRIPT NAVBAR (satu saja)
 ======================================== -->
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 
-    const burger     = document.getElementById('navBurger');
-    const drawer     = document.getElementById('navDrawer');
-    const overlay    = document.getElementById('navOverlay');
-    const closeBtn   = document.getElementById('drawerClose');
-    const navbar     = document.getElementById('mainNavbar');
+    const burger      = document.getElementById('navBurger');
+    const drawer      = document.getElementById('navDrawer');
+    const overlay     = document.getElementById('navOverlay');
+    const closeBtn    = document.getElementById('drawerClose');
+    const navbar      = document.getElementById('mainNavbar');
     const floatingBar = document.querySelector('.floating-bar');
 
     function openDrawer() {
@@ -776,12 +759,10 @@ document.addEventListener('DOMContentLoaded', function () {
     closeBtn.addEventListener('click', closeDrawer);
     overlay.addEventListener('click', closeDrawer);
 
-    // Tutup drawer saat link diklik
     drawer.querySelectorAll('.d-link').forEach(function (link) {
         link.addEventListener('click', closeDrawer);
     });
 
-    // Scroll effect navbar
     window.addEventListener('scroll', function () {
         navbar.classList.toggle('scrolled', window.scrollY > 10);
     }, { passive: true });
@@ -791,219 +772,584 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 <style>
-@font-face {
-    font-family: 'Gotham';
-    src: url('{{ asset("fonts/Gotham-Black.otf") }}') format('opentype');
-    font-weight: 900;
-    font-style: normal;
-    font-display: swap;
-}
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-    padding-top: 100px;
-    background: #ffffff !important;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    overflow-x: hidden;
-    color: #1C145C;
-}
-
-/* ============================================================
-   PAGE SWITCHING
-============================================================ */
-#page-list   { display: block; }
-#page-detail { display: none; }
-
-/* ============================================================
-   HERO (LIST PAGE)
-============================================================ */
 .layanan-hero {
-    padding: 60px 0 50px;
-    text-align: center;
+    background: linear-gradient(150deg, #1C145C 0%, #231a72 40%, #0ea5e9 100%);
+    padding: 80px 0 72px;
     position: relative;
-}
-.layanan-hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(83,74,183,0.07) 0%, transparent 70%);
-    pointer-events: none;
-}
-.layanan-heading {
-    font-family: 'Gotham', -apple-system, sans-serif;
-    font-weight: 900;
-    font-size: clamp(26px, 4vw, 42px);
-    line-height: 1.2;
-    margin: 0 0 14px;
-    letter-spacing: -0.5px;
-    background: linear-gradient(135deg, #1C145C 0%, #534AB7 50%, #1C145C 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-.layanan-desc {
-    font-size: 14px;
-    color: #7a738f;
-    max-width: 520px;
-    margin: 0 auto;
-    line-height: 1.75;
-}
-.stats-bar {
-    display: inline-flex;
-    margin: 32px auto 0;
-    background: #fff;
-    border-radius: 14px;
-    border: 1px solid #EAE7F5;
     overflow: hidden;
-    box-shadow: 0 4px 20px rgba(28,20,92,0.06);
 }
-.stat-item {
-    padding: 13px 24px;
-    text-align: center;
-    border-right: 1px solid #F0EDF8;
-}
-.stat-item:last-child { border-right: none; }
-.stat-num {
-    font-family: 'Gotham', sans-serif;
-    font-weight: 900;
-    font-size: 20px;
-    color: #1C145C;
-    display: block;
-}
-.stat-label { font-size: 10px; color: #a09bbf; margin-top: 3px; }
-
-/* ============================================================
-   GRID & CARD
-============================================================ */
-.layanan-grid { padding: 28px 0 70px; }
 
 /* MOBILE */
 @media (max-width: 768px) {
-
-    .layanan-grid {
-        padding: 20px 14px 60px;
-    }
-
-    /* kasih jarak antar card */
-    .layanan-grid .row {
-        --bs-gutter-x: 14px;
-        --bs-gutter-y: 14px;
-        margin-left: 0;
-        margin-right: 0;
-    }
-
-    /* biar card tidak nabrak kanan kiri */
-    .layanan-grid .col-md-6,
-    .layanan-grid .col-6 {
-        padding-left: 7px;
-        padding-right: 7px;
-    }
-
-    .lcard {
-        width: 100%;
-        max-width: 100%;
+    .layanan-hero {
+        margin-top: -70px; /* sesuaikan tinggi navbar */
+        padding-top: 100px; /* agar isi tidak ketiban navbar */
     }
 }
 
+.layanan-hero::before {
+    content: '';
+    position: absolute;
+    right: -80px;
+    top: -80px;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,.06), transparent 65%);
+    pointer-events: none;
+}
+
+.layanan-hero::after {
+    content: '';
+    position: absolute;
+    left: -40px;
+    bottom: -100px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(14,165,233,.12), transparent 65%);
+    pointer-events: none;
+}
+
+.hero-dots {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px);
+    background-size: 26px 26px;
+}
+
+.hero-inner {
+    position: relative;
+    z-index: 2;
+}
+
+/* Breadcrumb */
+.hero-bc {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.hero-bc a {
+    color: rgba(255,255,255,.6);
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color .2s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.hero-bc a:hover { color: #fff; }
+
+.hero-bc .sep {
+    color: rgba(255,255,255,.25);
+    font-size: 11px;
+}
+
+.hero-bc .cur {
+    color: rgba(255,255,255,.8);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Kategori pill */
+.hero-kat {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(14,165,233,.85);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+    box-shadow: 0 3px 12px rgba(14,165,233,.35);
+}
+
+/* Title */
+.hero-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 4.5vw, 46px);
+    color: #fff;
+    line-height: 1.2;
+    letter-spacing: -.3px;
+    margin-bottom: 18px;
+    font-weight: 400;
+}
+
+/* Meta pills */
+.hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.hero-meta-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.15);
+    color: rgba(255,255,255,.8);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 13px;
+    border-radius: 20px;
+    backdrop-filter: blur(6px);
+}
+
+.hero-meta-pill i {
+    font-size: 10px;
+    color: #7dd3fc;
+}
+
+/* Stats bar in hero */
+.hero-stats {
+    display: flex;
+    gap: 0;
+    margin-top: 32px;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 16px;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+    width: fit-content;
+}
+
+.hero-stat-item {
+    padding: 14px 28px;
+    text-align: center;
+    border-right: 1px solid rgba(255,255,255,.1);
+}
+
+.hero-stat-item:last-child {
+    border-right: none;
+}
+
+.hero-stat-num {
+    font-family: 'GothamBlack', 'Plus Jakarta Sans', sans-serif;
+    font-weight: 900;
+    font-size: 22px;
+    color: #fff;
+    display: block;
+    line-height: 1;
+}
+
+.hero-stat-label {
+    font-size: 10px;
+    color: rgba(255,255,255,.6);
+    margin-top: 5px;
+    letter-spacing: .3px;
+}
+
+/* ============================================================
+   BODY LAYOUT
+============================================================ */
+.layanan-body {
+    padding: 52px 0 80px;
+    background: #ffffff;
+}
+
+/* ---- Filter bar ---- */
+.filter-bar {
+    background: #fff;
+    border-radius: 14px;
+    border: 1px solid #e8edf5;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    box-shadow: 0 2px 10px rgba(28,20,92,.06);
+}
+
+.filter-search-wrap {
+    position: relative;
+    flex: 1;
+    min-width: 200px;
+}
+
+.filter-search-wrap i {
+    position: absolute;
+    left: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    font-size: 13px;
+    pointer-events: none;
+}
+
+.filter-search {
+    width: 100%;
+    padding: 9px 13px 9px 36px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13.5px;
+    color: #1e293b;
+    outline: none;
+    background: #f8faff;
+    transition: border-color .2s, box-shadow .2s;
+}
+
+.filter-search::placeholder { color: #b0bec5; }
+
+.filter-search:focus {
+    border-color: #0ea5e9;
+    box-shadow: 0 0 0 3px rgba(14,165,233,.12);
+    background: #fff;
+}
+
+.filter-select {
+    padding: 9px 28px 9px 12px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13px;
+    color: #1e293b;
+    outline: none;
+    background: #f8faff;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2364748b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    cursor: pointer;
+}
+
+.filter-select:focus { border-color: #0ea5e9; outline: none; }
+
+/* ---- Section heading ---- */
+.section-heading {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: #1C145C;
+    margin-bottom: 6px;
+    letter-spacing: -.3px;
+}
+
+.section-sub {
+    font-size: 14px;
+    color: #64748b;
+    margin-bottom: 24px;
+}
+
+.section-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.section-divider::after {
+    content: '';
+    flex: 1;
+    height: 1.5px;
+    background: linear-gradient(to right, #e2e8f0, transparent);
+}
+
+/* ============================================================
+   LAYANAN GRID & CARDS
+============================================================ */
+.layanan-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 22px;
+    padding: 20px 0 32px;
+}
+
+/* Card */
 .lcard {
     background: #fff;
-    border-radius: 16px;
-    border: 1px solid #EAE7F5;
+    border-radius: 18px;
+    border: 1px solid #e8edf5;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     cursor: pointer;
-    transition: transform 0.25s cubic-bezier(.22,.68,0,1.2), box-shadow 0.25s, border-color 0.25s;
-    height: 100%;
+    transition: transform .28s cubic-bezier(.22,.68,0,1.2), box-shadow .28s, border-color .28s;
+    animation: fadeUpCard .45s cubic-bezier(.22,.68,0,1.2) both;
 }
+
+@keyframes fadeUpCard {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
 .lcard:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 14px 36px rgba(28,20,92,0.10);
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(28,20,92,.11);
     border-color: #AFA9EC;
 }
-.lcard-img-wrap {
+
+/* Thumbnail */
+.lcard-thumb {
     position: relative;
-    background: #F5F3FF;
     overflow: hidden;
-    line-height: 0;
     flex-shrink: 0;
+    background: #f0eeff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.lcard-img {
+
+.lcard-thumb img {
     width: 100%;
     height: auto;
-    display: block;
     object-fit: contain;
-    transition: transform 0.4s;
+    transition: transform .4s ease;
 }
-.lcard:hover .lcard-img { transform: scale(1.04); }
-.lcard-img-placeholder {
-    height: 120px;
+
+.lcard:hover .lcard-thumb img {
+    transform: scale(1.04);
+}
+
+.lcard-thumb-placeholder {
+    height: 175px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: linear-gradient(135deg, #EEEDFE 0%, #E6F1FB 100%);
 }
-.lcard-img-placeholder i { font-size: 34px; color: #CECBF6; }
 
+.lcard-thumb-placeholder i {
+    font-size: 48px;
+    color: #CECBF6;
+}
 
+/* Badges on thumbnail */
+.lcard-kat {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(28,20,92,.82);
+    backdrop-filter: blur(6px);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .7px;
+    padding: 3px 10px;
+    border-radius: 20px;
+}
+
+.lcard-status-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 9px;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+.lcard-status-badge.aktif {
+    background: #E1F5EE;
+    color: #0F6E56;
+    border: 1px solid #9FE1CB;
+}
+
+.lcard-status-badge.nonaktif {
+    background: #F1EFE8;
+    color: #888;
+    border: 1px solid #D3D1C7;
+}
+
+/* Card body */
 .lcard-body {
-    padding: 14px 15px 16px;
+    padding: 18px 20px;
     flex: 1;
     display: flex;
     flex-direction: column;
 }
-.lcard-poli {
-    font-family: 'Gotham', sans-serif;
-    font-weight: 900;
-    font-size: 12.5px;
+
+.lcard-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 17px;
+    font-weight: 400;
     color: #1C145C;
-    margin-bottom: 5px;
     line-height: 1.35;
+    margin-bottom: 8px;
 }
+
 .lcard-desc {
-    font-size: 11.5px;
-    color: #9590b0;
-    line-height: 1.6;
+    font-size: 13px;
+    color: #64748b;
+    line-height: 1.65;
     flex: 1;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    margin-bottom: 16px;
 }
+
 .lcard-detail-link {
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    margin-top: 9px;
-    font-size: 11px;
-    font-weight: 600;
-    color: #1C145C;
-    transition: gap 0.2s, color 0.2s;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #534AB7;
+    text-decoration: none;
+    transition: gap .2s, color .2s;
 }
-.lcard-detail-link:hover { color: #7F77DD; gap: 8px; }
+
+.lcard-detail-link:hover {
+    color: #1C145C;
+    gap: 8px;
+}
+
 .lcard-detail-link i { font-size: 11px; }
 
-.lcard-divider { height: 1px; background: #F0EDF8; margin: 12px 0 10px; }
-
-.lcard-contacts { display: flex; flex-direction: column; gap: 6px; }
-.lcard-contact-row {
-    display: flex; align-items: center; gap: 7px;
-    font-size: 11px; color: #a09bbf;
+.lcard-divider {
+    height: 1px;
+    background: #f0edf8;
+    margin: 12px 0 10px;
 }
-.lcard-contact-row i { font-size: 12px; color: #7F77DD; flex-shrink: 0; }
-.lcard-contact-row span { color: #3a3260; font-weight: 600; }
+
+/* Contacts inside card */
+.lcard-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.lcard-contact-row {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 11.5px;
+    color: #a09bbf;
+}
+
+.lcard-contact-row i {
+    font-size: 12px;
+    color: #7F77DD;
+    flex-shrink: 0;
+}
+
+.lcard-contact-row span {
+    color: #3a3260;
+    font-weight: 600;
+}
+
+/* Card footer */
+.lcard-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 4px;
+    padding: 14px 20px 18px;
+    border-top: 1px solid #eef2f7;
+    gap: 8px;
+    flex-wrap: wrap;
+}
 
 .lcard-wa-btn {
-    display: inline-flex; align-items: center; gap: 5px;
-    margin-top: 9px; padding: 6px 11px;
-    border-radius: 8px; font-size: 11px; font-weight: 600;
-    background: #E1F5EE; color: #0F6E56;
-    text-decoration: none; border: 1px solid #9FE1CB;
-    transition: background 0.2s, transform 0.15s; width: fit-content;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 7px 13px;
+    border-radius: 9px;
+    font-size: 12px;
+    font-weight: 700;
+    background: #E1F5EE;
+    color: #0F6E56;
+    text-decoration: none;
+    border: 1px solid #9FE1CB;
+    transition: background .2s, transform .15s;
 }
-.lcard-wa-btn:hover { background: #9FE1CB; color: #085041; transform: scale(1.02); text-decoration: none; }
-.lcard-wa-btn i { font-size: 13px; }
+
+.lcard-wa-btn:hover {
+    background: #9FE1CB;
+    color: #085041;
+    transform: scale(1.02);
+    text-decoration: none;
+}
+
+.lcard-wa-btn i { font-size: 14px; }
+
+.lcard-read-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 9px 18px;
+    border-radius: 12px;
+    background: #1C145C;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    transition: all .25s ease;
+}
+
+.lcard-read-btn i {
+    font-size: 12px;
+    transition: transform .25s ease;
+}
+
+.lcard-read-btn:hover {
+    background: #2a1f7a;
+    transform: translateY(-2px);
+    color: #fff;
+}
+
+.lcard-read-btn:hover i {
+    transform: translateX(3px);
+}
+
+/* ---- Empty state ---- */
+.empty-state {
+    grid-column: 1 / -1;
+    padding: 80px 24px;
+    text-align: center;
+    color: #64748b;
+}
+
+.empty-state .es-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 20px;
+    background: #e0f2fe;
+    color: #0ea5e9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin: 0 auto 16px;
+}
+
+.empty-state .es-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: #1e293b;
+    margin-bottom: 6px;
+}
+
+.empty-state .es-sub { font-size: 13.5px; }
+
+/* ============================================================
+   PAGE SWITCHING
+============================================================ */
+#page-list   { display: block; padding-top: 0; }
+#page-detail { display: none;  padding-top: 0; }
 
 /* ============================================================
    DETAIL PAGE
@@ -1011,32 +1357,34 @@ body {
 .detail-page {
     min-height: 80vh;
     padding-bottom: 80px;
-    animation: fadeUp 0.35s cubic-bezier(.22,.68,0,1.2);
+    animation: fadeUp .35s cubic-bezier(.22,.68,0,1.2);
 }
+
 @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
 }
 
-/* BACK BUTTON */
+/* Back button */
 .detail-back {
     display: inline-flex;
     align-items: center;
     gap: 8px;
     padding: 28px 0 0;
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 700;
     color: #534AB7;
     cursor: pointer;
     border: none;
     background: none;
-    transition: gap 0.2s, color 0.2s;
-    font-family: inherit;
+    transition: gap .2s, color .2s;
+    font-family: 'Plus Jakarta Sans', sans-serif;
 }
+
 .detail-back:hover { color: #1C145C; gap: 12px; }
 .detail-back i { font-size: 14px; }
 
-/* HERO IMAGE */
+/* Hero image */
 .detail-hero-img {
     width: 100%;
     height: auto;
@@ -1046,9 +1394,10 @@ body {
     border: 1px solid #EAE7F5;
     background: #F5F3FF;
 }
+
 .detail-hero-placeholder {
     width: 100%;
-    height: 260px;
+    min-height: 260px;
     border-radius: 20px;
     margin: 24px 0 0;
     background: linear-gradient(135deg, #EEEDFE 0%, #E6F1FB 100%);
@@ -1056,10 +1405,11 @@ body {
     align-items: center;
     justify-content: center;
     border: 1px solid #EAE7F5;
+    font-size: 80px;
+    color: #CECBF6;
 }
-.detail-hero-placeholder i { font-size: 64px; color: #CECBF6; }
 
-/* META BAR */
+/* Meta bar */
 .detail-meta {
     display: flex;
     align-items: center;
@@ -1067,10 +1417,11 @@ body {
     gap: 10px;
     margin: 22px 0 18px;
 }
+
 .detail-badge {
     display: inline-block;
     font-size: 9px;
-    font-weight: 700;
+    font-weight: 800;
     letter-spacing: 1.5px;
     text-transform: uppercase;
     padding: 5px 13px;
@@ -1079,8 +1430,10 @@ body {
     color: #534AB7;
     border: 1px solid #CECBF6;
 }
+
 .detail-badge.aktif    { background: #E1F5EE; color: #0F6E56; border-color: #9FE1CB; }
 .detail-badge.nonaktif { background: #F1EFE8; color: #888;    border-color: #D3D1C7; }
+
 .detail-meta-item {
     display: flex;
     align-items: center;
@@ -1088,20 +1441,21 @@ body {
     font-size: 12px;
     color: #a09bbf;
 }
+
 .detail-meta-item i { font-size: 13px; }
 
-/* TITLE */
+/* Title */
 .detail-title {
-    font-family: 'Gotham', sans-serif;
-    font-weight: 900;
-    font-size: clamp(22px, 3.5vw, 34px);
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-size: clamp(24px, 3.5vw, 38px);
     color: #1C145C;
     line-height: 1.2;
-    letter-spacing: -0.5px;
+    letter-spacing: -.3px;
     margin-bottom: 6px;
 }
 
-/* DIVIDER LINE */
+/* Divider line */
 .detail-line {
     height: 3px;
     width: 52px;
@@ -1110,43 +1464,46 @@ body {
     margin: 18px 0 24px;
 }
 
-/* BODY TEXT */
+/* Body text */
 .detail-body {
     font-size: 15.5px;
-    color: #3a3260;
-    line-height: 1.85;
+    color: #374151;
+    line-height: 1.9;
     max-width: 700px;
 }
+
 .detail-body p { margin-bottom: 1em; }
 
-/* SIDEBAR INFO BOX */
-.detail-sidebar {
-    position: sticky;
-    top: 120px;
-}
+/* ---- Sidebar ---- */
+.detail-sidebar { position: sticky; top: 120px; }
+
 .detail-infobox {
     background: #fff;
     border: 1px solid #EAE7F5;
     border-radius: 18px;
     overflow: hidden;
-    box-shadow: 0 6px 24px rgba(28,20,92,0.06);
+    box-shadow: 0 6px 24px rgba(28,20,92,.06);
 }
+
 .detail-infobox-header {
     background: linear-gradient(135deg, #1C145C 0%, #534AB7 100%);
     padding: 18px 20px;
 }
+
 .detail-infobox-header h3 {
-    font-family: 'Gotham', sans-serif;
-    font-weight: 900;
-    font-size: 13px;
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-size: 16px;
     color: #fff;
-    letter-spacing: 0.3px;
+    letter-spacing: .3px;
 }
+
 .detail-infobox-header p {
     font-size: 11px;
-    color: rgba(255,255,255,0.65);
+    color: rgba(255,255,255,.65);
     margin-top: 3px;
 }
+
 .detail-infobox-body { padding: 18px 20px; }
 
 .info-row {
@@ -1156,20 +1513,45 @@ body {
     padding: 10px 0;
     border-bottom: 1px solid #F0EDF8;
 }
-.info-row:last-child { border-bottom: none; padding-bottom: 0; }
+
+.info-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
 .info-icon {
-    width: 34px; height: 34px;
+    width: 34px;
+    height: 34px;
     border-radius: 9px;
     background: #EEEDFE;
-    display: flex; align-items: center; justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
 }
+
 .info-icon i { font-size: 15px; color: #534AB7; }
 .info-icon.green { background: #E1F5EE; }
 .info-icon.green i { color: #0F6E56; }
-.info-text-label { font-size: 10px; color: #a09bbf; font-weight: 600; letter-spacing: 0.3px; text-transform: uppercase; }
-.info-text-val   { font-size: 13px; color: #1C145C; font-weight: 600; margin-top: 1px; }
+.info-icon.red { background: #FCEAEA; }
+.info-icon.red i { color: #c0392b; }
 
+.info-text-label {
+    font-size: 10px;
+    color: #a09bbf;
+    font-weight: 700;
+    letter-spacing: .3px;
+    text-transform: uppercase;
+}
+
+.info-text-val {
+    font-size: 13px;
+    color: #1C145C;
+    font-weight: 700;
+    margin-top: 1px;
+}
+
+/* Action buttons */
 .detail-wa-btn {
     display: flex;
     align-items: center;
@@ -1184,11 +1566,19 @@ body {
     color: #fff;
     text-decoration: none;
     border: none;
-    transition: background 0.2s, transform 0.15s;
+    transition: background .2s, transform .15s;
     width: 100%;
-    font-family: inherit;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    cursor: pointer;
 }
-.detail-wa-btn:hover { background: #0F6E56; color: #fff; text-decoration: none; transform: scale(1.02); }
+
+.detail-wa-btn:hover {
+    background: #0F6E56;
+    color: #fff;
+    text-decoration: none;
+    transform: scale(1.02);
+}
+
 .detail-wa-btn i { font-size: 18px; }
 
 .detail-tel-btn {
@@ -1200,36 +1590,94 @@ body {
     padding: 11px 20px;
     border-radius: 12px;
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 700;
     background: #ce0000;
     color: #ffffff;
     text-decoration: none;
     border: 1px solid #ff0000;
-    transition: background 0.2s;
+    transition: background .2s;
     width: 100%;
-    font-family: inherit;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     cursor: pointer;
 }
-.detail-tel-btn:hover { background: #ff0000; text-decoration: none; }
+
+.detail-tel-btn:hover {
+    background: #ff0000;
+    color: #fff;
+    text-decoration: none;
+}
+
 .detail-tel-btn i { font-size: 15px; }
 
-/* OTHER LAYANAN */
+/* ---- Sidebar jam layanan ---- */
+.jam-section {
+    margin-top: 16px;
+    background: #f8faff;
+    border: 1px solid #EAE7F5;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.jam-header {
+    padding: 12px 16px;
+    background: #EEEDFE;
+    font-size: 11px;
+    font-weight: 800;
+    color: #534AB7;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.jam-body { padding: 12px 16px; }
+
+.jam-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    border-bottom: 1px solid #EAE7F5;
+    font-size: 12.5px;
+}
+
+.jam-row:last-child { border-bottom: none; padding-bottom: 0; }
+
+.jam-day { color: #64748b; font-weight: 600; }
+
+.jam-time {
+    color: #1C145C;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.jam-closed {
+    color: #e74c3c;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+/* ---- "Layanan Lainnya" ---- */
 .other-section { margin-top: 52px; }
+
 .other-section-title {
-    font-family: 'Gotham', sans-serif;
-    font-weight: 900;
-    font-size: 16px;
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-size: 20px;
     color: #1C145C;
     margin-bottom: 16px;
     padding-bottom: 12px;
     border-bottom: 1px solid #EAE7F5;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
 }
+
 .other-section-title::before {
     content: '';
-    width: 4px; height: 18px;
+    width: 4px;
+    height: 20px;
     background: linear-gradient(180deg, #534AB7, #AFA9EC);
     border-radius: 999px;
     display: inline-block;
@@ -1242,40 +1690,54 @@ body {
     padding: 12px;
     background: #fff;
     border: 1px solid #EAE7F5;
-    border-radius: 12px;
+    border-radius: 14px;
     cursor: pointer;
-    transition: border-color 0.2s, transform 0.2s;
+    transition: border-color .2s, transform .2s, box-shadow .2s;
     text-decoration: none;
     color: inherit;
 }
-.other-card:hover { border-color: #AFA9EC; transform: translateX(4px); }
+
+.other-card:hover {
+    border-color: #AFA9EC;
+    transform: translateX(4px);
+    box-shadow: 0 4px 14px rgba(28,20,92,.07);
+}
+
 .other-card-img {
-    width: 60px; height: 60px;
-    border-radius: 8px;
+    width: 64px;
+    height: 64px;
+    border-radius: 10px;
     object-fit: cover;
     background: #F5F3FF;
     flex-shrink: 0;
     border: 1px solid #EAE7F5;
 }
+
 .other-card-placeholder {
-    width: 60px; height: 60px;
-    border-radius: 8px;
+    width: 64px;
+    height: 64px;
+    border-radius: 10px;
     background: linear-gradient(135deg, #EEEDFE, #E6F1FB);
     flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: 1px solid #EAE7F5;
 }
-.other-card-placeholder i { font-size: 22px; color: #CECBF6; }
+
+.other-card-placeholder i { font-size: 24px; color: #CECBF6; }
+
 .other-card-name {
-    font-family: 'Gotham', sans-serif;
-    font-weight: 900;
-    font-size: 12px;
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-size: 13px;
     color: #1C145C;
     line-height: 1.35;
     margin-bottom: 4px;
 }
+
 .other-card-desc {
-    font-size: 11px;
+    font-size: 11.5px;
     color: #9590b0;
     line-height: 1.5;
     display: -webkit-box;
@@ -1285,434 +1747,56 @@ body {
 }
 
 /* ============================================================
-   EMPTY & RESPONSIVE
+   SHARE BAR (detail)
 ============================================================ */
-.empty-state {
-    text-align: center;
-    padding: 80px 20px;
-    color: #aaa;
+.detail-share-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 36px;
+    padding: 16px 20px;
+    background: #f8faff;
+    border: 1px solid #e8edf5;
+    border-radius: 14px;
+    flex-wrap: wrap;
+    gap: 12px;
 }
 
-.empty-state i {
-    font-size: 48px;
-    display: block;
-    margin-bottom: 14px;
-    color: #AFA9EC;
+.share-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
+
+.share-btns { display: flex; gap: 8px; }
+
+.share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 16px;
+    border-radius: 8px;
+    border: none;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 12.5px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform .2s, box-shadow .2s;
+}
+
+.share-btn:hover { transform: translateY(-2px); }
+.btn-wa   { background: #25D366; color: #fff; box-shadow: 0 3px 10px rgba(37,211,102,.3); }
+.btn-wa:hover   { color: #fff; }
+.btn-copy { background: #f1f5f9; color: #475569; border: 1.5px solid #e2e8f0; }
+.btn-copy.copied { background: #10b981; color: #fff; border-color: #10b981; }
 
 /* ============================================================
-   MOBILE
+   FOOTER RSU ALLAM MEDICA
 ============================================================ */
-@media (max-width: 768px) {
-
-    body {
-        padding-top: 85px;
-    }
-
-    .layanan-hero {
-        padding: 42px 0 34px;
-    }
-
-    /* ===== STATS BAR ===== */
-    .stats-bar {
-        display: flex;
-        align-items: stretch;
-        justify-content: center;
-        flex-wrap: nowrap;
-
-        width: 100%;
-        max-width: calc(100% - 28px);
-
-        margin: 24px auto 0;
-
-        background: #fff;
-        border: 1px solid #EEEDFE;
-        border-radius: 16px;
-
-        overflow: hidden;
-
-        box-shadow: 0 8px 24px rgba(83,74,183,0.08);
-    }
-
-    .stat-item {
-        flex: 1;
-        padding: 14px 10px;
-        border-right: 1px solid #EEEDFE;
-    }
-
-    .stat-item:last-child {
-        border-right: none;
-    }
-
-    .stat-num {
-        font-size: 18px;
-    }
-
-    .stat-label {
-        font-size: 10px;
-        line-height: 1.4;
-    }
-
-    /* ===== DETAIL SIDEBAR ===== */
-    .detail-sidebar {
-        position: static;
-        margin-top: 28px;
-    }
-}
-</style>
-
-{{-- ============================================================
-     PAGE: LIST
-============================================================ --}}
-<div id="page-list">
-
-    <!-- HERO -->
-    <section class="layanan-hero">
-        <div class="container">
-
-            <h1 class="layanan-heading">
-                Poliklinik &amp; Layanan<br>RSU Allam Medica
-            </h1>
-            <p class="layanan-desc">
-                Kami menyediakan layanan kesehatan lengkap dengan dokter spesialis berpengalaman.
-                Pilih poliklinik yang Anda butuhkan dan buat janji temu dengan mudah.
-            </p>
-
-            @php
-                $aktifCount = $layanan->where('status', 'aktif')->count();
-                $totalCount = $layanan->count();
-            @endphp
-
-            <div class="stats-bar">
-                <div class="stat-item">
-                    <span class="stat-num">{{ $totalCount }}</span>
-                    <div class="stat-label">Total Layanan</div>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-num">{{ $aktifCount }}</span>
-                    <div class="stat-label">Layanan Aktif</div>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-num">24<small style="font-size:12px">/7</small></span>
-                    <div class="stat-label">IGD Siaga</div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- GRID -->
-    <div class="container layanan-grid">
-
-        @if($layanan->isEmpty())
-            <div class="empty-state">
-                <i class="bi bi-hospital"></i>
-                <p>Belum ada layanan yang tersedia.</p>
-            </div>
-        @else
-
-            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3 justify-content-center">
-
-                @foreach($layanan as $item)
-                @if($item->status === 'aktif')
-
-                @php
-                    $imgUrl  = $item->gambar ? asset('storage/' . $item->gambar) : '';
-                    $noWa    = preg_replace('/[^0-9]/', '', $item->no_wa ?? '');
-                    $waLink  = $noWa ? 'https://wa.me/' . $noWa : '';
-                @endphp
-
-                <div class="col d-flex">
-                    <div class="lcard w-100"
-                         onclick="showDetail({{ $item->id }})">
-
-                        <div class="lcard-img-wrap">
-                            @if($item->gambar)
-                                <img src="{{ $imgUrl }}" alt="{{ $item->poli }}" class="lcard-img" loading="lazy">
-                            @else
-                                <div class="lcard-img-placeholder">
-                                    <i class="bi bi-hospital"></i>
-                                </div>
-                            @endif
-                            <span class="lcard-status aktif">Aktif</span>
-                        </div>
-
-                        <div class="lcard-body">
-                            <div class="lcard-poli">{{ $item->poli }}</div>
-                            @if($item->deskripsi)
-                                <p class="lcard-desc">{{ $item->deskripsi }}</p>
-                            @endif
-                            <span class="lcard-detail-link">
-                                Lihat Detail <i class="bi bi-arrow-right"></i>
-                            </span>
-                            @if($item->no_hp || $item->no_wa)
-                                <div class="lcard-divider"></div>
-                                <div class="lcard-contacts">
-                                    @if($item->no_hp)
-                                    <div class="lcard-contact-row">
-                                        <i class="bi bi-telephone-fill"></i>
-                                        <span>{{ $item->no_hp }}</span>
-                                    </div>
-                                    @endif
-                                    @if($waLink)
-                                    <a href="{{ $waLink }}" target="_blank" rel="noopener"
-                                       class="lcard-wa-btn" onclick="event.stopPropagation()">
-                                        <i class="bi bi-whatsapp"></i> WhatsApp
-                                    </a>
-                                    @endif
-                                </div>
-                            @endif
-                        </div>
-
-                    </div>
-                </div>
-
-                @endif
-                @endforeach
-
-            </div>
-        @endif
-
-    </div>
-</div>
-
-
-{{-- ============================================================
-     PAGE: DETAIL (hidden, filled by JS)
-============================================================ --}}
-<div id="page-detail">
-    <div class="container">
-        <button class="detail-back" onclick="showList()">
-            <i class="bi bi-arrow-left"></i> Kembali ke Semua Layanan
-        </button>
-    </div>
-
-    <div class="container detail-page">
-        <div class="row g-5">
-
-            {{-- MAIN CONTENT --}}
-            <div class="col-lg-8">
-
-                <div id="det-img-wrap"></div>
-
-                <div class="detail-meta">
-                    <span class="detail-badge" id="det-badge">Poliklinik</span>
-                    <span class="detail-meta-item">
-                        <i class="bi bi-circle-fill" style="font-size:6px;color:#9FE1CB"></i>
-                        <span id="det-status-text"></span>
-                    </span>
-                    <span class="detail-meta-item">
-                        <i class="bi bi-clock"></i>
-                        <span>RSU Allam Medica</span>
-                    </span>
-                </div>
-
-                <h2 class="detail-title" id="det-title"></h2>
-                <div class="detail-line"></div>
-
-                <div class="detail-body" id="det-body"></div>
-
-                {{-- LAYANAN LAINNYA --}}
-                <div class="other-section">
-                    <div class="other-section-title">Layanan Lainnya</div>
-                    <div class="row g-2" id="det-others"></div>
-                </div>
-
-            </div>
-
-            {{-- SIDEBAR --}}
-            <div class="col-lg-4">
-                <div class="detail-sidebar">
-                    <div class="detail-infobox">
-                        <div class="detail-infobox-header">
-                            <h3>Informasi Kontak</h3>
-                            <p>Hubungi kami untuk janji temu</p>
-                        </div>
-                        <div class="detail-infobox-body" id="det-infobox-body">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-
-{{-- DATA LAYANAN (JSON untuk JS) --}}
-<script>
-@php
-$layananJson = $layanan->where('status', 'aktif')->map(function($item) {
-
-    $wa = preg_replace('/\D/', '', $item->no_wa ?? '');
-
-    return [
-        'id'         => $item->id,
-        'poli'       => $item->poli,
-        'deskripsi'  => $item->deskripsi ?? '',
-        'no_hp'      => $item->no_hp ?? '',
-        'no_wa'      => $wa,
-        'gambar'     => $item->gambar
-                            ? asset('storage/' . $item->gambar)
-                            : '',
-        'status'     => $item->status,
-    ];
-})->values();
-@endphp
-
-
-const layananData = @json($layananJson);
-
-function showDetail(id) {
-
-}
-function showDetail(id) {
-    const item = layananData.find(d => d.id == id);
-    if (!item) return;
-
-    // IMAGE
-    const imgWrap = document.getElementById('det-img-wrap');
-    imgWrap.innerHTML = item.gambar
-        ? `<img src="${item.gambar}" alt="${item.poli}" class="detail-hero-img">`
-        : `<div class="detail-hero-placeholder"><i class="bi bi-hospital"></i></div>`;
-
-    // META
-    document.getElementById('det-title').textContent       = item.poli;
-    document.getElementById('det-status-text').textContent = item.status === 'aktif' ? 'Layanan Aktif' : 'Tidak Aktif';
-
-    const badge = document.getElementById('det-badge');
-    badge.textContent  = 'Poliklinik';
-    badge.className    = 'detail-badge';
-
-    // BODY
-    const bodyEl = document.getElementById('det-body');
-    if (item.deskripsi) {
-        const paragraphs = item.deskripsi.split(/\n+/).filter(p => p.trim());
-        bodyEl.innerHTML = paragraphs.length > 1
-            ? paragraphs.map(p => `<p>${p}</p>`).join('')
-            : `<p>${item.deskripsi}</p>`;
-    } else {
-        bodyEl.innerHTML = '<p style="color:#a09bbf">Deskripsi layanan belum tersedia.</p>';
-    }
-
-    // INFOBOX SIDEBAR
-    let infoHtml = '';
-
-    infoHtml += `
-        <div class="info-row">
-            <div class="info-icon">
-                <i class="bi bi-building-cross"></i>
-            </div>
-            <div>
-                <div class="info-text-label">Layanan</div>
-                <div class="info-text-val">${item.poli}</div>
-            </div>
-        </div>`;
-
-    if (item.no_hp) {
-        infoHtml += `
-        <div class="info-row">
-            <div class="info-icon">
-                <i class="bi bi-telephone-fill"></i>
-            </div>
-            <div>
-                <div class="info-text-label">Telepon</div>
-                <div class="info-text-val">${item.no_hp}</div>
-            </div>
-        </div>`;
-    }
-
-    if (item.no_wa) {
-        infoHtml += `
-        <div class="info-row">
-            <div class="info-icon green">
-                <i class="bi bi-whatsapp"></i>
-            </div>
-            <div>
-                <div class="info-text-label">WhatsApp</div>
-                <div class="info-text-val">+${item.no_wa}</div>
-            </div>
-        </div>`;
-    }
-
-    document.getElementById('det-infobox-body').innerHTML = infoHtml;
-
-    // ACTION BUTTONS
-    let btnHtml = '';
-    if (item.no_wa) {
-        btnHtml += `<a href="https://wa.me/${item.no_wa}" target="_blank" rel="noopener" class="detail-wa-btn">
-            <i class="bi bi-whatsapp"></i> Chat WhatsApp
-        </a>`;
-    }
-    if (item.no_hp) {
-        btnHtml += `<a href="tel:${item.no_hp}" class="detail-tel-btn">
-            <i class="bi bi-telephone-fill"></i> Hubungi via Telepon
-        </a>`;
-    }
-    document.getElementById('det-infobox-body').innerHTML += btnHtml;
-
-    // LAYANAN LAINNYA
-    const others = layananData.filter(d => d.id != id).slice(0, 6);
-    const othersEl = document.getElementById('det-others');
-    othersEl.innerHTML = others.map(o => `
-        <div class="col-12 col-sm-6" onclick="showDetail(${o.id})" style="cursor:pointer">
-            <div class="other-card">
-                ${o.gambar
-                    ? `<img src="${o.gambar}" class="other-card-img" alt="${o.poli}">`
-                    : `<div class="other-card-placeholder"><i class="bi bi-hospital"></i></div>`}
-                <div>
-                    <div class="other-card-name">${o.poli}</div>
-                    <div class="other-card-desc">${o.deskripsi || 'Tidak ada deskripsi.'}</div>
-                </div>
-            </div>
-        </div>
-    `).join('');
-
-    // SWITCH PAGE
-    document.getElementById('page-list').style.display   = 'none';
-    document.getElementById('page-detail').style.display = 'block';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function showList() {
-    document.getElementById('page-detail').style.display = 'none';
-    document.getElementById('page-list').style.display   = 'block';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-</script>
-
-
-
-<style>
-/* ================= FONT GOTHAM BLACK ================= */
-@font-face {
-    font-family: 'Gotham';
-    src: url('{{ asset('fonts/Gotham-Black.otf') }}') format('opentype');
-    font-weight: 900;
-    font-style: normal;
-    font-display: swap;
-}
-
-/* ================= FADE BAWAH SECTION SLIDER KE FOOTER ================= */
-.section-partner {
-    position: relative;
-    background: #ffffff;
-    padding-bottom: 0;
-}
-
-.section-partner::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 80px;
-    background: linear-gradient(to bottom, rgba(255,255,255,0), #ffffff);
-    pointer-events: none;
-    z-index: 1;
-}
-
-/* ================= FOOTER RSU ALLAM MEDICA ================= */
 .footer-rsu {
     background: linear-gradient(
         to bottom,
@@ -1736,11 +1820,11 @@ function showList() {
 .footer-rsu .footer-ornament {
     position: absolute;
     right: -80px;
-    bottom: -150px; /* diturunkan */
+    bottom: -150px;
     width: 420px;
     height: 420px;
     opacity: 0.07;
-    background-image: url('{{ asset('images/beranda/ornamen.png') }}');
+    background-image: url('{{ asset("images/beranda/ornamen.png") }}');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -1751,11 +1835,11 @@ function showList() {
 .footer-rsu .footer-ornament2 {
     position: absolute;
     left: -100px;
-    top: 40px; /* sebelumnya -80px */
+    top: 40px;
     width: 340px;
     height: 340px;
     opacity: 0.04;
-    background-image: url('{{ asset('images/beranda/ornamen.png') }}');
+    background-image: url('{{ asset("images/beranda/ornamen.png") }}');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -1769,14 +1853,12 @@ function showList() {
     z-index: 1;
 }
 
-/* ================= LOGO ================= */
 .footer-rsu .footer-logo {
     height: 50px;
     display: block;
     margin-bottom: 16px;
 }
 
-/* ================= BRAND ================= */
 .footer-rsu .footer-title {
     font-size: 16px;
     font-weight: 700;
@@ -1792,7 +1874,6 @@ function showList() {
     max-width: 290px;
 }
 
-/* ================= SOSIAL ================= */
 .footer-rsu .footer-social {
     display: flex;
     gap: 10px;
@@ -1803,8 +1884,8 @@ function showList() {
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    background: rgba(28, 20, 92, 0.07);
-    border: 1px solid rgba(28, 20, 92, 0.15);
+    background: rgba(28,20,92,.07);
+    border: 1px solid rgba(28,20,92,.15);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1820,7 +1901,6 @@ function showList() {
     transform: translateY(-2px);
 }
 
-/* ================= MITRA ================= */
 .footer-rsu .footer-mitra-label {
     font-size: 11px;
     color: #9994bb;
@@ -1839,9 +1919,8 @@ function showList() {
 .footer-rsu .footer-mitra img:nth-child(1) { height: 35px; }
 .footer-rsu .footer-mitra img:nth-child(2) { height: 26px; }
 
-/* ================= HEADING KOLOM ================= */
 .footer-rsu .footer-heading {
-    font-family: 'Gotham', 'Arial Black', sans-serif;
+    font-family: 'GothamBlack', 'Plus Jakarta Sans', sans-serif;
     font-weight: 900;
     font-size: 12px;
     color: #1C145C;
@@ -1849,19 +1928,16 @@ function showList() {
     letter-spacing: .14em;
     margin-bottom: 16px;
     padding-bottom: 10px;
-    border-bottom: 1.5px solid rgba(28, 20, 92, 0.12);
+    border-bottom: 1.5px solid rgba(28,20,92,.12);
 }
 
-/* ================= LINKS ================= */
 .footer-rsu ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.footer-rsu ul li {
-    margin-bottom: 9px;
-}
+.footer-rsu ul li { margin-bottom: 9px; }
 
 .footer-rsu a {
     color: #5a5480;
@@ -1881,12 +1957,8 @@ function showList() {
     line-height: 1;
 }
 
-.footer-rsu a:hover {
-    color: #1C145C;
-    padding-left: 3px;
-}
+.footer-rsu a:hover { color: #1C145C; padding-left: 3px; }
 
-/* ================= KONTAK ================= */
 .footer-rsu .footer-contact-row {
     display: flex;
     align-items: flex-start;
@@ -1898,8 +1970,8 @@ function showList() {
     width: 33px;
     height: 33px;
     border-radius: 8px;
-    background: rgba(28, 20, 92, 0.07);
-    border: 1px solid rgba(28, 20, 92, 0.1);
+    background: rgba(28,20,92,.07);
+    border: 1px solid rgba(28,20,92,.1);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1915,22 +1987,15 @@ function showList() {
     padding-top: 4px;
 }
 
-/* ================= DIVIDER ================= */
 .footer-rsu hr {
     height: 1px;
-    background: linear-gradient(90deg,
-        rgba(28,20,92,0) 0%,
-        rgba(28,20,92,0.12) 30%,
-        rgba(28,20,92,0.12) 70%,
-        rgba(28,20,92,0) 100%
-    );
+    background: linear-gradient(90deg, rgba(28,20,92,0) 0%, rgba(28,20,92,.12) 30%, rgba(28,20,92,.12) 70%, rgba(28,20,92,0) 100%);
     border: none;
     margin: 36px 0 0;
 }
 
-/* ================= BOTTOM BAR ================= */
 .footer-rsu .footer-bottom {
-    background: rgba(28, 20, 92, 0.05);
+    background: rgba(28,20,92,.05);
     padding: 15px 36px;
     position: relative;
     z-index: 1;
@@ -1946,8 +2011,8 @@ function showList() {
 }
 
 .footer-rsu .footer-copy-badge {
-    background: rgba(28, 20, 92, 0.06);
-    border: 1px solid rgba(28, 20, 92, 0.12);
+    background: rgba(28,20,92,.06);
+    border: 1px solid rgba(28,20,92,.12);
     border-radius: 20px;
     padding: 4px 14px;
     font-size: 11.5px;
@@ -1966,26 +2031,43 @@ function showList() {
     vertical-align: middle;
 }
 
-/* ================= TABLET ================= */
+/* ============================================================
+   RESPONSIVE — FOOTER & BODY
+============================================================ */
 @media (max-width: 991px) {
-    .footer-rsu {
-        padding: 45px 0 0;
-    }
-
-    .footer-rsu .row > div {
-        margin-bottom: 28px;
-    }
-
-    .footer-rsu .footer-desc {
-        max-width: 100%;
-    }
+    .footer-rsu { padding: 45px 0 0; }
+    .footer-rsu .row > div { margin-bottom: 28px; }
+    .footer-rsu .footer-desc { max-width: 100%; }
 }
 
-/* ================= MOBILE ================= */
-@media (max-width: 767px) {
-    .footer-rsu {
-        padding: 40px 0 0;
+@media (max-width: 768px) {
+    body { padding-top: 102px; }
+
+    .layanan-hero {
+        padding: 85px 0 72px;
     }
+
+    .hero-stats {
+        width: 100%;
+        max-width: calc(100% - 28px);
+    }
+
+    .hero-stat-item { padding: 12px 16px; }
+    .hero-stat-num  { font-size: 18px; }
+
+    .layanan-body { padding: 36px 0 60px; }
+
+    .layanan-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 14px;
+    }
+
+    .detail-sidebar {
+        position: static;
+        margin-top: 28px;
+    }
+
+    .footer-rsu { padding: 40px 0 0; }
 
     .footer-rsu .container-fluid {
         padding-left: 20px !important;
@@ -2003,20 +2085,581 @@ function showList() {
         gap: 8px;
     }
 
-    .footer-rsu .footer-bottom {
-        padding: 15px 20px;
-    }
+    .footer-rsu .footer-bottom { padding: 15px 20px; }
+    .footer-rsu a:hover { padding-left: 0; }
+}
 
-    .footer-rsu a:hover {
-        padding-left: 0;
-    }
+@media (max-width: 480px) {
+    .layanan-grid { grid-template-columns: 1fr; }
+    .filter-bar { flex-direction: column; align-items: stretch; }
+    .filter-search-wrap { min-width: unset; }
+    .lcard-footer { flex-direction: column; align-items: stretch; }
+    .lcard-read-btn { width: 100%; justify-content: center; }
+}
+
+.section-partner {
+    position: relative;
+    background: #ffffff;
+    padding-bottom: 0;
+}
+
+.section-partner::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 80px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0), #ffffff);
+    pointer-events: none;
+    z-index: 1;
 }
 </style>
+
+
+{{-- ============================================================
+     PAGE: LIST
+============================================================ --}}
+<div id="page-list">
+
+    <!-- HERO -->
+    <section class="layanan-hero">
+        <div class="hero-dots"></div>
+        <div class="container hero-inner">
+
+            <!-- Breadcrumb -->
+            <div class="hero-bc">
+                <a href="/"><i class="bi bi-house-fill"></i> Beranda</a>
+                <span class="sep"><i class="bi bi-chevron-right"></i></span>
+                <span class="cur">Layanan</span>
+            </div>
+
+            <!-- Pill -->
+            <div class="hero-kat">
+                <i class="fa-solid fa-hospital-user" style="font-size:10px;"></i>
+                Poliklinik &amp; Layanan Medis
+            </div>
+
+            <!-- Title -->
+            <h1 class="hero-title">
+                Layanan<br>
+                <em>RSU Allam Medica</em>
+            </h1>
+
+            <!-- Meta -->
+            <div class="hero-meta">
+                <span class="hero-meta-pill">
+                    <i class="fa-solid fa-hospital"></i>
+                    RSU Allam Medica Bumiayu
+                </span>
+                <span class="hero-meta-pill" id="hero-count">
+                    <i class="fa-solid fa-stethoscope"></i>
+                    12 Layanan Aktif
+                </span>
+                <span class="hero-meta-pill">
+                    <i class="fa-solid fa-clock"></i>
+                    IGD 24 Jam
+                </span>
+            </div>
+
+            <!-- Stats bar -->
+            <div class="hero-stats">
+                <div class="hero-stat-item">
+                    <span class="hero-stat-num" id="stat-total">12</span>
+                    <div class="hero-stat-label">Total Layanan</div>
+                </div>
+                <div class="hero-stat-item">
+                    <span class="hero-stat-num" id="stat-aktif">12</span>
+                    <div class="hero-stat-label">Layanan Aktif</div>
+                </div>
+                <div class="hero-stat-item">
+                    <span class="hero-stat-num">24<small style="font-size:13px">/7</small></span>
+                    <div class="hero-stat-label">IGD Siaga</div>
+                </div>
+                <div class="hero-stat-item">
+                    <span class="hero-stat-num">BPJS</span>
+                    <div class="hero-stat-label">Menerima BPJS</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- BODY -->
+    <section class="layanan-body">
+        <div class="container">
+
+            <!-- Filter bar -->
+            <div class="filter-bar">
+                <div class="filter-search-wrap">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="search" class="filter-search" id="searchLayanan"
+                           placeholder="Cari nama layanan atau poliklinik...">
+                </div>
+                <select class="filter-select" id="filterKat">
+                    <option value="">Semua Kategori</option>
+                    <option value="poli">Poliklinik</option>
+                    <option value="igd">IGD</option>
+                    <option value="rawat">Rawat Inap</option>
+                    <option value="penunjang">Penunjang</option>
+                </select>
+                <select class="filter-select" id="filterSort">
+                    <option value="default">Urutan Default</option>
+                    <option value="az">A — Z</option>
+                    <option value="za">Z — A</option>
+                </select>
+            </div>
+
+            <!-- Section heading -->
+            <div class="section-divider">
+                <div>
+                    <div class="section-heading">Semua Layanan</div>
+                    <div class="section-sub">
+                        Pilih poliklinik yang Anda butuhkan dan buat janji temu dengan mudah
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grid — diisi oleh JS -->
+            <div class="layanan-grid" id="layananGrid"></div>
+
+        </div>
+    </section>
+
+</div>{{-- /page-list --}}
+
+
+{{-- ============================================================
+     PAGE: DETAIL (hidden, diisi JS)
+============================================================ --}}
+<div id="page-detail">
+
+    <div class="container">
+        <button class="detail-back" onclick="showList()">
+            <i class="bi bi-arrow-left"></i> Kembali ke Semua Layanan
+        </button>
+    </div>
+
+    <div class="container detail-page">
+        <div class="row g-5">
+
+            {{-- MAIN --}}
+            <div class="col-lg-8">
+
+                <div id="det-img-wrap"></div>
+
+                <div class="detail-meta">
+                    <span class="detail-badge" id="det-badge">Poliklinik</span>
+                    <span class="detail-meta-item">
+                        <i class="bi bi-circle-fill" style="font-size:6px;color:#9FE1CB"></i>
+                        <span id="det-status-text">Layanan Aktif</span>
+                    </span>
+                    <span class="detail-meta-item">
+                        <i class="bi bi-building-cross"></i>
+                        <span>RSU Allam Medica</span>
+                    </span>
+                </div>
+
+                <h2 class="detail-title" id="det-title"></h2>
+                <div class="detail-line"></div>
+                <div class="detail-body" id="det-body"></div>
+
+                <!-- Share bar -->
+                <div class="detail-share-bar">
+                    <div class="share-label">
+                        <i class="fa-solid fa-share-nodes" style="color:#0ea5e9;"></i>
+                        Bagikan layanan ini
+                    </div>
+                    <div class="share-btns">
+                        <a id="det-wa-share" href="#" target="_blank" class="share-btn btn-wa">
+                            <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                        </a>
+                        <button class="share-btn btn-copy" id="copyBtn" onclick="copyLink()">
+                            <i class="fa-solid fa-link"></i> Salin Link
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Layanan lainnya -->
+                <div class="other-section">
+                    <div class="other-section-title">Layanan Lainnya</div>
+                    <div class="row g-2" id="det-others"></div>
+                </div>
+
+            </div>
+
+            {{-- SIDEBAR --}}
+            <div class="col-lg-4">
+                <div class="detail-sidebar">
+
+                    <!-- Infobox -->
+                    <div class="detail-infobox">
+                        <div class="detail-infobox-header">
+                            <h3>Informasi Kontak</h3>
+                            <p>Hubungi kami untuk janji temu</p>
+                        </div>
+                        <div class="detail-infobox-body" id="det-infobox-body"></div>
+                    </div>
+
+                    <!-- Jam Layanan -->
+                    <div class="jam-section" style="margin-top:16px;">
+                        <div class="jam-header">
+                            <i class="bi bi-clock-fill"></i>
+                            Jam Operasional
+                        </div>
+                        <div class="jam-body" id="det-jam-body">
+                            <div class="jam-row">
+                                <span class="jam-day">Senin – Sabtu</span>
+                                <span class="jam-time">07.00 – 21.00</span>
+                            </div>
+                            <div class="jam-row">
+                                <span class="jam-day">Minggu &amp; Libur</span>
+                                <span class="jam-time">08.00 – 14.00</span>
+                            </div>
+                            <div class="jam-row">
+                                <span class="jam-day">IGD</span>
+                                <span class="jam-time">24 Jam</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>{{-- /page-detail --}}
+
+
+{{-- ============================================================
+     DATA LAYANAN (JSON untuk JS)
+============================================================ --}}
+<script>
+const layananData = {!! json_encode($layananData) !!};
+
+/* ── ICON MAP ── */
+const katIcons = {
+    poli:      'fa-stethoscope',
+    igd:       'fa-truck-medical',
+    rawat:     'fa-bed',
+    penunjang: 'fa-flask',
+};
+
+const katLabel = {
+    poli:      'Poliklinik',
+    igd:       'IGD',
+    rawat:     'Rawat Inap',
+    penunjang: 'Penunjang',
+};
+
+/* ── JAM OPERASIONAL PER KATEGORI ── */
+const jamData = {
+    poli: [
+        {day:'Senin – Sabtu', time:'07.00 – 21.00'},
+        {day:'Minggu', time:'08.00 – 14.00'},
+    ],
+    igd: [
+        {day:'Setiap Hari', time:'24 Jam'},
+    ],
+    rawat: [
+        {day:'Setiap Hari', time:'24 Jam'},
+    ],
+    penunjang: [
+        {day:'Senin – Sabtu', time:'07.00 – 20.00'},
+        {day:'Minggu', time:'08.00 – 13.00'},
+    ],
+};
+
+/* ── RENDER CARD ── */
+function cardHtml(item, idx) {
+    const icon  = katIcons[item.kategori] || 'fa-hospital';
+    const label = katLabel[item.kategori] || item.kategori;
+    const delay = Math.min(idx * 0.06, 0.5);
+    const noWa  = item.no_wa ? item.no_wa.replace(/\D/g, '') : '';
+    const waLink = noWa ? 'https://wa.me/' + noWa : '';
+
+    return `
+    <div class="lcard"
+         onclick="showDetail(${item.id})"
+         style="animation-delay:${delay}s">
+
+        <div class="lcard-thumb">
+            ${item.gambar
+                ? `<img src="${item.gambar}" alt="${item.poli}" loading="lazy">`
+                : `<div class="lcard-thumb-placeholder"><i class="fa-solid ${icon}"></i></div>`}
+            <span class="lcard-kat">${label}</span>
+            <span class="lcard-status-badge ${item.status}">${item.status === 'aktif' ? 'Aktif' : 'Nonaktif'}</span>
+        </div>
+
+        <div class="lcard-body">
+            <div class="lcard-title">${item.poli}</div>
+            <div class="lcard-desc">${item.deskripsi}</div>
+            <span class="lcard-detail-link">
+                Lihat Detail <i class="bi bi-arrow-right"></i>
+            </span>
+
+            ${(item.no_hp || waLink) ? `
+            <div class="lcard-divider"></div>
+            <div class="lcard-contacts">
+                ${item.no_hp ? `
+                <div class="lcard-contact-row">
+                    <i class="bi bi-telephone-fill"></i>
+                    <span>${item.no_hp}</span>
+                </div>` : ''}
+            </div>` : ''}
+        </div>
+
+        <div class="lcard-footer">
+            ${waLink ? `
+            <a href="${waLink}" target="_blank" rel="noopener"
+               class="lcard-wa-btn" onclick="event.stopPropagation()">
+                <i class="bi bi-whatsapp"></i> WhatsApp
+            </a>` : `<div></div>`}
+            <button class="lcard-read-btn"
+                    onclick="event.stopPropagation(); showDetail(${item.id})">
+                Detail <i class="bi bi-arrow-right"></i>
+            </button>
+        </div>
+
+    </div>`;
+}
+
+/* ── RENDER GRID ── */
+function renderCards(data) {
+    const grid = document.getElementById('layananGrid');
+
+    if (!data.length) {
+        grid.innerHTML = `
+        <div class="empty-state">
+            <div class="es-icon"><i class="fa-solid fa-hospital-slash"></i></div>
+            <div class="es-title">Layanan Tidak Ditemukan</div>
+            <div class="es-sub">Coba kata kunci atau filter yang berbeda.</div>
+        </div>`;
+        return;
+    }
+
+    grid.innerHTML = data.map((item, i) => cardHtml(item, i)).join('');
+
+    const aktifCount = data.filter(d => d.status === 'aktif').length;
+    const heroCount  = document.getElementById('hero-count');
+    if (heroCount) heroCount.innerHTML = `<i class="fa-solid fa-stethoscope"></i> ${aktifCount} Layanan Aktif`;
+}
+
+/* ── FILTER & SORT ── */
+function applyFilter() {
+    const q   = document.getElementById('searchLayanan').value.toLowerCase().trim();
+    const kat = document.getElementById('filterKat').value;
+    const srt = document.getElementById('filterSort').value;
+
+    let filtered = layananData.filter(function(item) {
+        const matchQ = !q || item.poli.toLowerCase().includes(q) || item.deskripsi.toLowerCase().includes(q);
+        const matchK = !kat || item.kategori === kat;
+        return matchQ && matchK;
+    });
+
+    if (srt === 'az') filtered.sort((a, b) => a.poli.localeCompare(b.poli, 'id'));
+    if (srt === 'za') filtered.sort((a, b) => b.poli.localeCompare(a.poli, 'id'));
+
+    renderCards(filtered);
+}
+
+document.getElementById('searchLayanan').addEventListener('input', applyFilter);
+document.getElementById('filterKat').addEventListener('change', applyFilter);
+document.getElementById('filterSort').addEventListener('change', applyFilter);
+
+/* initial render */
+renderCards(layananData);
+
+/* update stat counters */
+(function() {
+    const total = layananData.length;
+    const aktif = layananData.filter(d => d.status === 'aktif').length;
+    const elTotal = document.getElementById('stat-total');
+    const elAktif = document.getElementById('stat-aktif');
+    if (elTotal) elTotal.textContent = total;
+    if (elAktif) elAktif.textContent = aktif;
+})();
+
+
+/* ── DETAIL ── */
+function showDetail(id) {
+    const item = layananData.find(function(d) { return d.id == id; });
+    if (!item) return;
+
+    const icon  = katIcons[item.kategori] || 'fa-hospital';
+    const label = katLabel[item.kategori] || item.kategori;
+    const noWa  = item.no_wa ? item.no_wa.replace(/\D/g, '') : '';
+    const waLink = noWa ? 'https://wa.me/' + noWa : '';
+
+    /* --- image --- */
+    const imgWrap = document.getElementById('det-img-wrap');
+    if (item.gambar) {
+        imgWrap.innerHTML = `<img src="${item.gambar}" alt="${item.poli}" class="detail-hero-img">`;
+    } else {
+        imgWrap.innerHTML = `<div class="detail-hero-placeholder"><i class="fa-solid ${icon}"></i></div>`;
+    }
+
+    /* --- meta --- */
+    document.getElementById('det-title').textContent       = item.poli;
+    document.getElementById('det-status-text').textContent = item.status === 'aktif' ? 'Layanan Aktif' : 'Tidak Aktif';
+
+    const badge = document.getElementById('det-badge');
+    badge.textContent = label;
+    badge.className   = 'detail-badge ' + (item.status === 'aktif' ? 'aktif' : 'nonaktif');
+
+    /* --- body --- */
+    const bodyEl = document.getElementById('det-body');
+    if (item.deskripsi) {
+        const paragraphs = item.deskripsi.split(/\n+/).filter(function(p) { return p.trim(); });
+        bodyEl.innerHTML = paragraphs.map(function(p) { return '<p>' + p + '</p>'; }).join('');
+    } else {
+        bodyEl.innerHTML = '<p style="color:#a09bbf">Deskripsi layanan belum tersedia.</p>';
+    }
+
+    /* --- share bar --- */
+    const waShare = document.getElementById('det-wa-share');
+    if (waShare) {
+        const shareText = encodeURIComponent(item.poli + ' — RSU Allam Medica\n' + window.location.href);
+        waShare.href = 'https://wa.me/?text=' + shareText;
+    }
+
+    /* --- infobox sidebar --- */
+    let infoHtml = '';
+
+    infoHtml += `
+    <div class="info-row">
+        <div class="info-icon">
+            <i class="bi bi-building-cross"></i>
+        </div>
+        <div>
+            <div class="info-text-label">Layanan</div>
+            <div class="info-text-val">${item.poli}</div>
+        </div>
+    </div>`;
+
+    infoHtml += `
+    <div class="info-row">
+        <div class="info-icon">
+            <i class="fa-solid ${icon}" style="font-size:14px;color:#534AB7;"></i>
+        </div>
+        <div>
+            <div class="info-text-label">Kategori</div>
+            <div class="info-text-val">${label}</div>
+        </div>
+    </div>`;
+
+    if (item.no_hp) {
+        infoHtml += `
+    <div class="info-row">
+        <div class="info-icon">
+            <i class="bi bi-telephone-fill"></i>
+        </div>
+        <div>
+            <div class="info-text-label">Telepon</div>
+            <div class="info-text-val">${item.no_hp}</div>
+        </div>
+    </div>`;
+    }
+
+    if (noWa) {
+        infoHtml += `
+    <div class="info-row">
+        <div class="info-icon green">
+            <i class="bi bi-whatsapp"></i>
+        </div>
+        <div>
+            <div class="info-text-label">WhatsApp</div>
+            <div class="info-text-val">+${noWa}</div>
+        </div>
+    </div>`;
+    }
+
+    /* --- buttons --- */
+    let btnHtml = '';
+    if (noWa) {
+        btnHtml += `<a href="https://wa.me/${noWa}" target="_blank" rel="noopener" class="detail-wa-btn">
+            <i class="bi bi-whatsapp"></i> Chat WhatsApp
+        </a>`;
+    }
+    if (item.no_hp) {
+        btnHtml += `<a href="tel:${item.no_hp}" class="detail-tel-btn">
+            <i class="bi bi-telephone-fill"></i> Hubungi via Telepon
+        </a>`;
+    }
+
+    document.getElementById('det-infobox-body').innerHTML = infoHtml + btnHtml;
+
+    /* --- jam operasional --- */
+    const jamRows = jamData[item.kategori] || jamData['poli'];
+    const jamHtml = jamRows.map(function(row) {
+        return `<div class="jam-row">
+            <span class="jam-day">${row.day}</span>
+            <span class="jam-time">${row.time}</span>
+        </div>`;
+    }).join('');
+    document.getElementById('det-jam-body').innerHTML = jamHtml;
+
+    /* --- other services --- */
+    const others = layananData.filter(function(d) { return d.id != id; }).slice(0, 6);
+    document.getElementById('det-others').innerHTML = others.map(function(o) {
+        const oIcon = katIcons[o.kategori] || 'fa-hospital';
+        return `
+        <div class="col-12 col-sm-6" onclick="showDetail(${o.id})" style="cursor:pointer">
+            <div class="other-card">
+                ${o.gambar
+                    ? `<img src="${o.gambar}" class="other-card-img" alt="${o.poli}">`
+                    : `<div class="other-card-placeholder"><i class="fa-solid ${oIcon}"></i></div>`}
+                <div>
+                    <div class="other-card-name">${o.poli}</div>
+                    <div class="other-card-desc">${o.deskripsi || 'Tidak ada deskripsi.'}</div>
+                </div>
+            </div>
+        </div>`;
+    }).join('');
+
+    /* --- switch pages --- */
+    document.getElementById('page-list').style.display   = 'none';
+    document.getElementById('page-detail').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showList() {
+    document.getElementById('page-detail').style.display = 'none';
+    document.getElementById('page-list').style.display   = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ── COPY LINK ── */
+function copyLink() {
+    const btn = document.getElementById('copyBtn');
+    if (!btn) return;
+    navigator.clipboard.writeText(window.location.href).then(function() {
+        btn.classList.add('copied');
+        btn.innerHTML = '<i class="fa-solid fa-check"></i> Tersalin!';
+        setTimeout(function() {
+            btn.classList.remove('copied');
+            btn.innerHTML = '<i class="fa-solid fa-link"></i> Salin Link';
+        }, 2500);
+    }).catch(function() {
+        const ta = document.createElement('textarea');
+        ta.value = window.location.href;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        btn.classList.add('copied');
+        btn.innerHTML = '<i class="fa-solid fa-check"></i> Tersalin!';
+        setTimeout(function() {
+            btn.classList.remove('copied');
+            btn.innerHTML = '<i class="fa-solid fa-link"></i> Salin Link';
+        }, 2500);
+    });
+}
+</script>
+
 
 <!-- FOOTER -->
 <footer class="footer-rsu">
 
-    {{-- Ornamen watermark --}}
     <div class="footer-ornament"></div>
     <div class="footer-ornament2"></div>
 
@@ -2037,7 +2680,6 @@ function showList() {
                     Kabupaten Brebes, Jawa Tengah 52273
                 </p>
 
-                <!-- SOSIAL -->
                 <div class="footer-social">
                     <a href="https://www.tiktok.com/@rsuallammedicabumiayu?_t=8fLMQk9idhI&_r=1" target="_blank" title="TikTok">
                         <i class="bi bi-tiktok"></i>
@@ -2050,20 +2692,17 @@ function showList() {
                     </a>
                 </div>
 
-                <!-- MITRA -->
-                <div class="footer-mitra-label">Akreditasi & Mitra</div>
+                <div class="footer-mitra-label">Akreditasi &amp; Mitra</div>
                 <div class="footer-mitra">
                     <img src="{{ asset('images/beranda/paripurna.png') }}" alt="Akreditasi Paripurna">
-                    <img src="{{ asset('images/beranda/bpjs.png') }}" alt="BPJS Kesehatan">
+                    <img src="{{ asset('images/beranda/bpjs.png') }}"      alt="BPJS Kesehatan">
                 </div>
 
             </div>
 
             <!-- TAUTAN CEPAT -->
             <div class="col-lg-2 col-md-6">
-
                 <h6 class="footer-heading">Tautan Cepat</h6>
-
                 <ul>
                     <li><a href="{{ route('beranda') }}">Beranda</a></li>
                     <li><a href="layanan">Layanan</a></li>
@@ -2072,45 +2711,34 @@ function showList() {
                     <li><a href="tentang">Tentang Kami</a></li>
                     <li><a href="kontak">Kontak</a></li>
                 </ul>
-
             </div>
 
             <!-- MENU -->
             <div class="col-lg-2 col-md-6">
-
                 <h6 class="footer-heading">Menu</h6>
-
                 <ul>
                     <li><a href="video">Video</a></li>
                     <li><a href="karir">Karir</a></li>
                     <li><a href="berita">Berita</a></li>
                 </ul>
-
             </div>
 
             <!-- HUBUNGI KAMI -->
             <div class="col-lg-3 col-md-12">
-
                 <h6 class="footer-heading">Hubungi Kami</h6>
 
                 <div class="footer-contact-row">
-                    <div class="footer-contact-icon">
-                        <i class="bi bi-telephone-fill"></i>
-                    </div>
+                    <div class="footer-contact-icon"><i class="bi bi-telephone-fill"></i></div>
                     <div class="footer-contact-text">(0289) 430822</div>
                 </div>
 
                 <div class="footer-contact-row">
-                    <div class="footer-contact-icon">
-                        <i class="bi bi-envelope-fill"></i>
-                    </div>
+                    <div class="footer-contact-icon"><i class="bi bi-envelope-fill"></i></div>
                     <div class="footer-contact-text">allam.medica@yahoo.co.id</div>
                 </div>
 
                 <div class="footer-contact-row">
-                    <div class="footer-contact-icon">
-                        <i class="bi bi-clock-fill"></i>
-                    </div>
+                    <div class="footer-contact-icon"><i class="bi bi-clock-fill"></i></div>
                     <div class="footer-contact-text">
                         IGD: 24 Jam<br>
                         Rawat Jalan: Sen – Sab 07.00 – 21.00
@@ -2118,15 +2746,12 @@ function showList() {
                 </div>
 
                 <div class="footer-contact-row">
-                    <div class="footer-contact-icon">
-                        <i class="bi bi-geo-alt-fill"></i>
-                    </div>
+                    <div class="footer-contact-icon"><i class="bi bi-geo-alt-fill"></i></div>
                     <div class="footer-contact-text">
                         Jl. Pangeran Diponegoro No.609,<br>
                         Bumiayu, Brebes
                     </div>
                 </div>
-
             </div>
 
         </div>
@@ -2150,7 +2775,6 @@ function showList() {
     </div>
 
 </footer>
-
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

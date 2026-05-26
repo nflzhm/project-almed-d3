@@ -13,9 +13,6 @@
     {{-- Font Awesome --}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
-    {{-- External CSS (pisah ke public/css/admin-login.css) --}}
-    {{-- <link rel="stylesheet" href="{{ asset('css/admin-login.css') }}"> --}}
-
     <style>
 
     /* ---- Reset & Base ---- */
@@ -125,7 +122,7 @@
     .login-panel-left {
         flex: 1;
         background: linear-gradient(145deg, #0e2a4a 0%, #0c2040 40%, #081830 100%);
-        padding: 48px 40px;
+        padding: 48px 40px 56px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -189,13 +186,13 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 32px 0;
+        padding: 56px 0;
         position: relative; z-index: 1;
     }
 
     .illus-svg {
         width: 100%;
-        max-width: 280px;
+        max-width: 300px;
         animation: floatSvg 4s ease-in-out infinite;
     }
 
@@ -204,37 +201,23 @@
         50%       { transform: translateY(-10px); }
     }
 
-    /* Stats badges on illustration panel */
-    .illus-stats {
-        display: flex;
-        gap: 12px;
+    /* Tagline below illustration */
+    .illus-tagline {
         position: relative; z-index: 1;
-    }
-
-    .illus-stat {
-        flex: 1;
-        background: rgba(255,255,255,.06);
-        border: 1px solid rgba(255,255,255,.08);
-        border-radius: 14px;
-        padding: 14px 12px;
         text-align: center;
-        backdrop-filter: blur(8px);
-        transition: background var(--transition);
     }
 
-    .illus-stat:hover { background: rgba(255,255,255,.1); }
-
-    .illus-stat .stat-n {
-        font-size: 22px; font-weight: 800;
-        color: var(--blue); line-height: 1;
-        letter-spacing: -.5px;
+    .illus-tagline p {
+        font-size: 13px;
+        font-weight: 500;
+        color: rgba(255,255,255,.4);
+        line-height: 1.6;
+        letter-spacing: .2px;
     }
 
-    .illus-stat .stat-l {
-        font-size: 10px; font-weight: 600;
-        color: rgba(255,255,255,.45);
-        text-transform: uppercase; letter-spacing: .8px;
-        margin-top: 4px;
+    .illus-tagline strong {
+        color: rgba(255,255,255,.7);
+        font-weight: 700;
     }
 
     /* ---- Right panel (form) ---- */
@@ -657,20 +640,9 @@
                 </svg>
             </div>
 
-            {{-- Stats --}}
-            <div class="illus-stats">
-                <div class="illus-stat">
-                    <div class="stat-n">12+</div>
-                    <div class="stat-l">Dokter</div>
-                </div>
-                <div class="illus-stat">
-                    <div class="stat-n">5</div>
-                    <div class="stat-l">Layanan</div>
-                </div>
-                <div class="illus-stat">
-                    <div class="stat-n">138</div>
-                    <div class="stat-l">Pasien</div>
-                </div>
+            {{-- Tagline (pengganti stats) --}}
+            <div class="illus-tagline">
+                <p>Sistem manajemen website<br><strong>Allam Medica</strong> — andal & aman.</p>
             </div>
 
         </div>
@@ -684,7 +656,7 @@
             <div class="login-heading">
                 <div class="eyebrow">Admin Panel</div>
                 <h1>Login Admin</h1>
-                <p>Silakan masuk untuk melanjutkan pengelolaan sistem klinik.</p>
+                <p>Silakan masuk untuk melanjutkan pengelolaan sistem website.</p>
             </div>
 
             {{-- Error message (session) --}}
@@ -790,8 +762,6 @@
                         >
                         <span>Ingat saya</span>
                     </label>
-
-                    
                 </div>
 
                 {{-- Submit --}}
@@ -807,7 +777,6 @@
 
             {{-- Footer --}}
             <div class="login-footer">
-                
                 <div>
                     <span class="security-badge">
                         <i class="fa-solid fa-shield-halved"></i>
