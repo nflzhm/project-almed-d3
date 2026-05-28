@@ -1996,243 +1996,261 @@ body {
 /* ===============================
    FLOATING BAR DESKTOP
 ================================= */
-.floating-bar{
+.floating-bar {
     position: fixed;
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 999999;
-
     display: flex;
     overflow: hidden;
-
     border-radius: 60px;
-
     box-shadow: 0 10px 25px rgba(0,0,0,0.18);
 }
 
-/* ITEM */
-.floating-item{
+.floating-item {
     width: 210px;
     height: 60px;
-
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
-
     font-size: 14px;
     font-weight: 600;
     text-decoration: none;
-
     background: #eaeaea;
     color: #000;
-
     transition: 0.3s ease;
     box-sizing: border-box;
 }
 
-/* KIRI & KANAN */
-.floating-item:first-child{
+.floating-item:first-child {
     border-radius: 60px 0 0 60px;
 }
 
-.floating-item:last-child{
+.floating-item:last-child {
     border-radius: 0 60px 60px 0;
 }
 
-/* ACTIVE */
-.floating-item.active{
+.floating-item.active {
     background: #ff1a1a;
     color: #fff;
 }
 
-/* TENGAH */
-.floating-item.middle{
+.floating-item.middle {
     background: #f2f2f2;
     color: #000;
 }
 
-.floating-item i{
+.floating-item i {
     font-size: 18px;
 }
 
-.floating-item:hover{
+.floating-item:hover {
     transform: translateY(-2px);
     opacity: .95;
 }
 
 /* ===============================
-   MOBILE VERSION CLEAN
+   MOBILE VERSION
 ================================= */
-@media (max-width:768px){
+@media (max-width: 768px) {
 
     html, body {
         background-color: #e3deca;
     }
 
-    body{
+    body {
         padding-bottom: 120px;
     }
 
-    /* WRAPPER */
-    .floating-bar{
+    .floating-bar {
         position: fixed;
-
         left: 50%;
         transform: translateX(-50%);
-
         bottom: 14px;
-
         width: calc(100% - 24px);
         max-width: 390px;
-
         height: 88px;
-
         display: flex;
         align-items: center;
         justify-content: space-between;
-
         padding: 12px 10px 0;
-
-        /* GLASS EFFECT */
         background: rgba(255,255,255,.18);
-
         backdrop-filter: blur(18px);
         -webkit-backdrop-filter: blur(18px);
-
         border: 1px solid rgba(255,255,255,.22);
-
         border-radius: 28px;
-
         box-shadow: 0 8px 30px rgba(0,0,0,.10);
-
         overflow: visible;
-
         z-index: 999999;
     }
 
-    /* ITEM */
-    .floating-item{
+    .floating-item {
         flex: 1;
         min-width: 90px;
         height: 100%;
-
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-
         gap: 5px;
-
         padding: 6px 2px;
-
         text-decoration: none;
-
         background: transparent !important;
         color: #555 !important;
-
         border-radius: 0 !important;
-
         transition: .2s ease;
     }
 
-    /* ICON */
-    .floating-item i{
+    .floating-item i {
         width: 42px;
         height: 42px;
-
         display: flex;
         align-items: center;
         justify-content: center;
-
         border-radius: 50%;
-
         font-size: 18px;
-
         background: #f3f4f6;
         color: #666;
-
         transition: .2s ease;
     }
 
-    /* TEXT */
-    .floating-item span{
+    .floating-item span {
         font-size: 10px;
         font-weight: 600;
         line-height: 1.2;
         text-align: center;
     }
 
-    /* ===============================
-       TOMBOL TENGAH
-    ================================= */
-    .floating-item.middle{
+    .floating-item.middle {
         position: relative;
-
         top: -2px;
-
         width: 72px;
         height: 72px;
-
         flex: none;
-
         border-radius: 50% !important;
-
         background: #1C145C !important;
         color: #fff !important;
-
         box-shadow: 0 10px 24px rgba(28,20,92,.25);
     }
 
-    .floating-item.middle i{
+    .floating-item.middle i {
         width: 44px;
         height: 44px;
-
         background: rgba(255,255,255,.15);
         color: #fff;
-
         font-size: 20px;
     }
 
-    .floating-item.middle span{
+    .floating-item.middle span {
         width: 60px;
-
         font-size: 9px;
         line-height: 1.2;
-
         color: #fff;
     }
 
-    /* MERAH */
-    .floating-item.active i{
+    .floating-item.active i {
         background: #ffe7eb;
         color: #dc3545;
     }
 
-    /* EFFECT */
-    .floating-item:active{
+    .floating-item:active {
         transform: scale(.96);
     }
 
-    .floating-item:hover{
+    .floating-item:hover {
         transform: none;
     }
 
-    /* RESET RADIUS */
     .floating-item:first-child,
-    .floating-item:last-child{
+    .floating-item:last-child {
         border-radius: 0 !important;
     }
+}
 
-    
+/* ===============================
+   MODAL KONFIRMASI IGD
+================================= */
+.modal-igd .modal-content {
+    border: 0;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.modal-igd .igd-icon-wrap {
+    width: 68px;
+    height: 68px;
+    background: #fff0f0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+}
+
+.modal-igd .igd-icon-wrap i {
+    font-size: 30px;
+    color: #dc3545;
+}
+
+.modal-igd .igd-number {
+    font-size: 22px;
+    font-weight: 700;
+    color: #dc3545;
+    letter-spacing: .5px;
+}
+
+.modal-igd .igd-warning {
+    font-size: 12px;
+    color: #6c757d;
+    line-height: 1.6;
+}
+
+.modal-igd .btn-batal {
+    border-radius: 50px;
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    border: 1.5px solid #dee2e6;
+    color: #6c757d;
+    background: transparent;
+    transition: .2s;
+}
+
+.modal-igd .btn-batal:hover {
+    background: #f8f9fa;
+    border-color: #adb5bd;
+}
+
+.modal-igd .btn-telepon {
+    border-radius: 50px;
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    background: #dc3545;
+    color: #fff;
+    border: none;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: .2s;
+}
+
+.modal-igd .btn-telepon:hover {
+    background: #bb2d3b;
+    color: #fff;
+    transform: translateY(-1px);
 }
 </style>
 
+
+<!-- FLOATING BAR -->
 <div class="floating-bar">
 
-    <!-- IGD -->
-    <a href="tel:+62289430822" class="floating-item active">
+    <!-- IGD — pakai onclick, bukan href langsung -->
+    <a href="#" class="floating-item active" onclick="konfirmasiIGD(event)">
         <i class="bi bi-hospital"></i>
         <span>IGD 24 JAM</span>
     </a>
@@ -2250,5 +2268,60 @@ body {
     </a>
 
 </div>
+
+
+<!-- MODAL KONFIRMASI IGD -->
+<div class="modal fade modal-igd" id="modalIGD" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content shadow-lg">
+
+            <div class="modal-body text-center px-4 pt-4 pb-2">
+
+                <div class="igd-icon-wrap">
+                    <i class="bi bi-hospital-fill"></i>
+                </div>
+
+                <h5 class="fw-bold mb-1" style="color:#1C145C; font-size:17px;">
+                    Hubungi IGD?
+                </h5>
+
+                <p class="text-muted mb-1" style="font-size:13px;">
+                    Nomor IGD RSU Allam Medica
+                </p>
+
+                <p class="igd-number mb-3">(0289) 430822</p>
+
+                <div class="alert alert-warning py-2 px-3 mb-0 rounded-3" style="background:#fffbeb; border:1px solid #fde68a; font-size:12px; color:#92400e;">
+                    <i class="bi bi-exclamation-triangle-fill me-1"></i>
+                    Nomor ini <strong>khusus kedaruratan medis</strong>.<br>
+                    Mohon gunakan hanya saat kondisi darurat.
+                </div>
+
+            </div>
+
+            <div class="modal-footer border-0 justify-content-center gap-2 pb-4 pt-3">
+
+                <button type="button" class="btn-batal" data-bs-dismiss="modal">
+                    Batal
+                </button>
+
+                <a href="tel:+62289430822" class="btn-telepon">
+                    <i class="bi bi-telephone-fill"></i>
+                    Telepon Sekarang
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+function konfirmasiIGD(e) {
+    e.preventDefault();
+    new bootstrap.Modal(document.getElementById('modalIGD')).show();
+}
+</script>
 
 </html>
