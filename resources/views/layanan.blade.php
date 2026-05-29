@@ -356,7 +356,7 @@ body {
 <div class="topbar">
     <div class="container">
         <div class="topbar-info">
-            <span><i class="bi bi-telephone-fill"></i> 0834325542</span>
+            <span><i class="bi bi-telephone-fill"></i> 085292224886</span>
             <span><i class="bi bi-envelope-fill"></i> allam.medica@yahoo.co.id</span>
         </div>
         <div class="topbar-social">

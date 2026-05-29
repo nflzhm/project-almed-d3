@@ -421,20 +421,90 @@
 }
 .btn-danger-am:hover { background: #dc2626; box-shadow: 0 6px 20px rgba(239,68,68,.35); }
 
-/* Pagination */
-.art-pagination { display: flex; align-items: center; justify-content: space-between; margin-top: 24px; flex-wrap: wrap; gap: 12px; }
-.pag-info { font-size: 13px; color: var(--text-muted); }
 
-@media(max-width:767.98px) {
-    .art-grid { grid-template-columns: 1fr; }
-    .art-stats { gap: 8px; }
-    .art-stat  { min-width: 120px; }
-    .art-toolbar { flex-direction: column; align-items: stretch; }
-    .am-modal .modal-body   { padding: 20px 18px 8px; }
-    .am-modal .modal-footer { padding: 12px 18px 20px; }
-    #modalPreview .modal-body { padding: 0; }
-    .pv-body { padding: 20px 18px 24px; }
-    .pv-judul { font-size: 18px; }
+/* ---- Pagination ---- */
+.art-pagination {
+    margin-top: 24px;
+    padding: 20px 24px;
+    background: #fff;
+    border: 1px solid #edf1f7;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    box-shadow: 0 4px 14px rgba(15,23,42,.04);
+}
+
+.art-pagination .pag-info {
+    font-size: 14px;
+    font-weight: 600;
+    color: #64748b;
+}
+
+.art-pagination .pag-buttons {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-left: auto;
+}
+
+.art-pagination .pag-btn {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    border: none;
+    background: #f8fafc;
+    color: #334155;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .2s ease;
+}
+
+.art-pagination .pag-btn:hover {
+    background: #2563eb;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.art-pagination .pag-btn.active {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: #fff;
+    box-shadow: 0 10px 20px rgba(37,99,235,.25);
+}
+
+.art-pagination .pag-btn.disabled {
+    background: #f1f5f9;
+    color: #94a3b8;
+    opacity: .7;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .art-pagination {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+    .art-pagination .pag-buttons {
+        margin-left: 0;
+        justify-content: center;
+    }
+    .art-pagination .pag-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        font-size: 13px;
+    }
 }
 </style>
 @endpush
@@ -619,14 +689,41 @@ $katColors = [
     @endforelse
 </div>
 
-{{-- Pagination --}}
 @if($artikel->hasPages())
 <div class="art-pagination">
+
     <div class="pag-info">
         Menampilkan {{ $artikel->firstItem() }}–{{ $artikel->lastItem() }}
         dari {{ $artikel->total() }} artikel
     </div>
-    {{ $artikel->withQueryString()->links() }}
+
+    <div class="pag-buttons">
+
+        {{-- Prev --}}
+        @if($artikel->onFirstPage())
+            <span class="pag-btn disabled">‹</span>
+        @else
+            <a href="{{ $artikel->previousPageUrl() }}" class="pag-btn">‹</a>
+        @endif
+
+        {{-- Nomor halaman --}}
+        @foreach($artikel->getUrlRange(1, $artikel->lastPage()) as $page => $url)
+            @if($page == $artikel->currentPage())
+                <span class="pag-btn active">{{ $page }}</span>
+            @else
+                <a href="{{ $url }}" class="pag-btn">{{ $page }}</a>
+            @endif
+        @endforeach
+
+        {{-- Next --}}
+        @if($artikel->hasMorePages())
+            <a href="{{ $artikel->nextPageUrl() }}" class="pag-btn">›</a>
+        @else
+            <span class="pag-btn disabled">›</span>
+        @endif
+
+    </div>
+
 </div>
 @endif
 

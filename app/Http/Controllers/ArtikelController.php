@@ -22,7 +22,7 @@ class ArtikelController extends Controller
             $query->where('kategori', $request->kategori);
         }
 
-        $artikelList = $query->latest()->paginate(6);
+        $artikelList = $query->latest()->paginate(12);
 
         // FIX: ambil semua kategori yang tersedia untuk dropdown filter
         $kategoriList = Artikel::where('status', 'published')

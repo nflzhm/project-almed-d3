@@ -278,21 +278,130 @@
 /* ============================================================
    PAGINATION
 ============================================================ */
-.artikel-pagination {
-    display: flex; align-items: center; justify-content: center;
-    gap: 6px; padding: 12px 40px 24px; border-top: 1px solid #e8edf5;
+.pag-buttons {
+    display: flex;
+    align-items: center;
+    gap: 4px;
     flex-wrap: wrap;
+    justify-content: center;
 }
-.pag-info { font-size: 13px; color: #64748b; width: 100%; text-align: center; margin-bottom: 8px; }
+
 .pag-btn {
     display: inline-flex; align-items: center; justify-content: center;
-    width: 36px; height: 36px; border-radius: 8px;
+    min-width: 38px; height: 38px; border-radius: 10px;
     border: 1.5px solid #e2e8f0; background: #fff; color: #475569;
     font-size: 13px; font-weight: 600; cursor: pointer;
     text-decoration: none; transition: all .2s;
 }
 .pag-btn:hover, .pag-btn.active {
     background: #1C145C; border-color: #1C145C; color: #fff;
+}
+.artikel-pagination {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 24px 40px 32px;
+    border-top: 1px solid #e8edf5;
+}
+
+.pag-info {
+    font-size: 13px;
+    color: #94a3b8;
+}
+
+/* Override pagination Laravel */
+.artikel-pagination nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+}
+
+.artikel-pagination nav > div:first-child {
+    font-size: 13px;
+    color: #94a3b8;
+}
+
+.artikel-pagination nav > div:last-child {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Semua span/a dalam pagination */
+.artikel-pagination nav span,
+.artikel-pagination nav a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px;
+    height: 38px;
+    padding: 0 10px;
+    border-radius: 10px;
+    border: 1.5px solid #e2e8f0;
+    background: #fff;
+    color: #475569;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all .2s;
+    cursor: pointer;
+}
+
+/* Hover & active */
+.artikel-pagination nav a:hover {
+    background: #1C145C;
+    border-color: #1C145C;
+    color: #fff;
+}
+
+/* Halaman aktif */
+.artikel-pagination nav span[aria-current="page"] span {
+    background: #1C145C;
+    border-color: #1C145C;
+    color: #fff;
+    border: none;
+    min-width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Disabled (prev/next nonaktif) */
+.artikel-pagination nav span:not([aria-current]) {
+    opacity: .45;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Dots (...) */
+.artikel-pagination nav span.dots,
+.artikel-pagination nav span[aria-disabled="true"] {
+    border: none;
+    background: transparent;
+    opacity: .5;
+    cursor: default;
+    pointer-events: none;
+}
+
+@media (max-width: 575.98px) {
+    .artikel-pagination {
+        padding: 18px 16px 24px;
+    }
+
+    .artikel-pagination nav span,
+    .artikel-pagination nav a {
+        min-width: 34px;
+        height: 34px;
+        font-size: 12px;
+        border-radius: 8px;
+    }
 }
 
 /* ============================================================
@@ -494,7 +603,6 @@
 @media(max-width:991.98px) {
     .artikel-content    { padding: 28px 24px 32px; }
     .artikel-share-bar  { padding: 14px 24px; }
-    .artikel-pagination { padding: 10px 24px 20px; }
     .artikel-grid       { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
 }
 @media(max-width:575.98px) {
@@ -1056,7 +1164,7 @@ body {
         <div class="topbar-info">
             <span>
                 <i class="bi bi-telephone-fill"></i>
-                0834325542
+                085292224886
             </span>
             <span>
                 <i class="bi bi-envelope-fill"></i>
@@ -1645,16 +1753,38 @@ document.addEventListener('DOMContentLoaded', function () {
 
         </div>
 
-        <!-- Pagination -->
         @if(isset($artikelList) && $artikelList->hasPages())
-        <div class="artikel-pagination">
-            <div class="pag-info">
-                Menampilkan {{ $artikelList->firstItem() }}–{{ $artikelList->lastItem() }}
-                dari {{ $artikelList->total() }} artikel
-            </div>
-            {{ $artikelList->withQueryString()->links() }}
-        </div>
+<div class="artikel-pagination">
+
+    <div class="pag-info">
+        Menampilkan {{ $artikelList->firstItem() }}–{{ $artikelList->lastItem() }}
+        dari {{ $artikelList->total() }} artikel
+    </div>
+
+    <div class="pag-buttons">
+        @if($artikelList->onFirstPage())
+            <span class="pag-btn" style="opacity:.35;cursor:not-allowed;">‹</span>
+        @else
+            <a href="{{ $artikelList->previousPageUrl() }}" class="pag-btn">‹</a>
         @endif
+
+        @foreach($artikelList->getUrlRange(1, $artikelList->lastPage()) as $page => $url)
+            @if($page == $artikelList->currentPage())
+                <span class="pag-btn active">{{ $page }}</span>
+            @else
+                <a href="{{ $url }}" class="pag-btn">{{ $page }}</a>
+            @endif
+        @endforeach
+
+        @if($artikelList->hasMorePages())
+            <a href="{{ $artikelList->nextPageUrl() }}" class="pag-btn">›</a>
+        @else
+            <span class="pag-btn" style="opacity:.35;cursor:not-allowed;">›</span>
+        @endif
+    </div>
+
+</div>
+@endif
 
     </div>
 </section>

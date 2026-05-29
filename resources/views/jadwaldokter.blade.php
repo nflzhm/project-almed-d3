@@ -959,7 +959,7 @@ body {
         <div class="topbar-info">
             <span>
                 <i class="bi bi-telephone-fill"></i>
-                0834325542
+                085292224886
             </span>
             <span>
                 <i class="bi bi-envelope-fill"></i>
@@ -1180,7 +1180,7 @@ document.addEventListener('DOMContentLoaded', function () {
     <!-- FILTER BOX -->
 <div class="schedule-filter">
 
-    <form action="{{ url('/jadwaldokter') }}" method="GET">
+    <form action="{{ url('/jadwaldokter') }}" method="GET" id="searchForm">
 
         <div class="search-wrap">
 
@@ -1192,9 +1192,11 @@ document.addEventListener('DOMContentLoaded', function () {
             <input
                 type="text"
                 name="search"
+                id="searchInput"
                 class="search-input"
                 placeholder="Cari nama dokter atau spesialisasi"
                 value="{{ request('search') }}"
+                autocomplete="off"
             >
 
             <button type="submit" class="search-btn">
@@ -1250,7 +1252,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     @foreach($dokter as $item)
 
-<div class="schedule-box">
+<div class="schedule-box"
+     data-nama="{{ strtolower($item->nama) }}"
+     data-spesialis="{{ strtolower($item->spesialis) }}"
+     data-hari="{{ strtolower($item->jadwal->pluck('hari')->map(fn($h) => strtolower(trim($h)))->implode(',')) }}">
     <div class="schedule-grid">
 
         <!-- LEFT -->
@@ -1309,24 +1314,68 @@ document.addEventListener('DOMContentLoaded', function () {
 @endforeach
 
 
-
-
-
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
+// ================= MOBILE ACCORDION =================
 document.querySelectorAll('.doctor-card').forEach(function(card){
-
     card.addEventListener('click', function(){
-
         if(window.innerWidth <= 991){
             card.closest('.schedule-box').classList.toggle('active');
         }
+    });
+});
 
+// ================= LIVE SEARCH =================
+(function () {
+    const searchInput = document.getElementById('searchInput');
+    const searchForm  = document.getElementById('searchForm');
+    const boxes       = document.querySelectorAll('.schedule-box');
+
+    // Ambil filter hari aktif dari URL (dikirim server)
+    const activeHari = (new URLSearchParams(window.location.search).get('hari') || '').toLowerCase().trim();
+
+    // Fungsi filter: jalankan pencarian teks + hari sekaligus
+    function applyFilter() {
+        const keyword = searchInput.value.toLowerCase().trim();
+
+        boxes.forEach(function (box) {
+            const nama      = box.dataset.nama      || '';
+            const spesialis = box.dataset.spesialis || '';
+            const hariDokter = box.dataset.hari     || ''; // comma-separated lowercase
+
+            // Cek keyword
+            const matchKeyword = keyword === '' ||
+                nama.includes(keyword) ||
+                spesialis.includes(keyword);
+
+            // Cek hari: jika ada filter hari aktif, dokter harus punya jadwal di hari itu
+            const matchHari = activeHari === '' ||
+                hariDokter.split(',').map(h => h.trim()).includes(activeHari);
+
+            box.style.display = (matchKeyword && matchHari) ? '' : 'none';
+        });
+    }
+
+    // Jalankan saat halaman load (untuk filter hari yang sudah aktif)
+    applyFilter();
+
+    // Live search saat mengetik (tanpa enter)
+    let debounceTimer;
+    searchInput.addEventListener('input', function () {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(applyFilter, 200);
     });
 
-});
+    // Enter tetap submit form ke server (untuk kompatibilitas pagination dll)
+    searchInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+            searchForm.submit();
+        }
+    });
+
+})();
 </script>
 </div>
 </section>

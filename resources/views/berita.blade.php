@@ -576,7 +576,7 @@ body {
         <div class="topbar-info">
             <span>
                 <i class="bi bi-telephone-fill"></i>
-                0834325542
+                085292224886
             </span>
             <span>
                 <i class="bi bi-envelope-fill"></i>
@@ -916,187 +916,102 @@ body{
 
 <style>
 
-/* ================= SECTION ================= */
-.pagination-section{
-    width:100%;
-    background:#fff !important;
-
-    padding:35px 0;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
+/* ================= PAGINATION BERITA ================= */
+.berita-pagination {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 24px 40px 40px;
+    border-top: 1px solid #e8edf5;
+    background: #fff;
 }
 
-
-/* ================= PAGINATION ================= */
-.custom-pagination{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:8px;
-
-    flex-wrap:wrap;
-
-    background:#fff !important;
+.pag-info {
+    font-size: 13px;
+    color: #94a3b8;
 }
 
-
-/* ITEM */
-.custom-pagination a,
-.custom-pagination span{
-    min-width:40px;
-    height:40px;
-    padding:0 14px;
-
-    border-radius:12px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    text-decoration:none;
-
-    font-size:13px;
-    font-weight:600;
-
-    transition:all .25s ease;
-
-    background:#fff;
+.pag-buttons {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-
-/* NORMAL */
-.custom-pagination a{
-    background:#fff;
-    color:#64748b;
-
-    border:1px solid #e2e8f0;
+.pag-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    border: 1.5px solid #e2e8f0;
+    background: #fff;
+    color: #475569;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all .2s;
 }
 
-
-/* HOVER */
-.custom-pagination a:hover{
-    background:#1C145C;
-    color:#fff;
-
-    border-color:#1C145C;
-
-    transform:translateY(-2px);
-
-    box-shadow:0 8px 20px rgba(28,20,92,.15);
+.pag-btn:hover,
+.pag-btn.active {
+    background: #1C145C;
+    border-color: #1C145C;
+    color: #fff;
 }
 
-
-/* ACTIVE */
-.custom-pagination .active{
-    background:#1C145C;
-    color:#fff;
-
-    border:1px solid #1C145C;
-
-    box-shadow:0 8px 20px rgba(28,20,92,.20);
-}
-
-
-/* DISABLED */
-.custom-pagination .disabled{
-    background:#fff;
-    color:#cbd5e1;
-
-    border:1px solid #e2e8f0;
-
-    cursor:not-allowed;
-}
-
-
-/* ICON */
-.custom-pagination i{
-    font-size:12px;
-}
-
-
-/* MOBILE */
-@media(max-width:576px){
-
-    .custom-pagination{
-        gap:6px;
-    }
-
-    .custom-pagination a,
-    .custom-pagination span{
-        min-width:36px;
-        height:36px;
-
-        font-size:12px;
-
-        border-radius:10px;
+@media (max-width: 576px) {
+    .berita-pagination { padding: 16px 16px 28px; }
+    .pag-btn {
+        min-width: 34px;
+        height: 34px;
+        font-size: 12px;
+        border-radius: 8px;
     }
 }
-
 </style>
 
 
-<!-- ================= PAGINATION ================= -->
 @if($berita->hasPages())
+<div class="berita-pagination">
 
-<div class="custom-pagination">
+    <div class="pag-info">
+        Menampilkan {{ $berita->firstItem() }}–{{ $berita->lastItem() }}
+        dari {{ $berita->total() }} berita
+    </div>
 
-    {{-- PREVIOUS --}}
-    @if ($berita->onFirstPage())
+    <div class="pag-buttons">
 
-        <span class="disabled">
-            <i class="bi bi-chevron-left"></i>
-        </span>
-
-    @else
-
-        <a href="{{ $berita->previousPageUrl() }}">
-            <i class="bi bi-chevron-left"></i>
-        </a>
-
-    @endif
-
-
-
-    {{-- PAGE NUMBER --}}
-    @for ($i = 1; $i <= $berita->lastPage(); $i++)
-
-        @if ($i == $berita->currentPage())
-
-            <span class="active">
-                {{ $i }}
-            </span>
-
+        {{-- Prev --}}
+        @if($berita->onFirstPage())
+            <span class="pag-btn" style="opacity:.35;cursor:not-allowed;">‹</span>
         @else
-
-            <a href="{{ $berita->url($i) }}">
-                {{ $i }}
-            </a>
-
+            <a href="{{ $berita->previousPageUrl() }}" class="pag-btn">‹</a>
         @endif
 
-    @endfor
+        {{-- Nomor halaman --}}
+        @foreach($berita->getUrlRange(1, $berita->lastPage()) as $page => $url)
+            @if($page == $berita->currentPage())
+                <span class="pag-btn active">{{ $page }}</span>
+            @else
+                <a href="{{ $url }}" class="pag-btn">{{ $page }}</a>
+            @endif
+        @endforeach
 
+        {{-- Next --}}
+        @if($berita->hasMorePages())
+            <a href="{{ $berita->nextPageUrl() }}" class="pag-btn">›</a>
+        @else
+            <span class="pag-btn" style="opacity:.35;cursor:not-allowed;">›</span>
+        @endif
 
-
-    {{-- NEXT --}}
-    @if ($berita->hasMorePages())
-
-        <a href="{{ $berita->nextPageUrl() }}">
-            <i class="bi bi-chevron-right"></i>
-        </a>
-
-    @else
-
-        <span class="disabled">
-            <i class="bi bi-chevron-right"></i>
-        </span>
-
-    @endif
+    </div>
 
 </div>
-
 @endif
 
 </section>

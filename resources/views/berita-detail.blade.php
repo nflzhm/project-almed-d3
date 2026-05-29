@@ -817,7 +817,7 @@ body {
         <div class="topbar-info">
             <span>
                 <i class="bi bi-telephone-fill"></i>
-                0834325542
+                085292224886
             </span>
             <span>
                 <i class="bi bi-envelope-fill"></i>
@@ -1136,7 +1136,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     </h6>
 
                     @foreach($beritaLainnya as $lain)
-                    <a href="{{ url('/berita/' . $lain->id) }}" style="text-decoration:none;">
+                    <a href="{{ url('/berita/' . $lain->slug) }}" style="text-decoration:none;">
                         <div style="
                             display:flex;
                             gap:12px;
@@ -1189,7 +1189,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <div class="related-card-body">
                             <h6>{{ Str::limit($lain->judul, 55) }}</h6>
                             <p>{{ Str::limit($lain->deskripsi, 70) }}</p>
-                            <a href="{{ url('/berita/' . $lain->id) }}">Baca Selengkapnya</a>
+                            <a href="{{ url('/berita/' . $lain->slug) }}">Baca Selengkapnya</a>
                         </div>
                     </div>
                 </div>

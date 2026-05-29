@@ -12,7 +12,7 @@ class BeritaController extends Controller
     {
         $berita = Berita::where('status', 'published')
             ->latest()
-            ->paginate(8);
+            ->paginate(12);
 
         return view('berita', compact('berita'));
     }
