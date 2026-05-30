@@ -867,8 +867,8 @@ document.addEventListener('DOMContentLoaded', function () {
 .other-card-name { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: 13px; color: #1C145C; line-height: 1.35; margin-bottom: 4px; }
 .other-card-desc { font-size: 11.5px; color: #9590b0; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
-.detail-sidebar { position: sticky; top: 130px; }
-@media (min-width: 992px) { .detail-sidebar { top: calc(124px + 40px + 16px); } }
+.detail-sidebar { position: static; }
+@media (min-width: 992px) { .detail-sidebar { position: static; } }
 
 .detail-infobox { background: #fff; border: 1px solid #EAE7F5; border-radius: 20px; overflow: hidden; box-shadow: 0 6px 24px rgba(28,20,92,.07); }
 .detail-infobox-header { background: linear-gradient(135deg, #1C145C 0%, #534AB7 100%); padding: 20px 22px; position: relative; overflow: hidden; }

@@ -968,7 +968,7 @@ body {
 
         {{-- TITLE --}}
         <div class="text-center mb-5">
-            <h2 class="fw-bold">Dokter Spesialis</h2>
+            <h2 class="fw-bold">Dokter Kami</h2>
 
             <div style="
                 width:80px;

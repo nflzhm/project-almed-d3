@@ -417,16 +417,6 @@ body {
 }
 
 
-@font-face {
-    font-family: 'GothamBlack';
-    src: url('{{ asset('fonts/Gotham-Black.otf') }}') format('opentype');
-    font-weight: 900;
-    font-style: normal;
-}
-
-h1, h2, h3, h4, h5 {
-    font-family: 'GothamBlack', sans-serif !important;
-}
 
 
 
@@ -1312,8 +1302,8 @@ document.addEventListener('DOMContentLoaded', function () {
                                         Siapkan Berkas Lamaran
                                     </div>
                                     <div style="font-size:13px;color:var(--text-muted);line-height:1.6;">
-                                        CV terbaru, fotokopi ijazah, STR/SIP aktif (jika diperlukan),
-                                        pas foto 3×4, dan surat lamaran kerja.
+                                        CV terbaru,dan surat lamaran kerja, fotokopi ijazah, fotocopy KTP,
+                                        pas foto 3×4, Sertifikat pendukung, STR/SIP aktif (jika diperlukan).
                                     </div>
                                 </div>
                             </div>
