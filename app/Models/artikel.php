@@ -13,28 +13,34 @@ class Artikel extends Model
         'deskripsi',
         'gambar',
         'kategori',
+        'dokter_id',
         'views',
         'status',
     ];
 
-    // FIX: casting tipe data agar views selalu integer dan status string
     protected $casts = [
-        'views' => 'integer',
+        'views'     => 'integer',
+        'dokter_id' => 'integer',
     ];
 
-    // FIX: default value agar status tidak pernah null di DB
     protected $attributes = [
         'status' => 'published',
         'views'  => 0,
     ];
 
-    // Scope helper: hanya artikel published
+    // Relasi ke dokter
+    public function dokter()
+    {
+        return $this->belongsTo(Dokter::class, 'dokter_id');
+    }
+
+    // Scope: hanya artikel published
     public function scopePublished($query)
     {
         return $query->where('status', 'published');
     }
 
-    // Accessor: URL gambar lengkap (siap pakai di blade)
+    // Accessor: URL gambar lengkap
     public function getGambarUrlAttribute(): ?string
     {
         return $this->gambar

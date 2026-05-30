@@ -6,12 +6,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Artikel;
+use App\Models\Dokter;
 
 class ArtikelAdminController extends Controller
 {
     public function index()
     {
-        $artikel = Artikel::latest()->paginate(10);
+        $artikel = Artikel::with('dokter')->latest()->paginate(10);
+        $dokters = Dokter::select('id', 'nama', 'spesialis', 'foto')->orderBy('nama')->get();
 
         $totalPublished = Artikel::where('status', 'published')->count();
         $totalDraft     = Artikel::where('status', 'draft')->count();
@@ -22,6 +24,7 @@ class ArtikelAdminController extends Controller
 
         return view('admin.artikeladmin', compact(
             'artikel',
+            'dokters',
             'totalPublished',
             'totalDraft',
             'totalViews',
@@ -37,6 +40,7 @@ class ArtikelAdminController extends Controller
             'gambar'    => 'nullable|image|mimes:jpeg,png,webp|max:3072',
             'kategori'  => 'nullable|string|max:100',
             'status'    => 'nullable|in:published,draft',
+            'dokter_id' => 'nullable|exists:dokters,id',
         ]);
 
         $gambarPath = null;
@@ -45,12 +49,12 @@ class ArtikelAdminController extends Controller
             $gambarPath = $request->file('gambar')->store('artikel', 'public');
         }
 
-        // FIX: pakai $request->deskripsi, bukan $request->isi
         Artikel::create([
             'judul'     => $request->judul,
             'deskripsi' => $request->deskripsi,
             'gambar'    => $gambarPath,
             'kategori'  => $request->kategori,
+            'dokter_id' => $request->dokter_id,
             'status'    => $request->filled('status') ? $request->status : 'published',
             'views'     => 0,
         ]);
@@ -68,13 +72,13 @@ class ArtikelAdminController extends Controller
             'kategori'     => 'nullable|string|max:100',
             'status'       => 'nullable|in:published,draft',
             'hapus_gambar' => 'nullable|in:0,1',
+            'dokter_id'    => 'nullable|exists:dokters,id',
         ]);
 
         $artikel = Artikel::findOrFail($id);
 
         $gambarPath = $artikel->gambar;
 
-        // Hapus gambar lama jika diminta
         if ($request->hapus_gambar == '1') {
             if ($artikel->gambar) {
                 Storage::disk('public')->delete($artikel->gambar);
@@ -82,7 +86,6 @@ class ArtikelAdminController extends Controller
             $gambarPath = null;
         }
 
-        // Upload gambar baru (hapus lama dulu jika ada)
         if ($request->hasFile('gambar')) {
             if ($artikel->gambar) {
                 Storage::disk('public')->delete($artikel->gambar);
@@ -95,7 +98,7 @@ class ArtikelAdminController extends Controller
             'deskripsi' => $request->deskripsi,
             'gambar'    => $gambarPath,
             'kategori'  => $request->kategori,
-            // FIX: gunakan filled() agar tidak overwrite dengan string kosong
+            'dokter_id' => $request->dokter_id,
             'status'    => $request->filled('status') ? $request->status : $artikel->status,
         ]);
 

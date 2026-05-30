@@ -24,7 +24,6 @@
 }
 .page-header-left .ph-sub { font-size: 13px; color: var(--text-muted); margin-top: 3px; }
 
-/* ---- Stats ---- */
 .art-stats { display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
 .art-stat {
     flex: 1; min-width: 130px; background: var(--card-bg);
@@ -45,7 +44,6 @@
 }
 .art-stat-lbl { font-size: 12px; color: var(--text-muted); margin-top: 3px; font-weight: 500; }
 
-/* ---- Toolbar ---- */
 .art-toolbar {
     background: var(--card-bg); border: 1px solid var(--border-color);
     border-radius: var(--radius); padding: 14px 18px;
@@ -76,16 +74,12 @@
 }
 .filter-select:focus { border-color: var(--primary); outline: none; }
 
-/* ============================================================
-   CARDS GRID
-============================================================ */
 .art-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
 }
 
-/* ---- Artikel Card ---- */
 .art-card {
     background: var(--card-bg); border: 1px solid var(--border-color);
     border-radius: var(--radius); overflow: hidden;
@@ -144,6 +138,26 @@
     font-size: 13px; color: var(--text-muted); line-height: 1.55; flex: 1;
     display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 0;
 }
+
+.ac-dokter-chip {
+    display: flex; align-items: center; gap: 8px;
+    margin-top: 10px; padding: 7px 10px;
+    background: #eff6ff; border: 1px solid #bfdbfe;
+    border-radius: 8px; flex-shrink: 0;
+}
+.ac-dokter-chip img {
+    width: 26px; height: 26px; border-radius: 50%; object-fit: cover;
+    border: 1.5px solid #bfdbfe; flex-shrink: 0;
+}
+.ac-dokter-chip .no-foto {
+    width: 26px; height: 26px; border-radius: 50%;
+    background: #dbeafe; color: #2563eb;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; flex-shrink: 0;
+}
+.ac-dokter-chip .dk-nama { font-size: 11.5px; font-weight: 700; color: #1e40af; line-height: 1.2; }
+.ac-dokter-chip .dk-sp   { font-size: 10.5px; color: #3b82f6; }
+
 .ac-footer {
     display: flex; align-items: center; justify-content: space-between;
     padding: 12px 20px; border-top: 1px solid var(--border-color); background: #fafbff;
@@ -156,7 +170,6 @@
 }
 .ac-actions { display: flex; gap: 6px; }
 
-/* ---- Empty state ---- */
 .empty-state { grid-column: 1/-1; padding: 64px 24px; text-align: center; color: var(--text-muted); }
 .empty-state .es-icon {
     width: 72px; height: 72px; border-radius: 20px;
@@ -167,9 +180,6 @@
 .empty-state .es-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 700; color: var(--text-main); margin-bottom: 6px; }
 .empty-state .es-sub   { font-size: 13.5px; margin-bottom: 20px; }
 
-/* ============================================================
-   MODAL BASE
-============================================================ */
 .am-modal .modal-dialog { max-width: 700px; }
 .am-modal .modal-content {
     border: none; border-radius: var(--radius);
@@ -194,13 +204,9 @@
 .am-modal .modal-body { padding: 28px 28px 8px; max-height: 70vh; overflow-y: auto; }
 .am-modal .modal-footer { padding: 16px 28px 24px; border: none; gap: 10px; }
 
-/* ============================================================
-   MODAL PREVIEW — Override body padding (gambar full width)
-============================================================ */
 #modalPreview .modal-dialog { max-width: 760px; }
 #modalPreview .modal-body   { padding: 0; max-height: 80vh; overflow-y: auto; }
 
-/* Preview article header image */
 .pv-img-wrap { aspect-ratio: 16/9; overflow: hidden; max-height: 280px; display: none; }
 .pv-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .pv-img-placeholder {
@@ -209,8 +215,6 @@
     background: linear-gradient(135deg, #e0f2fe, #cffafe);
     color: #0284c7; font-size: 52px;
 }
-
-/* Preview content area */
 .pv-body { padding: 28px 32px 32px; }
 .pv-badges { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
 .pv-badge-status {
@@ -237,12 +241,29 @@
     font-size: 12.5px; color: var(--text-muted);
 }
 .pv-meta-item i { color: var(--primary); font-size: 12px; }
+
+.pv-dokter-card {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 16px; margin-bottom: 20px;
+    background: #eff6ff; border: 1.5px solid #bfdbfe; border-radius: 10px;
+}
+.pv-dokter-card img {
+    width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid #bfdbfe;
+}
+.pv-dokter-card .no-foto {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: #dbeafe; color: #2563eb;
+    display: flex; align-items: center; justify-content: center; font-size: 18px;
+}
+.pv-dokter-card .dk-label { font-size: 10px; font-weight: 700; color: #3b82f6; text-transform: uppercase; letter-spacing: .5px; }
+.pv-dokter-card .dk-nama  { font-size: 14px; font-weight: 800; color: #1e40af; }
+.pv-dokter-card .dk-sp    { font-size: 12px; color: #3b82f6; }
+
 .pv-konten {
     font-size: 14.5px; color: var(--text-main);
     line-height: 1.8; white-space: pre-wrap; word-break: break-word;
 }
 
-/* Form */
 .mfg { margin-bottom: 20px; }
 .mfg:last-child { margin-bottom: 0; }
 .mfg-label {
@@ -267,7 +288,6 @@
 .mfg-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 @media(max-width:575px) { .mfg-row { grid-template-columns: 1fr; } }
 
-/* Image upload zone */
 .img-upload-zone {
     border: 2px dashed var(--border-color); border-radius: var(--radius-sm);
     padding: 24px 20px; text-align: center; cursor: pointer;
@@ -291,7 +311,6 @@
 .iuz-title { font-size: 13.5px; font-weight: 700; color: var(--text-main); margin-bottom: 4px; }
 .iuz-sub   { font-size: 12px; color: var(--text-muted); }
 
-/* Image preview */
 .img-preview-wrap {
     display: none; position: relative; border-radius: var(--radius-sm);
     overflow: hidden; border: 1.5px solid var(--border-color);
@@ -311,7 +330,6 @@
 }
 .ppb-change { background: #fff; color: var(--primary); }
 .ppb-remove { background: #ef4444; color: #fff; }
-.ppb-change input { display: none; }
 .img-preview-label {
     position: absolute; bottom: 0; left: 0; right: 0;
     background: rgba(12,26,46,.75); backdrop-filter: blur(4px);
@@ -319,7 +337,6 @@
     padding: 5px 12px; text-align: center; text-transform: uppercase; letter-spacing: .6px;
 }
 
-/* Char / word counter */
 .char-counter { font-size: 11px; color: var(--text-muted); text-align: right; margin-top: 3px; }
 .char-counter.warn { color: var(--warning); }
 .char-counter.over { color: var(--danger); }
@@ -327,7 +344,6 @@
 .word-counter span { font-weight: 600; color: var(--primary); }
 .kat-custom-wrap { display: none; margin-top: 8px; }
 
-/* Status toggle */
 .status-toggle-group { display: flex; gap: 8px; }
 .status-toggle-group label {
     flex: 1; display: flex; align-items: center; justify-content: center; gap: 7px;
@@ -339,7 +355,6 @@
 .status-toggle-group input:checked + label.lbl-published { background: #d1fae5; border-color: #6ee7b7; color: #065f46; }
 .status-toggle-group input:checked + label.lbl-draft     { background: #f1f5f9; border-color: #94a3b8; color: #475569; }
 
-/* Live preview bar */
 .modal-preview-bar {
     background: linear-gradient(135deg, var(--sidebar-bg), #1e3a5f);
     border-radius: var(--radius-sm); padding: 14px 16px;
@@ -364,7 +379,68 @@
 .mpb-title    { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13.5px; font-weight: 700; color: #fff; }
 .mpb-subtitle { font-size: 11.5px; color: rgba(255,255,255,.5); margin-top: 3px; display: flex; align-items: center; gap: 6px; }
 
-/* Buttons */
+/* ============================================================
+   Dokter search dropdown
+   Dropdown di-append ke <body> via JS sehingga bebas dari
+   overflow/clip apapun di dalam modal.
+============================================================ */
+.dokter-search-wrap {
+    position: relative;
+}
+.dokter-dropdown {
+    display: none;
+    position: fixed;
+    z-index: 999999;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 8px;
+    max-height: 240px;
+    overflow-y: auto;
+    background: #fff;
+    box-shadow: 0 12px 32px rgba(0,0,0,.18);
+    pointer-events: auto;
+}
+.dokter-dropdown-item {
+    padding: 10px 14px; cursor: pointer;
+    display: flex; align-items: center; gap: 10px;
+    border-bottom: 1px solid #f1f5f9;
+    transition: background .15s;
+}
+.dokter-dropdown-item:hover { background: #f0f9ff; }
+.dokter-dropdown-item:last-child { border-bottom: none; }
+.dokter-dropdown-item img {
+    width: 36px; height: 36px; border-radius: 50%; object-fit: cover;
+    border: 1.5px solid #e0f2fe; flex-shrink: 0;
+}
+.dokter-dropdown-item .no-foto {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: #e0f2fe; color: #0284c7;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; flex-shrink: 0;
+}
+.dokter-dropdown-item .dk-nama { font-size: 13px; font-weight: 700; color: #0f172a; }
+.dokter-dropdown-item .dk-sp   { font-size: 11.5px; color: #64748b; }
+.dokter-selected-card {
+    display: none; align-items: center; gap: 12px;
+    margin-top: 8px; padding: 10px 14px;
+    background: #eff6ff; border: 1.5px solid #bfdbfe; border-radius: var(--radius-sm);
+}
+.dokter-selected-card img {
+    width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid #bfdbfe;
+}
+.dokter-selected-card .no-foto {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: #dbeafe; color: #2563eb;
+    display: flex; align-items: center; justify-content: center; font-size: 16px;
+}
+.dokter-selected-card .dk-nama { font-size: 13.5px; font-weight: 700; color: #1e40af; }
+.dokter-selected-card .dk-sp   { font-size: 12px; color: #3b82f6; }
+.dokter-clear-btn {
+    margin-left: auto; background: none; border: none;
+    color: #94a3b8; cursor: pointer; font-size: 16px; padding: 4px;
+    transition: color .15s;
+}
+.dokter-clear-btn:hover { color: #ef4444; }
+
 .btn-cancel {
     padding: 10px 20px; border: 1.5px solid var(--border-color);
     border-radius: var(--radius-sm); background: transparent;
@@ -382,7 +458,6 @@
     box-shadow: 0 4px 14px rgba(14,165,233,.3);
 }
 .btn-save:hover { transform: translateY(-1px); box-shadow: 0 8px 22px rgba(14,165,233,.4); }
-
 .btn-icon-sm {
     width: 30px; height: 30px; border-radius: 6px;
     display: inline-flex; align-items: center; justify-content: center;
@@ -397,7 +472,6 @@
 .btn-preview { background: #f0fdf4; color: #059669; }
 .btn-preview:hover { background: #059669; color: #fff; }
 
-/* Delete modal */
 .del-body { padding: 32px 28px; text-align: center; }
 .del-icon {
     width: 68px; height: 68px; border-radius: 50%;
@@ -421,103 +495,47 @@
 }
 .btn-danger-am:hover { background: #dc2626; box-shadow: 0 6px 20px rgba(239,68,68,.35); }
 
-
-/* ---- Pagination ---- */
 .art-pagination {
-    margin-top: 24px;
-    padding: 20px 24px;
-    background: #fff;
-    border: 1px solid #edf1f7;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    flex-wrap: wrap;
-    box-shadow: 0 4px 14px rgba(15,23,42,.04);
+    margin-top: 24px; padding: 20px 24px; background: #fff;
+    border: 1px solid #edf1f7; border-radius: 20px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 20px; flex-wrap: wrap; box-shadow: 0 4px 14px rgba(15,23,42,.04);
 }
-
-.art-pagination .pag-info {
-    font-size: 14px;
-    font-weight: 600;
-    color: #64748b;
-}
-
+.art-pagination .pag-info { font-size: 14px; font-weight: 600; color: #64748b; }
 .art-pagination .pag-buttons {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-left: auto;
+    display: flex; align-items: center; gap: 4px;
+    flex-wrap: wrap; justify-content: center; margin-left: auto;
 }
-
 .art-pagination .pag-btn {
-    width: 46px;
-    height: 46px;
-    border-radius: 14px;
-    border: none;
-    background: #f8fafc;
-    color: #334155;
-    font-size: 15px;
-    font-weight: 700;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: all .2s ease;
+    width: 46px; height: 46px; border-radius: 14px; border: none;
+    background: #f8fafc; color: #334155; font-size: 15px; font-weight: 700;
+    cursor: pointer; text-decoration: none;
+    display: inline-flex; align-items: center; justify-content: center; transition: all .2s ease;
 }
-
-.art-pagination .pag-btn:hover {
-    background: #2563eb;
-    color: #fff;
-    transform: translateY(-2px);
-}
-
+.art-pagination .pag-btn:hover { background: #2563eb; color: #fff; transform: translateY(-2px); }
 .art-pagination .pag-btn.active {
-    background: linear-gradient(135deg, #2563eb, #1d4ed8);
-    color: #fff;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #fff;
     box-shadow: 0 10px 20px rgba(37,99,235,.25);
 }
-
 .art-pagination .pag-btn.disabled {
-    background: #f1f5f9;
-    color: #94a3b8;
-    opacity: .7;
-    cursor: not-allowed;
-    pointer-events: none;
+    background: #f1f5f9; color: #94a3b8; opacity: .7;
+    cursor: not-allowed; pointer-events: none;
 }
-
-@media (max-width: 768px) {
-    .art-pagination {
-        flex-direction: column;
-        justify-content: center;
-        text-align: center;
-    }
-    .art-pagination .pag-buttons {
-        margin-left: 0;
-        justify-content: center;
-    }
-    .art-pagination .pag-btn {
-        width: 40px;
-        height: 40px;
-        border-radius: 12px;
-        font-size: 13px;
-    }
+@media(max-width:768px) {
+    .art-pagination { flex-direction: column; justify-content: center; text-align: center; }
+    .art-pagination .pag-buttons { margin-left: 0; justify-content: center; }
+    .art-pagination .pag-btn { width: 40px; height: 40px; border-radius: 12px; font-size: 13px; }
 }
 </style>
 @endpush
 
 @section('content')
 
-
-
 {{-- PAGE HEADER --}}
 <div class="page-header">
     <div class="page-header-left">
         <div class="ph-title">Manajemen Artikel</div>
-        <div class="ph-sub">Kelola artikel edukasi & informasi kesehatan RSU Allam Medica</div>
+        <div class="ph-sub">Kelola artikel edukasi &amp; informasi kesehatan RSU Allam Medica</div>
     </div>
     <button class="btn-primary-am" data-bs-toggle="modal" data-bs-target="#modalTambah">
         <i class="fa-solid fa-plus"></i> Tulis Artikel
@@ -601,6 +619,8 @@ $katColors = [
         $wc       = str_word_count(strip_tags($konten));
         $readTime = max(1, ceil($wc / 200));
         $kc       = $katColors[$item->kategori] ?? $katColors['Lainnya'];
+        $dokter   = $item->dokter;
+        $dokterFotoUrl = $dokter && $dokter->foto ? asset('storage/'.$dokter->foto) : null;
     @endphp
 
     <div class="art-card"
@@ -634,6 +654,22 @@ $katColors = [
             </div>
             <div class="ac-title">{{ $item->judul }}</div>
             <div class="ac-excerpt">{{ Str::limit(strip_tags($konten), 120) }}</div>
+
+            @if($dokter)
+            <div class="ac-dokter-chip">
+                @if($dokterFotoUrl)
+                    <img src="{{ $dokterFotoUrl }}" alt="{{ $dokter->nama }}"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="no-foto" style="display:none;"><i class="fa-solid fa-user-doctor"></i></div>
+                @else
+                    <div class="no-foto"><i class="fa-solid fa-user-doctor"></i></div>
+                @endif
+                <div>
+                    <div class="dk-nama">{{ $dokter->nama }}</div>
+                    <div class="dk-sp">{{ $dokter->spesialis ?? 'Dokter' }}</div>
+                </div>
+            </div>
+            @endif
         </div>
 
         <div class="ac-footer">
@@ -641,8 +677,6 @@ $katColors = [
                 <i class="fa-solid fa-tag" style="font-size:9px;"></i> {{ $item->kategori ?? 'Umum' }}
             </span>
             <div class="ac-actions">
-
-                {{-- ✅ TOMBOL VIEW → MODAL PREVIEW (bukan link ke website) --}}
                 <button class="btn-icon-sm btn-preview" title="Preview artikel"
                     onclick="openPreviewModal(
                         `{{ addslashes($item->judul) }}`,
@@ -652,7 +686,10 @@ $katColors = [
                         '{{ $item->status }}',
                         '{{ $tglFmt }}',
                         {{ $item->views ?? 0 }},
-                        {{ $readTime }}
+                        {{ $readTime }},
+                        '{{ $dokter ? addslashes($dokter->nama) : '' }}',
+                        '{{ $dokter ? addslashes($dokter->spesialis ?? '') : '' }}',
+                        '{{ $dokterFotoUrl ?? '' }}'
                     )">
                     <i class="fa-solid fa-eye"></i>
                 </button>
@@ -664,7 +701,11 @@ $katColors = [
                         `{{ addslashes($konten) }}`,
                         '{{ $imgUrl ?? '' }}',
                         '{{ $item->kategori ?? '' }}',
-                        '{{ $item->status }}'
+                        '{{ $item->status }}',
+                        '{{ $item->dokter_id ?? '' }}',
+                        '{{ $dokter ? addslashes($dokter->nama) : '' }}',
+                        '{{ $dokter ? addslashes($dokter->spesialis ?? '') : '' }}',
+                        '{{ $dokterFotoUrl ?? '' }}'
                     )">
                     <i class="fa-solid fa-pen"></i>
                 </button>
@@ -691,22 +732,16 @@ $katColors = [
 
 @if($artikel->hasPages())
 <div class="art-pagination">
-
     <div class="pag-info">
         Menampilkan {{ $artikel->firstItem() }}–{{ $artikel->lastItem() }}
         dari {{ $artikel->total() }} artikel
     </div>
-
     <div class="pag-buttons">
-
-        {{-- Prev --}}
         @if($artikel->onFirstPage())
             <span class="pag-btn disabled">‹</span>
         @else
             <a href="{{ $artikel->previousPageUrl() }}" class="pag-btn">‹</a>
         @endif
-
-        {{-- Nomor halaman --}}
         @foreach($artikel->getUrlRange(1, $artikel->lastPage()) as $page => $url)
             @if($page == $artikel->currentPage())
                 <span class="pag-btn active">{{ $page }}</span>
@@ -714,16 +749,12 @@ $katColors = [
                 <a href="{{ $url }}" class="pag-btn">{{ $page }}</a>
             @endif
         @endforeach
-
-        {{-- Next --}}
         @if($artikel->hasMorePages())
             <a href="{{ $artikel->nextPageUrl() }}" class="pag-btn">›</a>
         @else
             <span class="pag-btn disabled">›</span>
         @endif
-
     </div>
-
 </div>
 @endif
 
@@ -742,42 +773,33 @@ $katColors = [
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                {{-- Gambar header --}}
                 <div class="pv-img-wrap" id="pvImgWrap">
                     <img id="pvImg" src="" alt="">
                 </div>
                 <div class="pv-img-placeholder" id="pvImgPlaceholder">
                     <i class="fa-regular fa-newspaper"></i>
                 </div>
-
-                {{-- Konten --}}
                 <div class="pv-body">
-                    {{-- Badge --}}
                     <div class="pv-badges">
                         <span class="pv-badge-status" id="pvStatus"></span>
                         <span class="pv-badge-kat"    id="pvKategori"></span>
                     </div>
-
-                    {{-- Judul --}}
                     <div class="pv-judul" id="pvJudul"></div>
-
-                    {{-- Meta --}}
                     <div class="pv-meta">
-                        <div class="pv-meta-item">
-                            <i class="fa-regular fa-calendar"></i>
-                            <span id="pvTanggal">—</span>
-                        </div>
-                        <div class="pv-meta-item">
-                            <i class="fa-regular fa-clock"></i>
-                            <span id="pvReadTime">—</span>
-                        </div>
-                        <div class="pv-meta-item">
-                            <i class="fa-regular fa-eye"></i>
-                            <span id="pvViews">—</span>
+                        <div class="pv-meta-item"><i class="fa-regular fa-calendar"></i><span id="pvTanggal">—</span></div>
+                        <div class="pv-meta-item"><i class="fa-regular fa-clock"></i><span id="pvReadTime">—</span></div>
+                        <div class="pv-meta-item"><i class="fa-regular fa-eye"></i><span id="pvViews">—</span></div>
+                    </div>
+
+                    <div class="pv-dokter-card" id="pvDokterCard" style="display:none;">
+                        <div id="pvDokterFotoWrap"></div>
+                        <div>
+                            <div class="dk-label"><i class="fa-solid fa-user-doctor" style="font-size:9px;"></i> Dokter Terkait</div>
+                            <div class="dk-nama" id="pvDokterNama"></div>
+                            <div class="dk-sp"   id="pvDokterSp"></div>
                         </div>
                     </div>
 
-                    {{-- Isi konten --}}
                     <div class="pv-konten" id="pvKonten"></div>
                 </div>
             </div>
@@ -808,6 +830,7 @@ $katColors = [
                 @csrf
                 <div class="modal-body">
 
+                    {{-- Gambar --}}
                     <div class="mfg">
                         <div class="mfg-label"><i class="fa-solid fa-image"></i> Gambar Sampul <span class="opt">(opsional)</span></div>
                         <div class="img-preview-wrap" id="tambahPreviewWrap">
@@ -832,6 +855,7 @@ $katColors = [
                         </div>
                     </div>
 
+                    {{-- Judul --}}
                     <div class="mfg">
                         <div class="mfg-label"><i class="fa-solid fa-heading"></i> Judul Artikel <span class="req">*</span></div>
                         <input type="text" name="judul" class="mfg-input" id="tambahJudul"
@@ -840,6 +864,7 @@ $katColors = [
                         <div class="char-counter" id="tambahJudulCtr">0 / 200</div>
                     </div>
 
+                    {{-- Kategori & Status --}}
                     <div class="mfg-row mfg">
                         <div>
                             <div class="mfg-label"><i class="fa-solid fa-tag"></i> Kategori <span class="opt">(opsional)</span></div>
@@ -869,6 +894,21 @@ $katColors = [
                         </div>
                     </div>
 
+                    {{-- Rekomendasi Dokter --}}
+                    <div class="mfg" id="tambahDokterWrap">
+                        <div class="mfg-label"><i class="fa-solid fa-user-doctor"></i> Rekomendasi Dokter <span class="opt">(opsional)</span></div>
+                        <div class="dokter-search-wrap">
+                            <input type="text" class="mfg-input" id="tambahDokterSearch"
+                                   placeholder="Cari nama atau spesialis dokter..."
+                                   autocomplete="off"
+                                   oninput="filterDokter('tambah')">
+                            <div class="dokter-dropdown" id="tambahDokterDropdown"></div>
+                        </div>
+                        <div class="dokter-selected-card" id="tambahDokterSelected"></div>
+                        <input type="hidden" name="dokter_id" id="tambahDokterId">
+                    </div>
+
+                    {{-- Konten --}}
                     <div class="mfg">
                         <div class="mfg-label"><i class="fa-solid fa-align-left"></i> Isi / Konten Artikel <span class="req">*</span></div>
                         <textarea name="deskripsi" class="mfg-textarea" id="tambahIsi"
@@ -880,6 +920,7 @@ $katColors = [
                         </div>
                     </div>
 
+                    {{-- Live preview bar --}}
                     <div class="modal-preview-bar">
                         <img src="" id="tambahMpbThumb" class="mpb-thumb" alt="" style="display:none;">
                         <div class="mpb-thumb-placeholder" id="tambahMpbPlaceholder"><i class="fa-regular fa-newspaper"></i></div>
@@ -923,6 +964,7 @@ $katColors = [
 
                 <div class="modal-body">
 
+                    {{-- Gambar --}}
                     <div class="mfg">
                         <div class="mfg-label"><i class="fa-solid fa-image"></i> Gambar Sampul <span class="opt">(kosongkan jika tidak diganti)</span></div>
                         <div class="img-preview-wrap" id="editPreviewWrap">
@@ -947,6 +989,7 @@ $katColors = [
                         </div>
                     </div>
 
+                    {{-- Judul --}}
                     <div class="mfg">
                         <div class="mfg-label"><i class="fa-solid fa-heading"></i> Judul Artikel <span class="req">*</span></div>
                         <input type="text" name="judul" class="mfg-input" id="editJudul"
@@ -955,6 +998,7 @@ $katColors = [
                         <div class="char-counter" id="editJudulCtr">0 / 200</div>
                     </div>
 
+                    {{-- Kategori & Status --}}
                     <div class="mfg-row mfg">
                         <div>
                             <div class="mfg-label"><i class="fa-solid fa-tag"></i> Kategori <span class="opt">(opsional)</span></div>
@@ -985,6 +1029,21 @@ $katColors = [
                         </div>
                     </div>
 
+                    {{-- Rekomendasi Dokter --}}
+                    <div class="mfg" id="editDokterWrap">
+                        <div class="mfg-label"><i class="fa-solid fa-user-doctor"></i> Rekomendasi Dokter <span class="opt">(opsional)</span></div>
+                        <div class="dokter-search-wrap">
+                            <input type="text" class="mfg-input" id="editDokterSearch"
+                                   placeholder="Cari nama atau spesialis dokter..."
+                                   autocomplete="off"
+                                   oninput="filterDokter('edit')">
+                            <div class="dokter-dropdown" id="editDokterDropdown"></div>
+                        </div>
+                        <div class="dokter-selected-card" id="editDokterSelected"></div>
+                        <input type="hidden" name="dokter_id" id="editDokterId">
+                    </div>
+
+                    {{-- Konten --}}
                     <div class="mfg">
                         <div class="mfg-label"><i class="fa-solid fa-align-left"></i> Isi / Konten Artikel <span class="req">*</span></div>
                         <textarea name="deskripsi" class="mfg-textarea" id="editIsi"
@@ -996,6 +1055,7 @@ $katColors = [
                         </div>
                     </div>
 
+                    {{-- Live preview bar --}}
                     <div class="modal-preview-bar">
                         <img src="" id="editMpbThumb" class="mpb-thumb" alt="" style="display:none;">
                         <div class="mpb-thumb-placeholder" id="editMpbPlaceholder"><i class="fa-regular fa-newspaper"></i></div>
@@ -1054,10 +1114,13 @@ $katColors = [
 @push('scripts')
 <script>
 /* ============================================================
-   ARTIKEL PAGE — JavaScript
+   DATA DOKTER
 ============================================================ */
+const DOKTERS = @json($dokters);
 
-/* ---- Sync kategori saat submit ---- */
+/* ============================================================
+   SYNC KATEGORI SAAT SUBMIT
+============================================================ */
 document.getElementById('formTambah').addEventListener('submit', function() {
     const sel = document.getElementById('tambahKategoriSelect');
     document.getElementById('tambahKategori').value = (sel.value === 'lainnya')
@@ -1069,7 +1132,9 @@ document.getElementById('formEdit').addEventListener('submit', function() {
     if (sel.value !== 'lainnya') document.getElementById('editKategori').value = sel.value;
 });
 
-/* ---- Char counter ---- */
+/* ============================================================
+   CHAR COUNTER
+============================================================ */
 function initCtr(elId, ctrId, max) {
     const el = document.getElementById(elId);
     const ct = document.getElementById(ctrId);
@@ -1084,7 +1149,9 @@ function initCtr(elId, ctrId, max) {
 initCtr('tambahJudul', 'tambahJudulCtr', 200);
 initCtr('editJudul',   'editJudulCtr',   200);
 
-/* ---- Word counter ---- */
+/* ============================================================
+   WORD COUNTER
+============================================================ */
 function updateWordCount(prefix) {
     const isi = document.getElementById(prefix + 'Isi')?.value || '';
     const wc  = isi.trim() ? isi.trim().split(/\s+/).length : 0;
@@ -1096,12 +1163,15 @@ function updateWordCount(prefix) {
     syncPreview(prefix);
 }
 
-/* ---- Kategori select ---- */
+/* ============================================================
+   KATEGORI SELECT
+============================================================ */
 function onKategoriChange(prefix) {
     const sel   = document.getElementById(prefix + 'KategoriSelect');
     const custW = document.getElementById(prefix + 'KatCustomWrap');
     const custI = document.getElementById(prefix + 'KatCustom');
     const hid   = document.getElementById(prefix + 'Kategori');
+
     if (sel.value === 'lainnya') {
         custW.style.display = 'block'; custI?.focus();
         if (hid) hid.value = '';
@@ -1112,7 +1182,9 @@ function onKategoriChange(prefix) {
     }
 }
 
-/* ---- Live preview bar ---- */
+/* ============================================================
+   LIVE PREVIEW BAR
+============================================================ */
 function syncPreview(prefix) {
     const judul  = document.getElementById(prefix + 'Judul')?.value || 'Judul Artikel';
     const katSel = document.getElementById(prefix + 'KategoriSelect');
@@ -1129,7 +1201,9 @@ function syncPreview(prefix) {
          &nbsp;·&nbsp; <i class="fa-regular fa-clock" style="font-size:9px;"></i> ${rt} menit baca`;
 }
 
-/* ---- Image preview ---- */
+/* ============================================================
+   IMAGE PREVIEW
+============================================================ */
 function previewImg(input, prefix) {
     const file = input.files[0];
     if (!file) return;
@@ -1190,50 +1264,184 @@ function removeImg(prefix) {
     });
 });
 
-/* ================================================================
+/* ============================================================
+   DOKTER SEARCH & SELECT
+   Strategi: dropdown di-append ke <body> dan diposisikan
+   dengan getBoundingClientRect() → bebas dari overflow/clip
+   modal apapun. Event onmousedown mencegah blur menutup
+   dropdown sebelum item sempat terpilih.
+============================================================ */
+
+/* Pindahkan kedua dropdown ke <body> saat DOM siap */
+document.addEventListener('DOMContentLoaded', function () {
+    ['tambah', 'edit'].forEach(function (p) {
+        const dd = document.getElementById(p + 'DokterDropdown');
+        if (dd) document.body.appendChild(dd);
+    });
+});
+
+function _positionDD(prefix) {
+    const input = document.getElementById(prefix + 'DokterSearch');
+    const dd    = document.getElementById(prefix + 'DokterDropdown');
+    if (!input || !dd) return;
+    const r = input.getBoundingClientRect();
+    dd.style.top   = (r.bottom + 4) + 'px';
+    dd.style.left  = r.left + 'px';
+    dd.style.width = r.width + 'px';
+}
+
+function filterDokter(prefix) {
+    const q  = document.getElementById(prefix + 'DokterSearch').value.toLowerCase().trim();
+    const dd = document.getElementById(prefix + 'DokterDropdown');
+
+    if (!q) { dd.style.display = 'none'; return; }
+
+    _positionDD(prefix);
+
+    const results = DOKTERS.filter(d =>
+        d.nama.toLowerCase().includes(q) ||
+        (d.spesialis || '').toLowerCase().includes(q)
+    ).slice(0, 8);
+
+    dd.innerHTML = results.length
+        ? results.map(function (d) {
+            const fotoUrl  = d.foto ? '/storage/' + d.foto : '';
+            const fotoHtml = fotoUrl
+                ? `<img src="${fotoUrl}" style="width:36px;height:36px;border-radius:50%;object-fit:cover;border:1.5px solid #e0f2fe;flex-shrink:0;"
+                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                   <div style="display:none;width:36px;height:36px;border-radius:50%;background:#e0f2fe;color:#0284c7;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;">
+                       <i class="fa-solid fa-user-doctor"></i>
+                   </div>`
+                : `<div style="display:flex;width:36px;height:36px;border-radius:50%;background:#e0f2fe;color:#0284c7;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;">
+                       <i class="fa-solid fa-user-doctor"></i>
+                   </div>`;
+            /* onmousedown supaya terpilih SEBELUM input blur menutup dropdown */
+            return `<div class="dokter-dropdown-item"
+                         onmousedown="event.preventDefault();selectDokter('${prefix}',${d.id},${JSON.stringify(d.nama)},${JSON.stringify(d.spesialis||'')},${JSON.stringify(fotoUrl)})">
+                        ${fotoHtml}
+                        <div>
+                            <div class="dk-nama">${d.nama}</div>
+                            <div class="dk-sp">${d.spesialis || 'Dokter Umum'}</div>
+                        </div>
+                    </div>`;
+        }).join('')
+        : `<div style="padding:12px 16px;color:#94a3b8;font-size:13px;text-align:center;">
+               <i class="fa-solid fa-user-doctor" style="margin-right:6px;"></i>Dokter tidak ditemukan
+           </div>`;
+
+    dd.style.display = 'block';
+}
+
+function selectDokter(prefix, id, nama, spesialis, fotoUrl) {
+    document.getElementById(prefix + 'DokterId').value     = id;
+    document.getElementById(prefix + 'DokterSearch').value = '';
+    document.getElementById(prefix + 'DokterDropdown').style.display = 'none';
+
+    const card = document.getElementById(prefix + 'DokterSelected');
+    const fotoHtml = fotoUrl
+        ? `<img src="${fotoUrl}" style="width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #bfdbfe;"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+           <div style="display:none;width:40px;height:40px;border-radius:50%;background:#dbeafe;color:#2563eb;align-items:center;justify-content:center;font-size:16px;">
+               <i class="fa-solid fa-user-doctor"></i>
+           </div>`
+        : `<div style="display:flex;width:40px;height:40px;border-radius:50%;background:#dbeafe;color:#2563eb;align-items:center;justify-content:center;font-size:16px;">
+               <i class="fa-solid fa-user-doctor"></i>
+           </div>`;
+
+    card.innerHTML = `
+        ${fotoHtml}
+        <div style="flex:1;">
+            <div class="dk-nama">${nama}</div>
+            <div class="dk-sp">${spesialis || 'Dokter Umum'}</div>
+        </div>
+        <button type="button" class="dokter-clear-btn" onclick="clearDokter('${prefix}')">
+            <i class="fa-solid fa-xmark"></i>
+        </button>`;
+    card.style.display = 'flex';
+}
+
+function clearDokter(prefix) {
+    document.getElementById(prefix + 'DokterId').value     = '';
+    document.getElementById(prefix + 'DokterSearch').value = '';
+    document.getElementById(prefix + 'DokterDropdown').style.display = 'none';
+    const card = document.getElementById(prefix + 'DokterSelected');
+    card.innerHTML = ''; card.style.display = 'none';
+}
+
+/* Tutup dropdown jika klik di luar input & dropdown */
+document.addEventListener('mousedown', function (e) {
+    ['tambah', 'edit'].forEach(function (p) {
+        const inp = document.getElementById(p + 'DokterSearch');
+        const dd  = document.getElementById(p + 'DokterDropdown');
+        if (dd && inp && !inp.contains(e.target) && !dd.contains(e.target)) {
+            dd.style.display = 'none';
+        }
+    });
+});
+
+/* Reposisi saat window atau modal-body di-scroll */
+window.addEventListener('scroll', function () {
+    ['tambah', 'edit'].forEach(function (p) {
+        const dd = document.getElementById(p + 'DokterDropdown');
+        if (dd && dd.style.display === 'block') _positionDD(p);
+    });
+}, true);
+
+/* ============================================================
    OPEN PREVIEW MODAL
-================================================================ */
-function openPreviewModal(judul, konten, imgUrl, kategori, status, tanggal, views, readTime) {
-    // Gambar
-    const pvImgWrap      = document.getElementById('pvImgWrap');
-    const pvImg          = document.getElementById('pvImg');
-    const pvImgPh        = document.getElementById('pvImgPlaceholder');
-    if (imgUrl && imgUrl.trim() !== '') {
-        pvImg.src = imgUrl;
-        pvImgWrap.style.display  = 'block';
-        pvImgPh.style.display    = 'none';
+============================================================ */
+function openPreviewModal(judul, konten, imgUrl, kategori, status, tanggal, views, readTime, dokterNama, dokterSp, dokterFoto) {
+    const pvImgWrap = document.getElementById('pvImgWrap');
+    const pvImg     = document.getElementById('pvImg');
+    const pvImgPh   = document.getElementById('pvImgPlaceholder');
+    if (imgUrl && imgUrl.trim()) {
+        pvImg.src = imgUrl; pvImgWrap.style.display = 'block'; pvImgPh.style.display = 'none';
     } else {
-        pvImgWrap.style.display  = 'none';
-        pvImgPh.style.display    = 'flex';
+        pvImgWrap.style.display = 'none'; pvImgPh.style.display = 'flex';
     }
 
-    // Konten teks
-    document.getElementById('pvJudul').textContent   = judul;
-    document.getElementById('pvKonten').textContent  = konten;
-    document.getElementById('pvTanggal').textContent = tanggal;
+    document.getElementById('pvJudul').textContent    = judul;
+    document.getElementById('pvKonten').textContent   = konten;
+    document.getElementById('pvTanggal').textContent  = tanggal;
     document.getElementById('pvReadTime').textContent = readTime + ' menit baca';
-    document.getElementById('pvViews').textContent   = parseInt(views).toLocaleString('id-ID') + ' tayangan';
+    document.getElementById('pvViews').textContent    = parseInt(views).toLocaleString('id-ID') + ' tayangan';
     document.getElementById('pvKategori').textContent = kategori || 'Umum';
 
-    // Status badge
     const pvStatus = document.getElementById('pvStatus');
     if (status === 'published') {
-        pvStatus.textContent      = '● Dipublikasikan';
-        pvStatus.style.background = '#d1fae5';
-        pvStatus.style.color      = '#065f46';
+        pvStatus.textContent = '● Dipublikasikan';
+        pvStatus.style.background = '#d1fae5'; pvStatus.style.color = '#065f46';
     } else {
-        pvStatus.textContent      = '● Draft';
-        pvStatus.style.background = '#f1f5f9';
-        pvStatus.style.color      = '#475569';
+        pvStatus.textContent = '● Draft';
+        pvStatus.style.background = '#f1f5f9'; pvStatus.style.color = '#475569';
+    }
+
+    const pvDokterCard = document.getElementById('pvDokterCard');
+    if (dokterNama && dokterNama.trim()) {
+        const fotoWrap = document.getElementById('pvDokterFotoWrap');
+        fotoWrap.innerHTML = dokterFoto && dokterFoto.trim()
+            ? `<img src="${dokterFoto}" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid #bfdbfe;"
+                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+               <div class="no-foto" style="display:none;width:44px;height:44px;border-radius:50%;background:#dbeafe;color:#2563eb;align-items:center;justify-content:center;font-size:18px;">
+                   <i class="fa-solid fa-user-doctor"></i>
+               </div>`
+            : `<div class="no-foto" style="width:44px;height:44px;border-radius:50%;background:#dbeafe;color:#2563eb;display:flex;align-items:center;justify-content:center;font-size:18px;">
+                   <i class="fa-solid fa-user-doctor"></i>
+               </div>`;
+        document.getElementById('pvDokterNama').textContent = dokterNama;
+        document.getElementById('pvDokterSp').textContent   = dokterSp || 'Dokter';
+        pvDokterCard.style.display = 'flex';
+    } else {
+        pvDokterCard.style.display = 'none';
     }
 
     new bootstrap.Modal(document.getElementById('modalPreview')).show();
 }
 
-/* ================================================================
+/* ============================================================
    OPEN EDIT MODAL
-================================================================ */
-function openEditModal(id, judul, isi, imgUrl, kategori, status) {
+============================================================ */
+function openEditModal(id, judul, isi, imgUrl, kategori, status, dokterId, dokterNama, dokterSp, dokterFoto) {
     document.getElementById('editJudul').value       = judul;
     document.getElementById('editIsi').value         = isi;
     document.getElementById('editHapusGambar').value = '0';
@@ -1242,6 +1450,7 @@ function openEditModal(id, judul, isi, imgUrl, kategori, status) {
     document.getElementById('editPublished').checked = (status === 'published');
     document.getElementById('editDraft').checked     = (status !== 'published');
 
+    /* Kategori */
     const sel    = document.getElementById('editKategoriSelect');
     const custW  = document.getElementById('editKatCustomWrap');
     const custI  = document.getElementById('editKatCustom');
@@ -1257,13 +1466,14 @@ function openEditModal(id, judul, isi, imgUrl, kategori, status) {
     }
     hidden.value = kategori;
 
+    /* Gambar */
     const wrap  = document.getElementById('editPreviewWrap');
     const img   = document.getElementById('editPreviewImg');
     const zone  = document.getElementById('editUploadZone');
     const label = document.getElementById('editPreviewLabel');
     const mpbT  = document.getElementById('editMpbThumb');
     const mpbP  = document.getElementById('editMpbPlaceholder');
-    if (imgUrl && imgUrl.trim() !== '') {
+    if (imgUrl && imgUrl.trim()) {
         img.src = imgUrl; wrap.classList.add('show'); zone.style.display = 'none';
         if (label) label.textContent = 'Gambar Saat Ini';
         if (mpbT)  { mpbT.src = imgUrl; mpbT.style.display = 'block'; }
@@ -1273,26 +1483,35 @@ function openEditModal(id, judul, isi, imgUrl, kategori, status) {
         if (mpbT) { mpbT.src = ''; mpbT.style.display = 'none'; }
         if (mpbP) mpbP.style.display = 'flex';
     }
+    document.getElementById('editGambar').value = '';
 
-    const masterInput = document.getElementById('editGambar');
-    if (masterInput) masterInput.value = '';
+    /* Dokter */
+    clearDokter('edit');
+    if (dokterId && dokterNama && dokterNama.trim()) {
+        selectDokter('edit', dokterId, dokterNama, dokterSp, dokterFoto);
+    }
 
     updateWordCount('edit');
     syncPreview('edit');
     new bootstrap.Modal(document.getElementById('modalEdit')).show();
 }
 
-/* ---- Open DELETE modal ---- */
+/* ============================================================
+   OPEN DELETE MODAL
+============================================================ */
 function openDeleteModal(id, judul) {
     document.getElementById('formHapus').action      = '{{ url("admin/artikel") }}/' + id;
     document.getElementById('delTarget').textContent = judul;
     new bootstrap.Modal(document.getElementById('modalHapus')).show();
 }
 
-/* ---- Reset form tambah saat modal ditutup ---- */
+/* ============================================================
+   RESET FORM TAMBAH
+============================================================ */
 document.getElementById('modalTambah').addEventListener('hidden.bs.modal', function() {
     document.getElementById('formTambah').reset();
     removeImg('tambah');
+    clearDokter('tambah');
     document.getElementById('tambahKategori').value              = '';
     document.getElementById('tambahKatCustomWrap').style.display = 'none';
     document.getElementById('tambahWordCount').textContent       = '0';
@@ -1303,31 +1522,33 @@ document.getElementById('modalTambah').addEventListener('hidden.bs.modal', funct
         '<i class="fa-solid fa-tag" style="font-size:9px;color:var(--primary);"></i> Kategori &nbsp;·&nbsp; <i class="fa-regular fa-clock" style="font-size:9px;"></i> 0 menit baca';
 });
 
-/* ---- Live search ---- */
+/* ============================================================
+   FILTER & SEARCH
+============================================================ */
 document.getElementById('searchArtikel').addEventListener('input', function() {
     const q = this.value.toLowerCase();
-    document.querySelectorAll('.art-card').forEach(function(card) {
+    document.querySelectorAll('.art-card').forEach(card => {
         card.style.display = (!q || (card.dataset.judul || '').includes(q)) ? '' : 'none';
     });
 });
 
-/* ---- Filter kategori ---- */
 document.getElementById('filterKategori').addEventListener('change', function() {
     const val = this.value.toLowerCase();
-    document.querySelectorAll('.art-card').forEach(function(card) {
+    document.querySelectorAll('.art-card').forEach(card => {
         card.style.display = (!val || (card.dataset.kategori || '') === val) ? '' : 'none';
     });
 });
 
-/* ---- Filter status ---- */
 document.getElementById('filterStatus').addEventListener('change', function() {
     const val = this.value;
-    document.querySelectorAll('.art-card').forEach(function(card) {
+    document.querySelectorAll('.art-card').forEach(card => {
         card.style.display = (!val || card.dataset.status === val) ? '' : 'none';
     });
 });
 
-/* ---- View toggle ---- */
+/* ============================================================
+   VIEW TOGGLE
+============================================================ */
 const grid = document.getElementById('artikelGrid');
 document.getElementById('viewGrid').addEventListener('click', function() {
     grid.style.gridTemplateColumns = '';
