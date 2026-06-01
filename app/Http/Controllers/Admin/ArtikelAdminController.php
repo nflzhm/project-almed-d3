@@ -40,7 +40,7 @@ class ArtikelAdminController extends Controller
             'gambar'    => 'nullable|image|mimes:jpeg,png,webp|max:3072',
             'kategori'  => 'nullable|string|max:100',
             'status'    => 'nullable|in:published,draft',
-            'dokter_id' => 'nullable|exists:dokters,id',
+            'dokter_id' => 'nullable|exists:dokter,id',
         ]);
 
         $gambarPath = null;
@@ -54,7 +54,7 @@ class ArtikelAdminController extends Controller
             'deskripsi' => $request->deskripsi,
             'gambar'    => $gambarPath,
             'kategori'  => $request->kategori,
-            'dokter_id' => $request->dokter_id,
+            'dokter_id' => $request->dokter_id ?: null,
             'status'    => $request->filled('status') ? $request->status : 'published',
             'views'     => 0,
         ]);
@@ -72,7 +72,7 @@ class ArtikelAdminController extends Controller
             'kategori'     => 'nullable|string|max:100',
             'status'       => 'nullable|in:published,draft',
             'hapus_gambar' => 'nullable|in:0,1',
-            'dokter_id'    => 'nullable|exists:dokters,id',
+            'dokter_id'    => 'nullable|exists:dokter,id',
         ]);
 
         $artikel = Artikel::findOrFail($id);
@@ -98,7 +98,7 @@ class ArtikelAdminController extends Controller
             'deskripsi' => $request->deskripsi,
             'gambar'    => $gambarPath,
             'kategori'  => $request->kategori,
-            'dokter_id' => $request->dokter_id,
+            'dokter_id' => $request->dokter_id ?: null,
             'status'    => $request->filled('status') ? $request->status : $artikel->status,
         ]);
 

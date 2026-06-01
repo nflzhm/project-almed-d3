@@ -13,27 +13,21 @@
 
 <style>
 /* ============================================================
-   HERO SECTION
+   HERO
 ============================================================ */
 .artikel-hero {
     background: linear-gradient(150deg, #1C145C 0%, #231a72 40%, #0ea5e9 100%);
-    padding: 85px 0 72px;
-    position: relative;
-    overflow: hidden;
+    padding: 85px 0 72px; position: relative; overflow: hidden;
 }
 .artikel-hero::before {
-    content: '';
-    position: absolute; right: -80px; top: -80px;
+    content: ''; position: absolute; right: -80px; top: -80px;
     width: 420px; height: 420px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,255,255,.06), transparent 65%);
-    pointer-events: none;
+    background: radial-gradient(circle, rgba(255,255,255,.06), transparent 65%); pointer-events: none;
 }
 .artikel-hero::after {
-    content: '';
-    position: absolute; left: -40px; bottom: -100px;
+    content: ''; position: absolute; left: -40px; bottom: -100px;
     width: 300px; height: 300px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(14,165,233,.12), transparent 65%);
-    pointer-events: none;
+    background: radial-gradient(circle, rgba(14,165,233,.12), transparent 65%); pointer-events: none;
 }
 .hero-dots {
     position: absolute; inset: 0; pointer-events: none;
@@ -42,11 +36,7 @@
 }
 .hero-inner { position: relative; z-index: 2; }
 .hero-bc { display: flex; align-items: center; gap: 8px; margin-bottom: 20px; }
-.hero-bc a {
-    color: rgba(255,255,255,.6); font-size: 13px; font-weight: 500;
-    text-decoration: none; transition: color .2s;
-    display: flex; align-items: center; gap: 5px;
-}
+.hero-bc a { color: rgba(255,255,255,.6); font-size: 13px; font-weight: 500; text-decoration: none; transition: color .2s; display: flex; align-items: center; gap: 5px; }
 .hero-bc a:hover { color: #fff; }
 .hero-bc .sep { color: rgba(255,255,255,.25); font-size: 11px; }
 .hero-bc .cur { color: rgba(255,255,255,.8); font-size: 13px; font-weight: 600; }
@@ -59,8 +49,7 @@
 }
 .hero-title {
     font-family: 'DM Serif Display', serif;
-    font-size: clamp(28px, 4.5vw, 46px);
-    color: #fff; line-height: 1.2;
+    font-size: clamp(28px, 4.5vw, 46px); color: #fff; line-height: 1.2;
     letter-spacing: -.3px; margin-bottom: 18px; font-weight: 400;
 }
 .hero-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
@@ -73,66 +62,68 @@
 .hero-meta-pill i { font-size: 10px; color: #7dd3fc; }
 
 /* ============================================================
-   BODY LAYOUT
+   BODY
 ============================================================ */
-.artikel-body { padding: 52px 0 72px; background: #ffffff; }
+.artikel-body { padding: 52px 0 72px; background: #fff; }
 
 .artikel-main-card {
     background: #fff; border-radius: 20px; overflow: hidden;
     box-shadow: 0 4px 24px rgba(28,20,92,.08);
     border: 1px solid #e8edf5; margin-bottom: 28px;
 }
-.artikel-featured-img { width:100%; height:auto; object-fit:contain; display:block; border-radius:20px; }
+.artikel-featured-img { width:100%; height:auto; object-fit:contain; display:block; }
 .artikel-img-placeholder {
     width: 100%; aspect-ratio: 16/7;
     background: linear-gradient(135deg, #e0f2fe, #cffafe);
     display: flex; align-items: center; justify-content: center;
     font-size: 72px; color: #0ea5e9; opacity: .4;
 }
-.artikel-content { padding: 36px 40px 40px; }
-.artikel-content p { font-size: 15.5px; line-height: 1.9; color: #374151; margin-bottom: 20px; }
 
-/* Dokter card di detail artikel */
+/* Dokter card — compact & rapi */
 .artikel-dokter-card {
-    display: flex; align-items: center; gap: 16px;
-    padding: 18px 20px; margin: 0 40px 28px;
-    background: linear-gradient(135deg, #eff6ff, #dbeafe);
-    border: 1.5px solid #bfdbfe; border-radius: 14px;
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 18px;
+    background: #eff6ff;
+    border-top: 1px solid #e8edf5;
+    border-bottom: 1px solid #bfdbfe;
 }
 .artikel-dokter-card img {
-    width: 60px; height: 60px; border-radius: 50%;
-    object-fit: cover; border: 2.5px solid #93c5fd; flex-shrink: 0;
+    width: 48px; height: 48px; border-radius: 50%;
+    object-fit: cover; border: 2px solid #93c5fd; flex-shrink: 0;
 }
 .artikel-dokter-card .no-foto {
-    width: 60px; height: 60px; border-radius: 50%;
+    width: 48px; height: 48px; border-radius: 50%;
     background: #dbeafe; color: #2563eb;
     display: flex; align-items: center; justify-content: center;
-    font-size: 24px; flex-shrink: 0;
+    font-size: 20px; flex-shrink: 0;
 }
 .artikel-dokter-card .dk-badge {
-    font-size: 10px; font-weight: 800; color: #3b82f6;
+    font-size: 9.5px; font-weight: 800; color: #3b82f6;
     text-transform: uppercase; letter-spacing: .6px;
-    display: flex; align-items: center; gap: 5px; margin-bottom: 4px;
+    display: flex; align-items: center; gap: 4px; margin-bottom: 2px;
 }
 .artikel-dokter-card .dk-nama {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 15px; font-weight: 800; color: #1e40af; margin-bottom: 2px;
+    font-size: 13.5px; font-weight: 800; color: #1e40af; margin-bottom: 1px;
 }
-.artikel-dokter-card .dk-sp { font-size: 13px; color: #3b82f6; }
+.artikel-dokter-card .dk-sp { font-size: 12px; color: #3b82f6; }
 .artikel-dokter-card .dk-action {
-    margin-left: auto;
+    margin-left: auto; flex-shrink: 0;
     display: inline-flex; align-items: center; gap: 6px;
-    padding: 8px 16px; border-radius: 8px;
+    padding: 7px 14px; border-radius: 8px;
     background: #1e40af; color: #fff;
-    font-size: 12.5px; font-weight: 700;
+    font-size: 12px; font-weight: 700;
     text-decoration: none; transition: background .2s, transform .2s;
     white-space: nowrap;
 }
 .artikel-dokter-card .dk-action:hover { background: #1d4ed8; transform: translateY(-1px); }
 
+.artikel-content { padding: 28px 32px 32px; }
+.artikel-content p { font-size: 15.5px; line-height: 1.9; color: #374151; margin-bottom: 20px; }
+
 .artikel-share-bar {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 16px 40px; border-top: 1px solid #e8edf5;
+    padding: 14px 32px; border-top: 1px solid #e8edf5;
     background: #fafbff; flex-wrap: wrap; gap: 12px;
 }
 .share-label { font-size: 13px; font-weight: 700; color: #64748b; display: flex; align-items: center; gap: 6px; }
@@ -156,52 +147,58 @@
 .sidebar-card {
     background: #fff; border-radius: 16px; overflow: hidden;
     box-shadow: 0 4px 18px rgba(28,20,92,.07);
-    border: 1px solid #e8edf5; margin-bottom: 24px;
+    border: 1px solid #e8edf5; margin-bottom: 20px;
 }
 .sc-head {
-    padding: 16px 20px 14px; border-bottom: 1px solid #e8edf5;
+    padding: 14px 20px 12px; border-bottom: 1px solid #e8edf5;
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 13.5px; font-weight: 800; color: #1e293b;
+    font-size: 13px; font-weight: 800; color: #1e293b;
     display: flex; align-items: center; gap: 8px;
 }
 .sc-head i { color: #0ea5e9; font-size: 13px; }
-.sc-body { padding: 16px 20px; }
+.sc-body { padding: 14px 18px; }
 
-/* Dokter sidebar card */
 .sidebar-dokter-card {
     display: flex; align-items: center; gap: 12px;
-    padding: 12px 16px;
+    padding: 12px 14px;
     background: linear-gradient(135deg, #eff6ff, #dbeafe);
-    border: 1.5px solid #bfdbfe; border-radius: 12px;
+    border: 1.5px solid #bfdbfe; border-radius: 10px;
 }
 .sidebar-dokter-card img {
-    width: 48px; height: 48px; border-radius: 50%;
+    width: 44px; height: 44px; border-radius: 50%;
     object-fit: cover; border: 2px solid #93c5fd; flex-shrink: 0;
 }
 .sidebar-dokter-card .no-foto {
-    width: 48px; height: 48px; border-radius: 50%;
+    width: 44px; height: 44px; border-radius: 50%;
     background: #dbeafe; color: #2563eb;
     display: flex; align-items: center; justify-content: center;
-    font-size: 20px; flex-shrink: 0;
+    font-size: 18px; flex-shrink: 0;
 }
 .sidebar-dokter-card .dk-label { font-size: 10px; font-weight: 700; color: #3b82f6; text-transform: uppercase; letter-spacing: .5px; }
 .sidebar-dokter-card .dk-nama  { font-size: 13px; font-weight: 800; color: #1e40af; line-height: 1.3; }
 .sidebar-dokter-card .dk-sp    { font-size: 11.5px; color: #3b82f6; }
+.sidebar-dokter-btn {
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    margin-top: 10px; padding: 9px 14px; border-radius: 8px;
+    background: #1e40af; color: #fff; text-decoration: none;
+    font-size: 12.5px; font-weight: 700;
+    transition: background .2s, transform .2s;
+}
+.sidebar-dokter-btn:hover { background: #1d4ed8; color: #fff; transform: translateY(-1px); }
 
 .artikel-item {
     display: flex; align-items: flex-start; gap: 12px;
     padding: 10px 0; border-bottom: 1px solid #f1f5f9;
     text-decoration: none; color: #1e293b; cursor: pointer;
-    transition: background .15s;
 }
 .artikel-item:last-child { border-bottom: 0; padding-bottom: 0; }
 .artikel-item:hover .ai-title { color: #0ea5e9; }
-.ai-thumb { width: 68px; height: 52px; border-radius: 8px; object-fit: cover; flex-shrink: 0; }
+.ai-thumb { width: 64px; height: 48px; border-radius: 8px; object-fit: cover; flex-shrink: 0; }
 .ai-thumb-placeholder {
-    width: 68px; height: 52px; border-radius: 8px;
+    width: 64px; height: 48px; border-radius: 8px;
     background: linear-gradient(135deg, #e0f2fe, #cffafe);
     display: flex; align-items: center; justify-content: center;
-    font-size: 20px; color: #0ea5e9; flex-shrink: 0;
+    font-size: 18px; color: #0ea5e9; flex-shrink: 0;
 }
 .ai-title {
     font-size: 13px; font-weight: 700; color: #1e293b; line-height: 1.4;
@@ -210,17 +207,11 @@
 }
 .ai-date { font-size: 11px; color: #94a3b8; margin-top: 4px; display: flex; align-items: center; gap: 4px; }
 
-.info-row {
-    display: flex; align-items: flex-start; gap: 12px;
-    padding: 10px 0; border-bottom: 1px solid #f1f5f9;
-}
+.info-row { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid #f1f5f9; }
 .info-row:last-child { border-bottom: 0; padding-bottom: 0; }
-.info-icon {
-    width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center; font-size: 13px;
-}
+.info-icon { width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; }
 .info-label { font-size: 10.5px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: .6px; }
-.info-val { font-size: 13.5px; font-weight: 600; color: #1e293b; margin-top: 2px; }
+.info-val { font-size: 13px; font-weight: 600; color: #1e293b; margin-top: 2px; line-height: 1.4; }
 
 .tag-cloud { display: flex; flex-wrap: wrap; gap: 7px; }
 .tag-pill {
@@ -233,7 +224,7 @@
 .tag-pill:hover { background: #1C145C; color: #fff; border-color: #1C145C; }
 
 /* ============================================================
-   ARTIKEL GRID
+   ARTIKEL GRID (list)
 ============================================================ */
 .artikel-grid {
     display: grid;
@@ -248,7 +239,6 @@
     transition: transform .25s, box-shadow .25s;
 }
 .artikel-card:hover { transform: translateY(-5px); box-shadow: 0 12px 36px rgba(28,20,92,.12); }
-
 .ac-thumb {
     position: relative; overflow: hidden; flex-shrink: 0;
     display:flex; align-items:center; justify-content:center; background:#f8fafc;
@@ -268,71 +258,53 @@
     text-transform: uppercase; letter-spacing: .7px;
     padding: 3px 10px; border-radius: 20px;
 }
-
-.ac-body { padding: 18px 20px; flex: 1; display: flex; flex-direction: column; }
-.ac-date {
-    font-size: 11px; color: #94a3b8; font-weight: 600;
-    text-transform: uppercase; letter-spacing: .5px;
-    margin-bottom: 8px; display: flex; align-items: center; gap: 5px;
-}
+.ac-body { padding: 16px 18px; flex: 1; display: flex; flex-direction: column; }
+.ac-date { font-size: 11px; color: #94a3b8; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 7px; display: flex; align-items: center; gap: 5px; }
 .ac-title {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 15px; font-weight: 800; color: #1e293b; line-height: 1.4; margin-bottom: 8px;
+    font-size: 14.5px; font-weight: 800; color: #1e293b; line-height: 1.4; margin-bottom: 7px;
     display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
 }
 .ac-excerpt {
     font-size: 13px; color: #64748b; line-height: 1.6; flex: 1;
     display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
 }
-
-/* Dokter chip di card list */
 .ac-dokter-chip {
     display: flex; align-items: center; gap: 8px;
-    margin-bottom: 12px; padding: 8px 10px;
+    margin-bottom: 10px; padding: 7px 10px;
     background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px;
 }
-.ac-dokter-chip img {
-    width: 28px; height: 28px; border-radius: 50%;
-    object-fit: cover; border: 1.5px solid #93c5fd; flex-shrink: 0;
-}
+.ac-dokter-chip img { width: 26px; height: 26px; border-radius: 50%; object-fit: cover; border: 1.5px solid #93c5fd; flex-shrink: 0; }
 .ac-dokter-chip .no-foto {
-    width: 28px; height: 28px; border-radius: 50%;
+    width: 26px; height: 26px; border-radius: 50%;
     background: #dbeafe; color: #2563eb;
     display: flex; align-items: center; justify-content: center;
-    font-size: 12px; flex-shrink: 0;
+    font-size: 11px; flex-shrink: 0;
 }
 .ac-dokter-chip .dk-nama { font-size: 11.5px; font-weight: 700; color: #1e40af; line-height: 1.2; }
 .ac-dokter-chip .dk-sp   { font-size: 10.5px; color: #3b82f6; }
-
-.ac-footer {
-    display:flex; align-items:center; justify-content:flex-start;
-    margin-top:auto; padding:14px 20px 18px;
-    border-top:1px solid #eef2f7;
-}
+.ac-footer { display:flex; align-items:center; margin-top:auto; padding:12px 18px 16px; border-top:1px solid #eef2f7; }
 .ac-read-btn {
     display:inline-flex; align-items:center; justify-content:center; gap:8px;
-    padding:10px 18px; border-radius:12px;
+    padding:9px 18px; border-radius:10px;
     background:#1C145C; color:#fff;
     font-size:13px; font-weight:600; text-decoration:none;
     transition:all .25s ease;
 }
-.ac-read-btn i { font-size:12px; transition:transform .25s ease; }
+.ac-read-btn i { font-size:11px; transition:transform .25s ease; }
 .ac-read-btn:hover { background:#2a1f7a; transform:translateY(-2px); color:#fff; }
 .ac-read-btn:hover i { transform:translateX(3px); }
 
-/* ---- Filter bar ---- */
+/* Filter bar */
 .filter-bar {
     background: #fff; border-radius: 14px; border: 1px solid #e8edf5;
-    padding: 16px 20px; display: flex; align-items: center; gap: 12px;
+    padding: 14px 18px; display: flex; align-items: center; gap: 12px;
     margin-bottom: 24px; flex-wrap: wrap;
     box-shadow: 0 2px 10px rgba(28,20,92,.06);
 }
 .filter-search-wrap { position: relative; flex: 1; min-width: 200px; }
-.filter-search-wrap i {
-    position: absolute; left: 13px; top: 50%;
-    transform: translateY(-50%); color: #94a3b8; font-size: 13px; pointer-events: none;
-}
+.filter-search-wrap i { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 13px; pointer-events: none; }
 .filter-search {
     width: 100%; padding: 9px 13px 9px 36px;
     border: 1.5px solid #e2e8f0; border-radius: 10px;
@@ -352,20 +324,13 @@
 }
 .filter-select:focus { border-color: #0ea5e9; outline: none; }
 
-.section-heading {
-    font-family: 'DM Serif Display', serif;
-    font-size: 28px; font-weight: 400; color: #1C145C;
-    margin-bottom: 6px; letter-spacing: -.3px;
-}
+.section-heading { font-family: 'DM Serif Display', serif; font-size: 28px; font-weight: 400; color: #1C145C; margin-bottom: 6px; letter-spacing: -.3px; }
 .section-sub { font-size: 14px; color: #64748b; margin-bottom: 24px; }
 .section-divider { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
 .section-divider::after { content: ''; flex: 1; height: 1.5px; background: linear-gradient(to right, #e2e8f0, transparent); }
 
-/* ---- Pagination ---- */
-.artikel-pagination {
-    display: flex; flex-direction: column; align-items: center;
-    gap: 12px; padding: 24px 40px 32px; border-top: 1px solid #e8edf5;
-}
+/* Pagination */
+.artikel-pagination { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 20px 0 28px; border-top: 1px solid #e8edf5; }
 .pag-buttons { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; justify-content: center; }
 .pag-btn {
     display: inline-flex; align-items: center; justify-content: center;
@@ -377,53 +342,35 @@
 .pag-btn:hover, .pag-btn.active { background: #1C145C; border-color: #1C145C; color: #fff; }
 .pag-info { font-size: 13px; color: #94a3b8; }
 
-/* ---- Empty state ---- */
+/* Empty */
 .empty-state { grid-column: 1/-1; padding: 64px 24px; text-align: center; color: #64748b; }
-.empty-state .es-icon {
-    width: 72px; height: 72px; border-radius: 20px;
-    background: #e0f2fe; color: #0ea5e9;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 28px; margin: 0 auto 16px;
-}
+.empty-state .es-icon { width: 72px; height: 72px; border-radius: 20px; background: #e0f2fe; color: #0ea5e9; display: flex; align-items: center; justify-content: center; font-size: 28px; margin: 0 auto 16px; }
 .empty-state .es-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 700; color: #1e293b; margin-bottom: 6px; }
-.empty-state .es-sub   { font-size: 13.5px; }
+.empty-state .es-sub { font-size: 13.5px; }
 
 /* Responsive */
 @media(max-width:991.98px) {
-    .artikel-content { padding: 28px 24px 32px; }
-    .artikel-share-bar { padding: 14px 24px; }
-    .artikel-dokter-card { margin: 0 24px 24px; }
+    .artikel-content { padding: 24px 20px 28px; }
+    .artikel-share-bar { padding: 12px 20px; }
     .artikel-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
 }
 @media(max-width:575.98px) {
     .artikel-hero { padding: 80px 0 56px; }
     .hero-title { font-size: 26px; }
-    .artikel-content { padding: 22px 18px 28px; }
-    .artikel-share-bar { padding: 12px 18px; }
-    .artikel-dokter-card { margin: 0 18px 18px; flex-wrap: wrap; }
+    .artikel-content { padding: 18px 16px 24px; }
+    .artikel-share-bar { padding: 12px 16px; }
+    .artikel-dokter-card { flex-wrap: wrap; gap: 10px; }
     .artikel-dokter-card .dk-action { margin-left: 0; width: 100%; justify-content: center; }
     .artikel-grid { grid-template-columns: 1fr; }
     .filter-bar { flex-direction: column; align-items: stretch; }
-    .ac-footer { padding: 12px 16px 16px; }
-    .ac-read-btn { width: 100%; padding: 11px 16px; font-size: 13px; border-radius: 10px; }
+    .ac-footer { padding: 10px 16px 14px; }
+    .ac-read-btn { width: 100%; }
 }
 </style>
 
-
 <style>
-body {
-    font-family: 'Segoe UI', sans-serif;
-    background: #f5f7fb;
-    overflow-x: hidden;
-    padding-top: calc(38px + 70px);
-}
-
-/* TOPBAR */
-.topbar {
-    background: linear-gradient(90deg, #1C145C 0%, #34258d 50%, #1C145C 100%);
-    position: fixed; top: 0; left: 0; width: 100%; height: 38px;
-    z-index: 10000; display: flex; align-items: center;
-}
+body { font-family: 'Segoe UI', sans-serif; background: #f5f7fb; overflow-x: hidden; padding-top: calc(38px + 70px); }
+.topbar { background: linear-gradient(90deg, #1C145C 0%, #34258d 50%, #1C145C 100%); position: fixed; top: 0; left: 0; width: 100%; height: 38px; z-index: 10000; display: flex; align-items: center; }
 .topbar .container { display: flex; align-items: center; justify-content: space-between; }
 .topbar-info { display: flex; align-items: center; gap: 14px; flex-wrap: nowrap; }
 .topbar-info span { color: rgba(255,255,255,.88); font-size: 12px; display: flex; align-items: center; gap: 6px; white-space: nowrap; }
@@ -431,62 +378,25 @@ body {
 .topbar-social { display: flex; align-items: center; gap: 12px; }
 .topbar-social a { color: rgba(255,255,255,.75); font-size: 14px; text-decoration: none; display: flex; align-items: center; transition: .2s; }
 .topbar-social a:hover { color: #fff; transform: translateY(-1px); }
-
-/* NAVBAR */
 .navbar-float-wrap { position: fixed; top: 38px; left: 0; width: 100%; z-index: 9998; padding: 12px 20px; }
-.navbar-float {
-    max-width: 1200px; margin: 0 auto; position: relative;
-    display: flex; align-items: center; justify-content: space-between; gap: 10px;
-    padding: 10px 14px 10px 22px; border-radius: 60px;
-    background: rgba(255,255,255,0.07);
-    backdrop-filter: blur(22px) saturate(180%);
-    -webkit-backdrop-filter: blur(22px) saturate(180%);
-    border: 1px solid rgba(255,255,255,0.16);
-    box-shadow: 0 8px 32px rgba(15,23,42,.08), inset 0 1px 0 rgba(255,255,255,.22);
-    transition: background .3s ease, border .3s ease, box-shadow .3s ease;
-}
-.navbar-float.scrolled {
-    background: rgba(255,255,255,.14);
-    backdrop-filter: blur(26px) saturate(200%);
-    border: 1px solid rgba(255,255,255,.22);
-    box-shadow: 0 10px 40px rgba(15,23,42,.10), inset 0 1px 0 rgba(255,255,255,.28);
-}
-.navbar-float::before {
-    content: ""; position: absolute; inset: 0; border-radius: inherit;
-    background: linear-gradient(180deg, rgba(255,255,255,.20), rgba(255,255,255,.02)); pointer-events: none;
-}
+.navbar-float { max-width: 1200px; margin: 0 auto; position: relative; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 14px 10px 22px; border-radius: 60px; background: rgba(255,255,255,0.07); backdrop-filter: blur(22px) saturate(180%); -webkit-backdrop-filter: blur(22px) saturate(180%); border: 1px solid rgba(255,255,255,0.16); box-shadow: 0 8px 32px rgba(15,23,42,.08), inset 0 1px 0 rgba(255,255,255,.22); transition: background .3s ease, border .3s ease, box-shadow .3s ease; }
+.navbar-float.scrolled { background: rgba(255,255,255,.14); backdrop-filter: blur(26px) saturate(200%); border: 1px solid rgba(255,255,255,.22); box-shadow: 0 10px 40px rgba(15,23,42,.10), inset 0 1px 0 rgba(255,255,255,.28); }
+.navbar-float::before { content: ""; position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(180deg, rgba(255,255,255,.20), rgba(255,255,255,.02)); pointer-events: none; }
 .nav-logo { position: relative; z-index: 2; }
 .navbar-float .nav-logo img { height: 38px; object-fit: contain; display: block; }
 .nav-links { display: flex; align-items: center; justify-content: center; flex: 1; gap: 2px; position: relative; z-index: 2; }
-.nav-link-pill {
-    padding: 8px 15px; border-radius: 50px; font-size: 14px; font-weight: 500;
-    color: #0f172a; text-decoration: none; white-space: nowrap;
-    display: inline-flex; align-items: center; gap: 4px;
-    transition: background .2s, color .2s, transform .2s;
-}
+.nav-link-pill { padding: 8px 15px; border-radius: 50px; font-size: 14px; font-weight: 500; color: #0f172a; text-decoration: none; white-space: nowrap; display: inline-flex; align-items: center; gap: 4px; transition: background .2s, color .2s, transform .2s; }
 .nav-link-pill:hover { background: rgba(255,255,255,.25); color: #1C145C; transform: translateY(-1px); }
 .nav-link-pill.active { background: rgba(255,255,255,.35); color: #1C145C; font-weight: 600; }
 .drop-wrap { position: relative; }
-.drop-menu {
-    position: absolute; top: calc(100% + 12px); left: 50%;
-    transform: translateX(-50%) translateY(8px); min-width: 180px; padding: 8px;
-    border-radius: 22px; background: rgba(255,255,255,.70);
-    backdrop-filter: blur(24px); border: 1px solid rgba(255,255,255,.35);
-    box-shadow: 0 12px 35px rgba(15,23,42,.12);
-    opacity: 0; visibility: hidden; transition: .22s ease; z-index: 100;
-}
+.drop-menu { position: absolute; top: calc(100% + 12px); left: 50%; transform: translateX(-50%) translateY(8px); min-width: 180px; padding: 8px; border-radius: 22px; background: rgba(255,255,255,.70); backdrop-filter: blur(24px); border: 1px solid rgba(255,255,255,.35); box-shadow: 0 12px 35px rgba(15,23,42,.12); opacity: 0; visibility: hidden; transition: .22s ease; z-index: 100; }
 .drop-wrap:hover .drop-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
 .drop-item { display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 14px; font-size: 14px; color: #334155; text-decoration: none; transition: .18s; }
 .drop-item:hover { background: rgba(255,255,255,.55); color: #1C145C; }
 .chevron { font-size: 11px; opacity: .6; transition: .25s; }
 .drop-wrap:hover .chevron { transform: rotate(180deg); }
 .nav-cta { position: relative; z-index: 2; }
-.btn-kontak {
-    padding: 10px 22px; border-radius: 50px; background: #1C145C;
-    color: #fff !important; text-decoration: none !important;
-    font-size: 14px; font-weight: 600; display: inline-block; border: none;
-    box-shadow: 0 8px 20px rgba(28,20,92,.25); transition: .2s;
-}
+.btn-kontak { padding: 10px 22px; border-radius: 50px; background: #1C145C; color: #fff !important; text-decoration: none !important; font-size: 14px; font-weight: 600; display: inline-block; border: none; box-shadow: 0 8px 20px rgba(28,20,92,.25); transition: .2s; }
 .btn-kontak:hover { background: #2a1e8a; transform: translateY(-1px); }
 .nav-burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; border: none; background: transparent; padding: 6px; position: relative; z-index: 2; }
 .nav-burger span { width: 22px; height: 2px; background: #1C145C; border-radius: 2px; display: block; transition: .3s; }
@@ -495,14 +405,7 @@ body {
 .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 .nav-overlay { display: none; position: fixed; inset: 0; background: rgba(15,23,42,0); z-index: 9999990; transition: background .3s ease; }
 .nav-overlay.show { display: block; background: rgba(15,23,42,0.42); }
-.nav-drawer {
-    position: fixed; top: 0; right: 0; width: 62%; max-width: 280px; height: 100dvh;
-    z-index: 9999995; transform: translateX(100%);
-    transition: transform .32s cubic-bezier(.4,0,.2,1);
-    background: rgba(255,255,255,0.88); backdrop-filter: blur(24px) saturate(180%);
-    border-left: 1px solid rgba(255,255,255,0.45); box-shadow: -8px 0 32px rgba(15,23,42,.12);
-    display: flex; flex-direction: column; overflow-y: auto; overscroll-behavior: contain;
-}
+.nav-drawer { position: fixed; top: 0; right: 0; width: 62%; max-width: 280px; height: 100dvh; z-index: 9999995; transform: translateX(100%); transition: transform .32s cubic-bezier(.4,0,.2,1); background: rgba(255,255,255,0.88); backdrop-filter: blur(24px) saturate(180%); border-left: 1px solid rgba(255,255,255,0.45); box-shadow: -8px 0 32px rgba(15,23,42,.12); display: flex; flex-direction: column; overflow-y: auto; overscroll-behavior: contain; }
 .nav-drawer.open { transform: translateX(0); }
 .drawer-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 16px 14px; border-bottom: 1px solid rgba(0,0,0,.07); flex-shrink: 0; }
 .drawer-label { font-size: 11px; font-weight: 700; color: #94a3b8; letter-spacing: .8px; text-transform: uppercase; }
@@ -519,26 +422,10 @@ body {
 .d-divider { height: 1px; background: rgba(0,0,0,.07); margin: 6px 2px; }
 .drawer-footer { padding: 12px 14px 24px; border-top: 1px solid rgba(0,0,0,.07); flex-shrink: 0; }
 .drawer-footer .btn-kontak { border-radius: 14px; display: block; text-align: center; padding: 12px 22px; }
-
 @media(max-width:1100px) { .nav-link-pill { padding: 7px 11px; font-size: 13px; } }
-@media(max-width:991px) {
-    body { padding-top: calc(38px + 64px); }
-    .navbar-float-wrap { padding: 10px 12px; }
-    .navbar-float { border-radius: 26px; padding: 10px 14px; }
-    .nav-links, .nav-cta { display: none; }
-    .nav-burger { display: flex; }
-    .topbar-info span { font-size: 10px; }
-    .topbar-social { gap: 10px; }
-}
-@media(max-width:480px) {
-    .topbar .container { gap: 8px; }
-    .topbar-info { gap: 8px; }
-    .topbar-info span { font-size: 9px; }
-    .topbar-social a { font-size: 12px; }
-    .navbar-float { border-radius: 22px; }
-}
+@media(max-width:991px) { body { padding-top: calc(38px + 64px); } .navbar-float-wrap { padding: 10px 12px; } .navbar-float { border-radius: 26px; padding: 10px 14px; } .nav-links, .nav-cta { display: none; } .nav-burger { display: flex; } .topbar-info span { font-size: 10px; } .topbar-social { gap: 10px; } }
+@media(max-width:480px) { .topbar .container { gap: 8px; } .topbar-info { gap: 8px; } .topbar-info span { font-size: 9px; } .topbar-social a { font-size: 12px; } .navbar-float { border-radius: 22px; } }
 </style>
-
 
 <!-- TOPBAR -->
 <div class="topbar">
@@ -587,26 +474,18 @@ body {
 </div>
 
 <div class="nav-overlay" id="navOverlay"></div>
-<aside class="nav-drawer" id="navDrawer" aria-label="Mobile navigation">
+<aside class="nav-drawer" id="navDrawer">
     <div class="drawer-header">
         <span class="drawer-label">Menu</span>
         <button class="drawer-close-btn" id="drawerClose"><i class="bi bi-x-lg"></i></button>
     </div>
     <nav class="drawer-nav">
-        <a href="/" class="d-link {{ request()->is('/') ? 'active' : '' }}">
-            <span class="d-icon"><i class="bi bi-house"></i></span> Beranda
-        </a>
+        <a href="/" class="d-link {{ request()->is('/') ? 'active' : '' }}"><span class="d-icon"><i class="bi bi-house"></i></span> Beranda</a>
         <div class="d-group-label">Konten</div>
         <div class="d-sub">
-            <a href="{{ url('/karir') }}" class="d-link {{ request()->is('karir*') ? 'active' : '' }}">
-                <span class="d-icon"><i class="bi bi-briefcase"></i></span> Karir
-            </a>
-            <a href="{{ url('/berita') }}" class="d-link {{ request()->is('berita*') ? 'active' : '' }}">
-                <span class="d-icon"><i class="bi bi-newspaper"></i></span> Berita
-            </a>
-            <a href="{{ url('/video') }}" class="d-link {{ request()->is('video*') ? 'active' : '' }}">
-                <span class="d-icon"><i class="bi bi-play-circle"></i></span> Video
-            </a>
+            <a href="{{ url('/karir') }}" class="d-link {{ request()->is('karir*') ? 'active' : '' }}"><span class="d-icon"><i class="bi bi-briefcase"></i></span> Karir</a>
+            <a href="{{ url('/berita') }}" class="d-link {{ request()->is('berita*') ? 'active' : '' }}"><span class="d-icon"><i class="bi bi-newspaper"></i></span> Berita</a>
+            <a href="{{ url('/video') }}" class="d-link {{ request()->is('video*') ? 'active' : '' }}"><span class="d-icon"><i class="bi bi-play-circle"></i></span> Video</a>
         </div>
         <div class="d-divider"></div>
         <a href="/layanan"  class="d-link {{ request()->is('layanan*')  ? 'active' : '' }}"><span class="d-icon"><i class="bi bi-hospital"></i></span> Layanan</a>
@@ -634,9 +513,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 10), { passive: true });
 });
 </script>
-
 <style>body { padding-top: 37px; }</style>
-
 
 {{-- ============================================================
      MODE: DETAIL ARTIKEL
@@ -674,7 +551,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 <i class="fa-regular fa-eye"></i> {{ number_format($artikel->views) }} tayangan
             </span>
             @endif
-            {{-- Dokter di hero --}}
             @if($artikel->dokter)
             <span class="hero-meta-pill">
                 <i class="fa-solid fa-user-doctor"></i> {{ $artikel->dokter->nama }}
@@ -701,7 +577,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         </div>
                     @endif
 
-                    {{-- Dokter card (di dalam card, sebelum konten) --}}
+                    {{-- Dokter card compact --}}
                     @if($artikel->dokter)
                     @php $dok = $artikel->dokter; @endphp
                     <div class="artikel-dokter-card">
@@ -712,25 +588,21 @@ document.addEventListener('DOMContentLoaded', function () {
                         @else
                             <div class="no-foto"><i class="fa-solid fa-user-doctor"></i></div>
                         @endif
-                        <div style="flex:1;">
+                        <div style="flex:1;min-width:0;">
                             <div class="dk-badge">
-                                <i class="fa-solid fa-user-doctor" style="font-size:9px;"></i>
-                                Dokter Terkait
+                                <i class="fa-solid fa-user-doctor" style="font-size:8px;"></i> Dokter Terkait
                             </div>
                             <div class="dk-nama">{{ $dok->nama }}</div>
                             <div class="dk-sp">{{ $dok->spesialis ?? 'Dokter' }}</div>
                         </div>
-                        <a href="{{ url('/dokter') }}" class="dk-action">
-                            <i class="fa-solid fa-calendar-check" style="font-size:11px;"></i>
-                            Buat Janji
+                        <a href="{{ route('jadwaldokter') }}" class="dk-action">
+                            <i class="fa-solid fa-calendar-check" style="font-size:10px;"></i> Cek Jadwal Dokter
                         </a>
                     </div>
                     @endif
 
                     <div class="artikel-content">
-                        <div class="artikel-isi">
-                            {!! nl2br(e($artikel->isi ?? $artikel->deskripsi ?? '')) !!}
-                        </div>
+                        {!! nl2br(e($artikel->isi ?? $artikel->deskripsi ?? '')) !!}
                     </div>
 
                     <div class="artikel-share-bar">
@@ -785,13 +657,9 @@ document.addEventListener('DOMContentLoaded', function () {
                                 <div class="dk-sp">{{ $artikel->dokter->spesialis ?? 'Dokter' }}</div>
                             </div>
                         </div>
-                        <a href="{{ url('/dokter') }}"
-                           style="display:flex;align-items:center;justify-content:center;gap:6px;
-                                  margin-top:12px;padding:9px;border-radius:10px;
-                                  background:#1e40af;color:#fff;text-decoration:none;
-                                  font-size:12.5px;font-weight:700;transition:background .2s;">
+                        <a href="{{ route('jadwaldokter') }}" class="sidebar-dokter-btn">
                             <i class="fa-solid fa-calendar-check" style="font-size:11px;"></i>
-                            Buat Janji dengan Dokter Ini
+                            Cek Jadwal Dokter
                         </a>
                     </div>
                 </div>
@@ -805,7 +673,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             <div class="info-icon" style="background:#e0f2fe;color:#0284c7;"><i class="fa-regular fa-newspaper"></i></div>
                             <div>
                                 <div class="info-label">Judul</div>
-                                <div class="info-val" style="font-size:13px;line-height:1.4;">{{ $artikel->judul }}</div>
+                                <div class="info-val">{{ $artikel->judul }}</div>
                             </div>
                         </div>
                         <div class="info-row">
@@ -824,15 +692,6 @@ document.addEventListener('DOMContentLoaded', function () {
                             </div>
                         </div>
                         @endif
-                        <div class="info-row">
-                            <div class="info-icon" style="background:#fef3c7;color:#d97706;"><i class="fa-solid fa-hospital"></i></div>
-                            <div>
-                                <div class="info-label">Penulis</div>
-                                <div class="info-val">
-                                    {{ $artikel->dokter ? $artikel->dokter->nama : 'Tim RSU Allam Medica' }}
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -915,7 +774,6 @@ document.addEventListener('DOMContentLoaded', function () {
 <section class="artikel-body">
     <div class="container">
 
-        <!-- Filter bar -->
         <div class="filter-bar">
             <div class="filter-search-wrap">
                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -945,20 +803,18 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
         </div>
 
-        <!-- Cards grid -->
         <div class="artikel-grid" id="artikelGrid">
             @forelse($artikelList as $item)
             @php
-                $dokter       = $item->dokter;
+                $dokter        = $item->dokter;
                 $dokterFotoUrl = $dokter && $dokter->foto ? asset('storage/'.$dokter->foto) : null;
-                $tglFmt       = $item->created_at ? \Carbon\Carbon::parse($item->created_at)->translatedFormat('d M Y') : '-';
+                $tglFmt        = $item->created_at ? \Carbon\Carbon::parse($item->created_at)->translatedFormat('d M Y') : '-';
             @endphp
 
             <div class="artikel-card"
                  data-judul="{{ strtolower($item->judul) }}"
                  data-kat="{{ strtolower($item->kategori ?? '') }}">
 
-                <!-- Thumb -->
                 <div class="ac-thumb">
                     @if($item->gambar)
                         <img src="{{ asset('storage/'.$item->gambar) }}" alt="{{ $item->judul }}" loading="lazy">
@@ -970,7 +826,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     @endif
                 </div>
 
-                <!-- Body -->
                 <div class="ac-body">
                     <div class="ac-date">
                         <i class="fa-regular fa-calendar" style="font-size:10px;"></i> {{ $tglFmt }}
@@ -978,7 +833,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     <div class="ac-title">{{ $item->judul }}</div>
                     <div class="ac-excerpt">{{ Str::limit(strip_tags($item->deskripsi ?? ''), 120) }}</div>
 
-                    {{-- Dokter chip --}}
                     @if($dokter)
                     <div class="ac-dokter-chip">
                         @if($dokterFotoUrl)
@@ -996,7 +850,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     @endif
                 </div>
 
-                <!-- Footer -->
                 <div class="ac-footer">
                     <a href="{{ route('artikel.detail', $item->id) }}" class="ac-read-btn">
                         Baca Selengkapnya <i class="fa-solid fa-arrow-right"></i>
@@ -1013,7 +866,6 @@ document.addEventListener('DOMContentLoaded', function () {
             @endforelse
         </div>
 
-        {{-- Pagination --}}
         @if(isset($artikelList) && $artikelList->hasPages())
         <div class="artikel-pagination">
             <div class="pag-info">
@@ -1049,25 +901,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 <style>
-@font-face {
-    font-family: 'Gotham';
-    src: url('{{ asset('fonts/Gotham-Black.otf') }}') format('opentype');
-    font-weight: 900; font-style: normal; font-display: swap;
-}
-.footer-rsu {
-    background: linear-gradient(to bottom, #ffffff 0%, #fefefd 3%, #fdfcf6 8%, #fcfbf3 13%, #faf8ee 20%, #f7f5e8 30%, #f3f0e1 45%, #ede9d9 65%, #e8e3d2 85%, #e3deca 100%);
-    color: #1C145C; padding: 56px 0 0; position: relative; overflow: hidden;
-}
-.footer-rsu .footer-ornament {
-    position: absolute; right: -80px; bottom: -150px; width: 420px; height: 420px; opacity: 0.07;
-    background-image: url('{{ asset('images/beranda/ornamen.png') }}');
-    background-size: contain; background-repeat: no-repeat; background-position: center; pointer-events: none; z-index: 0;
-}
-.footer-rsu .footer-ornament2 {
-    position: absolute; left: -100px; top: 40px; width: 340px; height: 340px; opacity: 0.04;
-    background-image: url('{{ asset('images/beranda/ornamen.png') }}');
-    background-size: contain; background-repeat: no-repeat; background-position: center; pointer-events: none; z-index: 0;
-}
+@font-face { font-family: 'Gotham'; src: url('{{ asset('fonts/Gotham-Black.otf') }}') format('opentype'); font-weight: 900; font-style: normal; font-display: swap; }
+.footer-rsu { background: linear-gradient(to bottom, #ffffff 0%, #fefefd 3%, #fdfcf6 8%, #fcfbf3 13%, #faf8ee 20%, #f7f5e8 30%, #f3f0e1 45%, #ede9d9 65%, #e8e3d2 85%, #e3deca 100%); color: #1C145C; padding: 56px 0 0; position: relative; overflow: hidden; }
+.footer-rsu .footer-ornament { position: absolute; right: -80px; bottom: -150px; width: 420px; height: 420px; opacity: 0.07; background-image: url('{{ asset('images/beranda/ornamen.png') }}'); background-size: contain; background-repeat: no-repeat; background-position: center; pointer-events: none; z-index: 0; }
+.footer-rsu .footer-ornament2 { position: absolute; left: -100px; top: 40px; width: 340px; height: 340px; opacity: 0.04; background-image: url('{{ asset('images/beranda/ornamen.png') }}'); background-size: contain; background-repeat: no-repeat; background-position: center; pointer-events: none; z-index: 0; }
 .footer-rsu .container-fluid { max-width: 1100px; position: relative; z-index: 1; }
 .footer-rsu .footer-logo { height: 50px; display: block; margin-bottom: 16px; }
 .footer-rsu .footer-title { font-size: 16px; font-weight: 700; color: #1C145C; margin-bottom: 8px; }
@@ -1107,9 +944,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 <h5 class="footer-title">RSU Allam Medica Bumiayu</h5>
                 <p class="footer-desc">Jl. Pangeran Diponegoro No. 609, Jatisawit, Bumiayu, Kabupaten Brebes, Jawa Tengah 52273</p>
                 <div class="footer-social">
-                    <a href="https://www.tiktok.com/@rsuallammedicabumiayu?_t=8fLMQk9idhI&_r=1" target="_blank" title="TikTok"><i class="bi bi-tiktok"></i></a>
-                    <a href="https://www.facebook.com/allam.medicabmy?mibextid=LQQJ4d" target="_blank" title="Facebook"><i class="bi bi-facebook"></i></a>
-                    <a href="https://www.instagram.com/allam.medica/" target="_blank" title="Instagram"><i class="bi bi-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@rsuallammedicabumiayu?_t=8fLMQk9idhI&_r=1" target="_blank"><i class="bi bi-tiktok"></i></a>
+                    <a href="https://www.facebook.com/allam.medicabmy?mibextid=LQQJ4d" target="_blank"><i class="bi bi-facebook"></i></a>
+                    <a href="https://www.instagram.com/allam.medica/" target="_blank"><i class="bi bi-instagram"></i></a>
                 </div>
                 <div class="footer-mitra-label">Akreditasi & Mitra</div>
                 <div class="footer-mitra">
@@ -1174,8 +1011,7 @@ function copyLink() {
     const btn = document.getElementById('copyBtn');
     if (!btn) return;
     navigator.clipboard.writeText(window.location.href).then(function() {
-        btn.classList.add('copied');
-        btn.innerHTML = '<i class="fa-solid fa-check"></i> Tersalin!';
+        btn.classList.add('copied'); btn.innerHTML = '<i class="fa-solid fa-check"></i> Tersalin!';
         setTimeout(function() { btn.classList.remove('copied'); btn.innerHTML = '<i class="fa-solid fa-link"></i> Salin Link'; }, 2500);
     }).catch(function() {
         const ta = document.createElement('textarea');

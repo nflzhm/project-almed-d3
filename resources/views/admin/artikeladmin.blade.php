@@ -390,14 +390,26 @@
 .dokter-dropdown {
     display: none;
     position: fixed;
-    z-index: 999999;
+    z-index: 99999;
     border: 1.5px solid #cbd5e1;
     border-radius: 8px;
-    max-height: 240px;
+    max-height: 200px;       /* ← kurangi height agar tidak terlalu panjang */
     overflow-y: auto;
     background: #fff;
-    box-shadow: 0 12px 32px rgba(0,0,0,.18);
+    box-shadow: 0 8px 24px rgba(0,0,0,.15);
     pointer-events: auto;
+}
+
+/* Selected card rapi */
+.dokter-selected-card {
+    display: none;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+    padding: 10px 14px;
+    background: #eff6ff;
+    border: 1.5px solid #bfdbfe;
+    border-radius: 8px;
 }
 .dokter-dropdown-item {
     padding: 10px 14px; cursor: pointer;
@@ -1265,18 +1277,28 @@ function removeImg(prefix) {
 });
 
 /* ============================================================
-   DOKTER SEARCH & SELECT
-   Strategi: dropdown di-append ke <body> dan diposisikan
-   dengan getBoundingClientRect() → bebas dari overflow/clip
-   modal apapun. Event onmousedown mencegah blur menutup
-   dropdown sebelum item sempat terpilih.
+   DOKTER SEARCH & SELECT — Fix dropdown tidak bisa diklik
 ============================================================ */
-
-/* Pindahkan kedua dropdown ke <body> saat DOM siap */
 document.addEventListener('DOMContentLoaded', function () {
     ['tambah', 'edit'].forEach(function (p) {
         const dd = document.getElementById(p + 'DokterDropdown');
         if (dd) document.body.appendChild(dd);
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    ['tambah', 'edit'].forEach(function (p) {
+        const dd = document.getElementById(p + 'DokterDropdown');
+        if (dd) document.body.appendChild(dd);
+
+        /* Reposisi saat modal body di-scroll */
+        const modalBody = document.querySelector('#modal' + (p === 'tambah' ? 'Tambah' : 'Edit') + ' .modal-body');
+        if (modalBody) {
+            modalBody.addEventListener('scroll', function() {
+                const dd2 = document.getElementById(p + 'DokterDropdown');
+                if (dd2 && dd2.style.display === 'block') _positionDD(p);
+            });
+        }
     });
 });
 
@@ -1285,8 +1307,8 @@ function _positionDD(prefix) {
     const dd    = document.getElementById(prefix + 'DokterDropdown');
     if (!input || !dd) return;
     const r = input.getBoundingClientRect();
-    dd.style.top   = (r.bottom + 4) + 'px';
-    dd.style.left  = r.left + 'px';
+    dd.style.top   = (r.bottom + 4) + 'px';   // ← hapus window.scrollY
+    dd.style.left  = r.left + 'px';            // ← hapus window.scrollX
     dd.style.width = r.width + 'px';
 }
 
@@ -1303,8 +1325,14 @@ function filterDokter(prefix) {
         (d.spesialis || '').toLowerCase().includes(q)
     ).slice(0, 8);
 
-    dd.innerHTML = results.length
-        ? results.map(function (d) {
+    dd.innerHTML = '';
+
+    if (!results.length) {
+        dd.innerHTML = `<div style="padding:12px 16px;color:#94a3b8;font-size:13px;text-align:center;">
+            <i class="fa-solid fa-user-doctor" style="margin-right:6px;"></i>Dokter tidak ditemukan
+        </div>`;
+    } else {
+        results.forEach(function(d) {
             const fotoUrl  = d.foto ? '/storage/' + d.foto : '';
             const fotoHtml = fotoUrl
                 ? `<img src="${fotoUrl}" style="width:36px;height:36px;border-radius:50%;object-fit:cover;border:1.5px solid #e0f2fe;flex-shrink:0;"
@@ -1315,19 +1343,24 @@ function filterDokter(prefix) {
                 : `<div style="display:flex;width:36px;height:36px;border-radius:50%;background:#e0f2fe;color:#0284c7;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;">
                        <i class="fa-solid fa-user-doctor"></i>
                    </div>`;
-            /* onmousedown supaya terpilih SEBELUM input blur menutup dropdown */
-            return `<div class="dokter-dropdown-item"
-                         onmousedown="event.preventDefault();selectDokter('${prefix}',${d.id},${JSON.stringify(d.nama)},${JSON.stringify(d.spesialis||'')},${JSON.stringify(fotoUrl)})">
-                        ${fotoHtml}
-                        <div>
-                            <div class="dk-nama">${d.nama}</div>
-                            <div class="dk-sp">${d.spesialis || 'Dokter Umum'}</div>
-                        </div>
-                    </div>`;
-        }).join('')
-        : `<div style="padding:12px 16px;color:#94a3b8;font-size:13px;text-align:center;">
-               <i class="fa-solid fa-user-doctor" style="margin-right:6px;"></i>Dokter tidak ditemukan
-           </div>`;
+
+            const item = document.createElement('div');
+            item.className = 'dokter-dropdown-item';
+            item.style.cssText = 'padding:10px 14px;cursor:pointer;display:flex;align-items:center;gap:10px;border-bottom:1px solid #f1f5f9;transition:background .15s;';
+            item.innerHTML = `${fotoHtml}<div><div style="font-size:13px;font-weight:700;color:#0f172a;">${d.nama}</div><div style="font-size:11.5px;color:#64748b;">${d.spesialis || 'Dokter Umum'}</div></div>`;
+
+            item.addEventListener('mouseover', () => item.style.background = '#f0f9ff');
+            item.addEventListener('mouseout',  () => item.style.background = '');
+
+            /* onmousedown supaya terpilih SEBELUM blur menutup dropdown */
+            item.addEventListener('mousedown', function(e) {
+                e.preventDefault();
+                selectDokter(prefix, d.id, d.nama, d.spesialis || '', fotoUrl);
+            });
+
+            dd.appendChild(item);
+        });
+    }
 
     dd.style.display = 'block';
 }
@@ -1351,8 +1384,8 @@ function selectDokter(prefix, id, nama, spesialis, fotoUrl) {
     card.innerHTML = `
         ${fotoHtml}
         <div style="flex:1;">
-            <div class="dk-nama">${nama}</div>
-            <div class="dk-sp">${spesialis || 'Dokter Umum'}</div>
+            <div style="font-size:13.5px;font-weight:700;color:#1e40af;">${nama}</div>
+            <div style="font-size:12px;color:#3b82f6;">${spesialis || 'Dokter Umum'}</div>
         </div>
         <button type="button" class="dokter-clear-btn" onclick="clearDokter('${prefix}')">
             <i class="fa-solid fa-xmark"></i>
@@ -1368,9 +1401,9 @@ function clearDokter(prefix) {
     card.innerHTML = ''; card.style.display = 'none';
 }
 
-/* Tutup dropdown jika klik di luar input & dropdown */
-document.addEventListener('mousedown', function (e) {
-    ['tambah', 'edit'].forEach(function (p) {
+/* Tutup dropdown klik luar */
+document.addEventListener('mousedown', function(e) {
+    ['tambah', 'edit'].forEach(function(p) {
         const inp = document.getElementById(p + 'DokterSearch');
         const dd  = document.getElementById(p + 'DokterDropdown');
         if (dd && inp && !inp.contains(e.target) && !dd.contains(e.target)) {
@@ -1379,9 +1412,9 @@ document.addEventListener('mousedown', function (e) {
     });
 });
 
-/* Reposisi saat window atau modal-body di-scroll */
-window.addEventListener('scroll', function () {
-    ['tambah', 'edit'].forEach(function (p) {
+/* Reposisi saat scroll */
+window.addEventListener('scroll', function() {
+    ['tambah', 'edit'].forEach(function(p) {
         const dd = document.getElementById(p + 'DokterDropdown');
         if (dd && dd.style.display === 'block') _positionDD(p);
     });
