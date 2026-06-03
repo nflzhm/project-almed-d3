@@ -19,4 +19,9 @@ class Dokter extends Model
     {
         return $this->hasMany(Jadwal::class, 'dokter_id', 'id');
     }
+
+    public function artikels()
+    {
+        return $this->belongsToMany(Artikel::class, 'artikel_dokter', 'dokter_id', 'artikel_id');
+    }
 }

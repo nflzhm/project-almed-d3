@@ -79,7 +79,7 @@
     font-size: 72px; color: #0ea5e9; opacity: .4;
 }
 
-/* Dokter card — compact & rapi */
+/* Dokter card */
 .artikel-dokter-card {
     display: flex; align-items: center; gap: 14px;
     padding: 14px 18px;
@@ -425,6 +425,88 @@ body { font-family: 'Segoe UI', sans-serif; background: #f5f7fb; overflow-x: hid
 @media(max-width:1100px) { .nav-link-pill { padding: 7px 11px; font-size: 13px; } }
 @media(max-width:991px) { body { padding-top: calc(38px + 64px); } .navbar-float-wrap { padding: 10px 12px; } .navbar-float { border-radius: 26px; padding: 10px 14px; } .nav-links, .nav-cta { display: none; } .nav-burger { display: flex; } .topbar-info span { font-size: 10px; } .topbar-social { gap: 10px; } }
 @media(max-width:480px) { .topbar .container { gap: 8px; } .topbar-info { gap: 8px; } .topbar-info span { font-size: 9px; } .topbar-social a { font-size: 12px; } .navbar-float { border-radius: 22px; } }
+
+/* ============================================================
+   RUNNING DOKTER TICKER
+============================================================ */
+.dokter-ticker-wrap {
+    display: flex; align-items: center;
+    background: #fff; border: 1px solid #e8edf5;
+    border-radius: 14px; overflow: hidden;
+    box-shadow: 0 2px 10px rgba(28,20,92,.06);
+    margin-bottom: 16px; height: 62px;
+}
+.dokter-ticker-label {
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; gap: 3px;
+    background: linear-gradient(135deg, #1C145C, #2a1f7a);
+    color: #fff; padding: 0 18px;
+    font-size: 10px; font-weight: 800;
+    text-transform: uppercase; letter-spacing: .8px;
+    height: 100%; flex-shrink: 0; white-space: nowrap;
+    min-width: 90px;
+}
+.dokter-ticker-label i { font-size: 16px; margin-bottom: 2px; }
+.dokter-ticker-track-wrap {
+    flex: 1; overflow: hidden; position: relative; height: 100%;
+}
+.dokter-ticker-track-wrap::before,
+.dokter-ticker-track-wrap::after {
+    content: ''; position: absolute; top: 0; bottom: 0; width: 40px;
+    z-index: 2; pointer-events: none;
+}
+.dokter-ticker-track-wrap::before {
+    left: 0;
+    background: linear-gradient(to right, #fff, transparent);
+}
+.dokter-ticker-track-wrap::after {
+    right: 0;
+    background: linear-gradient(to left, #fff, transparent);
+}
+.dokter-ticker-track {
+    display: flex; align-items: center; gap: 0;
+    height: 100%; width: max-content;
+    animation: tickerScroll 30s linear infinite;
+}
+.dokter-ticker-track:hover { animation-play-state: paused; }
+
+@keyframes tickerScroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.dokter-ticker-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 0 20px; border-right: 1px solid #f1f5f9;
+    height: 100%; white-space: nowrap; cursor: default;
+    transition: background .2s;
+}
+.dokter-ticker-item:hover { background: #f8faff; }
+.dokter-ticker-item img,
+.dt-no-foto {
+    width: 36px; height: 36px; border-radius: 50%;
+    object-fit: cover; flex-shrink: 0;
+    border: 2px solid #bfdbfe;
+}
+.dt-no-foto {
+    background: #dbeafe; color: #2563eb;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+}
+.dt-nama {
+    font-size: 12.5px; font-weight: 700; color: #1e293b; line-height: 1.3;
+}
+.dt-sp {
+    font-size: 11px; color: #3b82f6; font-weight: 500;
+}
+
+@media(max-width:575px) {
+    .dokter-ticker-label span { display: none; }
+    .dokter-ticker-label { min-width: 44px; padding: 0 12px; }
+    .dokter-ticker-item { padding: 0 14px; }
+    .dokter-ticker-track { animation-duration: 20s; }
+}
+
 </style>
 
 <!-- TOPBAR -->
@@ -551,11 +633,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 <i class="fa-regular fa-eye"></i> {{ number_format($artikel->views) }} tayangan
             </span>
             @endif
-            @if($artikel->dokter)
-            <span class="hero-meta-pill">
-                <i class="fa-solid fa-user-doctor"></i> {{ $artikel->dokter->nama }}
-            </span>
-            @endif
         </div>
     </div>
 </section>
@@ -577,29 +654,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         </div>
                     @endif
 
-                    {{-- Dokter card compact --}}
-                    @if($artikel->dokter)
-                    @php $dok = $artikel->dokter; @endphp
-                    <div class="artikel-dokter-card">
-                        @if($dok->foto)
-                            <img src="{{ asset('storage/'.$dok->foto) }}" alt="{{ $dok->nama }}"
-                                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                            <div class="no-foto" style="display:none;"><i class="fa-solid fa-user-doctor"></i></div>
-                        @else
-                            <div class="no-foto"><i class="fa-solid fa-user-doctor"></i></div>
-                        @endif
-                        <div style="flex:1;min-width:0;">
-                            <div class="dk-badge">
-                                <i class="fa-solid fa-user-doctor" style="font-size:8px;"></i> Dokter Terkait
-                            </div>
-                            <div class="dk-nama">{{ $dok->nama }}</div>
-                            <div class="dk-sp">{{ $dok->spesialis ?? 'Dokter' }}</div>
-                        </div>
-                        <a href="{{ route('jadwaldokter') }}" class="dk-action">
-                            <i class="fa-solid fa-calendar-check" style="font-size:10px;"></i> Cek Jadwal Dokter
-                        </a>
-                    </div>
-                    @endif
 
                     <div class="artikel-content">
                         {!! nl2br(e($artikel->isi ?? $artikel->deskripsi ?? '')) !!}
@@ -636,16 +690,16 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="col-lg-4">
 
                 {{-- Dokter sidebar --}}
-                @if($artikel->dokter)
+                @if($artikel->dokters->count())
                 <div class="sidebar-card">
                     <div class="sc-head">
                         <i class="fa-solid fa-user-doctor"></i> Dokter Terkait
                     </div>
                     <div class="sc-body">
-                        <div class="sidebar-dokter-card">
-                            @if($artikel->dokter->foto)
-                                <img src="{{ asset('storage/'.$artikel->dokter->foto) }}"
-                                     alt="{{ $artikel->dokter->nama }}"
+                        @foreach($artikel->dokters as $dok)
+                        <div class="sidebar-dokter-card" style="{{ !$loop->last ? 'margin-bottom:10px;' : '' }}">
+                            @if($dok->foto)
+                                <img src="{{ asset('storage/'.$dok->foto) }}" alt="{{ $dok->nama }}"
                                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
                                 <div class="no-foto" style="display:none;"><i class="fa-solid fa-user-doctor"></i></div>
                             @else
@@ -653,47 +707,19 @@ document.addEventListener('DOMContentLoaded', function () {
                             @endif
                             <div>
                                 <div class="dk-label"><i class="fa-solid fa-stethoscope" style="font-size:9px;"></i> Spesialis</div>
-                                <div class="dk-nama">{{ $artikel->dokter->nama }}</div>
-                                <div class="dk-sp">{{ $artikel->dokter->spesialis ?? 'Dokter' }}</div>
+                                <div class="dk-nama">{{ $dok->nama }}</div>
+                                <div class="dk-sp">{{ $dok->spesialis ?? 'Dokter' }}</div>
                             </div>
                         </div>
-                        <a href="{{ route('jadwaldokter') }}" class="sidebar-dokter-btn">
+                        @endforeach
+                        <a href="{{ url('/dokter') }}" class="sidebar-dokter-btn">
                             <i class="fa-solid fa-calendar-check" style="font-size:11px;"></i>
-                            Cek Jadwal Dokter
+                            Buat Janji dengan Dokter Ini
                         </a>
                     </div>
                 </div>
                 @endif
 
-                <!-- Info artikel -->
-                <div class="sidebar-card">
-                    <div class="sc-head"><i class="fa-solid fa-circle-info"></i> Info Artikel</div>
-                    <div class="sc-body">
-                        <div class="info-row">
-                            <div class="info-icon" style="background:#e0f2fe;color:#0284c7;"><i class="fa-regular fa-newspaper"></i></div>
-                            <div>
-                                <div class="info-label">Judul</div>
-                                <div class="info-val">{{ $artikel->judul }}</div>
-                            </div>
-                        </div>
-                        <div class="info-row">
-                            <div class="info-icon" style="background:#d1fae5;color:#059669;"><i class="fa-regular fa-calendar"></i></div>
-                            <div>
-                                <div class="info-label">Diterbitkan</div>
-                                <div class="info-val">{{ \Carbon\Carbon::parse($artikel->created_at)->translatedFormat('d F Y') }}</div>
-                            </div>
-                        </div>
-                        @if(!empty($artikel->kategori))
-                        <div class="info-row">
-                            <div class="info-icon" style="background:#ede9fe;color:#7c3aed;"><i class="fa-solid fa-tag"></i></div>
-                            <div>
-                                <div class="info-label">Kategori</div>
-                                <div class="info-val">{{ $artikel->kategori }}</div>
-                            </div>
-                        </div>
-                        @endif
-                    </div>
-                </div>
 
                 <!-- Tags -->
                 <div class="sidebar-card">
@@ -774,6 +800,51 @@ document.addEventListener('DOMContentLoaded', function () {
 <section class="artikel-body">
     <div class="container">
 
+    {{-- Running Dokter --}}
+@if(isset($dokterList) && $dokterList->count())
+<div class="dokter-ticker-wrap">
+    <div class="dokter-ticker-label">
+        <i class="fa-solid fa-user-doctor"></i>
+        <span>Dokter Kami</span>
+    </div>
+    <div class="dokter-ticker-track-wrap">
+        <div class="dokter-ticker-track" id="dokterTicker">
+            @foreach($dokterList as $dok)
+            <div class="dokter-ticker-item">
+                @if($dok->foto)
+                    <img src="{{ asset('storage/'.$dok->foto) }}" alt="{{ $dok->nama }}"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="dt-no-foto" style="display:none;"><i class="fa-solid fa-user-doctor"></i></div>
+                @else
+                    <div class="dt-no-foto"><i class="fa-solid fa-user-doctor"></i></div>
+                @endif
+                <div class="dt-info">
+                    <div class="dt-nama">{{ $dok->nama }}</div>
+                    <div class="dt-sp">{{ $dok->spesialis ?? 'Dokter Umum' }}</div>
+                </div>
+            </div>
+            @endforeach
+            {{-- duplikat untuk loop seamless --}}
+            @foreach($dokterList as $dok)
+            <div class="dokter-ticker-item">
+                @if($dok->foto)
+                    <img src="{{ asset('storage/'.$dok->foto) }}" alt="{{ $dok->nama }}"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="dt-no-foto" style="display:none;"><i class="fa-solid fa-user-doctor"></i></div>
+                @else
+                    <div class="dt-no-foto"><i class="fa-solid fa-user-doctor"></i></div>
+                @endif
+                <div class="dt-info">
+                    <div class="dt-nama">{{ $dok->nama }}</div>
+                    <div class="dt-sp">{{ $dok->spesialis ?? 'Dokter Umum' }}</div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</div>
+@endif
+
         <div class="filter-bar">
             <div class="filter-search-wrap">
                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -805,11 +876,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         <div class="artikel-grid" id="artikelGrid">
             @forelse($artikelList as $item)
-            @php
-                $dokter        = $item->dokter;
-                $dokterFotoUrl = $dokter && $dokter->foto ? asset('storage/'.$dokter->foto) : null;
-                $tglFmt        = $item->created_at ? \Carbon\Carbon::parse($item->created_at)->translatedFormat('d M Y') : '-';
-            @endphp
 
             <div class="artikel-card"
                  data-judul="{{ strtolower($item->judul) }}"
@@ -828,26 +894,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 <div class="ac-body">
                     <div class="ac-date">
-                        <i class="fa-regular fa-calendar" style="font-size:10px;"></i> {{ $tglFmt }}
+                        <i class="fa-regular fa-calendar" style="font-size:10px;"></i>
+                        {{ $item->created_at ? \Carbon\Carbon::parse($item->created_at)->translatedFormat('d M Y') : '-' }}
                     </div>
                     <div class="ac-title">{{ $item->judul }}</div>
                     <div class="ac-excerpt">{{ Str::limit(strip_tags($item->deskripsi ?? ''), 120) }}</div>
-
-                    @if($dokter)
-                    <div class="ac-dokter-chip">
-                        @if($dokterFotoUrl)
-                            <img src="{{ $dokterFotoUrl }}" alt="{{ $dokter->nama }}"
-                                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                            <div class="no-foto" style="display:none;"><i class="fa-solid fa-user-doctor"></i></div>
-                        @else
-                            <div class="no-foto"><i class="fa-solid fa-user-doctor"></i></div>
-                        @endif
-                        <div>
-                            <div class="dk-nama">{{ $dokter->nama }}</div>
-                            <div class="dk-sp">{{ $dokter->spesialis ?? 'Dokter' }}</div>
-                        </div>
-                    </div>
-                    @endif
                 </div>
 
                 <div class="ac-footer">

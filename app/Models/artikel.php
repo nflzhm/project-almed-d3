@@ -13,14 +13,12 @@ class Artikel extends Model
         'deskripsi',
         'gambar',
         'kategori',
-        'dokter_id',
         'views',
         'status',
     ];
 
     protected $casts = [
-        'views'     => 'integer',
-        'dokter_id' => 'integer',
+        'views' => 'integer',
     ];
 
     protected $attributes = [
@@ -28,19 +26,17 @@ class Artikel extends Model
         'views'  => 0,
     ];
 
-    // Relasi ke dokter
-    public function dokter()
+    // Many-to-many ke dokter
+    public function dokters()
     {
-        return $this->belongsTo(Dokter::class, 'dokter_id');
+        return $this->belongsToMany(Dokter::class, 'artikel_dokter', 'artikel_id', 'dokter_id');
     }
 
-    // Scope: hanya artikel published
     public function scopePublished($query)
     {
         return $query->where('status', 'published');
     }
 
-    // Accessor: URL gambar lengkap
     public function getGambarUrlAttribute(): ?string
     {
         return $this->gambar

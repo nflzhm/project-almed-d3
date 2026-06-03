@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Artikel;
+use App\Models\Dokter;
 
 class ArtikelController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Artikel::with('dokter')->where('status', 'published');
+        $query = Artikel::with('dokters')
+            ->where('status', 'published');
 
         if ($request->filled('search')) {
             $query->where('judul', 'like', '%' . $request->search . '%');
@@ -26,18 +28,31 @@ class ArtikelController extends Controller
             ->distinct()
             ->pluck('kategori');
 
-        return view('artikel', compact('artikelList', 'kategoriList'));
+        $dokterList = Dokter::select(
+                'id',
+                'nama',
+                'spesialis',
+                'foto'
+            )
+            ->orderBy('nama')
+            ->get();
+
+        return view('artikel', compact(
+            'artikelList',
+            'kategoriList',
+            'dokterList'
+        ));
     }
 
     public function show($id)
     {
-        $artikel = Artikel::with('dokter')
-                          ->where('status', 'published')
-                          ->findOrFail($id);
+        $artikel = Artikel::with('dokters')
+            ->where('status', 'published')
+            ->findOrFail($id);
 
         $artikel->increment('views');
 
-        $artikelTerkait = Artikel::with('dokter')
+        $artikelTerkait = Artikel::with('dokters')
             ->where('status', 'published')
             ->where('id', '!=', $id)
             ->when($artikel->kategori, function ($q) use ($artikel) {
@@ -49,15 +64,20 @@ class ArtikelController extends Controller
 
         if ($artikelTerkait->count() < 4) {
             $idSudahAda = $artikelTerkait->pluck('id')->push($id);
-            $tambahan = Artikel::with('dokter')
+
+            $tambahan = Artikel::with('dokters')
                 ->where('status', 'published')
                 ->whereNotIn('id', $idSudahAda)
                 ->latest()
                 ->take(4 - $artikelTerkait->count())
                 ->get();
+
             $artikelTerkait = $artikelTerkait->merge($tambahan);
         }
 
-        return view('artikel', compact('artikel', 'artikelTerkait'));
+        return view('artikel', compact(
+            'artikel',
+            'artikelTerkait'
+        ));
     }
 }

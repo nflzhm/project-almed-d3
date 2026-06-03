@@ -9,10 +9,6 @@
 
 @push('styles')
 <style>
-/* ============================================================
-   ARTIKEL PAGE — Allam Medica Admin
-============================================================ */
-
 .page-header {
     display: flex; align-items: flex-end;
     justify-content: space-between;
@@ -79,7 +75,6 @@
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
 }
-
 .art-card {
     background: var(--card-bg); border: 1px solid var(--border-color);
     border-radius: var(--radius); overflow: hidden;
@@ -138,22 +133,21 @@
     font-size: 13px; color: var(--text-muted); line-height: 1.55; flex: 1;
     display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 0;
 }
-
 .ac-dokter-chip {
     display: flex; align-items: center; gap: 8px;
-    margin-top: 10px; padding: 7px 10px;
+    margin-top: 6px; padding: 6px 10px;
     background: #eff6ff; border: 1px solid #bfdbfe;
     border-radius: 8px; flex-shrink: 0;
 }
 .ac-dokter-chip img {
-    width: 26px; height: 26px; border-radius: 50%; object-fit: cover;
+    width: 24px; height: 24px; border-radius: 50%; object-fit: cover;
     border: 1.5px solid #bfdbfe; flex-shrink: 0;
 }
 .ac-dokter-chip .no-foto {
-    width: 26px; height: 26px; border-radius: 50%;
+    width: 24px; height: 24px; border-radius: 50%;
     background: #dbeafe; color: #2563eb;
     display: flex; align-items: center; justify-content: center;
-    font-size: 11px; flex-shrink: 0;
+    font-size: 10px; flex-shrink: 0;
 }
 .ac-dokter-chip .dk-nama { font-size: 11.5px; font-weight: 700; color: #1e40af; line-height: 1.2; }
 .ac-dokter-chip .dk-sp   { font-size: 10.5px; color: #3b82f6; }
@@ -236,28 +230,28 @@
     margin-bottom: 20px; padding-bottom: 20px;
     border-bottom: 1px solid var(--border-color);
 }
-.pv-meta-item {
-    display: flex; align-items: center; gap: 6px;
-    font-size: 12.5px; color: var(--text-muted);
-}
+.pv-meta-item { display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--text-muted); }
 .pv-meta-item i { color: var(--primary); font-size: 12px; }
 
-.pv-dokter-card {
+/* Preview dokter list */
+.pv-dokters-wrap {
+    display: flex; flex-direction: column; gap: 8px;
+    margin-bottom: 20px;
+}
+.pv-dokter-item {
     display: flex; align-items: center; gap: 12px;
-    padding: 12px 16px; margin-bottom: 20px;
+    padding: 10px 14px;
     background: #eff6ff; border: 1.5px solid #bfdbfe; border-radius: 10px;
 }
-.pv-dokter-card img {
-    width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid #bfdbfe;
-}
-.pv-dokter-card .no-foto {
-    width: 44px; height: 44px; border-radius: 50%;
+.pv-dokter-item img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid #bfdbfe; flex-shrink: 0; }
+.pv-dokter-item .no-foto {
+    width: 40px; height: 40px; border-radius: 50%;
     background: #dbeafe; color: #2563eb;
-    display: flex; align-items: center; justify-content: center; font-size: 18px;
+    display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0;
 }
-.pv-dokter-card .dk-label { font-size: 10px; font-weight: 700; color: #3b82f6; text-transform: uppercase; letter-spacing: .5px; }
-.pv-dokter-card .dk-nama  { font-size: 14px; font-weight: 800; color: #1e40af; }
-.pv-dokter-card .dk-sp    { font-size: 12px; color: #3b82f6; }
+.pv-dokter-item .dk-label { font-size: 10px; font-weight: 700; color: #3b82f6; text-transform: uppercase; letter-spacing: .5px; }
+.pv-dokter-item .dk-nama  { font-size: 13.5px; font-weight: 800; color: #1e40af; }
+.pv-dokter-item .dk-sp    { font-size: 12px; color: #3b82f6; }
 
 .pv-konten {
     font-size: 14.5px; color: var(--text-main);
@@ -366,10 +360,7 @@
     width: 90px; height: 90px; border-radius: 50%;
     background: rgba(14,165,233,.08); pointer-events: none;
 }
-.mpb-thumb {
-    width: 60px; height: 44px; border-radius: 8px; object-fit: cover; flex-shrink: 0;
-    border: 2px solid rgba(255,255,255,.12);
-}
+.mpb-thumb { width: 60px; height: 44px; border-radius: 8px; object-fit: cover; flex-shrink: 0; border: 2px solid rgba(255,255,255,.12); }
 .mpb-thumb-placeholder {
     width: 60px; height: 44px; border-radius: 8px;
     background: rgba(255,255,255,.08);
@@ -379,50 +370,22 @@
 .mpb-title    { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13.5px; font-weight: 700; color: #fff; }
 .mpb-subtitle { font-size: 11.5px; color: rgba(255,255,255,.5); margin-top: 3px; display: flex; align-items: center; gap: 6px; }
 
-/* ============================================================
-   Dokter search dropdown
-   Dropdown di-append ke <body> via JS sehingga bebas dari
-   overflow/clip apapun di dalam modal.
-============================================================ */
-.dokter-search-wrap {
-    position: relative;
-}
+/* Dokter search dropdown */
+.dokter-search-wrap { position: relative; }
 .dokter-dropdown {
-    display: none;
-    position: fixed;
-    z-index: 99999;
-    border: 1.5px solid #cbd5e1;
-    border-radius: 8px;
-    max-height: 200px;       /* ← kurangi height agar tidak terlalu panjang */
-    overflow-y: auto;
-    background: #fff;
-    box-shadow: 0 8px 24px rgba(0,0,0,.15);
-    pointer-events: auto;
-}
-
-/* Selected card rapi */
-.dokter-selected-card {
-    display: none;
-    align-items: center;
-    gap: 12px;
-    margin-top: 8px;
-    padding: 10px 14px;
-    background: #eff6ff;
-    border: 1.5px solid #bfdbfe;
-    border-radius: 8px;
+    display: none; position: fixed; z-index: 99999;
+    border: 1.5px solid #cbd5e1; border-radius: 8px;
+    max-height: 200px; overflow-y: auto; background: #fff;
+    box-shadow: 0 8px 24px rgba(0,0,0,.15); pointer-events: auto;
 }
 .dokter-dropdown-item {
     padding: 10px 14px; cursor: pointer;
     display: flex; align-items: center; gap: 10px;
-    border-bottom: 1px solid #f1f5f9;
-    transition: background .15s;
+    border-bottom: 1px solid #f1f5f9; transition: background .15s;
 }
 .dokter-dropdown-item:hover { background: #f0f9ff; }
 .dokter-dropdown-item:last-child { border-bottom: none; }
-.dokter-dropdown-item img {
-    width: 36px; height: 36px; border-radius: 50%; object-fit: cover;
-    border: 1.5px solid #e0f2fe; flex-shrink: 0;
-}
+.dokter-dropdown-item img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 1.5px solid #e0f2fe; flex-shrink: 0; }
 .dokter-dropdown-item .no-foto {
     width: 36px; height: 36px; border-radius: 50%;
     background: #e0f2fe; color: #0284c7;
@@ -431,27 +394,23 @@
 }
 .dokter-dropdown-item .dk-nama { font-size: 13px; font-weight: 700; color: #0f172a; }
 .dokter-dropdown-item .dk-sp   { font-size: 11.5px; color: #64748b; }
-.dokter-selected-card {
-    display: none; align-items: center; gap: 12px;
-    margin-top: 8px; padding: 10px 14px;
-    background: #eff6ff; border: 1.5px solid #bfdbfe; border-radius: var(--radius-sm);
+
+/* Dokter list chips */
+.dokter-list-wrap {
+    display: none; flex-wrap: wrap; gap: 6px; margin-top: 8px;
 }
-.dokter-selected-card img {
-    width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid #bfdbfe;
+.dokter-chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 5px 10px; background: #eff6ff;
+    border: 1.5px solid #bfdbfe; border-radius: 20px;
+    font-size: 12px; font-weight: 700; color: #1e40af;
 }
-.dokter-selected-card .no-foto {
-    width: 40px; height: 40px; border-radius: 50%;
-    background: #dbeafe; color: #2563eb;
-    display: flex; align-items: center; justify-content: center; font-size: 16px;
-}
-.dokter-selected-card .dk-nama { font-size: 13.5px; font-weight: 700; color: #1e40af; }
-.dokter-selected-card .dk-sp   { font-size: 12px; color: #3b82f6; }
-.dokter-clear-btn {
-    margin-left: auto; background: none; border: none;
-    color: #94a3b8; cursor: pointer; font-size: 16px; padding: 4px;
+.dokter-chip-remove {
+    background: none; border: none; color: #94a3b8;
+    cursor: pointer; font-size: 13px; padding: 0; line-height: 1; margin-left: 2px;
     transition: color .15s;
 }
-.dokter-clear-btn:hover { color: #ef4444; }
+.dokter-chip-remove:hover { color: #ef4444; }
 
 .btn-cancel {
     padding: 10px 20px; border: 1.5px solid var(--border-color);
@@ -631,8 +590,6 @@ $katColors = [
         $wc       = str_word_count(strip_tags($konten));
         $readTime = max(1, ceil($wc / 200));
         $kc       = $katColors[$item->kategori] ?? $katColors['Lainnya'];
-        $dokter   = $item->dokter;
-        $dokterFotoUrl = $dokter && $dokter->foto ? asset('storage/'.$dokter->foto) : null;
     @endphp
 
     <div class="art-card"
@@ -667,19 +624,25 @@ $katColors = [
             <div class="ac-title">{{ $item->judul }}</div>
             <div class="ac-excerpt">{{ Str::limit(strip_tags($konten), 120) }}</div>
 
-            @if($dokter)
-            <div class="ac-dokter-chip">
-                @if($dokterFotoUrl)
-                    <img src="{{ $dokterFotoUrl }}" alt="{{ $dokter->nama }}"
-                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                    <div class="no-foto" style="display:none;"><i class="fa-solid fa-user-doctor"></i></div>
-                @else
-                    <div class="no-foto"><i class="fa-solid fa-user-doctor"></i></div>
-                @endif
-                <div>
-                    <div class="dk-nama">{{ $dokter->nama }}</div>
-                    <div class="dk-sp">{{ $dokter->spesialis ?? 'Dokter' }}</div>
+            {{-- Multiple dokter chips --}}
+            @if($item->dokters->count())
+            <div style="display:flex;flex-direction:column;gap:4px;margin-top:8px;">
+                @foreach($item->dokters as $dok)
+                @php $dokFoto = $dok->foto ? asset('storage/'.$dok->foto) : null; @endphp
+                <div class="ac-dokter-chip">
+                    @if($dokFoto)
+                        <img src="{{ $dokFoto }}" alt="{{ $dok->nama }}"
+                             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                        <div class="no-foto" style="display:none;"><i class="fa-solid fa-user-doctor"></i></div>
+                    @else
+                        <div class="no-foto"><i class="fa-solid fa-user-doctor"></i></div>
+                    @endif
+                    <div>
+                        <div class="dk-nama">{{ $dok->nama }}</div>
+                        <div class="dk-sp">{{ $dok->spesialis ?? 'Dokter' }}</div>
+                    </div>
                 </div>
+                @endforeach
             </div>
             @endif
         </div>
@@ -689,6 +652,7 @@ $katColors = [
                 <i class="fa-solid fa-tag" style="font-size:9px;"></i> {{ $item->kategori ?? 'Umum' }}
             </span>
             <div class="ac-actions">
+
                 <button class="btn-icon-sm btn-preview" title="Preview artikel"
                     onclick="openPreviewModal(
                         `{{ addslashes($item->judul) }}`,
@@ -699,9 +663,11 @@ $katColors = [
                         '{{ $tglFmt }}',
                         {{ $item->views ?? 0 }},
                         {{ $readTime }},
-                        '{{ $dokter ? addslashes($dokter->nama) : '' }}',
-                        '{{ $dokter ? addslashes($dokter->spesialis ?? '') : '' }}',
-                        '{{ $dokterFotoUrl ?? '' }}'
+                        {!! json_encode($item->dokters->map(fn($d) => [
+                            'nama'      => $d->nama,
+                            'spesialis' => $d->spesialis ?? '',
+                            'foto'      => $d->foto ? asset('storage/'.$d->foto) : ''
+                        ])->values()) !!}
                     )">
                     <i class="fa-solid fa-eye"></i>
                 </button>
@@ -714,10 +680,12 @@ $katColors = [
                         '{{ $imgUrl ?? '' }}',
                         '{{ $item->kategori ?? '' }}',
                         '{{ $item->status }}',
-                        '{{ $item->dokter_id ?? '' }}',
-                        '{{ $dokter ? addslashes($dokter->nama) : '' }}',
-                        '{{ $dokter ? addslashes($dokter->spesialis ?? '') : '' }}',
-                        '{{ $dokterFotoUrl ?? '' }}'
+                        {!! json_encode($item->dokters->map(fn($d) => [
+                            'id'        => $d->id,
+                            'nama'      => $d->nama,
+                            'spesialis' => $d->spesialis ?? '',
+                            'foto'      => $d->foto ? asset('storage/'.$d->foto) : ''
+                        ])->values()) !!}
                     )">
                     <i class="fa-solid fa-pen"></i>
                 </button>
@@ -802,16 +770,8 @@ $katColors = [
                         <div class="pv-meta-item"><i class="fa-regular fa-clock"></i><span id="pvReadTime">—</span></div>
                         <div class="pv-meta-item"><i class="fa-regular fa-eye"></i><span id="pvViews">—</span></div>
                     </div>
-
-                    <div class="pv-dokter-card" id="pvDokterCard" style="display:none;">
-                        <div id="pvDokterFotoWrap"></div>
-                        <div>
-                            <div class="dk-label"><i class="fa-solid fa-user-doctor" style="font-size:9px;"></i> Dokter Terkait</div>
-                            <div class="dk-nama" id="pvDokterNama"></div>
-                            <div class="dk-sp"   id="pvDokterSp"></div>
-                        </div>
-                    </div>
-
+                    {{-- Dokter list di preview --}}
+                    <div class="pv-dokters-wrap" id="pvDoktersWrap"></div>
                     <div class="pv-konten" id="pvKonten"></div>
                 </div>
             </div>
@@ -906,9 +866,12 @@ $katColors = [
                         </div>
                     </div>
 
-                    {{-- Rekomendasi Dokter --}}
+                    {{-- Rekomendasi Dokter (multi) --}}
                     <div class="mfg" id="tambahDokterWrap">
-                        <div class="mfg-label"><i class="fa-solid fa-user-doctor"></i> Rekomendasi Dokter <span class="opt">(opsional)</span></div>
+                        <div class="mfg-label">
+                            <i class="fa-solid fa-user-doctor"></i> Rekomendasi Dokter
+                            <span class="opt">(opsional, bisa lebih dari 1)</span>
+                        </div>
                         <div class="dokter-search-wrap">
                             <input type="text" class="mfg-input" id="tambahDokterSearch"
                                    placeholder="Cari nama atau spesialis dokter..."
@@ -916,8 +879,8 @@ $katColors = [
                                    oninput="filterDokter('tambah')">
                             <div class="dokter-dropdown" id="tambahDokterDropdown"></div>
                         </div>
-                        <div class="dokter-selected-card" id="tambahDokterSelected"></div>
-                        <input type="hidden" name="dokter_id" id="tambahDokterId">
+                        <div class="dokter-list-wrap" id="tambahDokterList"></div>
+                        <div id="tambahDokterInputs"></div>
                     </div>
 
                     {{-- Konten --}}
@@ -1041,9 +1004,12 @@ $katColors = [
                         </div>
                     </div>
 
-                    {{-- Rekomendasi Dokter --}}
+                    {{-- Rekomendasi Dokter (multi) --}}
                     <div class="mfg" id="editDokterWrap">
-                        <div class="mfg-label"><i class="fa-solid fa-user-doctor"></i> Rekomendasi Dokter <span class="opt">(opsional)</span></div>
+                        <div class="mfg-label">
+                            <i class="fa-solid fa-user-doctor"></i> Rekomendasi Dokter
+                            <span class="opt">(opsional, bisa lebih dari 1)</span>
+                        </div>
                         <div class="dokter-search-wrap">
                             <input type="text" class="mfg-input" id="editDokterSearch"
                                    placeholder="Cari nama atau spesialis dokter..."
@@ -1051,8 +1017,8 @@ $katColors = [
                                    oninput="filterDokter('edit')">
                             <div class="dokter-dropdown" id="editDokterDropdown"></div>
                         </div>
-                        <div class="dokter-selected-card" id="editDokterSelected"></div>
-                        <input type="hidden" name="dokter_id" id="editDokterId">
+                        <div class="dokter-list-wrap" id="editDokterList"></div>
+                        <div id="editDokterInputs"></div>
                     </div>
 
                     {{-- Konten --}}
@@ -1131,6 +1097,11 @@ $katColors = [
 const DOKTERS = @json($dokters);
 
 /* ============================================================
+   STATE DOKTER TERPILIH (multi)
+============================================================ */
+const selectedDokters = { tambah: {}, edit: {} };
+
+/* ============================================================
    SYNC KATEGORI SAAT SUBMIT
 ============================================================ */
 document.getElementById('formTambah').addEventListener('submit', function() {
@@ -1183,7 +1154,6 @@ function onKategoriChange(prefix) {
     const custW = document.getElementById(prefix + 'KatCustomWrap');
     const custI = document.getElementById(prefix + 'KatCustom');
     const hid   = document.getElementById(prefix + 'Kategori');
-
     if (sel.value === 'lainnya') {
         custW.style.display = 'block'; custI?.focus();
         if (hid) hid.value = '';
@@ -1277,22 +1247,16 @@ function removeImg(prefix) {
 });
 
 /* ============================================================
-   DOKTER SEARCH & SELECT — Fix dropdown tidak bisa diklik
+   DOKTER MULTI SELECT
 ============================================================ */
 document.addEventListener('DOMContentLoaded', function () {
     ['tambah', 'edit'].forEach(function (p) {
         const dd = document.getElementById(p + 'DokterDropdown');
         if (dd) document.body.appendChild(dd);
-    });
-});
 
-document.addEventListener('DOMContentLoaded', function () {
-    ['tambah', 'edit'].forEach(function (p) {
-        const dd = document.getElementById(p + 'DokterDropdown');
-        if (dd) document.body.appendChild(dd);
-
-        /* Reposisi saat modal body di-scroll */
-        const modalBody = document.querySelector('#modal' + (p === 'tambah' ? 'Tambah' : 'Edit') + ' .modal-body');
+        const modalBody = document.querySelector(
+            '#modal' + (p === 'tambah' ? 'Tambah' : 'Edit') + ' .modal-body'
+        );
         if (modalBody) {
             modalBody.addEventListener('scroll', function() {
                 const dd2 = document.getElementById(p + 'DokterDropdown');
@@ -1307,8 +1271,8 @@ function _positionDD(prefix) {
     const dd    = document.getElementById(prefix + 'DokterDropdown');
     if (!input || !dd) return;
     const r = input.getBoundingClientRect();
-    dd.style.top   = (r.bottom + 4) + 'px';   // ← hapus window.scrollY
-    dd.style.left  = r.left + 'px';            // ← hapus window.scrollX
+    dd.style.top   = (r.bottom + 4) + 'px';
+    dd.style.left  = r.left + 'px';
     dd.style.width = r.width + 'px';
 }
 
@@ -1346,13 +1310,14 @@ function filterDokter(prefix) {
 
             const item = document.createElement('div');
             item.className = 'dokter-dropdown-item';
-            item.style.cssText = 'padding:10px 14px;cursor:pointer;display:flex;align-items:center;gap:10px;border-bottom:1px solid #f1f5f9;transition:background .15s;';
-            item.innerHTML = `${fotoHtml}<div><div style="font-size:13px;font-weight:700;color:#0f172a;">${d.nama}</div><div style="font-size:11.5px;color:#64748b;">${d.spesialis || 'Dokter Umum'}</div></div>`;
+            item.innerHTML = `${fotoHtml}
+                <div>
+                    <div style="font-size:13px;font-weight:700;color:#0f172a;">${d.nama}</div>
+                    <div style="font-size:11.5px;color:#64748b;">${d.spesialis || 'Dokter Umum'}</div>
+                </div>`;
 
             item.addEventListener('mouseover', () => item.style.background = '#f0f9ff');
             item.addEventListener('mouseout',  () => item.style.background = '');
-
-            /* onmousedown supaya terpilih SEBELUM blur menutup dropdown */
             item.addEventListener('mousedown', function(e) {
                 e.preventDefault();
                 selectDokter(prefix, d.id, d.nama, d.spesialis || '', fotoUrl);
@@ -1366,39 +1331,60 @@ function filterDokter(prefix) {
 }
 
 function selectDokter(prefix, id, nama, spesialis, fotoUrl) {
-    document.getElementById(prefix + 'DokterId').value     = id;
+    if (selectedDokters[prefix][id]) {
+        document.getElementById(prefix + 'DokterSearch').value = '';
+        document.getElementById(prefix + 'DokterDropdown').style.display = 'none';
+        return;
+    }
+    selectedDokters[prefix][id] = { id, nama, spesialis, fotoUrl };
     document.getElementById(prefix + 'DokterSearch').value = '';
     document.getElementById(prefix + 'DokterDropdown').style.display = 'none';
+    renderSelectedDokters(prefix);
+}
 
-    const card = document.getElementById(prefix + 'DokterSelected');
-    const fotoHtml = fotoUrl
-        ? `<img src="${fotoUrl}" style="width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #bfdbfe;"
-                onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-           <div style="display:none;width:40px;height:40px;border-radius:50%;background:#dbeafe;color:#2563eb;align-items:center;justify-content:center;font-size:16px;">
-               <i class="fa-solid fa-user-doctor"></i>
-           </div>`
-        : `<div style="display:flex;width:40px;height:40px;border-radius:50%;background:#dbeafe;color:#2563eb;align-items:center;justify-content:center;font-size:16px;">
-               <i class="fa-solid fa-user-doctor"></i>
-           </div>`;
-
-    card.innerHTML = `
-        ${fotoHtml}
-        <div style="flex:1;">
-            <div style="font-size:13.5px;font-weight:700;color:#1e40af;">${nama}</div>
-            <div style="font-size:12px;color:#3b82f6;">${spesialis || 'Dokter Umum'}</div>
-        </div>
-        <button type="button" class="dokter-clear-btn" onclick="clearDokter('${prefix}')">
-            <i class="fa-solid fa-xmark"></i>
-        </button>`;
-    card.style.display = 'flex';
+function removeDokter(prefix, id) {
+    delete selectedDokters[prefix][id];
+    renderSelectedDokters(prefix);
 }
 
 function clearDokter(prefix) {
-    document.getElementById(prefix + 'DokterId').value     = '';
-    document.getElementById(prefix + 'DokterSearch').value = '';
-    document.getElementById(prefix + 'DokterDropdown').style.display = 'none';
-    const card = document.getElementById(prefix + 'DokterSelected');
-    card.innerHTML = ''; card.style.display = 'none';
+    selectedDokters[prefix] = {};
+    renderSelectedDokters(prefix);
+}
+
+function renderSelectedDokters(prefix) {
+    const listWrap = document.getElementById(prefix + 'DokterList');
+    const inputs   = document.getElementById(prefix + 'DokterInputs');
+    const items    = Object.values(selectedDokters[prefix]);
+
+    listWrap.innerHTML   = '';
+    inputs.innerHTML     = '';
+
+    if (!items.length) {
+        listWrap.style.display = 'none';
+        return;
+    }
+
+    listWrap.style.display = 'flex';
+
+    items.forEach(function(d) {
+        const chip = document.createElement('div');
+        chip.className = 'dokter-chip';
+        chip.innerHTML = `
+            <i class="fa-solid fa-user-doctor" style="font-size:10px;color:#3b82f6;"></i>
+            ${d.nama}
+            <button type="button" class="dokter-chip-remove"
+                    onmousedown="event.preventDefault();removeDokter('${prefix}', ${d.id})">
+                <i class="fa-solid fa-xmark"></i>
+            </button>`;
+        listWrap.appendChild(chip);
+
+        const inp = document.createElement('input');
+        inp.type  = 'hidden';
+        inp.name  = 'dokter_ids[]';
+        inp.value = d.id;
+        inputs.appendChild(inp);
+    });
 }
 
 /* Tutup dropdown klik luar */
@@ -1412,7 +1398,6 @@ document.addEventListener('mousedown', function(e) {
     });
 });
 
-/* Reposisi saat scroll */
 window.addEventListener('scroll', function() {
     ['tambah', 'edit'].forEach(function(p) {
         const dd = document.getElementById(p + 'DokterDropdown');
@@ -1423,7 +1408,7 @@ window.addEventListener('scroll', function() {
 /* ============================================================
    OPEN PREVIEW MODAL
 ============================================================ */
-function openPreviewModal(judul, konten, imgUrl, kategori, status, tanggal, views, readTime, dokterNama, dokterSp, dokterFoto) {
+function openPreviewModal(judul, konten, imgUrl, kategori, status, tanggal, views, readTime, doktersData) {
     const pvImgWrap = document.getElementById('pvImgWrap');
     const pvImg     = document.getElementById('pvImg');
     const pvImgPh   = document.getElementById('pvImgPlaceholder');
@@ -1449,23 +1434,30 @@ function openPreviewModal(judul, konten, imgUrl, kategori, status, tanggal, view
         pvStatus.style.background = '#f1f5f9'; pvStatus.style.color = '#475569';
     }
 
-    const pvDokterCard = document.getElementById('pvDokterCard');
-    if (dokterNama && dokterNama.trim()) {
-        const fotoWrap = document.getElementById('pvDokterFotoWrap');
-        fotoWrap.innerHTML = dokterFoto && dokterFoto.trim()
-            ? `<img src="${dokterFoto}" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid #bfdbfe;"
-                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-               <div class="no-foto" style="display:none;width:44px;height:44px;border-radius:50%;background:#dbeafe;color:#2563eb;align-items:center;justify-content:center;font-size:18px;">
-                   <i class="fa-solid fa-user-doctor"></i>
-               </div>`
-            : `<div class="no-foto" style="width:44px;height:44px;border-radius:50%;background:#dbeafe;color:#2563eb;display:flex;align-items:center;justify-content:center;font-size:18px;">
-                   <i class="fa-solid fa-user-doctor"></i>
-               </div>`;
-        document.getElementById('pvDokterNama').textContent = dokterNama;
-        document.getElementById('pvDokterSp').textContent   = dokterSp || 'Dokter';
-        pvDokterCard.style.display = 'flex';
-    } else {
-        pvDokterCard.style.display = 'none';
+    /* Dokter list di preview */
+    const pvDoktersWrap = document.getElementById('pvDoktersWrap');
+    pvDoktersWrap.innerHTML = '';
+    if (doktersData && doktersData.length) {
+        doktersData.forEach(function(d) {
+            const fotoHtml = d.foto && d.foto.trim()
+                ? `<img src="${d.foto}" style="width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #bfdbfe;flex-shrink:0;"
+                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                   <div style="display:none;width:40px;height:40px;border-radius:50%;background:#dbeafe;color:#2563eb;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">
+                       <i class="fa-solid fa-user-doctor"></i>
+                   </div>`
+                : `<div style="display:flex;width:40px;height:40px;border-radius:50%;background:#dbeafe;color:#2563eb;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">
+                       <i class="fa-solid fa-user-doctor"></i>
+                   </div>`;
+            const item = document.createElement('div');
+            item.className = 'pv-dokter-item';
+            item.innerHTML = `${fotoHtml}
+                <div>
+                    <div class="dk-label"><i class="fa-solid fa-user-doctor" style="font-size:8px;"></i> Dokter Terkait</div>
+                    <div class="dk-nama">${d.nama}</div>
+                    <div class="dk-sp">${d.spesialis || 'Dokter'}</div>
+                </div>`;
+            pvDoktersWrap.appendChild(item);
+        });
     }
 
     new bootstrap.Modal(document.getElementById('modalPreview')).show();
@@ -1474,7 +1466,7 @@ function openPreviewModal(judul, konten, imgUrl, kategori, status, tanggal, view
 /* ============================================================
    OPEN EDIT MODAL
 ============================================================ */
-function openEditModal(id, judul, isi, imgUrl, kategori, status, dokterId, dokterNama, dokterSp, dokterFoto) {
+function openEditModal(id, judul, isi, imgUrl, kategori, status, doktersData) {
     document.getElementById('editJudul').value       = judul;
     document.getElementById('editIsi').value         = isi;
     document.getElementById('editHapusGambar').value = '0';
@@ -1518,10 +1510,16 @@ function openEditModal(id, judul, isi, imgUrl, kategori, status, dokterId, dokte
     }
     document.getElementById('editGambar').value = '';
 
-    /* Dokter */
+    /* Dokter — load existing */
     clearDokter('edit');
-    if (dokterId && dokterNama && dokterNama.trim()) {
-        selectDokter('edit', dokterId, dokterNama, dokterSp, dokterFoto);
+    if (doktersData && doktersData.length) {
+        doktersData.forEach(function(d) {
+            selectedDokters['edit'][d.id] = {
+                id: d.id, nama: d.nama,
+                spesialis: d.spesialis, fotoUrl: d.foto
+            };
+        });
+        renderSelectedDokters('edit');
     }
 
     updateWordCount('edit');
@@ -1564,14 +1562,12 @@ document.getElementById('searchArtikel').addEventListener('input', function() {
         card.style.display = (!q || (card.dataset.judul || '').includes(q)) ? '' : 'none';
     });
 });
-
 document.getElementById('filterKategori').addEventListener('change', function() {
     const val = this.value.toLowerCase();
     document.querySelectorAll('.art-card').forEach(card => {
         card.style.display = (!val || (card.dataset.kategori || '') === val) ? '' : 'none';
     });
 });
-
 document.getElementById('filterStatus').addEventListener('change', function() {
     const val = this.value;
     document.querySelectorAll('.art-card').forEach(card => {

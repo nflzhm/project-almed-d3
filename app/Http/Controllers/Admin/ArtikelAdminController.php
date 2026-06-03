@@ -12,7 +12,7 @@ class ArtikelAdminController extends Controller
 {
     public function index()
     {
-        $artikel = Artikel::with('dokter')->latest()->paginate(10);
+        $artikel = Artikel::with('dokters')->latest()->paginate(10);
         $dokters = Dokter::select('id', 'nama', 'spesialis', 'foto')->orderBy('nama')->get();
 
         $totalPublished = Artikel::where('status', 'published')->count();
@@ -23,41 +23,41 @@ class ArtikelAdminController extends Controller
                                  ->count('kategori');
 
         return view('admin.artikeladmin', compact(
-            'artikel',
-            'dokters',
-            'totalPublished',
-            'totalDraft',
-            'totalViews',
-            'totalKategori'
+            'artikel', 'dokters',
+            'totalPublished', 'totalDraft',
+            'totalViews', 'totalKategori'
         ));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'judul'     => 'required|string|max:200',
-            'deskripsi' => 'required|string',
-            'gambar'    => 'nullable|image|mimes:jpeg,png,webp|max:3072',
-            'kategori'  => 'nullable|string|max:100',
-            'status'    => 'nullable|in:published,draft',
-            'dokter_id' => 'nullable|exists:dokter,id',
+            'judul'        => 'required|string|max:200',
+            'deskripsi'    => 'required|string',
+            'gambar'       => 'nullable|image|mimes:jpeg,png,webp|max:3072',
+            'kategori'     => 'nullable|string|max:100',
+            'status'       => 'nullable|in:published,draft',
+            'dokter_ids'   => 'nullable|array',
+            'dokter_ids.*' => 'exists:dokter,id',
         ]);
 
         $gambarPath = null;
-
         if ($request->hasFile('gambar')) {
             $gambarPath = $request->file('gambar')->store('artikel', 'public');
         }
 
-        Artikel::create([
+        $artikel = Artikel::create([
             'judul'     => $request->judul,
             'deskripsi' => $request->deskripsi,
             'gambar'    => $gambarPath,
             'kategori'  => $request->kategori,
-            'dokter_id' => $request->dokter_id ?: null,
             'status'    => $request->filled('status') ? $request->status : 'published',
             'views'     => 0,
         ]);
+
+        if ($request->filled('dokter_ids')) {
+            $artikel->dokters()->sync($request->dokter_ids);
+        }
 
         return redirect()->route('admin.artikel.index')
                          ->with('success', 'Artikel berhasil ditambahkan.');
@@ -72,24 +72,20 @@ class ArtikelAdminController extends Controller
             'kategori'     => 'nullable|string|max:100',
             'status'       => 'nullable|in:published,draft',
             'hapus_gambar' => 'nullable|in:0,1',
-            'dokter_id'    => 'nullable|exists:dokter,id',
+            'dokter_ids'   => 'nullable|array',
+            'dokter_ids.*' => 'exists:dokter,id',
         ]);
 
-        $artikel = Artikel::findOrFail($id);
-
+        $artikel    = Artikel::findOrFail($id);
         $gambarPath = $artikel->gambar;
 
         if ($request->hapus_gambar == '1') {
-            if ($artikel->gambar) {
-                Storage::disk('public')->delete($artikel->gambar);
-            }
+            if ($artikel->gambar) Storage::disk('public')->delete($artikel->gambar);
             $gambarPath = null;
         }
 
         if ($request->hasFile('gambar')) {
-            if ($artikel->gambar) {
-                Storage::disk('public')->delete($artikel->gambar);
-            }
+            if ($artikel->gambar) Storage::disk('public')->delete($artikel->gambar);
             $gambarPath = $request->file('gambar')->store('artikel', 'public');
         }
 
@@ -98,9 +94,10 @@ class ArtikelAdminController extends Controller
             'deskripsi' => $request->deskripsi,
             'gambar'    => $gambarPath,
             'kategori'  => $request->kategori,
-            'dokter_id' => $request->dokter_id ?: null,
             'status'    => $request->filled('status') ? $request->status : $artikel->status,
         ]);
+
+        $artikel->dokters()->sync($request->dokter_ids ?? []);
 
         return redirect()->route('admin.artikel.index')
                          ->with('success', 'Artikel berhasil diperbarui.');
