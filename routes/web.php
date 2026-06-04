@@ -214,3 +214,6 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::resource('layanan', App\Http\Controllers\Admin\LayananController::class);
 });
 
+Route::get('/jadwal-dokter', function () {
+    return view('jadwaldokter');
+});

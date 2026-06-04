@@ -79,45 +79,6 @@
     font-size: 72px; color: #0ea5e9; opacity: .4;
 }
 
-/* Dokter card */
-.artikel-dokter-card {
-    display: flex; align-items: center; gap: 14px;
-    padding: 14px 18px;
-    background: #eff6ff;
-    border-top: 1px solid #e8edf5;
-    border-bottom: 1px solid #bfdbfe;
-}
-.artikel-dokter-card img {
-    width: 48px; height: 48px; border-radius: 50%;
-    object-fit: cover; border: 2px solid #93c5fd; flex-shrink: 0;
-}
-.artikel-dokter-card .no-foto {
-    width: 48px; height: 48px; border-radius: 50%;
-    background: #dbeafe; color: #2563eb;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 20px; flex-shrink: 0;
-}
-.artikel-dokter-card .dk-badge {
-    font-size: 9.5px; font-weight: 800; color: #3b82f6;
-    text-transform: uppercase; letter-spacing: .6px;
-    display: flex; align-items: center; gap: 4px; margin-bottom: 2px;
-}
-.artikel-dokter-card .dk-nama {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 13.5px; font-weight: 800; color: #1e40af; margin-bottom: 1px;
-}
-.artikel-dokter-card .dk-sp { font-size: 12px; color: #3b82f6; }
-.artikel-dokter-card .dk-action {
-    margin-left: auto; flex-shrink: 0;
-    display: inline-flex; align-items: center; gap: 6px;
-    padding: 7px 14px; border-radius: 8px;
-    background: #1e40af; color: #fff;
-    font-size: 12px; font-weight: 700;
-    text-decoration: none; transition: background .2s, transform .2s;
-    white-space: nowrap;
-}
-.artikel-dokter-card .dk-action:hover { background: #1d4ed8; transform: translateY(-1px); }
-
 .artikel-content { padding: 28px 32px 32px; }
 .artikel-content p { font-size: 15.5px; line-height: 1.9; color: #374151; margin-bottom: 20px; }
 
@@ -207,12 +168,6 @@
 }
 .ai-date { font-size: 11px; color: #94a3b8; margin-top: 4px; display: flex; align-items: center; gap: 4px; }
 
-.info-row { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid #f1f5f9; }
-.info-row:last-child { border-bottom: 0; padding-bottom: 0; }
-.info-icon { width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; }
-.info-label { font-size: 10.5px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: .6px; }
-.info-val { font-size: 13px; font-weight: 600; color: #1e293b; margin-top: 2px; line-height: 1.4; }
-
 .tag-cloud { display: flex; flex-wrap: wrap; gap: 7px; }
 .tag-pill {
     display: inline-flex; align-items: center; gap: 5px;
@@ -224,7 +179,7 @@
 .tag-pill:hover { background: #1C145C; color: #fff; border-color: #1C145C; }
 
 /* ============================================================
-   ARTIKEL GRID (list)
+   ARTIKEL GRID
 ============================================================ */
 .artikel-grid {
     display: grid;
@@ -270,20 +225,6 @@
     display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
     margin-bottom: 12px;
 }
-.ac-dokter-chip {
-    display: flex; align-items: center; gap: 8px;
-    margin-bottom: 10px; padding: 7px 10px;
-    background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px;
-}
-.ac-dokter-chip img { width: 26px; height: 26px; border-radius: 50%; object-fit: cover; border: 1.5px solid #93c5fd; flex-shrink: 0; }
-.ac-dokter-chip .no-foto {
-    width: 26px; height: 26px; border-radius: 50%;
-    background: #dbeafe; color: #2563eb;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 11px; flex-shrink: 0;
-}
-.ac-dokter-chip .dk-nama { font-size: 11.5px; font-weight: 700; color: #1e40af; line-height: 1.2; }
-.ac-dokter-chip .dk-sp   { font-size: 10.5px; color: #3b82f6; }
 .ac-footer { display:flex; align-items:center; margin-top:auto; padding:12px 18px 16px; border-top:1px solid #eef2f7; }
 .ac-read-btn {
     display:inline-flex; align-items:center; justify-content:center; gap:8px;
@@ -348,23 +289,136 @@
 .empty-state .es-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 700; color: #1e293b; margin-bottom: 6px; }
 .empty-state .es-sub { font-size: 13.5px; }
 
+/* ============================================================
+   DOKTER TICKER — full width, tembus pojok kiri kanan
+============================================================ */
+.dokter-ticker-section {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 28px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1C145C 0%, #1e3a6e 50%, #0c6197 100%);
+    box-shadow: 0 4px 24px rgba(28,20,92,.18);
+}
+
+/* fade edges */
+.dokter-ticker-section::before,
+.dokter-ticker-section::after {
+    content: '';
+    position: absolute; top: 0; bottom: 0; width: 80px;
+    z-index: 3; pointer-events: none;
+}
+.dokter-ticker-section::before {
+    left: 0;
+    background: linear-gradient(to right, #1C145C, transparent);
+}
+.dokter-ticker-section::after {
+    right: 0;
+    background: linear-gradient(to left, #0c6197, transparent);
+}
+
+.dokter-ticker-track {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    width: max-content;
+    animation: dokterScroll 80s linear infinite;
+    padding: 14px 0;
+}
+.dokter-ticker-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes dokterScroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.dokter-ticker-card {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 0 20px 0 0;
+    margin-right: 8px;
+    border-right: 1px solid rgba(255,255,255,.12);
+    cursor: default;
+    transition: background .2s;
+    border-radius: 0;
+    flex-shrink: 0;
+}
+.dokter-ticker-card:hover .dtc-foto,
+.dokter-ticker-card:hover .dtc-no-foto {
+    border-color: #7dd3fc;
+    transform: scale(1.06);
+}
+.dokter-ticker-card:hover .dtc-nama {
+    color: #7dd3fc;
+}
+
+.dtc-foto-wrap {
+    position: relative; flex-shrink: 0;
+}
+.dtc-foto {
+    width: 46px; height: 46px; border-radius: 50%;
+    object-fit: cover;
+    border: 2.5px solid rgba(255,255,255,.35);
+    transition: border-color .2s, transform .2s;
+    display: block;
+}
+.dtc-no-foto {
+    width: 46px; height: 46px; border-radius: 50%;
+    background: rgba(255,255,255,.12);
+    border: 2.5px solid rgba(255,255,255,.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; color: rgba(255,255,255,.6);
+    flex-shrink: 0;
+    transition: border-color .2s, transform .2s;
+}
+.dtc-online-dot {
+    position: absolute; bottom: 1px; right: 1px;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: #10b981;
+    border: 2px solid #1C145C;
+}
+
+.dtc-info { min-width: 0; }
+.dtc-label {
+    font-size: 9px; font-weight: 800; color: rgba(255,255,255,.45);
+    text-transform: uppercase; letter-spacing: .8px; margin-bottom: 1px;
+}
+.dtc-nama {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 12.5px; font-weight: 800; color: #fff;
+    white-space: nowrap; line-height: 1.3;
+    transition: color .2s;
+}
+.dtc-sp {
+    font-size: 10.5px; color: rgba(125,211,252,.8);
+    white-space: nowrap; font-weight: 500;
+}
+
 /* Responsive */
 @media(max-width:991.98px) {
     .artikel-content { padding: 24px 20px 28px; }
     .artikel-share-bar { padding: 12px 20px; }
     .artikel-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+    .dokter-ticker-track { animation-duration: 60s; }
 }
 @media(max-width:575.98px) {
     .artikel-hero { padding: 80px 0 56px; }
     .hero-title { font-size: 26px; }
     .artikel-content { padding: 18px 16px 24px; }
     .artikel-share-bar { padding: 12px 16px; }
-    .artikel-dokter-card { flex-wrap: wrap; gap: 10px; }
-    .artikel-dokter-card .dk-action { margin-left: 0; width: 100%; justify-content: center; }
     .artikel-grid { grid-template-columns: 1fr; }
     .filter-bar { flex-direction: column; align-items: stretch; }
     .ac-footer { padding: 10px 16px 14px; }
     .ac-read-btn { width: 100%; }
+    .dokter-ticker-track { animation-duration: 45s; }
+    .dtc-foto, .dtc-no-foto { width: 38px; height: 38px; }
+    .dtc-nama { font-size: 11.5px; }
+    .dokter-ticker-card { padding: 0 14px 0 0; gap: 8px; }
 }
 </style>
 
@@ -425,88 +479,6 @@ body { font-family: 'Segoe UI', sans-serif; background: #f5f7fb; overflow-x: hid
 @media(max-width:1100px) { .nav-link-pill { padding: 7px 11px; font-size: 13px; } }
 @media(max-width:991px) { body { padding-top: calc(38px + 64px); } .navbar-float-wrap { padding: 10px 12px; } .navbar-float { border-radius: 26px; padding: 10px 14px; } .nav-links, .nav-cta { display: none; } .nav-burger { display: flex; } .topbar-info span { font-size: 10px; } .topbar-social { gap: 10px; } }
 @media(max-width:480px) { .topbar .container { gap: 8px; } .topbar-info { gap: 8px; } .topbar-info span { font-size: 9px; } .topbar-social a { font-size: 12px; } .navbar-float { border-radius: 22px; } }
-
-/* ============================================================
-   RUNNING DOKTER TICKER
-============================================================ */
-.dokter-ticker-wrap {
-    display: flex; align-items: center;
-    background: #fff; border: 1px solid #e8edf5;
-    border-radius: 14px; overflow: hidden;
-    box-shadow: 0 2px 10px rgba(28,20,92,.06);
-    margin-bottom: 16px; height: 62px;
-}
-.dokter-ticker-label {
-    display: flex; flex-direction: column; align-items: center;
-    justify-content: center; gap: 3px;
-    background: linear-gradient(135deg, #1C145C, #2a1f7a);
-    color: #fff; padding: 0 18px;
-    font-size: 10px; font-weight: 800;
-    text-transform: uppercase; letter-spacing: .8px;
-    height: 100%; flex-shrink: 0; white-space: nowrap;
-    min-width: 90px;
-}
-.dokter-ticker-label i { font-size: 16px; margin-bottom: 2px; }
-.dokter-ticker-track-wrap {
-    flex: 1; overflow: hidden; position: relative; height: 100%;
-}
-.dokter-ticker-track-wrap::before,
-.dokter-ticker-track-wrap::after {
-    content: ''; position: absolute; top: 0; bottom: 0; width: 40px;
-    z-index: 2; pointer-events: none;
-}
-.dokter-ticker-track-wrap::before {
-    left: 0;
-    background: linear-gradient(to right, #fff, transparent);
-}
-.dokter-ticker-track-wrap::after {
-    right: 0;
-    background: linear-gradient(to left, #fff, transparent);
-}
-.dokter-ticker-track {
-    display: flex; align-items: center; gap: 0;
-    height: 100%; width: max-content;
-    animation: tickerScroll 30s linear infinite;
-}
-.dokter-ticker-track:hover { animation-play-state: paused; }
-
-@keyframes tickerScroll {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
-
-.dokter-ticker-item {
-    display: flex; align-items: center; gap: 10px;
-    padding: 0 20px; border-right: 1px solid #f1f5f9;
-    height: 100%; white-space: nowrap; cursor: default;
-    transition: background .2s;
-}
-.dokter-ticker-item:hover { background: #f8faff; }
-.dokter-ticker-item img,
-.dt-no-foto {
-    width: 36px; height: 36px; border-radius: 50%;
-    object-fit: cover; flex-shrink: 0;
-    border: 2px solid #bfdbfe;
-}
-.dt-no-foto {
-    background: #dbeafe; color: #2563eb;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 14px;
-}
-.dt-nama {
-    font-size: 12.5px; font-weight: 700; color: #1e293b; line-height: 1.3;
-}
-.dt-sp {
-    font-size: 11px; color: #3b82f6; font-weight: 500;
-}
-
-@media(max-width:575px) {
-    .dokter-ticker-label span { display: none; }
-    .dokter-ticker-label { min-width: 44px; padding: 0 12px; }
-    .dokter-ticker-item { padding: 0 14px; }
-    .dokter-ticker-track { animation-duration: 20s; }
-}
-
 </style>
 
 <!-- TOPBAR -->
@@ -567,7 +539,7 @@ body { font-family: 'Segoe UI', sans-serif; background: #f5f7fb; overflow-x: hid
         <div class="d-sub">
             <a href="{{ url('/karir') }}" class="d-link {{ request()->is('karir*') ? 'active' : '' }}"><span class="d-icon"><i class="bi bi-briefcase"></i></span> Karir</a>
             <a href="{{ url('/berita') }}" class="d-link {{ request()->is('berita*') ? 'active' : '' }}"><span class="d-icon"><i class="bi bi-newspaper"></i></span> Berita</a>
-            <a href="{{ url('/video') }}" class="d-link {{ request()->is('video*') ? 'active' : '' }}"><span class="d-icon"><i class="bi bi-play-circle"></i></span> Video</a>
+            <a href="{{ url('/video') }}" class="d-link {{ request()->is('video*') ? 'active' : '' }}"><span class="d-icon"><i class="bi bi-play-circle"></i> Video</a>
         </div>
         <div class="d-divider"></div>
         <a href="/layanan"  class="d-link {{ request()->is('layanan*')  ? 'active' : '' }}"><span class="d-icon"><i class="bi bi-hospital"></i></span> Layanan</a>
@@ -654,7 +626,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         </div>
                     @endif
 
-
                     <div class="artikel-content">
                         {!! nl2br(e($artikel->isi ?? $artikel->deskripsi ?? '')) !!}
                     </div>
@@ -712,26 +683,31 @@ document.addEventListener('DOMContentLoaded', function () {
                             </div>
                         </div>
                         @endforeach
-                        <a href="{{ url('/dokter') }}" class="sidebar-dokter-btn">
+                        <a href="{{ route('jadwaldokter') }}" class="sidebar-dokter-btn">
                             <i class="fa-solid fa-calendar-check" style="font-size:11px;"></i>
-                            Buat Janji dengan Dokter Ini
+                            Cek Jadwal Dokter
                         </a>
                     </div>
                 </div>
                 @endif
-
 
                 <!-- Tags -->
                 <div class="sidebar-card">
                     <div class="sc-head"><i class="fa-solid fa-tags"></i> Topik</div>
                     <div class="sc-body">
                         <div class="tag-cloud">
-                            <a href="{{ url('/artikel?kategori=Kesehatan') }}" class="tag-pill">Kesehatan</a>
-                            <a href="{{ url('/artikel?kategori=Informasi') }}" class="tag-pill">Informasi</a>
-                            <a href="{{ url('/artikel?kategori=Layanan') }}"   class="tag-pill">Layanan</a>
-                            <a href="{{ url('/artikel?kategori=Dokter') }}"    class="tag-pill">Dokter</a>
-                            <a href="{{ url('/artikel?kategori=Edukasi') }}"   class="tag-pill">Edukasi</a>
-                            <a href="{{ url('/artikel?kategori=Tips') }}"      class="tag-pill">Tips</a>
+                            @if(isset($kategoriList) && $kategoriList->count())
+                                @foreach($kategoriList as $kat)
+                                    <a href="{{ url('/artikel?kategori='.$kat) }}" class="tag-pill">{{ $kat }}</a>
+                                @endforeach
+                            @else
+                                <a href="{{ url('/artikel?kategori=Kesehatan') }}" class="tag-pill">Kesehatan</a>
+                                <a href="{{ url('/artikel?kategori=Informasi') }}" class="tag-pill">Informasi</a>
+                                <a href="{{ url('/artikel?kategori=Layanan') }}"   class="tag-pill">Layanan</a>
+                                <a href="{{ url('/artikel?kategori=Dokter') }}"    class="tag-pill">Dokter</a>
+                                <a href="{{ url('/artikel?kategori=Edukasi') }}"   class="tag-pill">Edukasi</a>
+                                <a href="{{ url('/artikel?kategori=Tips') }}"      class="tag-pill">Tips</a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -797,54 +773,80 @@ document.addEventListener('DOMContentLoaded', function () {
     </div>
 </section>
 
-<section class="artikel-body">
-    <div class="container">
+<section class="artikel-body" style="padding-top:0;">
 
-    {{-- Running Dokter --}}
+{{-- ============================================================
+     DOKTER TICKER — full width, foto + nama, loop seamless
+============================================================ --}}
 @if(isset($dokterList) && $dokterList->count())
-<div class="dokter-ticker-wrap">
-    <div class="dokter-ticker-label">
-        <i class="fa-solid fa-user-doctor"></i>
-        <span>Dokter Kami</span>
-    </div>
-    <div class="dokter-ticker-track-wrap">
-        <div class="dokter-ticker-track" id="dokterTicker">
-            @foreach($dokterList as $dok)
-            <div class="dokter-ticker-item">
+<div class="dokter-ticker-section">
+    <div class="dokter-ticker-track">
+
+        {{-- Set 1 --}}
+        @foreach($dokterList as $dok)
+        <div class="dokter-ticker-card">
+            <div class="dtc-foto-wrap">
                 @if($dok->foto)
-                    <img src="{{ asset('storage/'.$dok->foto) }}" alt="{{ $dok->nama }}"
+                    <img src="{{ asset('uploads/dokter/' . $dok->foto) }}"
+                         alt="{{ $dok->nama }}"
+                         class="dtc-foto"
                          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                    <div class="dt-no-foto" style="display:none;"><i class="fa-solid fa-user-doctor"></i></div>
+                    <div class="dtc-no-foto" style="display:none;">
+                        <i class="fa-solid fa-user-doctor"></i>
+                    </div>
                 @else
-                    <div class="dt-no-foto"><i class="fa-solid fa-user-doctor"></i></div>
+                    <div class="dtc-no-foto">
+                        <i class="fa-solid fa-user-doctor"></i>
+                    </div>
                 @endif
-                <div class="dt-info">
-                    <div class="dt-nama">{{ $dok->nama }}</div>
-                    <div class="dt-sp">{{ $dok->spesialis ?? 'Dokter Umum' }}</div>
-                </div>
+                <span class="dtc-online-dot"></span>
             </div>
-            @endforeach
-            {{-- duplikat untuk loop seamless --}}
-            @foreach($dokterList as $dok)
-            <div class="dokter-ticker-item">
-                @if($dok->foto)
-                    <img src="{{ asset('storage/'.$dok->foto) }}" alt="{{ $dok->nama }}"
-                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                    <div class="dt-no-foto" style="display:none;"><i class="fa-solid fa-user-doctor"></i></div>
-                @else
-                    <div class="dt-no-foto"><i class="fa-solid fa-user-doctor"></i></div>
+            <div class="dtc-info">
+                <div class="dtc-label">Dokter</div>
+                <div class="dtc-nama">{{ $dok->nama }}</div>
+                @if($dok->spesialis)
+                <div class="dtc-sp">{{ $dok->spesialis }}</div>
                 @endif
-                <div class="dt-info">
-                    <div class="dt-nama">{{ $dok->nama }}</div>
-                    <div class="dt-sp">{{ $dok->spesialis ?? 'Dokter Umum' }}</div>
-                </div>
             </div>
-            @endforeach
         </div>
+        @endforeach
+
+        {{-- Set 2 duplikat untuk seamless loop --}}
+        @foreach($dokterList as $dok)
+        <div class="dokter-ticker-card">
+            <div class="dtc-foto-wrap">
+                @if($dok->foto)
+                    <img src="{{ asset('uploads/dokter/' . $dok->foto) }}"
+                         alt="{{ $dok->nama }}"
+                         class="dtc-foto"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="dtc-no-foto" style="display:none;">
+                        <i class="fa-solid fa-user-doctor"></i>
+                    </div>
+                @else
+                    <div class="dtc-no-foto">
+                        <i class="fa-solid fa-user-doctor"></i>
+                    </div>
+                @endif
+                <span class="dtc-online-dot"></span>
+            </div>
+            <div class="dtc-info">
+                <div class="dtc-label">Dokter</div>
+                <div class="dtc-nama">{{ $dok->nama }}</div>
+                @if($dok->spesialis)
+                <div class="dtc-sp">{{ $dok->spesialis }}</div>
+                @endif
+            </div>
+        </div>
+        @endforeach
+
     </div>
 </div>
 @endif
 
+    <div class="container" style="padding-top:36px;">
+
+        {{-- Filter bar --}}
         <div class="filter-bar">
             <div class="filter-search-wrap">
                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -853,12 +855,11 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
             <select class="filter-select" id="filterKategori">
                 <option value="">Semua Kategori</option>
-                <option value="Kesehatan" {{ request('kategori') === 'Kesehatan' ? 'selected' : '' }}>Kesehatan</option>
-                <option value="Informasi" {{ request('kategori') === 'Informasi' ? 'selected' : '' }}>Informasi</option>
-                <option value="Layanan"   {{ request('kategori') === 'Layanan'   ? 'selected' : '' }}>Layanan</option>
-                <option value="Dokter"    {{ request('kategori') === 'Dokter'    ? 'selected' : '' }}>Dokter</option>
-                <option value="Edukasi"   {{ request('kategori') === 'Edukasi'   ? 'selected' : '' }}>Edukasi</option>
-                <option value="Tips"      {{ request('kategori') === 'Tips'      ? 'selected' : '' }}>Tips</option>
+                @foreach($kategoriList as $kat)
+                    <option value="{{ $kat }}" {{ request('kategori') === $kat ? 'selected' : '' }}>
+                        {{ $kat }}
+                    </option>
+                @endforeach
             </select>
             <select class="filter-select" id="filterSort">
                 <option value="newest">Terbaru</option>

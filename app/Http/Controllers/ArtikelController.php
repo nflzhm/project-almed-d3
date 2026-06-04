@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Artikel;
-use App\Models\Dokter;
+use App\Models\AdminDataDokter;
 
 class ArtikelController extends Controller
 {
@@ -28,12 +28,7 @@ class ArtikelController extends Controller
             ->distinct()
             ->pluck('kategori');
 
-        $dokterList = Dokter::select(
-                'id',
-                'nama',
-                'spesialis',
-                'foto'
-            )
+        $dokterList = AdminDataDokter::select('id', 'nama', 'spesialis', 'foto')
             ->orderBy('nama')
             ->get();
 
