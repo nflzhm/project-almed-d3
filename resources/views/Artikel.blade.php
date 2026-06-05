@@ -289,73 +289,7 @@
 .empty-state .es-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 700; color: #1e293b; margin-bottom: 6px; }
 .empty-state .es-sub { font-size: 13.5px; }
 
-/* ============================================================
-   DOKTER TICKER — full width, tembus pojok kiri kanan
-============================================================ */
-.dokter-ticker-section {
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-bottom: 28px;
-    overflow: hidden;
-    background: linear-gradient(135deg, #1C145C 0%, #1e3a6e 50%, #0c6197 100%);
-    box-shadow: 0 4px 24px rgba(28,20,92,.18);
-}
 
-/* fade edges */
-.dokter-ticker-section::before,
-.dokter-ticker-section::after {
-    content: '';
-    position: absolute; top: 0; bottom: 0; width: 80px;
-    z-index: 3; pointer-events: none;
-}
-.dokter-ticker-section::before {
-    left: 0;
-    background: linear-gradient(to right, #1C145C, transparent);
-}
-.dokter-ticker-section::after {
-    right: 0;
-    background: linear-gradient(to left, #0c6197, transparent);
-}
-
-.dokter-ticker-track {
-    display: flex;
-    align-items: center;
-    gap: 0;
-    width: max-content;
-    animation: dokterScroll 80s linear infinite;
-    padding: 14px 0;
-}
-.dokter-ticker-track:hover {
-    animation-play-state: paused;
-}
-
-@keyframes dokterScroll {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
-
-.dokter-ticker-card {
-    display: flex;
-    align-items: center;
-    gap: 11px;
-    padding: 0 20px 0 0;
-    margin-right: 8px;
-    border-right: 1px solid rgba(255,255,255,.12);
-    cursor: default;
-    transition: background .2s;
-    border-radius: 0;
-    flex-shrink: 0;
-}
-.dokter-ticker-card:hover .dtc-foto,
-.dokter-ticker-card:hover .dtc-no-foto {
-    border-color: #7dd3fc;
-    transform: scale(1.06);
-}
-.dokter-ticker-card:hover .dtc-nama {
-    color: #7dd3fc;
-}
 
 .dtc-foto-wrap {
     position: relative; flex-shrink: 0;
@@ -775,74 +709,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 <section class="artikel-body" style="padding-top:0;">
 
-{{-- ============================================================
-     DOKTER TICKER — full width, foto + nama, loop seamless
-============================================================ --}}
-@if(isset($dokterList) && $dokterList->count())
-<div class="dokter-ticker-section">
-    <div class="dokter-ticker-track">
-
-        {{-- Set 1 --}}
-        @foreach($dokterList as $dok)
-        <div class="dokter-ticker-card">
-            <div class="dtc-foto-wrap">
-                @if($dok->foto)
-                    <img src="{{ asset('uploads/dokter/' . $dok->foto) }}"
-                         alt="{{ $dok->nama }}"
-                         class="dtc-foto"
-                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                    <div class="dtc-no-foto" style="display:none;">
-                        <i class="fa-solid fa-user-doctor"></i>
-                    </div>
-                @else
-                    <div class="dtc-no-foto">
-                        <i class="fa-solid fa-user-doctor"></i>
-                    </div>
-                @endif
-                <span class="dtc-online-dot"></span>
-            </div>
-            <div class="dtc-info">
-                <div class="dtc-label">Dokter</div>
-                <div class="dtc-nama">{{ $dok->nama }}</div>
-                @if($dok->spesialis)
-                <div class="dtc-sp">{{ $dok->spesialis }}</div>
-                @endif
-            </div>
-        </div>
-        @endforeach
-
-        {{-- Set 2 duplikat untuk seamless loop --}}
-        @foreach($dokterList as $dok)
-        <div class="dokter-ticker-card">
-            <div class="dtc-foto-wrap">
-                @if($dok->foto)
-                    <img src="{{ asset('uploads/dokter/' . $dok->foto) }}"
-                         alt="{{ $dok->nama }}"
-                         class="dtc-foto"
-                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                    <div class="dtc-no-foto" style="display:none;">
-                        <i class="fa-solid fa-user-doctor"></i>
-                    </div>
-                @else
-                    <div class="dtc-no-foto">
-                        <i class="fa-solid fa-user-doctor"></i>
-                    </div>
-                @endif
-                <span class="dtc-online-dot"></span>
-            </div>
-            <div class="dtc-info">
-                <div class="dtc-label">Dokter</div>
-                <div class="dtc-nama">{{ $dok->nama }}</div>
-                @if($dok->spesialis)
-                <div class="dtc-sp">{{ $dok->spesialis }}</div>
-                @endif
-            </div>
-        </div>
-        @endforeach
-
-    </div>
-</div>
-@endif
 
     <div class="container" style="padding-top:36px;">
 

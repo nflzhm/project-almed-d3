@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Layanan;
+use App\Models\AdminDataDokter;
 
 class LayananController extends Controller
 {
@@ -26,6 +27,10 @@ class LayananController extends Controller
                 ];
             });
 
-        return view('layanan', compact('layananData'));
+        $dokterList = AdminDataDokter::select('id', 'nama', 'spesialis', 'foto')
+            ->orderBy('nama')
+            ->get();
+
+        return view('layanan', compact('layananData', 'dokterList'));
     }
 }
