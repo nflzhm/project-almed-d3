@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Layanan extends Model
 {
-    protected $table = 'layanan'; // ← ini yang kurang
+    protected $table = 'layanan';
 
     protected $fillable = [
         'poli',
@@ -14,7 +14,11 @@ class Layanan extends Model
         'deskripsi',
         'no_hp',
         'no_wa',
-        'gambar',
         'status',
+        'gambar',
+        'dokter',
+        'jadwal',
+        'kontak',
+        'judul',
     ];
 }

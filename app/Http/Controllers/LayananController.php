@@ -33,4 +33,11 @@ class LayananController extends Controller
 
         return view('layanan', compact('layananData', 'dokterList'));
     }
+
+    public function showPoli($id)
+    {
+        $poli = Layanan::findOrFail($id);
+
+        return view('layanan', compact('poli'));
+    }
 }

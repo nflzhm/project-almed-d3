@@ -217,3 +217,6 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
 Route::get('/jadwal-dokter', function () {
     return view('jadwaldokter');
 });
+
+Route::get('/layanan/poli/{id}', [LayananController::class, 'showPoli'])
+    ->name('layanan.poli');

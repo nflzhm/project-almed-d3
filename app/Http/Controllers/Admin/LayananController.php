@@ -32,7 +32,7 @@ class LayananController extends Controller
             'deskripsi' => 'required|string|max:500',
             'no_hp'     => 'nullable|string|max:20',
             'no_wa'     => 'nullable|string|max:20',
-            'gambar'    => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'gambar'    => 'nullable|image|mimes:jpg,jpeg,png,webp|max:7168',
             'status'    => 'required|in:aktif,nonaktif',
         ]);
 
@@ -62,7 +62,7 @@ class LayananController extends Controller
             'deskripsi'    => 'required|string|max:500',
             'no_hp'        => 'nullable|string|max:20',
             'no_wa'        => 'nullable|string|max:20',
-            'gambar'       => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'gambar'       => 'nullable|image|mimes:jpg,jpeg,png,webp|max:7168',
             'status'       => 'required|in:aktif,nonaktif',
             'hapus_gambar' => 'nullable|in:0,1',
         ]);
