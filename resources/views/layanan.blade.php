@@ -18,48 +18,7 @@ Layanan — RSU Allam Medica
 /* ============================================================
    BASE
 ============================================================ */
-body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8faff; overflow-x: hidden; }
-
-/* ============================================================
-   ORNAMENT BODY (bunga gradasi seperti footer)
-============================================================ */
-.body-ornament-wrap {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    overflow: hidden;
-}
-.body-ornament-wrap .orn-1 {
-    position: absolute;
-    right: -120px;
-    top: 30%;
-    width: 480px;
-    height: 480px;
-    background-image: url('{{ asset("images/beranda/ornamen.png") }}');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    opacity: 0;
-    mask-image: radial-gradient(circle at 60% 50%, rgba(0,0,0,0.07) 30%, transparent 75%);
-    -webkit-mask-image: radial-gradient(circle at 60% 50%, rgba(0,0,0,0.07) 30%, transparent 75%);
-    filter: hue-rotate(220deg) saturate(0.4);
-}
-.body-ornament-wrap .orn-2 {
-    position: absolute;
-    left: -100px;
-    bottom: 20%;
-    width: 360px;
-    height: 360px;
-    background-image: url('{{ asset("images/beranda/ornamen.png") }}');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    opacity: 0;
-    mask-image: radial-gradient(circle at 40% 50%, rgba(0,0,0,0.05) 30%, transparent 75%);
-    -webkit-mask-image: radial-gradient(circle at 40% 50%, rgba(0,0,0,0.05) 30%, transparent 75%);
-    filter: hue-rotate(200deg) saturate(0.3);
-}
+body { font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; overflow-x: hidden; }
 
 /* ============================================================
    TOPBAR
@@ -90,8 +49,9 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8faff; overfl
 .drop-wrap:hover .drop-menu { opacity:1;visibility:visible;transform:translateX(-50%) translateY(0); }
 .drop-item { display:flex;align-items:center;gap:9px;padding:9px 13px;border-radius:12px;font-size:13.5px;color:#334155;text-decoration:none;transition:.18s;font-weight:500; }
 .drop-item:hover { background:rgba(28,20,92,.07);color:#1C145C; }
+.drop-item i { font-size:14px;color:#64748b;flex-shrink:0; }
+.drop-item:hover i { color:#1C145C; }
 .drop-divider { height:1px;background:rgba(0,0,0,.07);margin:4px 8px; }
-.drop-item-icon { width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0; }
 .chevron { font-size:11px;opacity:.6;transition:.25s; }
 .drop-wrap:hover .chevron { transform:rotate(180deg); }
 .nav-cta { position:relative;z-index:2; }
@@ -102,24 +62,60 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8faff; overfl
 .nav-burger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
 .nav-burger.open span:nth-child(2) { opacity:0; }
 .nav-burger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+
+/* ============================================================
+   DRAWER (MOBILE)
+============================================================ */
 .nav-overlay { display:none;position:fixed;inset:0;background:rgba(15,23,42,0);z-index:9999990;transition:background .3s; }
 .nav-overlay.show { display:block;background:rgba(15,23,42,0.42); }
-.nav-drawer { position:fixed;top:0;right:0;width:62%;max-width:280px;height:100dvh;z-index:9999995;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);background:rgba(255,255,255,0.95);backdrop-filter:blur(24px) saturate(180%);border-left:1px solid rgba(255,255,255,0.45);box-shadow:-8px 0 32px rgba(15,23,42,.12);display:flex;flex-direction:column;overflow-y:auto;overscroll-behavior:contain; }
+.nav-drawer { position:fixed;top:0;right:0;width:72%;max-width:300px;height:100dvh;z-index:9999995;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);background:rgba(255,255,255,0.97);backdrop-filter:blur(24px) saturate(180%);border-left:1px solid rgba(255,255,255,0.45);box-shadow:-8px 0 32px rgba(15,23,42,.12);display:flex;flex-direction:column;overflow-y:auto;overscroll-behavior:contain; }
 .nav-drawer.open { transform:translateX(0); }
 .drawer-header { display:flex;align-items:center;justify-content:space-between;padding:20px 16px 14px;border-bottom:1px solid rgba(0,0,0,.07);flex-shrink:0; }
 .drawer-label { font-size:11px;font-weight:700;color:#94a3b8;letter-spacing:.8px;text-transform:uppercase; }
 .drawer-close-btn { width:30px;height:30px;border-radius:50%;background:rgba(28,20,92,.08);border:none;display:flex;align-items:center;justify-content:center;color:#1C145C;cursor:pointer;font-size:14px; }
-.drawer-nav { flex:1;padding:10px;display:flex;flex-direction:column;gap:2px;overflow-y:auto; }
+.drawer-nav { flex:1;padding:8px 10px;display:flex;flex-direction:column;gap:1px;overflow-y:auto; }
 .d-link { display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;font-size:14px;font-weight:500;color:#1e293b;text-decoration:none;transition:.16s; }
 .d-link:hover { background:rgba(28,20,92,.06);color:#1C145C; }
 .d-link.active { background:rgba(28,20,92,.09);color:#1C145C;font-weight:600; }
-.d-icon { width:22px;height:22px;border-radius:7px;background:rgba(28,20,92,.08);display:flex;align-items:center;justify-content:center;font-size:12px;color:#1C145C;flex-shrink:0; }
-.d-link.active .d-icon { background:#1C145C;color:#fff; }
-.d-group-label { font-size:10px;font-weight:700;color:#94a3b8;letter-spacing:.7px;text-transform:uppercase;padding:12px 12px 4px; }
-.d-sub { padding-left:8px; }
-.d-divider { height:1px;background:rgba(0,0,0,.07);margin:6px 2px; }
+.d-icon { width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:14px;color:#64748b;flex-shrink:0; }
+.d-link.active .d-icon { color:#1C145C; }
+.d-group-label { font-size:10px;font-weight:700;color:#94a3b8;letter-spacing:.7px;text-transform:uppercase;padding:10px 12px 2px; }
+.d-divider { height:1px;background:rgba(0,0,0,.07);margin:4px 2px; }
 .drawer-footer { padding:12px 14px 24px;border-top:1px solid rgba(0,0,0,.07);flex-shrink:0; }
 .drawer-footer .btn-kontak { border-radius:14px;display:block;text-align:center;padding:12px 22px; }
+.d-accordion-btn { display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;border-radius:12px;font-size:14px;font-weight:600;color:#1e293b;cursor:pointer;background:none;border:none;width:100%;font-family:'Plus Jakarta Sans',sans-serif;transition:.16s; }
+.d-accordion-btn:hover { background:rgba(28,20,92,.06);color:#1C145C; }
+.d-accordion-btn.active-parent { color:#1C145C; }
+.d-accordion-btn .d-acc-left { display:flex;align-items:center;gap:10px; }
+.d-accordion-chevron { font-size:11px;color:#94a3b8;transition:transform .25s;flex-shrink:0; }
+.d-accordion-btn.open .d-accordion-chevron { transform:rotate(180deg); }
+.d-accordion-body { display:none;padding:2px 0 4px 12px; }
+.d-accordion-body.open { display:block; }
+.d-sub-link { display:flex;align-items:center;gap:9px;padding:8px 12px;border-radius:10px;font-size:13.5px;font-weight:500;color:#475569;text-decoration:none;transition:.16s; }
+.d-sub-link:hover { background:rgba(28,20,92,.06);color:#1C145C; }
+.d-sub-link i { font-size:13px;color:#94a3b8;flex-shrink:0;width:16px;text-align:center; }
+.d-sub-link:hover i { color:#1C145C; }
+
+/* ============================================================
+   ORNAMEN BUNGA — SCROLL-TRIGGERED
+============================================================ */
+.page-ornament {
+    position: fixed;
+    pointer-events: none;
+    z-index: 0;
+    background-image: url('{{ asset("images/beranda/ornamen.png") }}');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    will-change: opacity, transform;
+}
+.orn-1 { right: -100px; top: 20%;  width: 380px; height: 380px; opacity: 0; filter: hue-rotate(220deg) saturate(0.35); }
+.orn-2 { left:  -80px;  top: 45%;  width: 300px; height: 300px; opacity: 0; filter: hue-rotate(200deg) saturate(0.3); }
+.orn-3 { right: -90px;  top: 65%;  width: 340px; height: 340px; opacity: 0; filter: hue-rotate(230deg) saturate(0.3); }
+.orn-4 { left:  -70px;  top: 82%;  width: 280px; height: 280px; opacity: 0; filter: hue-rotate(210deg) saturate(0.35); }
+.orn-5 { right: -80px;  top: 110%; width: 320px; height: 320px; opacity: 0; filter: hue-rotate(220deg) saturate(0.3); }
+.page-ornament.orn-visible { opacity: 0.042; }
 
 /* ============================================================
    HERO — LIST MODE
@@ -127,22 +123,17 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8faff; overfl
 .lay-hero { background:linear-gradient(150deg,#1C145C 0%,#231a72 40%,#0ea5e9 100%);padding:130px 0 72px;position:relative;overflow:hidden; }
 .lay-hero::before { content:'';position:absolute;right:-80px;top:-80px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.06),transparent 65%);pointer-events:none; }
 .lay-hero::after  { content:'';position:absolute;left:-40px;bottom:-100px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(14,165,233,.12),transparent 65%);pointer-events:none; }
-/* Bunga ornamen di hero */
 .lay-hero .hero-orn {
     position:absolute;right:-60px;bottom:-80px;width:320px;height:320px;
     background-image:url('{{ asset("images/beranda/ornamen.png") }}');
     background-size:contain;background-repeat:no-repeat;background-position:center;
     opacity:0.07;filter:brightness(10);pointer-events:none;
-    mask-image:radial-gradient(circle at 55% 55%,rgba(0,0,0,1) 20%,transparent 70%);
-    -webkit-mask-image:radial-gradient(circle at 55% 55%,rgba(0,0,0,1) 20%,transparent 70%);
 }
 .lay-hero .hero-orn-2 {
     position:absolute;left:-40px;top:-40px;width:240px;height:240px;
     background-image:url('{{ asset("images/beranda/ornamen.png") }}');
     background-size:contain;background-repeat:no-repeat;background-position:center;
     opacity:0.04;filter:brightness(10);pointer-events:none;
-    mask-image:radial-gradient(circle at 45% 45%,rgba(0,0,0,1) 20%,transparent 70%);
-    -webkit-mask-image:radial-gradient(circle at 45% 45%,rgba(0,0,0,1) 20%,transparent 70%);
 }
 .hero-dots { position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);background-size:26px 26px; }
 .hero-inner { position:relative;z-index:2; }
@@ -186,8 +177,19 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8faff; overfl
 /* ============================================================
    TABS
 ============================================================ */
-.layanan-tabs-wrap { background:#fff;border-bottom:1px solid #e8edf5;position:relative;z-index:1;box-shadow:0 2px 12px rgba(28,20,92,.06); }
-.layanan-tabs { display:flex;align-items:center;overflow-x:auto;scrollbar-width:none;padding:0 16px; }
+.layanan-tabs-wrap{
+    display:flex;
+    justify-content:center;
+}
+.layanan-tabs{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    max-width:1200px;
+    overflow-x:auto;
+    scrollbar-width:none;
+}
 .layanan-tabs::-webkit-scrollbar { display:none; }
 .lay-tab { display:inline-flex;align-items:center;gap:7px;padding:14px 16px;border-bottom:3px solid transparent;font-size:13px;font-weight:600;color:#64748b;text-decoration:none;white-space:nowrap;transition:color .2s,border-color .2s;cursor:pointer;flex-shrink:0; }
 .lay-tab:hover { color:#1C145C; }
@@ -197,29 +199,8 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8faff; overfl
 /* ============================================================
    PAGE BODY
 ============================================================ */
-.layanan-page-body { padding:0 0 80px;background:#f8faff;position:relative;z-index:1; }
-.lay-section { padding:60px 0 0;scroll-margin-top:80px; }
-
-/* Ornamen bunga di section body */
-.section-orn-wrap { position:relative; }
-.section-orn-wrap::after {
-    content:'';
-    position:absolute;
-    right:-60px;
-    top:0;
-    width:300px;
-    height:300px;
-    background-image:url('{{ asset("images/beranda/ornamen.png") }}');
-    background-size:contain;
-    background-repeat:no-repeat;
-    background-position:center;
-    opacity:0.04;
-    pointer-events:none;
-    z-index:0;
-    filter:hue-rotate(220deg) saturate(0.5);
-    mask-image:radial-gradient(circle at 60% 40%,rgba(0,0,0,1) 25%,transparent 70%);
-    -webkit-mask-image:radial-gradient(circle at 60% 40%,rgba(0,0,0,1) 25%,transparent 70%);
-}
+.layanan-page-body { padding:0 0 80px;background:#ffffff;position:relative;z-index:1; }
+.lay-section { padding:60px 0 0;scroll-margin-top:80px;position:relative; }
 
 /* ============================================================
    SECTION HEADER
@@ -234,16 +215,16 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8faff; overfl
 ============================================================ */
 .svc-card { background:#fff;border-radius:20px;border:1px solid #e8edf5;box-shadow:0 4px 20px rgba(28,20,92,.05);overflow:hidden; }
 .svc-header { padding:36px 32px 30px;position:relative;overflow:hidden; }
-.svc-header::after { content:'';position:absolute;right:-20px;bottom:-20px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.07);pointer-events:none; }
-/* Bunga di svc-header */
-.svc-header::before {
-    content:'';position:absolute;right:20px;top:50%;transform:translateY(-50%);
-    width:90px;height:90px;
-    background-image:url('{{ asset("images/beranda/ornamen.png") }}');
-    background-size:contain;background-repeat:no-repeat;background-position:center;
-    opacity:0.12;pointer-events:none;filter:brightness(10);
-    mask-image:radial-gradient(circle,rgba(0,0,0,1) 30%,transparent 70%);
-    -webkit-mask-image:radial-gradient(circle,rgba(0,0,0,1) 30%,transparent 70%);
+.svc-header-icon {
+    width:52px; height:52px;
+    border-radius:14px;
+    background:rgba(255,255,255,.18);
+    border:1px solid rgba(255,255,255,.28);
+    display:flex; align-items:center; justify-content:center;
+    font-size:24px; color:#fff;
+    margin-bottom:16px;
+    position:relative; z-index:1;
+    flex-shrink:0;
 }
 .svc-title { font-family:'DM Serif Display',serif;font-size:24px;font-weight:400;color:#fff;margin-bottom:8px;position:relative;z-index:1; }
 .svc-tagline { font-size:13.5px;color:rgba(255,255,255,.72);line-height:1.6;position:relative;z-index:1; }
@@ -282,54 +263,13 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8faff; overfl
 .poli-empty p { font-size:14px;color:#64748b;margin:0; }
 
 /* ============================================================
-   REKAP CARDS
-============================================================ */
-.rekap-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin-bottom:48px; }
-.rekap-card { background:#fff;border-radius:16px;border:1px solid #e8edf5;padding:22px 20px;display:flex;flex-direction:column;text-decoration:none;color:inherit;box-shadow:0 2px 10px rgba(28,20,92,.04);animation:fadeUp .4s ease both;transition:transform .28s cubic-bezier(.22,.68,0,1.2),box-shadow .28s,border-color .28s; }
-.rekap-card:hover { transform:translateY(-4px);box-shadow:0 12px 32px rgba(28,20,92,.09);text-decoration:none;color:inherit; }
-.rekap-icon { width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:14px; }
-.rekap-name { font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:#1C145C;margin-bottom:6px; }
-.rekap-desc { font-size:12.5px;color:#64748b;line-height:1.6;flex:1;margin-bottom:14px; }
-.rekap-arrow { font-size:12px;font-weight:700;color:#1C145C;display:inline-flex;align-items:center;gap:5px; }
-
-/* ============================================================
-   RAWAT INAP — KELAS KAMAR
+   RAWAT INAP — KELAS KAMAR — DESKTOP
 ============================================================ */
 .kelas-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:24px; }
-.kelas-card {
-    background:#fff;border-radius:16px;border:1px solid #e8edf5;overflow:hidden;
-    box-shadow:0 3px 14px rgba(28,20,92,.05);
-    transition:transform .28s cubic-bezier(.22,.68,0,1.2),box-shadow .28s,border-color .28s;
-    animation:fadeUp .45s ease both;
-    display:flex;flex-direction:column;
-}
+.kelas-card { background:#fff;border-radius:16px;border:1px solid #e8edf5;overflow:hidden;box-shadow:0 3px 14px rgba(28,20,92,.05);transition:transform .28s cubic-bezier(.22,.68,0,1.2),box-shadow .28s,border-color .28s;animation:fadeUp .45s ease both;display:flex;flex-direction:column; }
 .kelas-card:hover { transform:translateY(-5px);box-shadow:0 14px 36px rgba(28,20,92,.11);border-color:#c7d2fe; }
-.kelas-header {
-    padding:22px 24px 18px;
-    position:relative;overflow:hidden;
-    display:flex;align-items:center;gap:14px;
-}
-.kelas-header::after {
-    content:'';position:absolute;right:-14px;bottom:-14px;
-    width:80px;height:80px;border-radius:50%;
-    background:rgba(255,255,255,.08);pointer-events:none;
-}
-/* bunga mini di kelas header */
-.kelas-header::before {
-    content:'';position:absolute;right:16px;top:50%;transform:translateY(-50%);
-    width:56px;height:56px;
-    background-image:url('{{ asset("images/beranda/ornamen.png") }}');
-    background-size:contain;background-repeat:no-repeat;background-position:center;
-    opacity:0.13;pointer-events:none;filter:brightness(10);
-    mask-image:radial-gradient(circle,rgba(0,0,0,1) 30%,transparent 70%);
-    -webkit-mask-image:radial-gradient(circle,rgba(0,0,0,1) 30%,transparent 70%);
-}
-.kelas-icon-wrap {
-    width:44px;height:44px;border-radius:12px;
-    background:rgba(255,255,255,.18);
-    display:flex;align-items:center;justify-content:center;
-    font-size:20px;color:#fff;flex-shrink:0;position:relative;z-index:1;
-}
+.kelas-header { padding:22px 24px 18px;position:relative;overflow:hidden;display:flex;align-items:center;gap:14px; }
+.kelas-icon-wrap { width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;flex-shrink:0;position:relative;z-index:1; }
 .kelas-name { font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:#fff;margin:0;position:relative;z-index:1; }
 .kelas-body { padding:16px 22px;flex:1;display:flex;flex-direction:column;gap:8px; }
 .kelas-feature { display:flex;align-items:flex-start;gap:10px;font-size:13px;color:#475569;line-height:1.55; }
@@ -340,11 +280,133 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8faff; overfl
 .kelas-wa-btn:hover { background:#25D366;color:#fff; }
 
 /* ============================================================
-   DALAM PENGEMBANGAN
+   RAWAT INAP — MOBILE COMPACT MODE
+   Mengganti grid dengan horizontal scroll pills + accordion
 ============================================================ */
-.dev-banner { background:#fff;border-radius:20px;border:2px dashed #e2e8f0;padding:52px 32px;text-align:center; }
-.dev-title { font-family:'DM Serif Display',serif;font-size:24px;font-weight:400;color:#1C145C;margin-bottom:8px; }
-.dev-sub { font-size:14px;color:#64748b;line-height:1.7;max-width:480px;margin:0 auto 20px; }
+.kelas-mobile-wrap { display:none; }
+
+/* Pills selector */
+.kelas-pills-scroll {
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    scrollbar-width:none;
+    padding:4px 0 12px;
+    margin-bottom:16px;
+}
+.kelas-pills-scroll::-webkit-scrollbar { display:none; }
+.kelas-pill {
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    padding:9px 15px;
+    border-radius:30px;
+    font-size:12.5px;
+    font-weight:700;
+    color:#fff;
+    border:2px solid transparent;
+    white-space:nowrap;
+    flex-shrink:0;
+    cursor:pointer;
+    transition:transform .2s, box-shadow .2s, border-color .2s;
+    opacity:.72;
+}
+.kelas-pill.active {
+    opacity:1;
+    border-color:rgba(255,255,255,.55);
+    transform:translateY(-2px);
+    box-shadow:0 6px 18px rgba(0,0,0,.18);
+}
+.kelas-pill i { font-size:13px; }
+
+/* Detail panel */
+.kelas-detail-panel {
+    background:#fff;
+    border-radius:18px;
+    border:1px solid #e8edf5;
+    overflow:hidden;
+    box-shadow:0 4px 20px rgba(28,20,92,.07);
+    animation:fadeUp .3s ease both;
+}
+.kdp-header {
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:20px 20px 16px;
+}
+.kdp-icon {
+    width:46px;
+    height:46px;
+    border-radius:13px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:21px;
+    color:#fff;
+    flex-shrink:0;
+}
+.kdp-title {
+    font-family:'DM Serif Display',serif;
+    font-size:19px;
+    font-weight:400;
+    color:#1C145C;
+    margin:0;
+}
+.kdp-badge {
+    display:inline-block;
+    font-size:11px;
+    font-weight:700;
+    padding:2px 10px;
+    border-radius:20px;
+    margin-top:4px;
+}
+.kdp-body {
+    padding:0 20px 16px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+}
+.kdp-feature {
+    display:flex;
+    align-items:flex-start;
+    gap:8px;
+    padding:10px 11px;
+    background:#f8faff;
+    border-radius:10px;
+    border:1px solid #e8edf5;
+}
+.kdp-feature i {
+    color:#1C145C;
+    font-size:13px;
+    flex-shrink:0;
+    margin-top:1px;
+    opacity:.7;
+}
+.kdp-feature span {
+    font-size:12px;
+    color:#374151;
+    line-height:1.45;
+}
+.kdp-footer {
+    padding:12px 20px 18px;
+    border-top:1px solid #f1f5f9;
+    display:flex;
+    gap:10px;
+}
+.kdp-footer a {
+    flex:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
+    padding:10px;
+    border-radius:11px;
+    font-size:13px;
+    font-weight:700;
+    text-decoration:none;
+}
+.kdp-wa { background:#dcfce7;color:#15803d;border:1px solid #86efac; }
+.kdp-wa:hover { background:#25D366;color:#fff; }
 
 /* ============================================================
    MCU PAKET
@@ -356,19 +418,16 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8faff; overfl
 .mcu-paket-item { font-size:12px;padding:3px 10px;border-radius:20px;background:#f8faff;border:1px solid #e2e8f0;color:#475569; }
 
 /* ============================================================
+   HOME SERVICE LAB
+============================================================ */
+.homeservice-card { background:linear-gradient(135deg,#f0fdf4 0%,#ecfdf5 100%);border-radius:16px;border:1.5px solid #86efac;padding:26px 28px;position:relative;overflow:hidden; }
+
+/* ============================================================
    DETAIL POLI MODE
 ============================================================ */
 .detail-hero { background:linear-gradient(150deg,#1C145C 0%,#231a72 40%,#0ea5e9 100%);padding:130px 0 60px;position:relative;overflow:hidden; }
 .detail-hero::before { content:'';position:absolute;right:-80px;top:-80px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.06),transparent 65%);pointer-events:none; }
-/* Bunga di detail hero */
-.detail-hero .hero-orn {
-    position:absolute;right:-40px;bottom:-60px;width:280px;height:280px;
-    background-image:url('{{ asset("images/beranda/ornamen.png") }}');
-    background-size:contain;background-repeat:no-repeat;background-position:center;
-    opacity:0.08;filter:brightness(10);pointer-events:none;
-    mask-image:radial-gradient(circle at 55% 55%,rgba(0,0,0,1) 20%,transparent 70%);
-    -webkit-mask-image:radial-gradient(circle at 55% 55%,rgba(0,0,0,1) 20%,transparent 70%);
-}
+.detail-hero .hero-orn { position:absolute;right:-40px;bottom:-60px;width:280px;height:280px;background-image:url('{{ asset("images/beranda/ornamen.png") }}');background-size:contain;background-repeat:no-repeat;background-position:center;opacity:0.08;filter:brightness(10);pointer-events:none; }
 .detail-hero-kat { display:inline-flex;align-items:center;gap:6px;background:rgba(14,165,233,.85);color:#fff;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;padding:5px 14px;border-radius:20px;margin-bottom:16px; }
 .detail-hero-title { font-family:'DM Serif Display',serif;font-size:clamp(26px,4vw,44px);color:#fff;line-height:1.2;letter-spacing:-.3px;margin-bottom:14px;font-weight:400; }
 .detail-hero-chips { display:flex;align-items:center;gap:8px;flex-wrap:wrap; }
@@ -376,7 +435,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8faff; overfl
 .detail-chip.aktif { background:rgba(16,185,129,.18);border-color:rgba(16,185,129,.35);color:#6ee7b7; }
 .detail-body { padding:0 0 80px; }
 .detail-main { background:#fff;border-radius:20px;border:1px solid #e8edf5;box-shadow:0 8px 32px rgba(28,20,92,.07);overflow:hidden;margin-top:-32px;position:relative;z-index:5; }
-.detail-featured-img { width:100%;height:auto;display:block;max-height:460px;object-fit:cover; }
+.detail-featured-img { width:100%;height:auto;display:block;object-fit:contain; }
 .detail-img-placeholder { width:100%;height:280px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#e0e7ff,#dbeafe);font-size:72px;color:#818cf8; }
 .detail-content { padding:36px 40px; }
 .detail-section-label { font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#64748b;margin-bottom:12px; }
@@ -395,14 +454,6 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8faff; overfl
 .detail-sidebar { position:sticky;top:110px; }
 .sidebar-card { background:#fff;border-radius:18px;border:1px solid #e8edf5;box-shadow:0 4px 20px rgba(28,20,92,.07);overflow:hidden;margin-top:-32px;position:relative;z-index:5; }
 .sc-header { background:linear-gradient(135deg,#1C145C 0%,#3b5bdb 100%);padding:22px 24px;position:relative;overflow:hidden; }
-.sc-header::after {
-    content:'';position:absolute;right:10px;bottom:-10px;width:70px;height:70px;
-    background-image:url('{{ asset("images/beranda/ornamen.png") }}');
-    background-size:contain;background-repeat:no-repeat;background-position:center;
-    opacity:0.12;filter:brightness(10);pointer-events:none;
-    mask-image:radial-gradient(circle,rgba(0,0,0,1) 30%,transparent 70%);
-    -webkit-mask-image:radial-gradient(circle,rgba(0,0,0,1) 30%,transparent 70%);
-}
 .sc-header h3 { font-family:'DM Serif Display',serif;font-weight:400;font-size:17px;color:#fff;margin-bottom:3px;position:relative;z-index:1; }
 .sc-header p  { font-size:11.5px;color:rgba(255,255,255,.6);margin:0;position:relative;z-index:1; }
 .sc-body { padding:18px 22px; }
@@ -427,7 +478,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8faff; overfl
 .terkait-card { background:#fff;border-radius:14px;border:1px solid #e8edf5;overflow:hidden;display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:transform .28s cubic-bezier(.22,.68,0,1.2),box-shadow .28s,border-color .28s; }
 .terkait-card:hover { transform:translateY(-4px);box-shadow:0 12px 32px rgba(28,20,92,.09);border-color:#c7d2fe;text-decoration:none;color:inherit; }
 .terkait-thumb { position:relative;background:#f0eeff;flex-shrink:0; }
-.terkait-thumb img { width:100%;height:140px;object-fit:cover;display:block;transition:transform .4s; }
+.terkait-thumb img { width:100%;height:auto;display:block;transition:transform .4s;max-height:160px;object-fit:cover; }
 .terkait-card:hover .terkait-thumb img { transform:scale(1.03); }
 .terkait-thumb-placeholder { height:130px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#e0e7ff,#dbeafe);font-size:32px;color:#818cf8; }
 .terkait-body { padding:14px 16px;flex:1; }
@@ -435,25 +486,6 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8faff; overfl
 .terkait-desc { font-size:12px;color:#64748b;line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden; }
 .terkait-footer { padding:10px 16px 13px;border-top:1px solid #f1f5f9;display:flex;justify-content:flex-end; }
 .terkait-btn { display:inline-flex;align-items:center;gap:5px;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:700;background:#1C145C;color:#fff; }
-
-/* ============================================================
-   HOME SERVICE LAB — Card khusus
-============================================================ */
-.homeservice-card {
-    background:linear-gradient(135deg,#f0fdf4 0%,#ecfdf5 100%);
-    border-radius:16px;border:1.5px solid #86efac;padding:26px 28px;
-    position:relative;overflow:hidden;
-}
-.homeservice-card::after {
-    content:'';position:absolute;right:-20px;top:50%;transform:translateY(-50%);
-    width:100px;height:100px;
-    background-image:url('{{ asset("images/beranda/ornamen.png") }}');
-    background-size:contain;background-repeat:no-repeat;background-position:center;
-    opacity:0.08;pointer-events:none;
-    filter:hue-rotate(120deg) saturate(0.6);
-    mask-image:radial-gradient(circle,rgba(0,0,0,1) 30%,transparent 70%);
-    -webkit-mask-image:radial-gradient(circle,rgba(0,0,0,1) 30%,transparent 70%);
-}
 
 /* ============================================================
    FOOTER
@@ -491,37 +523,56 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8faff; overfl
    RESPONSIVE
 ============================================================ */
 @media(max-width:1100px) { .nav-link-pill{padding:7px 11px;font-size:13px;} }
+
 @media(max-width:991px) {
-    body{padding-top:calc(38px + 64px);}
-    .navbar-float-wrap{padding:10px 12px;} .navbar-float{border-radius:26px;padding:10px 14px;}
-    .nav-links,.nav-cta{display:none;} .nav-burger{display:flex;}
-    .topbar-info span{font-size:10px;} .topbar-social{gap:10px;}
-    .detail-sidebar{position:static;margin-top:24px;} .sidebar-card,.detail-main{margin-top:0;}
-    .footer-rsu{padding:45px 0 0;} .footer-rsu .row>div{margin-bottom:28px;} .footer-rsu .footer-desc{max-width:100%;}
-    .dokter-ticker-track{animation-duration:60s;}
-    .kelas-grid{grid-template-columns:repeat(2,1fr);}
+    body { padding-top:0; }
+    .navbar-float-wrap { top:38px;padding:4px 12px; }
+    .navbar-float { border-radius:26px;padding:8px 14px; }
+    .nav-links,.nav-cta { display:none; }
+    .nav-burger { display:flex; }
+    .topbar-info span { font-size:10px; }
+    .topbar-social { gap:10px; }
+    .lay-hero { padding:95px 0 60px; }
+    .detail-hero { padding:95px 0 52px; }
+    .detail-sidebar { position:static;margin-top:24px; }
+    .sidebar-card,.detail-main { margin-top:0; }
+    .footer-rsu { padding:45px 0 0; }
+    .footer-rsu .row > div { margin-bottom:28px; }
+    .footer-rsu .footer-desc { max-width:100%; }
+    .dokter-ticker-track { animation-duration:60s; }
+    /* Rawat inap: switch ke mobile mode pada tablet ke bawah */
+    .kelas-grid { display:none; }
+    .kelas-mobile-wrap { display:block; }
 }
+
 @media(max-width:768px) {
-    .lay-hero{padding:110px 0 60px;} .detail-hero{padding:110px 0 52px;}
-    .hero-stats{width:100%;max-width:calc(100% - 28px);}
-    .hero-stat-item{padding:12px 16px;} .hero-stat-num{font-size:18px;}
-    .rekap-grid{grid-template-columns:repeat(2,1fr);gap:12px;}
-    .poli-grid{grid-template-columns:1fr;}
-    .kelas-grid{grid-template-columns:1fr;}
-    .svc-header,.svc-body,.svc-footer{padding-left:22px;padding-right:22px;}
-    .detail-content,.detail-divider,.share-bar{padding-left:22px;padding-right:22px;}
-    .terkait-grid{grid-template-columns:1fr 1fr;}
-    .footer-rsu{padding:40px 0 0;} .footer-rsu .container-fluid{padding-left:20px!important;padding-right:20px!important;}
-    .footer-rsu .footer-copy{flex-direction:column;align-items:flex-start;gap:8px;} .footer-rsu .footer-bottom{padding:15px 20px;}
-    .footer-rsu a:hover{padding-left:0;}
+    .lay-hero { padding:110px 0 60px; }
+    .detail-hero { padding:110px 0 52px; }
+    .hero-stats { width:100%;max-width:calc(100% - 28px); }
+    .hero-stat-item { padding:12px 16px; }
+    .hero-stat-num { font-size:18px; }
+    .poli-grid { grid-template-columns:1fr; }
+    .svc-header,.svc-body,.svc-footer { padding-left:22px;padding-right:22px; }
+    .detail-content,.detail-divider,.share-bar { padding-left:22px;padding-right:22px; }
+    .terkait-grid { grid-template-columns:1fr 1fr; }
+    .footer-rsu { padding:40px 0 0; }
+    .footer-rsu .container-fluid { padding-left:20px!important;padding-right:20px!important; }
+    .footer-rsu .footer-copy { flex-direction:column;align-items:flex-start;gap:8px; }
+    .footer-rsu .footer-bottom { padding:15px 20px; }
+    .footer-rsu a:hover { padding-left:0; }
+    .page-ornament { display:none; }
+    /* Detail panel fitur: 1 kolom di layar kecil */
+    .kdp-body { grid-template-columns:1fr; }
 }
+
 @media(max-width:480px) {
-    .topbar-info span{font-size:9px;} .navbar-float{border-radius:22px;}
-    .rekap-grid{grid-template-columns:1fr;}
-    .terkait-grid{grid-template-columns:1fr;}
-    .dokter-ticker-track{animation-duration:45s;}
-    .dtc-foto,.dtc-no-foto{width:38px;height:38px;} .dtc-nama{font-size:11.5px;}
-    .dokter-ticker-card{padding:0 14px 0 0;gap:8px;}
+    .topbar-info span { font-size:9px; }
+    .navbar-float { border-radius:22px; }
+    .terkait-grid { grid-template-columns:1fr; }
+    .dokter-ticker-track { animation-duration:45s; }
+    .dtc-foto,.dtc-no-foto { width:38px;height:38px; }
+    .dtc-nama { font-size:11.5px; }
+    .dokter-ticker-card { padding:0 14px 0 0;gap:8px; }
 }
 </style>
 
@@ -565,18 +616,17 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8faff; overfl
                 </a>
                 <div class="drop-menu" style="min-width:220px;">
                     <a href="{{ url('/layanan') }}" class="drop-item">
-                        <span class="drop-item-icon" style="background:#e0e7ff;color:#4338ca;"><i class="bi bi-grid-3x3-gap"></i></span>
-                        Semua Layanan
+                        <i class="bi bi-grid-3x3-gap"></i> Semua Layanan
                     </a>
                     <div class="drop-divider"></div>
-                    <a href="{{ url('/layanan#igd') }}"          class="drop-item"><span class="drop-item-icon" style="background:#fee2e2;color:#dc2626;"><i class="bi bi-bandaid-fill"></i></span> IGD 24 Jam</a>
-                    <a href="{{ url('/layanan#rawatjalan') }}"   class="drop-item"><span class="drop-item-icon" style="background:#e0f2fe;color:#0284c7;"><i class="bi bi-clipboard2-pulse"></i></span> Rawat Jalan</a>
-                    <a href="{{ url('/layanan#rawatinap') }}"    class="drop-item"><span class="drop-item-icon" style="background:#ede9fe;color:#7c3aed;"><i class="bi bi-hospital"></i></span> Rawat Inap</a>
-                    <a href="{{ url('/layanan#ambulans') }}"     class="drop-item"><span class="drop-item-icon" style="background:#fef3c7;color:#d97706;"><i class="bi bi-truck"></i></span> Ambulans 24 Jam</a>
-                    <a href="{{ url('/layanan#laboratorium') }}" class="drop-item"><span class="drop-item-icon" style="background:#d1fae5;color:#059669;"><i class="bi bi-eyedropper"></i></span> Laboratorium</a>
-                    <a href="{{ url('/layanan#radiologi') }}"    class="drop-item"><span class="drop-item-icon" style="background:#ede9fe;color:#6366f1;"><i class="bi bi-radioactive"></i></span> Radiologi</a>
-                    <a href="{{ url('/layanan#farmasi') }}"      class="drop-item"><span class="drop-item-icon" style="background:#fce7f3;color:#db2777;"><i class="bi bi-capsule"></i></span> Farmasi</a>
-                    <a href="{{ url('/layanan#mcu') }}"          class="drop-item"><span class="drop-item-icon" style="background:#ccfbf1;color:#0d9488;"><i class="bi bi-heart-pulse"></i></span> Medical Check Up</a>
+                    <a href="{{ url('/layanan#igd') }}"          class="drop-item"><i class="bi bi-bandaid-fill"></i> IGD 24 Jam</a>
+                    <a href="{{ url('/layanan#rawatjalan') }}"   class="drop-item"><i class="bi bi-clipboard2-pulse"></i> Rawat Jalan</a>
+                    <a href="{{ url('/layanan#rawatinap') }}"    class="drop-item"><i class="bi bi-hospital"></i> Rawat Inap</a>
+                    <a href="{{ url('/layanan#ambulans') }}"     class="drop-item"><i class="bi bi-truck"></i> Ambulans 24 Jam</a>
+                    <a href="{{ url('/layanan#laboratorium') }}" class="drop-item"><i class="bi bi-eyedropper"></i> Laboratorium</a>
+                    <a href="{{ url('/layanan#radiologi') }}"    class="drop-item"><i class="bi bi-radioactive"></i> Radiologi</a>
+                    <a href="{{ url('/layanan#farmasi') }}"      class="drop-item"><i class="bi bi-capsule"></i> Farmasi</a>
+                    <a href="{{ url('/layanan#mcu') }}"          class="drop-item"><i class="bi bi-heart-pulse"></i> Medical Check Up</a>
                 </div>
             </div>
             <a href="/artikel"  class="nav-link-pill {{ request()->is('artikel*')  ? 'active' : '' }}">Artikel</a>
@@ -596,24 +646,33 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8faff; overfl
         <button class="drawer-close-btn" id="drawerClose"><i class="bi bi-x-lg"></i></button>
     </div>
     <nav class="drawer-nav">
-        <a href="/" class="d-link {{ request()->is('/') ? 'active' : '' }}"><span class="d-icon"><i class="bi bi-house"></i></span> Beranda</a>
-        <div class="d-group-label">Konten</div>
-        <div class="d-sub">
-            <a href="{{ url('/karir') }}"  class="d-link"><span class="d-icon"><i class="bi bi-briefcase"></i></span> Karir</a>
-            <a href="{{ url('/berita') }}" class="d-link"><span class="d-icon"><i class="bi bi-newspaper"></i></span> Berita</a>
-            <a href="{{ url('/video') }}"  class="d-link"><span class="d-icon"><i class="bi bi-play-circle"></i></span> Video</a>
+        <a href="/" class="d-link {{ request()->is('/') ? 'active' : '' }}">
+            <span class="d-icon"><i class="bi bi-house"></i></span> Beranda
+        </a>
+        <button class="d-accordion-btn {{ request()->is('karir*','berita*','video*') ? 'active-parent' : '' }}" data-target="acc-menu">
+            <span class="d-acc-left"><span class="d-icon"><i class="bi bi-grid"></i></span> Menu</span>
+            <i class="bi bi-chevron-down d-accordion-chevron"></i>
+        </button>
+        <div class="d-accordion-body {{ request()->is('karir*','berita*','video*') ? 'open' : '' }}" id="acc-menu">
+            <a href="{{ url('/karir') }}"  class="d-sub-link"><i class="bi bi-briefcase"></i> Karir</a>
+            <a href="{{ url('/berita') }}" class="d-sub-link"><i class="bi bi-newspaper"></i> Berita</a>
+            <a href="{{ url('/video') }}"  class="d-sub-link"><i class="bi bi-play-circle"></i> Video</a>
         </div>
         <div class="d-divider"></div>
-        <a href="/layanan" class="d-link {{ request()->is('layanan*') ? 'active' : '' }}"><span class="d-icon"><i class="bi bi-hospital"></i></span> Layanan</a>
-        <div class="d-sub">
-            <a href="{{ url('/layanan#igd') }}"          class="d-link" style="font-size:13px;"><span class="d-icon" style="background:#fee2e2;color:#dc2626;"><i class="bi bi-bandaid-fill"></i></span> IGD 24 Jam</a>
-            <a href="{{ url('/layanan#rawatjalan') }}"   class="d-link" style="font-size:13px;"><span class="d-icon" style="background:#e0f2fe;color:#0284c7;"><i class="bi bi-clipboard2-pulse"></i></span> Rawat Jalan</a>
-            <a href="{{ url('/layanan#rawatinap') }}"    class="d-link" style="font-size:13px;"><span class="d-icon" style="background:#ede9fe;color:#7c3aed;"><i class="bi bi-hospital"></i></span> Rawat Inap</a>
-            <a href="{{ url('/layanan#ambulans') }}"     class="d-link" style="font-size:13px;"><span class="d-icon" style="background:#fef3c7;color:#d97706;"><i class="bi bi-truck"></i></span> Ambulans 24 Jam</a>
-            <a href="{{ url('/layanan#laboratorium') }}" class="d-link" style="font-size:13px;"><span class="d-icon" style="background:#d1fae5;color:#059669;"><i class="bi bi-eyedropper"></i></span> Laboratorium</a>
-            <a href="{{ url('/layanan#radiologi') }}"    class="d-link" style="font-size:13px;"><span class="d-icon" style="background:#ede9fe;color:#6366f1;"><i class="bi bi-radioactive"></i></span> Radiologi</a>
-            <a href="{{ url('/layanan#farmasi') }}"      class="d-link" style="font-size:13px;"><span class="d-icon" style="background:#fce7f3;color:#db2777;"><i class="bi bi-capsule"></i></span> Farmasi</a>
-            <a href="{{ url('/layanan#mcu') }}"          class="d-link" style="font-size:13px;"><span class="d-icon" style="background:#ccfbf1;color:#0d9488;"><i class="bi bi-heart-pulse"></i></span> Medical Check Up</a>
+        <button class="d-accordion-btn {{ request()->is('layanan*') ? 'active-parent' : '' }}" data-target="acc-layanan">
+            <span class="d-acc-left"><span class="d-icon"><i class="bi bi-hospital"></i></span> Layanan</span>
+            <i class="bi bi-chevron-down d-accordion-chevron"></i>
+        </button>
+        <div class="d-accordion-body {{ request()->is('layanan*') ? 'open' : '' }}" id="acc-layanan">
+            <a href="{{ url('/layanan') }}"              class="d-sub-link"><i class="bi bi-grid-3x3-gap"></i> Semua Layanan</a>
+            <a href="{{ url('/layanan#igd') }}"          class="d-sub-link"><i class="bi bi-bandaid-fill"></i> IGD 24 Jam</a>
+            <a href="{{ url('/layanan#rawatjalan') }}"   class="d-sub-link"><i class="bi bi-clipboard2-pulse"></i> Rawat Jalan</a>
+            <a href="{{ url('/layanan#rawatinap') }}"    class="d-sub-link"><i class="bi bi-hospital"></i> Rawat Inap</a>
+            <a href="{{ url('/layanan#ambulans') }}"     class="d-sub-link"><i class="bi bi-truck"></i> Ambulans 24 Jam</a>
+            <a href="{{ url('/layanan#laboratorium') }}" class="d-sub-link"><i class="bi bi-eyedropper"></i> Laboratorium</a>
+            <a href="{{ url('/layanan#radiologi') }}"    class="d-sub-link"><i class="bi bi-radioactive"></i> Radiologi</a>
+            <a href="{{ url('/layanan#farmasi') }}"      class="d-sub-link"><i class="bi bi-capsule"></i> Farmasi</a>
+            <a href="{{ url('/layanan#mcu') }}"          class="d-sub-link"><i class="bi bi-heart-pulse"></i> Medical Check Up</a>
         </div>
         <div class="d-divider"></div>
         <a href="/artikel"  class="d-link {{ request()->is('artikel*')  ? 'active' : '' }}"><span class="d-icon"><i class="bi bi-journal-text"></i></span> Artikel</a>
@@ -626,15 +685,48 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8faff; overfl
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    const burger=document.getElementById('navBurger'),drawer=document.getElementById('navDrawer'),overlay=document.getElementById('navOverlay'),closeBtn=document.getElementById('drawerClose'),navbar=document.getElementById('mainNavbar');
-    function openDrawer(){burger.classList.add('open');drawer.classList.add('open');overlay.classList.add('show');document.body.style.overflow='hidden';}
-    function closeDrawer(){burger.classList.remove('open');drawer.classList.remove('open');overlay.classList.remove('show');document.body.style.overflow='';}
-    burger.addEventListener('click',e=>{e.stopPropagation();drawer.classList.contains('open')?closeDrawer():openDrawer();});
-    closeBtn.addEventListener('click',closeDrawer); overlay.addEventListener('click',closeDrawer);
-    drawer.querySelectorAll('.d-link').forEach(l=>l.addEventListener('click',closeDrawer));
-    window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>10),{passive:true});
+    const burger  = document.getElementById('navBurger');
+    const drawer  = document.getElementById('navDrawer');
+    const overlay = document.getElementById('navOverlay');
+    const closeBtn= document.getElementById('drawerClose');
+    const navbar  = document.getElementById('mainNavbar');
+
+    function openDrawer()  { burger.classList.add('open');drawer.classList.add('open');overlay.classList.add('show');document.body.style.overflow='hidden'; }
+    function closeDrawer() { burger.classList.remove('open');drawer.classList.remove('open');overlay.classList.remove('show');document.body.style.overflow=''; }
+
+    burger.addEventListener('click', e => { e.stopPropagation(); drawer.classList.contains('open') ? closeDrawer() : openDrawer(); });
+    closeBtn.addEventListener('click', closeDrawer);
+    overlay.addEventListener('click', closeDrawer);
+    drawer.querySelectorAll('.d-link, .d-sub-link').forEach(l => l.addEventListener('click', closeDrawer));
+
+    drawer.querySelectorAll('.d-accordion-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const targetId = this.dataset.target;
+            const body = document.getElementById(targetId);
+            const isOpen = body.classList.contains('open');
+            drawer.querySelectorAll('.d-accordion-body').forEach(b => b.classList.remove('open'));
+            drawer.querySelectorAll('.d-accordion-btn').forEach(b => b.classList.remove('open'));
+            if (!isOpen) { body.classList.add('open'); this.classList.add('open'); }
+        });
+    });
+    drawer.querySelectorAll('.d-accordion-body.open').forEach(b => {
+        const btn = drawer.querySelector('[data-target="' + b.id + '"]');
+        if (btn) btn.classList.add('open');
+    });
+
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 10), { passive: true });
 });
 </script>
+
+
+{{-- ORNAMEN --}}
+@unless(isset($poli))
+<div class="page-ornament orn-1" id="pgOrn1"></div>
+<div class="page-ornament orn-2" id="pgOrn2"></div>
+<div class="page-ornament orn-3" id="pgOrn3"></div>
+<div class="page-ornament orn-4" id="pgOrn4"></div>
+<div class="page-ornament orn-5" id="pgOrn5"></div>
+@endunless
 
 
 {{-- ================================================================
@@ -670,7 +762,6 @@ document.addEventListener('DOMContentLoaded', function () {
     </div>
 </section>
 
-{{-- Ticker dokter di halaman detail poli --}}
 @if(isset($dokterList) && $dokterList->count())
 <div class="dokter-ticker-section">
     <div class="dokter-ticker-track">
@@ -692,7 +783,6 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
         </div>
         @endforeach
-        {{-- duplikat untuk efek scroll tak henti --}}
         @foreach($dokterList as $dok)
         <div class="dokter-ticker-card">
             <div class="dtc-foto-wrap">
@@ -718,18 +808,13 @@ document.addEventListener('DOMContentLoaded', function () {
 <div class="detail-body">
 <div class="container" style="padding-top:48px;">
 <div class="row g-4">
-
-    {{-- MAIN CONTENT --}}
     <div class="col-lg-8">
         <div class="detail-main">
             @if($poli->gambar)
                 <img src="{{ asset('storage/'.$poli->gambar) }}" alt="{{ $poli->poli }}" class="detail-featured-img">
             @else
-                <div class="detail-img-placeholder">
-                    <i class="bi bi-clipboard2-pulse"></i>
-                </div>
+                <div class="detail-img-placeholder"><i class="bi bi-clipboard2-pulse"></i></div>
             @endif
-
             <div class="detail-content">
                 <div class="detail-section-label">Tentang Layanan</div>
                 <div class="detail-desc">
@@ -742,9 +827,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     @endif
                 </div>
             </div>
-
             <div class="detail-divider"></div>
-
             <div class="share-bar">
                 <span class="share-label"><i class="bi bi-share" style="margin-right:5px;"></i> Bagikan layanan ini</span>
                 <div class="share-btns">
@@ -757,14 +840,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
             </div>
         </div>
-
         <div style="margin-top:18px;">
             <a href="{{ url('/layanan#rawatjalan') }}" style="display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:10px;background:#1C145C;color:#fff;text-decoration:none;font-size:13.5px;font-weight:700;">
                 <i class="bi bi-arrow-left"></i> Kembali ke Rawat Jalan
             </a>
         </div>
-
-        {{-- Poli terkait --}}
         @if(isset($poliTerkait) && $poliTerkait->count())
         <div style="margin-top:40px;">
             <div class="terkait-title">Poliklinik Lainnya</div>
@@ -791,8 +871,6 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
         @endif
     </div>
-
-    {{-- SIDEBAR --}}
     <div class="col-lg-4">
         <div class="detail-sidebar">
             <div class="sidebar-card">
@@ -822,21 +900,14 @@ document.addEventListener('DOMContentLoaded', function () {
                         <div><div class="info-label">WhatsApp</div><div class="info-val">+{{ $noWa }}</div></div>
                     </div>
                     @endif
-
                     @if($noWa)
-                    <a href="https://wa.me/{{ $noWa }}" target="_blank" class="btn-wa-sidebar">
-                        <i class="bi bi-whatsapp"></i> Chat WhatsApp
-                    </a>
+                    <a href="https://wa.me/{{ $noWa }}" target="_blank" class="btn-wa-sidebar"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a>
                     @endif
                     @if($poli->no_hp)
-                    <a href="tel:{{ preg_replace('/[^0-9]/','',$poli->no_hp) }}" class="btn-tel-sidebar">
-                        <i class="bi bi-telephone-fill"></i> Hubungi via Telepon
-                    </a>
+                    <a href="tel:{{ preg_replace('/[^0-9]/','',$poli->no_hp) }}" class="btn-tel-sidebar"><i class="bi bi-telephone-fill"></i> Hubungi via Telepon</a>
                     @endif
                 </div>
             </div>
-
-            {{-- Jam rawat jalan --}}
             <div style="background:#fff;border-radius:16px;border:1px solid #e8edf5;padding:18px 20px;margin-top:14px;box-shadow:0 2px 12px rgba(28,20,92,.05);">
                 <div style="font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;">
                     <i class="bi bi-clock" style="margin-right:5px;"></i> Jam Rawat Jalan
@@ -853,7 +924,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
                 <p style="font-size:11.5px;color:#94a3b8;margin-top:10px;margin-bottom:0;line-height:1.5;">Jam praktik dapat berubah. Konfirmasi melalui telepon sebelum kunjungan.</p>
             </div>
-
             <a href="{{ route('jadwaldokter') }}" class="jadwal-cta">
                 <div class="jadwal-inner">
                     <div style="width:40px;height:40px;border-radius:11px;background:#fff;border:1px solid rgba(28,20,92,.15);display:flex;align-items:center;justify-content:center;font-size:18px;color:#1C145C;flex-shrink:0;">
@@ -868,7 +938,6 @@ document.addEventListener('DOMContentLoaded', function () {
             </a>
         </div>
     </div>
-
 </div>
 </div>
 </div>
@@ -906,7 +975,6 @@ document.addEventListener('DOMContentLoaded', function () {
     </div>
 </section>
 
-{{-- Ticker dokter --}}
 @if(isset($dokterList) && $dokterList->count())
 <div class="dokter-ticker-section">
     <div class="dokter-ticker-track">
@@ -954,8 +1022,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <div class="layanan-tabs-wrap">
     <div class="container">
         <div class="layanan-tabs" id="layananTabs">
-            <a href="#rekap"        class="lay-tab active" data-section="rekap"><i class="bi bi-grid-3x3-gap"></i> Semua</a>
-            <a href="#igd"          class="lay-tab" data-section="igd"><i class="bi bi-bandaid-fill"></i> IGD 24 Jam</a>
+            <a href="#igd"          class="lay-tab active" data-section="igd"><i class="bi bi-bandaid-fill"></i> IGD 24 Jam</a>
             <a href="#rawatjalan"   class="lay-tab" data-section="rawatjalan"><i class="bi bi-clipboard2-pulse"></i> Rawat Jalan</a>
             <a href="#rawatinap"    class="lay-tab" data-section="rawatinap"><i class="bi bi-hospital"></i> Rawat Inap</a>
             <a href="#ambulans"     class="lay-tab" data-section="ambulans"><i class="bi bi-truck"></i> Ambulans</a>
@@ -970,75 +1037,20 @@ document.addEventListener('DOMContentLoaded', function () {
 <div class="layanan-page-body">
 <div class="container" style="position:relative;z-index:1;">
 
-    {{-- ===================== REKAP ===================== --}}
-    <section id="rekap" class="lay-section">
-        <div style="margin-bottom:28px;">
-            <div class="sec-label" style="background:#e0e7ff;color:#4338ca;"><i class="bi bi-grid-3x3-gap"></i> Semua Layanan</div>
-            <div class="sec-title">Pilih Layanan yang Anda Butuhkan</div>
-            <div class="sec-sub">RSU Allam Medica menyediakan berbagai layanan kesehatan komprehensif untuk masyarakat Bumiayu dan sekitarnya.</div>
-        </div>
-        <div class="sec-divider"></div>
-        <div class="rekap-grid">
-            <a href="#igd" class="rekap-card" onclick="smoothTo('igd',event)" style="animation-delay:.04s">
-                <div class="rekap-icon" style="background:#fee2e2;color:#dc2626;"><i class="bi bi-bandaid-fill"></i></div>
-                <div class="rekap-name">IGD 24 Jam</div>
-                <div class="rekap-desc">Penanganan gawat darurat cepat dan profesional, siap melayani 24 jam setiap hari.</div>
-                <span class="rekap-arrow">Lihat Detail <i class="bi bi-arrow-right"></i></span>
-            </a>
-            <a href="#rawatjalan" class="rekap-card" onclick="smoothTo('rawatjalan',event)" style="animation-delay:.08s">
-                <div class="rekap-icon" style="background:#e0f2fe;color:#0284c7;"><i class="bi bi-clipboard2-pulse"></i></div>
-                <div class="rekap-name">Rawat Jalan</div>
-                <div class="rekap-desc">Berbagai poliklinik spesialis dengan dokter berpengalaman untuk konsultasi dan pemeriksaan.</div>
-                <span class="rekap-arrow">Lihat Poli <i class="bi bi-arrow-right"></i></span>
-            </a>
-            <a href="#rawatinap" class="rekap-card" onclick="smoothTo('rawatinap',event)" style="animation-delay:.12s">
-                <div class="rekap-icon" style="background:#ede9fe;color:#7c3aed;"><i class="bi bi-hospital"></i></div>
-                <div class="rekap-name">Rawat Inap</div>
-                <div class="rekap-desc">Fasilitas rawat inap dengan berbagai kelas kamar dan perawatan dari tenaga profesional.</div>
-                <span class="rekap-arrow">Lihat Kelas <i class="bi bi-arrow-right"></i></span>
-            </a>
-            <a href="#ambulans" class="rekap-card" onclick="smoothTo('ambulans',event)" style="animation-delay:.16s">
-                <div class="rekap-icon" style="background:#fef3c7;color:#d97706;"><i class="bi bi-truck"></i></div>
-                <div class="rekap-name">Ambulans 24 Jam</div>
-                <div class="rekap-desc">Layanan ambulans siaga 24 jam dengan perlengkapan medis lengkap dan tim terlatih.</div>
-                <span class="rekap-arrow">Lihat Detail <i class="bi bi-arrow-right"></i></span>
-            </a>
-            <a href="#laboratorium" class="rekap-card" onclick="smoothTo('laboratorium',event)" style="animation-delay:.20s">
-                <div class="rekap-icon" style="background:#d1fae5;color:#059669;"><i class="bi bi-eyedropper"></i></div>
-                <div class="rekap-name">Laboratorium</div>
-                <div class="rekap-desc">Pemeriksaan laboratorium lengkap termasuk home service, buka 24 jam setiap hari termasuk hari libur.</div>
-                <span class="rekap-arrow">Lihat Detail <i class="bi bi-arrow-right"></i></span>
-            </a>
-            <a href="#radiologi" class="rekap-card" onclick="smoothTo('radiologi',event)" style="animation-delay:.24s">
-                <div class="rekap-icon" style="background:#ede9fe;color:#6366f1;"><i class="bi bi-radioactive"></i></div>
-                <div class="rekap-name">Radiologi</div>
-                <div class="rekap-desc">Layanan diagnostik pencitraan meliputi rontgen, USG, CT Scan, dan pemeriksaan lainnya.</div>
-                <span class="rekap-arrow">Lihat Detail <i class="bi bi-arrow-right"></i></span>
-            </a>
-            <a href="#farmasi" class="rekap-card" onclick="smoothTo('farmasi',event)" style="animation-delay:.28s">
-                <div class="rekap-icon" style="background:#fce7f3;color:#db2777;"><i class="bi bi-capsule"></i></div>
-                <div class="rekap-name">Farmasi</div>
-                <div class="rekap-desc">Apotek buka 24 jam dengan obat-obatan lengkap, melayani resep dokter dan obat bebas.</div>
-                <span class="rekap-arrow">Lihat Detail <i class="bi bi-arrow-right"></i></span>
-            </a>
-            <a href="#mcu" class="rekap-card" onclick="smoothTo('mcu',event)" style="animation-delay:.32s">
-                <div class="rekap-icon" style="background:#ccfbf1;color:#0d9488;"><i class="bi bi-heart-pulse"></i></div>
-                <div class="rekap-name">Medical Check Up</div>
-                <div class="rekap-desc">Paket MCU komprehensif untuk deteksi dini penyakit dan pemeriksaan kesehatan berkala.</div>
-                <span class="rekap-arrow">Lihat Detail <i class="bi bi-arrow-right"></i></span>
-            </a>
-        </div>
-    </section>
-
 
     {{-- ===================== IGD ===================== --}}
     <section id="igd" class="lay-section">
+        <div style="margin-bottom:28px;">
+            <div class="sec-label" style="background:#fee2e2;color:#dc2626;"><i class="bi bi-bandaid-fill"></i> Gawat Darurat</div>
+            <div class="sec-title">IGD 24 Jam</div>
+            <div class="sec-sub">Penanganan gawat darurat cepat, tepat, dan profesional sepanjang waktu.</div>
+        </div>
         <div class="sec-divider"></div>
         <div class="row g-4">
             <div class="col-lg-5">
                 <div class="svc-card h-100">
                     <div class="svc-header" style="background:linear-gradient(135deg,#7f1d1d 0%,#dc2626 100%);">
-                        <div style="font-size:32px;margin-bottom:12px;position:relative;z-index:1;">🚨</div>
+                        <div class="svc-header-icon"><i class="bi bi-bandaid-fill"></i></div>
                         <div class="svc-title">IGD 24 Jam</div>
                         <div class="svc-tagline">Penanganan gawat darurat cepat, tepat, dan profesional sepanjang waktu</div>
                     </div>
@@ -1060,8 +1072,6 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
             <div class="col-lg-7 d-flex align-items-stretch">
                 <div style="background:#fff;border-radius:20px;border:1px solid #e8edf5;box-shadow:0 4px 20px rgba(28,20,92,.05);padding:32px;width:100%;position:relative;overflow:hidden;">
-                    {{-- ornamen bunga tipis di pojok --}}
-                    <div style="position:absolute;right:-30px;bottom:-30px;width:120px;height:120px;background-image:url('{{ asset('images/beranda/ornamen.png') }}');background-size:contain;background-repeat:no-repeat;background-position:center;opacity:0.04;pointer-events:none;filter:hue-rotate(0deg) saturate(0.3);"></div>
                     <div style="font-size:11px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.8px;margin-bottom:18px;">Prosedur Penanganan</div>
                     <div style="display:flex;flex-direction:column;gap:16px;">
                         @php
@@ -1153,9 +1163,7 @@ document.addEventListener('DOMContentLoaded', function () {
             @endforelse
         </div>
 
-        {{-- CTA Jadwal Dokter --}}
         <div style="margin-top:28px;background:linear-gradient(135deg,#1C145C 0%,#3b5bdb 100%);border-radius:18px;padding:28px 32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden;">
-            <div style="position:absolute;right:-20px;bottom:-20px;width:120px;height:120px;background-image:url('{{ asset('images/beranda/ornamen.png') }}');background-size:contain;background-repeat:no-repeat;background-position:center;opacity:0.1;filter:brightness(10);"></div>
             <div style="position:relative;z-index:1;">
                 <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;">Jadwal Dokter</div>
                 <div style="font-family:'DM Serif Display',serif;font-size:22px;color:#fff;font-weight:400;margin-bottom:4px;">Cek Jadwal Praktik Dokter</div>
@@ -1168,7 +1176,7 @@ document.addEventListener('DOMContentLoaded', function () {
     </section>
 
 
-    {{-- ===================== RAWAT INAP — KELAS KAMAR ===================== --}}
+    {{-- ===================== RAWAT INAP ===================== --}}
     <section id="rawatinap" class="lay-section">
         <div class="sec-divider"></div>
         <div style="margin-bottom:28px;">
@@ -1176,137 +1184,32 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="sec-title">Fasilitas Rawat Inap</div>
             <div class="sec-sub">RSU Allam Medica menyediakan berbagai pilihan kelas perawatan sesuai kebutuhan dan kondisi pasien.</div>
         </div>
+
         @php
         $kelasRawat = [
-            [
-                'nama'    => 'Kelas 1',
-                'icon'    => 'bi-star-fill',
-                'grad'    => 'linear-gradient(135deg,#1e3a6e 0%,#2563eb 100%)',
-                'badge_bg'=> '#dbeafe',
-                'badge_c' => '#1d4ed8',
-                'badge'   => 'Kelas 1',
-                'fitur'   => [
-                    ['icon'=>'bi-door-open','teks'=>'2 tempat tidur per kamar'],
-                    ['icon'=>'bi-wifi','teks'=>'Fasilitas TV & WiFi'],
-                    ['icon'=>'bi-person-check','teks'=>'Pelayanan perawat prioritas'],
-                    ['icon'=>'bi-box-seam','teks'=>'Lemari & ruang penyimpanan'],
-                ],
-            ],
-            [
-                'nama'    => 'Kelas 2',
-                'icon'    => 'bi-star-half',
-                'grad'    => 'linear-gradient(135deg,#1e4d3a 0%,#059669 100%)',
-                'badge_bg'=> '#d1fae5',
-                'badge_c' => '#065f46',
-                'badge'   => 'Kelas 2',
-                'fitur'   => [
-                    ['icon'=>'bi-door-open','teks'=>'3–4 tempat tidur per kamar'],
-                    ['icon'=>'bi-shield-plus','teks'=>'Pelayanan keperawatan standar'],
-                    ['icon'=>'bi-person-hearts','teks'=>'Ruang kunjungan keluarga'],
-                    ['icon'=>'bi-patch-check','teks'=>'Melayani pasien BPJS'],
-                ],
-            ],
-            [
-                'nama'    => 'Kelas 3',
-                'icon'    => 'bi-star',
-                'grad'    => 'linear-gradient(135deg,#3d2a0f 0%,#d97706 100%)',
-                'badge_bg'=> '#fef3c7',
-                'badge_c' => '#92400e',
-                'badge'   => 'Kelas 3',
-                'fitur'   => [
-                    ['icon'=>'bi-door-open','teks'=>'5–6 tempat tidur per kamar'],
-                    ['icon'=>'bi-patch-check','teks'=>'Melayani pasien BPJS'],
-                    ['icon'=>'bi-shield-plus','teks'=>'Perawatan medis lengkap'],
-                    ['icon'=>'bi-people','teks'=>'Area keluarga tersedia'],
-                ],
-            ],
-            [
-                'nama'    => 'Intermediet',
-                'icon'    => 'bi-activity',
-                'grad'    => 'linear-gradient(135deg,#1a1a5e 0%,#6366f1 100%)',
-                'badge_bg'=> '#ede9fe',
-                'badge_c' => '#4c1d95',
-                'badge'   => 'Perawatan Khusus',
-                'fitur'   => [
-                    ['icon'=>'bi-heart-pulse-fill','teks'=>'Monitor vital sign kontinu'],
-                    ['icon'=>'bi-person-badge','teks'=>'Perawat terlatih 24 jam'],
-                    ['icon'=>'bi-capsule','teks'=>'Obat-obatan khusus tersedia'],
-                    ['icon'=>'bi-exclamation-triangle','teks'=>'Untuk pasien semi-kritis'],
-                ],
-            ],
-            [
-                'nama'    => 'Perinatologi',
-                'icon'    => 'bi-emoji-smile',
-                'grad'    => 'linear-gradient(135deg,#831843 0%,#ec4899 100%)',
-                'badge_bg'=> '#fce7f3',
-                'badge_c' => '#9d174d',
-                'badge'   => 'Bayi Baru Lahir',
-                'fitur'   => [
-                    ['icon'=>'bi-thermometer','teks'=>'Inkubator & penghangat bayi'],
-                    ['icon'=>'bi-lungs','teks'=>'Monitor oksigen neonatus'],
-                    ['icon'=>'bi-person-badge','teks'=>'Perawat neonatus terlatih'],
-                    ['icon'=>'bi-heart','teks'=>'Perawatan bayi baru lahir'],
-                ],
-            ],
-            [
-                'nama'    => 'IGD',
-                'icon'    => 'bi-bandaid-fill',
-                'grad'    => 'linear-gradient(135deg,#7f1d1d 0%,#dc2626 100%)',
-                'badge_bg'=> '#fee2e2',
-                'badge_c' => '#991b1b',
-                'badge'   => 'Gawat Darurat',
-                'fitur'   => [
-                    ['icon'=>'bi-lightning-fill','teks'=>'Penanganan darurat cepat'],
-                    ['icon'=>'bi-activity','teks'=>'Monitor pasien real-time'],
-                    ['icon'=>'bi-clock-fill','teks'=>'Siaga 24 jam penuh'],
-                    ['icon'=>'bi-people-fill','teks'=>'Tim dokter & perawat siaga'],
-                ],
-            ],
-            [
-                'nama'    => 'HCU / ICU / PICU / NICU',
-                'icon'    => 'bi-heart-pulse-fill',
-                'grad'    => 'linear-gradient(135deg,#134e4a 0%,#0d9488 100%)',
-                'badge_bg'=> '#ccfbf1',
-                'badge_c' => '#134e4a',
-                'badge'   => 'Perawatan Intensif',
-                'fitur'   => [
-                    ['icon'=>'bi-heart-pulse-fill','teks'=>'Monitor intensif 24 jam'],
-                    ['icon'=>'bi-lungs','teks'=>'Ventilator & alat bantu napas'],
-                    ['icon'=>'bi-person-badge','teks'=>'Dokter spesialis jaga'],
-                    ['icon'=>'bi-shield-fill-check','teks'=>'Penanganan kritis komprehensif'],
-                ],
-            ],
-            [
-                'nama'    => 'Ruang Bersalin',
-                'icon'    => 'bi-gender-female',
-                'grad'    => 'linear-gradient(135deg,#5b21b6 0%,#8b5cf6 100%)',
-                'badge_bg'=> '#ede9fe',
-                'badge_c' => '#5b21b6',
-                'badge'   => 'Kebidanan',
-                'fitur'   => [
-                    ['icon'=>'bi-heart','teks'=>'Ruang persalinan nyaman & bersih'],
-                    ['icon'=>'bi-person-badge','teks'=>'Bidan & dokter kebidanan siap'],
-                    ['icon'=>'bi-shield-plus','teks'=>'Mendukung metode VBAC & SC'],
-                    ['icon'=>'bi-people-fill','teks'=>'Pendamping persalinan diizinkan'],
-                ],
-            ],
+            ['nama'=>'Kelas VIP','icon'=>'bi-gem','grad'=>'linear-gradient(135deg,#0f0c29 0%,#302b63 50%,#24243e 100%)','badge_bg'=>'#ede9fe','badge_c'=>'#4c1d95','badge'=>'VIP','fitur'=>[['icon'=>'bi-door-open','teks'=>'Kamar pribadi 1 tempat tidur'],['icon'=>'bi-tv','teks'=>'TV layar lebar, WiFi, AC individual'],['icon'=>'bi-person-check','teks'=>'Pelayanan perawat prioritas penuh'],['icon'=>'bi-box-seam','teks'=>'Sofa tamu, kulkas mini, kamar mandi dalam'],['icon'=>'bi-cup-hot','teks'=>'Fasilitas makan pasien & penunggu']]],
+            ['nama'=>'Kelas 1','icon'=>'bi-star-fill','grad'=>'linear-gradient(135deg,#1e3a6e 0%,#2563eb 100%)','badge_bg'=>'#dbeafe','badge_c'=>'#1d4ed8','badge'=>'Kelas 1','fitur'=>[['icon'=>'bi-door-open','teks'=>'2 tempat tidur per kamar'],['icon'=>'bi-tv','teks'=>'Fasilitas TV & WiFi'],['icon'=>'bi-person-check','teks'=>'Pelayanan perawat prioritas'],['icon'=>'bi-box-seam','teks'=>'Lemari & ruang penyimpanan']]],
+            ['nama'=>'Kelas 2','icon'=>'bi-star-half','grad'=>'linear-gradient(135deg,#1e4d3a 0%,#059669 100%)','badge_bg'=>'#d1fae5','badge_c'=>'#065f46','badge'=>'Kelas 2','fitur'=>[['icon'=>'bi-door-open','teks'=>'3–4 tempat tidur per kamar'],['icon'=>'bi-shield-plus','teks'=>'Pelayanan keperawatan standar'],['icon'=>'bi-person-hearts','teks'=>'Ruang kunjungan keluarga'],['icon'=>'bi-patch-check','teks'=>'Melayani pasien BPJS']]],
+            ['nama'=>'Kelas 3','icon'=>'bi-star','grad'=>'linear-gradient(135deg,#3d2a0f 0%,#d97706 100%)','badge_bg'=>'#fef3c7','badge_c'=>'#92400e','badge'=>'Kelas 3','fitur'=>[['icon'=>'bi-door-open','teks'=>'5–6 tempat tidur per kamar'],['icon'=>'bi-patch-check','teks'=>'Melayani pasien BPJS'],['icon'=>'bi-shield-plus','teks'=>'Perawatan medis lengkap'],['icon'=>'bi-people','teks'=>'Area keluarga tersedia']]],
+            ['nama'=>'Intermediet','icon'=>'bi-activity','grad'=>'linear-gradient(135deg,#1a1a5e 0%,#6366f1 100%)','badge_bg'=>'#ede9fe','badge_c'=>'#4c1d95','badge'=>'Perawatan Khusus','fitur'=>[['icon'=>'bi-heart-pulse-fill','teks'=>'Monitor vital sign kontinu'],['icon'=>'bi-person-badge','teks'=>'Perawat terlatih 24 jam'],['icon'=>'bi-capsule','teks'=>'Obat-obatan khusus tersedia'],['icon'=>'bi-exclamation-triangle','teks'=>'Untuk pasien semi-kritis']]],
+            ['nama'=>'Perinatologi','icon'=>'bi-balloon-heart','grad'=>'linear-gradient(135deg,#831843 0%,#ec4899 100%)','badge_bg'=>'#fce7f3','badge_c'=>'#9d174d','badge'=>'Bayi Baru Lahir','fitur'=>[['icon'=>'bi-thermometer','teks'=>'Inkubator & penghangat bayi'],['icon'=>'bi-lungs','teks'=>'Monitor oksigen neonatus'],['icon'=>'bi-person-badge','teks'=>'Perawat neonatus terlatih'],['icon'=>'bi-heart','teks'=>'Perawatan bayi baru lahir']]],
+            ['nama'=>'IGD','icon'=>'bi-bandaid-fill','grad'=>'linear-gradient(135deg,#7f1d1d 0%,#dc2626 100%)','badge_bg'=>'#fee2e2','badge_c'=>'#991b1b','badge'=>'Gawat Darurat','fitur'=>[['icon'=>'bi-lightning-fill','teks'=>'Penanganan darurat cepat'],['icon'=>'bi-activity','teks'=>'Monitor pasien real-time'],['icon'=>'bi-clock-fill','teks'=>'Siaga 24 jam penuh'],['icon'=>'bi-people-fill','teks'=>'Tim dokter & perawat siaga']]],
+            ['nama'=>'HCU / ICU / PICU / NICU','icon'=>'bi-heart-pulse-fill','grad'=>'linear-gradient(135deg,#134e4a 0%,#0d9488 100%)','badge_bg'=>'#ccfbf1','badge_c'=>'#134e4a','badge'=>'Perawatan Intensif','fitur'=>[['icon'=>'bi-heart-pulse-fill','teks'=>'Monitor intensif 24 jam'],['icon'=>'bi-lungs','teks'=>'Ventilator & alat bantu napas'],['icon'=>'bi-person-badge','teks'=>'Dokter spesialis jaga'],['icon'=>'bi-shield-fill-check','teks'=>'Penanganan kritis komprehensif']]],
+            ['nama'=>'Ruang Bersalin','icon'=>'bi-gender-female','grad'=>'linear-gradient(135deg,#5b21b6 0%,#8b5cf6 100%)','badge_bg'=>'#ede9fe','badge_c'=>'#5b21b6','badge'=>'Kebidanan','fitur'=>[['icon'=>'bi-heart','teks'=>'Ruang persalinan nyaman & bersih'],['icon'=>'bi-person-badge','teks'=>'Bidan & dokter kebidanan siap'],['icon'=>'bi-shield-plus','teks'=>'Mendukung metode VBAC & SC'],['icon'=>'bi-people-fill','teks'=>'Pendamping persalinan diizinkan']]],
         ];
         @endphp
+
+        {{-- DESKTOP: grid cards seperti sebelumnya --}}
         <div class="kelas-grid">
             @foreach($kelasRawat as $i => $kelas)
             <div class="kelas-card" style="animation-delay:{{ min($i*0.07,0.5) }}s;">
                 <div class="kelas-header" style="background:{{ $kelas['grad'] }};">
-                    <div class="kelas-icon-wrap">
-                        <i class="bi {{ $kelas['icon'] }}"></i>
-                    </div>
+                    <div class="kelas-icon-wrap"><i class="bi {{ $kelas['icon'] }}"></i></div>
                     <div class="kelas-name">{{ $kelas['nama'] }}</div>
                 </div>
                 <div class="kelas-body">
                     @foreach($kelas['fitur'] as $f)
-                    <div class="kelas-feature">
-                        <i class="bi {{ $f['icon'] }}"></i>
-                        <span>{{ $f['teks'] }}</span>
-                    </div>
+                    <div class="kelas-feature"><i class="bi {{ $f['icon'] }}"></i><span>{{ $f['teks'] }}</span></div>
                     @endforeach
                 </div>
                 <div class="kelas-footer">
@@ -1319,7 +1222,52 @@ document.addEventListener('DOMContentLoaded', function () {
             @endforeach
         </div>
 
-        {{-- CTA Rawat Inap --}}
+        {{-- MOBILE: pills selector + detail panel --}}
+        <div class="kelas-mobile-wrap">
+            {{-- Pills horizontal scroll --}}
+            <div class="kelas-pills-scroll" id="kelasPills">
+                @foreach($kelasRawat as $i => $kelas)
+                <button
+                    class="kelas-pill {{ $i === 0 ? 'active' : '' }}"
+                    data-index="{{ $i }}"
+                    style="background:{{ $kelas['grad'] }};"
+                    onclick="showKelas({{ $i }})"
+                >
+                    <i class="bi {{ $kelas['icon'] }}"></i>
+                    {{ $kelas['nama'] }}
+                </button>
+                @endforeach
+            </div>
+
+            {{-- Detail panel (sembunyikan semua kecuali aktif via JS) --}}
+            @foreach($kelasRawat as $i => $kelas)
+            <div class="kelas-detail-panel" id="kelasPanel{{ $i }}" style="{{ $i !== 0 ? 'display:none;' : '' }}">
+                <div class="kdp-header">
+                    <div class="kdp-icon" style="background:{{ $kelas['grad'] }};">
+                        <i class="bi {{ $kelas['icon'] }}"></i>
+                    </div>
+                    <div>
+                        <div class="kdp-title">{{ $kelas['nama'] }}</div>
+                        <span class="kdp-badge" style="background:{{ $kelas['badge_bg'] }};color:{{ $kelas['badge_c'] }};">{{ $kelas['badge'] }}</span>
+                    </div>
+                </div>
+                <div class="kdp-body">
+                    @foreach($kelas['fitur'] as $f)
+                    <div class="kdp-feature">
+                        <i class="bi {{ $f['icon'] }}"></i>
+                        <span>{{ $f['teks'] }}</span>
+                    </div>
+                    @endforeach
+                </div>
+                <div class="kdp-footer">
+                    <a href="https://wa.me/6285292224886?text=Halo,%20saya%20ingin%20info%20{{ urlencode($kelas['nama']) }}" target="_blank" class="kdp-wa">
+                        <i class="bi bi-whatsapp"></i> Tanya via WhatsApp
+                    </a>
+                </div>
+            </div>
+            @endforeach
+        </div>
+
         <div style="margin-top:28px;background:#fff;border-radius:16px;border:1px solid #e8edf5;padding:24px 28px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;box-shadow:0 2px 12px rgba(28,20,92,.05);">
             <div style="width:44px;height:44px;border-radius:12px;background:#ede9fe;display:flex;align-items:center;justify-content:center;font-size:20px;color:#7c3aed;flex-shrink:0;"><i class="bi bi-info-circle-fill"></i></div>
             <div style="flex:1;">
@@ -1341,7 +1289,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="row g-0">
                 <div class="col-lg-4">
                     <div class="svc-header h-100" style="background:linear-gradient(135deg,#78350f 0%,#f59e0b 100%);border-radius:20px 0 0 20px;">
-                        <div style="font-size:32px;margin-bottom:12px;position:relative;z-index:1;">🚑</div>
+                        <div class="svc-header-icon"><i class="bi bi-truck"></i></div>
                         <div class="svc-title">Ambulans 24 Jam</div>
                         <div class="svc-tagline">Respons cepat ke mana pun Anda membutuhkan pertolongan</div>
                         <div style="margin-top:22px;position:relative;z-index:1;">
@@ -1389,7 +1337,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="col-lg-5">
                 <div class="svc-card h-100">
                     <div class="svc-header" style="background:linear-gradient(135deg,#064e3b 0%,#059669 100%);">
-                        <div style="font-size:32px;margin-bottom:12px;position:relative;z-index:1;">🧪</div>
+                        <div class="svc-header-icon"><i class="bi bi-eyedropper"></i></div>
                         <div class="svc-title">Laboratorium</div>
                         <div class="svc-tagline">Pemeriksaan akurat dengan teknologi modern, buka 24 jam termasuk hari libur</div>
                         <div style="margin-top:16px;display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:12px;font-weight:700;padding:5px 12px;border-radius:20px;position:relative;z-index:1;">
@@ -1411,11 +1359,11 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
             <div class="col-lg-7 d-flex align-items-stretch">
                 <div style="display:flex;flex-direction:column;gap:16px;width:100%;">
-
-                    {{-- Home Service Card --}}
                     <div class="homeservice-card">
                         <div style="display:flex;align-items:flex-start;gap:14px;margin-bottom:16px;">
-                            <div style="width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#059669,#10b981);display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;flex-shrink:0;">🏠</div>
+                            <div style="width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#059669,#10b981);display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;flex-shrink:0;">
+                                <i class="bi bi-house-heart-fill"></i>
+                            </div>
                             <div>
                                 <div style="font-family:'DM Serif Display',serif;font-size:20px;color:#065f46;font-weight:400;margin-bottom:4px;">Home Service Laboratorium</div>
                                 <div style="font-size:12px;font-weight:700;color:#059669;background:#d1fae5;border:1px solid #6ee7b7;padding:2px 10px;border-radius:20px;display:inline-block;">Layanan ke Rumah Anda</div>
@@ -1433,8 +1381,6 @@ document.addEventListener('DOMContentLoaded', function () {
                             <i class="bi bi-whatsapp"></i> Pesan Home Service
                         </a>
                     </div>
-
-                    {{-- Jenis pemeriksaan tambahan --}}
                     <div style="background:#fff;border-radius:14px;border:1px solid #e8edf5;padding:20px 22px;box-shadow:0 2px 10px rgba(28,20,92,.04);">
                         <div style="font-size:11px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;"><i class="bi bi-flask" style="margin-right:4px;"></i> Pemeriksaan Tambahan</div>
                         <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;">
@@ -1458,7 +1404,6 @@ document.addEventListener('DOMContentLoaded', function () {
                             @endforeach
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -1472,7 +1417,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="row g-0">
                 <div class="col-lg-4">
                     <div class="svc-header h-100" style="background:linear-gradient(135deg,#1e1b4b 0%,#6366f1 100%);border-radius:20px 0 0 20px;">
-                        <div style="font-size:32px;margin-bottom:12px;position:relative;z-index:1;">🩻</div>
+                        <div class="svc-header-icon"><i class="bi bi-radioactive"></i></div>
                         <div class="svc-title">Radiologi</div>
                         <div class="svc-tagline">Diagnostik pencitraan dengan peralatan modern dan akurasi tinggi</div>
                     </div>
@@ -1514,7 +1459,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="col-lg-5">
                 <div class="svc-card h-100">
                     <div class="svc-header" style="background:linear-gradient(135deg,#831843 0%,#ec4899 100%);">
-                        <div style="font-size:32px;margin-bottom:12px;position:relative;z-index:1;">💊</div>
+                        <div class="svc-header-icon"><i class="bi bi-capsule"></i></div>
                         <div class="svc-title">Farmasi / Apotek</div>
                         <div class="svc-tagline">Obat-obatan lengkap berkualitas, buka 24 jam setiap hari termasuk hari libur</div>
                     </div>
@@ -1535,7 +1480,6 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
             <div class="col-lg-7 d-flex align-items-stretch">
                 <div style="background:#fff;border-radius:20px;border:1px solid #e8edf5;box-shadow:0 4px 20px rgba(28,20,92,.05);padding:32px;width:100%;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;">
-                    <div style="position:absolute;right:-30px;bottom:-30px;width:130px;height:130px;background-image:url('{{ asset('images/beranda/ornamen.png') }}');background-size:contain;background-repeat:no-repeat;background-position:center;opacity:0.04;pointer-events:none;filter:hue-rotate(320deg) saturate(0.5);"></div>
                     <div style="font-size:11px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.8px;margin-bottom:20px;"><i class="bi bi-capsule" style="margin-right:5px;color:#db2777;"></i> Layanan Kami</div>
                     <div style="display:flex;flex-direction:column;gap:12px;">
                         @php
@@ -1571,7 +1515,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="col-lg-5">
                 <div class="svc-card">
                     <div class="svc-header" style="background:linear-gradient(135deg,#134e4a 0%,#0d9488 100%);">
-                        <div style="font-size:32px;margin-bottom:12px;position:relative;z-index:1;">❤️</div>
+                        <div class="svc-header-icon"><i class="bi bi-heart-pulse"></i></div>
                         <div class="svc-title">Medical Check Up</div>
                         <div class="svc-tagline">Deteksi dini untuk hidup lebih sehat dan produktif</div>
                     </div>
@@ -1618,7 +1562,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     </div>
                     @endforeach
                 @else
-                    {{-- Fallback jika belum ada data dari admin --}}
                     @php
                     $defaultPakets=[
                         ['nama'=>'Paket Dasar','harga'=>'Hubungi kami','warna'=>'#0d9488','items'=>['Pemeriksaan fisik lengkap','Darah rutin','Urin rutin','Foto rontgen thorax','Konsultasi dokter']],
@@ -1651,9 +1594,7 @@ document.addEventListener('DOMContentLoaded', function () {
 @endif
 
 
-{{-- ============================================================
-     FOOTER
-============================================================ --}}
+{{-- FOOTER --}}
 <footer class="footer-rsu">
     <div class="footer-ornament"></div>
     <div class="footer-ornament2"></div>
@@ -1749,6 +1690,31 @@ function filterPoli() {
 }
 
 /* ============================================================
+   RAWAT INAP — MOBILE PILL SELECTOR
+============================================================ */
+function showKelas(index) {
+    // Sembunyikan semua panel
+    document.querySelectorAll('[id^="kelasPanel"]').forEach(function (el) {
+        el.style.display = 'none';
+    });
+    // Tampilkan panel yang dipilih
+    const target = document.getElementById('kelasPanel' + index);
+    if (target) {
+        target.style.display = 'block';
+        target.style.animation = 'fadeUp .3s ease both';
+    }
+    // Update active pill
+    document.querySelectorAll('.kelas-pill').forEach(function (btn) {
+        btn.classList.toggle('active', parseInt(btn.dataset.index) === index);
+    });
+    // Auto-scroll pill ke tengah
+    const pill = document.querySelector('.kelas-pill[data-index="' + index + '"]');
+    if (pill) {
+        pill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+}
+
+/* ============================================================
    SMOOTH SCROLL
 ============================================================ */
 function smoothTo(id, e) {
@@ -1762,11 +1728,11 @@ function smoothTo(id, e) {
    TAB ACTIVE ON SCROLL
 ============================================================ */
 (function () {
-    const sections = ['rekap','igd','rawatjalan','rawatinap','ambulans','laboratorium','radiologi','farmasi','mcu'];
+    const sections = ['igd','rawatjalan','rawatinap','ambulans','laboratorium','radiologi','farmasi','mcu'];
     const tabs = document.querySelectorAll('.lay-tab');
 
     function updateTab() {
-        let current = 'rekap';
+        let current = 'igd';
         sections.forEach(function (id) {
             const el = document.getElementById(id);
             if (el && el.getBoundingClientRect().top <= 160) current = id;
@@ -1784,6 +1750,38 @@ function smoothTo(id, e) {
             smoothTo(tab.dataset.section, null);
         });
     });
+})();
+
+/* ============================================================
+   ORNAMEN BUNGA — SCROLL-TRIGGERED
+============================================================ */
+(function () {
+    const orns = [
+        { el: document.getElementById('pgOrn1'), triggerPct: 0.08  },
+        { el: document.getElementById('pgOrn2'), triggerPct: 0.28  },
+        { el: document.getElementById('pgOrn3'), triggerPct: 0.50  },
+        { el: document.getElementById('pgOrn4'), triggerPct: 0.70  },
+        { el: document.getElementById('pgOrn5'), triggerPct: 0.88  },
+    ];
+
+    function updateOrns() {
+        const scrolled = window.scrollY;
+        const docH     = document.documentElement.scrollHeight - window.innerHeight;
+        const pct      = docH > 0 ? scrolled / docH : 0;
+
+        orns.forEach(function (o) {
+            if (!o.el) return;
+            const inView = pct >= o.triggerPct && pct < o.triggerPct + 0.18;
+            if (inView) {
+                o.el.classList.add('orn-visible');
+            } else {
+                o.el.classList.remove('orn-visible');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', updateOrns, { passive: true });
+    updateOrns();
 })();
 
 /* ============================================================
