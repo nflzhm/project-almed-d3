@@ -21,120 +21,24 @@ Layanan — RSU Allam Medica
 body { font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; overflow-x: hidden; }
 
 /* ============================================================
-   TOPBAR
+   ORNAMEN BUNGA
 ============================================================ */
-.topbar { background: linear-gradient(90deg,#1C145C 0%,#34258d 50%,#1C145C 100%); position:fixed; top:0;left:0;width:100%;height:38px;z-index:10000;display:flex;align-items:center; }
-.topbar .container { display:flex;align-items:center;justify-content:space-between; }
-.topbar-info { display:flex;align-items:center;gap:14px; }
-.topbar-info span { color:rgba(255,255,255,.88);font-size:12px;display:flex;align-items:center;gap:6px;white-space:nowrap; }
-.topbar-social { display:flex;align-items:center;gap:12px; }
-.topbar-social a { color:rgba(255,255,255,.75);font-size:14px;text-decoration:none;transition:.2s; }
-.topbar-social a:hover { color:#fff; }
-
-/* ============================================================
-   NAVBAR
-============================================================ */
-.navbar-float-wrap { position:fixed;top:38px;left:0;width:100%;z-index:9998;padding:12px 20px; }
-.navbar-float { max-width:1200px;margin:0 auto;position:relative;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px 10px 22px;border-radius:60px;background:rgba(255,255,255,0.07);backdrop-filter:blur(22px) saturate(180%);-webkit-backdrop-filter:blur(22px) saturate(180%);border:1px solid rgba(255,255,255,0.16);box-shadow:0 8px 32px rgba(15,23,42,.08),inset 0 1px 0 rgba(255,255,255,.22);transition:background .3s,border .3s,box-shadow .3s; }
-.navbar-float.scrolled { background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);box-shadow:0 10px 40px rgba(15,23,42,.10),inset 0 1px 0 rgba(255,255,255,.28); }
-.navbar-float::before { content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(180deg,rgba(255,255,255,.20),rgba(255,255,255,.02));pointer-events:none; }
-.nav-logo { position:relative;z-index:2; }
-.navbar-float .nav-logo img { height:38px;object-fit:contain;display:block; }
-.nav-links { display:flex;align-items:center;justify-content:center;flex:1;gap:2px;position:relative;z-index:2; }
-.nav-link-pill { padding:8px 15px;border-radius:50px;font-size:14px;font-weight:500;color:#0f172a;text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;gap:4px;transition:background .2s,color .2s,transform .2s; }
-.nav-link-pill:hover { background:rgba(255,255,255,.25);color:#1C145C;transform:translateY(-1px); }
-.nav-link-pill.active { background:rgba(255,255,255,.35);color:#1C145C;font-weight:600; }
-.drop-wrap { position:relative; }
-.drop-menu { position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%) translateY(8px);min-width:200px;padding:8px;border-radius:22px;background:rgba(255,255,255,.92);backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.35);box-shadow:0 12px 35px rgba(15,23,42,.14);opacity:0;visibility:hidden;transition:.22s;z-index:100; }
-.drop-wrap:hover .drop-menu { opacity:1;visibility:visible;transform:translateX(-50%) translateY(0); }
-.drop-item { display:flex;align-items:center;gap:9px;padding:9px 13px;border-radius:12px;font-size:13.5px;color:#334155;text-decoration:none;transition:.18s;font-weight:500; }
-.drop-item:hover { background:rgba(28,20,92,.07);color:#1C145C; }
-.drop-item i { font-size:14px;color:#64748b;flex-shrink:0; }
-.drop-item:hover i { color:#1C145C; }
-.drop-divider { height:1px;background:rgba(0,0,0,.07);margin:4px 8px; }
-.chevron { font-size:11px;opacity:.6;transition:.25s; }
-.drop-wrap:hover .chevron { transform:rotate(180deg); }
-.nav-cta { position:relative;z-index:2; }
-.btn-kontak { padding:10px 22px;border-radius:50px;background:#1C145C;color:#fff!important;text-decoration:none!important;font-size:14px;font-weight:600;display:inline-block;border:none;box-shadow:0 8px 20px rgba(28,20,92,.25);transition:.2s; }
-.btn-kontak:hover { background:#2a1e8a;transform:translateY(-1px); }
-.nav-burger { display:none;flex-direction:column;gap:5px;cursor:pointer;border:none;background:transparent;padding:6px;position:relative;z-index:2; }
-.nav-burger span { width:22px;height:2px;background:#1C145C;border-radius:2px;display:block;transition:.3s; }
-.nav-burger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
-.nav-burger.open span:nth-child(2) { opacity:0; }
-.nav-burger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
-
-/* ============================================================
-   DRAWER (MOBILE)
-============================================================ */
-.nav-overlay { display:none;position:fixed;inset:0;background:rgba(15,23,42,0);z-index:9999990;transition:background .3s; }
-.nav-overlay.show { display:block;background:rgba(15,23,42,0.42); }
-.nav-drawer { position:fixed;top:0;right:0;width:72%;max-width:300px;height:100dvh;z-index:9999995;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);background:rgba(255,255,255,0.97);backdrop-filter:blur(24px) saturate(180%);border-left:1px solid rgba(255,255,255,0.45);box-shadow:-8px 0 32px rgba(15,23,42,.12);display:flex;flex-direction:column;overflow-y:auto;overscroll-behavior:contain; }
-.nav-drawer.open { transform:translateX(0); }
-.drawer-header { display:flex;align-items:center;justify-content:space-between;padding:20px 16px 14px;border-bottom:1px solid rgba(0,0,0,.07);flex-shrink:0; }
-.drawer-label { font-size:11px;font-weight:700;color:#94a3b8;letter-spacing:.8px;text-transform:uppercase; }
-.drawer-close-btn { width:30px;height:30px;border-radius:50%;background:rgba(28,20,92,.08);border:none;display:flex;align-items:center;justify-content:center;color:#1C145C;cursor:pointer;font-size:14px; }
-.drawer-nav { flex:1;padding:8px 10px;display:flex;flex-direction:column;gap:1px;overflow-y:auto; }
-.d-link { display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;font-size:14px;font-weight:500;color:#1e293b;text-decoration:none;transition:.16s; }
-.d-link:hover { background:rgba(28,20,92,.06);color:#1C145C; }
-.d-link.active { background:rgba(28,20,92,.09);color:#1C145C;font-weight:600; }
-.d-icon { width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:14px;color:#64748b;flex-shrink:0; }
-.d-link.active .d-icon { color:#1C145C; }
-.d-group-label { font-size:10px;font-weight:700;color:#94a3b8;letter-spacing:.7px;text-transform:uppercase;padding:10px 12px 2px; }
-.d-divider { height:1px;background:rgba(0,0,0,.07);margin:4px 2px; }
-.drawer-footer { padding:12px 14px 24px;border-top:1px solid rgba(0,0,0,.07);flex-shrink:0; }
-.drawer-footer .btn-kontak { border-radius:14px;display:block;text-align:center;padding:12px 22px; }
-.d-accordion-btn { display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;border-radius:12px;font-size:14px;font-weight:600;color:#1e293b;cursor:pointer;background:none;border:none;width:100%;font-family:'Plus Jakarta Sans',sans-serif;transition:.16s; }
-.d-accordion-btn:hover { background:rgba(28,20,92,.06);color:#1C145C; }
-.d-accordion-btn.active-parent { color:#1C145C; }
-.d-accordion-btn .d-acc-left { display:flex;align-items:center;gap:10px; }
-.d-accordion-chevron { font-size:11px;color:#94a3b8;transition:transform .25s;flex-shrink:0; }
-.d-accordion-btn.open .d-accordion-chevron { transform:rotate(180deg); }
-.d-accordion-body { display:none;padding:2px 0 4px 12px; }
-.d-accordion-body.open { display:block; }
-.d-sub-link { display:flex;align-items:center;gap:9px;padding:8px 12px;border-radius:10px;font-size:13.5px;font-weight:500;color:#475569;text-decoration:none;transition:.16s; }
-.d-sub-link:hover { background:rgba(28,20,92,.06);color:#1C145C; }
-.d-sub-link i { font-size:13px;color:#94a3b8;flex-shrink:0;width:16px;text-align:center; }
-.d-sub-link:hover i { color:#1C145C; }
-
-/* ============================================================
-   ORNAMEN BUNGA — SCROLL-TRIGGERED
-============================================================ */
-.page-ornament {
-    position: fixed;
-    pointer-events: none;
-    z-index: 0;
-    background-image: url('{{ asset("images/beranda/ornamen.png") }}');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    transition: opacity 0.6s ease, transform 0.6s ease;
-    will-change: opacity, transform;
-}
-.orn-1 { right: -100px; top: 20%;  width: 380px; height: 380px; opacity: 0; filter: hue-rotate(220deg) saturate(0.35); }
-.orn-2 { left:  -80px;  top: 45%;  width: 300px; height: 300px; opacity: 0; filter: hue-rotate(200deg) saturate(0.3); }
-.orn-3 { right: -90px;  top: 65%;  width: 340px; height: 340px; opacity: 0; filter: hue-rotate(230deg) saturate(0.3); }
-.orn-4 { left:  -70px;  top: 82%;  width: 280px; height: 280px; opacity: 0; filter: hue-rotate(210deg) saturate(0.35); }
-.orn-5 { right: -80px;  top: 110%; width: 320px; height: 320px; opacity: 0; filter: hue-rotate(220deg) saturate(0.3); }
-.page-ornament.orn-visible { opacity: 0.042; }
+.page-ornament { position:fixed;pointer-events:none;z-index:0;background-image:url('{{ asset("images/beranda/ornamen.png") }}');background-size:contain;background-repeat:no-repeat;background-position:center;transition:opacity 0.6s ease,transform 0.6s ease;will-change:opacity,transform; }
+.orn-1 { right:-100px;top:20%;width:380px;height:380px;opacity:0;filter:hue-rotate(220deg) saturate(0.35); }
+.orn-2 { left:-80px;top:45%;width:300px;height:300px;opacity:0;filter:hue-rotate(200deg) saturate(0.3); }
+.orn-3 { right:-90px;top:65%;width:340px;height:340px;opacity:0;filter:hue-rotate(230deg) saturate(0.3); }
+.orn-4 { left:-70px;top:82%;width:280px;height:280px;opacity:0;filter:hue-rotate(210deg) saturate(0.35); }
+.orn-5 { right:-80px;top:110%;width:320px;height:320px;opacity:0;filter:hue-rotate(220deg) saturate(0.3); }
+.page-ornament.orn-visible { opacity:0.042; }
 
 /* ============================================================
    HERO — LIST MODE
 ============================================================ */
 .lay-hero { background:linear-gradient(150deg,#1C145C 0%,#231a72 40%,#0ea5e9 100%);padding:130px 0 72px;position:relative;overflow:hidden; }
 .lay-hero::before { content:'';position:absolute;right:-80px;top:-80px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.06),transparent 65%);pointer-events:none; }
-.lay-hero::after  { content:'';position:absolute;left:-40px;bottom:-100px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(14,165,233,.12),transparent 65%);pointer-events:none; }
-.lay-hero .hero-orn {
-    position:absolute;right:-60px;bottom:-80px;width:320px;height:320px;
-    background-image:url('{{ asset("images/beranda/ornamen.png") }}');
-    background-size:contain;background-repeat:no-repeat;background-position:center;
-    opacity:0.07;filter:brightness(10);pointer-events:none;
-}
-.lay-hero .hero-orn-2 {
-    position:absolute;left:-40px;top:-40px;width:240px;height:240px;
-    background-image:url('{{ asset("images/beranda/ornamen.png") }}');
-    background-size:contain;background-repeat:no-repeat;background-position:center;
-    opacity:0.04;filter:brightness(10);pointer-events:none;
-}
+.lay-hero::after { content:'';position:absolute;left:-40px;bottom:-100px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(14,165,233,.12),transparent 65%);pointer-events:none; }
+.lay-hero .hero-orn { position:absolute;right:-60px;bottom:-80px;width:320px;height:320px;background-image:url('{{ asset("images/beranda/ornamen.png") }}');background-size:contain;background-repeat:no-repeat;background-position:center;opacity:0.07;filter:brightness(10);pointer-events:none; }
+.lay-hero .hero-orn-2 { position:absolute;left:-40px;top:-40px;width:240px;height:240px;background-image:url('{{ asset("images/beranda/ornamen.png") }}');background-size:contain;background-repeat:no-repeat;background-position:center;opacity:0.04;filter:brightness(10);pointer-events:none; }
 .hero-dots { position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);background-size:26px 26px; }
 .hero-inner { position:relative;z-index:2; }
 .hero-bc { display:flex;align-items:center;gap:8px;margin-bottom:20px; }
@@ -158,7 +62,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; overfl
 .dokter-ticker-section { width:100vw;position:relative;left:50%;transform:translateX(-50%);overflow:hidden;background:linear-gradient(135deg,#1C145C 0%,#1e3a6e 50%,#0c6197 100%);box-shadow:0 4px 24px rgba(28,20,92,.18); }
 .dokter-ticker-section::before,.dokter-ticker-section::after { content:'';position:absolute;top:0;bottom:0;width:80px;z-index:3;pointer-events:none; }
 .dokter-ticker-section::before { left:0;background:linear-gradient(to right,#1C145C,transparent); }
-.dokter-ticker-section::after  { right:0;background:linear-gradient(to left,#0c6197,transparent); }
+.dokter-ticker-section::after { right:0;background:linear-gradient(to left,#0c6197,transparent); }
 .dokter-ticker-track { display:flex;align-items:center;width:max-content;animation:dokterScroll 80s linear infinite;padding:14px 0; }
 .dokter-ticker-track:hover { animation-play-state:paused; }
 @keyframes dokterScroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
@@ -172,24 +76,13 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; overfl
 .dtc-info { min-width:0; }
 .dtc-label { font-size:9px;font-weight:800;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.8px;margin-bottom:1px; }
 .dtc-nama { font-size:12.5px;font-weight:800;color:#fff;white-space:nowrap;line-height:1.3;transition:color .2s; }
-.dtc-sp   { font-size:10.5px;color:rgba(125,211,252,.8);white-space:nowrap;font-weight:500; }
+.dtc-sp { font-size:10.5px;color:rgba(125,211,252,.8);white-space:nowrap;font-weight:500; }
 
 /* ============================================================
    TABS
 ============================================================ */
-.layanan-tabs-wrap{
-    display:flex;
-    justify-content:center;
-}
-.layanan-tabs{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    width:100%;
-    max-width:1200px;
-    overflow-x:auto;
-    scrollbar-width:none;
-}
+.layanan-tabs-wrap { display:flex;justify-content:center; }
+.layanan-tabs { display:flex;align-items:center;justify-content:flex-start;width:100%;max-width:1200px;overflow-x:auto;scrollbar-width:none; }
 .layanan-tabs::-webkit-scrollbar { display:none; }
 .lay-tab { display:inline-flex;align-items:center;gap:7px;padding:14px 16px;border-bottom:3px solid transparent;font-size:13px;font-weight:600;color:#64748b;text-decoration:none;white-space:nowrap;transition:color .2s,border-color .2s;cursor:pointer;flex-shrink:0; }
 .lay-tab:hover { color:#1C145C; }
@@ -215,17 +108,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; overfl
 ============================================================ */
 .svc-card { background:#fff;border-radius:20px;border:1px solid #e8edf5;box-shadow:0 4px 20px rgba(28,20,92,.05);overflow:hidden; }
 .svc-header { padding:36px 32px 30px;position:relative;overflow:hidden; }
-.svc-header-icon {
-    width:52px; height:52px;
-    border-radius:14px;
-    background:rgba(255,255,255,.18);
-    border:1px solid rgba(255,255,255,.28);
-    display:flex; align-items:center; justify-content:center;
-    font-size:24px; color:#fff;
-    margin-bottom:16px;
-    position:relative; z-index:1;
-    flex-shrink:0;
-}
+.svc-header-icon { width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.28);display:flex;align-items:center;justify-content:center;font-size:24px;color:#fff;margin-bottom:16px;position:relative;z-index:1;flex-shrink:0; }
 .svc-title { font-family:'DM Serif Display',serif;font-size:24px;font-weight:400;color:#fff;margin-bottom:8px;position:relative;z-index:1; }
 .svc-tagline { font-size:13.5px;color:rgba(255,255,255,.72);line-height:1.6;position:relative;z-index:1; }
 .svc-body { padding:26px 32px; }
@@ -237,7 +120,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; overfl
 .svc-badge { display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:20px;font-size:12.5px;font-weight:600;text-decoration:none;transition:all .2s; }
 
 /* ============================================================
-   POLI GRID
+   POLI GRID — DESKTOP
 ============================================================ */
 .poli-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;margin-top:24px; }
 .poli-card { background:#fff;border-radius:16px;border:1px solid #e8edf5;overflow:hidden;display:flex;flex-direction:column;transition:transform .28s cubic-bezier(.22,.68,0,1.2),box-shadow .28s,border-color .28s;animation:fadeUp .45s cubic-bezier(.22,.68,0,1.2) both; }
@@ -249,7 +132,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; overfl
 .poli-thumb-placeholder { height:155px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#e0e7ff,#dbeafe); }
 .poli-thumb-placeholder i { font-size:38px;color:#818cf8; }
 .poli-status { position:absolute;top:10px;right:10px;font-size:9px;font-weight:800;padding:3px 10px;border-radius:20px;text-transform:uppercase; }
-.poli-status.aktif    { background:rgba(16,185,129,.9);color:#fff; }
+.poli-status.aktif { background:rgba(16,185,129,.9);color:#fff; }
 .poli-status.nonaktif { background:rgba(100,116,139,.8);color:#fff; }
 .poli-body { padding:16px 18px;flex:1;display:flex;flex-direction:column; }
 .poli-name { font-family:'DM Serif Display',serif;font-size:16px;font-weight:400;color:#1C145C;margin-bottom:6px;line-height:1.3; }
@@ -261,6 +144,32 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; overfl
 .poli-detail:hover { background:#2a1f7a;color:#fff; }
 .poli-empty { grid-column:1/-1;padding:48px 24px;text-align:center;background:#fff;border-radius:16px;border:1px dashed #c7d2fe; }
 .poli-empty p { font-size:14px;color:#64748b;margin:0; }
+
+/* ============================================================
+   POLI LIST — MOBILE COMPACT
+============================================================ */
+.poli-mobile-list { display:none;flex-direction:column;gap:0;margin-top:16px;border-radius:14px;border:1px solid #e8edf5;overflow:hidden;box-shadow:0 2px 12px rgba(28,20,92,.05); }
+.poli-mobile-item { display:flex;align-items:center;gap:12px;padding:12px 14px;background:#fff;border-bottom:1px solid #f1f5f9;transition:background .18s; }
+.poli-mobile-item:last-child { border-bottom:none; }
+.poli-mobile-item:active { background:#f8faff; }
+.pmi-icon { width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#e0e7ff,#dbeafe);display:flex;align-items:center;justify-content:center;font-size:17px;color:#818cf8;flex-shrink:0; }
+.poli-mobile-item[data-status="nonaktif"] .pmi-icon { background:#f1f5f9;color:#94a3b8; }
+.pmi-info { flex:1;min-width:0; }
+.pmi-name { font-family:'DM Serif Display',serif;font-size:14px;font-weight:400;color:#1C145C;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+.pmi-status-badge { display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;margin-top:3px; }
+.pmi-status-badge.aktif { color:#059669; }
+.pmi-status-badge.nonaktif { color:#94a3b8; }
+.pmi-status-badge::before { content:'';display:inline-block;width:5px;height:5px;border-radius:50%;background:currentColor;flex-shrink:0; }
+.pmi-actions { display:flex;align-items:center;gap:7px;flex-shrink:0; }
+.pmi-wa { width:34px;height:34px;border-radius:9px;background:#dcfce7;color:#15803d;border:1px solid #86efac;display:flex;align-items:center;justify-content:center;font-size:15px;text-decoration:none;transition:background .2s;flex-shrink:0; }
+.pmi-wa:hover { background:#25D366;color:#fff; }
+.pmi-detail { display:inline-flex;align-items:center;gap:5px;padding:7px 12px;border-radius:9px;font-size:12px;font-weight:700;background:#1C145C;color:#fff;text-decoration:none;flex-shrink:0; }
+.poli-mobile-search { display:flex;gap:8px;margin-bottom:12px; }
+.poli-mobile-search-wrap { position:relative;flex:1; }
+.poli-mobile-search-wrap i { position:absolute;left:11px;top:50%;transform:translateY(-50%);color:#94a3b8;font-size:13px;pointer-events:none; }
+.poli-mobile-search-wrap input { width:100%;padding:9px 12px 9px 34px;border:1.5px solid #e2e8f0;border-radius:10px;font-size:13px;outline:none;background:#f8faff; }
+.poli-mobile-search select { padding:9px 10px;border:1.5px solid #e2e8f0;border-radius:10px;font-size:13px;outline:none;background:#f8faff;flex-shrink:0; }
+.pmi-empty { padding:36px 20px;text-align:center;color:#94a3b8;font-size:13px; }
 
 /* ============================================================
    RAWAT INAP — KELAS KAMAR — DESKTOP
@@ -281,130 +190,24 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; overfl
 
 /* ============================================================
    RAWAT INAP — MOBILE COMPACT MODE
-   Mengganti grid dengan horizontal scroll pills + accordion
 ============================================================ */
 .kelas-mobile-wrap { display:none; }
-
-/* Pills selector */
-.kelas-pills-scroll {
-    display:flex;
-    gap:8px;
-    overflow-x:auto;
-    scrollbar-width:none;
-    padding:4px 0 12px;
-    margin-bottom:16px;
-}
+.kelas-pills-scroll { display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:4px 0 12px;margin-bottom:16px; }
 .kelas-pills-scroll::-webkit-scrollbar { display:none; }
-.kelas-pill {
-    display:inline-flex;
-    align-items:center;
-    gap:7px;
-    padding:9px 15px;
-    border-radius:30px;
-    font-size:12.5px;
-    font-weight:700;
-    color:#fff;
-    border:2px solid transparent;
-    white-space:nowrap;
-    flex-shrink:0;
-    cursor:pointer;
-    transition:transform .2s, box-shadow .2s, border-color .2s;
-    opacity:.72;
-}
-.kelas-pill.active {
-    opacity:1;
-    border-color:rgba(255,255,255,.55);
-    transform:translateY(-2px);
-    box-shadow:0 6px 18px rgba(0,0,0,.18);
-}
+.kelas-pill { display:inline-flex;align-items:center;gap:7px;padding:9px 15px;border-radius:30px;font-size:12.5px;font-weight:700;color:#fff;border:2px solid transparent;white-space:nowrap;flex-shrink:0;cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s;opacity:.72; }
+.kelas-pill.active { opacity:1;border-color:rgba(255,255,255,.55);transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.18); }
 .kelas-pill i { font-size:13px; }
-
-/* Detail panel */
-.kelas-detail-panel {
-    background:#fff;
-    border-radius:18px;
-    border:1px solid #e8edf5;
-    overflow:hidden;
-    box-shadow:0 4px 20px rgba(28,20,92,.07);
-    animation:fadeUp .3s ease both;
-}
-.kdp-header {
-    display:flex;
-    align-items:center;
-    gap:14px;
-    padding:20px 20px 16px;
-}
-.kdp-icon {
-    width:46px;
-    height:46px;
-    border-radius:13px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:21px;
-    color:#fff;
-    flex-shrink:0;
-}
-.kdp-title {
-    font-family:'DM Serif Display',serif;
-    font-size:19px;
-    font-weight:400;
-    color:#1C145C;
-    margin:0;
-}
-.kdp-badge {
-    display:inline-block;
-    font-size:11px;
-    font-weight:700;
-    padding:2px 10px;
-    border-radius:20px;
-    margin-top:4px;
-}
-.kdp-body {
-    padding:0 20px 16px;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:8px;
-}
-.kdp-feature {
-    display:flex;
-    align-items:flex-start;
-    gap:8px;
-    padding:10px 11px;
-    background:#f8faff;
-    border-radius:10px;
-    border:1px solid #e8edf5;
-}
-.kdp-feature i {
-    color:#1C145C;
-    font-size:13px;
-    flex-shrink:0;
-    margin-top:1px;
-    opacity:.7;
-}
-.kdp-feature span {
-    font-size:12px;
-    color:#374151;
-    line-height:1.45;
-}
-.kdp-footer {
-    padding:12px 20px 18px;
-    border-top:1px solid #f1f5f9;
-    display:flex;
-    gap:10px;
-}
-.kdp-footer a {
-    flex:1;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:7px;
-    padding:10px;
-    border-radius:11px;
-    font-size:13px;
-    font-weight:700;
-    text-decoration:none;
-}
+.kelas-detail-panel { background:#fff;border-radius:18px;border:1px solid #e8edf5;overflow:hidden;box-shadow:0 4px 20px rgba(28,20,92,.07);animation:fadeUp .3s ease both; }
+.kdp-header { display:flex;align-items:center;gap:14px;padding:20px 20px 16px; }
+.kdp-icon { width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:21px;color:#fff;flex-shrink:0; }
+.kdp-title { font-family:'DM Serif Display',serif;font-size:19px;font-weight:400;color:#1C145C;margin:0; }
+.kdp-badge { display:inline-block;font-size:11px;font-weight:700;padding:2px 10px;border-radius:20px;margin-top:4px; }
+.kdp-body { padding:0 20px 16px;display:grid;grid-template-columns:1fr 1fr;gap:8px; }
+.kdp-feature { display:flex;align-items:flex-start;gap:8px;padding:10px 11px;background:#f8faff;border-radius:10px;border:1px solid #e8edf5; }
+.kdp-feature i { color:#1C145C;font-size:13px;flex-shrink:0;margin-top:1px;opacity:.7; }
+.kdp-feature span { font-size:12px;color:#374151;line-height:1.45; }
+.kdp-footer { padding:12px 20px 18px;border-top:1px solid #f1f5f9;display:flex;gap:10px; }
+.kdp-footer a { flex:1;display:flex;align-items:center;justify-content:center;gap:7px;padding:10px;border-radius:11px;font-size:13px;font-weight:700;text-decoration:none; }
 .kdp-wa { background:#dcfce7;color:#15803d;border:1px solid #86efac; }
 .kdp-wa:hover { background:#25D366;color:#fff; }
 
@@ -455,13 +258,13 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; overfl
 .sidebar-card { background:#fff;border-radius:18px;border:1px solid #e8edf5;box-shadow:0 4px 20px rgba(28,20,92,.07);overflow:hidden;margin-top:-32px;position:relative;z-index:5; }
 .sc-header { background:linear-gradient(135deg,#1C145C 0%,#3b5bdb 100%);padding:22px 24px;position:relative;overflow:hidden; }
 .sc-header h3 { font-family:'DM Serif Display',serif;font-weight:400;font-size:17px;color:#fff;margin-bottom:3px;position:relative;z-index:1; }
-.sc-header p  { font-size:11.5px;color:rgba(255,255,255,.6);margin:0;position:relative;z-index:1; }
+.sc-header p { font-size:11.5px;color:rgba(255,255,255,.6);margin:0;position:relative;z-index:1; }
 .sc-body { padding:18px 22px; }
 .info-row { display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid #f0edf8; }
 .info-row:last-child { border-bottom:none;padding-bottom:0; }
 .info-icon { width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0; }
 .info-label { font-size:10px;color:#a09bbf;font-weight:700;letter-spacing:.3px;text-transform:uppercase; }
-.info-val   { font-size:13.5px;color:#1C145C;font-weight:700;margin-top:2px; }
+.info-val { font-size:13.5px;color:#1C145C;font-weight:700;margin-top:2px; }
 .btn-wa-sidebar { display:flex;align-items:center;justify-content:center;gap:8px;margin-top:16px;padding:12px 20px;border-radius:12px;font-size:13.5px;font-weight:700;background:#1D9E75;color:#fff;text-decoration:none;border:none;transition:background .2s;width:100%; }
 .btn-wa-sidebar:hover { background:#0F6E56;color:#fff; }
 .btn-tel-sidebar { display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px;padding:11px 20px;border-radius:12px;font-size:13px;font-weight:700;background:#FCEAEA;color:#c0392b;text-decoration:none;border:1px solid #F09595;transition:background .2s;width:100%; }
@@ -470,7 +273,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; overfl
 .jadwal-cta:hover { transform:translateY(-2px);box-shadow:0 8px 24px rgba(28,20,92,.15);text-decoration:none; }
 .jadwal-inner { display:flex;align-items:center;gap:12px;padding:16px 18px; }
 .jadwal-text .jt-label { font-size:13.5px;font-weight:800;color:#1C145C; }
-.jadwal-text .jt-sub   { font-size:11px;color:#534AB7;margin-top:2px; }
+.jadwal-text .jt-sub { font-size:11px;color:#534AB7;margin-top:2px; }
 .jadwal-arrow { font-size:18px;color:#1C145C;margin-left:auto;transition:transform .2s; }
 .jadwal-cta:hover .jadwal-arrow { transform:translateX(4px); }
 .terkait-title { font-family:'DM Serif Display',serif;font-size:22px;font-weight:400;color:#1C145C;margin-bottom:20px; }
@@ -488,59 +291,17 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; overfl
 .terkait-btn { display:inline-flex;align-items:center;gap:5px;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:700;background:#1C145C;color:#fff; }
 
 /* ============================================================
-   FOOTER
-============================================================ */
-.footer-rsu { background:linear-gradient(to bottom,#ffffff 0%,#fefefd 3%,#fdfcf6 8%,#fcfbf3 13%,#faf8ee 20%,#f7f5e8 30%,#f3f0e1 45%,#ede9d9 65%,#e8e3d2 85%,#e3deca 100%);color:#1C145C;padding:56px 0 0;position:relative;overflow:hidden; }
-.footer-rsu .footer-ornament  { position:absolute;right:-80px;bottom:-150px;width:420px;height:420px;opacity:.07;background-image:url('{{ asset("images/beranda/ornamen.png") }}');background-size:contain;background-repeat:no-repeat;background-position:center;pointer-events:none;z-index:0; }
-.footer-rsu .footer-ornament2 { position:absolute;left:-100px;top:40px;width:340px;height:340px;opacity:.04;background-image:url('{{ asset("images/beranda/ornamen.png") }}');background-size:contain;background-repeat:no-repeat;background-position:center;pointer-events:none;z-index:0; }
-.footer-rsu .container-fluid  { max-width:1100px;position:relative;z-index:1; }
-.footer-rsu .footer-logo { height:50px;display:block;margin-bottom:16px; }
-.footer-rsu .footer-title { font-size:16px;font-weight:700;color:#1C145C;margin-bottom:8px; }
-.footer-rsu .footer-desc  { font-size:13px;line-height:1.8;color:#5a5480;margin-bottom:20px;max-width:290px; }
-.footer-rsu .footer-social { display:flex;gap:10px;margin-bottom:22px; }
-.footer-rsu .footer-social a { width:36px;height:36px;border-radius:50%;background:rgba(28,20,92,.07);border:1px solid rgba(28,20,92,.15);display:flex;align-items:center;justify-content:center;color:#1C145C;text-decoration:none;font-size:15px;transition:.2s; }
-.footer-rsu .footer-social a:hover { background:#1C145C;color:#FEFCF1;transform:translateY(-2px); }
-.footer-rsu .footer-mitra-label { font-size:11px;color:#9994bb;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px; }
-.footer-rsu .footer-mitra { display:flex;gap:10px;align-items:center;flex-wrap:wrap; }
-.footer-rsu .footer-mitra img:nth-child(1) { height:35px; }
-.footer-rsu .footer-mitra img:nth-child(2) { height:26px; }
-.footer-rsu .footer-heading { font-weight:900;font-size:12px;color:#1C145C;text-transform:uppercase;letter-spacing:.14em;margin-bottom:16px;padding-bottom:10px;border-bottom:1.5px solid rgba(28,20,92,.12); }
-.footer-rsu ul { list-style:none;padding:0;margin:0; }
-.footer-rsu ul li { margin-bottom:9px; }
-.footer-rsu a { color:#5a5480;text-decoration:none;font-size:13.5px;transition:.2s;display:inline-flex;align-items:center;gap:5px; }
-.footer-rsu ul li a::before { content:'›';color:#1C145C;opacity:.4;font-size:15px;line-height:1; }
-.footer-rsu a:hover { color:#1C145C;padding-left:3px; }
-.footer-rsu .footer-contact-row  { display:flex;align-items:flex-start;gap:11px;margin-bottom:13px; }
-.footer-rsu .footer-contact-icon { width:33px;height:33px;border-radius:8px;background:rgba(28,20,92,.07);border:1px solid rgba(28,20,92,.1);display:flex;align-items:center;justify-content:center;font-size:14px;color:#1C145C;flex-shrink:0; }
-.footer-rsu .footer-contact-text { font-size:13px;color:#5a5480;line-height:1.65;padding-top:4px; }
-.footer-rsu hr { height:1px;background:linear-gradient(90deg,rgba(28,20,92,0) 0%,rgba(28,20,92,.12) 30%,rgba(28,20,92,.12) 70%,rgba(28,20,92,0) 100%);border:none;margin:36px 0 0; }
-.footer-rsu .footer-bottom { background:rgba(28,20,92,.05);padding:15px 36px;position:relative;z-index:1; }
-.footer-rsu .footer-copy  { font-size:12.5px;color:#9994bb;display:flex;justify-content:space-between;align-items:center;gap:12px; }
-.footer-rsu .footer-copy-badge { background:rgba(28,20,92,.06);border:1px solid rgba(28,20,92,.12);border-radius:20px;padding:4px 14px;font-size:11.5px;color:#7a74a0;white-space:nowrap; }
-.footer-rsu .footer-accent-dot { display:inline-block;width:3px;height:3px;border-radius:50%;background:#1C145C;opacity:.25;margin:0 8px;vertical-align:middle; }
-
-/* ============================================================
    RESPONSIVE
 ============================================================ */
-@media(max-width:1100px) { .nav-link-pill{padding:7px 11px;font-size:13px;} }
-
 @media(max-width:991px) {
     body { padding-top:0; }
-    .navbar-float-wrap { top:38px;padding:4px 12px; }
-    .navbar-float { border-radius:26px;padding:8px 14px; }
-    .nav-links,.nav-cta { display:none; }
-    .nav-burger { display:flex; }
-    .topbar-info span { font-size:10px; }
-    .topbar-social { gap:10px; }
     .lay-hero { padding:95px 0 60px; }
     .detail-hero { padding:95px 0 52px; }
     .detail-sidebar { position:static;margin-top:24px; }
     .sidebar-card,.detail-main { margin-top:0; }
-    .footer-rsu { padding:45px 0 0; }
-    .footer-rsu .row > div { margin-bottom:28px; }
-    .footer-rsu .footer-desc { max-width:100%; }
     .dokter-ticker-track { animation-duration:60s; }
-    /* Rawat inap: switch ke mobile mode pada tablet ke bawah */
+    .poli-grid { display:none; }
+    .poli-mobile-list { display:flex; }
     .kelas-grid { display:none; }
     .kelas-mobile-wrap { display:block; }
 }
@@ -551,33 +312,39 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; overfl
     .hero-stats { width:100%;max-width:calc(100% - 28px); }
     .hero-stat-item { padding:12px 16px; }
     .hero-stat-num { font-size:18px; }
-    .poli-grid { grid-template-columns:1fr; }
     .svc-header,.svc-body,.svc-footer { padding-left:22px;padding-right:22px; }
     .detail-content,.detail-divider,.share-bar { padding-left:22px;padding-right:22px; }
     .terkait-grid { grid-template-columns:1fr 1fr; }
-    .footer-rsu { padding:40px 0 0; }
-    .footer-rsu .container-fluid { padding-left:20px!important;padding-right:20px!important; }
-    .footer-rsu .footer-copy { flex-direction:column;align-items:flex-start;gap:8px; }
-    .footer-rsu .footer-bottom { padding:15px 20px; }
-    .footer-rsu a:hover { padding-left:0; }
-    .page-ornament { display:none; }
-    /* Detail panel fitur: 1 kolom di layar kecil */
     .kdp-body { grid-template-columns:1fr; }
+    .page-ornament { display:none; }
 }
 
 @media(max-width:480px) {
-    .topbar-info span { font-size:9px; }
-    .navbar-float { border-radius:22px; }
     .terkait-grid { grid-template-columns:1fr; }
     .dokter-ticker-track { animation-duration:45s; }
     .dtc-foto,.dtc-no-foto { width:38px;height:38px; }
     .dtc-nama { font-size:11.5px; }
     .dokter-ticker-card { padding:0 14px 0 0;gap:8px; }
+    .pmi-detail-label { display:none; }
 }
 </style>
 
 
-<!-- TOPBAR -->
+<!-- ============================================================
+     TOPBAR
+============================================================ -->
+<style>
+.topbar { background: linear-gradient(90deg,#1C145C 0%,#34258d 50%,#1C145C 100%); position:fixed; top:0;left:0;width:100%;height:38px;z-index:10000;display:flex;align-items:center; }
+.topbar .container { display:flex;align-items:center;justify-content:space-between; }
+.topbar-info { display:flex;align-items:center;gap:14px; }
+.topbar-info span { color:rgba(255,255,255,.88);font-size:12px;display:flex;align-items:center;gap:6px;white-space:nowrap; }
+.topbar-social { display:flex;align-items:center;gap:12px; }
+.topbar-social a { color:rgba(255,255,255,.75);font-size:14px;text-decoration:none;transition:.2s; }
+.topbar-social a:hover { color:#fff; }
+@media(max-width:991px) { .topbar-info span { font-size:10px; } .topbar-social { gap:10px; } }
+@media(max-width:480px) { .topbar-info span { font-size:9px; } }
+</style>
+
 <div class="topbar">
     <div class="container">
         <div class="topbar-info">
@@ -592,7 +359,80 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; overfl
     </div>
 </div>
 
-<!-- NAVBAR -->
+
+<!-- ============================================================
+     NAVBAR
+============================================================ -->
+<style>
+.navbar-float-wrap { position:fixed;top:38px;left:0;width:100%;z-index:9998;padding:12px 20px; }
+.navbar-float { max-width:1200px;margin:0 auto;position:relative;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px 10px 22px;border-radius:60px;background:rgba(255,255,255,0.07);backdrop-filter:blur(22px) saturate(180%);-webkit-backdrop-filter:blur(22px) saturate(180%);border:1px solid rgba(255,255,255,0.16);box-shadow:0 8px 32px rgba(15,23,42,.08),inset 0 1px 0 rgba(255,255,255,.22);transition:background .3s,border .3s,box-shadow .3s; }
+.navbar-float.scrolled { background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);box-shadow:0 10px 40px rgba(15,23,42,.10),inset 0 1px 0 rgba(255,255,255,.28); }
+.navbar-float::before { content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(180deg,rgba(255,255,255,.20),rgba(255,255,255,.02));pointer-events:none; }
+.nav-logo { position:relative;z-index:2; }
+.navbar-float .nav-logo img { height:38px;object-fit:contain;display:block; }
+.nav-links { display:flex;align-items:center;justify-content:center;flex:1;gap:2px;position:relative;z-index:2; }
+.nav-link-pill { padding:8px 15px;border-radius:50px;font-size:14px;font-weight:500;color:#0f172a;text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;gap:4px;transition:background .2s,color .2s,transform .2s; }
+.nav-link-pill:hover { background:rgba(255,255,255,.25);color:#1C145C;transform:translateY(-1px); }
+.nav-link-pill.active { background:rgba(255,255,255,.35);color:#1C145C;font-weight:600; }
+.drop-wrap { position:relative; }
+.drop-menu { position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%) translateY(8px);min-width:200px;padding:8px;border-radius:22px;background:rgba(255,255,255,.92);backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.35);box-shadow:0 12px 35px rgba(15,23,42,.14);opacity:0;visibility:hidden;transition:.22s;z-index:100; }
+.drop-wrap:hover .drop-menu { opacity:1;visibility:visible;transform:translateX(-50%) translateY(0); }
+.drop-item { display:flex;align-items:center;gap:9px;padding:9px 13px;border-radius:12px;font-size:13.5px;color:#334155;text-decoration:none;transition:.18s;font-weight:500; }
+.drop-item:hover { background:rgba(28,20,92,.07);color:#1C145C; }
+.drop-item i { font-size:14px;color:#64748b;flex-shrink:0; }
+.drop-item:hover i { color:#1C145C; }
+.drop-divider { height:1px;background:rgba(0,0,0,.07);margin:4px 8px; }
+.chevron { font-size:11px;opacity:.6;transition:.25s; }
+.drop-wrap:hover .chevron { transform:rotate(180deg); }
+.nav-cta { position:relative;z-index:2; }
+.btn-kontak { padding:10px 22px;border-radius:50px;background:#1C145C;color:#fff!important;text-decoration:none!important;font-size:14px;font-weight:600;display:inline-block;border:none;box-shadow:0 8px 20px rgba(28,20,92,.25);transition:.2s; }
+.btn-kontak:hover { background:#2a1e8a;transform:translateY(-1px); }
+.nav-burger { display:none;flex-direction:column;gap:5px;cursor:pointer;border:none;background:transparent;padding:6px;position:relative;z-index:2; }
+.nav-burger span { width:22px;height:2px;background:#1C145C;border-radius:2px;display:block;transition:.3s; }
+.nav-burger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity:0; }
+.nav-burger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+
+/* DRAWER (MOBILE) */
+.nav-overlay { display:none;position:fixed;inset:0;background:rgba(15,23,42,0);z-index:9999990;transition:background .3s; }
+.nav-overlay.show { display:block;background:rgba(15,23,42,0.42); }
+.nav-drawer { position:fixed;top:0;right:0;width:72%;max-width:300px;height:100dvh;z-index:9999995;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);background:rgba(255,255,255,0.97);backdrop-filter:blur(24px) saturate(180%);border-left:1px solid rgba(255,255,255,0.45);box-shadow:-8px 0 32px rgba(15,23,42,.12);display:flex;flex-direction:column;overflow-y:auto;overscroll-behavior:contain; }
+.nav-drawer.open { transform:translateX(0); }
+.drawer-header { display:flex;align-items:center;justify-content:space-between;padding:20px 16px 14px;border-bottom:1px solid rgba(0,0,0,.07);flex-shrink:0; }
+.drawer-label { font-size:11px;font-weight:700;color:#94a3b8;letter-spacing:.8px;text-transform:uppercase; }
+.drawer-close-btn { width:30px;height:30px;border-radius:50%;background:rgba(28,20,92,.08);border:none;display:flex;align-items:center;justify-content:center;color:#1C145C;cursor:pointer;font-size:14px; }
+.drawer-nav { flex:1;padding:8px 10px;display:flex;flex-direction:column;gap:1px;overflow-y:auto; }
+.d-link { display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;font-size:14px;font-weight:500;color:#1e293b;text-decoration:none;transition:.16s; }
+.d-link:hover { background:rgba(28,20,92,.06);color:#1C145C; }
+.d-link.active { background:rgba(28,20,92,.09);color:#1C145C;font-weight:600; }
+.d-icon { width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:14px;color:#64748b;flex-shrink:0; }
+.d-link.active .d-icon { color:#1C145C; }
+.d-divider { height:1px;background:rgba(0,0,0,.07);margin:4px 2px; }
+.drawer-footer { padding:12px 14px 24px;border-top:1px solid rgba(0,0,0,.07);flex-shrink:0; }
+.drawer-footer .btn-kontak { border-radius:14px;display:block;text-align:center;padding:12px 22px; }
+.d-accordion-btn { display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;border-radius:12px;font-size:14px;font-weight:600;color:#1e293b;cursor:pointer;background:none;border:none;width:100%;font-family:'Plus Jakarta Sans',sans-serif;transition:.16s; }
+.d-accordion-btn:hover { background:rgba(28,20,92,.06);color:#1C145C; }
+.d-accordion-btn.active-parent { color:#1C145C; }
+.d-accordion-btn .d-acc-left { display:flex;align-items:center;gap:10px; }
+.d-accordion-chevron { font-size:11px;color:#94a3b8;transition:transform .25s;flex-shrink:0; }
+.d-accordion-btn.open .d-accordion-chevron { transform:rotate(180deg); }
+.d-accordion-body { display:none;padding:2px 0 4px 12px; }
+.d-accordion-body.open { display:block; }
+.d-sub-link { display:flex;align-items:center;gap:9px;padding:8px 12px;border-radius:10px;font-size:13.5px;font-weight:500;color:#475569;text-decoration:none;transition:.16s; }
+.d-sub-link:hover { background:rgba(28,20,92,.06);color:#1C145C; }
+.d-sub-link i { font-size:13px;color:#94a3b8;flex-shrink:0;width:16px;text-align:center; }
+.d-sub-link:hover i { color:#1C145C; }
+
+@media(max-width:1100px) { .nav-link-pill{padding:7px 11px;font-size:13px;} }
+@media(max-width:991px) {
+    .navbar-float-wrap { top:38px;padding:4px 12px; }
+    .navbar-float { border-radius:26px;padding:8px 14px; }
+    .nav-links,.nav-cta { display:none; }
+    .nav-burger { display:flex; }
+}
+@media(max-width:480px) { .navbar-float { border-radius:22px; } }
+</style>
+
 <div class="navbar-float-wrap">
     <nav class="navbar-float" id="mainNavbar">
         <a href="/" class="nav-logo">
@@ -615,14 +455,12 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; overfl
                     Layanan <i class="bi bi-chevron-down chevron"></i>
                 </a>
                 <div class="drop-menu" style="min-width:220px;">
-                    <a href="{{ url('/layanan') }}" class="drop-item">
-                        <i class="bi bi-grid-3x3-gap"></i> Semua Layanan
-                    </a>
+                    <a href="{{ url('/layanan') }}" class="drop-item"><i class="bi bi-grid-3x3-gap"></i> Semua Layanan</a>
                     <div class="drop-divider"></div>
                     <a href="{{ url('/layanan#igd') }}"          class="drop-item"><i class="bi bi-bandaid-fill"></i> IGD 24 Jam</a>
                     <a href="{{ url('/layanan#rawatjalan') }}"   class="drop-item"><i class="bi bi-clipboard2-pulse"></i> Rawat Jalan</a>
                     <a href="{{ url('/layanan#rawatinap') }}"    class="drop-item"><i class="bi bi-hospital"></i> Rawat Inap</a>
-                    <a href="{{ url('/layanan#ambulans') }}"     class="drop-item"><i class="bi bi-truck"></i> Ambulans 24 Jam</a>
+                    <a href="{{ url('/layanan#ambulans') }}"     class="drop-item"><i class="bi bi-truck"></i> Ambulans</a>
                     <a href="{{ url('/layanan#laboratorium') }}" class="drop-item"><i class="bi bi-eyedropper"></i> Laboratorium</a>
                     <a href="{{ url('/layanan#radiologi') }}"    class="drop-item"><i class="bi bi-radioactive"></i> Radiologi</a>
                     <a href="{{ url('/layanan#farmasi') }}"      class="drop-item"><i class="bi bi-capsule"></i> Farmasi</a>
@@ -717,9 +555,9 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 10), { passive: true });
 });
 </script>
+<!-- END NAVBAR -->
 
 
-{{-- ORNAMEN --}}
 @unless(isset($poli))
 <div class="page-ornament orn-1" id="pgOrn1"></div>
 <div class="page-ornament orn-2" id="pgOrn2"></div>
@@ -729,9 +567,7 @@ document.addEventListener('DOMContentLoaded', function () {
 @endunless
 
 
-{{-- ================================================================
-     MODE: DETAIL POLIKLINIK
-================================================================ --}}
+{{-- DETAIL POLI --}}
 @if(isset($poli))
 
 <section class="detail-hero">
@@ -755,9 +591,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 {{ $poli->status === 'aktif' ? 'Layanan Aktif' : 'Tidak Aktif' }}
             </span>
             <span class="detail-chip"><i class="bi bi-hospital"></i> RSU Allam Medica</span>
-            @if($poli->no_hp)
-            <span class="detail-chip"><i class="bi bi-telephone"></i> {{ $poli->no_hp }}</span>
-            @endif
+            @if($poli->no_hp)<span class="detail-chip"><i class="bi bi-telephone"></i> {{ $poli->no_hp }}</span>@endif
         </div>
     </div>
 </section>
@@ -899,8 +733,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         <div class="info-icon" style="background:#d1fae5;"><i class="bi bi-whatsapp" style="color:#059669;font-size:15px;"></i></div>
                         <div><div class="info-label">WhatsApp</div><div class="info-val">+{{ $noWa }}</div></div>
                     </div>
-                    @endif
-                    @if($noWa)
                     <a href="https://wa.me/{{ $noWa }}" target="_blank" class="btn-wa-sidebar"><i class="bi bi-whatsapp"></i> Chat WhatsApp</a>
                     @endif
                     @if($poli->no_hp)
@@ -942,12 +774,9 @@ document.addEventListener('DOMContentLoaded', function () {
 </div>
 </div>
 
-
-{{-- ================================================================
-     MODE: LIST LAYANAN
-================================================================ --}}
 @else
 
+{{-- LIST MODE --}}
 <section class="lay-hero">
     <div class="hero-orn"></div>
     <div class="hero-orn-2"></div>
@@ -1038,7 +867,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <div class="container" style="position:relative;z-index:1;">
 
 
-    {{-- ===================== IGD ===================== --}}
+    {{-- IGD --}}
     <section id="igd" class="lay-section">
         <div style="margin-bottom:28px;">
             <div class="sec-label" style="background:#fee2e2;color:#dc2626;"><i class="bi bi-bandaid-fill"></i> Gawat Darurat</div>
@@ -1074,22 +903,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div style="background:#fff;border-radius:20px;border:1px solid #e8edf5;box-shadow:0 4px 20px rgba(28,20,92,.05);padding:32px;width:100%;position:relative;overflow:hidden;">
                     <div style="font-size:11px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.8px;margin-bottom:18px;">Prosedur Penanganan</div>
                     <div style="display:flex;flex-direction:column;gap:16px;">
-                        @php
-                        $steps=[
-                            ['num'=>'01','icon'=>'bi-funnel','title'=>'Triage','desc'=>'Pasien diklasifikasikan berdasarkan tingkat kegawatan untuk menentukan prioritas penanganan.'],
-                            ['num'=>'02','icon'=>'bi-person-check','title'=>'Pemeriksaan Awal','desc'=>'Dokter IGD melakukan pemeriksaan fisik dan penanganan stabilisasi kondisi pasien.'],
-                            ['num'=>'03','icon'=>'bi-activity','title'=>'Penanganan & Observasi','desc'=>'Tindakan medis darurat diberikan dan pasien diobservasi hingga kondisi stabil.'],
-                            ['num'=>'04','icon'=>'bi-arrow-right-circle','title'=>'Rawat Inap atau Rujukan','desc'=>'Pasien dirujuk ke rawat inap atau difasilitasi rujukan ke rumah sakit lain bila diperlukan.'],
-                        ];
-                        @endphp
+                        @php $steps=[['num'=>'01','icon'=>'bi-funnel','title'=>'Triage','desc'=>'Pasien diklasifikasikan berdasarkan tingkat kegawatan untuk menentukan prioritas penanganan.'],['num'=>'02','icon'=>'bi-person-check','title'=>'Pemeriksaan Awal','desc'=>'Dokter IGD melakukan pemeriksaan fisik dan penanganan stabilisasi kondisi pasien.'],['num'=>'03','icon'=>'bi-activity','title'=>'Penanganan & Observasi','desc'=>'Tindakan medis darurat diberikan dan pasien diobservasi hingga kondisi stabil.'],['num'=>'04','icon'=>'bi-arrow-right-circle','title'=>'Rawat Inap atau Rujukan','desc'=>'Pasien dirujuk ke rawat inap atau difasilitasi rujukan ke rumah sakit lain bila diperlukan.']]; @endphp
                         @foreach($steps as $s)
                         <div style="display:flex;gap:14px;align-items:flex-start;">
                             <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#fee2e2,#fecaca);color:#dc2626;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0;border:1px solid #fca5a5;">{{ $s['num'] }}</div>
                             <div>
-                                <div style="font-size:14px;font-weight:700;color:#1e293b;margin-bottom:3px;display:flex;align-items:center;gap:7px;">
-                                    <i class="bi {{ $s['icon'] }}" style="color:#dc2626;font-size:13px;"></i>
-                                    {{ $s['title'] }}
-                                </div>
+                                <div style="font-size:14px;font-weight:700;color:#1e293b;margin-bottom:3px;display:flex;align-items:center;gap:7px;"><i class="bi {{ $s['icon'] }}" style="color:#dc2626;font-size:13px;"></i>{{ $s['title'] }}</div>
                                 <div style="font-size:13px;color:#64748b;line-height:1.6;">{{ $s['desc'] }}</div>
                             </div>
                         </div>
@@ -1101,7 +920,7 @@ document.addEventListener('DOMContentLoaded', function () {
     </section>
 
 
-    {{-- ===================== RAWAT JALAN ===================== --}}
+    {{-- RAWAT JALAN --}}
     <section id="rawatjalan" class="lay-section">
         <div class="lay-section-header" style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:28px;gap:16px;flex-wrap:wrap;">
             <div>
@@ -1116,13 +935,14 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
         <div class="sec-divider"></div>
 
-        <div style="background:#fff;border-radius:12px;border:1px solid #e8edf5;padding:12px 16px;display:flex;align-items:center;gap:10px;margin-bottom:20px;box-shadow:0 2px 8px rgba(28,20,92,.04);flex-wrap:wrap;">
+        {{-- Search bar — desktop --}}
+        <div class="d-none d-lg-flex" style="background:#fff;border-radius:12px;border:1px solid #e8edf5;padding:12px 16px;align-items:center;gap:10px;margin-bottom:20px;box-shadow:0 2px 8px rgba(28,20,92,.04);flex-wrap:wrap;">
             <div style="position:relative;flex:1;min-width:180px;">
                 <i class="bi bi-search" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#94a3b8;font-size:13px;pointer-events:none;"></i>
-                <input type="search" id="searchPoli" placeholder="Cari poliklinik..." oninput="filterPoli()"
+                <input type="search" id="searchPoliDesktop" placeholder="Cari poliklinik..." oninput="filterPoliDesktop()"
                     style="width:100%;padding:8px 12px 8px 34px;border:1.5px solid #e2e8f0;border-radius:9px;font-size:13px;outline:none;background:#f8faff;">
             </div>
-            <select id="filterPoliStatus" onchange="filterPoli()"
+            <select id="filterPoliStatusDesktop" onchange="filterPoliDesktop()"
                 style="padding:8px 26px 8px 11px;border:1.5px solid #e2e8f0;border-radius:9px;font-size:13px;outline:none;background:#f8faff;appearance:none;background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2364748b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E\");background-repeat:no-repeat;background-position:right 9px center;cursor:pointer;">
                 <option value="">Semua Status</option>
                 <option value="aktif">Aktif</option>
@@ -1130,6 +950,7 @@ document.addEventListener('DOMContentLoaded', function () {
             </select>
         </div>
 
+        {{-- DESKTOP: Grid cards --}}
         <div class="poli-grid" id="poliGrid">
             @php $poliItems = collect($layananData)->where('kategori','poli')->values(); @endphp
             @forelse($poliItems as $i => $pol)
@@ -1163,6 +984,52 @@ document.addEventListener('DOMContentLoaded', function () {
             @endforelse
         </div>
 
+        {{-- MOBILE: Search bar + List compact --}}
+        <div class="d-lg-none">
+            <div class="poli-mobile-search">
+                <div class="poli-mobile-search-wrap">
+                    <i class="bi bi-search"></i>
+                    <input type="search" id="searchPoliMobile" placeholder="Cari poliklinik..." oninput="filterPoliMobile()">
+                </div>
+                <select id="filterPoliStatusMobile" onchange="filterPoliMobile()" style="padding:9px 10px;border:1.5px solid #e2e8f0;border-radius:10px;font-size:13px;outline:none;background:#f8faff;flex-shrink:0;">
+                    <option value="">Semua</option>
+                    <option value="aktif">Aktif</option>
+                    <option value="nonaktif">Nonaktif</option>
+                </select>
+            </div>
+
+            <div class="poli-mobile-list" id="poliMobileList">
+                @forelse($poliItems as $pol)
+                <div class="poli-mobile-item" data-nama="{{ strtolower($pol['poli']??'') }}" data-status="{{ $pol['status']??'aktif' }}">
+                    <div class="pmi-icon"><i class="bi bi-clipboard2-pulse"></i></div>
+                    <div class="pmi-info">
+                        <div class="pmi-name">{{ $pol['poli'] }}</div>
+                        <div class="pmi-status-badge {{ $pol['status']??'aktif' }}">
+                            {{ ($pol['status']??'aktif')==='aktif' ? 'Aktif' : 'Nonaktif' }}
+                        </div>
+                    </div>
+                    <div class="pmi-actions">
+                        @php $noWaMob=preg_replace('/[^0-9]/','', $pol['no_wa']??''); @endphp
+                        @if($noWaMob)
+                        <a href="https://wa.me/{{ $noWaMob }}" target="_blank" class="pmi-wa" title="WhatsApp">
+                            <i class="bi bi-whatsapp"></i>
+                        </a>
+                        @endif
+                        <a href="{{ route('layanan.poli', $pol['id']) }}" class="pmi-detail">
+                            <i class="bi bi-arrow-right" style="font-size:12px;"></i>
+                            <span class="pmi-detail-label">Detail</span>
+                        </a>
+                    </div>
+                </div>
+                @empty
+                <div class="pmi-empty"><i class="bi bi-inbox" style="font-size:22px;display:block;margin-bottom:6px;"></i>Belum ada data poliklinik.</div>
+                @endforelse
+            </div>
+            <div id="poliMobileEmpty" style="display:none;" class="pmi-empty">
+                <i class="bi bi-search" style="font-size:22px;display:block;margin-bottom:6px;"></i>Poliklinik tidak ditemukan.
+            </div>
+        </div>
+
         <div style="margin-top:28px;background:linear-gradient(135deg,#1C145C 0%,#3b5bdb 100%);border-radius:18px;padding:28px 32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden;">
             <div style="position:relative;z-index:1;">
                 <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;">Jadwal Dokter</div>
@@ -1176,7 +1043,7 @@ document.addEventListener('DOMContentLoaded', function () {
     </section>
 
 
-    {{-- ===================== RAWAT INAP ===================== --}}
+    {{-- RAWAT INAP --}}
     <section id="rawatinap" class="lay-section">
         <div class="sec-divider"></div>
         <div style="margin-bottom:28px;">
@@ -1199,7 +1066,7 @@ document.addEventListener('DOMContentLoaded', function () {
         ];
         @endphp
 
-        {{-- DESKTOP: grid cards seperti sebelumnya --}}
+        {{-- DESKTOP --}}
         <div class="kelas-grid">
             @foreach($kelasRawat as $i => $kelas)
             <div class="kelas-card" style="animation-delay:{{ min($i*0.07,0.5) }}s;">
@@ -1222,30 +1089,19 @@ document.addEventListener('DOMContentLoaded', function () {
             @endforeach
         </div>
 
-        {{-- MOBILE: pills selector + detail panel --}}
+        {{-- MOBILE --}}
         <div class="kelas-mobile-wrap">
-            {{-- Pills horizontal scroll --}}
             <div class="kelas-pills-scroll" id="kelasPills">
                 @foreach($kelasRawat as $i => $kelas)
-                <button
-                    class="kelas-pill {{ $i === 0 ? 'active' : '' }}"
-                    data-index="{{ $i }}"
-                    style="background:{{ $kelas['grad'] }};"
-                    onclick="showKelas({{ $i }})"
-                >
-                    <i class="bi {{ $kelas['icon'] }}"></i>
-                    {{ $kelas['nama'] }}
+                <button class="kelas-pill {{ $i === 0 ? 'active' : '' }}" data-index="{{ $i }}" style="background:{{ $kelas['grad'] }};" onclick="showKelas({{ $i }})">
+                    <i class="bi {{ $kelas['icon'] }}"></i>{{ $kelas['nama'] }}
                 </button>
                 @endforeach
             </div>
-
-            {{-- Detail panel (sembunyikan semua kecuali aktif via JS) --}}
             @foreach($kelasRawat as $i => $kelas)
             <div class="kelas-detail-panel" id="kelasPanel{{ $i }}" style="{{ $i !== 0 ? 'display:none;' : '' }}">
                 <div class="kdp-header">
-                    <div class="kdp-icon" style="background:{{ $kelas['grad'] }};">
-                        <i class="bi {{ $kelas['icon'] }}"></i>
-                    </div>
+                    <div class="kdp-icon" style="background:{{ $kelas['grad'] }};"><i class="bi {{ $kelas['icon'] }}"></i></div>
                     <div>
                         <div class="kdp-title">{{ $kelas['nama'] }}</div>
                         <span class="kdp-badge" style="background:{{ $kelas['badge_bg'] }};color:{{ $kelas['badge_c'] }};">{{ $kelas['badge'] }}</span>
@@ -1253,10 +1109,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
                 <div class="kdp-body">
                     @foreach($kelas['fitur'] as $f)
-                    <div class="kdp-feature">
-                        <i class="bi {{ $f['icon'] }}"></i>
-                        <span>{{ $f['teks'] }}</span>
-                    </div>
+                    <div class="kdp-feature"><i class="bi {{ $f['icon'] }}"></i><span>{{ $f['teks'] }}</span></div>
                     @endforeach
                 </div>
                 <div class="kdp-footer">
@@ -1282,7 +1135,7 @@ document.addEventListener('DOMContentLoaded', function () {
     </section>
 
 
-    {{-- ===================== AMBULANS ===================== --}}
+    {{-- AMBULANS --}}
     <section id="ambulans" class="lay-section">
         <div class="sec-divider"></div>
         <div class="svc-card">
@@ -1293,9 +1146,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <div class="svc-title">Ambulans 24 Jam</div>
                         <div class="svc-tagline">Respons cepat ke mana pun Anda membutuhkan pertolongan</div>
                         <div style="margin-top:22px;position:relative;z-index:1;">
-                            <a href="tel:085292224886" class="svc-badge" style="background:rgba(255,255,255,.2);color:#fff;border:1px solid rgba(255,255,255,.3);">
-                                <i class="bi bi-telephone-fill"></i> Hubungi Sekarang
-                            </a>
+                            <a href="tel:085292224886" class="svc-badge" style="background:rgba(255,255,255,.2);color:#fff;border:1px solid rgba(255,255,255,.3);"><i class="bi bi-telephone-fill"></i> Hubungi Sekarang</a>
                         </div>
                     </div>
                 </div>
@@ -1303,20 +1154,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     <div class="svc-body">
                         <p class="svc-desc">Layanan ambulans RSU Allam Medica siap 24 jam untuk transportasi pasien gawat darurat maupun rujukan. Armada dilengkapi peralatan medis darurat dan ditangani oleh pengemudi serta petugas medis terlatih.</p>
                         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-                            @php
-                            $fiturAmb=[
-                                ['icon'=>'bi-clock-fill','bg'=>'#fef3c7','c'=>'#d97706','title'=>'Siaga 24 Jam','desc'=>'Tersedia setiap saat termasuk hari libur nasional'],
-                                ['icon'=>'bi-geo-alt-fill','bg'=>'#dbeafe','c'=>'#1d4ed8','title'=>'Jangkauan Luas','desc'=>'Melayani wilayah Bumiayu dan sekitarnya'],
-                                ['icon'=>'bi-bag-plus-fill','bg'=>'#fee2e2','c'=>'#dc2626','title'=>'Perlengkapan Medis','desc'=>'Tabung oksigen, defibrilator, dan alat medis darurat'],
-                                ['icon'=>'bi-person-badge-fill','bg'=>'#d1fae5','c'=>'#059669','title'=>'Tim Terlatih','desc'=>'Pengemudi dan petugas medis bersertifikat'],
-                            ];
-                            @endphp
+                            @php $fiturAmb=[['icon'=>'bi-clock-fill','bg'=>'#fef3c7','c'=>'#d97706','title'=>'Siaga 24 Jam','desc'=>'Tersedia setiap saat termasuk hari libur nasional'],['icon'=>'bi-geo-alt-fill','bg'=>'#dbeafe','c'=>'#1d4ed8','title'=>'Jangkauan Luas','desc'=>'Melayani wilayah Bumiayu dan sekitarnya'],['icon'=>'bi-bag-plus-fill','bg'=>'#fee2e2','c'=>'#dc2626','title'=>'Perlengkapan Medis','desc'=>'Tabung oksigen, defibrilator, dan alat medis darurat'],['icon'=>'bi-person-badge-fill','bg'=>'#d1fae5','c'=>'#059669','title'=>'Tim Terlatih','desc'=>'Pengemudi dan petugas medis bersertifikat']]; @endphp
                             @foreach($fiturAmb as $f)
                             <div style="padding:14px 16px;background:#f8faff;border-radius:12px;border:1px solid #e8edf5;">
                                 <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-                                    <div style="width:30px;height:30px;border-radius:8px;background:{{ $f['bg'] }};display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                                        <i class="bi {{ $f['icon'] }}" style="color:{{ $f['c'] }};font-size:14px;"></i>
-                                    </div>
+                                    <div style="width:30px;height:30px;border-radius:8px;background:{{ $f['bg'] }};display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="bi {{ $f['icon'] }}" style="color:{{ $f['c'] }};font-size:14px;"></i></div>
                                     <div style="font-size:13.5px;font-weight:700;color:#1e293b;">{{ $f['title'] }}</div>
                                 </div>
                                 <div style="font-size:12.5px;color:#64748b;line-height:1.5;">{{ $f['desc'] }}</div>
@@ -1330,7 +1172,7 @@ document.addEventListener('DOMContentLoaded', function () {
     </section>
 
 
-    {{-- ===================== LABORATORIUM ===================== --}}
+    {{-- LABORATORIUM --}}
     <section id="laboratorium" class="lay-section">
         <div class="sec-divider"></div>
         <div class="row g-4">
@@ -1340,9 +1182,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <div class="svc-header-icon"><i class="bi bi-eyedropper"></i></div>
                         <div class="svc-title">Laboratorium</div>
                         <div class="svc-tagline">Pemeriksaan akurat dengan teknologi modern, buka 24 jam termasuk hari libur</div>
-                        <div style="margin-top:16px;display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:12px;font-weight:700;padding:5px 12px;border-radius:20px;position:relative;z-index:1;">
-                            <i class="bi bi-clock-fill"></i> Buka 24 Jam Setiap Hari
-                        </div>
+                        <div style="margin-top:16px;display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:12px;font-weight:700;padding:5px 12px;border-radius:20px;position:relative;z-index:1;"><i class="bi bi-clock-fill"></i> Buka 24 Jam Setiap Hari</div>
                     </div>
                     <div class="svc-body">
                         <p class="svc-desc">Laboratorium RSU Allam Medica dilengkapi peralatan diagnostik modern untuk berbagai jenis pemeriksaan. Beroperasi 24 jam termasuk hari Minggu dan hari libur nasional, dengan hasil yang akurat untuk mendukung diagnosis dokter.</p>
@@ -1361,9 +1201,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div style="display:flex;flex-direction:column;gap:16px;width:100%;">
                     <div class="homeservice-card">
                         <div style="display:flex;align-items:flex-start;gap:14px;margin-bottom:16px;">
-                            <div style="width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#059669,#10b981);display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;flex-shrink:0;">
-                                <i class="bi bi-house-heart-fill"></i>
-                            </div>
+                            <div style="width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#059669,#10b981);display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;flex-shrink:0;"><i class="bi bi-house-heart-fill"></i></div>
                             <div>
                                 <div style="font-family:'DM Serif Display',serif;font-size:20px;color:#065f46;font-weight:400;margin-bottom:4px;">Home Service Laboratorium</div>
                                 <div style="font-size:12px;font-weight:700;color:#059669;background:#d1fae5;border:1px solid #6ee7b7;padding:2px 10px;border-radius:20px;display:inline-block;">Layanan ke Rumah Anda</div>
@@ -1376,29 +1214,15 @@ document.addEventListener('DOMContentLoaded', function () {
                             <li>Hasil dikirim via WhatsApp atau diambil langsung</li>
                             <li>Petugas bersertifikat & berpengalaman</li>
                         </ul>
-                        <a href="https://wa.me/6285292224886?text=Halo,%20saya%20ingin%20pesan%20home%20service%20laboratorium" target="_blank"
-                           style="display:inline-flex;align-items:center;gap:7px;padding:10px 20px;border-radius:10px;background:#059669;color:#fff;font-size:13px;font-weight:700;text-decoration:none;">
-                            <i class="bi bi-whatsapp"></i> Pesan Home Service
-                        </a>
+                        <a href="https://wa.me/6285292224886?text=Halo,%20saya%20ingin%20pesan%20home%20service%20laboratorium" target="_blank" style="display:inline-flex;align-items:center;gap:7px;padding:10px 20px;border-radius:10px;background:#059669;color:#fff;font-size:13px;font-weight:700;text-decoration:none;"><i class="bi bi-whatsapp"></i> Pesan Home Service</a>
                     </div>
                     <div style="background:#fff;border-radius:14px;border:1px solid #e8edf5;padding:20px 22px;box-shadow:0 2px 10px rgba(28,20,92,.04);">
                         <div style="font-size:11px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;"><i class="bi bi-flask" style="margin-right:4px;"></i> Pemeriksaan Tambahan</div>
                         <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;">
-                            @php
-                            $labExtra=[
-                                ['icon'=>'bi-droplet-fill','bg'=>'#fee2e2','c'=>'#dc2626','nama'=>'Hemostasis'],
-                                ['icon'=>'bi-virus','bg'=>'#ede9fe','c'=>'#7c3aed','nama'=>'Virologi'],
-                                ['icon'=>'bi-activity','bg'=>'#d1fae5','c'=>'#059669','nama'=>'Enzim Jantung'],
-                                ['icon'=>'bi-gender-ambiguous','bg'=>'#fce7f3','c'=>'#db2777','nama'=>'Hormon'],
-                                ['icon'=>'bi-bug','bg'=>'#fef3c7','c'=>'#d97706','nama'=>'Mikrobiologi'],
-                                ['icon'=>'bi-search-heart','bg'=>'#e0f2fe','c'=>'#0284c7','nama'=>'Tumor Marker'],
-                            ];
-                            @endphp
+                            @php $labExtra=[['icon'=>'bi-droplet-fill','bg'=>'#fee2e2','c'=>'#dc2626','nama'=>'Hemostasis'],['icon'=>'bi-virus','bg'=>'#ede9fe','c'=>'#7c3aed','nama'=>'Virologi'],['icon'=>'bi-activity','bg'=>'#d1fae5','c'=>'#059669','nama'=>'Enzim Jantung'],['icon'=>'bi-gender-ambiguous','bg'=>'#fce7f3','c'=>'#db2777','nama'=>'Hormon'],['icon'=>'bi-bug','bg'=>'#fef3c7','c'=>'#d97706','nama'=>'Mikrobiologi'],['icon'=>'bi-search-heart','bg'=>'#e0f2fe','c'=>'#0284c7','nama'=>'Tumor Marker']]; @endphp
                             @foreach($labExtra as $ex)
                             <div style="display:flex;align-items:center;gap:9px;padding:9px 11px;background:#f8faff;border-radius:9px;border:1px solid #e8edf5;">
-                                <div style="width:28px;height:28px;border-radius:7px;background:{{ $ex['bg'] }};display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                                    <i class="bi {{ $ex['icon'] }}" style="color:{{ $ex['c'] }};font-size:12px;"></i>
-                                </div>
+                                <div style="width:28px;height:28px;border-radius:7px;background:{{ $ex['bg'] }};display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="bi {{ $ex['icon'] }}" style="color:{{ $ex['c'] }};font-size:12px;"></i></div>
                                 <span style="font-size:12.5px;font-weight:600;color:#1e293b;">{{ $ex['nama'] }}</span>
                             </div>
                             @endforeach
@@ -1410,7 +1234,7 @@ document.addEventListener('DOMContentLoaded', function () {
     </section>
 
 
-    {{-- ===================== RADIOLOGI ===================== --}}
+    {{-- RADIOLOGI --}}
     <section id="radiologi" class="lay-section">
         <div class="sec-divider"></div>
         <div class="svc-card">
@@ -1426,21 +1250,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     <div class="svc-body">
                         <p class="svc-desc">Instalasi Radiologi RSU Allam Medica menyediakan layanan diagnostik pencitraan dengan peralatan modern. Didukung dokter spesialis radiologi berpengalaman untuk interpretasi yang akurat.</p>
                         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
-                            @php
-                            $radLayanan=[
-                                ['icon'=>'bi-radioactive','bg'=>'#ede9fe','c'=>'#6366f1','nama'=>'Rontgen / X-Ray'],
-                                ['icon'=>'bi-soundwave','bg'=>'#e0f2fe','c'=>'#0284c7','nama'=>'USG'],
-                                ['icon'=>'bi-bullseye','bg'=>'#fee2e2','c'=>'#dc2626','nama'=>'CT Scan'],
-                                ['icon'=>'bi-heart-pulse','bg'=>'#d1fae5','c'=>'#059669','nama'=>'EKG'],
-                                ['icon'=>'bi-reception-4','bg'=>'#fef3c7','c'=>'#d97706','nama'=>'Echo'],
-                                ['icon'=>'bi-lungs','bg'=>'#fce7f3','c'=>'#db2777','nama'=>'Foto Thorax'],
-                            ];
-                            @endphp
+                            @php $radLayanan=[['icon'=>'bi-radioactive','bg'=>'#ede9fe','c'=>'#6366f1','nama'=>'Rontgen / X-Ray'],['icon'=>'bi-soundwave','bg'=>'#e0f2fe','c'=>'#0284c7','nama'=>'USG'],['icon'=>'bi-bullseye','bg'=>'#fee2e2','c'=>'#dc2626','nama'=>'CT Scan'],['icon'=>'bi-heart-pulse','bg'=>'#d1fae5','c'=>'#059669','nama'=>'EKG'],['icon'=>'bi-reception-4','bg'=>'#fef3c7','c'=>'#d97706','nama'=>'Echo'],['icon'=>'bi-lungs','bg'=>'#fce7f3','c'=>'#db2777','nama'=>'Foto Thorax']]; @endphp
                             @foreach($radLayanan as $r)
                             <div style="text-align:center;padding:16px 8px;background:#f8faff;border-radius:12px;border:1px solid #e8edf5;transition:transform .2s,border-color .2s;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='#c7d2fe';" onmouseout="this.style.transform='';this.style.borderColor='#e8edf5';">
-                                <div style="width:36px;height:36px;border-radius:10px;background:{{ $r['bg'] }};display:flex;align-items:center;justify-content:center;margin:0 auto 8px;">
-                                    <i class="bi {{ $r['icon'] }}" style="color:{{ $r['c'] }};font-size:16px;"></i>
-                                </div>
+                                <div style="width:36px;height:36px;border-radius:10px;background:{{ $r['bg'] }};display:flex;align-items:center;justify-content:center;margin:0 auto 8px;"><i class="bi {{ $r['icon'] }}" style="color:{{ $r['c'] }};font-size:16px;"></i></div>
                                 <div style="font-size:12.5px;font-weight:700;color:#1e293b;">{{ $r['nama'] }}</div>
                             </div>
                             @endforeach
@@ -1452,7 +1265,7 @@ document.addEventListener('DOMContentLoaded', function () {
     </section>
 
 
-    {{-- ===================== FARMASI ===================== --}}
+    {{-- FARMASI --}}
     <section id="farmasi" class="lay-section">
         <div class="sec-divider"></div>
         <div class="row g-4">
@@ -1479,22 +1292,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
             </div>
             <div class="col-lg-7 d-flex align-items-stretch">
-                <div style="background:#fff;border-radius:20px;border:1px solid #e8edf5;box-shadow:0 4px 20px rgba(28,20,92,.05);padding:32px;width:100%;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;">
+                <div style="background:#fff;border-radius:20px;border:1px solid #e8edf5;box-shadow:0 4px 20px rgba(28,20,92,.05);padding:32px;width:100%;display:flex;flex-direction:column;justify-content:center;">
                     <div style="font-size:11px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.8px;margin-bottom:20px;"><i class="bi bi-capsule" style="margin-right:5px;color:#db2777;"></i> Layanan Kami</div>
                     <div style="display:flex;flex-direction:column;gap:12px;">
-                        @php
-                        $infoFar=[
-                            ['icon'=>'bi-prescription','bg'=>'#fce7f3','c'=>'#db2777','title'=>'Resep Dokter RS','desc'=>'Resep dari dokter RSU Allam Medica diproses dengan cepat dan diprioritaskan.'],
-                            ['icon'=>'bi-file-earmark-medical','bg'=>'#e0f2fe','c'=>'#0284c7','title'=>'Resep Luar dan Obat Bebas','desc'=>'Melayani resep dari dokter luar serta penjualan obat bebas dan suplemen kesehatan.'],
-                            ['icon'=>'bi-patch-check-fill','bg'=>'#d1fae5','c'=>'#059669','title'=>'Jaminan Kualitas','desc'=>'Semua obat bersumber dari distributor resmi dan tersimpan sesuai standar farmasi.'],
-                            ['icon'=>'bi-person-lines-fill','bg'=>'#fef3c7','c'=>'#d97706','title'=>'Konsultasi Apoteker','desc'=>'Apoteker siap memberikan informasi mengenai obat, dosis, dan interaksi obat.'],
-                        ];
-                        @endphp
+                        @php $infoFar=[['icon'=>'bi-prescription','bg'=>'#fce7f3','c'=>'#db2777','title'=>'Resep Dokter RS','desc'=>'Resep dari dokter RSU Allam Medica diproses dengan cepat dan diprioritaskan.'],['icon'=>'bi-file-earmark-medical','bg'=>'#e0f2fe','c'=>'#0284c7','title'=>'Resep Luar dan Obat Bebas','desc'=>'Melayani resep dari dokter luar serta penjualan obat bebas dan suplemen kesehatan.'],['icon'=>'bi-patch-check-fill','bg'=>'#d1fae5','c'=>'#059669','title'=>'Jaminan Kualitas','desc'=>'Semua obat bersumber dari distributor resmi dan tersimpan sesuai standar farmasi.'],['icon'=>'bi-person-lines-fill','bg'=>'#fef3c7','c'=>'#d97706','title'=>'Konsultasi Apoteker','desc'=>'Apoteker siap memberikan informasi mengenai obat, dosis, dan interaksi obat.']]; @endphp
                         @foreach($infoFar as $f)
                         <div style="display:flex;align-items:flex-start;gap:12px;padding:14px 16px;background:#f8faff;border-radius:12px;border:1px solid #e8edf5;">
-                            <div style="width:36px;height:36px;border-radius:10px;background:{{ $f['bg'] }};display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                                <i class="bi {{ $f['icon'] }}" style="color:{{ $f['c'] }};font-size:16px;"></i>
-                            </div>
+                            <div style="width:36px;height:36px;border-radius:10px;background:{{ $f['bg'] }};display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="bi {{ $f['icon'] }}" style="color:{{ $f['c'] }};font-size:16px;"></i></div>
                             <div>
                                 <div style="font-size:14px;font-weight:700;color:#1e293b;margin-bottom:3px;">{{ $f['title'] }}</div>
                                 <div style="font-size:13px;color:#64748b;line-height:1.6;">{{ $f['desc'] }}</div>
@@ -1508,7 +1312,7 @@ document.addEventListener('DOMContentLoaded', function () {
     </section>
 
 
-    {{-- ===================== MCU ===================== --}}
+    {{-- MCU --}}
     <section id="mcu" class="lay-section" style="padding-bottom:60px;">
         <div class="sec-divider"></div>
         <div class="row g-4 align-items-start">
@@ -1530,28 +1334,20 @@ document.addEventListener('DOMContentLoaded', function () {
                         </ul>
                     </div>
                     <div class="svc-footer">
-                        <a href="https://wa.me/6285292224886?text=Halo,%20saya%20ingin%20info%20paket%20MCU" target="_blank"
-                           class="svc-badge" style="background:#ccfbf1;color:#0d9488;border:1px solid #5eead4;">
-                           <i class="bi bi-whatsapp"></i> Tanya Paket MCU
-                        </a>
+                        <a href="https://wa.me/6285292224886?text=Halo,%20saya%20ingin%20info%20paket%20MCU" target="_blank" class="svc-badge" style="background:#ccfbf1;color:#0d9488;border:1px solid #5eead4;"><i class="bi bi-whatsapp"></i> Tanya Paket MCU</a>
                     </div>
                 </div>
             </div>
             <div class="col-lg-7">
                 <div style="font-size:11px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.8px;margin-bottom:20px;margin-top:4px;"><i class="bi bi-list-check" style="margin-right:5px;"></i> Paket Tersedia</div>
-
                 @if(isset($mcuPakets) && $mcuPakets->count())
                     @foreach($mcuPakets as $paket)
                     <div class="mcu-paket-card" style="border-left:4px solid {{ $paket->warna ?? '#0d9488' }};">
                         <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
                             <div class="mcu-paket-name">{{ $paket->nama }}</div>
-                            @if($paket->harga)
-                            <span style="font-size:12px;font-weight:700;padding:3px 12px;border-radius:20px;background:#f8faff;border:1px solid #e2e8f0;color:#475569;">{{ $paket->harga }}</span>
-                            @endif
+                            @if($paket->harga)<span style="font-size:12px;font-weight:700;padding:3px 12px;border-radius:20px;background:#f8faff;border:1px solid #e2e8f0;color:#475569;">{{ $paket->harga }}</span>@endif
                         </div>
-                        @if($paket->deskripsi)
-                        <p style="font-size:13px;color:#64748b;margin:8px 0 10px;line-height:1.6;">{{ $paket->deskripsi }}</p>
-                        @endif
+                        @if($paket->deskripsi)<p style="font-size:13px;color:#64748b;margin:8px 0 10px;line-height:1.6;">{{ $paket->deskripsi }}</p>@endif
                         @if($paket->items && $paket->items->count())
                         <div class="mcu-paket-items">
                             @foreach($paket->items as $item)
@@ -1562,13 +1358,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     </div>
                     @endforeach
                 @else
-                    @php
-                    $defaultPakets=[
-                        ['nama'=>'Paket Dasar','harga'=>'Hubungi kami','warna'=>'#0d9488','items'=>['Pemeriksaan fisik lengkap','Darah rutin','Urin rutin','Foto rontgen thorax','Konsultasi dokter']],
-                        ['nama'=>'Paket Standar','harga'=>'Hubungi kami','warna'=>'#0284c7','items'=>['Semua paket dasar','Kimia darah','Fungsi hati dan ginjal','EKG','Konsultasi spesialis']],
-                        ['nama'=>'Paket Komprehensif','harga'=>'Hubungi kami','warna'=>'#7c3aed','items'=>['Semua paket standar','USG abdomen','Tumor marker','Spirometri','Audiometri','Konsultasi multi-spesialis']],
-                    ];
-                    @endphp
+                    @php $defaultPakets=[['nama'=>'Paket Dasar','harga'=>'Hubungi kami','warna'=>'#0d9488','items'=>['Pemeriksaan fisik lengkap','Darah rutin','Urin rutin','Foto rontgen thorax','Konsultasi dokter']],['nama'=>'Paket Standar','harga'=>'Hubungi kami','warna'=>'#0284c7','items'=>['Semua paket dasar','Kimia darah','Fungsi hati dan ginjal','EKG','Konsultasi spesialis']],['nama'=>'Paket Komprehensif','harga'=>'Hubungi kami','warna'=>'#7c3aed','items'=>['Semua paket standar','USG abdomen','Tumor marker','Spirometri','Audiometri','Konsultasi multi-spesialis']]]; @endphp
                     @foreach($defaultPakets as $p)
                     <div class="mcu-paket-card" style="border-left:4px solid {{ $p['warna'] }};">
                         <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:8px;">
@@ -1594,68 +1384,489 @@ document.addEventListener('DOMContentLoaded', function () {
 @endif
 
 
-{{-- FOOTER --}}
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<style>
+.footer-rsu{
+    background:linear-gradient(
+        to bottom,
+        #ffffff 0%,
+        #fefefd 3%,
+        #fdfcf6 8%,
+        #fcfbf3 13%,
+        #faf8ee 20%,
+        #f7f5e8 30%,
+        #f3f0e1 45%,
+        #ede9d9 65%,
+        #e8e3d2 85%,
+        #e3deca 100%
+    );
+    color:#1C145C;
+    padding:56px 0 0;
+    position:relative;
+    overflow:hidden;
+}
+
+/* ORNAMEN */
+.footer-rsu .footer-ornament{
+    position:absolute;
+    right:-80px;
+    bottom:-150px;
+    width:420px;
+    height:420px;
+    opacity:.07;
+    background-image:url('{{ asset("images/beranda/ornamen.png") }}');
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-position:center;
+    pointer-events:none;
+    z-index:0;
+}
+
+.footer-rsu .footer-ornament2{
+    position:absolute;
+    left:-100px;
+    top:40px;
+    width:340px;
+    height:340px;
+    opacity:.04;
+    background-image:url('{{ asset("images/beranda/ornamen.png") }}');
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-position:center;
+    pointer-events:none;
+    z-index:0;
+}
+
+/* CONTAINER */
+.footer-rsu .container-fluid{
+    max-width:1550px;
+    position:relative;
+    z-index:1;
+}
+
+/* GRID */
+.footer-rsu .row{
+    --bs-gutter-x:3.5rem;
+}
+
+/* LOGO */
+.footer-rsu .footer-logo{
+    height:40px;
+    width:auto;
+    display:block;
+    margin-bottom:14px;
+}
+
+/* TITLE */
+.footer-rsu .footer-title{
+    font-size:16px;
+    font-weight:700;
+    color:#1C145C;
+    margin-bottom:8px;
+}
+
+.footer-rsu .footer-desc{
+    font-size:13px;
+    line-height:1.8;
+    color:#5a5480;
+    margin-bottom:20px;
+    max-width:340px;
+}
+
+/* SOCIAL */
+.footer-rsu .footer-social{
+    display:flex;
+    gap:10px;
+    margin-bottom:22px;
+}
+
+.footer-rsu .footer-social a{
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    background:rgba(28,20,92,.07);
+    border:1px solid rgba(28,20,92,.15);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#1C145C;
+    text-decoration:none;
+    font-size:15px;
+    transition:.25s;
+}
+
+.footer-rsu .footer-social a:hover{
+    background:#1C145C;
+    color:#fff;
+    transform:translateY(-2px);
+}
+
+/* MITRA */
+.footer-rsu .footer-mitra-label{
+    font-size:11px;
+    color:#9994bb;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    margin-bottom:10px;
+}
+
+.footer-rsu .footer-mitra{
+    display:flex;
+    gap:10px;
+    align-items:center;
+    flex-wrap:wrap;
+}
+
+.footer-rsu .footer-mitra img:nth-child(1){
+    height:33px;
+}
+
+.footer-rsu .footer-mitra img:nth-child(2){
+    height:23px;
+}
+
+/* HEADING */
+.footer-rsu .footer-heading{
+    font-weight:900;
+    font-size:12px;
+    color:#1C145C;
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    margin-bottom:18px;
+    padding-bottom:10px;
+    border-bottom:1.5px solid rgba(28,20,92,.12);
+    white-space:nowrap;
+}
+
+/* LIST */
+.footer-rsu ul{
+    list-style:none;
+    padding:0;
+    margin:0;
+}
+
+.footer-rsu ul li{
+    margin-bottom:10px;
+}
+
+.footer-rsu a{
+    color:#5a5480;
+    text-decoration:none;
+    font-size:13.5px;
+    transition:.2s;
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+}
+
+.footer-rsu ul li a::before{
+    content:'›';
+    color:#1C145C;
+    opacity:.4;
+    font-size:15px;
+}
+
+.footer-rsu a:hover{
+    color:#1C145C;
+    padding-left:3px;
+}
+
+/* CONTACT */
+.footer-rsu .footer-contact-row{
+    display:flex;
+    align-items:flex-start;
+    gap:11px;
+    margin-bottom:16px;
+}
+
+.footer-rsu .footer-contact-icon{
+    width:34px;
+    height:34px;
+    border-radius:8px;
+    background:rgba(28,20,92,.07);
+    border:1px solid rgba(28,20,92,.1);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#1C145C;
+    flex-shrink:0;
+}
+
+.footer-rsu .footer-contact-text{
+    font-size:13px;
+    color:#5a5480;
+    line-height:1.7;
+    word-break:normal;
+}
+
+/* HR */
+.footer-rsu hr{
+    height:1px;
+    background:linear-gradient(
+        90deg,
+        rgba(28,20,92,0) 0%,
+        rgba(28,20,92,.12) 30%,
+        rgba(28,20,92,.12) 70%,
+        rgba(28,20,92,0) 100%
+    );
+    border:none;
+    margin:36px 0 0;
+}
+
+/* BOTTOM */
+.footer-rsu .footer-bottom{
+    background:rgba(28,20,92,.05);
+    padding:15px 36px;
+}
+
+.footer-rsu .footer-copy{
+    font-size:12.5px;
+    color:#9994bb;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+}
+
+.footer-rsu .footer-copy-badge{
+    background:rgba(28,20,92,.06);
+    border:1px solid rgba(28,20,92,.12);
+    border-radius:20px;
+    padding:4px 14px;
+    font-size:11.5px;
+    color:#7a74a0;
+    white-space:nowrap;
+}
+
+.footer-rsu .footer-accent-dot{
+    display:inline-block;
+    width:3px;
+    height:3px;
+    border-radius:50%;
+    background:#1C145C;
+    opacity:.25;
+    margin:0 8px;
+}
+
+/* TABLET */
+@media(max-width:991px){
+
+    .footer-rsu{
+        padding:45px 0 0;
+    }
+
+    .footer-rsu .row > div{
+        margin-bottom:24px;
+    }
+
+    .footer-rsu .footer-desc{
+        max-width:100%;
+    }
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+    .footer-rsu{
+        padding:40px 0 0;
+    }
+
+    .footer-rsu .container-fluid{
+        padding-left:20px !important;
+        padding-right:20px !important;
+    }
+
+    .footer-rsu .footer-copy{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:8px;
+    }
+
+    .footer-rsu .footer-bottom{
+        padding:15px 20px;
+    }
+
+    .footer-rsu a:hover{
+        padding-left:0;
+    }
+
+    .footer-rsu .footer-logo{
+        height:34px;
+    }
+}
+</style>
+
 <footer class="footer-rsu">
+
     <div class="footer-ornament"></div>
     <div class="footer-ornament2"></div>
+
     <div class="container-fluid px-lg-5 px-4">
-        <div class="row justify-content-between">
-            <div class="col-lg-4 col-md-6">
-                <img src="{{ asset('images/beranda/logo-almed.png') }}" class="footer-logo" alt="Logo RSU Allam Medica">
-                <h5 class="footer-title">RSU Allam Medica Bumiayu</h5>
-                <p class="footer-desc">Jl. Pangeran Diponegoro No. 609, Jatisawit, Bumiayu, Kabupaten Brebes, Jawa Tengah 52273</p>
+
+        <div class="row g-5 justify-content-between">
+
+            <!-- BRAND -->
+            <div class="col-lg-3 col-md-12">
+
+                <img src="{{ asset('images/beranda/logo-almed.png') }}"
+                     class="footer-logo"
+                     alt="Logo RSU Allam Medica">
+
+                <h5 class="footer-title">
+                    RSU Allam Medica Bumiayu
+                </h5>
+
+                <p class="footer-desc">
+                    Jl. Pangeran Diponegoro No. 609,
+                    Jatisawit, Bumiayu, Kabupaten Brebes,
+                    Jawa Tengah 52273
+                </p>
+
                 <div class="footer-social">
-                    <a href="https://www.tiktok.com/@rsuallammedicabumiayu" target="_blank"><i class="bi bi-tiktok"></i></a>
-                    <a href="https://www.facebook.com/allam.medicabmy" target="_blank"><i class="bi bi-facebook"></i></a>
-                    <a href="https://www.instagram.com/allam.medica/" target="_blank"><i class="bi bi-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@rsuallammedicabumiayu" target="_blank">
+                        <i class="bi bi-tiktok"></i>
+                    </a>
+                    <a href="https://www.facebook.com/allam.medicabmy" target="_blank">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+                    <a href="https://www.instagram.com/allam.medica/" target="_blank">
+                        <i class="bi bi-instagram"></i>
+                    </a>
                 </div>
-                <div class="footer-mitra-label">Akreditasi &amp; Mitra</div>
+
+                <div class="footer-mitra-label">
+                    Akreditasi & Mitra
+                </div>
+
                 <div class="footer-mitra">
-                    <img src="{{ asset('images/beranda/paripurna.png') }}" alt="Akreditasi Paripurna">
-                    <img src="{{ asset('images/beranda/bpjs.png') }}" alt="BPJS Kesehatan">
+                    <img src="{{ asset('images/beranda/paripurna.png') }}" alt="">
+                    <img src="{{ asset('images/beranda/bpjs.png') }}" alt="">
                 </div>
+
             </div>
-            <div class="col-lg-2 col-md-6">
+
+            <!-- TAUTAN CEPAT -->
+            <div class="col-lg-2 col-md-4 col-6">
+
                 <h6 class="footer-heading">Tautan Cepat</h6>
+
                 <ul>
                     <li><a href="{{ route('beranda') }}">Beranda</a></li>
-                    <li><a href="layanan">Layanan</a></li>
-                    <li><a href="artikel">Artikel</a></li>
-                    <li><a href="download">Download</a></li>
-                    <li><a href="tentang">Tentang Kami</a></li>
-                    <li><a href="kontak">Kontak</a></li>
+                    <li><a href="{{ url('/artikel') }}">Artikel</a></li>
+                    <li><a href="{{ url('/download') }}">Download</a></li>
+                    <li><a href="{{ url('/tentang') }}">Tentang Kami</a></li>
+                    <li><a href="{{ url('/mutu') }}">Mutu</a></li>
+                    <li><a href="{{ url('/kontak') }}">Kontak</a></li>
                 </ul>
+
             </div>
-            <div class="col-lg-2 col-md-6">
+
+            <!-- MENU -->
+            <div class="col-lg-2 col-md-4 col-6">
+
+                <h6 class="footer-heading">Menu</h6>
+
+                <ul>
+                    <li><a href="{{ url('/karir') }}">Karir</a></li>
+                    <li><a href="{{ url('/berita') }}">Berita</a></li>
+                    <li><a href="{{ url('/video') }}">Video</a></li>
+                </ul>
+
+            </div>
+
+            <!-- LAYANAN -->
+            <div class="col-lg-2 col-md-4 col-6">
+
                 <h6 class="footer-heading">Layanan</h6>
+
                 <ul>
                     <li><a href="{{ url('/layanan#igd') }}">IGD 24 Jam</a></li>
                     <li><a href="{{ url('/layanan#rawatjalan') }}">Rawat Jalan</a></li>
                     <li><a href="{{ url('/layanan#rawatinap') }}">Rawat Inap</a></li>
                     <li><a href="{{ url('/layanan#ambulans') }}">Ambulans</a></li>
                     <li><a href="{{ url('/layanan#laboratorium') }}">Laboratorium</a></li>
+                    <li><a href="{{ url('/layanan#radiologi') }}">Radiologi</a></li>
                     <li><a href="{{ url('/layanan#farmasi') }}">Farmasi</a></li>
+                    <li><a href="{{ url('/layanan#mcu') }}">Medical Check Up</a></li>
                 </ul>
+
             </div>
+
+            <!-- KONTAK -->
             <div class="col-lg-3 col-md-12">
+
                 <h6 class="footer-heading">Hubungi Kami</h6>
-                <div class="footer-contact-row"><div class="footer-contact-icon"><i class="bi bi-telephone-fill"></i></div><div class="footer-contact-text">(0289) 430822</div></div>
-                <div class="footer-contact-row"><div class="footer-contact-icon"><i class="bi bi-envelope-fill"></i></div><div class="footer-contact-text">allam.medica@yahoo.co.id</div></div>
-                <div class="footer-contact-row"><div class="footer-contact-icon"><i class="bi bi-clock-fill"></i></div><div class="footer-contact-text">IGD & Lab & Farmasi: 24 Jam<br>Rawat Jalan: Sen – Sab 07.00 – 21.00</div></div>
-                <div class="footer-contact-row"><div class="footer-contact-icon"><i class="bi bi-geo-alt-fill"></i></div><div class="footer-contact-text">Jl. Pangeran Diponegoro No.609,<br>Bumiayu, Brebes</div></div>
+
+                <div class="footer-contact-row">
+                    <div class="footer-contact-icon">
+                        <i class="bi bi-telephone-fill"></i>
+                    </div>
+                    <div class="footer-contact-text">
+                        (0289) 430822
+                    </div>
+                </div>
+
+                <div class="footer-contact-row">
+                    <div class="footer-contact-icon">
+                        <i class="bi bi-envelope-fill"></i>
+                    </div>
+                    <div class="footer-contact-text">
+                        allam.medica@yahoo.co.id
+                    </div>
+                </div>
+
+                <div class="footer-contact-row">
+                    <div class="footer-contact-icon">
+                        <i class="bi bi-clock-fill"></i>
+                    </div>
+                    <div class="footer-contact-text">
+                        IGD, Lab & Farmasi : 24 Jam<br>
+                        Rawat Jalan : Sen – Sab 07.00 – 21.00
+                    </div>
+                </div>
+
+                <div class="footer-contact-row">
+                    <div class="footer-contact-icon">
+                        <i class="bi bi-geo-alt-fill"></i>
+                    </div>
+                    <div class="footer-contact-text">
+                        Jl. Pangeran Diponegoro No. 609,<br>
+                        Bumiayu, Brebes
+                    </div>
+                </div>
+
             </div>
+
         </div>
+
         <hr>
+
     </div>
+
     <div class="footer-bottom">
+
         <div class="container-fluid px-lg-5 px-4">
+
             <div class="footer-copy">
-                <span>© 2026 RSU Allam Medica <span class="footer-accent-dot"></span> Hak Cipta Dilindungi</span>
-                <span class="footer-copy-badge">Melayani dengan Sepenuh Hati</span>
+                <span>
+                    © 2026 RSU Allam Medica
+                    <span class="footer-accent-dot"></span>
+                    Hak Cipta Dilindungi
+                </span>
+
+                <span class="footer-copy-badge">
+                    Melayani dengan Sepenuh Hati
+                </span>
             </div>
+
         </div>
+
     </div>
+
 </footer>
+<!-- END FOOTER -->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -1672,16 +1883,14 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 /* ============================================================
-   FILTER POLI
+   FILTER POLI — DESKTOP
 ============================================================ */
-function filterPoli() {
-    const q   = document.getElementById('searchPoli').value.toLowerCase().trim();
-    const sta = document.getElementById('filterPoliStatus').value;
+function filterPoliDesktop() {
+    const q   = (document.getElementById('searchPoliDesktop').value || '').toLowerCase().trim();
+    const sta = document.getElementById('filterPoliStatusDesktop').value;
     let visible = 0;
     document.querySelectorAll('#poliGrid .poli-card').forEach(function (c) {
-        const matchQ = !q   || (c.dataset.nama||'').includes(q);
-        const matchS = !sta || c.dataset.status === sta;
-        const show   = matchQ && matchS;
+        const show = (!q || (c.dataset.nama||'').includes(q)) && (!sta || c.dataset.status === sta);
         c.style.display = show ? '' : 'none';
         if (show) visible++;
     });
@@ -1690,35 +1899,41 @@ function filterPoli() {
 }
 
 /* ============================================================
+   FILTER POLI — MOBILE LIST
+============================================================ */
+function filterPoliMobile() {
+    const q   = (document.getElementById('searchPoliMobile').value || '').toLowerCase().trim();
+    const sta = document.getElementById('filterPoliStatusMobile').value;
+    let visible = 0;
+    document.querySelectorAll('#poliMobileList .poli-mobile-item').forEach(function (el) {
+        const show = (!q || (el.dataset.nama||'').includes(q)) && (!sta || el.dataset.status === sta);
+        el.style.display = show ? 'flex' : 'none';
+        if (show) visible++;
+    });
+    const emptyEl = document.getElementById('poliMobileEmpty');
+    if (emptyEl) emptyEl.style.display = (visible === 0) ? 'block' : 'none';
+    const listEl = document.getElementById('poliMobileList');
+    if (listEl) listEl.style.display = visible > 0 ? 'flex' : 'none';
+}
+
+/* ============================================================
    RAWAT INAP — MOBILE PILL SELECTOR
 ============================================================ */
 function showKelas(index) {
-    // Sembunyikan semua panel
-    document.querySelectorAll('[id^="kelasPanel"]').forEach(function (el) {
-        el.style.display = 'none';
-    });
-    // Tampilkan panel yang dipilih
+    document.querySelectorAll('[id^="kelasPanel"]').forEach(function (el) { el.style.display = 'none'; });
     const target = document.getElementById('kelasPanel' + index);
-    if (target) {
-        target.style.display = 'block';
-        target.style.animation = 'fadeUp .3s ease both';
-    }
-    // Update active pill
+    if (target) { target.style.display = 'block'; target.style.animation = 'fadeUp .3s ease both'; }
     document.querySelectorAll('.kelas-pill').forEach(function (btn) {
         btn.classList.toggle('active', parseInt(btn.dataset.index) === index);
     });
-    // Auto-scroll pill ke tengah
     const pill = document.querySelector('.kelas-pill[data-index="' + index + '"]');
-    if (pill) {
-        pill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-    }
+    if (pill) pill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
 }
 
 /* ============================================================
    SMOOTH SCROLL
 ============================================================ */
-function smoothTo(id, e) {
-    if (e) e.preventDefault();
+function smoothTo(id) {
     const el = document.getElementById(id);
     if (!el) return;
     window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
@@ -1730,56 +1945,39 @@ function smoothTo(id, e) {
 (function () {
     const sections = ['igd','rawatjalan','rawatinap','ambulans','laboratorium','radiologi','farmasi','mcu'];
     const tabs = document.querySelectorAll('.lay-tab');
-
     function updateTab() {
         let current = 'igd';
         sections.forEach(function (id) {
             const el = document.getElementById(id);
             if (el && el.getBoundingClientRect().top <= 160) current = id;
         });
-        tabs.forEach(function (tab) {
-            tab.classList.toggle('active', tab.dataset.section === current);
-        });
+        tabs.forEach(function (tab) { tab.classList.toggle('active', tab.dataset.section === current); });
     }
-
     window.addEventListener('scroll', updateTab, { passive: true });
-
     tabs.forEach(function (tab) {
-        tab.addEventListener('click', function (e) {
-            e.preventDefault();
-            smoothTo(tab.dataset.section, null);
-        });
+        tab.addEventListener('click', function (e) { e.preventDefault(); smoothTo(tab.dataset.section); });
     });
 })();
 
 /* ============================================================
-   ORNAMEN BUNGA — SCROLL-TRIGGERED
+   ORNAMEN BUNGA
 ============================================================ */
 (function () {
     const orns = [
-        { el: document.getElementById('pgOrn1'), triggerPct: 0.08  },
-        { el: document.getElementById('pgOrn2'), triggerPct: 0.28  },
-        { el: document.getElementById('pgOrn3'), triggerPct: 0.50  },
-        { el: document.getElementById('pgOrn4'), triggerPct: 0.70  },
-        { el: document.getElementById('pgOrn5'), triggerPct: 0.88  },
+        { el: document.getElementById('pgOrn1'), triggerPct: 0.08 },
+        { el: document.getElementById('pgOrn2'), triggerPct: 0.28 },
+        { el: document.getElementById('pgOrn3'), triggerPct: 0.50 },
+        { el: document.getElementById('pgOrn4'), triggerPct: 0.70 },
+        { el: document.getElementById('pgOrn5'), triggerPct: 0.88 },
     ];
-
     function updateOrns() {
-        const scrolled = window.scrollY;
-        const docH     = document.documentElement.scrollHeight - window.innerHeight;
-        const pct      = docH > 0 ? scrolled / docH : 0;
-
+        const docH = document.documentElement.scrollHeight - window.innerHeight;
+        const pct  = docH > 0 ? window.scrollY / docH : 0;
         orns.forEach(function (o) {
             if (!o.el) return;
-            const inView = pct >= o.triggerPct && pct < o.triggerPct + 0.18;
-            if (inView) {
-                o.el.classList.add('orn-visible');
-            } else {
-                o.el.classList.remove('orn-visible');
-            }
+            o.el.classList.toggle('orn-visible', pct >= o.triggerPct && pct < o.triggerPct + 0.18);
         });
     }
-
     window.addEventListener('scroll', updateOrns, { passive: true });
     updateOrns();
 })();
@@ -1808,8 +2006,7 @@ function copyLink() {
 ============================================================ */
 window.addEventListener('load', function () {
     if (window.location.hash) {
-        const id = window.location.hash.replace('#','');
-        setTimeout(function () { smoothTo(id, null); }, 400);
+        setTimeout(function () { smoothTo(window.location.hash.replace('#','')); }, 400);
     }
 });
 </script>
