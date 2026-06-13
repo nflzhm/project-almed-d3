@@ -21,7 +21,20 @@ Layanan — RSU Allam Medica
 body { font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; overflow-x: hidden; }
 
 /* ============================================================
-   ORNAMEN BUNGA
+   ORNAMEN HELPER — dipakai di tiap section
+============================================================ */
+.ornamen {
+    position: absolute;
+    background-image: url('{{ asset("images/beranda/ornamen.png") }}');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ============================================================
+   ORNAMEN BUNGA (fixed untuk list mode — scroll reveal)
 ============================================================ */
 .page-ornament { position:fixed;pointer-events:none;z-index:0;background-image:url('{{ asset("images/beranda/ornamen.png") }}');background-size:contain;background-repeat:no-repeat;background-position:center;transition:opacity 0.6s ease,transform 0.6s ease;will-change:opacity,transform; }
 .orn-1 { right:-100px;top:20%;width:380px;height:380px;opacity:0;filter:hue-rotate(220deg) saturate(0.35); }
@@ -867,15 +880,22 @@ document.addEventListener('DOMContentLoaded', function () {
 <div class="container" style="position:relative;z-index:1;">
 
 
-    {{-- IGD --}}
-    <section id="igd" class="lay-section">
-        <div style="margin-bottom:28px;">
+    {{-- ============================================================
+         IGD
+    ============================================================ --}}
+    <section id="igd" class="lay-section" style="position:relative; overflow:hidden;">
+
+        {{-- ORNAMEN IGD --}}
+        <div class="ornamen" style="top:-20px; right:-20px; width:280px; height:280px; opacity:0.04;"></div>
+        <div class="ornamen" style="bottom:-60px; left:-70px; width:260px; height:260px; opacity:0.035;"></div>
+
+        <div style="margin-bottom:28px; position:relative; z-index:1;">
             <div class="sec-label" style="background:#fee2e2;color:#dc2626;"><i class="bi bi-bandaid-fill"></i> Gawat Darurat</div>
             <div class="sec-title">IGD 24 Jam</div>
             <div class="sec-sub">Penanganan gawat darurat cepat, tepat, dan profesional sepanjang waktu.</div>
         </div>
         <div class="sec-divider"></div>
-        <div class="row g-4">
+        <div class="row g-4" style="position:relative; z-index:1;">
             <div class="col-lg-5">
                 <div class="svc-card h-100">
                     <div class="svc-header" style="background:linear-gradient(135deg,#7f1d1d 0%,#dc2626 100%);">
@@ -920,9 +940,16 @@ document.addEventListener('DOMContentLoaded', function () {
     </section>
 
 
-    {{-- RAWAT JALAN --}}
-    <section id="rawatjalan" class="lay-section">
-        <div class="lay-section-header" style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:28px;gap:16px;flex-wrap:wrap;">
+    {{-- ============================================================
+         RAWAT JALAN
+    ============================================================ --}}
+    <section id="rawatjalan" class="lay-section" style="position:relative; overflow:hidden;">
+
+        {{-- ORNAMEN RAWAT JALAN --}}
+        <div class="ornamen" style="top:-90px; left:-20px; width:340px; height:340px; opacity:0.04;"></div>
+        <div class="ornamen" style="bottom:-80px; right:-70px; width:280px; height:280px; opacity:0.035;"></div>
+
+        <div class="lay-section-header" style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:28px;gap:16px;flex-wrap:wrap; position:relative; z-index:1;">
             <div>
                 <div class="sec-label" style="background:#e0f2fe;color:#0284c7;"><i class="bi bi-clipboard2-pulse"></i> Rawat Jalan</div>
                 <div class="sec-title">Poliklinik Spesialis</div>
@@ -936,7 +963,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <div class="sec-divider"></div>
 
         {{-- Search bar — desktop --}}
-        <div class="d-none d-lg-flex" style="background:#fff;border-radius:12px;border:1px solid #e8edf5;padding:12px 16px;align-items:center;gap:10px;margin-bottom:20px;box-shadow:0 2px 8px rgba(28,20,92,.04);flex-wrap:wrap;">
+        <div class="d-none d-lg-flex" style="background:#fff;border-radius:12px;border:1px solid #e8edf5;padding:12px 16px;align-items:center;gap:10px;margin-bottom:20px;box-shadow:0 2px 8px rgba(28,20,92,.04);flex-wrap:wrap; position:relative; z-index:1;">
             <div style="position:relative;flex:1;min-width:180px;">
                 <i class="bi bi-search" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#94a3b8;font-size:13px;pointer-events:none;"></i>
                 <input type="search" id="searchPoliDesktop" placeholder="Cari poliklinik..." oninput="filterPoliDesktop()"
@@ -951,7 +978,7 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
 
         {{-- DESKTOP: Grid cards --}}
-        <div class="poli-grid" id="poliGrid">
+        <div class="poli-grid" id="poliGrid" style="position:relative; z-index:1;">
             @php $poliItems = collect($layananData)->where('kategori','poli')->values(); @endphp
             @forelse($poliItems as $i => $pol)
             <div class="poli-card" data-nama="{{ strtolower($pol['poli']??'') }}" data-status="{{ $pol['status']??'aktif' }}" style="animation-delay:{{ min($i*0.06,0.5) }}s">
@@ -984,8 +1011,8 @@ document.addEventListener('DOMContentLoaded', function () {
             @endforelse
         </div>
 
-        {{-- MOBILE: Search bar + List compact --}}
-        <div class="d-lg-none">
+        {{-- MOBILE --}}
+        <div class="d-lg-none" style="position:relative; z-index:1;">
             <div class="poli-mobile-search">
                 <div class="poli-mobile-search-wrap">
                     <i class="bi bi-search"></i>
@@ -997,23 +1024,18 @@ document.addEventListener('DOMContentLoaded', function () {
                     <option value="nonaktif">Nonaktif</option>
                 </select>
             </div>
-
             <div class="poli-mobile-list" id="poliMobileList">
                 @forelse($poliItems as $pol)
                 <div class="poli-mobile-item" data-nama="{{ strtolower($pol['poli']??'') }}" data-status="{{ $pol['status']??'aktif' }}">
                     <div class="pmi-icon"><i class="bi bi-clipboard2-pulse"></i></div>
                     <div class="pmi-info">
                         <div class="pmi-name">{{ $pol['poli'] }}</div>
-                        <div class="pmi-status-badge {{ $pol['status']??'aktif' }}">
-                            {{ ($pol['status']??'aktif')==='aktif' ? 'Aktif' : 'Nonaktif' }}
-                        </div>
+                        <div class="pmi-status-badge {{ $pol['status']??'aktif' }}">{{ ($pol['status']??'aktif')==='aktif' ? 'Aktif' : 'Nonaktif' }}</div>
                     </div>
                     <div class="pmi-actions">
                         @php $noWaMob=preg_replace('/[^0-9]/','', $pol['no_wa']??''); @endphp
                         @if($noWaMob)
-                        <a href="https://wa.me/{{ $noWaMob }}" target="_blank" class="pmi-wa" title="WhatsApp">
-                            <i class="bi bi-whatsapp"></i>
-                        </a>
+                        <a href="https://wa.me/{{ $noWaMob }}" target="_blank" class="pmi-wa" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
                         @endif
                         <a href="{{ route('layanan.poli', $pol['id']) }}" class="pmi-detail">
                             <i class="bi bi-arrow-right" style="font-size:12px;"></i>
@@ -1030,7 +1052,7 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
         </div>
 
-        <div style="margin-top:28px;background:linear-gradient(135deg,#1C145C 0%,#3b5bdb 100%);border-radius:18px;padding:28px 32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden;">
+        <div style="margin-top:28px;background:linear-gradient(135deg,#1C145C 0%,#3b5bdb 100%);border-radius:18px;padding:28px 32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden; z-index:1;">
             <div style="position:relative;z-index:1;">
                 <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;">Jadwal Dokter</div>
                 <div style="font-family:'DM Serif Display',serif;font-size:22px;color:#fff;font-weight:400;margin-bottom:4px;">Cek Jadwal Praktik Dokter</div>
@@ -1043,10 +1065,18 @@ document.addEventListener('DOMContentLoaded', function () {
     </section>
 
 
-    {{-- RAWAT INAP --}}
-    <section id="rawatinap" class="lay-section">
+    {{-- ============================================================
+         RAWAT INAP
+    ============================================================ --}}
+    <section id="rawatinap" class="lay-section" style="position:relative; overflow:hidden;">
+
+        {{-- ORNAMEN RAWAT INAP --}}
+        <div class="ornamen" style="top:-60px; right:-80px; width:360px; height:360px; opacity:0.04;"></div>
+        <div class="ornamen" style="bottom:-60px; left:-70px; width:300px; height:300px; opacity:0.035;"></div>
+        <div class="ornamen" style="top:50%; left:50%; transform:translate(-50%,-50%); width:460px; height:460px; opacity:0.02;"></div>
+
         <div class="sec-divider"></div>
-        <div style="margin-bottom:28px;">
+        <div style="margin-bottom:28px; position:relative; z-index:1;">
             <div class="sec-label" style="background:#ede9fe;color:#7c3aed;"><i class="bi bi-hospital"></i> Rawat Inap</div>
             <div class="sec-title">Fasilitas Rawat Inap</div>
             <div class="sec-sub">RSU Allam Medica menyediakan berbagai pilihan kelas perawatan sesuai kebutuhan dan kondisi pasien.</div>
@@ -1054,9 +1084,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         @php
         $kelasRawat = [
-            ['nama'=>'Kelas VIP','icon'=>'bi-gem','grad'=>'linear-gradient(135deg,#0f0c29 0%,#302b63 50%,#24243e 100%)','badge_bg'=>'#ede9fe','badge_c'=>'#4c1d95','badge'=>'VIP','fitur'=>[['icon'=>'bi-door-open','teks'=>'Kamar pribadi 1 tempat tidur'],['icon'=>'bi-tv','teks'=>'TV layar lebar, WiFi, AC individual'],['icon'=>'bi-person-check','teks'=>'Pelayanan perawat prioritas penuh'],['icon'=>'bi-box-seam','teks'=>'Sofa tamu, kulkas mini, kamar mandi dalam'],['icon'=>'bi-cup-hot','teks'=>'Fasilitas makan pasien & penunggu']]],
-            ['nama'=>'Kelas 1','icon'=>'bi-star-fill','grad'=>'linear-gradient(135deg,#1e3a6e 0%,#2563eb 100%)','badge_bg'=>'#dbeafe','badge_c'=>'#1d4ed8','badge'=>'Kelas 1','fitur'=>[['icon'=>'bi-door-open','teks'=>'2 tempat tidur per kamar'],['icon'=>'bi-tv','teks'=>'Fasilitas TV & WiFi'],['icon'=>'bi-person-check','teks'=>'Pelayanan perawat prioritas'],['icon'=>'bi-box-seam','teks'=>'Lemari & ruang penyimpanan']]],
-            ['nama'=>'Kelas 2','icon'=>'bi-star-half','grad'=>'linear-gradient(135deg,#1e4d3a 0%,#059669 100%)','badge_bg'=>'#d1fae5','badge_c'=>'#065f46','badge'=>'Kelas 2','fitur'=>[['icon'=>'bi-door-open','teks'=>'3–4 tempat tidur per kamar'],['icon'=>'bi-shield-plus','teks'=>'Pelayanan keperawatan standar'],['icon'=>'bi-person-hearts','teks'=>'Ruang kunjungan keluarga'],['icon'=>'bi-patch-check','teks'=>'Melayani pasien BPJS']]],
+            ['nama'=>'Kelas VIP','icon'=>'bi-gem','grad'=>'linear-gradient(135deg,#0f0c29 0%,#302b63 50%,#24243e 100%)','badge_bg'=>'#ede9fe','badge_c'=>'#4c1d95','badge'=>'VIP','fitur'=>[['icon'=>'bi-door-open','teks'=>'Kamar pribadi 1 tempat tidur'],['icon'=>'bi-tv','teks'=>'TV & AC'],['icon'=>'bi-box-seam','teks'=>'kulkas mini, kamar mandi dalam'],['icon'=>'bi-person-hearts','teks'=>'Ruang kunjungan keluarga'],['icon'=>'bi-patch-check','teks'=>'Melayani pasien BPJS']]],
+            ['nama'=>'Kelas 1','icon'=>'bi-star-fill','grad'=>'linear-gradient(135deg,#1e3a6e 0%,#2563eb 100%)','badge_bg'=>'#dbeafe','badge_c'=>'#1d4ed8','badge'=>'Kelas 1','fitur'=>[['icon'=>'bi-door-open','teks'=>'2 tempat tidur per kamar'],['icon'=>'bi-tv','teks'=>'Fasilitas TV & AC'],['icon'=>'bi-box-seam','teks'=>'Lemari & ruang penyimpanan'],['icon'=>'bi-person-hearts','teks'=>'Ruang kunjungan keluarga'],['icon'=>'bi-patch-check','teks'=>'Melayani pasien BPJS']]],
+            ['nama'=>'Kelas 2','icon'=>'bi-star-half','grad'=>'linear-gradient(135deg,#1e4d3a 0%,#059669 100%)','badge_bg'=>'#d1fae5','badge_c'=>'#065f46','badge'=>'Kelas 2','fitur'=>[['icon'=>'bi-door-open','teks'=>'3-4 tempat tidur per kamar'],['icon'=>'bi-person-hearts','teks'=>'Ruang kunjungan keluarga'],['icon'=>'bi-patch-check','teks'=>'Melayani pasien BPJS']]],
             ['nama'=>'Kelas 3','icon'=>'bi-star','grad'=>'linear-gradient(135deg,#3d2a0f 0%,#d97706 100%)','badge_bg'=>'#fef3c7','badge_c'=>'#92400e','badge'=>'Kelas 3','fitur'=>[['icon'=>'bi-door-open','teks'=>'5–6 tempat tidur per kamar'],['icon'=>'bi-patch-check','teks'=>'Melayani pasien BPJS'],['icon'=>'bi-shield-plus','teks'=>'Perawatan medis lengkap'],['icon'=>'bi-people','teks'=>'Area keluarga tersedia']]],
             ['nama'=>'Intermediet','icon'=>'bi-activity','grad'=>'linear-gradient(135deg,#1a1a5e 0%,#6366f1 100%)','badge_bg'=>'#ede9fe','badge_c'=>'#4c1d95','badge'=>'Perawatan Khusus','fitur'=>[['icon'=>'bi-heart-pulse-fill','teks'=>'Monitor vital sign kontinu'],['icon'=>'bi-person-badge','teks'=>'Perawat terlatih 24 jam'],['icon'=>'bi-capsule','teks'=>'Obat-obatan khusus tersedia'],['icon'=>'bi-exclamation-triangle','teks'=>'Untuk pasien semi-kritis']]],
             ['nama'=>'Perinatologi','icon'=>'bi-balloon-heart','grad'=>'linear-gradient(135deg,#831843 0%,#ec4899 100%)','badge_bg'=>'#fce7f3','badge_c'=>'#9d174d','badge'=>'Bayi Baru Lahir','fitur'=>[['icon'=>'bi-thermometer','teks'=>'Inkubator & penghangat bayi'],['icon'=>'bi-lungs','teks'=>'Monitor oksigen neonatus'],['icon'=>'bi-person-badge','teks'=>'Perawat neonatus terlatih'],['icon'=>'bi-heart','teks'=>'Perawatan bayi baru lahir']]],
@@ -1067,7 +1097,7 @@ document.addEventListener('DOMContentLoaded', function () {
         @endphp
 
         {{-- DESKTOP --}}
-        <div class="kelas-grid">
+        <div class="kelas-grid" style="position:relative; z-index:1;">
             @foreach($kelasRawat as $i => $kelas)
             <div class="kelas-card" style="animation-delay:{{ min($i*0.07,0.5) }}s;">
                 <div class="kelas-header" style="background:{{ $kelas['grad'] }};">
@@ -1081,16 +1111,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
                 <div class="kelas-footer">
                     <span class="kelas-badge" style="background:{{ $kelas['badge_bg'] }};color:{{ $kelas['badge_c'] }};">{{ $kelas['badge'] }}</span>
-                    <a href="https://wa.me/6285292224886?text=Halo,%20saya%20ingin%20info%20{{ urlencode($kelas['nama']) }}" target="_blank" class="kelas-wa-btn">
-                        <i class="bi bi-whatsapp"></i> Tanya
-                    </a>
+                    <a href="https://wa.me/6285292224886?text=Halo,%20saya%20ingin%20info%20{{ urlencode($kelas['nama']) }}" target="_blank" class="kelas-wa-btn"><i class="bi bi-whatsapp"></i> Tanya</a>
                 </div>
             </div>
             @endforeach
         </div>
 
         {{-- MOBILE --}}
-        <div class="kelas-mobile-wrap">
+        <div class="kelas-mobile-wrap" style="position:relative; z-index:1;">
             <div class="kelas-pills-scroll" id="kelasPills">
                 @foreach($kelasRawat as $i => $kelas)
                 <button class="kelas-pill {{ $i === 0 ? 'active' : '' }}" data-index="{{ $i }}" style="background:{{ $kelas['grad'] }};" onclick="showKelas({{ $i }})">
@@ -1113,15 +1141,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     @endforeach
                 </div>
                 <div class="kdp-footer">
-                    <a href="https://wa.me/6285292224886?text=Halo,%20saya%20ingin%20info%20{{ urlencode($kelas['nama']) }}" target="_blank" class="kdp-wa">
-                        <i class="bi bi-whatsapp"></i> Tanya via WhatsApp
-                    </a>
+                    <a href="https://wa.me/6285292224886?text=Halo,%20saya%20ingin%20info%20{{ urlencode($kelas['nama']) }}" target="_blank" class="kdp-wa"><i class="bi bi-whatsapp"></i> Tanya via WhatsApp</a>
                 </div>
             </div>
             @endforeach
         </div>
 
-        <div style="margin-top:28px;background:#fff;border-radius:16px;border:1px solid #e8edf5;padding:24px 28px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;box-shadow:0 2px 12px rgba(28,20,92,.05);">
+        <div style="margin-top:28px;background:#fff;border-radius:16px;border:1px solid #e8edf5;padding:24px 28px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;box-shadow:0 2px 12px rgba(28,20,92,.05); position:relative; z-index:1;">
             <div style="width:44px;height:44px;border-radius:12px;background:#ede9fe;display:flex;align-items:center;justify-content:center;font-size:20px;color:#7c3aed;flex-shrink:0;"><i class="bi bi-info-circle-fill"></i></div>
             <div style="flex:1;">
                 <div style="font-size:14px;font-weight:700;color:#1e293b;margin-bottom:3px;">Informasi Ketersediaan Kamar</div>
@@ -1135,10 +1161,17 @@ document.addEventListener('DOMContentLoaded', function () {
     </section>
 
 
-    {{-- AMBULANS --}}
-    <section id="ambulans" class="lay-section">
+    {{-- ============================================================
+         AMBULANS
+    ============================================================ --}}
+    <section id="ambulans" class="lay-section" style="position:relative; overflow:hidden;">
+
+        {{-- ORNAMEN AMBULANS --}}
+        <div class="ornamen" style="top:-50px; left:-70px; width:300px; height:300px; opacity:0.04;"></div>
+        <div class="ornamen" style="bottom:-60px; right:-60px; width:260px; height:260px; opacity:0.035;"></div>
+
         <div class="sec-divider"></div>
-        <div class="svc-card">
+        <div class="svc-card" style="position:relative; z-index:1;">
             <div class="row g-0">
                 <div class="col-lg-4">
                     <div class="svc-header h-100" style="background:linear-gradient(135deg,#78350f 0%,#f59e0b 100%);border-radius:20px 0 0 20px;">
@@ -1172,10 +1205,17 @@ document.addEventListener('DOMContentLoaded', function () {
     </section>
 
 
-    {{-- LABORATORIUM --}}
-    <section id="laboratorium" class="lay-section">
+    {{-- ============================================================
+         LABORATORIUM
+    ============================================================ --}}
+    <section id="laboratorium" class="lay-section" style="position:relative; overflow:hidden;">
+
+        {{-- ORNAMEN LABORATORIUM --}}
+        <div class="ornamen" style="top:-60px; right:-80px; width:340px; height:340px; opacity:0.04;"></div>
+        <div class="ornamen" style="bottom:-70px; left:-60px; width:280px; height:280px; opacity:0.035;"></div>
+
         <div class="sec-divider"></div>
-        <div class="row g-4">
+        <div class="row g-4" style="position:relative; z-index:1;">
             <div class="col-lg-5">
                 <div class="svc-card h-100">
                     <div class="svc-header" style="background:linear-gradient(135deg,#064e3b 0%,#059669 100%);">
@@ -1214,7 +1254,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             <li>Hasil dikirim via WhatsApp atau diambil langsung</li>
                             <li>Petugas bersertifikat & berpengalaman</li>
                         </ul>
-                        <a href="https://wa.me/6285292224886?text=Halo,%20saya%20ingin%20pesan%20home%20service%20laboratorium" target="_blank" style="display:inline-flex;align-items:center;gap:7px;padding:10px 20px;border-radius:10px;background:#059669;color:#fff;font-size:13px;font-weight:700;text-decoration:none;"><i class="bi bi-whatsapp"></i> Pesan Home Service</a>
+                        <a href="https://wa.me/6282328642154?text=Halo,%20saya%20ingin%20pesan%20home%20service%20laboratorium" target="_blank" style="display:inline-flex;align-items:center;gap:7px;padding:10px 20px;border-radius:10px;background:#059669;color:#fff;font-size:13px;font-weight:700;text-decoration:none;"><i class="bi bi-whatsapp"></i> Pesan Home Service</a>
                     </div>
                     <div style="background:#fff;border-radius:14px;border:1px solid #e8edf5;padding:20px 22px;box-shadow:0 2px 10px rgba(28,20,92,.04);">
                         <div style="font-size:11px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;"><i class="bi bi-flask" style="margin-right:4px;"></i> Pemeriksaan Tambahan</div>
@@ -1234,10 +1274,17 @@ document.addEventListener('DOMContentLoaded', function () {
     </section>
 
 
-    {{-- RADIOLOGI --}}
-    <section id="radiologi" class="lay-section">
+    {{-- ============================================================
+         RADIOLOGI
+    ============================================================ --}}
+    <section id="radiologi" class="lay-section" style="position:relative; overflow:hidden;">
+
+        {{-- ORNAMEN RADIOLOGI --}}
+        <div class="ornamen" style="top:-50px; left:-80px; width:320px; height:320px; opacity:0.04;"></div>
+        <div class="ornamen" style="bottom:-60px; right:-70px; width:270px; height:270px; opacity:0.035;"></div>
+
         <div class="sec-divider"></div>
-        <div class="svc-card">
+        <div class="svc-card" style="position:relative; z-index:1;">
             <div class="row g-0">
                 <div class="col-lg-4">
                     <div class="svc-header h-100" style="background:linear-gradient(135deg,#1e1b4b 0%,#6366f1 100%);border-radius:20px 0 0 20px;">
@@ -1265,10 +1312,17 @@ document.addEventListener('DOMContentLoaded', function () {
     </section>
 
 
-    {{-- FARMASI --}}
-    <section id="farmasi" class="lay-section">
+    {{-- ============================================================
+         FARMASI
+    ============================================================ --}}
+    <section id="farmasi" class="lay-section" style="position:relative; overflow:hidden;">
+
+        {{-- ORNAMEN FARMASI --}}
+        <div class="ornamen" style="top:-60px; right:-80px; width:330px; height:330px; opacity:0.04;"></div>
+        <div class="ornamen" style="bottom:-50px; left:-60px; width:280px; height:280px; opacity:0.035;"></div>
+
         <div class="sec-divider"></div>
-        <div class="row g-4">
+        <div class="row g-4" style="position:relative; z-index:1;">
             <div class="col-lg-5">
                 <div class="svc-card h-100">
                     <div class="svc-header" style="background:linear-gradient(135deg,#831843 0%,#ec4899 100%);">
@@ -1277,13 +1331,11 @@ document.addEventListener('DOMContentLoaded', function () {
                         <div class="svc-tagline">Obat-obatan lengkap berkualitas, buka 24 jam setiap hari termasuk hari libur</div>
                     </div>
                     <div class="svc-body">
-                        <p class="svc-desc">Instalasi Farmasi RSU Allam Medica menyediakan obat-obatan lengkap dan berkualitas. Melayani resep dokter rumah sakit, resep luar, serta obat bebas — buka 24 jam termasuk hari Minggu dan hari libur nasional.</p>
+                        <p class="svc-desc">Instalasi Farmasi RSU Allam Medica menyediakan obat-obatan lengkap dan berkualitas. Melayani resep dokter rumah sakit - buka 24 jam termasuk hari Minggu dan hari libur nasional.</p>
                         <ul class="svc-list">
-                            <li>Obat generik dan paten lengkap</li>
                             <li>Melayani resep BPJS dan umum</li>
                             <li>Konsultasi apoteker tersedia</li>
                             <li>Buka 24 jam setiap hari</li>
-                            <li>Resep dari luar dapat dilayani</li>
                         </ul>
                     </div>
                     <div class="svc-footer">
@@ -1295,7 +1347,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div style="background:#fff;border-radius:20px;border:1px solid #e8edf5;box-shadow:0 4px 20px rgba(28,20,92,.05);padding:32px;width:100%;display:flex;flex-direction:column;justify-content:center;">
                     <div style="font-size:11px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.8px;margin-bottom:20px;"><i class="bi bi-capsule" style="margin-right:5px;color:#db2777;"></i> Layanan Kami</div>
                     <div style="display:flex;flex-direction:column;gap:12px;">
-                        @php $infoFar=[['icon'=>'bi-prescription','bg'=>'#fce7f3','c'=>'#db2777','title'=>'Resep Dokter RS','desc'=>'Resep dari dokter RSU Allam Medica diproses dengan cepat dan diprioritaskan.'],['icon'=>'bi-file-earmark-medical','bg'=>'#e0f2fe','c'=>'#0284c7','title'=>'Resep Luar dan Obat Bebas','desc'=>'Melayani resep dari dokter luar serta penjualan obat bebas dan suplemen kesehatan.'],['icon'=>'bi-patch-check-fill','bg'=>'#d1fae5','c'=>'#059669','title'=>'Jaminan Kualitas','desc'=>'Semua obat bersumber dari distributor resmi dan tersimpan sesuai standar farmasi.'],['icon'=>'bi-person-lines-fill','bg'=>'#fef3c7','c'=>'#d97706','title'=>'Konsultasi Apoteker','desc'=>'Apoteker siap memberikan informasi mengenai obat, dosis, dan interaksi obat.']]; @endphp
+                        @php $infoFar=[['icon'=>'bi-prescription','bg'=>'#fce7f3','c'=>'#db2777','title'=>'Resep Dokter RS','desc'=>'Resep dari dokter RSU Allam Medica diproses dengan cepat dan diprioritaskan.'],['icon'=>'bi-patch-check-fill','bg'=>'#d1fae5','c'=>'#059669','title'=>'Jaminan Kualitas','desc'=>'Semua obat bersumber dari distributor resmi dan tersimpan sesuai standar farmasi.'],['icon'=>'bi-person-lines-fill','bg'=>'#fef3c7','c'=>'#d97706','title'=>'Konsultasi Apoteker','desc'=>'Apoteker siap memberikan informasi mengenai obat, dosis, dan interaksi obat.']]; @endphp
                         @foreach($infoFar as $f)
                         <div style="display:flex;align-items:flex-start;gap:12px;padding:14px 16px;background:#f8faff;border-radius:12px;border:1px solid #e8edf5;">
                             <div style="width:36px;height:36px;border-radius:10px;background:{{ $f['bg'] }};display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="bi {{ $f['icon'] }}" style="color:{{ $f['c'] }};font-size:16px;"></i></div>
@@ -1312,10 +1364,20 @@ document.addEventListener('DOMContentLoaded', function () {
     </section>
 
 
-    {{-- MCU --}}
-    <section id="mcu" class="lay-section" style="padding-bottom:60px;">
+    {{-- ============================================================
+         MCU
+    ============================================================ --}}
+    <section id="mcu" class="lay-section" style="padding-bottom:60px; position:relative; overflow:hidden;">
+
+        {{-- ORNAMEN MCU --}}
+        <div class="ornamen" style="top:-50px; left:-70px; width:340px; height:340px; opacity:0.04;"></div>
+        <div class="ornamen" style="bottom:-80px; right:-60px; width:300px; height:300px; opacity:0.04;"></div>
+        <div class="ornamen" style="top:50%; left:50%; transform:translate(-50%,-50%); width:440px; height:440px; opacity:0.02;"></div>
+
         <div class="sec-divider"></div>
-        <div class="row g-4 align-items-start">
+        <div class="row g-4 align-items-start" style="position:relative; z-index:1;">
+
+            {{-- KIRI: INFO UMUM --}}
             <div class="col-lg-5">
                 <div class="svc-card">
                     <div class="svc-header" style="background:linear-gradient(135deg,#134e4a 0%,#0d9488 100%);">
@@ -1326,11 +1388,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     <div class="svc-body">
                         <p class="svc-desc">Program MCU RSU Allam Medica dirancang untuk pemeriksaan kesehatan menyeluruh. Tersedia berbagai paket sesuai kebutuhan individu maupun instansi.</p>
                         <ul class="svc-list">
-                            <li>Paket MCU dasar, standar, dan komprehensif</li>
+                            <li>Paket MCU Premarital untuk Pria & Wanita</li>
                             <li>MCU untuk instansi dan perusahaan</li>
                             <li>Hasil dan konsultasi dokter</li>
-                            <li>Tersedia dengan BPJS untuk jenis tertentu</li>
-                            <li>Jadwal fleksibel sesuai kebutuhan</li>
                         </ul>
                     </div>
                     <div class="svc-footer">
@@ -1338,43 +1398,73 @@ document.addEventListener('DOMContentLoaded', function () {
                     </div>
                 </div>
             </div>
+
+            {{-- KANAN: PAKET PREMARITAL --}}
             <div class="col-lg-7">
-                <div style="font-size:11px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.8px;margin-bottom:20px;margin-top:4px;"><i class="bi bi-list-check" style="margin-right:5px;"></i> Paket Tersedia</div>
-                @if(isset($mcuPakets) && $mcuPakets->count())
-                    @foreach($mcuPakets as $paket)
-                    <div class="mcu-paket-card" style="border-left:4px solid {{ $paket->warna ?? '#0d9488' }};">
-                        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
-                            <div class="mcu-paket-name">{{ $paket->nama }}</div>
-                            @if($paket->harga)<span style="font-size:12px;font-weight:700;padding:3px 12px;border-radius:20px;background:#f8faff;border:1px solid #e2e8f0;color:#475569;">{{ $paket->harga }}</span>@endif
+                <div style="font-size:11px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;margin-top:4px;">
+                    <i class="bi bi-list-check" style="margin-right:5px;"></i> Paket Tersedia
+                </div>
+
+                {{-- LABEL PREMARITAL --}}
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+                    <span style="font-size:11px;font-weight:800;color:#be185d;text-transform:uppercase;letter-spacing:.8px;background:#fdf2f8;border:1px solid #fbcfe8;padding:4px 12px;border-radius:20px;">
+                        <i class="bi bi-heart-fill" style="margin-right:4px;font-size:10px;"></i> MCU Premarital
+                    </span>
+                    <span style="font-size:12px;color:#94a3b8;">Persiapan sehat untuk masa depan bahagia</span>
+                </div>
+
+                {{-- GRID PREMARITAL --}}
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;">
+
+                    {{-- PRIA --}}
+                    <div style="border-radius:16px;border:1px solid #bfdbfe;background:linear-gradient(135deg,#eff6ff 0%,#dbeafe 100%);padding:18px;position:relative;overflow:hidden;">
+                        <div style="position:absolute;top:-20px;right:-20px;width:80px;height:80px;border-radius:50%;background:rgba(59,130,246,.08);"></div>
+                        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+                            <div style="width:36px;height:36px;border-radius:50%;background:#2563eb;color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">
+                                <i class="bi bi-gender-male"></i>
+                            </div>
+                            <div>
+                                <div style="font-size:13px;font-weight:800;color:#1e40af;">PRIA</div>
+                                <div style="font-size:17px;font-weight:900;color:#1d4ed8;line-height:1.1;">Rp 649.000<span style="font-size:11px;font-weight:600;">,-</span></div>
+                            </div>
                         </div>
-                        @if($paket->deskripsi)<p style="font-size:13px;color:#64748b;margin:8px 0 10px;line-height:1.6;">{{ $paket->deskripsi }}</p>@endif
-                        @if($paket->items && $paket->items->count())
-                        <div class="mcu-paket-items">
-                            @foreach($paket->items as $item)
-                            <span class="mcu-paket-item"><i class="bi bi-check-circle-fill" style="color:#0d9488;font-size:10px;margin-right:3px;"></i>{{ $item->nama }}</span>
+                        <div style="display:flex;flex-direction:column;gap:5px;">
+                            @foreach(['Darah Lengkap','Golongan Darah','Gula Darah Sewaktu','Rontgen Thorax','HBsAg','Anti HIV','Urine Lengkap'] as $item)
+                            <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:#1e40af;">
+                                <i class="bi bi-check-circle-fill" style="color:#2563eb;font-size:10px;flex-shrink:0;"></i> {{ $item }}
+                            </div>
                             @endforeach
                         </div>
-                        @endif
                     </div>
-                    @endforeach
-                @else
-                    @php $defaultPakets=[['nama'=>'Paket Dasar','harga'=>'Hubungi kami','warna'=>'#0d9488','items'=>['Pemeriksaan fisik lengkap','Darah rutin','Urin rutin','Foto rontgen thorax','Konsultasi dokter']],['nama'=>'Paket Standar','harga'=>'Hubungi kami','warna'=>'#0284c7','items'=>['Semua paket dasar','Kimia darah','Fungsi hati dan ginjal','EKG','Konsultasi spesialis']],['nama'=>'Paket Komprehensif','harga'=>'Hubungi kami','warna'=>'#7c3aed','items'=>['Semua paket standar','USG abdomen','Tumor marker','Spirometri','Audiometri','Konsultasi multi-spesialis']]]; @endphp
-                    @foreach($defaultPakets as $p)
-                    <div class="mcu-paket-card" style="border-left:4px solid {{ $p['warna'] }};">
-                        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:8px;">
-                            <div class="mcu-paket-name">{{ $p['nama'] }}</div>
-                            <span style="font-size:12px;font-weight:700;padding:3px 12px;border-radius:20px;background:#f8faff;border:1px solid #e2e8f0;color:#475569;">{{ $p['harga'] }}</span>
+
+                    {{-- WANITA --}}
+                    <div style="border-radius:16px;border:1px solid #fbcfe8;background:linear-gradient(135deg,#fdf2f8 0%,#fce7f3 100%);padding:18px;position:relative;overflow:hidden;">
+                        <div style="position:absolute;top:-20px;right:-20px;width:80px;height:80px;border-radius:50%;background:rgba(236,72,153,.08);"></div>
+                        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+                            <div style="width:36px;height:36px;border-radius:50%;background:#db2777;color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">
+                                <i class="bi bi-gender-female"></i>
+                            </div>
+                            <div>
+                                <div style="font-size:13px;font-weight:800;color:#9d174d;">WANITA</div>
+                                <div style="font-size:17px;font-weight:900;color:#be185d;line-height:1.1;">Rp 759.000<span style="font-size:11px;font-weight:600;">,-</span></div>
+                            </div>
                         </div>
-                        <div class="mcu-paket-items">
-                            @foreach($p['items'] as $item)
-                            <span class="mcu-paket-item"><i class="bi bi-check-circle-fill" style="color:{{ $p['warna'] }};font-size:10px;margin-right:3px;"></i>{{ $item }}</span>
+                        <div style="display:flex;flex-direction:column;gap:5px;">
+                            @foreach(['Darah Lengkap','Golongan Darah','Gula Darah Sewaktu','Rontgen Thorax','HBsAg','Anti HIV','Urine Lengkap','Cek Sifilis'] as $item)
+                            <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:#9d174d;">
+                                <i class="bi bi-check-circle-fill" style="color:#db2777;font-size:10px;flex-shrink:0;"></i> {{ $item }}
+                            </div>
                             @endforeach
                         </div>
                     </div>
-                    @endforeach
-                    <p style="font-size:12px;color:#94a3b8;margin-top:12px;display:flex;align-items:center;gap:6px;"><i class="bi bi-info-circle"></i> Harga dan detail paket dapat berubah. Hubungi kami untuk informasi terkini.</p>
-                @endif
+
+                </div>
+
+                <p style="font-size:12px;color:#94a3b8;margin-top:4px;display:flex;align-items:center;gap:6px;">
+                    <i class="bi bi-info-circle"></i> Harga dan detail paket dapat berubah. Hubungi kami untuk informasi terkini.
+                </p>
             </div>
+
         </div>
     </section>
 
@@ -1388,370 +1478,61 @@ document.addEventListener('DOMContentLoaded', function () {
      FOOTER
 ============================================================ -->
 <style>
-.footer-rsu{
-    background:linear-gradient(
-        to bottom,
-        #ffffff 0%,
-        #fefefd 3%,
-        #fdfcf6 8%,
-        #fcfbf3 13%,
-        #faf8ee 20%,
-        #f7f5e8 30%,
-        #f3f0e1 45%,
-        #ede9d9 65%,
-        #e8e3d2 85%,
-        #e3deca 100%
-    );
-    color:#1C145C;
-    padding:56px 0 0;
-    position:relative;
-    overflow:hidden;
-}
-
-/* ORNAMEN */
-.footer-rsu .footer-ornament{
-    position:absolute;
-    right:-80px;
-    bottom:-150px;
-    width:420px;
-    height:420px;
-    opacity:.07;
-    background-image:url('{{ asset("images/beranda/ornamen.png") }}');
-    background-size:contain;
-    background-repeat:no-repeat;
-    background-position:center;
-    pointer-events:none;
-    z-index:0;
-}
-
-.footer-rsu .footer-ornament2{
-    position:absolute;
-    left:-100px;
-    top:40px;
-    width:340px;
-    height:340px;
-    opacity:.04;
-    background-image:url('{{ asset("images/beranda/ornamen.png") }}');
-    background-size:contain;
-    background-repeat:no-repeat;
-    background-position:center;
-    pointer-events:none;
-    z-index:0;
-}
-
-/* CONTAINER */
-.footer-rsu .container-fluid{
-    max-width:1550px;
-    position:relative;
-    z-index:1;
-}
-
-/* GRID */
-.footer-rsu .row{
-    --bs-gutter-x:3.5rem;
-}
-
-/* LOGO */
-.footer-rsu .footer-logo{
-    height:40px;
-    width:auto;
-    display:block;
-    margin-bottom:14px;
-}
-
-/* TITLE */
-.footer-rsu .footer-title{
-    font-size:16px;
-    font-weight:700;
-    color:#1C145C;
-    margin-bottom:8px;
-}
-
-.footer-rsu .footer-desc{
-    font-size:13px;
-    line-height:1.8;
-    color:#5a5480;
-    margin-bottom:20px;
-    max-width:340px;
-}
-
-/* SOCIAL */
-.footer-rsu .footer-social{
-    display:flex;
-    gap:10px;
-    margin-bottom:22px;
-}
-
-.footer-rsu .footer-social a{
-    width:36px;
-    height:36px;
-    border-radius:50%;
-    background:rgba(28,20,92,.07);
-    border:1px solid rgba(28,20,92,.15);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#1C145C;
-    text-decoration:none;
-    font-size:15px;
-    transition:.25s;
-}
-
-.footer-rsu .footer-social a:hover{
-    background:#1C145C;
-    color:#fff;
-    transform:translateY(-2px);
-}
-
-/* MITRA */
-.footer-rsu .footer-mitra-label{
-    font-size:11px;
-    color:#9994bb;
-    text-transform:uppercase;
-    letter-spacing:.08em;
-    margin-bottom:10px;
-}
-
-.footer-rsu .footer-mitra{
-    display:flex;
-    gap:10px;
-    align-items:center;
-    flex-wrap:wrap;
-}
-
-.footer-rsu .footer-mitra img:nth-child(1){
-    height:33px;
-}
-
-.footer-rsu .footer-mitra img:nth-child(2){
-    height:23px;
-}
-
-/* HEADING */
-.footer-rsu .footer-heading{
-    font-weight:900;
-    font-size:12px;
-    color:#1C145C;
-    text-transform:uppercase;
-    letter-spacing:.14em;
-    margin-bottom:18px;
-    padding-bottom:10px;
-    border-bottom:1.5px solid rgba(28,20,92,.12);
-    white-space:nowrap;
-}
-
-/* LIST */
-.footer-rsu ul{
-    list-style:none;
-    padding:0;
-    margin:0;
-}
-
-.footer-rsu ul li{
-    margin-bottom:10px;
-}
-
-.footer-rsu a{
-    color:#5a5480;
-    text-decoration:none;
-    font-size:13.5px;
-    transition:.2s;
-    display:inline-flex;
-    align-items:center;
-    gap:5px;
-}
-
-.footer-rsu ul li a::before{
-    content:'›';
-    color:#1C145C;
-    opacity:.4;
-    font-size:15px;
-}
-
-.footer-rsu a:hover{
-    color:#1C145C;
-    padding-left:3px;
-}
-
-/* CONTACT */
-.footer-rsu .footer-contact-row{
-    display:flex;
-    align-items:flex-start;
-    gap:11px;
-    margin-bottom:16px;
-}
-
-.footer-rsu .footer-contact-icon{
-    width:34px;
-    height:34px;
-    border-radius:8px;
-    background:rgba(28,20,92,.07);
-    border:1px solid rgba(28,20,92,.1);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#1C145C;
-    flex-shrink:0;
-}
-
-.footer-rsu .footer-contact-text{
-    font-size:13px;
-    color:#5a5480;
-    line-height:1.7;
-    word-break:normal;
-}
-
-/* HR */
-.footer-rsu hr{
-    height:1px;
-    background:linear-gradient(
-        90deg,
-        rgba(28,20,92,0) 0%,
-        rgba(28,20,92,.12) 30%,
-        rgba(28,20,92,.12) 70%,
-        rgba(28,20,92,0) 100%
-    );
-    border:none;
-    margin:36px 0 0;
-}
-
-/* BOTTOM */
-.footer-rsu .footer-bottom{
-    background:rgba(28,20,92,.05);
-    padding:15px 36px;
-}
-
-.footer-rsu .footer-copy{
-    font-size:12.5px;
-    color:#9994bb;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:12px;
-}
-
-.footer-rsu .footer-copy-badge{
-    background:rgba(28,20,92,.06);
-    border:1px solid rgba(28,20,92,.12);
-    border-radius:20px;
-    padding:4px 14px;
-    font-size:11.5px;
-    color:#7a74a0;
-    white-space:nowrap;
-}
-
-.footer-rsu .footer-accent-dot{
-    display:inline-block;
-    width:3px;
-    height:3px;
-    border-radius:50%;
-    background:#1C145C;
-    opacity:.25;
-    margin:0 8px;
-}
-
-/* TABLET */
-@media(max-width:991px){
-
-    .footer-rsu{
-        padding:45px 0 0;
-    }
-
-    .footer-rsu .row > div{
-        margin-bottom:24px;
-    }
-
-    .footer-rsu .footer-desc{
-        max-width:100%;
-    }
-}
-
-/* MOBILE */
-@media(max-width:768px){
-
-    .footer-rsu{
-        padding:40px 0 0;
-    }
-
-    .footer-rsu .container-fluid{
-        padding-left:20px !important;
-        padding-right:20px !important;
-    }
-
-    .footer-rsu .footer-copy{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:8px;
-    }
-
-    .footer-rsu .footer-bottom{
-        padding:15px 20px;
-    }
-
-    .footer-rsu a:hover{
-        padding-left:0;
-    }
-
-    .footer-rsu .footer-logo{
-        height:34px;
-    }
-}
+.footer-rsu{background:linear-gradient(to bottom,#ffffff 0%,#fefefd 3%,#fdfcf6 8%,#fcfbf3 13%,#faf8ee 20%,#f7f5e8 30%,#f3f0e1 45%,#ede9d9 65%,#e8e3d2 85%,#e3deca 100%);color:#1C145C;padding:56px 0 0;position:relative;overflow:hidden;}
+.footer-rsu .footer-ornament{position:absolute;right:-80px;bottom:-150px;width:420px;height:420px;opacity:.07;background-image:url('{{ asset("images/beranda/ornamen.png") }}');background-size:contain;background-repeat:no-repeat;background-position:center;pointer-events:none;z-index:0;}
+.footer-rsu .footer-ornament2{position:absolute;left:-100px;top:40px;width:340px;height:340px;opacity:.04;background-image:url('{{ asset("images/beranda/ornamen.png") }}');background-size:contain;background-repeat:no-repeat;background-position:center;pointer-events:none;z-index:0;}
+.footer-rsu .container-fluid{max-width:1550px;position:relative;z-index:1;}
+.footer-rsu .row{--bs-gutter-x:3.5rem;}
+.footer-rsu .footer-logo{height:40px;width:auto;display:block;margin-bottom:14px;}
+.footer-rsu .footer-title{font-size:16px;font-weight:700;color:#1C145C;margin-bottom:8px;}
+.footer-rsu .footer-desc{font-size:13px;line-height:1.8;color:#5a5480;margin-bottom:20px;max-width:340px;}
+.footer-rsu .footer-social{display:flex;gap:10px;margin-bottom:22px;}
+.footer-rsu .footer-social a{width:36px;height:36px;border-radius:50%;background:rgba(28,20,92,.07);border:1px solid rgba(28,20,92,.15);display:flex;align-items:center;justify-content:center;color:#1C145C;text-decoration:none;font-size:15px;transition:.25s;}
+.footer-rsu .footer-social a:hover{background:#1C145C;color:#fff;transform:translateY(-2px);}
+.footer-rsu .footer-mitra-label{font-size:11px;color:#9994bb;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;}
+.footer-rsu .footer-mitra{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+.footer-rsu .footer-mitra img:nth-child(1){height:33px;}
+.footer-rsu .footer-mitra img:nth-child(2){height:23px;}
+.footer-rsu .footer-heading{font-weight:900;font-size:12px;color:#1C145C;text-transform:uppercase;letter-spacing:.14em;margin-bottom:18px;padding-bottom:10px;border-bottom:1.5px solid rgba(28,20,92,.12);white-space:nowrap;}
+.footer-rsu ul{list-style:none;padding:0;margin:0;}
+.footer-rsu ul li{margin-bottom:10px;}
+.footer-rsu a{color:#5a5480;text-decoration:none;font-size:13.5px;transition:.2s;display:inline-flex;align-items:center;gap:5px;}
+.footer-rsu ul li a::before{content:'›';color:#1C145C;opacity:.4;font-size:15px;}
+.footer-rsu a:hover{color:#1C145C;padding-left:3px;}
+.footer-rsu .footer-contact-row{display:flex;align-items:flex-start;gap:11px;margin-bottom:16px;}
+.footer-rsu .footer-contact-icon{width:34px;height:34px;border-radius:8px;background:rgba(28,20,92,.07);border:1px solid rgba(28,20,92,.1);display:flex;align-items:center;justify-content:center;color:#1C145C;flex-shrink:0;}
+.footer-rsu .footer-contact-text{font-size:13px;color:#5a5480;line-height:1.7;word-break:normal;}
+.footer-rsu hr{height:1px;background:linear-gradient(90deg,rgba(28,20,92,0) 0%,rgba(28,20,92,.12) 30%,rgba(28,20,92,.12) 70%,rgba(28,20,92,0) 100%);border:none;margin:36px 0 0;}
+.footer-rsu .footer-bottom{background:rgba(28,20,92,.05);padding:15px 36px;}
+.footer-rsu .footer-copy{font-size:12.5px;color:#9994bb;display:flex;justify-content:space-between;align-items:center;gap:12px;}
+.footer-rsu .footer-copy-badge{background:rgba(28,20,92,.06);border:1px solid rgba(28,20,92,.12);border-radius:20px;padding:4px 14px;font-size:11.5px;color:#7a74a0;white-space:nowrap;}
+.footer-rsu .footer-accent-dot{display:inline-block;width:3px;height:3px;border-radius:50%;background:#1C145C;opacity:.25;margin:0 8px;}
+@media(max-width:991px){.footer-rsu{padding:45px 0 0;}.footer-rsu .row>div{margin-bottom:24px;}.footer-rsu .footer-desc{max-width:100%;}}
+@media(max-width:768px){.footer-rsu{padding:40px 0 0;}.footer-rsu .container-fluid{padding-left:20px!important;padding-right:20px!important;}.footer-rsu .footer-copy{flex-direction:column;align-items:flex-start;gap:8px;}.footer-rsu .footer-bottom{padding:15px 20px;}.footer-rsu a:hover{padding-left:0;}.footer-rsu .footer-logo{height:34px;}}
 </style>
 
 <footer class="footer-rsu">
-
     <div class="footer-ornament"></div>
     <div class="footer-ornament2"></div>
-
     <div class="container-fluid px-lg-5 px-4">
-
         <div class="row g-5 justify-content-between">
-
-            <!-- BRAND -->
             <div class="col-lg-3 col-md-12">
-
-                <img src="{{ asset('images/beranda/logo-almed.png') }}"
-                     class="footer-logo"
-                     alt="Logo RSU Allam Medica">
-
-                <h5 class="footer-title">
-                    RSU Allam Medica Bumiayu
-                </h5>
-
-                <p class="footer-desc">
-                    Jl. Pangeran Diponegoro No. 609,
-                    Jatisawit, Bumiayu, Kabupaten Brebes,
-                    Jawa Tengah 52273
-                </p>
-
+                <img src="{{ asset('images/beranda/logo-almed.png') }}" class="footer-logo" alt="Logo RSU Allam Medica">
+                <h5 class="footer-title">RSU Allam Medica Bumiayu</h5>
+                <p class="footer-desc">Jl. Pangeran Diponegoro No. 609, Jatisawit, Bumiayu, Kabupaten Brebes, Jawa Tengah 52273</p>
                 <div class="footer-social">
-                    <a href="https://www.tiktok.com/@rsuallammedicabumiayu" target="_blank">
-                        <i class="bi bi-tiktok"></i>
-                    </a>
-                    <a href="https://www.facebook.com/allam.medicabmy" target="_blank">
-                        <i class="bi bi-facebook"></i>
-                    </a>
-                    <a href="https://www.instagram.com/allam.medica/" target="_blank">
-                        <i class="bi bi-instagram"></i>
-                    </a>
+                    <a href="https://www.tiktok.com/@rsuallammedicabumiayu" target="_blank"><i class="bi bi-tiktok"></i></a>
+                    <a href="https://www.facebook.com/allam.medicabmy" target="_blank"><i class="bi bi-facebook"></i></a>
+                    <a href="https://www.instagram.com/allam.medica/" target="_blank"><i class="bi bi-instagram"></i></a>
                 </div>
-
-                <div class="footer-mitra-label">
-                    Akreditasi & Mitra
-                </div>
-
+                <div class="footer-mitra-label">Akreditasi & Mitra</div>
                 <div class="footer-mitra">
                     <img src="{{ asset('images/beranda/paripurna.png') }}" alt="">
                     <img src="{{ asset('images/beranda/bpjs.png') }}" alt="">
                 </div>
-
             </div>
-
-            <!-- TAUTAN CEPAT -->
             <div class="col-lg-2 col-md-4 col-6">
-
                 <h6 class="footer-heading">Tautan Cepat</h6>
-
                 <ul>
                     <li><a href="{{ route('beranda') }}">Beranda</a></li>
                     <li><a href="{{ url('/artikel') }}">Artikel</a></li>
@@ -1760,27 +1541,17 @@ document.addEventListener('DOMContentLoaded', function () {
                     <li><a href="{{ url('/mutu') }}">Mutu</a></li>
                     <li><a href="{{ url('/kontak') }}">Kontak</a></li>
                 </ul>
-
             </div>
-
-            <!-- MENU -->
             <div class="col-lg-2 col-md-4 col-6">
-
                 <h6 class="footer-heading">Menu</h6>
-
                 <ul>
                     <li><a href="{{ url('/karir') }}">Karir</a></li>
                     <li><a href="{{ url('/berita') }}">Berita</a></li>
                     <li><a href="{{ url('/video') }}">Video</a></li>
                 </ul>
-
             </div>
-
-            <!-- LAYANAN -->
             <div class="col-lg-2 col-md-4 col-6">
-
                 <h6 class="footer-heading">Layanan</h6>
-
                 <ul>
                     <li><a href="{{ url('/layanan#igd') }}">IGD 24 Jam</a></li>
                     <li><a href="{{ url('/layanan#rawatjalan') }}">Rawat Jalan</a></li>
@@ -1791,89 +1562,43 @@ document.addEventListener('DOMContentLoaded', function () {
                     <li><a href="{{ url('/layanan#farmasi') }}">Farmasi</a></li>
                     <li><a href="{{ url('/layanan#mcu') }}">Medical Check Up</a></li>
                 </ul>
-
             </div>
-
-            <!-- KONTAK -->
             <div class="col-lg-3 col-md-12">
-
                 <h6 class="footer-heading">Hubungi Kami</h6>
-
                 <div class="footer-contact-row">
-                    <div class="footer-contact-icon">
-                        <i class="bi bi-telephone-fill"></i>
-                    </div>
-                    <div class="footer-contact-text">
-                        (0289) 430822
-                    </div>
+                    <div class="footer-contact-icon"><i class="bi bi-telephone-fill"></i></div>
+                    <div class="footer-contact-text">(0289) 430822</div>
                 </div>
-
                 <div class="footer-contact-row">
-                    <div class="footer-contact-icon">
-                        <i class="bi bi-envelope-fill"></i>
-                    </div>
-                    <div class="footer-contact-text">
-                        allam.medica@yahoo.co.id
-                    </div>
+                    <div class="footer-contact-icon"><i class="bi bi-envelope-fill"></i></div>
+                    <div class="footer-contact-text">allam.medica@yahoo.co.id</div>
                 </div>
-
                 <div class="footer-contact-row">
-                    <div class="footer-contact-icon">
-                        <i class="bi bi-clock-fill"></i>
-                    </div>
-                    <div class="footer-contact-text">
-                        IGD, Lab & Farmasi : 24 Jam<br>
-                        Rawat Jalan : Sen – Sab 07.00 – 21.00
-                    </div>
+                    <div class="footer-contact-icon"><i class="bi bi-clock-fill"></i></div>
+                    <div class="footer-contact-text">IGD, Lab & Farmasi : 24 Jam<br>Rawat Jalan : Sen – Sab 07.00 – 21.00</div>
                 </div>
-
                 <div class="footer-contact-row">
-                    <div class="footer-contact-icon">
-                        <i class="bi bi-geo-alt-fill"></i>
-                    </div>
-                    <div class="footer-contact-text">
-                        Jl. Pangeran Diponegoro No. 609,<br>
-                        Bumiayu, Brebes
-                    </div>
+                    <div class="footer-contact-icon"><i class="bi bi-geo-alt-fill"></i></div>
+                    <div class="footer-contact-text">Jl. Pangeran Diponegoro No. 609,<br>Bumiayu, Brebes</div>
                 </div>
-
             </div>
-
         </div>
-
         <hr>
-
     </div>
-
     <div class="footer-bottom">
-
         <div class="container-fluid px-lg-5 px-4">
-
             <div class="footer-copy">
-                <span>
-                    © 2026 RSU Allam Medica
-                    <span class="footer-accent-dot"></span>
-                    Hak Cipta Dilindungi
-                </span>
-
-                <span class="footer-copy-badge">
-                    Melayani dengan Sepenuh Hati
-                </span>
+                <span>© 2026 RSU Allam Medica <span class="footer-accent-dot"></span> Hak Cipta Dilindungi</span>
+                <span class="footer-copy-badge">Melayani dengan Sepenuh Hati</span>
             </div>
-
         </div>
-
     </div>
-
 </footer>
-<!-- END FOOTER -->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-/* ============================================================
-   POLI COUNT
-============================================================ */
+/* POLI COUNT */
 document.addEventListener('DOMContentLoaded', function () {
     const cards  = document.querySelectorAll('#poliGrid .poli-card');
     const statEl = document.getElementById('statPoli');
@@ -1882,9 +1607,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (cntEl)  cntEl.textContent  = cards.length || '—';
 });
 
-/* ============================================================
-   FILTER POLI — DESKTOP
-============================================================ */
+/* FILTER POLI — DESKTOP */
 function filterPoliDesktop() {
     const q   = (document.getElementById('searchPoliDesktop').value || '').toLowerCase().trim();
     const sta = document.getElementById('filterPoliStatusDesktop').value;
@@ -1898,9 +1621,7 @@ function filterPoliDesktop() {
     if (empty) empty.style.display = (visible === 0) ? '' : 'none';
 }
 
-/* ============================================================
-   FILTER POLI — MOBILE LIST
-============================================================ */
+/* FILTER POLI — MOBILE */
 function filterPoliMobile() {
     const q   = (document.getElementById('searchPoliMobile').value || '').toLowerCase().trim();
     const sta = document.getElementById('filterPoliStatusMobile').value;
@@ -1916,9 +1637,7 @@ function filterPoliMobile() {
     if (listEl) listEl.style.display = visible > 0 ? 'flex' : 'none';
 }
 
-/* ============================================================
-   RAWAT INAP — MOBILE PILL SELECTOR
-============================================================ */
+/* RAWAT INAP — MOBILE PILL */
 function showKelas(index) {
     document.querySelectorAll('[id^="kelasPanel"]').forEach(function (el) { el.style.display = 'none'; });
     const target = document.getElementById('kelasPanel' + index);
@@ -1930,18 +1649,14 @@ function showKelas(index) {
     if (pill) pill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
 }
 
-/* ============================================================
-   SMOOTH SCROLL
-============================================================ */
+/* SMOOTH SCROLL */
 function smoothTo(id) {
     const el = document.getElementById(id);
     if (!el) return;
     window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
 }
 
-/* ============================================================
-   TAB ACTIVE ON SCROLL
-============================================================ */
+/* TAB ACTIVE ON SCROLL */
 (function () {
     const sections = ['igd','rawatjalan','rawatinap','ambulans','laboratorium','radiologi','farmasi','mcu'];
     const tabs = document.querySelectorAll('.lay-tab');
@@ -1959,9 +1674,7 @@ function smoothTo(id) {
     });
 })();
 
-/* ============================================================
-   ORNAMEN BUNGA
-============================================================ */
+/* ORNAMEN BUNGA (fixed scroll reveal — tetap dipakai) */
 (function () {
     const orns = [
         { el: document.getElementById('pgOrn1'), triggerPct: 0.08 },
@@ -1982,9 +1695,7 @@ function smoothTo(id) {
     updateOrns();
 })();
 
-/* ============================================================
-   COPY LINK
-============================================================ */
+/* COPY LINK */
 function copyLink() {
     const btn = document.getElementById('copyBtn');
     if (!btn) return;
@@ -2001,9 +1712,7 @@ function copyLink() {
     });
 }
 
-/* ============================================================
-   HASH ON LOAD
-============================================================ */
+/* HASH ON LOAD */
 window.addEventListener('load', function () {
     if (window.location.hash) {
         setTimeout(function () { smoothTo(window.location.hash.replace('#','')); }, 400);
