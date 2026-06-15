@@ -594,6 +594,51 @@ document.addEventListener('DOMContentLoaded', function () {
 <!-- END NAVBAR -->
 </script>
 
+<style>
+    /* ==========================================
+   ORNAMEN BACKGROUND KONTEN MUTU
+========================================== */
+
+.mutu-content-wrap{
+    position:relative;
+    overflow:hidden;
+    padding-top:10px;
+}
+
+.mutu-content-wrap .container{
+    position:relative;
+    z-index:2;
+}
+
+.mutu-content-wrap::before{
+    content:'';
+    position:absolute;
+    left:-150px;
+    top:150px;
+    width:420px;
+    height:420px;
+    background:url('{{ asset("images/beranda/ornamen.png") }}')
+               center/contain no-repeat;
+    opacity:.05;
+    z-index:1;
+    pointer-events:none;
+}
+
+.mutu-content-wrap::after{
+    content:'';
+    position:absolute;
+    right:-150px;
+    bottom:500px;
+    width:400px;
+    height:400px;
+    background:url('{{ asset("images/beranda/ornamen.png") }}')
+               center/contain no-repeat;
+    opacity:.04;
+    z-index:1;
+    pointer-events:none;
+}
+</style>
+
 
 <!-- ==================== HERO ==================== -->
 <section class="mutu-hero">
@@ -613,7 +658,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 <!-- ==================== KONTEN UTAMA ==================== -->
-<div class="container">
+<section class="mutu-content-wrap">
+    <div class="container">
 
     <!-- Filter Periode -->
     <div class="mutu-section">
@@ -643,6 +689,7 @@ document.addEventListener('DOMContentLoaded', function () {
             @endif
         </div>
     </div>
+
 
     <!-- ================================================
          INDIKATOR NASIONAL MUTU (INM)
@@ -769,6 +816,7 @@ document.addEventListener('DOMContentLoaded', function () {
             @endforeach
         </div>
     </div>
+
 
     <hr class="mutu-divider">
 

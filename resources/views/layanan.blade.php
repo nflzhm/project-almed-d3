@@ -1071,8 +1071,8 @@ document.addEventListener('DOMContentLoaded', function () {
     <section id="rawatinap" class="lay-section" style="position:relative; overflow:hidden;">
 
         {{-- ORNAMEN RAWAT INAP --}}
-        <div class="ornamen" style="top:-60px; right:-80px; width:360px; height:360px; opacity:0.04;"></div>
-        <div class="ornamen" style="bottom:-60px; left:-70px; width:300px; height:300px; opacity:0.035;"></div>
+        <div class="ornamen" style="top:-20px; right:-20px; width:360px; height:360px; opacity:0.04;"></div>
+        <div class="ornamen" style="bottom:-80px; left:-80px; width:600px; height:600px; opacity:0.035;"></div>
         <div class="ornamen" style="top:50%; left:50%; transform:translate(-50%,-50%); width:460px; height:460px; opacity:0.02;"></div>
 
         <div class="sec-divider"></div>
@@ -1167,8 +1167,8 @@ document.addEventListener('DOMContentLoaded', function () {
     <section id="ambulans" class="lay-section" style="position:relative; overflow:hidden;">
 
         {{-- ORNAMEN AMBULANS --}}
-        <div class="ornamen" style="top:-50px; left:-70px; width:300px; height:300px; opacity:0.04;"></div>
-        <div class="ornamen" style="bottom:-60px; right:-60px; width:260px; height:260px; opacity:0.035;"></div>
+        <div class="ornamen" style="top:-20px; left:-20px; width:360px; height:360px; opacity:0.04;"></div>
+        <div class="ornamen" style="bottom:-80px; right:-80px; width:600px; height:600px; opacity:0.035;"></div>
 
         <div class="sec-divider"></div>
         <div class="svc-card" style="position:relative; z-index:1;">
@@ -1211,8 +1211,8 @@ document.addEventListener('DOMContentLoaded', function () {
     <section id="laboratorium" class="lay-section" style="position:relative; overflow:hidden;">
 
         {{-- ORNAMEN LABORATORIUM --}}
-        <div class="ornamen" style="top:-60px; right:-80px; width:340px; height:340px; opacity:0.04;"></div>
-        <div class="ornamen" style="bottom:-70px; left:-60px; width:280px; height:280px; opacity:0.035;"></div>
+        <div class="ornamen" style="top:-20px; right:-20px; width:360px; height:360px; opacity:0.04;"></div>
+        <div class="ornamen" style="bottom:-80px; left:-80px; width:300px; height:300px; opacity:0.035;"></div>
 
         <div class="sec-divider"></div>
         <div class="row g-4" style="position:relative; z-index:1;">
@@ -1280,7 +1280,7 @@ document.addEventListener('DOMContentLoaded', function () {
     <section id="radiologi" class="lay-section" style="position:relative; overflow:hidden;">
 
         {{-- ORNAMEN RADIOLOGI --}}
-        <div class="ornamen" style="top:-50px; left:-80px; width:320px; height:320px; opacity:0.04;"></div>
+        <div class="ornamen" style="top:-20px; left:-40px; width:320px; height:320px; opacity:0.04;"></div>
         <div class="ornamen" style="bottom:-60px; right:-70px; width:270px; height:270px; opacity:0.035;"></div>
 
         <div class="sec-divider"></div>
@@ -1318,7 +1318,7 @@ document.addEventListener('DOMContentLoaded', function () {
     <section id="farmasi" class="lay-section" style="position:relative; overflow:hidden;">
 
         {{-- ORNAMEN FARMASI --}}
-        <div class="ornamen" style="top:-60px; right:-80px; width:330px; height:330px; opacity:0.04;"></div>
+        <div class="ornamen" style="top:-20px; right:-80px; width:400px; height:400px; opacity:0.04;"></div>
         <div class="ornamen" style="bottom:-50px; left:-60px; width:280px; height:280px; opacity:0.035;"></div>
 
         <div class="sec-divider"></div>
@@ -1370,8 +1370,8 @@ document.addEventListener('DOMContentLoaded', function () {
     <section id="mcu" class="lay-section" style="padding-bottom:60px; position:relative; overflow:hidden;">
 
         {{-- ORNAMEN MCU --}}
-        <div class="ornamen" style="top:-50px; left:-70px; width:340px; height:340px; opacity:0.04;"></div>
-        <div class="ornamen" style="bottom:-80px; right:-60px; width:300px; height:300px; opacity:0.04;"></div>
+        <div class="ornamen" style="top:-20px; left:-20px; width:340px; height:340px; opacity:0.04;"></div>
+        <div class="ornamen" style="bottom:-20px; right:-20px; width:300px; height:300px; opacity:0.04;"></div>
         <div class="ornamen" style="top:50%; left:50%; transform:translate(-50%,-50%); width:440px; height:440px; opacity:0.02;"></div>
 
         <div class="sec-divider"></div>

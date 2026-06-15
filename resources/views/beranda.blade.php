@@ -445,8 +445,87 @@ body {
 
 </section>
 
-<!-- DOKTER SPESIALIS -->
-<section style="background:#fff; padding:50px 0;">
+<style>
+    /* ==========================================================
+   ORNAMEN BACKGROUND SECTION DOKTER & MEDIA INFORMASI
+========================================================== */
+
+.section-dokter,
+.section-media{
+    position:relative;
+    overflow:hidden;
+}
+
+/* pastikan semua isi section berada di atas ornamen */
+.section-dokter .container,
+.section-media .container{
+    position:relative;
+    z-index:2;
+}
+
+/* ==========================
+   DOKTER KAMI
+========================== */
+
+.section-dokter::before{
+    content:'';
+    position:absolute;
+    left:-120px;
+    top:40px;
+    width:360px;
+    height:360px;
+    background:url('{{ asset("images/beranda/ornamen.png") }}') center/contain no-repeat;
+    opacity:.05;
+    pointer-events:none;
+    z-index:1;
+}
+
+.section-dokter::after{
+    content:'';
+    position:absolute;
+    right:-110px;
+    bottom:30px;
+    width:320px;
+    height:320px;
+    background:url('{{ asset("images/beranda/ornamen.png") }}') center/contain no-repeat;
+    opacity:.04;
+    pointer-events:none;
+    z-index:1;
+}
+
+/* ==========================
+   MEDIA INFORMASI
+========================== */
+
+.section-media::before{
+    content:'';
+    position:absolute;
+    right:-120px;
+    top:20px;
+    width:380px;
+    height:380px;
+    background:url('{{ asset("images/beranda/ornamen.png") }}') center/contain no-repeat;
+    opacity:.05;
+    pointer-events:none;
+    z-index:1;
+}
+
+.section-media::after{
+    content:'';
+    position:absolute;
+    left:-100px;
+    bottom:20px;
+    width:300px;
+    height:300px;
+    background:url('{{ asset("images/beranda/ornamen.png") }}') center/contain no-repeat;
+    opacity:.04;
+    pointer-events:none;
+    z-index:1;
+}
+</style>
+
+<!-- DOKTER KAMI -->
+<section class="section-dokter" style="background:#fff; padding:50px 0;">
     <div class="container">
 
         {{-- TITLE --}}
@@ -633,7 +712,7 @@ body {
         </section>
 
 <!-- MEDIA INFORMASI -->
-<section style="
+<section class="section-media" style="
     padding:70px 0;
     background: linear-gradient(
         to bottom,
