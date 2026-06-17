@@ -676,6 +676,52 @@ body {
 }
 
 /* ================================================================
+   ORNAMEN DOWNLOAD
+================================================================ */
+
+.download-section{
+    position:relative;
+    overflow:hidden;
+    padding:48px 0 64px;
+}
+
+/* Kanan atas */
+.download-section::before{
+    content:'';
+    position:absolute;
+    top: 120px;
+    right:-200px;
+    width:380px;
+    height:380px;
+    background:url('{{ asset("images/beranda/ornamen.png") }}')
+               center/contain no-repeat;
+    opacity:.04;
+    pointer-events:none;
+    z-index:0;
+}
+
+/* Kiri bawah */
+.download-section::after{
+    content:'';
+    position:absolute;
+    left:-200px;
+    bottom:-20px;
+    width:420px;
+    height:420px;
+    background:url('{{ asset("images/beranda/ornamen.png") }}')
+               center/contain no-repeat;
+    opacity:.035;
+    pointer-events:none;
+    z-index:0;
+}
+
+/* Isi berada di atas ornamen */
+.download-section .container{
+    position:relative;
+    z-index:2;
+}
+
+/* ================================================================
    RESPONSIVE
 ================================================================ */
 @media (max-width: 992px) {

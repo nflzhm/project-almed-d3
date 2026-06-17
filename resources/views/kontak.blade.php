@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>RSU Allam Medica - Beranda</title>
+    <title>RSU Allam Medica - Kontak</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap CSS -->
@@ -273,8 +273,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 <style>
-body { 
-    padding-top: 35px; 
+body {
+    padding-top: 35px;
 }
 
 /* ===== HERO ===== */
@@ -292,7 +292,6 @@ body {
         );
 
     padding: 120px 20px 120px;
-
     text-align: center;
     color: #fff;
 
@@ -306,19 +305,10 @@ body {
     position: absolute;
     top: -120px;
     left: -120px;
-
     width: 400px;
     height: 400px;
-
     border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(254,252,241,.08) 0%,
-            transparent 70%
-        );
-
+    background: radial-gradient(circle, rgba(254,252,241,.08) 0%, transparent 70%);
     pointer-events: none;
 }
 
@@ -326,43 +316,55 @@ body {
 .contact-section::after {
     content: '';
     position: absolute;
-
     left: 50%;
     bottom: -180px;
-
     transform: translateX(-50%);
-
     width: 120%;
     height: 320px;
-
-    background:
-        radial-gradient(
-            ellipse at center,
-            rgba(255,255,255,0.55) 0%,
-            rgba(255,255,255,0.18) 45%,
-            transparent 75%
-        );
-
+    background: radial-gradient(ellipse at center, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.18) 45%, transparent 75%);
     filter: blur(30px);
-
     pointer-events: none;
 }
+
 /* shimmer */
 .contact-section .contact-shimmer {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-
     height: 3px;
+    background: linear-gradient(90deg, transparent, rgba(254,252,241,.55) 50%, transparent);
+}
 
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(254,252,241,.55) 50%,
-            transparent
-        );
+/* ── ORNAMEN HERO ── */
+.contact-section .hero-ornament-tr {
+    position: absolute;
+    top: -60px;
+    right: -80px;
+    width: 380px;
+    height: 380px;
+    opacity: .10;
+    background-image: url('{{ asset("images/beranda/ornamen.png") }}');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.contact-section .hero-ornament-bl {
+    position: absolute;
+    bottom: 0px;
+    left: -100px;
+    width: 300px;
+    height: 300px;
+    opacity: .07;
+    background-image: url('{{ asset("images/beranda/ornamen.png") }}');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+    z-index: 0;
 }
 
 .contact-section .contact-inner {
@@ -389,9 +391,47 @@ body {
 }
 
 /* ===== BODY ===== */
-.contact-wrapper { 
-    background: #ffffff; 
-    padding: 50px 0 60px; 
+.contact-wrapper {
+    background: #ffffff;
+    padding: 50px 0 60px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ── ORNAMEN CONTACT WRAPPER ── */
+.contact-wrapper .cw-ornament-tr {
+    position: absolute;
+    top: -20px;
+    right: -160px;
+    width: 350px;
+    height: 350px;
+    opacity: .05;
+    background-image: url('{{ asset("images/beranda/ornamen.png") }}');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.contact-wrapper .cw-ornament-bl {
+    position: absolute;
+    bottom: -20px;
+    left: -80px;
+    width: 360px;
+    height: 360px;
+    opacity: .04;
+    background-image: url('{{ asset("images/beranda/ornamen.png") }}');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.contact-wrapper .container {
+    position: relative;
+    z-index: 1;
 }
 
 .contact-layout {
@@ -407,7 +447,31 @@ body {
     border-radius: 16px;
     padding: 32px 28px;
     color: #fff;
+    position: relative;
+    overflow: hidden;
 }
+
+/* ornamen di dalam form card */
+.contact-form-card .form-card-ornament {
+    position: absolute;
+    bottom: -60px;
+    right: -60px;
+    width: 220px;
+    height: 220px;
+    opacity: .08;
+    background-image: url('{{ asset("images/beranda/ornamen.png") }}');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.contact-form-card > *:not(.form-card-ornament) {
+    position: relative;
+    z-index: 1;
+}
+
 .contact-form-sublabel {
     font-size: 11px;
     font-weight: 700;
@@ -524,12 +588,20 @@ body {
 @media (max-width: 767px) {
     .contact-layout { grid-template-columns: 1fr; }
     .contact-section .contact-title { font-size: 28px; }
+    .contact-section .hero-ornament-tr { width: 220px; height: 220px; right: -40px; top: -20px; }
+    .contact-section .hero-ornament-bl { width: 180px; height: 180px; }
 }
 </style>
 
 <!-- HERO -->
 <section class="contact-section">
     <div class="contact-shimmer"></div>
+
+    <!-- ornamen hero kanan atas -->
+    <div class="hero-ornament-tr"></div>
+
+    <!-- ornamen hero kiri bawah -->
+    <div class="hero-ornament-bl"></div>
 
     <div class="contact-inner">
 
@@ -556,79 +628,89 @@ body {
 
 <!-- BODY -->
 <div class="contact-wrapper">
-<div class="container">
-<div class="contact-layout">
 
-    <!-- KIRI: FORM -->
-    <div class="contact-form-card">
-        <div class="contact-form-sublabel">Kontak Kami</div>
-        <div class="contact-title">Get In <span>Touch</span></div>
+    <!-- ornamen wrapper kanan atas -->
+    <div class="cw-ornament-tr"></div>
 
-        <form action="https://formspree.io/f/mvzljdje" method="POST">
-            <div class="ck-field">
-                <label>Nama</label>
-                <input type="text" name="nama" placeholder="Nama lengkap" required>
-            </div>
-            <div class="ck-field">
-                <label>Telepon</label>
-                <input type="text" name="telepon" placeholder="No. telepon" required>
-            </div>
-            <div class="ck-field">
-                <label>Email</label>
-                <input type="email" name="email" placeholder="Email Anda" required>
-            </div>
-            <div class="ck-field">
-                <label>Subject</label>
-                <input type="text" name="subject" placeholder="Perihal" required>
-            </div>
-            <div class="ck-field">
-                <label>Pesan</label>
-                <textarea name="pesan" placeholder="Tulis pesan Anda..." required></textarea>
-            </div>
-            <button type="submit" class="btn-send">
-                <i class="bi bi-send-fill"></i>
-                Kirim Pesan
-            </button>
-        </form>
-    </div>
+    <!-- ornamen wrapper kiri bawah -->
+    <div class="cw-ornament-bl"></div>
 
-    <!-- KANAN: INFO + MAP -->
-    <div class="contact-right">
-        
+    <div class="container">
+        <div class="contact-layout">
 
-        <div class="info-grid">
-            <div class="info-card">
-                <div class="info-icon icon-phone"><i class="bi bi-telephone-fill"></i></div>
-                <div class="info-title">Telepon</div>
-                <div class="info-val">(0289) 430822</div>
+            <!-- KIRI: FORM -->
+            <div class="contact-form-card">
+
+                <!-- ornamen di dalam form card -->
+                <div class="form-card-ornament"></div>
+
+                <div class="contact-form-sublabel">Kontak Kami</div>
+                <div class="contact-title">Get In <span>Touch</span></div>
+
+                <form action="https://formspree.io/f/xaqzzypq" method="POST">
+                    <div class="ck-field">
+                        <label>Nama</label>
+                        <input type="text" name="nama" placeholder="Nama lengkap" required>
+                    </div>
+                    <div class="ck-field">
+                        <label>Telepon</label>
+                        <input type="text" name="telepon" placeholder="No. telepon" required>
+                    </div>
+                    <div class="ck-field">
+                        <label>Email</label>
+                        <input type="email" name="email" placeholder="Email Anda" required>
+                    </div>
+                    <div class="ck-field">
+                        <label>Subject</label>
+                        <input type="text" name="subject" placeholder="Perihal" required>
+                    </div>
+                    <div class="ck-field">
+                        <label>Pesan</label>
+                        <textarea name="pesan" placeholder="Tulis pesan Anda..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-send">
+                        <i class="bi bi-send-fill"></i>
+                        Kirim Pesan
+                    </button>
+                </form>
             </div>
-            <div class="info-card">
-                <div class="info-icon icon-email"><i class="bi bi-envelope-fill"></i></div>
-                <div class="info-title">Email</div>
-                <div class="info-val">allam.medica@yahoo.co.id</div>
+
+            <!-- KANAN: INFO + MAP -->
+            <div class="contact-right">
+
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-icon icon-phone"><i class="bi bi-telephone-fill"></i></div>
+                        <div class="info-title">Telepon</div>
+                        <div class="info-val">(0289) 430822</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon icon-email"><i class="bi bi-envelope-fill"></i></div>
+                        <div class="info-title">Email</div>
+                        <div class="info-val">allam.medica@yahoo.co.id</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon icon-igd"><i class="bi bi-clock-fill"></i></div>
+                        <div class="info-title">IGD</div>
+                        <div class="info-val">24 Jam</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon icon-map"><i class="bi bi-geo-alt-fill"></i></div>
+                        <div class="info-title">Alamat</div>
+                        <div class="info-val">Jl. P. Diponegoro No.609, Bumiayu, Brebes</div>
+                    </div>
+                </div>
+
+                <div class="map-box">
+                    <iframe
+                        src="https://www.google.com/maps?q=RSU+Allam+Medica+Bumiayu&output=embed"
+                        loading="lazy">
+                    </iframe>
+                </div>
             </div>
-            <div class="info-card">
-                <div class="info-icon icon-igd"><i class="bi bi-clock-fill"></i></div>
-                <div class="info-title">IGD</div>
-                <div class="info-val">24 Jam</div>
-            </div>
-            <div class="info-card">
-                <div class="info-icon icon-map"><i class="bi bi-geo-alt-fill"></i></div>
-                <div class="info-title">Alamat</div>
-                <div class="info-val">Jl. P. Diponegoro No.609, Bumiayu, Brebes</div>
-            </div>
+
         </div>
-
-        <div class="map-box">
-            <iframe
-                src="https://www.google.com/maps?q=RSU+Allam+Medica+Bumiayu&output=embed"
-                loading="lazy">
-            </iframe>
-        </div>
     </div>
-
-</div>
-</div>
 </div>
 
 
@@ -900,49 +982,19 @@ body {
 
 /* TABLET */
 @media(max-width:991px){
-
-    .footer-rsu{
-        padding:45px 0 0;
-    }
-
-    .footer-rsu .row > div{
-        margin-bottom:24px;
-    }
-
-    .footer-rsu .footer-desc{
-        max-width:100%;
-    }
+    .footer-rsu{ padding:45px 0 0; }
+    .footer-rsu .row > div{ margin-bottom:24px; }
+    .footer-rsu .footer-desc{ max-width:100%; }
 }
 
 /* MOBILE */
 @media(max-width:768px){
-
-    .footer-rsu{
-        padding:40px 0 0;
-    }
-
-    .footer-rsu .container-fluid{
-        padding-left:20px !important;
-        padding-right:20px !important;
-    }
-
-    .footer-rsu .footer-copy{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:8px;
-    }
-
-    .footer-rsu .footer-bottom{
-        padding:15px 20px;
-    }
-
-    .footer-rsu a:hover{
-        padding-left:0;
-    }
-
-    .footer-rsu .footer-logo{
-        height:34px;
-    }
+    .footer-rsu{ padding:40px 0 0; }
+    .footer-rsu .container-fluid{ padding-left:20px !important; padding-right:20px !important; }
+    .footer-rsu .footer-copy{ flex-direction:column; align-items:flex-start; gap:8px; }
+    .footer-rsu .footer-bottom{ padding:15px 20px; }
+    .footer-rsu a:hover{ padding-left:0; }
+    .footer-rsu .footer-logo{ height:34px; }
 }
 </style>
 

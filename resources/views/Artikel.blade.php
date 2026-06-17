@@ -64,7 +64,48 @@
 /* ============================================================
    BODY
 ============================================================ */
-.artikel-body { padding: 52px 0 72px; background: #fff; }
+.artikel-body {
+    padding: 52px 0 72px;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Ornamen kanan bawah */
+.artikel-body::after{
+    content:'';
+    position:absolute;
+    right:-120px;
+    bottom:80px;
+    width:420px;
+    height:420px;
+    background:url('{{ asset("images/beranda/ornamen.png") }}')
+               center/contain no-repeat;
+    opacity:.05;
+    pointer-events:none;
+    z-index:0;
+}
+
+/* Ornamen kiri atas */
+.artikel-body::before{
+    content:'';
+    position:absolute;
+    left:-120px;
+    top:80px;
+    width:340px;
+    height:340px;
+    background:url('{{ asset("images/beranda/ornamen.png") }}')
+               center/contain no-repeat;
+    opacity:.03;
+    pointer-events:none;
+    z-index:0;
+}
+
+/* Pastikan seluruh isi berada di atas ornamen */
+.artikel-body > .container{
+    position:relative;
+    z-index:2;
+}
 
 .artikel-main-card {
     background: #fff; border-radius: 20px; overflow: hidden;

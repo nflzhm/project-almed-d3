@@ -16,6 +16,105 @@
 </head>
 
 <style>
+
+    /* ==========================================
+   ORNAMEN HALAMAN TENTANG KAMI
+========================================== */
+
+.profile-section,
+.medica-section,
+.visi-misi-section,
+.timeline-section,
+.filosofi-section{
+    position:relative;
+    overflow:hidden;
+}
+
+/* Ornamen kanan atas */
+.profile-section::before{
+    content:'';
+    position:absolute;
+    top:-20px;
+    right:-120px;
+    width:380px;
+    height:380px;
+    background:url('{{ asset("images/beranda/ornamen.png") }}')
+               center/contain no-repeat;
+    opacity:.04;
+    pointer-events:none;
+    z-index:0;
+}
+
+/* Ornamen kiri tengah */
+.medica-section::after{
+    content:'';
+    position:absolute;
+    left:-140px;
+    top:50%;
+    transform:translateY(-50%);
+    width:340px;
+    height:340px;
+    background:url('{{ asset("images/beranda/ornamen.png") }}')
+               center/contain no-repeat;
+    opacity:.035;
+    pointer-events:none;
+    z-index:0;
+}
+
+/* Ornamen kanan visi misi */
+.visi-misi-section::before{
+    content:'';
+    position:absolute;
+    right:-150px;
+    bottom:-20px;
+    width:400px;
+    height:400px;
+    background:url('{{ asset("images/beranda/ornamen.png") }}')
+               center/contain no-repeat;
+    opacity:.035;
+    pointer-events:none;
+    z-index:0;
+}
+
+/* Ornamen timeline */
+.timeline-section::after{
+    content:'';
+    position:absolute;
+    left:-150px;
+    bottom:-20px;
+    width:420px;
+    height:420px;
+    background:url('{{ asset("images/beranda/ornamen.png") }}')
+               center/contain no-repeat;
+    opacity:.04;
+    pointer-events:none;
+    z-index:0;
+}
+
+/* Ornamen filosofi */
+.filosofi-section::before{
+    content:'';
+    position:absolute;
+    right:-20px;
+    top:-20px;
+    width:300px;
+    height:300px;
+    background:url('{{ asset("images/beranda/ornamen.png") }}')
+               center/contain no-repeat;
+    opacity:.035;
+    pointer-events:none;
+    z-index:0;
+}
+
+/* Pastikan isi berada di atas ornamen */
+.profile-section .container,
+.medica-section .container,
+.visi-misi-section .container,
+.timeline-section .container,
+.filosofi-section .container{
+    position:relative;
+    z-index:2;
+}
 @font-face {
     font-family: 'GothamBlack';
     src: url('{{ asset('fonts/Gotham-Black.otf') }}') format('opentype');

@@ -275,6 +275,65 @@ document.addEventListener('DOMContentLoaded', function () {
 <!-- ================= VIDEO HEADER ================= -->
 <style>
 
+    /* ==========================================
+   ORNAMEN HALAMAN VIDEO
+========================================== */
+.video-list-section{
+    position:relative;
+    overflow:hidden;
+    background:#fff;
+}
+
+.video-list-section::before{
+    content:'';
+    position:absolute;
+    left:-120px;
+    top:120px;
+    width:340px;
+    height:340px;
+    background:url('{{ asset("images/beranda/ornamen.png") }}')
+               center/contain no-repeat;
+    opacity:.04;
+    pointer-events:none;
+    z-index:1;
+}
+
+.video-list-section::after{
+    content:'';
+    position:absolute;
+    right:-150px;
+    bottom:100px;
+    width:420px;
+    height:420px;
+    background:url('{{ asset("images/beranda/ornamen.png") }}')
+               center/contain no-repeat;
+    opacity:.05;
+    pointer-events:none;
+    z-index:1;
+}
+
+.video-list-section .container{
+    position:relative;
+    z-index:2;
+}
+
+@media(max-width:768px){
+
+    .video-list-section::before{
+        width:220px;
+        height:220px;
+        left:-80px;
+        top:80px;
+    }
+
+    .video-list-section::after{
+        width:260px;
+        height:260px;
+        right:-100px;
+        bottom:40px;
+    }
+}
+
 .video-section{
     padding:90px 0 40px;
     background:#fff;
@@ -439,7 +498,7 @@ document.addEventListener('DOMContentLoaded', function () {
 }
 </style>
 
-<section class="pb-5" style="background:#fff;">
+<section class="video-list-section pb-5">
 <div class="container">
 
 <div class="row">

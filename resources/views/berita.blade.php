@@ -278,6 +278,64 @@ document.addEventListener('DOMContentLoaded', function () {
 
 <!-- ================= BERITA HEADER ================= -->
 <style>
+    /* ==========================================
+   ORNAMEN HALAMAN BERITA
+========================================== */
+.berita-list-section{
+    position:relative;
+    overflow:hidden;
+    background:#fff;
+}
+
+.berita-list-section::before{
+    content:'';
+    position:absolute;
+    left:-120px;
+    top:80px;
+    width:340px;
+    height:340px;
+    background:url('{{ asset("images/beranda/ornamen.png") }}')
+               center/contain no-repeat;
+    opacity:.04;
+    pointer-events:none;
+    z-index:1;
+}
+
+.berita-list-section::after{
+    content:'';
+    position:absolute;
+    right:-140px;
+    bottom:80px;
+    width:420px;
+    height:420px;
+    background:url('{{ asset("images/beranda/ornamen.png") }}')
+               center/contain no-repeat;
+    opacity:.05;
+    pointer-events:none;
+    z-index:1;
+}
+
+.berita-list-section .container{
+    position:relative;
+    z-index:2;
+}
+
+@media(max-width:768px){
+
+    .berita-list-section::before{
+        width:220px;
+        height:220px;
+        left:-90px;
+        top:40px;
+    }
+
+    .berita-list-section::after{
+        width:260px;
+        height:260px;
+        right:-100px;
+        bottom:30px;
+    }
+}
 body{
     padding-top: 37px;
 }
@@ -343,7 +401,7 @@ body{
 </section>
 
 <!-- MEDIA INFORMASI -->
-<section style="background:#fff; padding:50px 0;">
+<section class="berita-list-section" style="padding:50px 0;">
     <div class="container">
         <div class="row g-4">
 
