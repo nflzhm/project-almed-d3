@@ -21,7 +21,7 @@ Layanan — RSU Allam Medica
 body { font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; overflow-x: hidden; }
 
 /* ============================================================
-   ORNAMEN HELPER — dipakai di tiap section
+   ORNAMEN HELPER
 ============================================================ */
 .ornamen {
     position: absolute;
@@ -34,7 +34,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; overfl
 }
 
 /* ============================================================
-   ORNAMEN BUNGA (fixed untuk list mode — scroll reveal)
+   ORNAMEN BUNGA (fixed scroll reveal)
 ============================================================ */
 .page-ornament { position:fixed;pointer-events:none;z-index:0;background-image:url('{{ asset("images/beranda/ornamen.png") }}');background-size:contain;background-repeat:no-repeat;background-position:center;transition:opacity 0.6s ease,transform 0.6s ease;will-change:opacity,transform; }
 .orn-1 { right:-100px;top:20%;width:380px;height:380px;opacity:0;filter:hue-rotate(220deg) saturate(0.35); }
@@ -45,7 +45,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; overfl
 .page-ornament.orn-visible { opacity:0.042; }
 
 /* ============================================================
-   HERO — LIST MODE
+   HERO
 ============================================================ */
 .lay-hero { background:linear-gradient(150deg,#1C145C 0%,#231a72 40%,#0ea5e9 100%);padding:130px 0 72px;position:relative;overflow:hidden; }
 .lay-hero::before { content:'';position:absolute;right:-80px;top:-80px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.06),transparent 65%);pointer-events:none; }
@@ -187,16 +187,101 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; overfl
 /* ============================================================
    RAWAT INAP — KELAS KAMAR — DESKTOP
 ============================================================ */
-.kelas-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:24px; }
-.kelas-card { background:#fff;border-radius:16px;border:1px solid #e8edf5;overflow:hidden;box-shadow:0 3px 14px rgba(28,20,92,.05);transition:transform .28s cubic-bezier(.22,.68,0,1.2),box-shadow .28s,border-color .28s;animation:fadeUp .45s ease both;display:flex;flex-direction:column; }
-.kelas-card:hover { transform:translateY(-5px);box-shadow:0 14px 36px rgba(28,20,92,.11);border-color:#c7d2fe; }
-.kelas-header { padding:22px 24px 18px;position:relative;overflow:hidden;display:flex;align-items:center;gap:14px; }
-.kelas-icon-wrap { width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;flex-shrink:0;position:relative;z-index:1; }
-.kelas-name { font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:#fff;margin:0;position:relative;z-index:1; }
-.kelas-body { padding:16px 22px;flex:1;display:flex;flex-direction:column;gap:8px; }
-.kelas-feature { display:flex;align-items:flex-start;gap:10px;font-size:13px;color:#475569;line-height:1.55; }
-.kelas-feature i { color:#1C145C;flex-shrink:0;margin-top:2px;font-size:13px;opacity:.7; }
-.kelas-footer { padding:12px 22px 18px;border-top:1px solid #f1f5f9;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px; }
+.kelas-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+    gap:16px;
+    margin-top:24px;
+    grid-auto-rows:1fr;
+}
+.kelas-card {
+    background:#fff;
+    border-radius:16px;
+    border:1px solid #e8edf5;
+    overflow:hidden;
+    box-shadow:0 3px 14px rgba(28,20,92,.05);
+    transition:transform .28s cubic-bezier(.22,.68,0,1.2),box-shadow .28s,border-color .28s;
+    animation:fadeUp .45s ease both;
+    display:flex;
+    flex-direction:column;
+    height:100%;
+}
+.kelas-card:hover {
+    transform:translateY(-5px);
+    box-shadow:0 14px 36px rgba(28,20,92,.11);
+    border-color:#c7d2fe;
+}
+
+/* FOTO RUANGAN */
+.kelas-thumb {
+    width:100%;
+    height:160px;
+    overflow:hidden;
+    flex-shrink:0;
+    background:#f0eeff;
+}
+.kelas-thumb img {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:transform .4s;
+}
+.kelas-card:hover .kelas-thumb img {
+    transform:scale(1.04);
+}
+.kelas-thumb-placeholder {
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:36px;
+    color:#818cf8;
+    background:linear-gradient(135deg,#e0e7ff,#dbeafe);
+}
+
+.kelas-header {
+    padding:16px 20px 14px;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-shrink:0;
+}
+.kelas-icon-wrap {
+    width:40px;height:40px;border-radius:11px;
+    background:rgba(255,255,255,.18);
+    display:flex;align-items:center;justify-content:center;
+    font-size:18px;color:#fff;flex-shrink:0;position:relative;z-index:1;
+}
+.kelas-name {
+    font-family:'DM Serif Display',serif;
+    font-size:16px;font-weight:400;color:#fff;margin:0;
+    position:relative;z-index:1;line-height:1.2;
+}
+.kelas-body {
+    padding:14px 20px;
+    flex:1;
+    display:flex;flex-direction:column;gap:7px;
+}
+.kelas-feature {
+    display:flex;align-items:flex-start;gap:9px;
+    font-size:12.5px;color:#475569;line-height:1.5;
+}
+.kelas-feature i {
+    color:#1C145C;flex-shrink:0;margin-top:2px;
+    font-size:12px;opacity:.7;
+}
+.kelas-footer {
+    padding:10px 20px 16px;
+    border-top:1px solid #f1f5f9;
+    display:flex;align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;gap:8px;
+    flex-shrink:0;
+}
 .kelas-badge { font-size:11.5px;font-weight:700;padding:4px 12px;border-radius:20px; }
 .kelas-wa-btn { display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:9px;font-size:12px;font-weight:700;background:#dcfce7;color:#15803d;text-decoration:none;border:1px solid #86efac;transition:.2s; }
 .kelas-wa-btn:hover { background:#25D366;color:#fff; }
@@ -318,7 +403,6 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; overfl
     .kelas-grid { display:none; }
     .kelas-mobile-wrap { display:block; }
 }
-
 @media(max-width:768px) {
     .lay-hero { padding:110px 0 60px; }
     .detail-hero { padding:110px 0 52px; }
@@ -331,7 +415,6 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; overfl
     .kdp-body { grid-template-columns:1fr; }
     .page-ornament { display:none; }
 }
-
 @media(max-width:480px) {
     .terkait-grid { grid-template-columns:1fr; }
     .dokter-ticker-track { animation-duration:45s; }
@@ -580,7 +663,9 @@ document.addEventListener('DOMContentLoaded', function () {
 @endunless
 
 
-{{-- DETAIL POLI --}}
+{{-- ============================================================
+     DETAIL POLI
+============================================================ --}}
 @if(isset($poli))
 
 <section class="detail-hero">
@@ -789,7 +874,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 @else
 
-{{-- LIST MODE --}}
+{{-- ============================================================
+     LIST MODE
+============================================================ --}}
 <section class="lay-hero">
     <div class="hero-orn"></div>
     <div class="hero-orn-2"></div>
@@ -884,11 +971,8 @@ document.addEventListener('DOMContentLoaded', function () {
          IGD
     ============================================================ --}}
     <section id="igd" class="lay-section" style="position:relative; overflow:hidden;">
-
-        {{-- ORNAMEN IGD --}}
         <div class="ornamen" style="top:-20px; right:-20px; width:280px; height:280px; opacity:0.04;"></div>
         <div class="ornamen" style="bottom:-60px; left:-70px; width:260px; height:260px; opacity:0.035;"></div>
-
         <div style="margin-bottom:28px; position:relative; z-index:1;">
             <div class="sec-label" style="background:#fee2e2;color:#dc2626;"><i class="bi bi-bandaid-fill"></i> Gawat Darurat</div>
             <div class="sec-title">IGD 24 Jam</div>
@@ -944,11 +1028,8 @@ document.addEventListener('DOMContentLoaded', function () {
          RAWAT JALAN
     ============================================================ --}}
     <section id="rawatjalan" class="lay-section" style="position:relative; overflow:hidden;">
-
-        {{-- ORNAMEN RAWAT JALAN --}}
         <div class="ornamen" style="top:-90px; left:-20px; width:340px; height:340px; opacity:0.04;"></div>
         <div class="ornamen" style="bottom:-80px; right:-70px; width:280px; height:280px; opacity:0.035;"></div>
-
         <div class="lay-section-header" style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:28px;gap:16px;flex-wrap:wrap; position:relative; z-index:1;">
             <div>
                 <div class="sec-label" style="background:#e0f2fe;color:#0284c7;"><i class="bi bi-clipboard2-pulse"></i> Rawat Jalan</div>
@@ -962,7 +1043,7 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
         <div class="sec-divider"></div>
 
-        {{-- Search bar — desktop --}}
+        {{-- Search bar desktop --}}
         <div class="d-none d-lg-flex" style="background:#fff;border-radius:12px;border:1px solid #e8edf5;padding:12px 16px;align-items:center;gap:10px;margin-bottom:20px;box-shadow:0 2px 8px rgba(28,20,92,.04);flex-wrap:wrap; position:relative; z-index:1;">
             <div style="position:relative;flex:1;min-width:180px;">
                 <i class="bi bi-search" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#94a3b8;font-size:13px;pointer-events:none;"></i>
@@ -1069,8 +1150,6 @@ document.addEventListener('DOMContentLoaded', function () {
          RAWAT INAP
     ============================================================ --}}
     <section id="rawatinap" class="lay-section" style="position:relative; overflow:hidden;">
-
-        {{-- ORNAMEN RAWAT INAP --}}
         <div class="ornamen" style="top:-20px; right:-20px; width:360px; height:360px; opacity:0.04;"></div>
         <div class="ornamen" style="bottom:-80px; left:-80px; width:600px; height:600px; opacity:0.035;"></div>
         <div class="ornamen" style="top:50%; left:50%; transform:translate(-50%,-50%); width:460px; height:460px; opacity:0.02;"></div>
@@ -1084,38 +1163,205 @@ document.addEventListener('DOMContentLoaded', function () {
 
         @php
         $kelasRawat = [
-            ['nama'=>'Kelas VIP','icon'=>'bi-gem','grad'=>'linear-gradient(135deg,#0f0c29 0%,#302b63 50%,#24243e 100%)','badge_bg'=>'#ede9fe','badge_c'=>'#4c1d95','badge'=>'VIP','fitur'=>[['icon'=>'bi-door-open','teks'=>'Kamar pribadi 1 tempat tidur'],['icon'=>'bi-tv','teks'=>'TV & AC'],['icon'=>'bi-box-seam','teks'=>'kulkas mini, kamar mandi dalam'],['icon'=>'bi-person-hearts','teks'=>'Ruang kunjungan keluarga'],['icon'=>'bi-patch-check','teks'=>'Melayani pasien BPJS']]],
-            ['nama'=>'Kelas 1','icon'=>'bi-star-fill','grad'=>'linear-gradient(135deg,#1e3a6e 0%,#2563eb 100%)','badge_bg'=>'#dbeafe','badge_c'=>'#1d4ed8','badge'=>'Kelas 1','fitur'=>[['icon'=>'bi-door-open','teks'=>'2 tempat tidur per kamar'],['icon'=>'bi-tv','teks'=>'Fasilitas TV & AC'],['icon'=>'bi-box-seam','teks'=>'Lemari & ruang penyimpanan'],['icon'=>'bi-person-hearts','teks'=>'Ruang kunjungan keluarga'],['icon'=>'bi-patch-check','teks'=>'Melayani pasien BPJS']]],
-            ['nama'=>'Kelas 2','icon'=>'bi-star-half','grad'=>'linear-gradient(135deg,#1e4d3a 0%,#059669 100%)','badge_bg'=>'#d1fae5','badge_c'=>'#065f46','badge'=>'Kelas 2','fitur'=>[['icon'=>'bi-door-open','teks'=>'3-4 tempat tidur per kamar'],['icon'=>'bi-person-hearts','teks'=>'Ruang kunjungan keluarga'],['icon'=>'bi-patch-check','teks'=>'Melayani pasien BPJS']]],
-            ['nama'=>'Kelas 3','icon'=>'bi-star','grad'=>'linear-gradient(135deg,#3d2a0f 0%,#d97706 100%)','badge_bg'=>'#fef3c7','badge_c'=>'#92400e','badge'=>'Kelas 3','fitur'=>[['icon'=>'bi-door-open','teks'=>'5–6 tempat tidur per kamar'],['icon'=>'bi-patch-check','teks'=>'Melayani pasien BPJS'],['icon'=>'bi-shield-plus','teks'=>'Perawatan medis lengkap'],['icon'=>'bi-people','teks'=>'Area keluarga tersedia']]],
-            ['nama'=>'Intermediet','icon'=>'bi-activity','grad'=>'linear-gradient(135deg,#1a1a5e 0%,#6366f1 100%)','badge_bg'=>'#ede9fe','badge_c'=>'#4c1d95','badge'=>'Perawatan Khusus','fitur'=>[['icon'=>'bi-heart-pulse-fill','teks'=>'Monitor vital sign kontinu'],['icon'=>'bi-person-badge','teks'=>'Perawat terlatih 24 jam'],['icon'=>'bi-capsule','teks'=>'Obat-obatan khusus tersedia'],['icon'=>'bi-exclamation-triangle','teks'=>'Untuk pasien semi-kritis']]],
-            ['nama'=>'Perinatologi','icon'=>'bi-balloon-heart','grad'=>'linear-gradient(135deg,#831843 0%,#ec4899 100%)','badge_bg'=>'#fce7f3','badge_c'=>'#9d174d','badge'=>'Bayi Baru Lahir','fitur'=>[['icon'=>'bi-thermometer','teks'=>'Inkubator & penghangat bayi'],['icon'=>'bi-lungs','teks'=>'Monitor oksigen neonatus'],['icon'=>'bi-person-badge','teks'=>'Perawat neonatus terlatih'],['icon'=>'bi-heart','teks'=>'Perawatan bayi baru lahir']]],
-            ['nama'=>'IGD','icon'=>'bi-bandaid-fill','grad'=>'linear-gradient(135deg,#7f1d1d 0%,#dc2626 100%)','badge_bg'=>'#fee2e2','badge_c'=>'#991b1b','badge'=>'Gawat Darurat','fitur'=>[['icon'=>'bi-lightning-fill','teks'=>'Penanganan darurat cepat'],['icon'=>'bi-activity','teks'=>'Monitor pasien real-time'],['icon'=>'bi-clock-fill','teks'=>'Siaga 24 jam penuh'],['icon'=>'bi-people-fill','teks'=>'Tim dokter & perawat siaga']]],
-            ['nama'=>'HCU / ICU / PICU / NICU','icon'=>'bi-heart-pulse-fill','grad'=>'linear-gradient(135deg,#134e4a 0%,#0d9488 100%)','badge_bg'=>'#ccfbf1','badge_c'=>'#134e4a','badge'=>'Perawatan Intensif','fitur'=>[['icon'=>'bi-heart-pulse-fill','teks'=>'Monitor intensif 24 jam'],['icon'=>'bi-lungs','teks'=>'Ventilator & alat bantu napas'],['icon'=>'bi-person-badge','teks'=>'Dokter spesialis jaga'],['icon'=>'bi-shield-fill-check','teks'=>'Penanganan kritis komprehensif']]],
-            ['nama'=>'Ruang Bersalin','icon'=>'bi-gender-female','grad'=>'linear-gradient(135deg,#5b21b6 0%,#8b5cf6 100%)','badge_bg'=>'#ede9fe','badge_c'=>'#5b21b6','badge'=>'Kebidanan','fitur'=>[['icon'=>'bi-heart','teks'=>'Ruang persalinan nyaman & bersih'],['icon'=>'bi-person-badge','teks'=>'Bidan & dokter kebidanan siap'],['icon'=>'bi-shield-plus','teks'=>'Mendukung metode VBAC & SC'],['icon'=>'bi-people-fill','teks'=>'Pendamping persalinan diizinkan']]],
+            [
+                'nama'     => 'Kelas VIP',
+                'foto'     => asset('assets/KelasVIP.png'),
+                'icon'     => 'bi-gem',
+                'grad'     => 'linear-gradient(135deg,#0f0c29 0%,#302b63 50%,#24243e 100%)',
+                'badge_bg' => '#ede9fe',
+                'badge_c'  => '#4c1d95',
+                'badge'    => 'VIP',
+                'fitur'    => [
+                    ['icon'=>'bi-door-open',    'teks'=>'Kamar pribadi 1 tempat tidur'],
+                    ['icon'=>'bi-tv',           'teks'=>'TV & AC'],
+                    ['icon'=>'bi-box-seam',     'teks'=>'Kulkas mini, kamar mandi dalam'],
+                    ['icon'=>'bi-person-hearts','teks'=>'Ruang kunjungan keluarga'],
+                    ['icon'=>'bi-patch-check',  'teks'=>'Melayani pasien BPJS'],
+                ],
+            ],
+            [
+                'nama'     => 'Kelas 1',
+                'foto'     => asset('assets/Kelas1.png'),
+                'icon'     => 'bi-star-fill',
+                'grad'     => 'linear-gradient(135deg,#1e3a6e 0%,#2563eb 100%)',
+                'badge_bg' => '#dbeafe',
+                'badge_c'  => '#1d4ed8',
+                'badge'    => 'Kelas 1',
+                'fitur'    => [
+                    ['icon'=>'bi-door-open',    'teks'=>'2 tempat tidur per kamar'],
+                    ['icon'=>'bi-tv',           'teks'=>'Fasilitas TV & AC'],
+                    ['icon'=>'bi-box-seam',     'teks'=>'Lemari & ruang penyimpanan'],
+                    ['icon'=>'bi-person-hearts','teks'=>'Ruang kunjungan keluarga'],
+                    ['icon'=>'bi-patch-check',  'teks'=>'Melayani pasien BPJS'],
+                ],
+            ],
+            [
+                'nama'     => 'Kelas 2',
+                'foto'     => asset('assets/Kelas2.png'),
+                'icon'     => 'bi-star-half',
+                'grad'     => 'linear-gradient(135deg,#1e4d3a 0%,#059669 100%)',
+                'badge_bg' => '#d1fae5',
+                'badge_c'  => '#065f46',
+                'badge'    => 'Kelas 2',
+                'fitur'    => [
+                    ['icon'=>'bi-door-open',    'teks'=>'3-4 tempat tidur per kamar'],
+                    ['icon'=>'bi-person-hearts','teks'=>'Ruang kunjungan keluarga'],
+                    ['icon'=>'bi-patch-check',  'teks'=>'Melayani pasien BPJS'],
+                ],
+            ],
+            [
+                'nama'     => 'Kelas 3',
+                'foto'     => asset('assets/Kelas3.png'),
+                'icon'     => 'bi-star',
+                'grad'     => 'linear-gradient(135deg,#3d2a0f 0%,#d97706 100%)',
+                'badge_bg' => '#fef3c7',
+                'badge_c'  => '#92400e',
+                'badge'    => 'Kelas 3',
+                'fitur'    => [
+                    ['icon'=>'bi-door-open',  'teks'=>'5–6 tempat tidur per kamar'],
+                    ['icon'=>'bi-patch-check','teks'=>'Melayani pasien BPJS'],
+                    ['icon'=>'bi-shield-plus','teks'=>'Perawatan medis lengkap'],
+                    ['icon'=>'bi-people',     'teks'=>'Area keluarga tersedia'],
+                ],
+            ],
+            [
+                'nama'     => 'Intermediet',
+                'foto'     => asset('assets/Intermediet.png'),
+                'icon'     => 'bi-activity',
+                'grad'     => 'linear-gradient(135deg,#1a1a5e 0%,#6366f1 100%)',
+                'badge_bg' => '#ede9fe',
+                'badge_c'  => '#4c1d95',
+                'badge'    => 'Perawatan Khusus',
+                'fitur'    => [
+                    ['icon'=>'bi-heart-pulse-fill',   'teks'=>'Monitor vital sign kontinu'],
+                    ['icon'=>'bi-person-badge',       'teks'=>'Perawat terlatih 24 jam'],
+                    ['icon'=>'bi-capsule',            'teks'=>'Obat-obatan khusus tersedia'],
+                    ['icon'=>'bi-exclamation-triangle','teks'=>'Untuk pasien semi-kritis'],
+                ],
+            ],
+            [
+                'nama'     => 'Perinatologi',
+                'foto'     => asset('assets/Perinatologi.png'),
+                'icon'     => 'bi-balloon-heart',
+                'grad'     => 'linear-gradient(135deg,#831843 0%,#ec4899 100%)',
+                'badge_bg' => '#fce7f3',
+                'badge_c'  => '#9d174d',
+                'badge'    => 'Bayi Baru Lahir',
+                'fitur'    => [
+                    ['icon'=>'bi-thermometer',  'teks'=>'Inkubator & penghangat bayi'],
+                    ['icon'=>'bi-lungs',        'teks'=>'Monitor oksigen neonatus'],
+                    ['icon'=>'bi-person-badge', 'teks'=>'Perawat neonatus terlatih'],
+                    ['icon'=>'bi-heart',        'teks'=>'Perawatan bayi baru lahir'],
+                ],
+            ],
+            [
+                'nama'     => 'IGD',
+                'foto'     => asset('assets/IGD.png'),
+                'icon'     => 'bi-bandaid-fill',
+                'grad'     => 'linear-gradient(135deg,#7f1d1d 0%,#dc2626 100%)',
+                'badge_bg' => '#fee2e2',
+                'badge_c'  => '#991b1b',
+                'badge'    => 'Gawat Darurat',
+                'fitur'    => [
+                    ['icon'=>'bi-lightning-fill','teks'=>'Penanganan darurat cepat'],
+                    ['icon'=>'bi-activity',      'teks'=>'Monitor pasien real-time'],
+                    ['icon'=>'bi-clock-fill',    'teks'=>'Siaga 24 jam penuh'],
+                    ['icon'=>'bi-people-fill',   'teks'=>'Tim dokter & perawat siaga'],
+                ],
+            ],
+            [
+                'nama'     => 'HCU / ICU / PICU / NICU',
+                'foto'     => asset('assets/HCU_ICU_PICU_NICU.png'),
+                'icon'     => 'bi-heart-pulse-fill',
+                'grad'     => 'linear-gradient(135deg,#134e4a 0%,#0d9488 100%)',
+                'badge_bg' => '#ccfbf1',
+                'badge_c'  => '#134e4a',
+                'badge'    => 'Perawatan Intensif',
+                'fitur'    => [
+                    ['icon'=>'bi-heart-pulse-fill',  'teks'=>'Monitor intensif 24 jam'],
+                    ['icon'=>'bi-lungs',             'teks'=>'Ventilator & alat bantu napas'],
+                    ['icon'=>'bi-person-badge',      'teks'=>'Dokter spesialis jaga'],
+                    ['icon'=>'bi-shield-fill-check', 'teks'=>'Penanganan kritis komprehensif'],
+                ],
+            ],
+            [
+                'nama'     => 'Ruang Bersalin',
+                'foto'     =>  asset('assets/Bersalin.png'),
+                'icon'     => 'bi-gender-female',
+                'grad'     => 'linear-gradient(135deg,#5b21b6 0%,#8b5cf6 100%)',
+                'badge_bg' => '#ede9fe',
+                'badge_c'  => '#5b21b6',
+                'badge'    => 'Kebidanan',
+                'fitur'    => [
+                    ['icon'=>'bi-heart',        'teks'=>'Ruang persalinan nyaman & bersih'],
+                    ['icon'=>'bi-person-badge', 'teks'=>'Bidan & dokter kebidanan siap'],
+                    ['icon'=>'bi-shield-plus',  'teks'=>'Mendukung metode VBAC & SC'],
+                    ['icon'=>'bi-people-fill',  'teks'=>'Pendamping persalinan diizinkan'],
+                ],
+            ],
         ];
         @endphp
 
         {{-- DESKTOP --}}
-        <div class="kelas-grid" style="position:relative; z-index:1;">
-            @foreach($kelasRawat as $i => $kelas)
-            <div class="kelas-card" style="animation-delay:{{ min($i*0.07,0.5) }}s;">
-                <div class="kelas-header" style="background:{{ $kelas['grad'] }};">
-                    <div class="kelas-icon-wrap"><i class="bi {{ $kelas['icon'] }}"></i></div>
-                    <div class="kelas-name">{{ $kelas['nama'] }}</div>
-                </div>
-                <div class="kelas-body">
-                    @foreach($kelas['fitur'] as $f)
-                    <div class="kelas-feature"><i class="bi {{ $f['icon'] }}"></i><span>{{ $f['teks'] }}</span></div>
-                    @endforeach
-                </div>
-                <div class="kelas-footer">
-                    <span class="kelas-badge" style="background:{{ $kelas['badge_bg'] }};color:{{ $kelas['badge_c'] }};">{{ $kelas['badge'] }}</span>
-                    <a href="https://wa.me/6285292224886?text=Halo,%20saya%20ingin%20info%20{{ urlencode($kelas['nama']) }}" target="_blank" class="kelas-wa-btn"><i class="bi bi-whatsapp"></i> Tanya</a>
-                </div>
+
+<div class="kelas-grid" style="position:relative; z-index:1;">
+    @foreach($kelasRawat as $i => $kelas)
+    <div class="kelas-card" style="animation-delay:{{ min($i*0.07,0.5) }}s;">
+
+    {{-- FOTO RUANGAN --}}
+    <div class="kelas-thumb">
+        @if(!empty($kelas['foto']))
+            <img
+                src="{{ $kelas['foto'] }}"
+                alt="{{ $kelas['nama'] }}"
+                loading="lazy"
+                style="width:100%;height:100%;object-fit:cover;"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            >
+
+            <div class="kelas-thumb-placeholder" style="display:none;">
+                <i class="bi {{ $kelas['icon'] }}"></i>
             </div>
-            @endforeach
+        @else
+            <div class="kelas-thumb-placeholder">
+                <i class="bi {{ $kelas['icon'] }}"></i>
+            </div>
+        @endif
+    </div>
+
+    <div class="kelas-header" style="background:{{ $kelas['grad'] }};">
+        <div class="kelas-icon-wrap">
+            <i class="bi {{ $kelas['icon'] }}"></i>
         </div>
+        <div class="kelas-name">{{ $kelas['nama'] }}</div>
+    </div>
+
+    <div class="kelas-body">
+        @foreach($kelas['fitur'] as $f)
+        <div class="kelas-feature">
+            <i class="bi {{ $f['icon'] }}"></i>
+            <span>{{ $f['teks'] }}</span>
+        </div>
+        @endforeach
+    </div>
+
+    <div class="kelas-footer">
+        <span class="kelas-badge"
+              style="background:{{ $kelas['badge_bg'] }}; color:{{ $kelas['badge_c'] }};">
+            {{ $kelas['badge'] }}
+        </span>
+
+        <a href="https://wa.me/6285292224886?text=Halo,%20saya%20ingin%20info%20{{ urlencode($kelas['nama']) }}"
+           target="_blank"
+           class="kelas-wa-btn">
+            <i class="bi bi-whatsapp"></i> Tanya
+        </a>
+    </div>
+
+</div>
+@endforeach
+
+</div>
 
         {{-- MOBILE --}}
         <div class="kelas-mobile-wrap" style="position:relative; z-index:1;">
@@ -1165,11 +1411,8 @@ document.addEventListener('DOMContentLoaded', function () {
          AMBULANS
     ============================================================ --}}
     <section id="ambulans" class="lay-section" style="position:relative; overflow:hidden;">
-
-        {{-- ORNAMEN AMBULANS --}}
         <div class="ornamen" style="top:-20px; left:-20px; width:360px; height:360px; opacity:0.04;"></div>
         <div class="ornamen" style="bottom:-80px; right:-80px; width:600px; height:600px; opacity:0.035;"></div>
-
         <div class="sec-divider"></div>
         <div class="svc-card" style="position:relative; z-index:1;">
             <div class="row g-0">
@@ -1209,11 +1452,8 @@ document.addEventListener('DOMContentLoaded', function () {
          LABORATORIUM
     ============================================================ --}}
     <section id="laboratorium" class="lay-section" style="position:relative; overflow:hidden;">
-
-        {{-- ORNAMEN LABORATORIUM --}}
         <div class="ornamen" style="top:-20px; right:-20px; width:360px; height:360px; opacity:0.04;"></div>
         <div class="ornamen" style="bottom:-80px; left:-80px; width:300px; height:300px; opacity:0.035;"></div>
-
         <div class="sec-divider"></div>
         <div class="row g-4" style="position:relative; z-index:1;">
             <div class="col-lg-5">
@@ -1278,11 +1518,8 @@ document.addEventListener('DOMContentLoaded', function () {
          RADIOLOGI
     ============================================================ --}}
     <section id="radiologi" class="lay-section" style="position:relative; overflow:hidden;">
-
-        {{-- ORNAMEN RADIOLOGI --}}
         <div class="ornamen" style="top:-20px; left:-40px; width:320px; height:320px; opacity:0.04;"></div>
         <div class="ornamen" style="bottom:-60px; right:-70px; width:270px; height:270px; opacity:0.035;"></div>
-
         <div class="sec-divider"></div>
         <div class="svc-card" style="position:relative; z-index:1;">
             <div class="row g-0">
@@ -1316,11 +1553,8 @@ document.addEventListener('DOMContentLoaded', function () {
          FARMASI
     ============================================================ --}}
     <section id="farmasi" class="lay-section" style="position:relative; overflow:hidden;">
-
-        {{-- ORNAMEN FARMASI --}}
         <div class="ornamen" style="top:-20px; right:-80px; width:400px; height:400px; opacity:0.04;"></div>
         <div class="ornamen" style="bottom:-50px; left:-60px; width:280px; height:280px; opacity:0.035;"></div>
-
         <div class="sec-divider"></div>
         <div class="row g-4" style="position:relative; z-index:1;">
             <div class="col-lg-5">
@@ -1368,16 +1602,11 @@ document.addEventListener('DOMContentLoaded', function () {
          MCU
     ============================================================ --}}
     <section id="mcu" class="lay-section" style="padding-bottom:60px; position:relative; overflow:hidden;">
-
-        {{-- ORNAMEN MCU --}}
         <div class="ornamen" style="top:-20px; left:-20px; width:340px; height:340px; opacity:0.04;"></div>
         <div class="ornamen" style="bottom:-20px; right:-20px; width:300px; height:300px; opacity:0.04;"></div>
         <div class="ornamen" style="top:50%; left:50%; transform:translate(-50%,-50%); width:440px; height:440px; opacity:0.02;"></div>
-
         <div class="sec-divider"></div>
         <div class="row g-4 align-items-start" style="position:relative; z-index:1;">
-
-            {{-- KIRI: INFO UMUM --}}
             <div class="col-lg-5">
                 <div class="svc-card">
                     <div class="svc-header" style="background:linear-gradient(135deg,#134e4a 0%,#0d9488 100%);">
@@ -1398,31 +1627,21 @@ document.addEventListener('DOMContentLoaded', function () {
                     </div>
                 </div>
             </div>
-
-            {{-- KANAN: PAKET PREMARITAL --}}
             <div class="col-lg-7">
                 <div style="font-size:11px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;margin-top:4px;">
                     <i class="bi bi-list-check" style="margin-right:5px;"></i> Paket Tersedia
                 </div>
-
-                {{-- LABEL PREMARITAL --}}
                 <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
                     <span style="font-size:11px;font-weight:800;color:#be185d;text-transform:uppercase;letter-spacing:.8px;background:#fdf2f8;border:1px solid #fbcfe8;padding:4px 12px;border-radius:20px;">
                         <i class="bi bi-heart-fill" style="margin-right:4px;font-size:10px;"></i> MCU Premarital
                     </span>
                     <span style="font-size:12px;color:#94a3b8;">Persiapan sehat untuk masa depan bahagia</span>
                 </div>
-
-                {{-- GRID PREMARITAL --}}
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;">
-
-                    {{-- PRIA --}}
                     <div style="border-radius:16px;border:1px solid #bfdbfe;background:linear-gradient(135deg,#eff6ff 0%,#dbeafe 100%);padding:18px;position:relative;overflow:hidden;">
                         <div style="position:absolute;top:-20px;right:-20px;width:80px;height:80px;border-radius:50%;background:rgba(59,130,246,.08);"></div>
                         <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
-                            <div style="width:36px;height:36px;border-radius:50%;background:#2563eb;color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">
-                                <i class="bi bi-gender-male"></i>
-                            </div>
+                            <div style="width:36px;height:36px;border-radius:50%;background:#2563eb;color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;"><i class="bi bi-gender-male"></i></div>
                             <div>
                                 <div style="font-size:13px;font-weight:800;color:#1e40af;">PRIA</div>
                                 <div style="font-size:17px;font-weight:900;color:#1d4ed8;line-height:1.1;">Rp 649.000<span style="font-size:11px;font-weight:600;">,-</span></div>
@@ -1436,14 +1655,10 @@ document.addEventListener('DOMContentLoaded', function () {
                             @endforeach
                         </div>
                     </div>
-
-                    {{-- WANITA --}}
                     <div style="border-radius:16px;border:1px solid #fbcfe8;background:linear-gradient(135deg,#fdf2f8 0%,#fce7f3 100%);padding:18px;position:relative;overflow:hidden;">
                         <div style="position:absolute;top:-20px;right:-20px;width:80px;height:80px;border-radius:50%;background:rgba(236,72,153,.08);"></div>
                         <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
-                            <div style="width:36px;height:36px;border-radius:50%;background:#db2777;color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">
-                                <i class="bi bi-gender-female"></i>
-                            </div>
+                            <div style="width:36px;height:36px;border-radius:50%;background:#db2777;color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;"><i class="bi bi-gender-female"></i></div>
                             <div>
                                 <div style="font-size:13px;font-weight:800;color:#9d174d;">WANITA</div>
                                 <div style="font-size:17px;font-weight:900;color:#be185d;line-height:1.1;">Rp 759.000<span style="font-size:11px;font-weight:600;">,-</span></div>
@@ -1457,14 +1672,11 @@ document.addEventListener('DOMContentLoaded', function () {
                             @endforeach
                         </div>
                     </div>
-
                 </div>
-
                 <p style="font-size:12px;color:#94a3b8;margin-top:4px;display:flex;align-items:center;gap:6px;">
                     <i class="bi bi-info-circle"></i> Harga dan detail paket dapat berubah. Hubungi kami untuk informasi terkini.
                 </p>
             </div>
-
         </div>
     </section>
 
@@ -1674,7 +1886,7 @@ function smoothTo(id) {
     });
 })();
 
-/* ORNAMEN BUNGA (fixed scroll reveal — tetap dipakai) */
+/* ORNAMEN BUNGA (fixed scroll reveal) */
 (function () {
     const orns = [
         { el: document.getElementById('pgOrn1'), triggerPct: 0.08 },
