@@ -623,6 +623,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 10), { passive: true });
 });
 </script>
+
 <!-- END NAVBAR -->
 <style>body { padding-top: 37px; }</style>
 
@@ -1426,6 +1427,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <!-- END FOOTER -->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 <script>
 function copyLink() {
     const btn = document.getElementById('copyBtn');

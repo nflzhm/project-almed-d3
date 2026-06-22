@@ -201,8 +201,8 @@
 #modalPreview .modal-dialog { max-width: 760px; }
 #modalPreview .modal-body   { padding: 0; max-height: 80vh; overflow-y: auto; }
 
-.pv-img-wrap { aspect-ratio: 16/9; overflow: hidden; max-height: 280px; display: none; }
-.pv-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pv-img-wrap { display: none; }
+.pv-img-wrap img { width: 100%; height: auto; object-fit: contain; display: block; border-radius: 0; }
 .pv-img-placeholder {
     aspect-ratio: 16/9; max-height: 180px;
     display: flex; align-items: center; justify-content: center;
@@ -651,50 +651,53 @@ $katColors = [
             <span class="ac-kat-tag" style="background:{{ $kc['bg'] }};color:{{ $kc['color'] }};border-color:{{ $kc['bg'] }};">
                 <i class="fa-solid fa-tag" style="font-size:9px;"></i> {{ $item->kategori ?? 'Umum' }}
             </span>
-            <div class="ac-actions">
+            {{-- HAPUS inline onclick, ganti dengan data attributes --}}
+<div class="ac-actions">
 
-                <button class="btn-icon-sm btn-preview" title="Preview artikel"
-                    onclick="openPreviewModal(
-                        `{{ addslashes($item->judul) }}`,
-                        `{{ addslashes($konten) }}`,
-                        '{{ $imgUrl ?? '' }}',
-                        '{{ $item->kategori ?? 'Umum' }}',
-                        '{{ $item->status }}',
-                        '{{ $tglFmt }}',
-                        {{ $item->views ?? 0 }},
-                        {{ $readTime }},
-                        {!! json_encode($item->dokters->map(fn($d) => [
-                            'nama'      => $d->nama,
-                            'spesialis' => $d->spesialis ?? '',
-                            'foto'      => $d->foto ? asset('storage/'.$d->foto) : ''
-                        ])->values()) !!}
-                    )">
-                    <i class="fa-solid fa-eye"></i>
-                </button>
+    <button class="btn-icon-sm btn-preview" title="Preview artikel"
+    data-action="preview"
+    data-id="{{ $item->id }}"
+    data-judul="{{ e($item->judul) }}"
+    data-konten="{{ e($konten) }}"
+    data-img="{{ $imgUrl ?? '' }}"
+    data-kategori="{{ $item->kategori ?? 'Umum' }}"
+    data-status="{{ $item->status }}"
+    data-tanggal="{{ $tglFmt }}"
+    data-views="{{ $item->views ?? 0 }}"
+    data-readtime="{{ $readTime }}"
+    data-dokters="{{ base64_encode(json_encode($item->dokters->map(fn($d) => [
+        'nama'      => $d->nama,
+        'spesialis' => $d->spesialis ?? '',
+        'foto'      => $d->foto ? asset('storage/'.$d->foto) : ''
+    ])->values())) }}">
+    <i class="fa-solid fa-eye"></i>
+</button>
 
-                <button class="btn-icon-sm btn-edit" title="Edit artikel"
-                    onclick="openEditModal(
-                        '{{ $item->id }}',
-                        `{{ addslashes($item->judul) }}`,
-                        `{{ addslashes($konten) }}`,
-                        '{{ $imgUrl ?? '' }}',
-                        '{{ $item->kategori ?? '' }}',
-                        '{{ $item->status }}',
-                        {!! json_encode($item->dokters->map(fn($d) => [
-                            'id'        => $d->id,
-                            'nama'      => $d->nama,
-                            'spesialis' => $d->spesialis ?? '',
-                            'foto'      => $d->foto ? asset('storage/'.$d->foto) : ''
-                        ])->values()) !!}
-                    )">
-                    <i class="fa-solid fa-pen"></i>
-                </button>
+    <button class="btn-icon-sm btn-edit" title="Edit artikel"
+    data-action="edit"
+    data-id="{{ $item->id }}"
+    data-judul="{{ e($item->judul) }}"
+    data-isi="{{ e($konten) }}"
+    data-img="{{ $imgUrl ?? '' }}"
+    data-kategori="{{ $item->kategori ?? '' }}"
+    data-status="{{ $item->status }}"
+    data-dokters="{{ base64_encode(json_encode($item->dokters->map(fn($d) => [
+        'id'        => $d->id,
+        'nama'      => $d->nama,
+        'spesialis' => $d->spesialis ?? '',
+        'foto'      => $d->foto ? asset('storage/'.$d->foto) : ''
+    ])->values())) }}">
+    <i class="fa-solid fa-pen"></i>
+</button>
 
-                <button class="btn-icon-sm btn-delete" title="Hapus artikel"
-                    onclick="openDeleteModal('{{ $item->id }}', `{{ addslashes($item->judul) }}`)">
-                    <i class="fa-solid fa-trash-can"></i>
-                </button>
-            </div>
+    <button class="btn-icon-sm btn-delete" title="Hapus artikel"
+        data-action="hapus"
+        data-id="{{ $item->id }}"
+        data-judul="{{ e($item->judul) }}">
+        <i class="fa-solid fa-trash-can"></i>
+    </button>
+
+</div>
         </div>
     </div>
 
@@ -1404,6 +1407,73 @@ window.addEventListener('scroll', function() {
         if (dd && dd.style.display === 'block') _positionDD(p);
     });
 }, true);
+
+/* ============================================================
+   DELEGATED EVENT — ganti semua onclick inline di card
+   Tombol preview, edit, hapus sekarang pakai data-action
+============================================================ */
+document.getElementById('artikelGrid').addEventListener('click', function(e) {
+    const btn = e.target.closest('[data-action]');
+    if (!btn) return;
+
+    const action = btn.dataset.action;
+
+    function parseDokters(encoded) {
+        try {
+            return JSON.parse(atob(encoded || 'W10='));
+        } catch(err) {
+            console.warn('parseDokters error:', err);
+            return [];
+        }
+    }
+
+    if (action === 'hapus') {
+        openDeleteModal(
+            btn.dataset.id,
+            btn.dataset.judul
+        );
+    }
+
+    if (action === 'preview') {
+        openPreviewModal(
+            btn.dataset.judul,
+            btn.dataset.konten,
+            btn.dataset.img,
+            btn.dataset.kategori,
+            btn.dataset.status,
+            btn.dataset.tanggal,
+            btn.dataset.views,
+            btn.dataset.readtime,
+            parseDokters(btn.dataset.dokters)
+        );
+    }
+
+    if (action === 'edit') {
+        openEditModal(
+            btn.dataset.id,
+            btn.dataset.judul,
+            btn.dataset.isi,
+            btn.dataset.img,
+            btn.dataset.kategori,
+            btn.dataset.status,
+            parseDokters(btn.dataset.dokters)
+        );
+    }
+});
+
+/* ============================================================
+   FIX ARIA-HIDDEN — blur fokus sebelum modal tampil
+   Mencegah warning "aria-hidden on focused element"
+============================================================ */
+['modalPreview', 'modalEdit', 'modalHapus', 'modalTambah'].forEach(function(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('show.bs.modal', function() {
+        if (document.activeElement && document.activeElement !== document.body) {
+            document.activeElement.blur();
+        }
+    });
+});
 
 /* ============================================================
    OPEN PREVIEW MODAL

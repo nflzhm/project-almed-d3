@@ -533,7 +533,7 @@ $listPgd = isset($pengadaan) ? $pengadaan->items() : $dummyData;
 
         {{-- Header --}}
         <div class="pgd-card-header">
-            <div class="pgd-card-icon"><i class="bi bi-file-earmark-text-fill"></i></div>
+            <div class="pgd-card-icon"><i class="fa-solid fa-file-pdf"></i></div>
             <div class="pgd-card-title">{{ $judul }}</div>
         </div>
 
@@ -568,7 +568,7 @@ $listPgd = isset($pengadaan) ? $pengadaan->items() : $dummyData;
         @if($file)
             <a href="{{ route('admin.pengadaan.download', $id) }}"
                class="btn-download-pgd" target="_blank">
-                <i class="bi bi-download"></i> Download PDF
+                <i class="fa-solid fa-download"></i> Download PDF
             </a>
         @else
             <button class="btn-download-pgd" disabled style="opacity:.5;cursor:not-allowed;">
@@ -894,7 +894,7 @@ $listPgd = isset($pengadaan) ? $pengadaan->items() : $dummyData;
 
 @push('scripts')
 {{-- Bootstrap Icons CDN (untuk ikon bi-download di card) --}}
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
 
 <script>
 /* ============================================================
