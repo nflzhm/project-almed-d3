@@ -2,420 +2,20 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>RSU Allam Medica - Beranda</title>
+    <title>RSU Allam Medica - Jadwal Dokter</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="{{ asset('assets/logoalmed.png') }}">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
 
-
-    <!-- ================= JADWAL DOKTER FULL + SPESIALIS ================= -->
 <style>
 
-    @font-face {
-    font-family: 'GothamBlack';
-    src: url('{{ asset('fonts/Gotham-Black.otf') }}') format('opentype');
-    font-weight: 900;
-    font-style: normal;
-}
-
-h1, h2, h3 {
-    font-family: 'GothamBlack', sans-serif !important;
-}
-
-
-
-/* ================= SECTION ================= */
-.schedule-section{
-    padding:25px 0 14px;
-    background:#ffffff;
-}
-
-/* ================= FILTER BOX ================= */
-.schedule-filter{
-    background:#fff;
-    border-radius:18px;
-    padding:20px;
-    box-shadow:0 6px 18px rgba(0,0,0,.08);
-    margin-bottom:28px;
-    border:1px solid #ececec;
-}
-
-/* ================= SEARCH ================= */
-.search-wrap{
-    display:flex;
-    gap:10px;
-    margin-bottom:14px;
-}
-
-.search-input{
-    flex:1;
-    height:44px;
-    border:1px solid #ddd;
-    border-radius:10px;
-    padding:0 15px;
-    font-size:13px;
-}
-
-.search-btn{
-    background:#1C145C;
-    color:#fff;
-    border:none;
-    border-radius:10px;
-    padding:0 22px;
-    font-size:14px;
-    font-weight:600;
-    height:44px;
-    white-space:nowrap;
-}
-
-/* ================= FILTER ================= */
-.filter-title{
-    font-size:13px;
-    font-weight:700;
-    margin-bottom:8px;
-    color:#1C145C;
-}
-
-.day-list{
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
-}
-
-.day-list a{
-    text-decoration:none;
-    background:#ececec;
-    color:#555;
-    padding:5px 16px;
-    border-radius:30px;
-    font-size:12px;
-}
-
-.day-list a.active{
-    background:#1C145C;
-    color:#fff;
-}
-
-/* ================= INFO ================= */
-.schedule-info{
-    font-size:14px;
-    margin-bottom:15px;
-    color:#222;
-}
-
-/* ================= BOX ================= */
-.schedule-box{
-    background:#fff;
-    border-radius:18px;
-    padding:18px;
-    box-shadow:0 6px 18px rgba(0,0,0,.08);
-    border:1px solid #ececec;
-    margin-bottom:12px;
-}
-
-/* ================= GRID ================= */
-.schedule-grid{
-    display:grid;
-    grid-template-columns:260px 1fr;
-    gap:18px;
-}
-
-/* ================= LEFT CARD ================= */
-.doctor-card{
-    background:linear-gradient(135deg,#1C145C,#2d2391);
-    border-radius:18px;
-    padding:22px;
-    color:#fff;
-    text-align:center;
-}
-
-.doctor-card img{
-    width:95px;
-    height:95px;
-    border-radius:50%;
-    object-fit:cover;
-    margin-bottom:14px;
-    border:3px solid rgba(255,255,255,.25);
-}
-
-.doctor-name{
-    font-size:14px;
-    font-weight:700;
-    line-height:1.5;
-}
-
-.doctor-specialist{
-    font-size:12px;
-    font-weight:500;
-    color:rgba(255,255,255,.85);
-    margin-top:6px;
-    line-height:1.4;
-}
-
-/* ================= RIGHT ================= */
-.practice-title{
-    font-size:16px;
-    font-weight:800;
-    color:#1C145C;
-    margin-bottom:15px;
-}
-
-.day-row{
-    display:grid;
-    grid-template-columns:repeat(7,1fr);
-    gap:10px;
-}
-
-/* ================= CARD HARI ================= */
-.day-col{
-    background:#fff;
-    border-radius:12px;
-    overflow:hidden;
-    border:1px solid #e7e7e7;
-}
-
-.day-head{
-    background:#1C145C;
-    color:#fff;
-    font-size:13px;
-    font-weight:700;
-    text-align:center;
-    padding:10px;
-}
-
-.day-body{
-    padding:12px;
-    text-align:center;
-}
-
-.clinic{
-    font-size:12px;
-    font-weight:600;
-    color:#333;
-    margin-bottom:8px;
-    min-height:32px;
-}
-
-.time{
-    font-size:14px;
-    font-weight:800;
-    color:#1C145C;
-    margin-bottom:8px;
-}
-
-.note{
-    font-size:11px;
-    color:#777;
-    line-height:1.5;
-}
-
-/* LIBUR */
-.libur .clinic,
-.libur .time,
-.libur .note{
-    color:#b5b5b5;
-}
-
-/* ================= DESKTOP DROPDOWN ================= */
-@media (min-width:992px){
-
-    .dropdown-menu{
-        display:block;
-        opacity:0;
-        transform:translateY(10px);
-        visibility:hidden;
-        transition:all .3s ease;
-        border-radius:12px;
-        border:none;
-        box-shadow:0 8px 20px rgba(0,0,0,.1);
-        padding:10px 0;
-    }
-
-    .nav-item.dropdown:hover .dropdown-menu{
-        opacity:1;
-        transform:translateY(0);
-        visibility:visible;
-    }
-}
-
-/* ================= MOBILE ================= */
-@media(max-width:991px){
-
-    body{
-        padding-top:145px;
-    }
-
-    .navbar-nav.nav-gap{
-        gap:0 !important;
-        width:100%;
-    }
-
-    .navbar-nav .nav-item{
-        padding:0;
-    }
-
-    .navbar-nav .nav-link{
-        padding:10px 0;
-    }
-
-    .dropdown-menu{
-        position:static;
-        display:block !important;
-        max-height:0;
-        overflow:hidden;
-        opacity:0;
-        visibility:hidden;
-        transform:translateY(-5px);
-        transition:all .35s ease;
-        box-shadow:none;
-        border:none;
-        padding-left:15px;
-    }
-
-    .dropdown-menu.show{
-        max-height:500px;
-        opacity:1;
-        visibility:visible;
-        transform:translateY(0);
-    }
-
-    /* Card mobile */
-    .schedule-box{
-        padding:14px;
-        margin-bottom:10px;
-    }
-
-    .schedule-grid{
-        display:block;
-    }
-
-    .doctor-card{
-        display:flex;
-        align-items:center;
-        gap:14px;
-        text-align:left;
-        padding:14px;
-        border-radius:16px;
-        position:relative;
-        cursor:pointer;
-    }
-
-    .doctor-card img{
-        width:68px;
-        height:68px;
-        margin:0;
-        flex-shrink:0;
-    }
-
-    .doctor-name{
-        font-size:13px;
-        line-height:1.4;
-        margin-bottom:4px;
-    }
-
-    .doctor-specialist{
-        font-size:11px;
-        margin-top:0;
-    }
-
-    .doctor-card::after{
-        content:"▼";
-        position:absolute;
-        right:14px;
-        top:50%;
-        transform:translateY(-50%);
-        font-size:12px;
-        color:#fff;
-        transition:.3s;
-    }
-
-    .schedule-box.active .doctor-card::after{
-        transform:translateY(-50%) rotate(180deg);
-    }
-
-    .practice-area{
-        display:none;
-        margin-top:12px;
-    }
-
-    .schedule-box.active .practice-area{
-        display:block;
-    }
-
-    .practice-title{
-        font-size:14px;
-        margin-bottom:10px;
-    }
-
-    .day-row{
-        grid-template-columns:1fr;
-        gap:8px;
-    }
-
-    .day-head{
-        font-size:12px;
-        padding:8px;
-    }
-
-    .day-body{
-        padding:10px;
-    }
-
-    .clinic{
-        min-height:auto;
-        font-size:12px;
-    }
-
-    .time{
-        font-size:13px;
-    }
-
-    .note{
-        font-size:11px;
-    }
-}
-
-/* ================= SMALL MOBILE ================= */
-@media(max-width:576px){
-
-    /* SEARCH tetap sejajar */
-    .search-wrap{
-        flex-direction:row;
-        align-items:center;
-        gap:8px;
-    }
-
-    .search-input{
-        height:44px;
-        font-size:13px;
-    }
-
-    .search-btn{
-        height:44px;
-        padding:0 16px;
-        font-size:13px;
-    }
-
-    /* Filter hari diperkecil */
-    .day-list{
-        gap:6px;
-    }
-
-    .day-list a{
-        padding:4px 10px;
-        font-size:11px;
-        border-radius:20px;
-    }
-}
-
-<style>
+/* ================= FONT ================= */
 @font-face {
     font-family: 'GothamBlack';
     src: url('{{ asset('fonts/Gotham-Black.otf') }}') format('opentype');
@@ -427,21 +27,7 @@ h1, h2, h3, h4, h5 {
     font-family: 'GothamBlack', sans-serif !important;
 }
 
-<style>
-@font-face {
-    font-family: 'GothamBlack';
-    src: url('{{ asset('fonts/Gotham-Black.otf') }}') format('opentype');
-    font-weight: 900;
-    font-style: normal;
-}
-
-h1, h2, h3, h4 {
-    font-family: 'GothamBlack', sans-serif !important;
-}
-
-/* ========================================
-   BASE
-======================================== */
+/* ================= BASE ================= */
 body {
     font-family: 'Segoe UI', sans-serif;
     background: #ffffff;
@@ -534,6 +120,723 @@ body {
     .nav-burger { display:flex; }
 }
 @media(max-width:480px) { .navbar-float { border-radius:22px; } }
+
+/* ============================================================
+   HERO SUB-PAGE — bergambar seperti tentang kami
+============================================================ */
+.hero-jadwal {
+    position: relative;
+    background:
+        linear-gradient(rgba(0,0,0,0.50), rgba(0,0,0,0.50)),
+        url('{{ asset("images/beranda/soretentangkami.png") }}') center/cover no-repeat;
+    height: 80vh;
+    min-height: 320px;
+    max-height: 520px;
+    color: #fff;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+/* Ornamen di dalam hero */
+.hero-jadwal .hero-ornament {
+    position: absolute;
+    right: -80px;
+    top: -80px;
+    width: 460px;
+    height: 460px;
+    opacity: .07;
+    background-image: url('{{ asset("images/beranda/ornamen.png") }}');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.hero-jadwal .hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-jadwal .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 12px;
+    display: block;
+}
+
+.hero-jadwal h1 {
+    font-size: clamp(26px, 4vw, 44px);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 14px;
+}
+
+.hero-jadwal p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.75;
+    max-width: 520px;
+    margin: 0;
+}
+
+/* Wave curve putih di bawah hero */
+.hero-jadwal .hero-wave {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    line-height: 0;
+    z-index: 1;
+}
+
+/* ============================================================
+   SECTION JADWAL — BACKGROUND CREAM "BUKIT": putih→cream→putih
+============================================================ */
+.schedule-section {
+    position: relative;
+    overflow: hidden;
+    padding: 55px 0 70px;
+    background: linear-gradient(
+        to bottom,
+        #ffffff       0%,
+        #fdfcf6       5%,
+        #f7f5e8      18%,
+        #f0ede3      35%,
+        #ede9d9      50%,
+        #f0ede3      65%,
+        #f7f5e8      82%,
+        #fdfcf6      95%,
+        #ffffff      100%
+    );
+}
+
+/* ================= ORNAMEN SECTION ================= */
+.schedule-section .sched-ornament-tr {
+    position: absolute;
+    right: -100px;
+    top: -60px;
+    width: 420px;
+    height: 420px;
+    opacity: .045;
+    background-image: url('{{ asset("images/beranda/ornamen.png") }}');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.schedule-section .sched-ornament-bl {
+    position: absolute;
+    left: -120px;
+    bottom: -100px;
+    width: 480px;
+    height: 480px;
+    opacity: .04;
+    background-image: url('{{ asset("images/beranda/ornamen.png") }}');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.schedule-section .sched-ornament-mid {
+    position: absolute;
+    right: 10%;
+    bottom: 20%;
+    width: 300px;
+    height: 300px;
+    opacity: .025;
+    background-image: url('{{ asset("images/beranda/ornamen.png") }}');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Ornamen kiri tengah atas */
+.schedule-section .sched-ornament-tl {
+    position: absolute;
+    left: -110px;
+    top: 30%;
+    width: 360px;
+    height: 360px;
+    opacity: .03;
+    background-image: url('{{ asset("images/beranda/ornamen.png") }}');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.schedule-section .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* ================= SECTION TITLE ================= */
+.schedule-section-title {
+    margin-bottom: 28px;
+}
+
+.schedule-section-title .eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #8a84b8;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.schedule-section-title h2 {
+    font-size: 26px;
+    font-weight: 900;
+    color: #1C145C;
+    margin: 0;
+}
+
+/* ================= FILTER BOX ================= */
+.schedule-filter {
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-radius: 20px;
+    padding: 22px 24px;
+    box-shadow: 0 8px 28px rgba(28,20,92,.08);
+    margin-bottom: 30px;
+    border: 1px solid rgba(255,255,255,0.85);
+}
+
+/* ================= SEARCH ================= */
+.search-wrap {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.search-input {
+    flex: 1;
+    height: 46px;
+    border: 1.5px solid rgba(28,20,92,0.15);
+    border-radius: 12px;
+    padding: 0 16px;
+    font-size: 14px;
+    background: #fff;
+    color: #1e293b;
+    outline: none;
+    transition: border-color .2s;
+}
+
+.search-input:focus {
+    border-color: #1C145C;
+    box-shadow: 0 0 0 3px rgba(28,20,92,.08);
+}
+
+.search-btn {
+    background: #1C145C;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 0 24px;
+    font-size: 14px;
+    font-weight: 600;
+    height: 46px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: .2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.search-btn:hover {
+    background: #2a1e8a;
+    transform: translateY(-1px);
+}
+
+/* ================= FILTER HARI ================= */
+.filter-title {
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #1C145C;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.day-list {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.day-list a {
+    text-decoration: none;
+    background: rgba(28,20,92,.06);
+    color: #5a5480;
+    padding: 6px 18px;
+    border-radius: 30px;
+    font-size: 12.5px;
+    font-weight: 600;
+    border: 1.5px solid rgba(28,20,92,.1);
+    transition: .2s;
+}
+
+.day-list a:hover {
+    background: rgba(28,20,92,.12);
+    color: #1C145C;
+}
+
+.day-list a.active {
+    background: #1C145C;
+    color: #fff;
+    border-color: #1C145C;
+    box-shadow: 0 4px 12px rgba(28,20,92,.25);
+}
+
+/* ================= SCHEDULE CARD ================= */
+.schedule-box {
+    background: rgba(255,255,255,0.80);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 6px 24px rgba(28,20,92,.07);
+    border: 1px solid rgba(255,255,255,0.9);
+    margin-bottom: 14px;
+    transition: box-shadow .25s, transform .25s;
+}
+
+.schedule-box:hover {
+    box-shadow: 0 12px 36px rgba(28,20,92,.12);
+    transform: translateY(-2px);
+}
+
+/* ================= GRID ================= */
+.schedule-grid {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 20px;
+}
+
+/* ================= LEFT DOCTOR CARD ================= */
+.doctor-card {
+    background: linear-gradient(135deg, #1C145C, #2d2391);
+    border-radius: 16px;
+    padding: 24px 20px;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ornamen kecil di dalam doctor card */
+.doctor-card::after {
+    content: '';
+    position: absolute;
+    right: -30px;
+    bottom: -30px;
+    width: 130px;
+    height: 130px;
+    background: rgba(255,255,255,.05);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.doctor-card img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 14px;
+    border: 3px solid rgba(255,255,255,.25);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Wrapper info di dalam doctor card */
+.doc-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.doctor-name {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.5;
+    font-family: 'GothamBlack', sans-serif;
+}
+
+.doctor-specialist {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255,255,255,.8);
+    margin-top: 6px;
+    line-height: 1.5;
+    background: rgba(255,255,255,.1);
+    border-radius: 20px;
+    padding: 4px 12px;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+/* ================= RIGHT PRACTICE ================= */
+.practice-title {
+    font-size: 12px;
+    font-weight: 800;
+    color: #1C145C;
+    margin-bottom: 14px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+.day-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+}
+
+/* ================= DAY CARD ================= */
+.day-col {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1.5px solid #ece9f1;
+    transition: box-shadow .2s;
+}
+
+.day-col:not(.libur):hover {
+    box-shadow: 0 6px 18px rgba(28,20,92,.1);
+}
+
+.day-head {
+    background: #1C145C;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+    padding: 9px 6px;
+}
+
+.day-body {
+    padding: 12px 8px;
+    text-align: center;
+}
+
+.clinic {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 7px;
+    min-height: 30px;
+    line-height: 1.4;
+}
+
+.time {
+    font-size: 13px;
+    font-weight: 800;
+    color: #1C145C;
+    margin-bottom: 7px;
+}
+
+.note {
+    font-size: 11px;
+    color: #94a3b8;
+    line-height: 1.5;
+}
+
+/* LIBUR */
+.libur {
+    opacity: 0.55;
+}
+
+.libur .day-head {
+    background: #8b8aaa;
+}
+
+.libur .clinic,
+.libur .time,
+.libur .note {
+    color: #b5b5b5;
+}
+
+/* ================= NO RESULT ================= */
+.no-result {
+    text-align: center;
+    padding: 60px 20px;
+    color: #8a84b8;
+    display: none;
+}
+
+.no-result i {
+    font-size: 48px;
+    margin-bottom: 14px;
+    display: block;
+    opacity: .5;
+}
+
+/* ================= TABLET (≤991px) ================= */
+@media(max-width:991px) {
+    body { padding-top: calc(38px + 64px); }
+
+    /* Hero */
+    .hero-jadwal { max-height: 400px; min-height: 260px; }
+    .hero-jadwal h1 { font-size: clamp(20px, 5vw, 30px); margin-bottom: 10px; }
+    .hero-jadwal p { font-size: 13px; }
+
+    /* Section */
+    .schedule-section { padding: 40px 0 55px; }
+    .schedule-section-title h2 { font-size: 20px; }
+
+    /* Grid → stacked */
+    .schedule-grid { display: block; }
+
+    /* Doctor card horizontal di mobile */
+    .doctor-card {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-align: left;
+        padding: 12px 14px;
+        border-radius: 14px;
+        cursor: pointer;
+        position: relative;
+    }
+
+    .doctor-card::after { display: none; }
+
+    .doctor-card img {
+        width: 60px;
+        height: 60px;
+        margin: 0;
+        flex-shrink: 0;
+        border-width: 2px;
+    }
+
+    .doctor-card .doc-info { flex: 1; min-width: 0; }
+
+    .doctor-name {
+        font-size: clamp(11px, 3.2vw, 14px);
+        margin: 0;
+        line-height: 1.4;
+        white-space: normal;
+        word-break: break-word;
+    }
+
+    .doctor-specialist {
+        font-size: clamp(10px, 2.6vw, 12px);
+        margin-top: 5px;
+        padding: 3px 9px;
+        display: inline-block;
+    }
+
+    /* Arrow toggle */
+    .doctor-card .toggle-arrow {
+        margin-left: auto;
+        flex-shrink: 0;
+        font-size: 12px;
+        color: rgba(255,255,255,.7);
+        transition: transform .3s;
+    }
+
+    .schedule-box.active .doctor-card .toggle-arrow {
+        transform: rotate(180deg);
+    }
+
+    /* Practice area accordion */
+    .practice-area {
+        display: none;
+        margin-top: 12px;
+    }
+
+    .schedule-box.active .practice-area {
+        display: block;
+    }
+
+    /* Hari grid di mobile: 2 kolom agar lebih rapi */
+    .day-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .day-head { font-size: 11px; padding: 7px 4px; }
+    .day-body { padding: 10px 6px; }
+    .clinic { min-height: auto; font-size: 11px; }
+    .time { font-size: 12px; }
+    .note { font-size: 10px; }
+
+    /* Libur tetap tampil di tablet, tapi lebih redup */
+    .libur { opacity: 0.45; }
+
+    /* Filter */
+    .schedule-filter { padding: 16px 16px; }
+    .filter-title { font-size: 11px; }
+    .day-list a { padding: 5px 13px; font-size: 11.5px; }
+
+    /* Schedule box */
+    .schedule-box { padding: 14px; border-radius: 16px; margin-bottom: 10px; }
+}
+
+/* ================= MOBILE KECIL (≤576px) ================= */
+@media(max-width:576px) {
+    /* Hero */
+    .hero-jadwal { max-height: 320px; min-height: 220px; }
+    .hero-jadwal h1 { font-size: clamp(18px, 5.5vw, 24px); }
+    .hero-jadwal p { font-size: 12px; line-height: 1.6; }
+    .hero-jadwal .hero-eyebrow { font-size: 10px; }
+
+    /* Section title */
+    .schedule-section-title h2 { font-size: 18px; }
+    .schedule-section-title .eyebrow { font-size: 10px; }
+
+    /* Search */
+    .search-input { height: 42px; font-size: 13px; }
+    .search-btn { height: 42px; padding: 0 14px; font-size: 12px; gap: 5px; }
+
+    /* Filter pills lebih kecil */
+    .day-list { gap: 5px; }
+    .day-list a { padding: 4px 10px; font-size: 11px; border-radius: 20px; }
+
+    /* Doctor card lebih compact */
+    .doctor-card { gap: 10px; padding: 10px 12px; }
+    .doctor-card img { width: 50px; height: 50px; }
+    .doctor-name { font-size: clamp(10px, 3vw, 13px); }
+    .doctor-specialist { font-size: clamp(9px, 2.4vw, 11px); padding: 2px 8px; }
+
+    /* Practice area */
+    .practice-title { font-size: 11px; }
+
+    /* Hari grid: 1 kolom di HP kecil agar tidak terlalu sempit */
+    .day-row { grid-template-columns: 1fr; gap: 6px; }
+    .day-head { font-size: 11px; }
+    .day-body { padding: 8px 6px; }
+    .clinic { font-size: 11px; }
+    .time { font-size: 12px; }
+    .note { font-size: 10px; }
+
+    /* Sembunyikan hari libur di HP kecil agar tidak panjang */
+    .libur { display: none; }
+
+    /* Schedule box */
+    .schedule-box { padding: 10px 12px; border-radius: 14px; }
+}
+
+/* ================= SANGAT KECIL (≤380px) ================= */
+@media(max-width:380px) {
+    .hero-jadwal h1 { font-size: 17px; }
+    .hero-jadwal p { font-size: 11.5px; }
+    .doctor-name { font-size: 11px; }
+    .doctor-specialist { font-size: 9.5px; }
+    .search-btn { padding: 0 10px; font-size: 11px; }
+    .day-list a { padding: 3px 8px; font-size: 10.5px; }
+}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+.footer-rsu {
+    background: linear-gradient(
+        to bottom,
+        #ffffff 0%,
+        #fefefd 3%,
+        #fdfcf6 8%,
+        #fcfbf3 13%,
+        #faf8ee 20%,
+        #f7f5e8 30%,
+        #f3f0e1 45%,
+        #ede9d9 65%,
+        #e8e3d2 85%,
+        #e3deca 100%
+    );
+    color: #1C145C;
+    padding: 56px 0 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer-rsu .footer-ornament {
+    position: absolute;
+    right: -80px;
+    bottom: -150px;
+    width: 420px;
+    height: 420px;
+    opacity: .07;
+    background-image: url('{{ asset("images/beranda/ornamen.png") }}');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.footer-rsu .footer-ornament2 {
+    position: absolute;
+    left: -100px;
+    top: 40px;
+    width: 340px;
+    height: 340px;
+    opacity: .04;
+    background-image: url('{{ asset("images/beranda/ornamen.png") }}');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.footer-rsu .container-fluid { max-width: 1550px; position: relative; z-index: 1; }
+.footer-rsu .row { --bs-gutter-x: 3.5rem; }
+.footer-rsu .footer-logo { height: 40px; width: auto; display: block; margin-bottom: 14px; }
+.footer-rsu .footer-title { font-size: 16px; font-weight: 700; color: #1C145C; margin-bottom: 8px; }
+.footer-rsu .footer-desc { font-size: 13px; line-height: 1.8; color: #5a5480; margin-bottom: 20px; max-width: 340px; }
+.footer-rsu .footer-social { display: flex; gap: 10px; margin-bottom: 22px; }
+.footer-rsu .footer-social a { width: 36px; height: 36px; border-radius: 50%; background: rgba(28,20,92,.07); border: 1px solid rgba(28,20,92,.15); display: flex; align-items: center; justify-content: center; color: #1C145C; text-decoration: none; font-size: 15px; transition: .25s; }
+.footer-rsu .footer-social a:hover { background: #1C145C; color: #fff; transform: translateY(-2px); }
+.footer-rsu .footer-mitra-label { font-size: 11px; color: #9994bb; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 10px; }
+.footer-rsu .footer-mitra { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.footer-rsu .footer-mitra img:nth-child(1) { height: 33px; }
+.footer-rsu .footer-mitra img:nth-child(2) { height: 23px; }
+.footer-rsu .footer-heading { font-weight: 900; font-size: 12px; color: #1C145C; text-transform: uppercase; letter-spacing: .14em; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 1.5px solid rgba(28,20,92,.12); white-space: nowrap; }
+.footer-rsu ul { list-style: none; padding: 0; margin: 0; }
+.footer-rsu ul li { margin-bottom: 10px; }
+.footer-rsu a { color: #5a5480; text-decoration: none; font-size: 13.5px; transition: .2s; display: inline-flex; align-items: center; gap: 5px; }
+.footer-rsu ul li a::before { content: '›'; color: #1C145C; opacity: .4; font-size: 15px; }
+.footer-rsu a:hover { color: #1C145C; padding-left: 3px; }
+.footer-rsu .footer-contact-row { display: flex; align-items: flex-start; gap: 11px; margin-bottom: 16px; }
+.footer-rsu .footer-contact-icon { width: 34px; height: 34px; border-radius: 8px; background: rgba(28,20,92,.07); border: 1px solid rgba(28,20,92,.1); display: flex; align-items: center; justify-content: center; color: #1C145C; flex-shrink: 0; }
+.footer-rsu .footer-contact-text { font-size: 13px; color: #5a5480; line-height: 1.7; word-break: normal; }
+.footer-rsu hr { height: 1px; background: linear-gradient(90deg, rgba(28,20,92,0) 0%, rgba(28,20,92,.12) 30%, rgba(28,20,92,.12) 70%, rgba(28,20,92,0) 100%); border: none; margin: 36px 0 0; }
+.footer-rsu .footer-bottom { background: rgba(28,20,92,.05); padding: 15px 36px; }
+.footer-rsu .footer-copy { font-size: 12.5px; color: #9994bb; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.footer-rsu .footer-copy-badge { background: rgba(28,20,92,.06); border: 1px solid rgba(28,20,92,.12); border-radius: 20px; padding: 4px 14px; font-size: 11.5px; color: #7a74a0; white-space: nowrap; }
+.footer-rsu .footer-accent-dot { display: inline-block; width: 3px; height: 3px; border-radius: 50%; background: #1C145C; opacity: .25; margin: 0 8px; }
+
+@media(max-width:991px) {
+    .footer-rsu { padding: 45px 0 0; }
+    .footer-rsu .row > div { margin-bottom: 24px; }
+    .footer-rsu .footer-desc { max-width: 100%; }
+}
+
+@media(max-width:768px) {
+    .footer-rsu { padding: 40px 0 0; }
+    .footer-rsu .container-fluid { padding-left: 20px !important; padding-right: 20px !important; }
+    .footer-rsu .footer-copy { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .footer-rsu .footer-bottom { padding: 15px 20px; }
+    .footer-rsu a:hover { padding-left: 0; }
+    .footer-rsu .footer-logo { height: 34px; }
+}
 </style>
 
 
@@ -682,526 +985,180 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 <!-- END NAVBAR -->
 
-<section class="schedule-section">
-<div class="container">
 
-    <!-- FILTER BOX -->
-<div class="schedule-filter">
-
-    <form action="{{ url('/jadwaldokter') }}" method="GET" id="searchForm">
-
-        <div class="search-wrap">
-
-            {{-- supaya filter hari tidak hilang saat search --}}
-            @if(request('hari'))
-                <input type="hidden" name="hari" value="{{ request('hari') }}">
-            @endif
-
-            <input
-                type="text"
-                name="search"
-                id="searchInput"
-                class="search-input"
-                placeholder="Cari nama dokter atau spesialisasi"
-                value="{{ request('search') }}"
-                autocomplete="off"
-            >
-
-            <button type="submit" class="search-btn">
-                <i class="bi bi-search"></i> Cari
-            </button>
-
-        </div>
-
-    </form>
-
-    <div class="filter-title">Filter Hari</div>
-
-    <div class="day-list">
-
-        <a href="{{ url('/jadwaldokter') }}"
-           class="{{ request('hari') ? '' : 'active' }}">
-            Semua Hari
-        </a>
-
-        <a href="{{ url('/jadwaldokter?hari=Senin&search='.request('search')) }}"
-           class="{{ request('hari') == 'Senin' ? 'active' : '' }}">
-            Senin
-        </a>
-
-        <a href="{{ url('/jadwaldokter?hari=Selasa&search='.request('search')) }}"
-           class="{{ request('hari') == 'Selasa' ? 'active' : '' }}">
-            Selasa
-        </a>
-
-        <a href="{{ url('/jadwaldokter?hari=Rabu&search='.request('search')) }}"
-           class="{{ request('hari') == 'Rabu' ? 'active' : '' }}">
-            Rabu
-        </a>
-
-        <a href="{{ url('/jadwaldokter?hari=Kamis&search='.request('search')) }}"
-           class="{{ request('hari') == 'Kamis' ? 'active' : '' }}">
-            Kamis
-        </a>
-
-        <a href="{{ url('/jadwaldokter?hari=Jumat&search='.request('search')) }}"
-           class="{{ request('hari') == 'Jumat' ? 'active' : '' }}">
-            Jumat
-        </a>
-
-        <a href="{{ url('/jadwaldokter?hari=Sabtu&search='.request('search')) }}"
-           class="{{ request('hari') == 'Sabtu' ? 'active' : '' }}">
-            Sabtu
-        </a>
-
-    </div>
-
-</div>
-
-    @foreach($dokter as $item)
-
-<div class="schedule-box"
-     data-nama="{{ strtolower($item->nama) }}"
-     data-spesialis="{{ strtolower($item->spesialis) }}"
-     data-hari="{{ strtolower($item->jadwal->pluck('hari')->map(fn($h) => strtolower(trim($h)))->implode(',')) }}">
-    <div class="schedule-grid">
-
-        <!-- LEFT -->
-        <div class="doctor-card">
-            <img src="{{ asset('images/beranda/' . $item->foto) }}">
-            <div>
-                <div class="doctor-name">{{ $item->nama }}</div>
-                <div class="doctor-specialist">{{ $item->spesialis }}</div>
+<!-- ============================================================
+     HERO JADWAL DOKTER
+============================================================ -->
+<section class="hero-jadwal">
+    <div class="hero-ornament"></div>
+    <div class="container hero-content">
+        <div class="row w-100">
+            <div class="col-md-7 text-start">
+                <span class="hero-eyebrow"><i class="bi bi-calendar2-week me-1"></i> RSU Allam Medica</span>
+                <h1>Jadwal Dokter</h1>
+                <p>Temukan jadwal praktek dokter spesialis dan umum kami. Cari berdasarkan nama dokter, spesialisasi, atau filter berdasarkan hari.</p>
             </div>
         </div>
+    </div>
+    <div class="hero-wave">
+        <svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <path fill="#ffffff" d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L0,120Z"></path>
+        </svg>
+    </div>
+</section>
 
-        <!-- RIGHT -->
-        <div class="practice-area">
-            <div class="practice-title">JADWAL PRAKTEK DOKTER</div>
 
-            @php
-                $hariList = ['Senin','Selasa','Rabu','Kamis','Jumat','Sabtu','Minggu'];
+<!-- ============================================================
+     SECTION JADWAL
+============================================================ -->
+<section class="schedule-section">
 
-                $jadwalGrouped = $item->jadwal->groupBy(function ($j) {
-                    return ucfirst(strtolower(trim($j->hari)));
-                });
-            @endphp
+    <!-- Ornamen dekoratif -->
+    <div class="sched-ornament-tr"></div>
+    <div class="sched-ornament-bl"></div>
+    <div class="sched-ornament-mid"></div>
+    <div class="sched-ornament-tl"></div>
 
-            <div class="day-row">
-                @foreach($hariList as $h)
+    <div class="container">
 
-                    @php
-                        $jadwal = $jadwalGrouped[$h][0] ?? null;
-                    @endphp
+        <!-- Judul section -->
+        <div class="schedule-section-title">
+            <span class="eyebrow">Informasi Praktek</span>
+            <h2>Jadwal Dokter Praktek</h2>
+        </div>
 
-                    <div class="day-col {{ !$jadwal ? 'libur' : '' }}">
+        <!-- FILTER BOX -->
+        <div class="schedule-filter">
 
-                        <div class="day-head">{{ $h }}</div>
+            <form action="{{ url('/jadwaldokter') }}" method="GET" id="searchForm">
 
-                        <div class="day-body">
-                            @if($jadwal)
-                                <div class="clinic">{{ $jadwal->klinik }}</div>
-                                <div class="time">{{ $jadwal->jam }}</div>
-                                <div class="note">{{ $jadwal->note ?? '-' }}</div>
-                            @else
-                                <div class="clinic">-</div>
-                                <div class="time">Libur</div>
-                            @endif
-                        </div>
+                @if(request('hari'))
+                    <input type="hidden" name="hari" value="{{ request('hari') }}">
+                @endif
 
-                    </div>
+                <div class="search-wrap">
+                    <input
+                        type="text"
+                        name="search"
+                        id="searchInput"
+                        class="search-input"
+                        placeholder="Cari nama dokter atau spesialisasi..."
+                        value="{{ request('search') }}"
+                        autocomplete="off"
+                    >
+                    <button type="submit" class="search-btn">
+                        <i class="bi bi-search"></i> Cari
+                    </button>
+                </div>
 
+            </form>
+
+            <div class="filter-title">Filter Hari</div>
+
+            <div class="day-list">
+                <a href="{{ url('/jadwaldokter') }}"
+                   class="{{ request('hari') ? '' : 'active' }}">
+                    Semua Hari
+                </a>
+                @foreach(['Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'] as $hari)
+                <a href="{{ url('/jadwaldokter?hari='.$hari.'&search='.request('search')) }}"
+                   class="{{ request('hari') == $hari ? 'active' : '' }}">
+                    {{ $hari }}
+                </a>
                 @endforeach
             </div>
 
         </div>
+        {{-- END FILTER --}}
+
+
+        {{-- DAFTAR DOKTER --}}
+        @forelse($dokter as $item)
+
+        <div class="schedule-box"
+             data-nama="{{ strtolower($item->nama) }}"
+             data-spesialis="{{ strtolower($item->spesialis) }}"
+             data-hari="{{ strtolower($item->jadwal->pluck('hari')->map(fn($h) => strtolower(trim($h)))->implode(',')) }}">
+
+            <div class="schedule-grid">
+
+                {{-- LEFT: DOCTOR CARD --}}
+                <div class="doctor-card">
+                    @if($item->foto && file_exists(public_path('images/beranda/'.$item->foto)))
+                        <img src="{{ asset('images/beranda/' . $item->foto) }}" alt="{{ $item->nama }}">
+                    @else
+                        <img src="{{ asset('images/beranda/default-dokter.png') }}" alt="{{ $item->nama }}">
+                    @endif
+                    {{-- Wrapper info nama+spesialis --}}
+                    <div class="doc-info">
+                        <div class="doctor-name">{{ $item->nama }}</div>
+                        <div class="doctor-specialist">{{ $item->spesialis }}</div>
+                    </div>
+                    {{-- Arrow untuk mobile toggle --}}
+                    <i class="bi bi-chevron-down toggle-arrow d-lg-none"></i>
+                </div>
+
+                {{-- RIGHT: JADWAL --}}
+                <div class="practice-area">
+                    <div class="practice-title">Jadwal Praktek Dokter</div>
+
+                    @php
+                        $hariList = ['Senin','Selasa','Rabu','Kamis','Jumat','Sabtu','Minggu'];
+                        $jadwalGrouped = $item->jadwal->groupBy(function ($j) {
+                            return ucfirst(strtolower(trim($j->hari)));
+                        });
+                    @endphp
+
+                    <div class="day-row">
+                        @foreach($hariList as $h)
+                            @php $jadwal = $jadwalGrouped[$h][0] ?? null; @endphp
+                            <div class="day-col {{ !$jadwal ? 'libur' : '' }}">
+                                <div class="day-head">{{ $h }}</div>
+                                <div class="day-body">
+                                    @if($jadwal)
+                                        <div class="clinic">{{ $jadwal->klinik }}</div>
+                                        <div class="time">{{ $jadwal->jam }}</div>
+                                        <div class="note">{{ $jadwal->note ?? '-' }}</div>
+                                    @else
+                                        <div class="clinic">-</div>
+                                        <div class="time">Libur</div>
+                                        <div class="note">-</div>
+                                    @endif
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+
+                </div>
+                {{-- END RIGHT --}}
+
+            </div>
+        </div>
+
+        @empty
+
+        <div class="no-result" style="display:block;">
+            <i class="bi bi-search"></i>
+            <h5>Dokter tidak ditemukan</h5>
+            <p>Coba ubah kata kunci atau filter hari yang dipilih.</p>
+        </div>
+
+        @endforelse
+
+        {{-- Placeholder saat live search tidak menemukan hasil --}}
+        <div class="no-result" id="noResult">
+            <i class="bi bi-search"></i>
+            <h5>Dokter tidak ditemukan</h5>
+            <p>Coba ubah kata kunci atau filter hari yang dipilih.</p>
+        </div>
 
     </div>
-</div>
-
-@endforeach
-
-
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-<script>
-// ================= MOBILE ACCORDION =================
-document.querySelectorAll('.doctor-card').forEach(function(card){
-    card.addEventListener('click', function(){
-        if(window.innerWidth <= 991){
-            card.closest('.schedule-box').classList.toggle('active');
-        }
-    });
-});
-
-// ================= LIVE SEARCH =================
-(function () {
-    const searchInput = document.getElementById('searchInput');
-    const searchForm  = document.getElementById('searchForm');
-    const boxes       = document.querySelectorAll('.schedule-box');
-
-    // Ambil filter hari aktif dari URL (dikirim server)
-    const activeHari = (new URLSearchParams(window.location.search).get('hari') || '').toLowerCase().trim();
-
-    // Fungsi filter: jalankan pencarian teks + hari sekaligus
-    function applyFilter() {
-        const keyword = searchInput.value.toLowerCase().trim();
-
-        boxes.forEach(function (box) {
-            const nama      = box.dataset.nama      || '';
-            const spesialis = box.dataset.spesialis || '';
-            const hariDokter = box.dataset.hari     || ''; // comma-separated lowercase
-
-            // Cek keyword
-            const matchKeyword = keyword === '' ||
-                nama.includes(keyword) ||
-                spesialis.includes(keyword);
-
-            // Cek hari: jika ada filter hari aktif, dokter harus punya jadwal di hari itu
-            const matchHari = activeHari === '' ||
-                hariDokter.split(',').map(h => h.trim()).includes(activeHari);
-
-            box.style.display = (matchKeyword && matchHari) ? '' : 'none';
-        });
-    }
-
-    // Jalankan saat halaman load (untuk filter hari yang sudah aktif)
-    applyFilter();
-
-    // Live search saat mengetik (tanpa enter)
-    let debounceTimer;
-    searchInput.addEventListener('input', function () {
-        clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(applyFilter, 200);
-    });
-
-    // Enter tetap submit form ke server (untuk kompatibilitas pagination dll)
-    searchInput.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter') {
-            searchForm.submit();
-        }
-    });
-
-})();
-</script>
-</div>
 </section>
+
 
 <!-- ============================================================
      FOOTER
 ============================================================ -->
-<style>
-.footer-rsu{
-    background:linear-gradient(
-        to bottom,
-        #ffffff 0%,
-        #fefefd 3%,
-        #fdfcf6 8%,
-        #fcfbf3 13%,
-        #faf8ee 20%,
-        #f7f5e8 30%,
-        #f3f0e1 45%,
-        #ede9d9 65%,
-        #e8e3d2 85%,
-        #e3deca 100%
-    );
-    color:#1C145C;
-    padding:56px 0 0;
-    position:relative;
-    overflow:hidden;
-}
-
-/* ORNAMEN */
-.footer-rsu .footer-ornament{
-    position:absolute;
-    right:-80px;
-    bottom:-150px;
-    width:420px;
-    height:420px;
-    opacity:.07;
-    background-image:url('{{ asset("images/beranda/ornamen.png") }}');
-    background-size:contain;
-    background-repeat:no-repeat;
-    background-position:center;
-    pointer-events:none;
-    z-index:0;
-}
-
-.footer-rsu .footer-ornament2{
-    position:absolute;
-    left:-100px;
-    top:40px;
-    width:340px;
-    height:340px;
-    opacity:.04;
-    background-image:url('{{ asset("images/beranda/ornamen.png") }}');
-    background-size:contain;
-    background-repeat:no-repeat;
-    background-position:center;
-    pointer-events:none;
-    z-index:0;
-}
-
-/* CONTAINER */
-.footer-rsu .container-fluid{
-    max-width:1550px;
-    position:relative;
-    z-index:1;
-}
-
-/* GRID */
-.footer-rsu .row{
-    --bs-gutter-x:3.5rem;
-}
-
-/* LOGO */
-.footer-rsu .footer-logo{
-    height:40px;
-    width:auto;
-    display:block;
-    margin-bottom:14px;
-}
-
-/* TITLE */
-.footer-rsu .footer-title{
-    font-size:16px;
-    font-weight:700;
-    color:#1C145C;
-    margin-bottom:8px;
-}
-
-.footer-rsu .footer-desc{
-    font-size:13px;
-    line-height:1.8;
-    color:#5a5480;
-    margin-bottom:20px;
-    max-width:340px;
-}
-
-/* SOCIAL */
-.footer-rsu .footer-social{
-    display:flex;
-    gap:10px;
-    margin-bottom:22px;
-}
-
-.footer-rsu .footer-social a{
-    width:36px;
-    height:36px;
-    border-radius:50%;
-    background:rgba(28,20,92,.07);
-    border:1px solid rgba(28,20,92,.15);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#1C145C;
-    text-decoration:none;
-    font-size:15px;
-    transition:.25s;
-}
-
-.footer-rsu .footer-social a:hover{
-    background:#1C145C;
-    color:#fff;
-    transform:translateY(-2px);
-}
-
-/* MITRA */
-.footer-rsu .footer-mitra-label{
-    font-size:11px;
-    color:#9994bb;
-    text-transform:uppercase;
-    letter-spacing:.08em;
-    margin-bottom:10px;
-}
-
-.footer-rsu .footer-mitra{
-    display:flex;
-    gap:10px;
-    align-items:center;
-    flex-wrap:wrap;
-}
-
-.footer-rsu .footer-mitra img:nth-child(1){
-    height:33px;
-}
-
-.footer-rsu .footer-mitra img:nth-child(2){
-    height:23px;
-}
-
-/* HEADING */
-.footer-rsu .footer-heading{
-    font-weight:900;
-    font-size:12px;
-    color:#1C145C;
-    text-transform:uppercase;
-    letter-spacing:.14em;
-    margin-bottom:18px;
-    padding-bottom:10px;
-    border-bottom:1.5px solid rgba(28,20,92,.12);
-    white-space:nowrap;
-}
-
-/* LIST */
-.footer-rsu ul{
-    list-style:none;
-    padding:0;
-    margin:0;
-}
-
-.footer-rsu ul li{
-    margin-bottom:10px;
-}
-
-.footer-rsu a{
-    color:#5a5480;
-    text-decoration:none;
-    font-size:13.5px;
-    transition:.2s;
-    display:inline-flex;
-    align-items:center;
-    gap:5px;
-}
-
-.footer-rsu ul li a::before{
-    content:'›';
-    color:#1C145C;
-    opacity:.4;
-    font-size:15px;
-}
-
-.footer-rsu a:hover{
-    color:#1C145C;
-    padding-left:3px;
-}
-
-/* CONTACT */
-.footer-rsu .footer-contact-row{
-    display:flex;
-    align-items:flex-start;
-    gap:11px;
-    margin-bottom:16px;
-}
-
-.footer-rsu .footer-contact-icon{
-    width:34px;
-    height:34px;
-    border-radius:8px;
-    background:rgba(28,20,92,.07);
-    border:1px solid rgba(28,20,92,.1);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#1C145C;
-    flex-shrink:0;
-}
-
-.footer-rsu .footer-contact-text{
-    font-size:13px;
-    color:#5a5480;
-    line-height:1.7;
-    word-break:normal;
-}
-
-/* HR */
-.footer-rsu hr{
-    height:1px;
-    background:linear-gradient(
-        90deg,
-        rgba(28,20,92,0) 0%,
-        rgba(28,20,92,.12) 30%,
-        rgba(28,20,92,.12) 70%,
-        rgba(28,20,92,0) 100%
-    );
-    border:none;
-    margin:36px 0 0;
-}
-
-/* BOTTOM */
-.footer-rsu .footer-bottom{
-    background:rgba(28,20,92,.05);
-    padding:15px 36px;
-}
-
-.footer-rsu .footer-copy{
-    font-size:12.5px;
-    color:#9994bb;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:12px;
-}
-
-.footer-rsu .footer-copy-badge{
-    background:rgba(28,20,92,.06);
-    border:1px solid rgba(28,20,92,.12);
-    border-radius:20px;
-    padding:4px 14px;
-    font-size:11.5px;
-    color:#7a74a0;
-    white-space:nowrap;
-}
-
-.footer-rsu .footer-accent-dot{
-    display:inline-block;
-    width:3px;
-    height:3px;
-    border-radius:50%;
-    background:#1C145C;
-    opacity:.25;
-    margin:0 8px;
-}
-
-/* TABLET */
-@media(max-width:991px){
-
-    .footer-rsu{
-        padding:45px 0 0;
-    }
-
-    .footer-rsu .row > div{
-        margin-bottom:24px;
-    }
-
-    .footer-rsu .footer-desc{
-        max-width:100%;
-    }
-}
-
-/* MOBILE */
-@media(max-width:768px){
-
-    .footer-rsu{
-        padding:40px 0 0;
-    }
-
-    .footer-rsu .container-fluid{
-        padding-left:20px !important;
-        padding-right:20px !important;
-    }
-
-    .footer-rsu .footer-copy{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:8px;
-    }
-
-    .footer-rsu .footer-bottom{
-        padding:15px 20px;
-    }
-
-    .footer-rsu a:hover{
-        padding-left:0;
-    }
-
-    .footer-rsu .footer-logo{
-        height:34px;
-    }
-}
-</style>
-
 <footer class="footer-rsu">
 
     <div class="footer-ornament"></div>
@@ -1213,49 +1170,28 @@ document.querySelectorAll('.doctor-card').forEach(function(card){
 
             <!-- BRAND -->
             <div class="col-lg-3 col-md-12">
-
-                <img src="{{ asset('images/beranda/logo-almed.png') }}"
-                     class="footer-logo"
-                     alt="Logo RSU Allam Medica">
-
-                <h5 class="footer-title">
-                    RSU Allam Medica Bumiayu
-                </h5>
-
+                <img src="{{ asset('images/beranda/logo-almed.png') }}" class="footer-logo" alt="Logo RSU Allam Medica">
+                <h5 class="footer-title">RSU Allam Medica Bumiayu</h5>
                 <p class="footer-desc">
                     Jl. Pangeran Diponegoro No. 609,
                     Jatisawit, Bumiayu, Kabupaten Brebes,
                     Jawa Tengah 52273
                 </p>
-
                 <div class="footer-social">
-                    <a href="https://www.tiktok.com/@rsuallammedicabumiayu" target="_blank">
-                        <i class="bi bi-tiktok"></i>
-                    </a>
-                    <a href="https://www.facebook.com/allam.medicabmy" target="_blank">
-                        <i class="bi bi-facebook"></i>
-                    </a>
-                    <a href="https://www.instagram.com/allam.medica/" target="_blank">
-                        <i class="bi bi-instagram"></i>
-                    </a>
+                    <a href="https://www.tiktok.com/@rsuallammedicabumiayu" target="_blank"><i class="bi bi-tiktok"></i></a>
+                    <a href="https://www.facebook.com/allam.medicabmy" target="_blank"><i class="bi bi-facebook"></i></a>
+                    <a href="https://www.instagram.com/allam.medica/" target="_blank"><i class="bi bi-instagram"></i></a>
                 </div>
-
-                <div class="footer-mitra-label">
-                    Akreditasi & Mitra
-                </div>
-
+                <div class="footer-mitra-label">Akreditasi & Mitra</div>
                 <div class="footer-mitra">
                     <img src="{{ asset('images/beranda/paripurna.png') }}" alt="">
                     <img src="{{ asset('images/beranda/bpjs.png') }}" alt="">
                 </div>
-
             </div>
 
             <!-- TAUTAN CEPAT -->
             <div class="col-lg-2 col-md-4 col-6">
-
                 <h6 class="footer-heading">Tautan Cepat</h6>
-
                 <ul>
                     <li><a href="{{ route('beranda') }}">Beranda</a></li>
                     <li><a href="{{ url('/artikel') }}">Artikel</a></li>
@@ -1264,27 +1200,21 @@ document.querySelectorAll('.doctor-card').forEach(function(card){
                     <li><a href="{{ url('/mutu') }}">Mutu</a></li>
                     <li><a href="{{ url('/kontak') }}">Kontak</a></li>
                 </ul>
-
             </div>
 
             <!-- MENU -->
             <div class="col-lg-2 col-md-4 col-6">
-
                 <h6 class="footer-heading">Menu</h6>
-
                 <ul>
                     <li><a href="{{ url('/karir') }}">Karir</a></li>
                     <li><a href="{{ url('/berita') }}">Berita</a></li>
                     <li><a href="{{ url('/video') }}">Video</a></li>
                 </ul>
-
             </div>
 
             <!-- LAYANAN -->
             <div class="col-lg-2 col-md-4 col-6">
-
                 <h6 class="footer-heading">Layanan</h6>
-
                 <ul>
                     <li><a href="{{ url('/layanan#igd') }}">IGD 24 Jam</a></li>
                     <li><a href="{{ url('/layanan#rawatjalan') }}">Rawat Jalan</a></li>
@@ -1295,52 +1225,33 @@ document.querySelectorAll('.doctor-card').forEach(function(card){
                     <li><a href="{{ url('/layanan#farmasi') }}">Farmasi</a></li>
                     <li><a href="{{ url('/layanan#mcu') }}">Medical Check Up</a></li>
                 </ul>
-
             </div>
 
             <!-- KONTAK -->
             <div class="col-lg-3 col-md-12">
-
                 <h6 class="footer-heading">Hubungi Kami</h6>
-
                 <div class="footer-contact-row">
-                    <div class="footer-contact-icon">
-                        <i class="bi bi-telephone-fill"></i>
-                    </div>
-                    <div class="footer-contact-text">
-                        (0289) 430822
-                    </div>
+                    <div class="footer-contact-icon"><i class="bi bi-telephone-fill"></i></div>
+                    <div class="footer-contact-text">(0289) 430822</div>
                 </div>
-
                 <div class="footer-contact-row">
-                    <div class="footer-contact-icon">
-                        <i class="bi bi-envelope-fill"></i>
-                    </div>
-                    <div class="footer-contact-text">
-                        allam.medica@yahoo.co.id
-                    </div>
+                    <div class="footer-contact-icon"><i class="bi bi-envelope-fill"></i></div>
+                    <div class="footer-contact-text">allam.medica@yahoo.co.id</div>
                 </div>
-
                 <div class="footer-contact-row">
-                    <div class="footer-contact-icon">
-                        <i class="bi bi-clock-fill"></i>
-                    </div>
+                    <div class="footer-contact-icon"><i class="bi bi-clock-fill"></i></div>
                     <div class="footer-contact-text">
                         IGD, Lab & Farmasi : 24 Jam<br>
                         Rawat Jalan : Sen – Sab 07.00 – 21.00
                     </div>
                 </div>
-
                 <div class="footer-contact-row">
-                    <div class="footer-contact-icon">
-                        <i class="bi bi-geo-alt-fill"></i>
-                    </div>
+                    <div class="footer-contact-icon"><i class="bi bi-geo-alt-fill"></i></div>
                     <div class="footer-contact-text">
                         Jl. Pangeran Diponegoro No. 609,<br>
                         Bumiayu, Brebes
                     </div>
                 </div>
-
             </div>
 
         </div>
@@ -1350,24 +1261,81 @@ document.querySelectorAll('.doctor-card').forEach(function(card){
     </div>
 
     <div class="footer-bottom">
-
         <div class="container-fluid px-lg-5 px-4">
-
             <div class="footer-copy">
                 <span>
                     © 2026 RSU Allam Medica
                     <span class="footer-accent-dot"></span>
                     Hak Cipta Dilindungi
                 </span>
-
-                <span class="footer-copy-badge">
-                    Melayani dengan Sepenuh Hati
-                </span>
+                <span class="footer-copy-badge">Melayani dengan Sepenuh Hati</span>
             </div>
-
         </div>
-
     </div>
 
 </footer>
 <!-- END FOOTER -->
+
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+// ================= MOBILE ACCORDION =================
+document.querySelectorAll('.doctor-card').forEach(function(card) {
+    card.addEventListener('click', function() {
+        if (window.innerWidth <= 991) {
+            card.closest('.schedule-box').classList.toggle('active');
+        }
+    });
+});
+
+// ================= LIVE SEARCH =================
+(function () {
+    const searchInput = document.getElementById('searchInput');
+    const searchForm  = document.getElementById('searchForm');
+    const boxes       = document.querySelectorAll('.schedule-box');
+    const noResult    = document.getElementById('noResult');
+
+    const activeHari  = (new URLSearchParams(window.location.search).get('hari') || '').toLowerCase().trim();
+
+    function applyFilter() {
+        const keyword = searchInput.value.toLowerCase().trim();
+        let visibleCount = 0;
+
+        boxes.forEach(function (box) {
+            const nama       = box.dataset.nama      || '';
+            const spesialis  = box.dataset.spesialis || '';
+            const hariDokter = box.dataset.hari      || '';
+
+            const matchKeyword = keyword === '' ||
+                nama.includes(keyword) ||
+                spesialis.includes(keyword);
+
+            const matchHari = activeHari === '' ||
+                hariDokter.split(',').map(h => h.trim()).includes(activeHari);
+
+            const show = matchKeyword && matchHari;
+            box.style.display = show ? '' : 'none';
+            if (show) visibleCount++;
+        });
+
+        // Tampilkan pesan tidak ada hasil
+        if (noResult) {
+            noResult.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+    }
+
+    applyFilter();
+
+    let debounceTimer;
+    searchInput.addEventListener('input', function () {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(applyFilter, 200);
+    });
+
+    searchInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') { searchForm.submit(); }
+    });
+})();
+</script>
