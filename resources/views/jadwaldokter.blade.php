@@ -129,13 +129,17 @@ body {
     background:
         linear-gradient(rgba(0,0,0,0.50), rgba(0,0,0,0.50)),
         url('{{ asset("images/beranda/soretentangkami.png") }}') center/cover no-repeat;
+    /* Naikan hero agar menempel tepat di bawah topbar+navbar */
+    margin-top: calc(-1 * (38px + 70px));
+    padding-top: calc(38px + 70px);
     height: 80vh;
-    min-height: 320px;
-    max-height: 520px;
+    min-height: 360px;
+    max-height: 560px;
     color: #fff;
     overflow: hidden;
     display: flex;
     align-items: center;
+    box-sizing: border-box;
 }
 
 /* Ornamen di dalam hero */
@@ -222,7 +226,7 @@ body {
     right: -100px;
     top: -60px;
     width: 420px;
-    height: 420px;
+    height: 520px;
     opacity: .045;
     background-image: url('{{ asset("images/beranda/ornamen.png") }}');
     background-size: contain;
@@ -237,7 +241,7 @@ body {
     left: -120px;
     bottom: -100px;
     width: 480px;
-    height: 480px;
+    height: 620px;
     opacity: .04;
     background-image: url('{{ asset("images/beranda/ornamen.png") }}');
     background-size: contain;
@@ -592,7 +596,12 @@ body {
     body { padding-top: calc(38px + 64px); }
 
     /* Hero */
-    .hero-jadwal { max-height: 400px; min-height: 260px; }
+    .hero-jadwal {
+        margin-top: calc(-1 * (38px + 64px));
+        padding-top: calc(38px + 64px);
+        max-height: 400px;
+        min-height: 260px;
+    }
     .hero-jadwal h1 { font-size: clamp(20px, 5vw, 30px); margin-bottom: 10px; }
     .hero-jadwal p { font-size: 13px; }
 
@@ -692,7 +701,7 @@ body {
 /* ================= MOBILE KECIL (≤576px) ================= */
 @media(max-width:576px) {
     /* Hero */
-    .hero-jadwal { max-height: 320px; min-height: 220px; }
+    .hero-jadwal { max-height: 320px; min-height: 240px; }
     .hero-jadwal h1 { font-size: clamp(18px, 5.5vw, 24px); }
     .hero-jadwal p { font-size: 12px; line-height: 1.6; }
     .hero-jadwal .hero-eyebrow { font-size: 10px; }

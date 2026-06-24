@@ -2,135 +2,26 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>RSU Allam Medica - Beranda</title>
+    <title>RSU Allam Medica - Tentang Kami</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="icon" type="image/png" href="{{ asset('assets/logoalmed.png') }}">
-
-    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-
 </head>
 
 <style>
-
-    /* ==========================================
-   ORNAMEN HALAMAN TENTANG KAMI
-========================================== */
-
-.profile-section,
-.medica-section,
-.visi-misi-section,
-.timeline-section,
-.filosofi-section{
-    position:relative;
-    overflow:hidden;
-}
-
-/* Ornamen kanan atas */
-.profile-section::before{
-    content:'';
-    position:absolute;
-    top:-20px;
-    right:-120px;
-    width:380px;
-    height:380px;
-    background:url('{{ asset("images/beranda/ornamen.png") }}')
-               center/contain no-repeat;
-    opacity:.04;
-    pointer-events:none;
-    z-index:0;
-}
-
-/* Ornamen kiri tengah */
-.medica-section::after{
-    content:'';
-    position:absolute;
-    left:-140px;
-    top:50%;
-    transform:translateY(-50%);
-    width:340px;
-    height:340px;
-    background:url('{{ asset("images/beranda/ornamen.png") }}')
-               center/contain no-repeat;
-    opacity:.035;
-    pointer-events:none;
-    z-index:0;
-}
-
-/* Ornamen kanan visi misi */
-.visi-misi-section::before{
-    content:'';
-    position:absolute;
-    right:-150px;
-    bottom:-20px;
-    width:400px;
-    height:400px;
-    background:url('{{ asset("images/beranda/ornamen.png") }}')
-               center/contain no-repeat;
-    opacity:.035;
-    pointer-events:none;
-    z-index:0;
-}
-
-/* Ornamen timeline */
-.timeline-section::after{
-    content:'';
-    position:absolute;
-    left:-150px;
-    bottom:-20px;
-    width:420px;
-    height:420px;
-    background:url('{{ asset("images/beranda/ornamen.png") }}')
-               center/contain no-repeat;
-    opacity:.04;
-    pointer-events:none;
-    z-index:0;
-}
-
-/* Ornamen filosofi */
-.filosofi-section::before{
-    content:'';
-    position:absolute;
-    right:-20px;
-    top:-20px;
-    width:300px;
-    height:300px;
-    background:url('{{ asset("images/beranda/ornamen.png") }}')
-               center/contain no-repeat;
-    opacity:.035;
-    pointer-events:none;
-    z-index:0;
-}
-
-/* Pastikan isi berada di atas ornamen */
-.profile-section .container,
-.medica-section .container,
-.visi-misi-section .container,
-.timeline-section .container,
-.filosofi-section .container{
-    position:relative;
-    z-index:2;
-}
 @font-face {
     font-family: 'GothamBlack';
     src: url('{{ asset('fonts/Gotham-Black.otf') }}') format('opentype');
     font-weight: 900;
     font-style: normal;
 }
+h1, h2, h3, h4 { font-family: 'GothamBlack', sans-serif !important; }
 
-h1, h2, h3, h4 {
-    font-family: 'GothamBlack', sans-serif !important;
-}
-
-/* ========================================
-   BASE
-======================================== */
 body {
     font-family: 'Segoe UI', sans-serif;
     background: #ffffff;
@@ -176,15 +67,84 @@ body {
 .chevron { font-size:11px;opacity:.6;transition:.25s; }
 .drop-wrap:hover .chevron { transform:rotate(180deg); }
 .nav-cta { position:relative;z-index:2; }
-.btn-kontak { padding:10px 22px;border-radius:50px;background:#1C145C;color:#fff!important;text-decoration:none!important;font-size:14px;font-weight:600;display:inline-block;border:none;box-shadow:0 8px 20px rgba(28,20,92,.25);transition:.2s; }
-.btn-kontak:hover { background:#2a1e8a;transform:translateY(-1px); }
 .nav-burger { display:none;flex-direction:column;gap:5px;cursor:pointer;border:none;background:transparent;padding:6px;position:relative;z-index:2; }
 .nav-burger span { width:22px;height:2px;background:#1C145C;border-radius:2px;display:block;transition:.3s; }
 .nav-burger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
 .nav-burger.open span:nth-child(2) { opacity:0; }
 .nav-burger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
 
-/* DRAWER (MOBILE) */
+/* ============================================================
+   KONTAK MEGA DROPDOWN (desktop)
+============================================================ */
+.kontak-wrap { position: relative; }
+.btn-kontak {
+    padding:10px 22px;border-radius:50px;background:#1C145C;color:#fff!important;
+    text-decoration:none!important;font-size:14px;font-weight:600;display:inline-flex;
+    align-items:center;gap:6px;border:none;box-shadow:0 8px 20px rgba(28,20,92,.25);
+    transition:.2s;cursor:pointer;font-family:inherit;
+}
+.btn-kontak:hover { background:#2a1e8a;transform:translateY(-1px); }
+
+.kontak-mega {
+    position: absolute;top: calc(100% + 18px);right: 0;width: 780px;
+    max-width: calc(100vw - 40px);background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(24px);-webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255,255,255,0.35);border-radius: 24px;
+    box-shadow: 0 24px 60px rgba(15,23,42,.16), 0 2px 12px rgba(15,23,42,.06);
+    padding: 28px;opacity: 0;visibility: hidden;transform: translateY(12px);
+    transition: opacity .26s, visibility .26s, transform .26s;z-index: 9999;
+}
+.kontak-wrap:hover .kontak-mega,
+.kontak-mega:hover,
+.kontak-mega.open { opacity: 1;visibility: visible;transform: translateY(0); }
+.kontak-mega::before {
+    content:'';position:absolute;top:0;left:24px;right:24px;height:2px;
+    background:linear-gradient(90deg,transparent,rgba(28,20,92,.2) 50%,transparent);border-radius:2px;
+}
+.kontak-mega-grid { display: grid;grid-template-columns: 1.1fr 0.9fr;gap: 22px; }
+.kontak-form-panel { background: #1C145C;border-radius: 16px;padding: 22px 20px;position: relative;overflow: hidden; }
+.kontak-form-panel .form-ornament {
+    position: absolute;bottom: -50px;right: -50px;width: 160px;height: 160px;opacity: .07;
+    background-image: url('{{ asset("images/beranda/ornamen.png") }}');
+    background-size: contain;background-repeat: no-repeat;pointer-events: none;filter: brightness(10);
+}
+.kontak-form-panel > *:not(.form-ornament) { position: relative;z-index: 1; }
+.kontak-form-sublabel { font-size: 10px;font-weight: 700;color: rgba(254,252,241,.45);text-transform: uppercase;letter-spacing: .12em;margin-bottom: 4px; }
+.kontak-form-title { font-family: 'GothamBlack', sans-serif !important;font-size: 19px;color: #FEFCF1;margin-bottom: 16px;line-height: 1.2; }
+.kontak-form-title span { background: linear-gradient(90deg, #a89eff, #FEFCF1);-webkit-background-clip: text;-webkit-text-fill-color: transparent;background-clip: text; }
+.ck-field { margin-bottom: 10px; }
+.ck-field label { display:block;font-size:10.5px;color:rgba(254,252,241,.55);margin-bottom:3px;letter-spacing:.04em; }
+.ck-field input, .ck-field textarea {
+    width: 100%;background: rgba(255,255,255,.1);border: 1px solid rgba(254,252,241,.18);
+    border-radius: 7px;padding: 8px 11px;font-size: 12.5px;color: #FEFCF1;
+    outline: none;transition: .2s;font-family: inherit;box-sizing: border-box;
+}
+.ck-field input::placeholder, .ck-field textarea::placeholder { color: rgba(254,252,241,.35); }
+.ck-field input:focus, .ck-field textarea:focus { border-color: rgba(254,252,241,.5);background:rgba(255,255,255,.15); }
+.ck-field textarea { resize:vertical;min-height:72px; }
+.ck-row { display:grid;grid-template-columns:1fr 1fr;gap:8px; }
+.btn-send-mega {
+    margin-top: 12px;width: 100%;padding: 10px;background: #FEFCF1;color: #1C145C;
+    border: none;border-radius: 50px;font-size: 13px;font-weight: 700;cursor: pointer;
+    transition: .2s;display: flex;align-items: center;justify-content: center;gap: 7px;font-family: inherit;
+}
+.btn-send-mega:hover { background:#fff;transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.18); }
+.kontak-info-panel { display:flex;flex-direction:column;gap:14px; }
+.kontak-info-grid { display: grid;grid-template-columns: 1fr 1fr;gap: 10px; }
+.kontak-info-card { background: #f8f7ff;border: 1px solid #ece9f8;border-radius: 12px;padding: 12px;text-align: center; }
+.kontak-info-icon { width: 36px;height: 36px;border-radius: 10px;display: flex;align-items: center;justify-content: center;font-size: 16px;margin: 0 auto 8px; }
+.ci-phone { background:rgba(25,135,84,.12);color:#198754; }
+.ci-email { background:rgba(220,53,69,.1);color:#dc3545; }
+.ci-igd   { background:rgba(245,158,11,.12);color:#d97706; }
+.ci-map   { background:rgba(28,20,92,.1);color:#1C145C; }
+.kontak-info-title { font-size:11px;font-weight:700;color:#1C145C;margin-bottom:2px; }
+.kontak-info-val   { font-size:11.5px;color:#5a5480;line-height:1.45; }
+.kontak-map-box { border-radius: 12px;overflow:hidden;border:1px solid #e8e4d8;flex:1; }
+.kontak-map-box iframe { width:100%;height:140px;display:block;border:0; }
+
+/* ============================================================
+   DRAWER (MOBILE)
+============================================================ */
 .nav-overlay { display:none;position:fixed;inset:0;background:rgba(15,23,42,0);z-index:9999990;transition:background .3s; }
 .nav-overlay.show { display:block;background:rgba(15,23,42,0.42); }
 .nav-drawer { position:fixed;top:0;right:0;width:72%;max-width:300px;height:100dvh;z-index:9999995;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);background:rgba(255,255,255,0.97);backdrop-filter:blur(24px) saturate(180%);border-left:1px solid rgba(255,255,255,0.45);box-shadow:-8px 0 32px rgba(15,23,42,.12);display:flex;flex-direction:column;overflow-y:auto;overscroll-behavior:contain; }
@@ -200,8 +160,7 @@ body {
 .d-link.active .d-icon { color:#1C145C; }
 .d-divider { height:1px;background:rgba(0,0,0,.07);margin:4px 2px; }
 .drawer-footer { padding:12px 14px 24px;border-top:1px solid rgba(0,0,0,.07);flex-shrink:0; }
-.drawer-footer .btn-kontak { border-radius:14px;display:block;text-align:center;padding:12px 22px; }
-.d-accordion-btn { display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;border-radius:12px;font-size:14px;font-weight:600;color:#1e293b;cursor:pointer;background:none;border:none;width:100%;font-family:'Plus Jakarta Sans',sans-serif;transition:.16s; }
+.d-accordion-btn { display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;border-radius:12px;font-size:14px;font-weight:600;color:#1e293b;cursor:pointer;background:none;border:none;width:100%;font-family:'Segoe UI',sans-serif;transition:.16s; }
 .d-accordion-btn:hover { background:rgba(28,20,92,.06);color:#1C145C; }
 .d-accordion-btn.active-parent { color:#1C145C; }
 .d-accordion-btn .d-acc-left { display:flex;align-items:center;gap:10px; }
@@ -213,7 +172,73 @@ body {
 .d-sub-link:hover { background:rgba(28,20,92,.06);color:#1C145C; }
 .d-sub-link i { font-size:13px;color:#94a3b8;flex-shrink:0;width:16px;text-align:center; }
 .d-sub-link:hover i { color:#1C145C; }
+.btn-kontak-drawer {
+    border-radius:14px;display:block;text-align:center;padding:12px 22px;
+    background:#1C145C;color:#fff!important;text-decoration:none!important;
+    font-size:14px;font-weight:600;border:none;cursor:pointer;
+    font-family:inherit;width:100%;transition:.2s;
+}
+.btn-kontak-drawer:hover { background:#2a1e8a; }
 
+/* ============================================================
+   BOTTOM SHEET (mobile kontak)
+============================================================ */
+.bs-overlay { display:none;position:fixed;inset:0;background:rgba(15,23,42,0);z-index:10000001;transition:background .3s; }
+.bs-overlay.show { display:block;background:rgba(15,23,42,0.5); }
+.bs-sheet {
+    position:fixed;left:0;right:0;bottom:0;z-index:10000002;background:#fff;
+    border-radius:24px 24px 0 0;box-shadow:0 -8px 40px rgba(15,23,42,.18);
+    transform:translateY(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);
+    height:92dvh;max-height:92dvh;display:flex;flex-direction:column;overflow:hidden;
+}
+.bs-sheet.open { transform:translateY(0); }
+.bs-handle-wrap { flex-shrink:0;display:flex;align-items:center;justify-content:center;padding:10px 16px 6px; }
+.bs-handle { width:40px;height:4px;border-radius:2px;background:rgba(0,0,0,.15); }
+.bs-header { flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 18px 14px;border-bottom:1px solid rgba(0,0,0,.07); }
+.bs-title { font-family:'GothamBlack',sans-serif;font-size:17px;color:#1C145C;margin:0; }
+.bs-close { width:32px;height:32px;border-radius:50%;background:rgba(28,20,92,.08);border:none;display:flex;align-items:center;justify-content:center;color:#1C145C;cursor:pointer;font-size:15px; }
+.bs-body {
+    flex:1;min-height:0;overflow-y:scroll;-webkit-overflow-scrolling:touch;
+    overscroll-behavior:contain;padding:18px;
+    padding-bottom:calc(32px + env(safe-area-inset-bottom));
+    display:flex;flex-direction:column;gap:16px;
+}
+.bs-form-card { background:#1C145C;border-radius:14px;padding:18px 16px;position:relative;overflow:hidden;flex-shrink:0; }
+.bs-form-card .bs-form-ornament {
+    position:absolute;bottom:-40px;right:-40px;width:130px;height:130px;opacity:.07;
+    background-image:url('{{ asset("images/beranda/ornamen.png") }}');
+    background-size:contain;background-repeat:no-repeat;pointer-events:none;filter:brightness(10);
+}
+.bs-form-card > *:not(.bs-form-ornament) { position:relative;z-index:1; }
+.bs-sublabel { font-size:10px;font-weight:700;color:rgba(254,252,241,.45);text-transform:uppercase;letter-spacing:.12em;margin-bottom:3px; }
+.bs-form-title { font-family:'GothamBlack',sans-serif!important;font-size:17px;color:#FEFCF1;margin-bottom:14px; }
+.bs-form-title span { background:linear-gradient(90deg,#a89eff,#FEFCF1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+.bs-form-card .ck-field { margin-bottom:9px; }
+.bs-form-card .ck-field label { font-size:10px;color:rgba(254,252,241,.5);margin-bottom:2px; }
+.bs-form-card .ck-field input,
+.bs-form-card .ck-field textarea {
+    font-size:12px;padding:7px 10px;border-radius:7px;background:rgba(255,255,255,.1);
+    border:1px solid rgba(254,252,241,.18);color:#FEFCF1;width:100%;box-sizing:border-box;
+    outline:none;font-family:inherit;transition:.2s;
+}
+.bs-form-card .ck-field input::placeholder,
+.bs-form-card .ck-field textarea::placeholder { color:rgba(254,252,241,.35); }
+.bs-form-card .ck-field input:focus,
+.bs-form-card .ck-field textarea:focus { border-color:rgba(254,252,241,.5);background:rgba(255,255,255,.15); }
+.bs-form-card .ck-field textarea { min-height:68px;resize:vertical; }
+.btn-send-bs { width:100%;padding:11px;background:#FEFCF1;color:#1C145C;border:none;border-radius:50px;font-size:13px;font-weight:700;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;gap:7px;font-family:inherit;margin-top:10px; }
+.btn-send-bs:hover { background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18); }
+.bs-info-grid { display:grid;grid-template-columns:1fr 1fr;gap:10px;flex-shrink:0; }
+.bs-info-card { background:#f8f7ff;border:1px solid #ece9f8;border-radius:12px;padding:12px;text-align:center; }
+.bs-info-icon { width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;margin:0 auto 7px; }
+.bs-info-title { font-size:11px;font-weight:700;color:#1C145C;margin-bottom:1px; }
+.bs-info-val   { font-size:11px;color:#5a5480;line-height:1.45; }
+.bs-map-box { border-radius:12px;overflow:hidden;border:1px solid #e8e4d8;flex-shrink:0; }
+.bs-map-box iframe { width:100%;height:160px;display:block;border:0; }
+
+/* ============================================================
+   RESPONSIVE NAVBAR
+============================================================ */
 @media(max-width:1100px) { .nav-link-pill{padding:7px 11px;font-size:13px;} }
 @media(max-width:991px) {
     body { padding-top: calc(38px + 64px); }
@@ -221,10 +246,170 @@ body {
     .navbar-float { border-radius:26px;padding:8px 14px; }
     .nav-links,.nav-cta { display:none; }
     .nav-burger { display:flex; }
+    .kontak-mega { display:none !important; }
 }
 @media(max-width:480px) { .navbar-float { border-radius:22px; } }
+
+/* ============================================================
+   ORNAMEN HALAMAN TENTANG KAMI
+============================================================ */
+.profile-section,.medica-section,.visi-misi-section,.timeline-section,.filosofi-section { position:relative;overflow:hidden; }
+.profile-section::before { content:'';position:absolute;top:-20px;right:-120px;width:380px;height:380px;background:url('{{ asset("images/beranda/ornamen.png") }}') center/contain no-repeat;opacity:.04;pointer-events:none;z-index:0; }
+.medica-section::after { content:'';position:absolute;left:-140px;top:50%;transform:translateY(-50%);width:340px;height:340px;background:url('{{ asset("images/beranda/ornamen.png") }}') center/contain no-repeat;opacity:.035;pointer-events:none;z-index:0; }
+.visi-misi-section::before { content:'';position:absolute;right:-150px;bottom:-20px;width:400px;height:400px;background:url('{{ asset("images/beranda/ornamen.png") }}') center/contain no-repeat;opacity:.035;pointer-events:none;z-index:0; }
+.timeline-section::after { content:'';position:absolute;left:-150px;bottom:-20px;width:420px;height:420px;background:url('{{ asset("images/beranda/ornamen.png") }}') center/contain no-repeat;opacity:.04;pointer-events:none;z-index:0; }
+.filosofi-section::before { content:'';position:absolute;right:-20px;top:-20px;width:300px;height:300px;background:url('{{ asset("images/beranda/ornamen.png") }}') center/contain no-repeat;opacity:.035;pointer-events:none;z-index:0; }
+.profile-section .container,.medica-section .container,.visi-misi-section .container,.timeline-section .container,.filosofi-section .container { position:relative;z-index:2; }
+
+/* ============================================================
+   PROFIL
+============================================================ */
+.profile-section { background:#fff;padding:60px 0; }
+.profile-text { font-size:15px;color:#555;line-height:1.7;text-align:justify;text-justify:inter-word; }
+.info-card { background:#fff;border-radius:12px;padding:14px;box-shadow:0 5px 15px rgba(0,0,0,0.05);transition:0.3s;display:flex;gap:10px;align-items:flex-start; }
+.info-card:hover { transform:translateY(-4px);box-shadow:0 10px 20px rgba(0,0,0,0.08); }
+.info-card small { font-size:11px;color:#888; }
+.info-card b { font-size:12.5px;font-weight:600;color:#333;line-height:1.5; }
+.icon-box { width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px; }
+.icon-primary { background:rgba(28,20,92,0.1);color:#1C145C; }
+.icon-success { background:rgba(40,167,69,0.1);color:#28a745; }
+.icon-warning { background:rgba(255,152,0,0.1);color:#ff9800; }
+.icon-danger  { background:rgba(220,53,69,0.1);color:#dc3545; }
+
+/* ============================================================
+   NILAI MEDICA
+============================================================ */
+.medica-section { padding:60px 0;background:#fff; }
+.medica-label { font-size:11px;color:#888;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;display:block;margin-bottom:4px; }
+.medica-heading { font-size:26px;font-weight:800;letter-spacing:3px;margin-bottom:30px; }
+.medica-card { border-radius:14px;padding:18px 10px;border:2px solid;height:100%;transition:0.3s; }
+.medica-card:hover { transform:translateY(-5px);box-shadow:0 10px 20px rgba(0,0,0,0.08); }
+.medica-letter { font-size:48px;font-weight:900;font-style:italic;margin-bottom:10px; }
+.medica-name { font-size:12px;font-weight:700;margin-bottom:5px; }
+.medica-desc { font-size:11px;color:#777; }
+.medica-m { background:#FCEBEB;border-color:#F09595;color:#A32D2D; }
+.medica-e { background:#EEEDFE;border-color:#AFA9EC;color:#3C3489; }
+.medica-d { background:#F1EFE8;border-color:#B4B2A9;color:#444; }
+.medica-i { background:#EAF3DE;border-color:#97C459;color:#27500A; }
+.medica-c { background:#F1EFE8;border-color:#B4B2A9;color:#5F5E5A; }
+.medica-a { background:#FBEAF0;border-color:#ED93B1;color:#72243E; }
+
+/* ============================================================
+   VISI MISI
+============================================================ */
+.visi-misi-section { padding:60px 0;background:#fff; }
+.visi-block { position:relative;border-radius:16px;overflow:hidden;margin-bottom:20px;background:#1C145C; }
+.visi-inner { display:flex;align-items:center;gap:28px;padding:28px 32px;position:relative;z-index:1; }
+.visi-icon-box { width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:22px;color:#fff; }
+.visi-label { font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:6px; }
+.visi-text { font-size:15px;font-weight:600;color:#fff;line-height:1.7;margin:0; }
+.visi-deco { position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:80px;font-weight:900;color:rgba(255,255,255,0.05);font-family:'GothamBlack','Arial Black',sans-serif;pointer-events:none;line-height:1;user-select:none;z-index:0; }
+.misi-block { border-radius:16px;overflow:hidden;border:1.5px solid #e9ecef;background:#fff;box-shadow:0 5px 20px rgba(0,0,0,0.05); }
+.misi-head { display:flex;align-items:center;gap:14px;padding:18px 28px;background:#f8f7fb;border-bottom:1.5px solid #e9ecef; }
+.misi-head-icon { width:40px;height:40px;border-radius:10px;background:rgba(28,20,92,0.10);display:flex;align-items:center;justify-content:center;font-size:18px;color:#1C145C;flex-shrink:0; }
+.misi-head-title { font-size:15px;font-weight:700;color:#1C145C; }
+.misi-head-sub   { font-size:12px;color:#888;margin-top:1px; }
+.misi-count { margin-left:auto;font-size:11px;font-weight:600;letter-spacing:0.06em;background:rgba(28,20,92,0.08);color:#1C145C;padding:4px 12px;border-radius:999px; }
+.misi-body { padding:8px 28px 20px; }
+.misi-item { display:flex;gap:16px;padding:16px 0;border-bottom:1px solid #f0f0f0;align-items:flex-start; }
+.misi-item:last-child { border-bottom:none; }
+.misi-num { flex-shrink:0;width:30px;height:30px;border-radius:8px;background:#1C145C;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-top:2px; }
+.misi-txt { font-size:14px;color:#444;line-height:1.72;margin:0;padding-top:5px; }
+
+/* ============================================================
+   TIMELINE
+============================================================ */
+.timeline-section { padding:100px 0;position:relative;overflow:hidden;background:linear-gradient(to bottom,#ffffff 0%,#faf8ee 25%,#ede9d9 50%,#faf8ee 75%,#ffffff 100%); }
+.timeline { position:relative;max-width:1100px;margin:auto; }
+.timeline::before { content:'';position:absolute;left:50%;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,#1C145C,#6c63ff);transform:translateX(-50%); }
+.timeline-item { position:relative;width:50%;padding:40px 60px;display:flex; }
+.timeline-item.left { left:0;justify-content:flex-end;text-align:right; }
+.timeline-item.right { left:50%;justify-content:flex-start; }
+.timeline-icon { position:absolute;top:35px;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;z-index:3;box-shadow:0 5px 15px rgba(0,0,0,0.2); }
+.timeline-item.left .timeline-icon  { right:-25px; }
+.timeline-item.right .timeline-icon { left:-25px; }
+.icon-1 { background:#1C145C; }
+.icon-2 { background:#28a745; }
+.icon-3 { background:#ff9800; }
+.icon-4 { background:#dc3545; }
+.timeline-card { background:#fff;padding:25px 30px;border-radius:18px;box-shadow:0 12px 35px rgba(0,0,0,0.08);transition:0.3s;width:100%;max-width:420px;min-height:150px;display:flex;flex-direction:column;justify-content:center; }
+.timeline-card:hover { transform:translateY(-8px) scale(1.02);box-shadow:0 20px 45px rgba(0,0,0,0.15); }
+.timeline-year { font-weight:800;color:#1C145C;font-size:20px; }
+.timeline-text { font-size:14px;color:#555;margin-top:6px;line-height:1.6; }
+@media(max-width:768px) {
+    .timeline::before { left:25px; }
+    .timeline-item { width:100%;padding-left:80px;padding-right:20px; }
+    .timeline-item.left,.timeline-item.right { left:0;text-align:left;justify-content:flex-start; }
+    .timeline-icon { left:0 !important; }
+}
+
+/* ============================================================
+   FILOSOFI
+============================================================ */
+.filosofi-section { padding:80px 0;background:#ffffff; }
+.filosofi-card { border-radius:16px;padding:30px;position:relative;overflow:hidden;height:100%;box-shadow:0 10px 30px rgba(0,0,0,0.08);transition:0.3s; }
+.filosofi-card:hover { transform:translateY(-6px);box-shadow:0 15px 40px rgba(0,0,0,0.12); }
+.card-filosofi { background:#fff; }
+.card-semboyan { background:#1C145C;color:#fff; }
+.filosofi-header { display:flex;align-items:center;gap:12px;margin-bottom:15px; }
+.filosofi-icon { width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px; }
+.icon-filosofi { background:rgba(28,20,92,0.1);color:#1C145C; }
+.icon-semboyan { background:rgba(255,255,255,0.2);color:#fff; }
+.filosofi-title { font-size:16px;font-weight:700; }
+.filosofi-text { font-size:14px;line-height:1.7;color:#555; }
+.card-semboyan .filosofi-text { color:#e0e0e0; }
+.bg-label { position:absolute;top:20px;right:20px;font-size:60px;font-weight:800;opacity:0.05;pointer-events:none; }
+
+/* ============================================================
+   FOOTER
+============================================================ */
+.footer-rsu { background:linear-gradient(to bottom,#ffffff 0%,#fefefd 3%,#fdfcf6 8%,#fcfbf3 13%,#faf8ee 20%,#f7f5e8 30%,#f3f0e1 45%,#ede9d9 65%,#e8e3d2 85%,#e3deca 100%);color:#1C145C;padding:56px 0 0;position:relative;overflow:hidden; }
+.footer-rsu .footer-ornament  { position:absolute;right:-80px;bottom:-150px;width:420px;height:420px;opacity:.07;background-image:url('{{ asset("images/beranda/ornamen.png") }}');background-size:contain;background-repeat:no-repeat;background-position:center;pointer-events:none;z-index:0; }
+.footer-rsu .footer-ornament2 { position:absolute;left:-100px;top:40px;width:340px;height:340px;opacity:.04;background-image:url('{{ asset("images/beranda/ornamen.png") }}');background-size:contain;background-repeat:no-repeat;background-position:center;pointer-events:none;z-index:0; }
+.footer-rsu .container-fluid  { max-width:1550px;position:relative;z-index:1; }
+.footer-rsu .row               { --bs-gutter-x:3.5rem; }
+.footer-rsu .footer-logo       { height:40px;width:auto;display:block;margin-bottom:14px; }
+.footer-rsu .footer-title      { font-size:16px;font-weight:700;color:#1C145C;margin-bottom:8px; }
+.footer-rsu .footer-desc       { font-size:13px;line-height:1.8;color:#5a5480;margin-bottom:20px;max-width:340px; }
+.footer-rsu .footer-social     { display:flex;gap:10px;margin-bottom:22px; }
+.footer-rsu .footer-social a   { width:36px;height:36px;border-radius:50%;background:rgba(28,20,92,.07);border:1px solid rgba(28,20,92,.15);display:flex;align-items:center;justify-content:center;color:#1C145C;text-decoration:none;font-size:15px;transition:.25s; }
+.footer-rsu .footer-social a:hover { background:#1C145C;color:#fff;transform:translateY(-2px); }
+.footer-rsu .footer-mitra-label { font-size:11px;color:#9994bb;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px; }
+.footer-rsu .footer-mitra      { display:flex;gap:10px;align-items:center;flex-wrap:wrap; }
+.footer-rsu .footer-mitra img:nth-child(1) { height:33px; }
+.footer-rsu .footer-mitra img:nth-child(2) { height:23px; }
+.footer-rsu .footer-heading    { font-weight:900;font-size:12px;color:#1C145C;text-transform:uppercase;letter-spacing:.14em;margin-bottom:18px;padding-bottom:10px;border-bottom:1.5px solid rgba(28,20,92,.12);white-space:nowrap; }
+.footer-rsu ul { list-style:none;padding:0;margin:0; }
+.footer-rsu ul li { margin-bottom:10px; }
+.footer-rsu a { color:#5a5480;text-decoration:none;font-size:13.5px;transition:.2s;display:inline-flex;align-items:center;gap:5px; }
+.footer-rsu ul li a::before { content:'›';color:#1C145C;opacity:.4;font-size:15px; }
+.footer-rsu a:hover { color:#1C145C;padding-left:3px; }
+.footer-rsu .footer-contact-row  { display:flex;align-items:flex-start;gap:11px;margin-bottom:16px; }
+.footer-rsu .footer-contact-icon { width:34px;height:34px;border-radius:8px;background:rgba(28,20,92,.07);border:1px solid rgba(28,20,92,.1);display:flex;align-items:center;justify-content:center;color:#1C145C;flex-shrink:0; }
+.footer-rsu .footer-contact-text { font-size:13px;color:#5a5480;line-height:1.7; }
+.footer-rsu hr { height:1px;background:linear-gradient(90deg,rgba(28,20,92,0) 0%,rgba(28,20,92,.12) 30%,rgba(28,20,92,.12) 70%,rgba(28,20,92,0) 100%);border:none;margin:36px 0 0; }
+.footer-rsu .footer-bottom { background:rgba(28,20,92,.05);padding:15px 36px; }
+.footer-rsu .footer-copy   { font-size:12.5px;color:#9994bb;display:flex;justify-content:space-between;align-items:center;gap:12px; }
+.footer-rsu .footer-copy-badge   { background:rgba(28,20,92,.06);border:1px solid rgba(28,20,92,.12);border-radius:20px;padding:4px 14px;font-size:11.5px;color:#7a74a0;white-space:nowrap; }
+.footer-rsu .footer-accent-dot   { display:inline-block;width:3px;height:3px;border-radius:50%;background:#1C145C;opacity:.25;margin:0 8px; }
+@media(max-width:991px){ .footer-rsu{padding:45px 0 0;} .footer-rsu .row>div{margin-bottom:24px;} .footer-rsu .footer-desc{max-width:100%;} }
+@media(max-width:768px){ .footer-rsu{padding:40px 0 0;} .footer-rsu .container-fluid{padding-left:20px!important;padding-right:20px!important;} .footer-rsu .footer-copy{flex-direction:column;align-items:flex-start;gap:8px;} .footer-rsu .footer-bottom{padding:15px 20px;} .footer-rsu a:hover{padding-left:0;} .footer-rsu .footer-logo{height:34px;} }
+
+.hero-section{
+    position: relative;
+    margin-top: calc(-38px - 94px);
+    padding-top: calc(38px + 94px);
+    background:
+        linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+        url('{{ asset("images/beranda/soretentangkami.png") }}')
+        center center / cover no-repeat;
+    height: 80vh;
+    color: #fff;
+    overflow: hidden;
+}
 </style>
 
+<body>
 
 <!-- ============================================================
      TOPBAR
@@ -242,7 +427,6 @@ body {
         </div>
     </div>
 </div>
-
 
 <!-- ============================================================
      NAVBAR
@@ -269,7 +453,7 @@ body {
                     Layanan <i class="bi bi-chevron-down chevron"></i>
                 </a>
                 <div class="drop-menu" style="min-width:220px;">
-                    <a href="{{ url('/layanan') }}" class="drop-item"><i class="bi bi-grid-3x3-gap"></i> Semua Layanan</a>
+                    <a href="{{ url('/layanan') }}"              class="drop-item"><i class="bi bi-grid-3x3-gap"></i> Semua Layanan</a>
                     <div class="drop-divider"></div>
                     <a href="{{ url('/layanan#igd') }}"          class="drop-item"><i class="bi bi-bandaid-fill"></i> IGD 24 Jam</a>
                     <a href="{{ url('/layanan#rawatjalan') }}"   class="drop-item"><i class="bi bi-clipboard2-pulse"></i> Rawat Jalan</a>
@@ -286,12 +470,52 @@ body {
             <a href="/tentang"  class="nav-link-pill {{ request()->is('tentang*')  ? 'active' : '' }}">Tentang Kami</a>
             <a href="/mutu"     class="nav-link-pill {{ request()->is('mutu*')     ? 'active' : '' }}">Mutu</a>
         </div>
-        <div class="nav-cta"><a href="/kontak" class="btn-kontak">Kontak</a></div>
+
+        <!-- KONTAK MEGA DROPDOWN -->
+        <div class="nav-cta kontak-wrap" id="kontakWrap">
+            <button class="btn-kontak" id="btnKontakDesktop" type="button">Kontak</button>
+            <div class="kontak-mega" id="kontakMega">
+                <div class="kontak-mega-grid">
+                    <div class="kontak-form-panel">
+                        <div class="form-ornament"></div>
+                        <div class="kontak-form-sublabel">Kontak Kami</div>
+                        <div class="kontak-form-title">Get In <span>Touch</span></div>
+                        <form action="https://formspree.io/f/xaqzzypq" method="POST">
+                            <div class="ck-row">
+                                <div class="ck-field"><label>Nama</label><input type="text" name="nama" placeholder="Nama lengkap" required></div>
+                                <div class="ck-field"><label>Telepon</label><input type="text" name="telepon" placeholder="No. telepon" required></div>
+                            </div>
+                            <div class="ck-row">
+                                <div class="ck-field"><label>Email</label><input type="email" name="email" placeholder="Email Anda" required></div>
+                                <div class="ck-field"><label>Subject</label><input type="text" name="subject" placeholder="Perihal" required></div>
+                            </div>
+                            <div class="ck-field"><label>Pesan</label><textarea name="pesan" placeholder="Tulis pesan Anda..." required></textarea></div>
+                            <button type="submit" class="btn-send-mega"><i class="bi bi-send-fill"></i> Kirim Pesan</button>
+                        </form>
+                    </div>
+                    <div class="kontak-info-panel">
+                        <div class="kontak-info-grid">
+                            <div class="kontak-info-card"><div class="kontak-info-icon ci-phone"><i class="bi bi-telephone-fill"></i></div><div class="kontak-info-title">Telepon</div><div class="kontak-info-val">(0289) 430822</div></div>
+                            <div class="kontak-info-card"><div class="kontak-info-icon ci-email"><i class="bi bi-envelope-fill"></i></div><div class="kontak-info-title">Email</div><div class="kontak-info-val">allam.medica@<br>yahoo.co.id</div></div>
+                            <div class="kontak-info-card"><div class="kontak-info-icon ci-igd"><i class="bi bi-clock-fill"></i></div><div class="kontak-info-title">IGD</div><div class="kontak-info-val">24 Jam</div></div>
+                            <div class="kontak-info-card"><div class="kontak-info-icon ci-map"><i class="bi bi-geo-alt-fill"></i></div><div class="kontak-info-title">Alamat</div><div class="kontak-info-val">Jl. P. Diponegoro No.609, Bumiayu</div></div>
+                        </div>
+                        <div class="kontak-map-box">
+                            <iframe src="https://www.google.com/maps?q=RSU+Allam+Medica+Bumiayu&output=embed" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <button class="nav-burger" id="navBurger"><span></span><span></span><span></span></button>
     </nav>
 </div>
 
+<!-- DRAWER OVERLAY -->
 <div class="nav-overlay" id="navOverlay"></div>
+
+<!-- DRAWER MOBILE -->
 <aside class="nav-drawer" id="navDrawer">
     <div class="drawer-header">
         <span class="drawer-label">Menu</span>
@@ -332,23 +556,71 @@ body {
         <a href="/tentang"  class="d-link {{ request()->is('tentang*')  ? 'active' : '' }}"><span class="d-icon"><i class="bi bi-info-circle"></i></span> Tentang Kami</a>
         <a href="/mutu"     class="d-link {{ request()->is('mutu*')     ? 'active' : '' }}"><span class="d-icon"><i class="bi bi-patch-check"></i></span> Mutu</a>
     </nav>
-    <div class="drawer-footer"><a href="/kontak" class="btn-kontak">Kontak</a></div>
+    <div class="drawer-footer">
+        <button class="btn-kontak-drawer" id="btnKontakMobile" type="button">Kontak</button>
+    </div>
 </aside>
 
+<!-- ============================================================
+     BOTTOM SHEET KONTAK (mobile)
+============================================================ -->
+<div class="bs-overlay" id="bsOverlay"></div>
+<div class="bs-sheet" id="bsSheet">
+    <div class="bs-handle-wrap"><div class="bs-handle"></div></div>
+    <div class="bs-header">
+        <h2 class="bs-title">Hubungi Kami</h2>
+        <button class="bs-close" id="bsClose"><i class="bi bi-x-lg"></i></button>
+    </div>
+    <div class="bs-body">
+        <div class="bs-form-card">
+            <div class="bs-form-ornament"></div>
+            <div class="bs-sublabel">Kirim Pesan</div>
+            <div class="bs-form-title">Get In <span>Touch</span></div>
+            <form action="https://formspree.io/f/xaqzzypq" method="POST">
+                <div class="ck-field"><label>Nama</label><input type="text" name="nama" placeholder="Nama lengkap" required></div>
+                <div class="ck-field"><label>Telepon</label><input type="text" name="telepon" placeholder="No. telepon" required></div>
+                <div class="ck-field"><label>Email</label><input type="email" name="email" placeholder="Email Anda" required></div>
+                <div class="ck-field"><label>Subject</label><input type="text" name="subject" placeholder="Perihal" required></div>
+                <div class="ck-field"><label>Pesan</label><textarea name="pesan" placeholder="Tulis pesan Anda..." required></textarea></div>
+                <button type="submit" class="btn-send-bs"><i class="bi bi-send-fill"></i> Kirim Pesan</button>
+            </form>
+        </div>
+        <div class="bs-info-grid">
+            <div class="bs-info-card"><div class="bs-info-icon ci-phone"><i class="bi bi-telephone-fill"></i></div><div class="bs-info-title">Telepon</div><div class="bs-info-val">(0289) 430822</div></div>
+            <div class="bs-info-card"><div class="bs-info-icon ci-email"><i class="bi bi-envelope-fill"></i></div><div class="bs-info-title">Email</div><div class="bs-info-val">allam.medica@yahoo.co.id</div></div>
+            <div class="bs-info-card"><div class="bs-info-icon ci-igd"><i class="bi bi-clock-fill"></i></div><div class="bs-info-title">IGD</div><div class="bs-info-val">24 Jam</div></div>
+            <div class="bs-info-card"><div class="bs-info-icon ci-map"><i class="bi bi-geo-alt-fill"></i></div><div class="bs-info-title">Alamat</div><div class="bs-info-val">Jl. P. Diponegoro No.609, Bumiayu, Brebes</div></div>
+        </div>
+        <div class="bs-map-box">
+            <iframe src="https://www.google.com/maps?q=RSU+Allam+Medica+Bumiayu&output=embed" loading="lazy"></iframe>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================================
+     SCRIPTS
+============================================================ -->
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    const burger  = document.getElementById('navBurger');
-    const drawer  = document.getElementById('navDrawer');
-    const overlay = document.getElementById('navOverlay');
-    const closeBtn= document.getElementById('drawerClose');
-    const navbar  = document.getElementById('mainNavbar');
+    const burger   = document.getElementById('navBurger');
+    const drawer   = document.getElementById('navDrawer');
+    const overlay  = document.getElementById('navOverlay');
+    const closeBtn = document.getElementById('drawerClose');
+    const navbar   = document.getElementById('mainNavbar');
+    const bsSheet   = document.getElementById('bsSheet');
+    const bsOverlay = document.getElementById('bsOverlay');
+    const bsClose   = document.getElementById('bsClose');
+    const btnMobile = document.getElementById('btnKontakMobile');
 
+    function bsIsOpen() { return bsSheet.classList.contains('open'); }
+    function openBs()   { bsSheet.classList.add('open');bsOverlay.classList.add('show');document.body.style.overflow='hidden'; }
+    function closeBs()  { bsSheet.classList.remove('open');bsOverlay.classList.remove('show');document.body.style.overflow=''; }
     function openDrawer()  { burger.classList.add('open');drawer.classList.add('open');overlay.classList.add('show');document.body.style.overflow='hidden'; }
-    function closeDrawer() { burger.classList.remove('open');drawer.classList.remove('open');overlay.classList.remove('show');document.body.style.overflow=''; }
+    function closeDrawer() { burger.classList.remove('open');drawer.classList.remove('open');overlay.classList.remove('show');if(!bsIsOpen())document.body.style.overflow=''; }
 
     burger.addEventListener('click', e => { e.stopPropagation(); drawer.classList.contains('open') ? closeDrawer() : openDrawer(); });
     closeBtn.addEventListener('click', closeDrawer);
-    overlay.addEventListener('click', closeDrawer);
+    overlay.addEventListener('click', () => { closeDrawer(); closeBs(); });
     drawer.querySelectorAll('.d-link, .d-sub-link').forEach(l => l.addEventListener('click', closeDrawer));
 
     drawer.querySelectorAll('.d-accordion-btn').forEach(btn => {
@@ -366,1243 +638,243 @@ document.addEventListener('DOMContentLoaded', function () {
         if (btn) btn.classList.add('open');
     });
 
+    /* ─── Mega Dropdown Desktop ─── */
+    const kontakWrap = document.getElementById('kontakWrap');
+    const kontakMega = document.getElementById('kontakMega');
+    let megaTimer;
+    kontakWrap.addEventListener('mouseenter', () => { clearTimeout(megaTimer); kontakMega.classList.add('open'); });
+    kontakWrap.addEventListener('mouseleave', () => { megaTimer = setTimeout(() => kontakMega.classList.remove('open'), 120); });
+    kontakMega.addEventListener('mouseenter', () => clearTimeout(megaTimer));
+    kontakMega.addEventListener('mouseleave', () => { megaTimer = setTimeout(() => kontakMega.classList.remove('open'), 120); });
+    document.getElementById('btnKontakDesktop').addEventListener('click', function(e) { e.stopPropagation(); kontakMega.classList.toggle('open'); });
+    document.addEventListener('click', function(e) { if (!kontakWrap.contains(e.target)) kontakMega.classList.remove('open'); });
+
+    /* ─── Bottom Sheet Mobile ─── */
+    btnMobile.addEventListener('click', () => { openBs(); closeDrawer(); });
+    bsClose.addEventListener('click', closeBs);
+    bsOverlay.addEventListener('click', closeBs);
+    let startY = 0;
+    bsSheet.addEventListener('touchstart', e => { startY = e.touches[0].clientY; }, { passive: true });
+    bsSheet.addEventListener('touchend', e => { if (e.changedTouches[0].clientY - startY > 80) closeBs(); }, { passive: true });
+
+    /* ─── Navbar scroll ─── */
     window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 10), { passive: true });
 });
 </script>
-<!-- END NAVBAR -->
 
-<!-- sub Hero Section -->
-<style>
-body {
-    margin: 0;
-    padding: 0;
-    background: #fff !important;
-}
-</style>
-
-<!-- HERO -->
-<section style="
-    position: relative;
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-    url('{{ asset('images/beranda/soretentangkami.png') }}') center/cover no-repeat;
-    height: 80vh;
-    color: white;
-    overflow: hidden;
-">
-
+<!-- ============================================================
+     HERO
+============================================================ -->
+<section class="hero-section">
     <div class="container d-flex align-items-center h-100">
         <div class="row w-100">
             <div class="col-md-6 text-start">
                 <h1 class="fw-bold">RSU Allam Medica Bumiayu</h1>
-                <p>Rumah Sakit Umum terpercaya di Kabupaten Brebes yang telah melayani masyarakat sejak 2012. Berkomitmen menghadirkan layanan kesehatan yang inovatif, handal, dan terpercaya.</p>
+                <p>
+                    Rumah Sakit Umum terpercaya di Kabupaten Brebes yang telah
+                    melayani masyarakat sejak 2012. Berkomitmen menghadirkan
+                    layanan kesehatan yang inovatif, handal, dan terpercaya.
+                </p>
             </div>
         </div>
     </div>
 
-    <!-- CURVE (TRANSPARAN - POTONG GAMBAR) -->
-    <div style="position:absolute; bottom:-1px; left:0; width:100%; line-height:0;">
+    <div style="position:absolute;bottom:-1px;left:0;width:100%;line-height:0;">
         <svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg">
             <path fill="#ffffff"
                 d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L0,120Z">
             </path>
         </svg>
     </div>
-
 </section>
 
-
-<style>
-/* PROFIL */
-.profile-section{
-    background:#fff;
-    padding:60px 0;
-}
-
-.profile-text{
-    font-size:15px;
-    color:#555;
-    line-height:1.7;
-    text-align: justify;
-    text-justify: inter-word;
-}
-
-/* CARD */
-.info-card{
-    background:#fff;
-    border-radius:12px;
-    padding:14px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.05);
-    transition:0.3s;
-    display:flex;
-    gap:10px;
-    align-items:flex-start;
-}
-
-.info-card:hover{
-    transform:translateY(-4px);
-    box-shadow:0 10px 20px rgba(0,0,0,0.08);
-}
-
-/* TEXT */
-.info-card small{
-    font-size:11px;
-    color:#888;
-}
-
-.info-card b{
-    font-size:12.5px;
-    font-weight:600;
-    color:#333;
-    line-height:1.5;
-}
-
-/* ICON */
-.icon-box{
-    width:34px;
-    height:34px;
-    border-radius:8px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:14px;
-}
-
-/* ICON COLOR */
-.icon-primary{ background:rgba(28,20,92,0.1); color:#1C145C; }
-.icon-success{ background:rgba(40,167,69,0.1); color:#28a745; }
-.icon-warning{ background:rgba(255,152,0,0.1); color:#ff9800; }
-.icon-danger{ background:rgba(220,53,69,0.1); color:#dc3545; }
-
-/* ================= NILAI MEDICA ================= */
-.medica-section{
-    padding:60px 0;
-    background:#fff;
-}
-
-.medica-label{
-    font-size:11px;
-    color:#888;
-    font-weight:600;
-    letter-spacing:1.5px;
-    text-transform:uppercase;
-    display:block;
-    margin-bottom:4px;
-}
-
-.medica-heading{
-    font-size:26px;
-    font-weight:800;
-    letter-spacing:3px;
-    margin-bottom:30px;
-}
-
-.medica-card{
-    border-radius:14px;
-    padding:18px 10px;
-    border:2px solid;
-    height:100%;
-    transition:0.3s;
-}
-
-.medica-card:hover{
-    transform:translateY(-5px);
-    box-shadow:0 10px 20px rgba(0,0,0,0.08);
-}
-
-.medica-letter{
-    font-size:48px;
-    font-weight:900;
-    font-style:italic;
-    margin-bottom:10px;
-}
-
-.medica-name{
-    font-size:12px;
-    font-weight:700;
-    margin-bottom:5px;
-}
-
-.medica-desc{
-    font-size:11px;
-    color:#777;
-}
-
-/* WARNA */
-.medica-m{ background:#FCEBEB; border-color:#F09595; color:#A32D2D; }
-.medica-e{ background:#EEEDFE; border-color:#AFA9EC; color:#3C3489; }
-.medica-d{ background:#F1EFE8; border-color:#B4B2A9; color:#444; }
-.medica-i{ background:#EAF3DE; border-color:#97C459; color:#27500A; }
-.medica-c{ background:#F1EFE8; border-color:#B4B2A9; color:#5F5E5A; }
-.medica-a{ background:#FBEAF0; border-color:#ED93B1; color:#72243E; }
-
-/* ================= VISI MISI ================= */
-.visi-misi-section { padding: 60px 0; background: #fff; }
-
-.visi-block {
-    position: relative;
-    border-radius: 16px;
-    overflow: hidden;
-    margin-bottom: 20px;
-    background: #1C145C;
-}
-.visi-inner {
-    display: flex;
-    align-items: center;
-    gap: 28px;
-    padding: 28px 32px;
-    position: relative;
-    z-index: 1;
-}
-.visi-icon-box {
-    width: 52px; height: 52px;
-    border-radius: 14px;
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.2);
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-    font-size: 22px;
-    color: #fff;
-}
-.visi-label {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.55);
-    margin-bottom: 6px;
-}
-.visi-text {
-    font-size: 15px;
-    font-weight: 600;
-    color: #fff;
-    line-height: 1.7;
-    margin: 0;
-}
-.visi-deco {
-    position: absolute;
-    right: 24px; top: 50%;
-    transform: translateY(-50%);
-    font-size: 80px;
-    font-weight: 900;
-    color: rgba(255,255,255,0.05);
-    font-family: 'GothamBlack', 'Arial Black', sans-serif;
-    pointer-events: none;
-    line-height: 1;
-    user-select: none;
-    z-index: 0;
-}
-
-.misi-block {
-    border-radius: 16px;
-    overflow: hidden;
-    border: 1.5px solid #e9ecef;
-    background: #fff;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-}
-.misi-head {
-    display: flex; align-items: center; gap: 14px;
-    padding: 18px 28px;
-    background: #f8f7fb;
-    border-bottom: 1.5px solid #e9ecef;
-}
-.misi-head-icon {
-    width: 40px; height: 40px;
-    border-radius: 10px;
-    background: rgba(28,20,92,0.10);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px;
-    color: #1C145C;
-    flex-shrink: 0;
-}
-.misi-head-title { font-size: 15px; font-weight: 700; color: #1C145C; }
-.misi-head-sub   { font-size: 12px; color: #888; margin-top: 1px; }
-.misi-count {
-    margin-left: auto;
-    font-size: 11px; font-weight: 600;
-    letter-spacing: 0.06em;
-    background: rgba(28,20,92,0.08);
-    color: #1C145C;
-    padding: 4px 12px;
-    border-radius: 999px;
-}
-.misi-body { padding: 8px 28px 20px; }
-.misi-item {
-    display: flex; gap: 16px;
-    padding: 16px 0;
-    border-bottom: 1px solid #f0f0f0;
-    align-items: flex-start;
-}
-.misi-item:last-child { border-bottom: none; }
-.misi-num {
-    flex-shrink: 0;
-    width: 30px; height: 30px;
-    border-radius: 8px;
-    background: #1C145C;
-    color: #fff;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 12px; font-weight: 700;
-    margin-top: 2px;
-}
-.misi-txt {
-    font-size: 14px;
-    color: #444;
-    line-height: 1.72;
-    margin: 0;
-    padding-top: 5px;
-}
-
-</style>
-
-
-<!-- ================= PROFIL ================= -->
+<!-- ============================================================
+     PROFIL
+============================================================ -->
 <section class="profile-section">
-<div class="container">
-
-    <div class="row">
-
-        <!-- KIRI -->
-        <div class="col-md-7">
-            <h4 class="fw-bold mb-3">Profil Rumah Sakit</h4>
-
-            <p class="profile-text">
-                RSU Allam Medica Rumah Sakit Umum "Allam Medica" berdiri sejak tahun 2012, didirikan oleh Yayasan Allam Medica Bumiayu. Pada mulanya merupakan klinik pelayanan kesehatan umum dan kebidanan dengan nama Balai Pengobatan dan Rumah Bersalin Allam Medica. Penyelenggaraan rumah sakit sejak tahun 2008 dengan surat izin Bupati Brebes nomor 503.IO/KPT/005/IV/2008 sebagai "Rumah Bersalin" dan surat izin Bupati Brebes nomor 503.IO/KPT/008/IV/2008 sebagai "Balai Pengobatan Allam Medica".
-   Sejak 2015 menjadi Rumah Sakit Umum Allam Medica dengan Ijin Operasional tetap dari Bupati Brebes, dan pada 2023 resmi menjadi Rumah Sakit Tipe C.
-Didukung sistem keamanan aktif yang ramah bagi pengunjung, dengan pendekatan tenaga keamanan yang profesional dan sistem pemantauan area sepanjang waktu, dilengkapi 38 unit CCTV di setiap sudut strategis.
-            </p>
-
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h4 class="fw-bold mb-3">Profil Rumah Sakit</h4>
+                <p class="profile-text">
+                    RSU Allam Medica Rumah Sakit Umum "Allam Medica" berdiri sejak tahun 2012, didirikan oleh Yayasan Allam Medica Bumiayu. Pada mulanya merupakan klinik pelayanan kesehatan umum dan kebidanan dengan nama Balai Pengobatan dan Rumah Bersalin Allam Medica. Penyelenggaraan rumah sakit sejak tahun 2008 dengan surat izin Bupati Brebes nomor 503.IO/KPT/005/IV/2008 sebagai "Rumah Bersalin" dan surat izin Bupati Brebes nomor 503.IO/KPT/008/IV/2008 sebagai "Balai Pengobatan Allam Medica".
+                    Sejak 2015 menjadi Rumah Sakit Umum Allam Medica dengan Ijin Operasional tetap dari Bupati Brebes, dan pada 2023 resmi menjadi Rumah Sakit Tipe C.
+                    Didukung sistem keamanan aktif yang ramah bagi pengunjung, dengan pendekatan tenaga keamanan yang profesional dan sistem pemantauan area sepanjang waktu, dilengkapi 38 unit CCTV di setiap sudut strategis.
+                </p>
+            </div>
+            <div class="col-md-5">
+                <div class="mb-3 info-card">
+                    <div class="icon-box icon-primary"><i class="bi bi-file-earmark-text"></i></div>
+                    <div><small>Izin Operasional</small><br><b>503.IO/KPT/02787/IX/2015 Bupati Brebes — Tetap</b></div>
+                </div>
+                <div class="mb-3 info-card">
+                    <div class="icon-box icon-success"><i class="bi bi-hospital"></i></div>
+                    <div><small>Kelas Rumah Sakit</small><br><b>Rumah Sakit Umum Tipe C SK 91/2008/02/7/2001</b></div>
+                </div>
+                <div class="mb-3 info-card">
+                    <div class="icon-box icon-warning"><i class="bi bi-geo-alt-fill"></i></div>
+                    <div><small>Alamat</small><br><b>Jl. Pangeran Diponegoro No. 609 Jatisawit, Bumiayu, Kab. Brebes, 52273</b></div>
+                </div>
+                <div class="info-card">
+                    <div class="icon-box icon-danger"><i class="bi bi-telephone-fill"></i></div>
+                    <div><small>Kontak</small><br><b>(0289) 430822</b></div>
+                </div>
+            </div>
         </div>
-
-        <!-- KANAN -->
-        <div class="col-md-5">
-
-            <div class="mb-3 info-card">
-                <div class="icon-box icon-primary">
-                    <i class="bi bi-file-earmark-text"></i>
-                </div>
-                <div>
-                    <small>Izin Operasional</small><br>
-                    <b>503.IO/KPT/02787/IX/2015 Bupati Brebes — Tetap</b>
-                </div>
-            </div>
-
-            <div class="mb-3 info-card">
-                <div class="icon-box icon-success">
-                    <i class="bi bi-hospital"></i>
-                </div>
-                <div>
-                    <small>Kelas Rumah Sakit</small><br>
-                    <b>Rumah Sakit Umum Tipe C SK 91/2008/02/7/2001</b>
-                </div>
-            </div>
-
-            <div class="mb-3 info-card">
-                <div class="icon-box icon-warning">
-                    <i class="bi bi-geo-alt-fill"></i>
-                </div>
-                <div>
-                    <small>Alamat</small><br>
-                    <b>Jl. Pangeran Diponegoro No. 609 Jatisawit, Bumiayu, Kab. Brebes, 52273</b>
-                </div>
-            </div>
-
-            <div class="info-card">
-                <div class="icon-box icon-danger">
-                    <i class="bi bi-telephone-fill"></i>
-                </div>
-                <div>
-                    <small>Kontak</small><br>
-                    <b>(0289) 430822</b>
-                </div>
-            </div>
-
-        </div>
-
     </div>
-
-</div>
 </section>
 
-
-<!-- ================= NILAI KEUTAMAAN ================= -->
+<!-- ============================================================
+     NILAI KEUTAMAAN
+============================================================ -->
 <section class="medica-section">
-<div class="container">
-
-    <h4 class="fw-bold mb-3">Nilai Keutamaan</h4>
-    <h1 class="medica-heading">M-E-D-I-C-A</h1>
-
-    <div class="row g-3">
-
-        <div class="col-6 col-md-4 col-lg-2">
-            <div class="medica-card medica-m text-center">
-                <div class="medica-letter">M</div>
-                <div class="medica-name">Melayani Sepenuh Hati</div>
-                <p class="medica-desc">Sepenuh hati melayani setiap pasien</p>
-            </div>
+    <div class="container">
+        <h4 class="fw-bold mb-3">Nilai Keutamaan</h4>
+        <h1 class="medica-heading">M-E-D-I-C-A</h1>
+        <div class="row g-3">
+            <div class="col-6 col-md-4 col-lg-2"><div class="medica-card medica-m text-center"><div class="medica-letter">M</div><div class="medica-name">Melayani Sepenuh Hati</div><p class="medica-desc">Sepenuh hati melayani setiap pasien</p></div></div>
+            <div class="col-6 col-md-4 col-lg-2"><div class="medica-card medica-e text-center"><div class="medica-letter">E</div><div class="medica-name">Empati</div><p class="medica-desc">Memahami dan merasakan kondisi pasien</p></div></div>
+            <div class="col-6 col-md-4 col-lg-2"><div class="medica-card medica-d text-center"><div class="medica-letter">D</div><div class="medica-name">Disiplin</div><p class="medica-desc">Disiplin dalam bekerja dan pelayanan</p></div></div>
+            <div class="col-6 col-md-4 col-lg-2"><div class="medica-card medica-i text-center"><div class="medica-letter">I</div><div class="medica-name">Ikhlas</div><p class="medica-desc">Ikhlas dalam memberikan layanan terbaik</p></div></div>
+            <div class="col-6 col-md-4 col-lg-2"><div class="medica-card medica-c text-center"><div class="medica-letter">C</div><div class="medica-name">Cepat</div><p class="medica-desc">Respons cepat dan tindakan yang tepat</p></div></div>
+            <div class="col-6 col-md-4 col-lg-2"><div class="medica-card medica-a text-center"><div class="medica-letter">A</div><div class="medica-name">Antusias</div><p class="medica-desc">Bertanggung jawab dan dapat dipercaya</p></div></div>
         </div>
-
-        <div class="col-6 col-md-4 col-lg-2">
-            <div class="medica-card medica-e text-center">
-                <div class="medica-letter">E</div>
-                <div class="medica-name">Empati</div>
-                <p class="medica-desc">Memahami dan merasakan kondisi pasien</p>
-            </div>
-        </div>
-
-        <div class="col-6 col-md-4 col-lg-2">
-            <div class="medica-card medica-d text-center">
-                <div class="medica-letter">D</div>
-                <div class="medica-name">Disiplin</div>
-                <p class="medica-desc">Disiplin dalam bekerja dan pelayanan</p>
-            </div>
-        </div>
-
-        <div class="col-6 col-md-4 col-lg-2">
-            <div class="medica-card medica-i text-center">
-                <div class="medica-letter">I</div>
-                <div class="medica-name">Ikhlas</div>
-                <p class="medica-desc">Ikhlas dalam memberikan layanan terbaik</p>
-            </div>
-        </div>
-
-        <div class="col-6 col-md-4 col-lg-2">
-            <div class="medica-card medica-c text-center">
-                <div class="medica-letter">C</div>
-                <div class="medica-name">Cepat</div>
-                <p class="medica-desc">Respons cepat dan tindakan yang tepat</p>
-            </div>
-        </div>
-
-        <div class="col-6 col-md-4 col-lg-2">
-            <div class="medica-card medica-a text-center">
-                <div class="medica-letter">A</div>
-                <div class="medica-name">Antusias</div>
-                <p class="medica-desc">Bertanggung jawab dan dapat dipercaya</p>
-            </div>
-        </div>
-
     </div>
-
-</div>
 </section>
 
-
+<!-- ============================================================
+     VISI MISI
+============================================================ -->
 <section class="visi-misi-section">
-<div class="container">
-
-    <h4 class="fw-bold mb-4">Visi &amp; Misi</h4>
-
-    {{-- VISI --}}
-    <div class="visi-block">
-        <div class="visi-deco">VISI</div>
-        <div class="visi-inner">
-            <div class="visi-icon-box">
-                <i class="bi bi-eye-fill"></i>
+    <div class="container">
+        <h4 class="fw-bold mb-4">Visi &amp; Misi</h4>
+        <div class="visi-block">
+            <div class="visi-deco">VISI</div>
+            <div class="visi-inner">
+                <div class="visi-icon-box"><i class="bi bi-eye-fill"></i></div>
+                <div>
+                    <div class="visi-label">Visi</div>
+                    <p class="visi-text">Menjadi Rujukan Utama Pelayanan Kesehatan yang Inovatif, Handal dan Terpercaya di Kabupaten Brebes</p>
+                </div>
             </div>
-            <div>
-                <div class="visi-label">Visi</div>
-                <p class="visi-text">
-                    Menjadi Rujukan Utama Pelayanan Kesehatan yang Inovatif, Handal dan Terpercaya di Kabupaten Brebes
-                </p>
+        </div>
+        <div class="misi-block">
+            <div class="misi-head">
+                <div class="misi-head-icon"><i class="bi bi-bullseye"></i></div>
+                <div><div class="misi-head-title">Misi</div><div class="misi-head-sub">Langkah strategis pencapaian visi</div></div>
+                <span class="misi-count">4 Poin</span>
+            </div>
+            <div class="misi-body">
+                <div class="misi-item"><div class="misi-num">1</div><p class="misi-txt">Melaksanakan upaya pelayanan Kesehatan secara profesional dan inovatif melalui adopsi teknologi terbarukan selaras dengan perkembangan zaman.</p></div>
+                <div class="misi-item"><div class="misi-num">2</div><p class="misi-txt">Mewujudkan layanan Kesehatan yang modern dan berorientasi kepada kepuasan pelanggan sesuai dengan kebutuhan Masyarakat.</p></div>
+                <div class="misi-item"><div class="misi-num">3</div><p class="misi-txt">Menjalankan prinsip tatakelola perusahaan yang baik guna menciptakan nilai tambah bagi stakeholders (pelanggan, pekerja, mitrakerja, pemilik, dan masyarakat) dan berdampak positif terhadap lingkungan.</p></div>
+                <div class="misi-item"><div class="misi-num">4</div><p class="misi-txt">Mengembangkan infrastruktur modern dan tatakelola sumberdaya manusia berkualitas guna mencapai SDM yang Unggul, Kompeten dan berdaya saing.</p></div>
             </div>
         </div>
     </div>
-
-    {{-- MISI --}}
-    <div class="misi-block">
-        <div class="misi-head">
-            <div class="misi-head-icon">
-                <i class="bi bi-bullseye"></i>
-            </div>
-            <div>
-                <div class="misi-head-title">Misi</div>
-                <div class="misi-head-sub">Langkah strategis pencapaian visi</div>
-            </div>
-            <span class="misi-count">4 Poin</span>
-        </div>
-        <div class="misi-body">
-            <div class="misi-item">
-                <div class="misi-num">1</div>
-                <p class="misi-txt">Melaksanakan upaya pelayanan Kesehatan secara profesional dan inovatif melalui adopsi teknologi terbarukan selaras dengan perkembangan zaman.</p>
-            </div>
-            <div class="misi-item">
-                <div class="misi-num">2</div>
-                <p class="misi-txt">Mewujudkan layanan Kesehatan yang modern dan berorientasi kepada kepuasan pelanggan sesuai dengan kebutuhan Masyarakat.</p>
-            </div>
-            <div class="misi-item">
-                <div class="misi-num">3</div>
-                <p class="misi-txt">Menjalankan prinsip tatakelola perusahaan yang baik guna menciptakan nilai tambah bagi stakeholders (pelanggan, pekerja, mitrakerja, pemilik, dan masyarakat) dan berdampak positif terhadap lingkungan.</p>
-            </div>
-            <div class="misi-item">
-                <div class="misi-num">4</div>
-                <p class="misi-txt">Mengembangkan infrastruktur modern dan tatakelola sumberdaya manusia berkualitas guna mencapai SDM yang Unggul, Kompeten dan berdaya saing.</p>
-            </div>
-        </div>
-    </div>
-
-</div>
 </section>
 
-<!-- AOS (WAJIB kalau mau animasi) -->
-<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-
-<style>
-.timeline-section{
-    padding:100px 0;
-    position: relative;
-    overflow: hidden;
-
-    background: linear-gradient(
-        to bottom,
-        #ffffff 0%,
-        #faf8ee 25%,
-        #ede9d9 50%,
-        #faf8ee 75%,
-        #ffffff 100%
-    );
-}
-
-/* GARIS TENGAH */
-.timeline{
-    position:relative;
-    max-width:1100px;
-    margin:auto;
-}
-
-.timeline::before{
-    content:'';
-    position:absolute;
-    left:50%;
-    top:0;
-    bottom:0;
-    width:3px;
-    background:linear-gradient(to bottom,#1C145C,#6c63ff);
-    transform:translateX(-50%);
-}
-
-/* ITEM */
-.timeline-item{
-    position:relative;
-    width:50%;
-    padding:40px 60px;
-    display:flex;
-}
-
-/* POSISI */
-.timeline-item.left{
-    left:0;
-    justify-content:flex-end;
-    text-align:right;
-}
-
-.timeline-item.right{
-    left:50%;
-    justify-content:flex-start;
-}
-
-/* ICON BULAT */
-.timeline-icon{
-    position:absolute;
-    top:35px;
-    width:50px;
-    height:50px;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:20px;
-    color:#fff;
-    z-index:3;
-    box-shadow:0 5px 15px rgba(0,0,0,0.2);
-}
-
-/* POSISI ICON */
-.timeline-item.left .timeline-icon{
-    right:-25px;
-}
-.timeline-item.right .timeline-icon{
-    left:-25px;
-}
-
-/* WARNA ICON */
-.icon-1{ background:#1C145C; }
-.icon-2{ background:#28a745; }
-.icon-3{ background:#ff9800; }
-.icon-4{ background:#dc3545; }
-
-/* CARD */
-.timeline-card{
-    background:#fff;
-    padding:25px 30px;
-    border-radius:18px;
-    box-shadow:0 12px 35px rgba(0,0,0,0.08);
-    transition:0.3s;
-    width:100%;
-    max-width:420px;
-
-    min-height:150px;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-}
-
-.timeline-card:hover{
-    transform:translateY(-8px) scale(1.02);
-    box-shadow:0 20px 45px rgba(0,0,0,0.15);
-}
-
-/* TEXT */
-.timeline-year{
-    font-weight:800;
-    color:#1C145C;
-    font-size:20px;
-}
-
-.timeline-text{
-    font-size:14px;
-    color:#555;
-    margin-top:6px;
-    line-height:1.6;
-}
-
-/* RESPONSIVE */
-@media(max-width:768px){
-
-    .timeline::before{
-        left:25px;
-    }
-
-    .timeline-item{
-        width:100%;
-        padding-left:80px;
-        padding-right:20px;
-    }
-
-    .timeline-item.left,
-    .timeline-item.right{
-        left:0;
-        text-align:left;
-        justify-content:flex-start;
-    }
-
-    .timeline-icon{
-        left:0 !important;
-    }
-}
-</style>
-
+<!-- ============================================================
+     TIMELINE
+============================================================ -->
 <section class="timeline-section">
-<div class="container">
-
-    <h4 class="fw-bold mb-5 text-center">Tonggak Sejarah</h4>
-
-    <div class="timeline">
-
-        <!-- 2008 -->
-        <div class="timeline-item left" data-aos="fade-right">
-            <div class="timeline-icon icon-1">
-                <i class="bi bi-house-heart-fill"></i>
+    <div class="container">
+        <h4 class="fw-bold mb-5 text-center">Tonggak Sejarah</h4>
+        <div class="timeline">
+            <div class="timeline-item left" data-aos="fade-right">
+                <div class="timeline-icon icon-1"><i class="bi bi-house-heart-fill"></i></div>
+                <div class="timeline-card"><div class="timeline-year">2008</div><div class="timeline-text">503.10/KPT/007/IV/2008 Rumah Bersalin dan Balai Pengobatan Allam Medica Bumiayu.</div></div>
             </div>
-            <div class="timeline-card">
-                <div class="timeline-year">2008</div>
-                <div class="timeline-text">
-                    503.10/KPT/007/IV/2008 Rumah Bersalin dan Balai Pengobatan Allam Medica Bumiayu.
-                </div>
+            <div class="timeline-item right" data-aos="fade-left">
+                <div class="timeline-icon icon-2"><i class="bi bi-file-earmark-check-fill"></i></div>
+                <div class="timeline-card"><div class="timeline-year">2011</div><div class="timeline-text">Mendapat izin resmi sebagai Rumah Sakit.</div></div>
             </div>
-        </div>
-
-        <!-- 2011 -->
-        <div class="timeline-item right" data-aos="fade-left">
-            <div class="timeline-icon icon-2">
-                <i class="bi bi-file-earmark-check-fill"></i>
+            <div class="timeline-item left" data-aos="fade-right">
+                <div class="timeline-icon icon-3"><i class="bi bi-hospital-fill"></i></div>
+                <div class="timeline-card"><div class="timeline-year">2015</div><div class="timeline-text">503.10/KPPT/02797/IX/2015 Ijin Operasional Tetap RSU Allam Medica Bumiayu.</div></div>
             </div>
-            <div class="timeline-card">
-                <div class="timeline-year">2011</div>
-                <div class="timeline-text">
-                    Mendapat izin resmi sebagai Rumah Sakit.
-                </div>
+            <div class="timeline-item right" data-aos="fade-left">
+                <div class="timeline-icon icon-4"><i class="bi bi-award-fill"></i></div>
+                <div class="timeline-card"><div class="timeline-year">2023</div><div class="timeline-text">RSU Allam Medica resmi menjadi Rumah Sakit Tipe C.</div></div>
             </div>
         </div>
-
-        <!-- 2015 -->
-        <div class="timeline-item left" data-aos="fade-right">
-            <div class="timeline-icon icon-3">
-                <i class="bi bi-hospital-fill"></i>
-            </div>
-            <div class="timeline-card">
-                <div class="timeline-year">2015</div>
-                <div class="timeline-text">
-                    503.10/KPPT/02797/IX/2015 Ijin Operasional Tetap RSU Allam Medica Bumiayu.
-                </div>
-            </div>
-        </div>
-
-        <!-- 2023 -->
-        <div class="timeline-item right" data-aos="fade-left">
-            <div class="timeline-icon icon-4">
-                <i class="bi bi-award-fill"></i>
-            </div>
-            <div class="timeline-card">
-                <div class="timeline-year">2023</div>
-                <div class="timeline-text">
-                    RSU Allam Medica resmi menjadi Rumah Sakit Tipe C.
-                </div>
-            </div>
-        </div>
-
     </div>
-
-</div>
 </section>
 
-<script>
-AOS.init({
-    duration:800,
-    once:true
-});
-</script>
-
-
-<style>
-.filosofi-section{
-    padding:80px 0;
-    background:#fffff;
-}
-
-.filosofi-card{
-    border-radius:16px;
-    padding:30px;
-    position:relative;
-    overflow:hidden;
-    height:100%;
-    box-shadow:0 10px 30px rgba(0,0,0,0.08);
-    transition:0.3s;
-}
-
-.filosofi-card:hover{
-    transform:translateY(-6px);
-    box-shadow:0 15px 40px rgba(0,0,0,0.12);
-}
-
-/* CARD PUTIH */
-.card-filosofi{
-    background:#fff;
-}
-
-/* CARD BIRU */
-.card-semboyan{
-    background:#1C145C;
-    color:#fff;
-}
-
-/* HEADER */
-.filosofi-header{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    margin-bottom:15px;
-}
-
-.filosofi-icon{
-    width:42px;
-    height:42px;
-    border-radius:10px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:18px;
-}
-
-/* ICON WARNA */
-.icon-filosofi{
-    background:rgba(28,20,92,0.1);
-    color:#1C145C;
-}
-
-.icon-semboyan{
-    background:rgba(255,255,255,0.2);
-    color:#fff;
-}
-
-/* JUDUL */
-.filosofi-title{
-    font-size:16px;
-    font-weight:700;
-}
-
-/* TEXT */
-.filosofi-text{
-    font-size:14px;
-    line-height:1.7;
-    color:#555;
-}
-
-.card-semboyan .filosofi-text{
-    color:#e0e0e0;
-}
-
-/* BACKGROUND TEXT (EFEK VISI MISI) */
-.bg-label{
-    position:absolute;
-    top:20px;
-    right:20px;
-    font-size:60px;
-    font-weight:800;
-    opacity:0.05;
-    pointer-events:none;
-}
-</style>
-
+<!-- ============================================================
+     FILOSOFI
+============================================================ -->
 <section class="filosofi-section">
-<div class="container">
-
-    <div class="row g-4">
-
-        <!-- FILOSOFI -->
-        <div class="col-md-6">
-            <div class="filosofi-card card-filosofi">
-
-                <div class="bg-label">F</div>
-
-                <div class="filosofi-header">
-                    <div class="filosofi-icon icon-filosofi">
-                        <i class="bi bi-lightbulb-fill"></i>
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="filosofi-card card-filosofi">
+                    <div class="bg-label">F</div>
+                    <div class="filosofi-header">
+                        <div class="filosofi-icon icon-filosofi"><i class="bi bi-lightbulb-fill"></i></div>
+                        <div class="filosofi-title">Filosofi RSU Allam Medica</div>
                     </div>
-                    <div class="filosofi-title">Filosofi RSU Allam Medica</div>
+                    <p class="filosofi-text">Rumah Sakit yang memberikan pelayanan medis, rujukan medis yang terintegrasi dalam pelayanan, dengan menjunjung tinggi rasa kemanusiaan sehingga tercapai derajat kesehatan yang optimal bagi masyarakat</p>
                 </div>
-
-                <p class="filosofi-text">
-                    Rumah Sakit yang memberikan pelayanan medis, rujukan medis yang terintegrasi dalam pelayanan, dengan menjunjung tinggi rasa kemanusiaan sehingga tercapai derajat kesehatan yang optimal bagi masyarakat
-                </p>
-
+            </div>
+            <div class="col-md-6">
+                <div class="filosofi-card card-semboyan">
+                    <div class="bg-label">S</div>
+                    <div class="filosofi-header">
+                        <div class="filosofi-icon icon-semboyan"><i class="bi bi-chat-heart-fill"></i></div>
+                        <div class="filosofi-title">Makna Semboyan</div>
+                    </div>
+                    <p class="filosofi-text">"Kesehatan Anda, Tujuan Kami"</p>
+                    <p class="filosofi-text">Setiap langkah pelayanan kami selalu berorientasi pada kesembuhan dan kepuasan pasien. Kesehatan Anda adalah prioritas utama yang menjadi alasan kami hadir.</p>
+                </div>
             </div>
         </div>
-
-        <!-- SEMBOYAN -->
-        <div class="col-md-6">
-            <div class="filosofi-card card-semboyan">
-
-                <div class="bg-label">S</div>
-
-                <div class="filosofi-header">
-                    <div class="filosofi-icon icon-semboyan">
-                        <i class="bi bi-chat-heart-fill"></i>
-                    </div>
-                    <div class="filosofi-title">Makna Semboyan</div>
-                </div>
-
-                <p class="filosofi-text">
-                    "Kesehatan Anda, Tujuan Kami"
-                </p>
-                <p class="filosofi-text">
-                    Setiap langkah pelayanan kami selalu berorientasi pada kesembuhan dan kepuasan pasien. Kesehatan Anda adalah prioritas utama yang menjadi alasan kami hadir.
-                </p>
-
-            </div>
-        </div>
-
     </div>
-
-</div>
 </section>
 
 <!-- ============================================================
      FOOTER
 ============================================================ -->
-<style>
-.footer-rsu{
-    background:linear-gradient(
-        to bottom,
-        #ffffff 0%,
-        #fefefd 3%,
-        #fdfcf6 8%,
-        #fcfbf3 13%,
-        #faf8ee 20%,
-        #f7f5e8 30%,
-        #f3f0e1 45%,
-        #ede9d9 65%,
-        #e8e3d2 85%,
-        #e3deca 100%
-    );
-    color:#1C145C;
-    padding:56px 0 0;
-    position:relative;
-    overflow:hidden;
-}
-
-/* ORNAMEN */
-.footer-rsu .footer-ornament{
-    position:absolute;
-    right:-80px;
-    bottom:-150px;
-    width:420px;
-    height:420px;
-    opacity:.07;
-    background-image:url('{{ asset("images/beranda/ornamen.png") }}');
-    background-size:contain;
-    background-repeat:no-repeat;
-    background-position:center;
-    pointer-events:none;
-    z-index:0;
-}
-
-.footer-rsu .footer-ornament2{
-    position:absolute;
-    left:-100px;
-    top:40px;
-    width:340px;
-    height:340px;
-    opacity:.04;
-    background-image:url('{{ asset("images/beranda/ornamen.png") }}');
-    background-size:contain;
-    background-repeat:no-repeat;
-    background-position:center;
-    pointer-events:none;
-    z-index:0;
-}
-
-/* CONTAINER */
-.footer-rsu .container-fluid{
-    max-width:1550px;
-    position:relative;
-    z-index:1;
-}
-
-/* GRID */
-.footer-rsu .row{
-    --bs-gutter-x:3.5rem;
-}
-
-/* LOGO */
-.footer-rsu .footer-logo{
-    height:40px;
-    width:auto;
-    display:block;
-    margin-bottom:14px;
-}
-
-/* TITLE */
-.footer-rsu .footer-title{
-    font-size:16px;
-    font-weight:700;
-    color:#1C145C;
-    margin-bottom:8px;
-}
-
-.footer-rsu .footer-desc{
-    font-size:13px;
-    line-height:1.8;
-    color:#5a5480;
-    margin-bottom:20px;
-    max-width:340px;
-}
-
-/* SOCIAL */
-.footer-rsu .footer-social{
-    display:flex;
-    gap:10px;
-    margin-bottom:22px;
-}
-
-.footer-rsu .footer-social a{
-    width:36px;
-    height:36px;
-    border-radius:50%;
-    background:rgba(28,20,92,.07);
-    border:1px solid rgba(28,20,92,.15);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#1C145C;
-    text-decoration:none;
-    font-size:15px;
-    transition:.25s;
-}
-
-.footer-rsu .footer-social a:hover{
-    background:#1C145C;
-    color:#fff;
-    transform:translateY(-2px);
-}
-
-/* MITRA */
-.footer-rsu .footer-mitra-label{
-    font-size:11px;
-    color:#9994bb;
-    text-transform:uppercase;
-    letter-spacing:.08em;
-    margin-bottom:10px;
-}
-
-.footer-rsu .footer-mitra{
-    display:flex;
-    gap:10px;
-    align-items:center;
-    flex-wrap:wrap;
-}
-
-.footer-rsu .footer-mitra img:nth-child(1){
-    height:33px;
-}
-
-.footer-rsu .footer-mitra img:nth-child(2){
-    height:23px;
-}
-
-/* HEADING */
-.footer-rsu .footer-heading{
-    font-weight:900;
-    font-size:12px;
-    color:#1C145C;
-    text-transform:uppercase;
-    letter-spacing:.14em;
-    margin-bottom:18px;
-    padding-bottom:10px;
-    border-bottom:1.5px solid rgba(28,20,92,.12);
-    white-space:nowrap;
-}
-
-/* LIST */
-.footer-rsu ul{
-    list-style:none;
-    padding:0;
-    margin:0;
-}
-
-.footer-rsu ul li{
-    margin-bottom:10px;
-}
-
-.footer-rsu a{
-    color:#5a5480;
-    text-decoration:none;
-    font-size:13.5px;
-    transition:.2s;
-    display:inline-flex;
-    align-items:center;
-    gap:5px;
-}
-
-.footer-rsu ul li a::before{
-    content:'›';
-    color:#1C145C;
-    opacity:.4;
-    font-size:15px;
-}
-
-.footer-rsu a:hover{
-    color:#1C145C;
-    padding-left:3px;
-}
-
-/* CONTACT */
-.footer-rsu .footer-contact-row{
-    display:flex;
-    align-items:flex-start;
-    gap:11px;
-    margin-bottom:16px;
-}
-
-.footer-rsu .footer-contact-icon{
-    width:34px;
-    height:34px;
-    border-radius:8px;
-    background:rgba(28,20,92,.07);
-    border:1px solid rgba(28,20,92,.1);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#1C145C;
-    flex-shrink:0;
-}
-
-.footer-rsu .footer-contact-text{
-    font-size:13px;
-    color:#5a5480;
-    line-height:1.7;
-    word-break:normal;
-}
-
-/* HR */
-.footer-rsu hr{
-    height:1px;
-    background:linear-gradient(
-        90deg,
-        rgba(28,20,92,0) 0%,
-        rgba(28,20,92,.12) 30%,
-        rgba(28,20,92,.12) 70%,
-        rgba(28,20,92,0) 100%
-    );
-    border:none;
-    margin:36px 0 0;
-}
-
-/* BOTTOM */
-.footer-rsu .footer-bottom{
-    background:rgba(28,20,92,.05);
-    padding:15px 36px;
-}
-
-.footer-rsu .footer-copy{
-    font-size:12.5px;
-    color:#9994bb;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:12px;
-}
-
-.footer-rsu .footer-copy-badge{
-    background:rgba(28,20,92,.06);
-    border:1px solid rgba(28,20,92,.12);
-    border-radius:20px;
-    padding:4px 14px;
-    font-size:11.5px;
-    color:#7a74a0;
-    white-space:nowrap;
-}
-
-.footer-rsu .footer-accent-dot{
-    display:inline-block;
-    width:3px;
-    height:3px;
-    border-radius:50%;
-    background:#1C145C;
-    opacity:.25;
-    margin:0 8px;
-}
-
-/* TABLET */
-@media(max-width:991px){
-
-    .footer-rsu{
-        padding:45px 0 0;
-    }
-
-    .footer-rsu .row > div{
-        margin-bottom:24px;
-    }
-
-    .footer-rsu .footer-desc{
-        max-width:100%;
-    }
-}
-
-/* MOBILE */
-@media(max-width:768px){
-
-    .footer-rsu{
-        padding:40px 0 0;
-    }
-
-    .footer-rsu .container-fluid{
-        padding-left:20px !important;
-        padding-right:20px !important;
-    }
-
-    .footer-rsu .footer-copy{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:8px;
-    }
-
-    .footer-rsu .footer-bottom{
-        padding:15px 20px;
-    }
-
-    .footer-rsu a:hover{
-        padding-left:0;
-    }
-
-    .footer-rsu .footer-logo{
-        height:34px;
-    }
-}
-</style>
-
 <footer class="footer-rsu">
-
     <div class="footer-ornament"></div>
     <div class="footer-ornament2"></div>
-
     <div class="container-fluid px-lg-5 px-4">
-
         <div class="row g-5 justify-content-between">
-
-            <!-- BRAND -->
             <div class="col-lg-3 col-md-12">
-
-                <img src="{{ asset('images/beranda/logo-almed.png') }}"
-                     class="footer-logo"
-                     alt="Logo RSU Allam Medica">
-
-                <h5 class="footer-title">
-                    RSU Allam Medica Bumiayu
-                </h5>
-
-                <p class="footer-desc">
-                    Jl. Pangeran Diponegoro No. 609,
-                    Jatisawit, Bumiayu, Kabupaten Brebes,
-                    Jawa Tengah 52273
-                </p>
-
+                <img src="{{ asset('images/beranda/logo-almed.png') }}" class="footer-logo" alt="Logo RSU Allam Medica">
+                <h5 class="footer-title">RSU Allam Medica Bumiayu</h5>
+                <p class="footer-desc">Jl. Pangeran Diponegoro No. 609, Jatisawit, Bumiayu, Kabupaten Brebes, Jawa Tengah 52273</p>
                 <div class="footer-social">
-                    <a href="https://www.tiktok.com/@rsuallammedicabumiayu" target="_blank">
-                        <i class="bi bi-tiktok"></i>
-                    </a>
-                    <a href="https://www.facebook.com/allam.medicabmy" target="_blank">
-                        <i class="bi bi-facebook"></i>
-                    </a>
-                    <a href="https://www.instagram.com/allam.medica/" target="_blank">
-                        <i class="bi bi-instagram"></i>
-                    </a>
+                    <a href="https://www.tiktok.com/@rsuallammedicabumiayu" target="_blank"><i class="bi bi-tiktok"></i></a>
+                    <a href="https://www.facebook.com/allam.medicabmy" target="_blank"><i class="bi bi-facebook"></i></a>
+                    <a href="https://www.instagram.com/allam.medica/" target="_blank"><i class="bi bi-instagram"></i></a>
                 </div>
-
-                <div class="footer-mitra-label">
-                    Akreditasi & Mitra
-                </div>
-
+                <div class="footer-mitra-label">Akreditasi & Mitra</div>
                 <div class="footer-mitra">
                     <img src="{{ asset('images/beranda/paripurna.png') }}" alt="">
                     <img src="{{ asset('images/beranda/bpjs.png') }}" alt="">
                 </div>
-
             </div>
-
-            <!-- TAUTAN CEPAT -->
             <div class="col-lg-2 col-md-4 col-6">
-
                 <h6 class="footer-heading">Tautan Cepat</h6>
-
                 <ul>
                     <li><a href="{{ route('beranda') }}">Beranda</a></li>
                     <li><a href="{{ url('/artikel') }}">Artikel</a></li>
                     <li><a href="{{ url('/download') }}">Download</a></li>
                     <li><a href="{{ url('/tentang') }}">Tentang Kami</a></li>
                     <li><a href="{{ url('/mutu') }}">Mutu</a></li>
-                    <li><a href="{{ url('/kontak') }}">Kontak</a></li>
                 </ul>
-
             </div>
-
-            <!-- MENU -->
             <div class="col-lg-2 col-md-4 col-6">
-
                 <h6 class="footer-heading">Menu</h6>
-
                 <ul>
                     <li><a href="{{ url('/karir') }}">Karir</a></li>
                     <li><a href="{{ url('/berita') }}">Berita</a></li>
                     <li><a href="{{ url('/video') }}">Video</a></li>
                 </ul>
-
             </div>
-
-            <!-- LAYANAN -->
             <div class="col-lg-2 col-md-4 col-6">
-
                 <h6 class="footer-heading">Layanan</h6>
-
                 <ul>
                     <li><a href="{{ url('/layanan#igd') }}">IGD 24 Jam</a></li>
                     <li><a href="{{ url('/layanan#rawatjalan') }}">Rawat Jalan</a></li>
@@ -1613,79 +885,29 @@ AOS.init({
                     <li><a href="{{ url('/layanan#farmasi') }}">Farmasi</a></li>
                     <li><a href="{{ url('/layanan#mcu') }}">Medical Check Up</a></li>
                 </ul>
-
             </div>
-
-            <!-- KONTAK -->
             <div class="col-lg-3 col-md-12">
-
                 <h6 class="footer-heading">Hubungi Kami</h6>
-
-                <div class="footer-contact-row">
-                    <div class="footer-contact-icon">
-                        <i class="bi bi-telephone-fill"></i>
-                    </div>
-                    <div class="footer-contact-text">
-                        (0289) 430822
-                    </div>
-                </div>
-
-                <div class="footer-contact-row">
-                    <div class="footer-contact-icon">
-                        <i class="bi bi-envelope-fill"></i>
-                    </div>
-                    <div class="footer-contact-text">
-                        allam.medica@yahoo.co.id
-                    </div>
-                </div>
-
-                <div class="footer-contact-row">
-                    <div class="footer-contact-icon">
-                        <i class="bi bi-clock-fill"></i>
-                    </div>
-                    <div class="footer-contact-text">
-                        IGD, Lab & Farmasi : 24 Jam<br>
-                        Rawat Jalan : Sen – Sab 07.00 – 21.00
-                    </div>
-                </div>
-
-                <div class="footer-contact-row">
-                    <div class="footer-contact-icon">
-                        <i class="bi bi-geo-alt-fill"></i>
-                    </div>
-                    <div class="footer-contact-text">
-                        Jl. Pangeran Diponegoro No. 609,<br>
-                        Bumiayu, Brebes
-                    </div>
-                </div>
-
+                <div class="footer-contact-row"><div class="footer-contact-icon"><i class="bi bi-telephone-fill"></i></div><div class="footer-contact-text">(0289) 430822</div></div>
+                <div class="footer-contact-row"><div class="footer-contact-icon"><i class="bi bi-envelope-fill"></i></div><div class="footer-contact-text">allam.medica@yahoo.co.id</div></div>
+                <div class="footer-contact-row"><div class="footer-contact-icon"><i class="bi bi-clock-fill"></i></div><div class="footer-contact-text">IGD, Lab & Farmasi : 24 Jam<br>Rawat Jalan : Sen – Sab 07.00 – 21.00</div></div>
+                <div class="footer-contact-row"><div class="footer-contact-icon"><i class="bi bi-geo-alt-fill"></i></div><div class="footer-contact-text">Jl. Pangeran Diponegoro No. 609,<br>Bumiayu, Brebes</div></div>
             </div>
-
         </div>
-
         <hr>
-
     </div>
-
     <div class="footer-bottom">
-
         <div class="container-fluid px-lg-5 px-4">
-
             <div class="footer-copy">
-                <span>
-                    © 2026 RSU Allam Medica
-                    <span class="footer-accent-dot"></span>
-                    Hak Cipta Dilindungi
-                </span>
-
-                <span class="footer-copy-badge">
-                    Melayani dengan Sepenuh Hati
-                </span>
+                <span>© 2026 RSU Allam Medica <span class="footer-accent-dot"></span> Hak Cipta Dilindungi</span>
+                <span class="footer-copy-badge">Melayani dengan Sepenuh Hati</span>
             </div>
-
         </div>
-
     </div>
-
 </footer>
-<!-- END FOOTER -->
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>AOS.init({ duration:800, once:true });</script>
+
+</body>
+</html>
