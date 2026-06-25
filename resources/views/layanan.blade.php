@@ -13,30 +13,176 @@ Layanan — RSU Allam Medica
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+@font-face {
+    font-family: 'GothamBlack';
+    src: url('{{ asset("fonts/Gotham-Black.otf") }}') format('opentype');
+    font-weight: 900; font-style: normal;
+}
+</style>
 </head>
 
 <style>
 /* ============================================================
    BASE
 ============================================================ */
-body { font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; overflow-x: hidden; }
+body { font-family: 'Segoe UI', sans-serif; background: #ffffff; overflow-x: hidden; padding-top: 38px; }
+
+
+
+/* ============================================================
+   TOPBAR
+============================================================ */
+.topbar { background: linear-gradient(90deg,#1C145C 0%,#34258d 50%,#1C145C 100%); position:fixed; top:0;left:0;width:100%;height:38px;z-index:10000;display:flex;align-items:center; }
+.topbar .container { display:flex;align-items:center;justify-content:space-between; }
+.topbar-info { display:flex;align-items:center;gap:14px; }
+.topbar-info span { color:rgba(255,255,255,.88);font-size:12px;display:flex;align-items:center;gap:6px;white-space:nowrap; }
+.topbar-social { display:flex;align-items:center;gap:12px; }
+.topbar-social a { color:rgba(255,255,255,.75);font-size:14px;text-decoration:none;transition:.2s; }
+.topbar-social a:hover { color:#fff; }
+@media(max-width:991px) { .topbar-info span { font-size:10px; } .topbar-social { gap:10px; } }
+@media(max-width:480px) { .topbar-info span { font-size:9px; } }
+
+/* ============================================================
+   NAVBAR
+============================================================ */
+.navbar-float-wrap { position:fixed;top:38px;left:0;width:100%;z-index:9998;padding:12px 20px; }
+.navbar-float { max-width:1200px;margin:0 auto;position:relative;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px 10px 22px;border-radius:60px;background:rgba(255,255,255,0.07);backdrop-filter:blur(22px) saturate(180%);-webkit-backdrop-filter:blur(22px) saturate(180%);border:1px solid rgba(255,255,255,0.16);box-shadow:0 8px 32px rgba(15,23,42,.08),inset 0 1px 0 rgba(255,255,255,.22);transition:background .3s,border .3s,box-shadow .3s; }
+.navbar-float.scrolled { background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);box-shadow:0 10px 40px rgba(15,23,42,.10),inset 0 1px 0 rgba(255,255,255,.28); }
+.navbar-float::before { content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(180deg,rgba(255,255,255,.20),rgba(255,255,255,.02));pointer-events:none; }
+.nav-logo { position:relative;z-index:2; }
+.navbar-float .nav-logo img { height:38px;object-fit:contain;display:block; }
+.nav-links { display:flex;align-items:center;justify-content:center;flex:1;gap:2px;position:relative;z-index:2; }
+.nav-link-pill { padding:8px 15px;border-radius:50px;font-size:14px;font-weight:500;color:#0f172a;text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;gap:4px;transition:background .2s,color .2s,transform .2s; }
+.nav-link-pill:hover { background:rgba(255,255,255,.25);color:#1C145C;transform:translateY(-1px); }
+.nav-link-pill.active { background:rgba(255,255,255,.35);color:#1C145C;font-weight:600; }
+.drop-wrap { position:relative; }
+.drop-menu { position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%) translateY(8px);min-width:200px;padding:8px;border-radius:22px;background:rgba(255,255,255,.92);backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.35);box-shadow:0 12px 35px rgba(15,23,42,.14);opacity:0;visibility:hidden;transition:.22s;z-index:100; }
+.drop-wrap:hover .drop-menu { opacity:1;visibility:visible;transform:translateX(-50%) translateY(0); }
+.drop-item { display:flex;align-items:center;gap:9px;padding:9px 13px;border-radius:12px;font-size:13.5px;color:#334155;text-decoration:none;transition:.18s;font-weight:500; }
+.drop-item:hover { background:rgba(28,20,92,.07);color:#1C145C; }
+.drop-item i { font-size:14px;color:#64748b;flex-shrink:0; }
+.drop-item:hover i { color:#1C145C; }
+.drop-divider { height:1px;background:rgba(0,0,0,.07);margin:4px 8px; }
+.chevron { font-size:11px;opacity:.6;transition:.25s; }
+.drop-wrap:hover .chevron { transform:rotate(180deg); }
+.nav-burger { display:none;flex-direction:column;gap:5px;cursor:pointer;border:none;background:transparent;padding:6px;position:relative;z-index:2; }
+.nav-burger span { width:22px;height:2px;background:#1C145C;border-radius:2px;display:block;transition:.3s; }
+.nav-burger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity:0; }
+.nav-burger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+
+/* ============================================================
+   KONTAK MEGA DROPDOWN
+============================================================ */
+.nav-cta { position:relative;z-index:2; }
+.kontak-wrap { position:relative; }
+.btn-kontak { padding:10px 22px;border-radius:50px;background:#1C145C;color:#fff!important;text-decoration:none!important;font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:6px;border:none;box-shadow:0 8px 20px rgba(28,20,92,.25);transition:.2s;cursor:pointer;font-family:inherit; }
+.btn-kontak:hover { background:#2a1e8a;transform:translateY(-1px); }
+.kontak-mega { position:absolute;top:calc(100% + 18px);right:0;width:780px;max-width:calc(100vw - 40px);background:rgba(255,255,255,0.97);backdrop-filter:blur(28px) saturate(180%);border:1px solid rgba(255,255,255,0.5);border-radius:24px;box-shadow:0 24px 60px rgba(15,23,42,.16),0 2px 12px rgba(15,23,42,.06);padding:28px;opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .26s,visibility .26s,transform .26s;z-index:9999; }
+.kontak-wrap:hover .kontak-mega,.kontak-mega:hover,.kontak-mega.open { opacity:1;visibility:visible;transform:translateY(0); }
+.kontak-mega::before { content:'';position:absolute;top:0;left:24px;right:24px;height:2px;background:linear-gradient(90deg,transparent,rgba(28,20,92,.2) 50%,transparent);border-radius:2px; }
+.kontak-mega-grid { display:grid;grid-template-columns:1.1fr 0.9fr;gap:22px; }
+.kontak-form-panel { background:#1C145C;border-radius:16px;padding:22px 20px;position:relative;overflow:hidden; }
+.kontak-form-panel .form-ornament { position:absolute;bottom:-50px;right:-50px;width:160px;height:160px;opacity:.07;background-image:url('{{ asset("images/beranda/ornamen.png") }}');background-size:contain;background-repeat:no-repeat;pointer-events:none;filter:brightness(10); }
+.kontak-form-panel > *:not(.form-ornament) { position:relative;z-index:1; }
+.kontak-form-sublabel { font-size:10px;font-weight:700;color:rgba(254,252,241,.45);text-transform:uppercase;letter-spacing:.12em;margin-bottom:4px; }
+.kontak-form-title { font-family:'GothamBlack',sans-serif!important;font-size:19px;color:#FEFCF1;margin-bottom:16px;line-height:1.2; }
+.kontak-form-title span { background:linear-gradient(90deg,#a89eff,#FEFCF1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+.ck-field { margin-bottom:10px; }
+.ck-field label { display:block;font-size:10.5px;color:rgba(254,252,241,.55);margin-bottom:3px;letter-spacing:.04em; }
+.ck-field input,.ck-field textarea { width:100%;background:rgba(255,255,255,.1);border:1px solid rgba(254,252,241,.18);border-radius:7px;padding:8px 11px;font-size:12.5px;color:#FEFCF1;outline:none;transition:.2s;font-family:inherit;box-sizing:border-box; }
+.ck-field input::placeholder,.ck-field textarea::placeholder { color:rgba(254,252,241,.35); }
+.ck-field input:focus,.ck-field textarea:focus { border-color:rgba(254,252,241,.5);background:rgba(255,255,255,.15); }
+.ck-field textarea { resize:vertical;min-height:72px; }
+.ck-row { display:grid;grid-template-columns:1fr 1fr;gap:8px; }
+.btn-send-mega { margin-top:12px;width:100%;padding:10px;background:#FEFCF1;color:#1C145C;border:none;border-radius:50px;font-size:13px;font-weight:700;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;gap:7px;font-family:inherit; }
+.btn-send-mega:hover { background:#fff;transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.18); }
+.kontak-info-panel { display:flex;flex-direction:column;gap:14px; }
+.kontak-info-grid { display:grid;grid-template-columns:1fr 1fr;gap:10px; }
+.kontak-info-card { background:#f8f7ff;border:1px solid #ece9f8;border-radius:12px;padding:12px;text-align:center; }
+.kontak-info-icon { width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;margin:0 auto 8px; }
+.ci-phone { background:rgba(25,135,84,.12);color:#198754; }
+.ci-email { background:rgba(220,53,69,.1);color:#dc3545; }
+.ci-igd   { background:rgba(245,158,11,.12);color:#d97706; }
+.ci-map   { background:rgba(28,20,92,.1);color:#1C145C; }
+.kontak-info-title { font-size:11px;font-weight:700;color:#1C145C;margin-bottom:2px; }
+.kontak-info-val   { font-size:11.5px;color:#5a5480;line-height:1.45; }
+.kontak-map-box { border-radius:12px;overflow:hidden;border:1px solid #e8e4d8;flex:1; }
+.kontak-map-box iframe { width:100%;height:140px;display:block;border:0; }
+
+/* ============================================================
+   DRAWER MOBILE
+============================================================ */
+.nav-overlay { display:none;position:fixed;inset:0;background:rgba(15,23,42,0);z-index:9999990;transition:background .3s; }
+.nav-overlay.show { display:block;background:rgba(15,23,42,0.42); }
+.nav-drawer { position:fixed;top:0;right:0;width:72%;max-width:300px;height:100dvh;z-index:9999995;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);background:rgba(255,255,255,0.97);backdrop-filter:blur(24px) saturate(180%);border-left:1px solid rgba(255,255,255,0.45);box-shadow:-8px 0 32px rgba(15,23,42,.12);display:flex;flex-direction:column;overflow-y:auto;overscroll-behavior:contain; }
+.nav-drawer.open { transform:translateX(0); }
+.drawer-header { display:flex;align-items:center;justify-content:space-between;padding:20px 16px 14px;border-bottom:1px solid rgba(0,0,0,.07);flex-shrink:0; }
+.drawer-label { font-size:11px;font-weight:700;color:#94a3b8;letter-spacing:.8px;text-transform:uppercase; }
+.drawer-close-btn { width:30px;height:30px;border-radius:50%;background:rgba(28,20,92,.08);border:none;display:flex;align-items:center;justify-content:center;color:#1C145C;cursor:pointer;font-size:14px; }
+.drawer-nav { flex:1;padding:8px 10px;display:flex;flex-direction:column;gap:1px;overflow-y:auto; }
+.d-link { display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;font-size:14px;font-weight:500;color:#1e293b;text-decoration:none;transition:.16s; }
+.d-link:hover { background:rgba(28,20,92,.06);color:#1C145C; }
+.d-link.active { background:rgba(28,20,92,.09);color:#1C145C;font-weight:600; }
+.d-icon { width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:14px;color:#64748b;flex-shrink:0; }
+.d-link.active .d-icon { color:#1C145C; }
+.d-divider { height:1px;background:rgba(0,0,0,.07);margin:4px 2px; }
+.drawer-footer { padding:12px 14px 24px;border-top:1px solid rgba(0,0,0,.07);flex-shrink:0; }
+.btn-kontak-drawer { border-radius:14px;display:block;text-align:center;padding:12px 22px;background:#1C145C;color:#fff!important;text-decoration:none!important;font-size:14px;font-weight:600;border:none;cursor:pointer;font-family:inherit;width:100%;transition:.2s; }
+.btn-kontak-drawer:hover { background:#2a1e8a; }
+.d-accordion-btn { display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;border-radius:12px;font-size:14px;font-weight:600;color:#1e293b;cursor:pointer;background:none;border:none;width:100%;font-family:'Plus Jakarta Sans',sans-serif;transition:.16s; }
+.d-accordion-btn:hover { background:rgba(28,20,92,.06);color:#1C145C; }
+.d-accordion-btn.active-parent { color:#1C145C; }
+.d-accordion-btn .d-acc-left { display:flex;align-items:center;gap:10px; }
+.d-accordion-chevron { font-size:11px;color:#94a3b8;transition:transform .25s;flex-shrink:0; }
+.d-accordion-btn.open .d-accordion-chevron { transform:rotate(180deg); }
+.d-accordion-body { display:none;padding:2px 0 4px 12px; }
+.d-accordion-body.open { display:block; }
+.d-sub-link { display:flex;align-items:center;gap:9px;padding:8px 12px;border-radius:10px;font-size:13.5px;font-weight:500;color:#475569;text-decoration:none;transition:.16s; }
+.d-sub-link:hover { background:rgba(28,20,92,.06);color:#1C145C; }
+.d-sub-link i { font-size:13px;color:#94a3b8;flex-shrink:0;width:16px;text-align:center; }
+.d-sub-link:hover i { color:#1C145C; }
+
+/* ============================================================
+   BOTTOM SHEET MOBILE
+============================================================ */
+.bs-overlay { display:none;position:fixed;inset:0;background:rgba(15,23,42,0);z-index:10000001;transition:background .3s; }
+.bs-overlay.show { display:block;background:rgba(15,23,42,0.5); }
+.bs-sheet { position:fixed;left:0;right:0;bottom:0;z-index:10000002;background:#fff;border-radius:24px 24px 0 0;box-shadow:0 -8px 40px rgba(15,23,42,.18);transform:translateY(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);height:92dvh;display:flex;flex-direction:column;overflow:visible; }
+.bs-sheet.open { transform:translateY(0); }
+.bs-handle-wrap { flex-shrink:0;display:flex;align-items:center;justify-content:center;padding:10px 16px 6px; }
+.bs-handle { width:40px;height:4px;border-radius:2px;background:rgba(0,0,0,.15); }
+.bs-header { flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 18px 14px;border-bottom:1px solid rgba(0,0,0,.07); }
+.bs-title { font-family:'GothamBlack', sans-serif !important; font-size:17px; color:#1C145C; margin:0; }
+.bs-close { width:32px;height:32px;border-radius:50%;background:rgba(28,20,92,.08);border:none;display:flex;align-items:center;justify-content:center;color:#1C145C;cursor:pointer;font-size:15px; }
+.bs-body { flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:18px 18px calc(18px + env(safe-area-inset-bottom)) 18px;display:flex;flex-direction:column;gap:16px; }
+.bs-form-card { background:#1C145C;border-radius:14px;padding:18px 16px;position:relative;overflow:hidden;flex-shrink:0; }
+.bs-form-card .bs-form-ornament { position:absolute;bottom:-40px;right:-40px;width:130px;height:130px;opacity:.07;background-image:url('{{ asset("images/beranda/ornamen.png") }}');background-size:contain;background-repeat:no-repeat;pointer-events:none;filter:brightness(10); }
+.bs-form-card > *:not(.bs-form-ornament) { position:relative;z-index:1; }
+.bs-sublabel { font-size:10px;font-weight:700;color:rgba(254,252,241,.45);text-transform:uppercase;letter-spacing:.12em;margin-bottom:3px; }
+.bs-form-title { font-family:'GothamBlack',sans-serif!important;font-size:17px;color:#FEFCF1;margin-bottom:14px; }
+.bs-form-title span { background:linear-gradient(90deg,#a89eff,#FEFCF1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+.bs-form-card .ck-field { margin-bottom:9px; }
+.bs-form-card .ck-field label { font-size:10px;color:rgba(254,252,241,.5);margin-bottom:2px; }
+.bs-form-card .ck-field input,.bs-form-card .ck-field textarea { font-size:12px;padding:7px 10px;border-radius:7px;background:rgba(255,255,255,.1);border:1px solid rgba(254,252,241,.18);color:#FEFCF1;width:100%;box-sizing:border-box;outline:none;font-family:inherit;transition:.2s; }
+.bs-form-card .ck-field input::placeholder,.bs-form-card .ck-field textarea::placeholder { color:rgba(254,252,241,.35); }
+.bs-form-card .ck-field input:focus,.bs-form-card .ck-field textarea:focus { border-color:rgba(254,252,241,.5);background:rgba(255,255,255,.15); }
+.bs-form-card .ck-field textarea { min-height:68px;resize:vertical; }
+.btn-send-bs { width:100%;padding:11px;background:#FEFCF1;color:#1C145C;border:none;border-radius:50px;font-size:13px;font-weight:700;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;gap:7px;font-family:inherit;margin-top:10px; }
+.btn-send-bs:hover { background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18); }
+.bs-info-grid { display:grid;grid-template-columns:1fr 1fr;gap:10px;flex-shrink:0; }
+.bs-info-card { background:#f8f7ff;border:1px solid #ece9f8;border-radius:12px;padding:12px;text-align:center; }
+.bs-info-icon { width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;margin:0 auto 7px; }
+.bs-info-title { font-size:11px;font-weight:700;color:#1C145C;margin-bottom:1px; }
+.bs-info-val   { font-size:11px;color:#5a5480;line-height:1.45; }
+.bs-map-box { border-radius:12px;overflow:hidden;border:1px solid #e8e4d8;flex-shrink:0; }
+.bs-map-box iframe { width:100%;height:160px;display:block;border:0; }
 
 /* ============================================================
    ORNAMEN HELPER
 ============================================================ */
-.ornamen {
-    position: absolute;
-    background-image: url('{{ asset("images/beranda/ornamen.png") }}');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    pointer-events: none;
-    z-index: 0;
-}
-
-/* ============================================================
-   ORNAMEN BUNGA (fixed scroll reveal)
-============================================================ */
+.ornamen { position:absolute;background-image:url('{{ asset("images/beranda/ornamen.png") }}');background-size:contain;background-repeat:no-repeat;background-position:center;pointer-events:none;z-index:0; }
 .page-ornament { position:fixed;pointer-events:none;z-index:0;background-image:url('{{ asset("images/beranda/ornamen.png") }}');background-size:contain;background-repeat:no-repeat;background-position:center;transition:opacity 0.6s ease,transform 0.6s ease;will-change:opacity,transform; }
 .orn-1 { right:-100px;top:20%;width:380px;height:380px;opacity:0;filter:hue-rotate(220deg) saturate(0.35); }
 .orn-2 { left:-80px;top:45%;width:300px;height:300px;opacity:0;filter:hue-rotate(200deg) saturate(0.3); }
@@ -108,10 +254,6 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; overfl
 ============================================================ */
 .layanan-page-body { padding:0 0 80px;background:#ffffff;position:relative;z-index:1; }
 .lay-section { padding:60px 0 0;scroll-margin-top:80px;position:relative; }
-
-/* ============================================================
-   SECTION HEADER
-============================================================ */
 .sec-label { display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px; }
 .sec-title { font-family:'DM Serif Display',serif;font-size:clamp(22px,3vw,30px);font-weight:400;color:#1C145C;line-height:1.2; }
 .sec-sub { font-size:14px;color:#64748b;margin-top:6px;line-height:1.6; }
@@ -134,7 +276,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; overfl
 .svc-badge { display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:20px;font-size:12.5px;font-weight:600;text-decoration:none;transition:all .2s; }
 
 /* ============================================================
-   POLI GRID — DESKTOP
+   POLI GRID
 ============================================================ */
 .poli-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;margin-top:24px; }
 .poli-card { background:#fff;border-radius:16px;border:1px solid #e8edf5;overflow:hidden;display:flex;flex-direction:column;transition:transform .28s cubic-bezier(.22,.68,0,1.2),box-shadow .28s,border-color .28s;animation:fadeUp .45s cubic-bezier(.22,.68,0,1.2) both; }
@@ -159,15 +301,11 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; overfl
 .poli-empty { grid-column:1/-1;padding:48px 24px;text-align:center;background:#fff;border-radius:16px;border:1px dashed #c7d2fe; }
 .poli-empty p { font-size:14px;color:#64748b;margin:0; }
 
-/* ============================================================
-   POLI LIST — MOBILE COMPACT
-============================================================ */
+/* POLI MOBILE */
 .poli-mobile-list { display:none;flex-direction:column;gap:0;margin-top:16px;border-radius:14px;border:1px solid #e8edf5;overflow:hidden;box-shadow:0 2px 12px rgba(28,20,92,.05); }
 .poli-mobile-item { display:flex;align-items:center;gap:12px;padding:12px 14px;background:#fff;border-bottom:1px solid #f1f5f9;transition:background .18s; }
 .poli-mobile-item:last-child { border-bottom:none; }
-.poli-mobile-item:active { background:#f8faff; }
 .pmi-icon { width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#e0e7ff,#dbeafe);display:flex;align-items:center;justify-content:center;font-size:17px;color:#818cf8;flex-shrink:0; }
-.poli-mobile-item[data-status="nonaktif"] .pmi-icon { background:#f1f5f9;color:#94a3b8; }
 .pmi-info { flex:1;min-width:0; }
 .pmi-name { font-family:'DM Serif Display',serif;font-size:14px;font-weight:400;color:#1C145C;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
 .pmi-status-badge { display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;margin-top:3px; }
@@ -186,110 +324,27 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; overfl
 .pmi-empty { padding:36px 20px;text-align:center;color:#94a3b8;font-size:13px; }
 
 /* ============================================================
-   RAWAT INAP — KELAS KAMAR — DESKTOP
+   RAWAT INAP KELAS GRID
 ============================================================ */
-.kelas-grid {
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
-    gap:16px;
-    margin-top:24px;
-    grid-auto-rows:1fr;
-}
-.kelas-card {
-    background:#fff;
-    border-radius:16px;
-    border:1px solid #e8edf5;
-    overflow:hidden;
-    box-shadow:0 3px 14px rgba(28,20,92,.05);
-    transition:transform .28s cubic-bezier(.22,.68,0,1.2),box-shadow .28s,border-color .28s;
-    animation:fadeUp .45s ease both;
-    display:flex;
-    flex-direction:column;
-    height:100%;
-}
-.kelas-card:hover {
-    transform:translateY(-5px);
-    box-shadow:0 14px 36px rgba(28,20,92,.11);
-    border-color:#c7d2fe;
-}
-
-/* FOTO RUANGAN */
-.kelas-thumb {
-    width:100%;
-    height:160px;
-    overflow:hidden;
-    flex-shrink:0;
-    background:#f0eeff;
-}
-.kelas-thumb img {
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
-    transition:transform .4s;
-}
-.kelas-card:hover .kelas-thumb img {
-    transform:scale(1.04);
-}
-.kelas-thumb-placeholder {
-    width:100%;
-    height:100%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:36px;
-    color:#818cf8;
-    background:linear-gradient(135deg,#e0e7ff,#dbeafe);
-}
-
-.kelas-header {
-    padding:16px 20px 14px;
-    position:relative;
-    overflow:hidden;
-    display:flex;
-    align-items:center;
-    gap:12px;
-    flex-shrink:0;
-}
-.kelas-icon-wrap {
-    width:40px;height:40px;border-radius:11px;
-    background:rgba(255,255,255,.18);
-    display:flex;align-items:center;justify-content:center;
-    font-size:18px;color:#fff;flex-shrink:0;position:relative;z-index:1;
-}
-.kelas-name {
-    font-family:'DM Serif Display',serif;
-    font-size:16px;font-weight:400;color:#fff;margin:0;
-    position:relative;z-index:1;line-height:1.2;
-}
-.kelas-body {
-    padding:14px 20px;
-    flex:1;
-    display:flex;flex-direction:column;gap:7px;
-}
-.kelas-feature {
-    display:flex;align-items:flex-start;gap:9px;
-    font-size:12.5px;color:#475569;line-height:1.5;
-}
-.kelas-feature i {
-    color:#1C145C;flex-shrink:0;margin-top:2px;
-    font-size:12px;opacity:.7;
-}
-.kelas-footer {
-    padding:10px 20px 16px;
-    border-top:1px solid #f1f5f9;
-    display:flex;align-items:center;
-    justify-content:space-between;
-    flex-wrap:wrap;gap:8px;
-    flex-shrink:0;
-}
+.kelas-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:24px;grid-auto-rows:1fr; }
+.kelas-card { background:#fff;border-radius:16px;border:1px solid #e8edf5;overflow:hidden;box-shadow:0 3px 14px rgba(28,20,92,.05);transition:transform .28s cubic-bezier(.22,.68,0,1.2),box-shadow .28s,border-color .28s;animation:fadeUp .45s ease both;display:flex;flex-direction:column;height:100%; }
+.kelas-card:hover { transform:translateY(-5px);box-shadow:0 14px 36px rgba(28,20,92,.11);border-color:#c7d2fe; }
+.kelas-thumb { width:100%;height:160px;overflow:hidden;flex-shrink:0;background:#f0eeff; }
+.kelas-thumb img { width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s; }
+.kelas-card:hover .kelas-thumb img { transform:scale(1.04); }
+.kelas-thumb-placeholder { width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:36px;color:#818cf8;background:linear-gradient(135deg,#e0e7ff,#dbeafe); }
+.kelas-header { padding:16px 20px 14px;position:relative;overflow:hidden;display:flex;align-items:center;gap:12px;flex-shrink:0; }
+.kelas-icon-wrap { width:40px;height:40px;border-radius:11px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:18px;color:#fff;flex-shrink:0;position:relative;z-index:1; }
+.kelas-name { font-family:'DM Serif Display',serif;font-size:16px;font-weight:400;color:#fff;margin:0;position:relative;z-index:1;line-height:1.2; }
+.kelas-body { padding:14px 20px;flex:1;display:flex;flex-direction:column;gap:7px; }
+.kelas-feature { display:flex;align-items:flex-start;gap:9px;font-size:12.5px;color:#475569;line-height:1.5; }
+.kelas-feature i { color:#1C145C;flex-shrink:0;margin-top:2px;font-size:12px;opacity:.7; }
+.kelas-footer { padding:10px 20px 16px;border-top:1px solid #f1f5f9;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;flex-shrink:0; }
 .kelas-badge { font-size:11.5px;font-weight:700;padding:4px 12px;border-radius:20px; }
 .kelas-wa-btn { display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:9px;font-size:12px;font-weight:700;background:#dcfce7;color:#15803d;text-decoration:none;border:1px solid #86efac;transition:.2s; }
 .kelas-wa-btn:hover { background:#25D366;color:#fff; }
 
-/* ============================================================
-   RAWAT INAP — MOBILE COMPACT MODE
-============================================================ */
+/* KELAS MOBILE */
 .kelas-mobile-wrap { display:none; }
 .kelas-pills-scroll { display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:4px 0 12px;margin-bottom:16px; }
 .kelas-pills-scroll::-webkit-scrollbar { display:none; }
@@ -310,23 +365,10 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; overfl
 .kdp-wa { background:#dcfce7;color:#15803d;border:1px solid #86efac; }
 .kdp-wa:hover { background:#25D366;color:#fff; }
 
-/* ============================================================
-   MCU PAKET
-============================================================ */
-.mcu-paket-card { background:#fff;border-radius:14px;border:1.5px solid #e8edf5;padding:20px 22px;margin-bottom:12px; }
-.mcu-paket-card:last-child { margin-bottom:0; }
-.mcu-paket-name { font-size:16px;font-weight:800;color:#1e293b;margin-bottom:6px; }
-.mcu-paket-items { display:flex;flex-wrap:wrap;gap:6px;margin-top:10px; }
-.mcu-paket-item { font-size:12px;padding:3px 10px;border-radius:20px;background:#f8faff;border:1px solid #e2e8f0;color:#475569; }
-
-/* ============================================================
-   HOME SERVICE LAB
-============================================================ */
+/* HOME SERVICE */
 .homeservice-card { background:linear-gradient(135deg,#f0fdf4 0%,#ecfdf5 100%);border-radius:16px;border:1.5px solid #86efac;padding:26px 28px;position:relative;overflow:hidden; }
 
-/* ============================================================
-   DETAIL POLI MODE
-============================================================ */
+/* DETAIL POLI */
 .detail-hero { background:linear-gradient(150deg,#1C145C 0%,#231a72 40%,#0ea5e9 100%);padding:130px 0 60px;position:relative;overflow:hidden; }
 .detail-hero::before { content:'';position:absolute;right:-80px;top:-80px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.06),transparent 65%);pointer-events:none; }
 .detail-hero .hero-orn { position:absolute;right:-40px;bottom:-60px;width:280px;height:280px;background-image:url('{{ asset("images/beranda/ornamen.png") }}');background-size:contain;background-repeat:no-repeat;background-position:center;opacity:0.08;filter:brightness(10);pointer-events:none; }
@@ -392,8 +434,12 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; overfl
 /* ============================================================
    RESPONSIVE
 ============================================================ */
+@media(max-width:1100px) { .nav-link-pill{padding:7px 11px;font-size:13px;} }
 @media(max-width:991px) {
-    body { padding-top:0; }
+    .navbar-float-wrap { top:38px;padding:4px 12px; }
+    .navbar-float { border-radius:26px;padding:8px 14px; }
+    .nav-links,.nav-cta { display:none; }
+    .nav-burger { display:flex; }
     .lay-hero { padding:95px 0 60px; }
     .detail-hero { padding:95px 0 52px; }
     .detail-sidebar { position:static;margin-top:24px; }
@@ -426,22 +472,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; overfl
 }
 </style>
 
-
-<!-- ============================================================
-     TOPBAR
-============================================================ -->
-<style>
-.topbar { background: linear-gradient(90deg,#1C145C 0%,#34258d 50%,#1C145C 100%); position:fixed; top:0;left:0;width:100%;height:38px;z-index:10000;display:flex;align-items:center; }
-.topbar .container { display:flex;align-items:center;justify-content:space-between; }
-.topbar-info { display:flex;align-items:center;gap:14px; }
-.topbar-info span { color:rgba(255,255,255,.88);font-size:12px;display:flex;align-items:center;gap:6px;white-space:nowrap; }
-.topbar-social { display:flex;align-items:center;gap:12px; }
-.topbar-social a { color:rgba(255,255,255,.75);font-size:14px;text-decoration:none;transition:.2s; }
-.topbar-social a:hover { color:#fff; }
-@media(max-width:991px) { .topbar-info span { font-size:10px; } .topbar-social { gap:10px; } }
-@media(max-width:480px) { .topbar-info span { font-size:9px; } }
-</style>
-
+{{-- TOPBAR --}}
 <div class="topbar">
     <div class="container">
         <div class="topbar-info">
@@ -456,80 +487,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; overfl
     </div>
 </div>
 
-
-<!-- ============================================================
-     NAVBAR
-============================================================ -->
-<style>
-.navbar-float-wrap { position:fixed;top:38px;left:0;width:100%;z-index:9998;padding:12px 20px; }
-.navbar-float { max-width:1200px;margin:0 auto;position:relative;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px 10px 22px;border-radius:60px;background:rgba(255,255,255,0.07);backdrop-filter:blur(22px) saturate(180%);-webkit-backdrop-filter:blur(22px) saturate(180%);border:1px solid rgba(255,255,255,0.16);box-shadow:0 8px 32px rgba(15,23,42,.08),inset 0 1px 0 rgba(255,255,255,.22);transition:background .3s,border .3s,box-shadow .3s; }
-.navbar-float.scrolled { background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);box-shadow:0 10px 40px rgba(15,23,42,.10),inset 0 1px 0 rgba(255,255,255,.28); }
-.navbar-float::before { content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(180deg,rgba(255,255,255,.20),rgba(255,255,255,.02));pointer-events:none; }
-.nav-logo { position:relative;z-index:2; }
-.navbar-float .nav-logo img { height:38px;object-fit:contain;display:block; }
-.nav-links { display:flex;align-items:center;justify-content:center;flex:1;gap:2px;position:relative;z-index:2; }
-.nav-link-pill { padding:8px 15px;border-radius:50px;font-size:14px;font-weight:500;color:#0f172a;text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;gap:4px;transition:background .2s,color .2s,transform .2s; }
-.nav-link-pill:hover { background:rgba(255,255,255,.25);color:#1C145C;transform:translateY(-1px); }
-.nav-link-pill.active { background:rgba(255,255,255,.35);color:#1C145C;font-weight:600; }
-.drop-wrap { position:relative; }
-.drop-menu { position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%) translateY(8px);min-width:200px;padding:8px;border-radius:22px;background:rgba(255,255,255,.92);backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.35);box-shadow:0 12px 35px rgba(15,23,42,.14);opacity:0;visibility:hidden;transition:.22s;z-index:100; }
-.drop-wrap:hover .drop-menu { opacity:1;visibility:visible;transform:translateX(-50%) translateY(0); }
-.drop-item { display:flex;align-items:center;gap:9px;padding:9px 13px;border-radius:12px;font-size:13.5px;color:#334155;text-decoration:none;transition:.18s;font-weight:500; }
-.drop-item:hover { background:rgba(28,20,92,.07);color:#1C145C; }
-.drop-item i { font-size:14px;color:#64748b;flex-shrink:0; }
-.drop-item:hover i { color:#1C145C; }
-.drop-divider { height:1px;background:rgba(0,0,0,.07);margin:4px 8px; }
-.chevron { font-size:11px;opacity:.6;transition:.25s; }
-.drop-wrap:hover .chevron { transform:rotate(180deg); }
-.nav-cta { position:relative;z-index:2; }
-.btn-kontak { padding:10px 22px;border-radius:50px;background:#1C145C;color:#fff!important;text-decoration:none!important;font-size:14px;font-weight:600;display:inline-block;border:none;box-shadow:0 8px 20px rgba(28,20,92,.25);transition:.2s; }
-.btn-kontak:hover { background:#2a1e8a;transform:translateY(-1px); }
-.nav-burger { display:none;flex-direction:column;gap:5px;cursor:pointer;border:none;background:transparent;padding:6px;position:relative;z-index:2; }
-.nav-burger span { width:22px;height:2px;background:#1C145C;border-radius:2px;display:block;transition:.3s; }
-.nav-burger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
-.nav-burger.open span:nth-child(2) { opacity:0; }
-.nav-burger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
-
-/* DRAWER (MOBILE) */
-.nav-overlay { display:none;position:fixed;inset:0;background:rgba(15,23,42,0);z-index:9999990;transition:background .3s; }
-.nav-overlay.show { display:block;background:rgba(15,23,42,0.42); }
-.nav-drawer { position:fixed;top:0;right:0;width:72%;max-width:300px;height:100dvh;z-index:9999995;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);background:rgba(255,255,255,0.97);backdrop-filter:blur(24px) saturate(180%);border-left:1px solid rgba(255,255,255,0.45);box-shadow:-8px 0 32px rgba(15,23,42,.12);display:flex;flex-direction:column;overflow-y:auto;overscroll-behavior:contain; }
-.nav-drawer.open { transform:translateX(0); }
-.drawer-header { display:flex;align-items:center;justify-content:space-between;padding:20px 16px 14px;border-bottom:1px solid rgba(0,0,0,.07);flex-shrink:0; }
-.drawer-label { font-size:11px;font-weight:700;color:#94a3b8;letter-spacing:.8px;text-transform:uppercase; }
-.drawer-close-btn { width:30px;height:30px;border-radius:50%;background:rgba(28,20,92,.08);border:none;display:flex;align-items:center;justify-content:center;color:#1C145C;cursor:pointer;font-size:14px; }
-.drawer-nav { flex:1;padding:8px 10px;display:flex;flex-direction:column;gap:1px;overflow-y:auto; }
-.d-link { display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;font-size:14px;font-weight:500;color:#1e293b;text-decoration:none;transition:.16s; }
-.d-link:hover { background:rgba(28,20,92,.06);color:#1C145C; }
-.d-link.active { background:rgba(28,20,92,.09);color:#1C145C;font-weight:600; }
-.d-icon { width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:14px;color:#64748b;flex-shrink:0; }
-.d-link.active .d-icon { color:#1C145C; }
-.d-divider { height:1px;background:rgba(0,0,0,.07);margin:4px 2px; }
-.drawer-footer { padding:12px 14px 24px;border-top:1px solid rgba(0,0,0,.07);flex-shrink:0; }
-.drawer-footer .btn-kontak { border-radius:14px;display:block;text-align:center;padding:12px 22px; }
-.d-accordion-btn { display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;border-radius:12px;font-size:14px;font-weight:600;color:#1e293b;cursor:pointer;background:none;border:none;width:100%;font-family:'Plus Jakarta Sans',sans-serif;transition:.16s; }
-.d-accordion-btn:hover { background:rgba(28,20,92,.06);color:#1C145C; }
-.d-accordion-btn.active-parent { color:#1C145C; }
-.d-accordion-btn .d-acc-left { display:flex;align-items:center;gap:10px; }
-.d-accordion-chevron { font-size:11px;color:#94a3b8;transition:transform .25s;flex-shrink:0; }
-.d-accordion-btn.open .d-accordion-chevron { transform:rotate(180deg); }
-.d-accordion-body { display:none;padding:2px 0 4px 12px; }
-.d-accordion-body.open { display:block; }
-.d-sub-link { display:flex;align-items:center;gap:9px;padding:8px 12px;border-radius:10px;font-size:13.5px;font-weight:500;color:#475569;text-decoration:none;transition:.16s; }
-.d-sub-link:hover { background:rgba(28,20,92,.06);color:#1C145C; }
-.d-sub-link i { font-size:13px;color:#94a3b8;flex-shrink:0;width:16px;text-align:center; }
-.d-sub-link:hover i { color:#1C145C; }
-
-@media(max-width:1100px) { .nav-link-pill{padding:7px 11px;font-size:13px;} }
-@media(max-width:991px) {
-    .navbar-float-wrap { top:38px;padding:4px 12px; }
-    .navbar-float { border-radius:26px;padding:8px 14px; }
-    .nav-links,.nav-cta { display:none; }
-    .nav-burger { display:flex; }
-}
-@media(max-width:480px) { .navbar-float { border-radius:22px; } }
-</style>
-
+{{-- NAVBAR --}}
 <div class="navbar-float-wrap">
     <nav class="navbar-float" id="mainNavbar">
         <a href="/" class="nav-logo">
@@ -569,11 +527,44 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; overfl
             <a href="/tentang"  class="nav-link-pill {{ request()->is('tentang*')  ? 'active' : '' }}">Tentang Kami</a>
             <a href="/mutu"     class="nav-link-pill {{ request()->is('mutu*')     ? 'active' : '' }}">Mutu</a>
         </div>
-        <div class="nav-cta"><a href="/kontak" class="btn-kontak">Kontak</a></div>
+        <div class="nav-cta kontak-wrap" id="kontakWrap">
+            <button class="btn-kontak" id="btnKontakDesktop" type="button">Kontak</button>
+            <div class="kontak-mega" id="kontakMega">
+                <div class="kontak-mega-grid">
+                    <div class="kontak-form-panel">
+                        <div class="form-ornament"></div>
+                        <div class="kontak-form-sublabel">Kontak Kami</div>
+                        <div class="kontak-form-title">Get In <span>Touch</span></div>
+                        <form action="https://formspree.io/f/xaqzzypq" method="POST">
+                            <div class="ck-row">
+                                <div class="ck-field"><label>Nama</label><input type="text" name="nama" placeholder="Nama lengkap" required></div>
+                                <div class="ck-field"><label>Telepon</label><input type="text" name="telepon" placeholder="No. telepon" required></div>
+                            </div>
+                            <div class="ck-row">
+                                <div class="ck-field"><label>Email</label><input type="email" name="email" placeholder="Email Anda" required></div>
+                                <div class="ck-field"><label>Subject</label><input type="text" name="subject" placeholder="Perihal" required></div>
+                            </div>
+                            <div class="ck-field"><label>Pesan</label><textarea name="pesan" placeholder="Tulis pesan Anda..." required></textarea></div>
+                            <button type="submit" class="btn-send-mega"><i class="bi bi-send-fill"></i> Kirim Pesan</button>
+                        </form>
+                    </div>
+                    <div class="kontak-info-panel">
+                        <div class="kontak-info-grid">
+                            <div class="kontak-info-card"><div class="kontak-info-icon ci-phone"><i class="bi bi-telephone-fill"></i></div><div class="kontak-info-title">Telepon</div><div class="kontak-info-val">(0289) 430822</div></div>
+                            <div class="kontak-info-card"><div class="kontak-info-icon ci-email"><i class="bi bi-envelope-fill"></i></div><div class="kontak-info-title">Email</div><div class="kontak-info-val">allam.medica@<br>yahoo.co.id</div></div>
+                            <div class="kontak-info-card"><div class="kontak-info-icon ci-igd"><i class="bi bi-clock-fill"></i></div><div class="kontak-info-title">IGD</div><div class="kontak-info-val">24 Jam</div></div>
+                            <div class="kontak-info-card"><div class="kontak-info-icon ci-map"><i class="bi bi-geo-alt-fill"></i></div><div class="kontak-info-title">Alamat</div><div class="kontak-info-val">Jl. P. Diponegoro No.609, Bumiayu</div></div>
+                        </div>
+                        <div class="kontak-map-box"><iframe src="https://www.google.com/maps?q=RSU+Allam+Medica+Bumiayu&output=embed" loading="lazy"></iframe></div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <button class="nav-burger" id="navBurger"><span></span><span></span><span></span></button>
     </nav>
 </div>
 
+{{-- DRAWER --}}
 <div class="nav-overlay" id="navOverlay"></div>
 <aside class="nav-drawer" id="navDrawer">
     <div class="drawer-header">
@@ -581,9 +572,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; overfl
         <button class="drawer-close-btn" id="drawerClose"><i class="bi bi-x-lg"></i></button>
     </div>
     <nav class="drawer-nav">
-        <a href="/" class="d-link {{ request()->is('/') ? 'active' : '' }}">
-            <span class="d-icon"><i class="bi bi-house"></i></span> Beranda
-        </a>
+        <a href="/" class="d-link {{ request()->is('/') ? 'active' : '' }}"><span class="d-icon"><i class="bi bi-house"></i></span> Beranda</a>
         <button class="d-accordion-btn {{ request()->is('karir*','berita*','video*') ? 'active-parent' : '' }}" data-target="acc-menu">
             <span class="d-acc-left"><span class="d-icon"><i class="bi bi-grid"></i></span> Menu</span>
             <i class="bi bi-chevron-down d-accordion-chevron"></i>
@@ -615,45 +604,42 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; overfl
         <a href="/tentang"  class="d-link {{ request()->is('tentang*')  ? 'active' : '' }}"><span class="d-icon"><i class="bi bi-info-circle"></i></span> Tentang Kami</a>
         <a href="/mutu"     class="d-link {{ request()->is('mutu*')     ? 'active' : '' }}"><span class="d-icon"><i class="bi bi-patch-check"></i></span> Mutu</a>
     </nav>
-    <div class="drawer-footer"><a href="/kontak" class="btn-kontak">Kontak</a></div>
+    <div class="drawer-footer">
+        <button class="btn-kontak-drawer" id="btnKontakMobile" type="button">Kontak</button>
+    </div>
 </aside>
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const burger  = document.getElementById('navBurger');
-    const drawer  = document.getElementById('navDrawer');
-    const overlay = document.getElementById('navOverlay');
-    const closeBtn= document.getElementById('drawerClose');
-    const navbar  = document.getElementById('mainNavbar');
-
-    function openDrawer()  { burger.classList.add('open');drawer.classList.add('open');overlay.classList.add('show');document.body.style.overflow='hidden'; }
-    function closeDrawer() { burger.classList.remove('open');drawer.classList.remove('open');overlay.classList.remove('show');document.body.style.overflow=''; }
-
-    burger.addEventListener('click', e => { e.stopPropagation(); drawer.classList.contains('open') ? closeDrawer() : openDrawer(); });
-    closeBtn.addEventListener('click', closeDrawer);
-    overlay.addEventListener('click', closeDrawer);
-    drawer.querySelectorAll('.d-link, .d-sub-link').forEach(l => l.addEventListener('click', closeDrawer));
-
-    drawer.querySelectorAll('.d-accordion-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const targetId = this.dataset.target;
-            const body = document.getElementById(targetId);
-            const isOpen = body.classList.contains('open');
-            drawer.querySelectorAll('.d-accordion-body').forEach(b => b.classList.remove('open'));
-            drawer.querySelectorAll('.d-accordion-btn').forEach(b => b.classList.remove('open'));
-            if (!isOpen) { body.classList.add('open'); this.classList.add('open'); }
-        });
-    });
-    drawer.querySelectorAll('.d-accordion-body.open').forEach(b => {
-        const btn = drawer.querySelector('[data-target="' + b.id + '"]');
-        if (btn) btn.classList.add('open');
-    });
-
-    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 10), { passive: true });
-});
-</script>
-<!-- END NAVBAR -->
-
+{{-- BOTTOM SHEET --}}
+<div class="bs-overlay" id="bsOverlay"></div>
+<div class="bs-sheet" id="bsSheet">
+    <div class="bs-handle-wrap"><div class="bs-handle"></div></div>
+    <div class="bs-header">
+        <h2 class="bs-title">Hubungi Kami</h2>
+        <button class="bs-close" id="bsClose"><i class="bi bi-x-lg"></i></button>
+    </div>
+    <div class="bs-body">
+        <div class="bs-form-card">
+            <div class="bs-form-ornament"></div>
+            <div class="bs-sublabel">Kirim Pesan</div>
+            <div class="bs-form-title">Get In <span>Touch</span></div>
+            <form action="https://formspree.io/f/xaqzzypq" method="POST">
+                <div class="ck-field"><label>Nama</label><input type="text" name="nama" placeholder="Nama lengkap" required></div>
+                <div class="ck-field"><label>Telepon</label><input type="text" name="telepon" placeholder="No. telepon" required></div>
+                <div class="ck-field"><label>Email</label><input type="email" name="email" placeholder="Email Anda" required></div>
+                <div class="ck-field"><label>Subject</label><input type="text" name="subject" placeholder="Perihal" required></div>
+                <div class="ck-field"><label>Pesan</label><textarea name="pesan" placeholder="Tulis pesan Anda..." required></textarea></div>
+                <button type="submit" class="btn-send-bs"><i class="bi bi-send-fill"></i> Kirim Pesan</button>
+            </form>
+        </div>
+        <div class="bs-info-grid">
+            <div class="bs-info-card"><div class="bs-info-icon ci-phone"><i class="bi bi-telephone-fill"></i></div><div class="bs-info-title">Telepon</div><div class="bs-info-val">(0289) 430822</div></div>
+            <div class="bs-info-card"><div class="bs-info-icon ci-email"><i class="bi bi-envelope-fill"></i></div><div class="bs-info-title">Email</div><div class="bs-info-val">allam.medica@yahoo.co.id</div></div>
+            <div class="bs-info-card"><div class="bs-info-icon ci-igd"><i class="bi bi-clock-fill"></i></div><div class="bs-info-title">IGD</div><div class="bs-info-val">24 Jam</div></div>
+            <div class="bs-info-card"><div class="bs-info-icon ci-map"><i class="bi bi-geo-alt-fill"></i></div><div class="bs-info-title">Alamat</div><div class="bs-info-val">Jl. P. Diponegoro No.609, Bumiayu, Brebes</div></div>
+        </div>
+        <div class="bs-map-box"><iframe src="https://www.google.com/maps?q=RSU+Allam+Medica+Bumiayu&output=embed" loading="lazy"></iframe></div>
+    </div>
+</div>
 
 @unless(isset($poli))
 <div class="page-ornament orn-1" id="pgOrn1"></div>
@@ -662,7 +648,6 @@ document.addEventListener('DOMContentLoaded', function () {
 <div class="page-ornament orn-4" id="pgOrn4"></div>
 <div class="page-ornament orn-5" id="pgOrn5"></div>
 @endunless
-
 
 {{-- ============================================================
      DETAIL POLI
@@ -785,11 +770,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 @foreach($poliTerkait as $i => $p)
                 <a href="{{ route('layanan.poli', $p['id']) }}" class="terkait-card" style="animation:fadeUp .4s ease {{ $i*0.08 }}s both;">
                     <div class="terkait-thumb">
-                        @if($p['gambar'])
-                            <img src="{{ $p['gambar'] }}" alt="{{ $p['poli'] }}" loading="lazy">
-                        @else
-                            <div class="terkait-thumb-placeholder"><i class="bi bi-clipboard2-pulse"></i></div>
-                        @endif
+                        @if($p['gambar'])<img src="{{ $p['gambar'] }}" alt="{{ $p['poli'] }}" loading="lazy">
+                        @else<div class="terkait-thumb-placeholder"><i class="bi bi-clipboard2-pulse"></i></div>@endif
                     </div>
                     <div class="terkait-body">
                         <div class="terkait-name">{{ $p['poli'] }}</div>
@@ -807,10 +789,7 @@ document.addEventListener('DOMContentLoaded', function () {
     <div class="col-lg-4">
         <div class="detail-sidebar">
             <div class="sidebar-card">
-                <div class="sc-header">
-                    <h3>Informasi Kontak</h3>
-                    <p>Hubungi kami untuk janji temu</p>
-                </div>
+                <div class="sc-header"><h3>Informasi Kontak</h3><p>Hubungi kami untuk janji temu</p></div>
                 <div class="sc-body">
                     <div class="info-row">
                         <div class="info-icon" style="background:#e0f2fe;"><i class="bi bi-clipboard2-pulse" style="color:#0284c7;font-size:15px;"></i></div>
@@ -840,9 +819,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
             </div>
             <div style="background:#fff;border-radius:16px;border:1px solid #e8edf5;padding:18px 20px;margin-top:14px;box-shadow:0 2px 12px rgba(28,20,92,.05);">
-                <div style="font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;">
-                    <i class="bi bi-clock" style="margin-right:5px;"></i> Jam Rawat Jalan
-                </div>
+                <div style="font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;"><i class="bi bi-clock" style="margin-right:5px;"></i> Jam Rawat Jalan</div>
                 <div style="display:flex;flex-direction:column;gap:8px;">
                     <div style="display:flex;justify-content:space-between;padding:9px 12px;background:#f8faff;border-radius:8px;border:1px solid #e8edf5;">
                         <span style="font-size:13px;font-weight:600;color:#1e293b;">Senin – Sabtu</span>
@@ -857,13 +834,8 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
             <a href="{{ route('jadwaldokter') }}" class="jadwal-cta">
                 <div class="jadwal-inner">
-                    <div style="width:40px;height:40px;border-radius:11px;background:#fff;border:1px solid rgba(28,20,92,.15);display:flex;align-items:center;justify-content:center;font-size:18px;color:#1C145C;flex-shrink:0;">
-                        <i class="bi bi-calendar2-week-fill"></i>
-                    </div>
-                    <div class="jadwal-text">
-                        <div class="jt-label">Lihat Jadwal Dokter</div>
-                        <div class="jt-sub">Cek jadwal & ketersediaan dokter</div>
-                    </div>
+                    <div style="width:40px;height:40px;border-radius:11px;background:#fff;border:1px solid rgba(28,20,92,.15);display:flex;align-items:center;justify-content:center;font-size:18px;color:#1C145C;flex-shrink:0;"><i class="bi bi-calendar2-week-fill"></i></div>
+                    <div class="jadwal-text"><div class="jt-label">Lihat Jadwal Dokter</div><div class="jt-sub">Cek jadwal & ketersediaan dokter</div></div>
                     <i class="bi bi-arrow-right jadwal-arrow"></i>
                 </div>
             </a>
@@ -948,7 +920,6 @@ document.addEventListener('DOMContentLoaded', function () {
 </div>
 @endif
 
-{{-- TABS --}}
 <div class="layanan-tabs-wrap">
     <div class="container">
         <div class="layanan-tabs" id="layananTabs">
@@ -967,20 +938,17 @@ document.addEventListener('DOMContentLoaded', function () {
 <div class="layanan-page-body">
 <div class="container" style="position:relative;z-index:1;">
 
-
-    {{-- ============================================================
-         IGD
-    ============================================================ --}}
-    <section id="igd" class="lay-section" style="position:relative; overflow:hidden;">
-        <div class="ornamen" style="top:-20px; right:-20px; width:280px; height:280px; opacity:0.04;"></div>
-        <div class="ornamen" style="bottom:-60px; left:-70px; width:260px; height:260px; opacity:0.035;"></div>
-        <div style="margin-bottom:28px; position:relative; z-index:1;">
+    {{-- IGD --}}
+    <section id="igd" class="lay-section" style="position:relative;overflow:hidden;">
+        <div class="ornamen" style="top:-20px;right:-20px;width:280px;height:280px;opacity:0.04;"></div>
+        <div class="ornamen" style="bottom:-60px;left:-70px;width:260px;height:260px;opacity:0.035;"></div>
+        <div style="margin-bottom:28px;position:relative;z-index:1;">
             <div class="sec-label" style="background:#fee2e2;color:#dc2626;"><i class="bi bi-bandaid-fill"></i> Gawat Darurat</div>
             <div class="sec-title">IGD 24 Jam</div>
             <div class="sec-sub">Penanganan gawat darurat cepat, tepat, dan profesional sepanjang waktu.</div>
         </div>
         <div class="sec-divider"></div>
-        <div class="row g-4" style="position:relative; z-index:1;">
+        <div class="row g-4" style="position:relative;z-index:1;">
             <div class="col-lg-5">
                 <div class="svc-card h-100">
                     <div class="svc-header" style="background:linear-gradient(135deg,#7f1d1d 0%,#dc2626 100%);">
@@ -1024,14 +992,11 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
     </section>
 
-
-    {{-- ============================================================
-         RAWAT JALAN
-    ============================================================ --}}
-    <section id="rawatjalan" class="lay-section" style="position:relative; overflow:hidden;">
-        <div class="ornamen" style="top:-90px; left:-20px; width:340px; height:340px; opacity:0.04;"></div>
-        <div class="ornamen" style="bottom:-80px; right:-70px; width:280px; height:280px; opacity:0.035;"></div>
-        <div class="lay-section-header" style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:28px;gap:16px;flex-wrap:wrap; position:relative; z-index:1;">
+    {{-- RAWAT JALAN --}}
+    <section id="rawatjalan" class="lay-section" style="position:relative;overflow:hidden;">
+        <div class="ornamen" style="top:-90px;left:-20px;width:340px;height:340px;opacity:0.04;"></div>
+        <div class="ornamen" style="bottom:-80px;right:-70px;width:280px;height:280px;opacity:0.035;"></div>
+        <div class="lay-section-header" style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:28px;gap:16px;flex-wrap:wrap;position:relative;z-index:1;">
             <div>
                 <div class="sec-label" style="background:#e0f2fe;color:#0284c7;"><i class="bi bi-clipboard2-pulse"></i> Rawat Jalan</div>
                 <div class="sec-title">Poliklinik Spesialis</div>
@@ -1043,33 +1008,24 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
         </div>
         <div class="sec-divider"></div>
-
-        {{-- Search bar desktop --}}
-        <div class="d-none d-lg-flex" style="background:#fff;border-radius:12px;border:1px solid #e8edf5;padding:12px 16px;align-items:center;gap:10px;margin-bottom:20px;box-shadow:0 2px 8px rgba(28,20,92,.04);flex-wrap:wrap; position:relative; z-index:1;">
+        <div class="d-none d-lg-flex" style="background:#fff;border-radius:12px;border:1px solid #e8edf5;padding:12px 16px;align-items:center;gap:10px;margin-bottom:20px;box-shadow:0 2px 8px rgba(28,20,92,.04);flex-wrap:wrap;position:relative;z-index:1;">
             <div style="position:relative;flex:1;min-width:180px;">
                 <i class="bi bi-search" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#94a3b8;font-size:13px;pointer-events:none;"></i>
-                <input type="search" id="searchPoliDesktop" placeholder="Cari poliklinik..." oninput="filterPoliDesktop()"
-                    style="width:100%;padding:8px 12px 8px 34px;border:1.5px solid #e2e8f0;border-radius:9px;font-size:13px;outline:none;background:#f8faff;">
+                <input type="search" id="searchPoliDesktop" placeholder="Cari poliklinik..." oninput="filterPoliDesktop()" style="width:100%;padding:8px 12px 8px 34px;border:1.5px solid #e2e8f0;border-radius:9px;font-size:13px;outline:none;background:#f8faff;">
             </div>
-            <select id="filterPoliStatusDesktop" onchange="filterPoliDesktop()"
-                style="padding:8px 26px 8px 11px;border:1.5px solid #e2e8f0;border-radius:9px;font-size:13px;outline:none;background:#f8faff;appearance:none;background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2364748b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E\");background-repeat:no-repeat;background-position:right 9px center;cursor:pointer;">
+            <select id="filterPoliStatusDesktop" onchange="filterPoliDesktop()" style="padding:8px 26px 8px 11px;border:1.5px solid #e2e8f0;border-radius:9px;font-size:13px;outline:none;background:#f8faff;appearance:none;background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2364748b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E\");background-repeat:no-repeat;background-position:right 9px center;cursor:pointer;">
                 <option value="">Semua Status</option>
                 <option value="aktif">Aktif</option>
                 <option value="nonaktif">Nonaktif</option>
             </select>
         </div>
-
-        {{-- DESKTOP: Grid cards --}}
-        <div class="poli-grid" id="poliGrid" style="position:relative; z-index:1;">
+        <div class="poli-grid" id="poliGrid" style="position:relative;z-index:1;">
             @php $poliItems = collect($layananData)->where('kategori','poli')->values(); @endphp
             @forelse($poliItems as $i => $pol)
             <div class="poli-card" data-nama="{{ strtolower($pol['poli']??'') }}" data-status="{{ $pol['status']??'aktif' }}" style="animation-delay:{{ min($i*0.06,0.5) }}s">
                 <div class="poli-thumb">
-                    @if(!empty($pol['gambar']))
-                        <img src="{{ $pol['gambar'] }}" alt="{{ $pol['poli'] }}" loading="lazy">
-                    @else
-                        <div class="poli-thumb-placeholder"><i class="bi bi-clipboard2-pulse"></i></div>
-                    @endif
+                    @if(!empty($pol['gambar']))<img src="{{ $pol['gambar'] }}" alt="{{ $pol['poli'] }}" loading="lazy">
+                    @else<div class="poli-thumb-placeholder"><i class="bi bi-clipboard2-pulse"></i></div>@endif
                     <span class="poli-status {{ $pol['status']??'aktif' }}">{{ ($pol['status']??'aktif')==='aktif'?'Aktif':'Nonaktif' }}</span>
                 </div>
                 <div class="poli-body">
@@ -1078,11 +1034,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
                 <div class="poli-footer">
                     @php $noWa=preg_replace('/[^0-9]/','', $pol['no_wa']??''); @endphp
-                    @if($noWa)
-                        <a href="https://wa.me/{{ $noWa }}" target="_blank" class="poli-wa"><i class="bi bi-whatsapp"></i> WhatsApp</a>
-                    @else
-                        <span style="font-size:12px;color:#94a3b8;font-style:italic;">—</span>
-                    @endif
+                    @if($noWa)<a href="https://wa.me/{{ $noWa }}" target="_blank" class="poli-wa"><i class="bi bi-whatsapp"></i> WhatsApp</a>
+                    @else<span style="font-size:12px;color:#94a3b8;font-style:italic;">—</span>@endif
                     <a href="{{ route('layanan.poli', $pol['id']) }}" class="poli-detail">
                         <i class="bi bi-eye" style="font-size:11px;"></i> Detail <i class="bi bi-arrow-right" style="font-size:11px;"></i>
                     </a>
@@ -1092,9 +1045,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="poli-empty"><p><i class="bi bi-inbox" style="font-size:24px;display:block;margin-bottom:8px;"></i>Belum ada data poliklinik.</p></div>
             @endforelse
         </div>
-
-        {{-- MOBILE --}}
-        <div class="d-lg-none" style="position:relative; z-index:1;">
+        <div class="d-lg-none" style="position:relative;z-index:1;">
             <div class="poli-mobile-search">
                 <div class="poli-mobile-search-wrap">
                     <i class="bi bi-search"></i>
@@ -1116,9 +1067,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     </div>
                     <div class="pmi-actions">
                         @php $noWaMob=preg_replace('/[^0-9]/','', $pol['no_wa']??''); @endphp
-                        @if($noWaMob)
-                        <a href="https://wa.me/{{ $noWaMob }}" target="_blank" class="pmi-wa" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
-                        @endif
+                        @if($noWaMob)<a href="https://wa.me/{{ $noWaMob }}" target="_blank" class="pmi-wa" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>@endif
                         <a href="{{ route('layanan.poli', $pol['id']) }}" class="pmi-detail">
                             <i class="bi bi-arrow-right" style="font-size:12px;"></i>
                             <span class="pmi-detail-label">Detail</span>
@@ -1133,8 +1082,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <i class="bi bi-search" style="font-size:22px;display:block;margin-bottom:6px;"></i>Poliklinik tidak ditemukan.
             </div>
         </div>
-
-        <div style="margin-top:28px;background:linear-gradient(135deg,#1C145C 0%,#3b5bdb 100%);border-radius:18px;padding:28px 32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden; z-index:1;">
+        <div style="margin-top:28px;background:linear-gradient(135deg,#1C145C 0%,#3b5bdb 100%);border-radius:18px;padding:28px 32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden;z-index:1;">
             <div style="position:relative;z-index:1;">
                 <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;">Jadwal Dokter</div>
                 <div style="font-family:'DM Serif Display',serif;font-size:22px;color:#fff;font-weight:400;margin-bottom:4px;">Cek Jadwal Praktik Dokter</div>
@@ -1146,235 +1094,66 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
     </section>
 
-
-    {{-- ============================================================
-         RAWAT INAP
-    ============================================================ --}}
-    <section id="rawatinap" class="lay-section" style="position:relative; overflow:hidden;">
-        <div class="ornamen" style="top:-20px; right:-20px; width:360px; height:360px; opacity:0.04;"></div>
-        <div class="ornamen" style="bottom:-80px; left:-80px; width:600px; height:600px; opacity:0.035;"></div>
-        <div class="ornamen" style="top:50%; left:50%; transform:translate(-50%,-50%); width:460px; height:460px; opacity:0.02;"></div>
-
+    {{-- RAWAT INAP --}}
+    <section id="rawatinap" class="lay-section" style="position:relative;overflow:hidden;">
+        <div class="ornamen" style="top:-20px;right:-20px;width:360px;height:360px;opacity:0.04;"></div>
+        <div class="ornamen" style="bottom:-80px;left:-80px;width:600px;height:600px;opacity:0.035;"></div>
         <div class="sec-divider"></div>
-        <div style="margin-bottom:28px; position:relative; z-index:1;">
+        <div style="margin-bottom:28px;position:relative;z-index:1;">
             <div class="sec-label" style="background:#ede9fe;color:#7c3aed;"><i class="bi bi-hospital"></i> Rawat Inap</div>
             <div class="sec-title">Fasilitas Rawat Inap</div>
             <div class="sec-sub">RSU Allam Medica menyediakan berbagai pilihan kelas perawatan sesuai kebutuhan dan kondisi pasien.</div>
         </div>
-
         @php
         $kelasRawat = [
-            [
-                'nama'     => 'Kelas VIP',
-                'foto'     => asset('assets/KelasVIP.png'),
-                'icon'     => 'bi-gem',
-                'grad'     => 'linear-gradient(135deg,#0f0c29 0%,#302b63 50%,#24243e 100%)',
-                'badge_bg' => '#ede9fe',
-                'badge_c'  => '#4c1d95',
-                'badge'    => 'VIP',
-                'fitur'    => [
-                    ['icon'=>'bi-door-open',    'teks'=>'Kamar pribadi 1 tempat tidur'],
-                    ['icon'=>'bi-tv',           'teks'=>'TV & AC'],
-                    ['icon'=>'bi-box-seam',     'teks'=>'Kulkas mini, kamar mandi dalam'],
-                    ['icon'=>'bi-person-hearts','teks'=>'Ruang kunjungan keluarga'],
-                    ['icon'=>'bi-patch-check',  'teks'=>'Melayani pasien BPJS'],
-                ],
-            ],
-            [
-                'nama'     => 'Kelas 1',
-                'foto'     => asset('assets/Kelas1.png'),
-                'icon'     => 'bi-star-fill',
-                'grad'     => 'linear-gradient(135deg,#1e3a6e 0%,#2563eb 100%)',
-                'badge_bg' => '#dbeafe',
-                'badge_c'  => '#1d4ed8',
-                'badge'    => 'Kelas 1',
-                'fitur'    => [
-                    ['icon'=>'bi-door-open',    'teks'=>'2 tempat tidur per kamar'],
-                    ['icon'=>'bi-tv',           'teks'=>'Fasilitas TV & AC'],
-                    ['icon'=>'bi-box-seam',     'teks'=>'Lemari & ruang penyimpanan'],
-                    ['icon'=>'bi-person-hearts','teks'=>'Ruang kunjungan keluarga'],
-                    ['icon'=>'bi-patch-check',  'teks'=>'Melayani pasien BPJS'],
-                ],
-            ],
-            [
-                'nama'     => 'Kelas 2',
-                'foto'     => asset('assets/Kelas2.png'),
-                'icon'     => 'bi-star-half',
-                'grad'     => 'linear-gradient(135deg,#1e4d3a 0%,#059669 100%)',
-                'badge_bg' => '#d1fae5',
-                'badge_c'  => '#065f46',
-                'badge'    => 'Kelas 2',
-                'fitur'    => [
-                    ['icon'=>'bi-door-open',    'teks'=>'3-4 tempat tidur per kamar'],
-                    ['icon'=>'bi-person-hearts','teks'=>'Ruang kunjungan keluarga'],
-                    ['icon'=>'bi-patch-check',  'teks'=>'Melayani pasien BPJS'],
-                ],
-            ],
-            [
-                'nama'     => 'Kelas 3',
-                'foto'     => asset('assets/Kelas3.png'),
-                'icon'     => 'bi-star',
-                'grad'     => 'linear-gradient(135deg,#3d2a0f 0%,#d97706 100%)',
-                'badge_bg' => '#fef3c7',
-                'badge_c'  => '#92400e',
-                'badge'    => 'Kelas 3',
-                'fitur'    => [
-                    ['icon'=>'bi-door-open',  'teks'=>'5–6 tempat tidur per kamar'],
-                    ['icon'=>'bi-patch-check','teks'=>'Melayani pasien BPJS'],
-                    ['icon'=>'bi-shield-plus','teks'=>'Perawatan medis lengkap'],
-                    ['icon'=>'bi-people',     'teks'=>'Area keluarga tersedia'],
-                ],
-            ],
-            [
-                'nama'     => 'Intermediet',
-                'foto'     => asset('assets/Intermediet.png'),
-                'icon'     => 'bi-activity',
-                'grad'     => 'linear-gradient(135deg,#1a1a5e 0%,#6366f1 100%)',
-                'badge_bg' => '#ede9fe',
-                'badge_c'  => '#4c1d95',
-                'badge'    => 'Perawatan Khusus',
-                'fitur'    => [
-                    ['icon'=>'bi-heart-pulse-fill',   'teks'=>'Monitor vital sign kontinu'],
-                    ['icon'=>'bi-person-badge',       'teks'=>'Perawat terlatih 24 jam'],
-                    ['icon'=>'bi-capsule',            'teks'=>'Obat-obatan khusus tersedia'],
-                    ['icon'=>'bi-exclamation-triangle','teks'=>'Untuk pasien semi-kritis'],
-                ],
-            ],
-            [
-                'nama'     => 'Perinatologi',
-                'foto'     => asset('assets/Perinatologi.png'),
-                'icon'     => 'bi-balloon-heart',
-                'grad'     => 'linear-gradient(135deg,#831843 0%,#ec4899 100%)',
-                'badge_bg' => '#fce7f3',
-                'badge_c'  => '#9d174d',
-                'badge'    => 'Bayi Baru Lahir',
-                'fitur'    => [
-                    ['icon'=>'bi-thermometer',  'teks'=>'Inkubator & penghangat bayi'],
-                    ['icon'=>'bi-lungs',        'teks'=>'Monitor oksigen neonatus'],
-                    ['icon'=>'bi-person-badge', 'teks'=>'Perawat neonatus terlatih'],
-                    ['icon'=>'bi-heart',        'teks'=>'Perawatan bayi baru lahir'],
-                ],
-            ],
-            [
-                'nama'     => 'IGD',
-                'foto'     => asset('assets/IGD.png'),
-                'icon'     => 'bi-bandaid-fill',
-                'grad'     => 'linear-gradient(135deg,#7f1d1d 0%,#dc2626 100%)',
-                'badge_bg' => '#fee2e2',
-                'badge_c'  => '#991b1b',
-                'badge'    => 'Gawat Darurat',
-                'fitur'    => [
-                    ['icon'=>'bi-lightning-fill','teks'=>'Penanganan darurat cepat'],
-                    ['icon'=>'bi-activity',      'teks'=>'Monitor pasien real-time'],
-                    ['icon'=>'bi-clock-fill',    'teks'=>'Siaga 24 jam penuh'],
-                    ['icon'=>'bi-people-fill',   'teks'=>'Tim dokter & perawat siaga'],
-                ],
-            ],
-            [
-                'nama'     => 'HCU / ICU / PICU / NICU',
-                'foto'     => asset('assets/HCU_ICU_PICU_NICU.png'),
-                'icon'     => 'bi-heart-pulse-fill',
-                'grad'     => 'linear-gradient(135deg,#134e4a 0%,#0d9488 100%)',
-                'badge_bg' => '#ccfbf1',
-                'badge_c'  => '#134e4a',
-                'badge'    => 'Perawatan Intensif',
-                'fitur'    => [
-                    ['icon'=>'bi-heart-pulse-fill',  'teks'=>'Monitor intensif 24 jam'],
-                    ['icon'=>'bi-lungs',             'teks'=>'Ventilator & alat bantu napas'],
-                    ['icon'=>'bi-person-badge',      'teks'=>'Dokter spesialis jaga'],
-                    ['icon'=>'bi-shield-fill-check', 'teks'=>'Penanganan kritis komprehensif'],
-                ],
-            ],
-            [
-                'nama'     => 'Ruang Bersalin',
-                'foto'     =>  asset('assets/Bersalin.png'),
-                'icon'     => 'bi-gender-female',
-                'grad'     => 'linear-gradient(135deg,#5b21b6 0%,#8b5cf6 100%)',
-                'badge_bg' => '#ede9fe',
-                'badge_c'  => '#5b21b6',
-                'badge'    => 'Kebidanan',
-                'fitur'    => [
-                    ['icon'=>'bi-heart',        'teks'=>'Ruang persalinan nyaman & bersih'],
-                    ['icon'=>'bi-person-badge', 'teks'=>'Bidan & dokter kebidanan siap'],
-                    ['icon'=>'bi-shield-plus',  'teks'=>'Mendukung metode VBAC & SC'],
-                    ['icon'=>'bi-people-fill',  'teks'=>'Pendamping persalinan diizinkan'],
-                ],
-            ],
+            ['nama'=>'Kelas VIP','foto'=>asset('assets/KelasVIP.png'),'icon'=>'bi-gem','grad'=>'linear-gradient(135deg,#0f0c29 0%,#302b63 50%,#24243e 100%)','badge_bg'=>'#ede9fe','badge_c'=>'#4c1d95','badge'=>'VIP','fitur'=>[['icon'=>'bi-door-open','teks'=>'Kamar pribadi 1 tempat tidur'],['icon'=>'bi-tv','teks'=>'TV & AC'],['icon'=>'bi-box-seam','teks'=>'Kulkas mini, kamar mandi dalam'],['icon'=>'bi-person-hearts','teks'=>'Ruang kunjungan keluarga'],['icon'=>'bi-patch-check','teks'=>'Melayani pasien BPJS']]],
+            ['nama'=>'Kelas 1','foto'=>asset('assets/Kelas1.png'),'icon'=>'bi-star-fill','grad'=>'linear-gradient(135deg,#1e3a6e 0%,#2563eb 100%)','badge_bg'=>'#dbeafe','badge_c'=>'#1d4ed8','badge'=>'Kelas 1','fitur'=>[['icon'=>'bi-door-open','teks'=>'2 tempat tidur per kamar'],['icon'=>'bi-tv','teks'=>'Fasilitas TV & AC'],['icon'=>'bi-box-seam','teks'=>'Lemari & ruang penyimpanan'],['icon'=>'bi-person-hearts','teks'=>'Ruang kunjungan keluarga'],['icon'=>'bi-patch-check','teks'=>'Melayani pasien BPJS']]],
+            ['nama'=>'Kelas 2','foto'=>asset('assets/Kelas2.png'),'icon'=>'bi-star-half','grad'=>'linear-gradient(135deg,#1e4d3a 0%,#059669 100%)','badge_bg'=>'#d1fae5','badge_c'=>'#065f46','badge'=>'Kelas 2','fitur'=>[['icon'=>'bi-door-open','teks'=>'3-4 tempat tidur per kamar'],['icon'=>'bi-person-hearts','teks'=>'Ruang kunjungan keluarga'],['icon'=>'bi-patch-check','teks'=>'Melayani pasien BPJS']]],
+            ['nama'=>'Kelas 3','foto'=>asset('assets/Kelas3.png'),'icon'=>'bi-star','grad'=>'linear-gradient(135deg,#3d2a0f 0%,#d97706 100%)','badge_bg'=>'#fef3c7','badge_c'=>'#92400e','badge'=>'Kelas 3','fitur'=>[['icon'=>'bi-door-open','teks'=>'5–6 tempat tidur per kamar'],['icon'=>'bi-patch-check','teks'=>'Melayani pasien BPJS'],['icon'=>'bi-shield-plus','teks'=>'Perawatan medis lengkap'],['icon'=>'bi-people','teks'=>'Area keluarga tersedia']]],
+            ['nama'=>'Intermediet','foto'=>asset('assets/Intermediet.png'),'icon'=>'bi-activity','grad'=>'linear-gradient(135deg,#1a1a5e 0%,#6366f1 100%)','badge_bg'=>'#ede9fe','badge_c'=>'#4c1d95','badge'=>'Perawatan Khusus','fitur'=>[['icon'=>'bi-heart-pulse-fill','teks'=>'Monitor vital sign kontinu'],['icon'=>'bi-person-badge','teks'=>'Perawat terlatih 24 jam'],['icon'=>'bi-capsule','teks'=>'Obat-obatan khusus tersedia'],['icon'=>'bi-exclamation-triangle','teks'=>'Untuk pasien semi-kritis']]],
+            ['nama'=>'Perinatologi','foto'=>asset('assets/Perinatologi.png'),'icon'=>'bi-balloon-heart','grad'=>'linear-gradient(135deg,#831843 0%,#ec4899 100%)','badge_bg'=>'#fce7f3','badge_c'=>'#9d174d','badge'=>'Bayi Baru Lahir','fitur'=>[['icon'=>'bi-thermometer','teks'=>'Inkubator & penghangat bayi'],['icon'=>'bi-lungs','teks'=>'Monitor oksigen neonatus'],['icon'=>'bi-person-badge','teks'=>'Perawat neonatus terlatih'],['icon'=>'bi-heart','teks'=>'Perawatan bayi baru lahir']]],
+            ['nama'=>'IGD','foto'=>asset('assets/IGD.png'),'icon'=>'bi-bandaid-fill','grad'=>'linear-gradient(135deg,#7f1d1d 0%,#dc2626 100%)','badge_bg'=>'#fee2e2','badge_c'=>'#991b1b','badge'=>'Gawat Darurat','fitur'=>[['icon'=>'bi-lightning-fill','teks'=>'Penanganan darurat cepat'],['icon'=>'bi-activity','teks'=>'Monitor pasien real-time'],['icon'=>'bi-clock-fill','teks'=>'Siaga 24 jam penuh'],['icon'=>'bi-people-fill','teks'=>'Tim dokter & perawat siaga']]],
+            ['nama'=>'HCU / ICU / PICU / NICU','foto'=>asset('assets/HCU_ICU_PICU_NICU.png'),'icon'=>'bi-heart-pulse-fill','grad'=>'linear-gradient(135deg,#134e4a 0%,#0d9488 100%)','badge_bg'=>'#ccfbf1','badge_c'=>'#134e4a','badge'=>'Perawatan Intensif','fitur'=>[['icon'=>'bi-heart-pulse-fill','teks'=>'Monitor intensif 24 jam'],['icon'=>'bi-lungs','teks'=>'Ventilator & alat bantu napas'],['icon'=>'bi-person-badge','teks'=>'Dokter spesialis jaga'],['icon'=>'bi-shield-fill-check','teks'=>'Penanganan kritis komprehensif']]],
+            ['nama'=>'Ruang Bersalin','foto'=>asset('assets/Bersalin.png'),'icon'=>'bi-gender-female','grad'=>'linear-gradient(135deg,#5b21b6 0%,#8b5cf6 100%)','badge_bg'=>'#ede9fe','badge_c'=>'#5b21b6','badge'=>'Kebidanan','fitur'=>[['icon'=>'bi-heart','teks'=>'Ruang persalinan nyaman & bersih'],['icon'=>'bi-person-badge','teks'=>'Bidan & dokter kebidanan siap'],['icon'=>'bi-shield-plus','teks'=>'Mendukung metode VBAC & SC'],['icon'=>'bi-people-fill','teks'=>'Pendamping persalinan diizinkan']]],
         ];
         @endphp
-
-        {{-- DESKTOP --}}
-
-<div class="kelas-grid" style="position:relative; z-index:1;">
-    @foreach($kelasRawat as $i => $kelas)
-    <div class="kelas-card" style="animation-delay:{{ min($i*0.07,0.5) }}s;">
-
-    {{-- FOTO RUANGAN --}}
-    <div class="kelas-thumb">
-        @if(!empty($kelas['foto']))
-            <img
-                src="{{ $kelas['foto'] }}"
-                alt="{{ $kelas['nama'] }}"
-                loading="lazy"
-                style="width:100%;height:100%;object-fit:cover;"
-                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-            >
-
-            <div class="kelas-thumb-placeholder" style="display:none;">
-                <i class="bi {{ $kelas['icon'] }}"></i>
+        <div class="kelas-grid" style="position:relative;z-index:1;">
+            @foreach($kelasRawat as $i => $kelas)
+            <div class="kelas-card" style="animation-delay:{{ min($i*0.07,0.5) }}s;">
+                <div class="kelas-thumb">
+                    @if(!empty($kelas['foto']))
+                        <img src="{{ $kelas['foto'] }}" alt="{{ $kelas['nama'] }}" loading="lazy" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <div class="kelas-thumb-placeholder" style="display:none;"><i class="bi {{ $kelas['icon'] }}"></i></div>
+                    @else
+                        <div class="kelas-thumb-placeholder"><i class="bi {{ $kelas['icon'] }}"></i></div>
+                    @endif
+                </div>
+                <div class="kelas-header" style="background:{{ $kelas['grad'] }};">
+                    <div class="kelas-icon-wrap"><i class="bi {{ $kelas['icon'] }}"></i></div>
+                    <div class="kelas-name">{{ $kelas['nama'] }}</div>
+                </div>
+                <div class="kelas-body">
+                    @foreach($kelas['fitur'] as $f)
+                    <div class="kelas-feature"><i class="bi {{ $f['icon'] }}"></i><span>{{ $f['teks'] }}</span></div>
+                    @endforeach
+                </div>
+                <div class="kelas-footer">
+                    <span class="kelas-badge" style="background:{{ $kelas['badge_bg'] }};color:{{ $kelas['badge_c'] }};">{{ $kelas['badge'] }}</span>
+                    <a href="https://wa.me/6285292224886?text=Halo,%20saya%20ingin%20info%20{{ urlencode($kelas['nama']) }}" target="_blank" class="kelas-wa-btn"><i class="bi bi-whatsapp"></i> Tanya</a>
+                </div>
             </div>
-        @else
-            <div class="kelas-thumb-placeholder">
-                <i class="bi {{ $kelas['icon'] }}"></i>
-            </div>
-        @endif
-    </div>
-
-    <div class="kelas-header" style="background:{{ $kelas['grad'] }};">
-        <div class="kelas-icon-wrap">
-            <i class="bi {{ $kelas['icon'] }}"></i>
+            @endforeach
         </div>
-        <div class="kelas-name">{{ $kelas['nama'] }}</div>
-    </div>
-
-    <div class="kelas-body">
-        @foreach($kelas['fitur'] as $f)
-        <div class="kelas-feature">
-            <i class="bi {{ $f['icon'] }}"></i>
-            <span>{{ $f['teks'] }}</span>
-        </div>
-        @endforeach
-    </div>
-
-    <div class="kelas-footer">
-        <span class="kelas-badge"
-              style="background:{{ $kelas['badge_bg'] }}; color:{{ $kelas['badge_c'] }};">
-            {{ $kelas['badge'] }}
-        </span>
-
-        <a href="https://wa.me/6285292224886?text=Halo,%20saya%20ingin%20info%20{{ urlencode($kelas['nama']) }}"
-           target="_blank"
-           class="kelas-wa-btn">
-            <i class="bi bi-whatsapp"></i> Tanya
-        </a>
-    </div>
-
-</div>
-@endforeach
-
-</div>
-
-        {{-- MOBILE --}}
-        <div class="kelas-mobile-wrap" style="position:relative; z-index:1;">
+        <div class="kelas-mobile-wrap" style="position:relative;z-index:1;">
             <div class="kelas-pills-scroll" id="kelasPills">
                 @foreach($kelasRawat as $i => $kelas)
-                <button class="kelas-pill {{ $i === 0 ? 'active' : '' }}" data-index="{{ $i }}" style="background:{{ $kelas['grad'] }};" onclick="showKelas({{ $i }})">
+                <button class="kelas-pill {{ $i===0?'active':'' }}" data-index="{{ $i }}" style="background:{{ $kelas['grad'] }};" onclick="showKelas({{ $i }})">
                     <i class="bi {{ $kelas['icon'] }}"></i>{{ $kelas['nama'] }}
                 </button>
                 @endforeach
             </div>
             @foreach($kelasRawat as $i => $kelas)
-            <div class="kelas-detail-panel" id="kelasPanel{{ $i }}" style="{{ $i !== 0 ? 'display:none;' : '' }}">
+            <div class="kelas-detail-panel" id="kelasPanel{{ $i }}" style="{{ $i!==0?'display:none;':'' }}">
                 <div class="kdp-header">
                     <div class="kdp-icon" style="background:{{ $kelas['grad'] }};"><i class="bi {{ $kelas['icon'] }}"></i></div>
                     <div>
@@ -1393,13 +1172,9 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
             @endforeach
         </div>
-
-        <div style="margin-top:28px;background:#fff;border-radius:16px;border:1px solid #e8edf5;padding:24px 28px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;box-shadow:0 2px 12px rgba(28,20,92,.05); position:relative; z-index:1;">
+        <div style="margin-top:28px;background:#fff;border-radius:16px;border:1px solid #e8edf5;padding:24px 28px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;box-shadow:0 2px 12px rgba(28,20,92,.05);position:relative;z-index:1;">
             <div style="width:44px;height:44px;border-radius:12px;background:#ede9fe;display:flex;align-items:center;justify-content:center;font-size:20px;color:#7c3aed;flex-shrink:0;"><i class="bi bi-info-circle-fill"></i></div>
-            <div style="flex:1;">
-                <div style="font-size:14px;font-weight:700;color:#1e293b;margin-bottom:3px;">Informasi Ketersediaan Kamar</div>
-                <div style="font-size:13px;color:#64748b;line-height:1.6;">Untuk ketersediaan kamar dan informasi lebih lanjut, silakan hubungi petugas kami.</div>
-            </div>
+            <div style="flex:1;"><div style="font-size:14px;font-weight:700;color:#1e293b;margin-bottom:3px;">Informasi Ketersediaan Kamar</div><div style="font-size:13px;color:#64748b;line-height:1.6;">Untuk ketersediaan kamar dan informasi lebih lanjut, silakan hubungi petugas kami.</div></div>
             <div style="display:flex;gap:10px;flex-wrap:wrap;">
                 <a href="tel:085292224886" style="display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:10px;background:#1C145C;color:#fff;font-size:13px;font-weight:700;text-decoration:none;"><i class="bi bi-telephone-fill"></i> Telepon</a>
                 <a href="https://wa.me/6285292224886?text=Halo,%20saya%20ingin%20info%20ketersediaan%20kamar%20rawat%20inap" target="_blank" style="display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:10px;background:#dcfce7;color:#15803d;font-size:13px;font-weight:700;text-decoration:none;border:1px solid #86efac;"><i class="bi bi-whatsapp"></i> WhatsApp</a>
@@ -1407,15 +1182,11 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
     </section>
 
-
-    {{-- ============================================================
-         AMBULANS
-    ============================================================ --}}
-    <section id="ambulans" class="lay-section" style="position:relative; overflow:hidden;">
-        <div class="ornamen" style="top:-20px; left:-20px; width:360px; height:360px; opacity:0.04;"></div>
-        <div class="ornamen" style="bottom:-80px; right:-80px; width:600px; height:600px; opacity:0.035;"></div>
+    {{-- AMBULANS --}}
+    <section id="ambulans" class="lay-section" style="position:relative;overflow:hidden;">
+        <div class="ornamen" style="top:-20px;left:-20px;width:360px;height:360px;opacity:0.04;"></div>
         <div class="sec-divider"></div>
-        <div class="svc-card" style="position:relative; z-index:1;">
+        <div class="svc-card" style="position:relative;z-index:1;">
             <div class="row g-0">
                 <div class="col-lg-4">
                     <div class="svc-header h-100" style="background:linear-gradient(135deg,#78350f 0%,#f59e0b 100%);border-radius:20px 0 0 20px;">
@@ -1448,15 +1219,11 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
     </section>
 
-
-    {{-- ============================================================
-         LABORATORIUM
-    ============================================================ --}}
-    <section id="laboratorium" class="lay-section" style="position:relative; overflow:hidden;">
-        <div class="ornamen" style="top:-20px; right:-20px; width:360px; height:360px; opacity:0.04;"></div>
-        <div class="ornamen" style="bottom:-80px; left:-80px; width:300px; height:300px; opacity:0.035;"></div>
+    {{-- LABORATORIUM --}}
+    <section id="laboratorium" class="lay-section" style="position:relative;overflow:hidden;">
+        <div class="ornamen" style="top:-20px;right:-20px;width:360px;height:360px;opacity:0.04;"></div>
         <div class="sec-divider"></div>
-        <div class="row g-4" style="position:relative; z-index:1;">
+        <div class="row g-4" style="position:relative;z-index:1;">
             <div class="col-lg-5">
                 <div class="svc-card h-100">
                     <div class="svc-header" style="background:linear-gradient(135deg,#064e3b 0%,#059669 100%);">
@@ -1466,7 +1233,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <div style="margin-top:16px;display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:12px;font-weight:700;padding:5px 12px;border-radius:20px;position:relative;z-index:1;"><i class="bi bi-clock-fill"></i> Buka 24 Jam Setiap Hari</div>
                     </div>
                     <div class="svc-body">
-                        <p class="svc-desc">Laboratorium RSU Allam Medica dilengkapi peralatan diagnostik modern untuk berbagai jenis pemeriksaan. Beroperasi 24 jam termasuk hari Minggu dan hari libur nasional, dengan hasil yang akurat untuk mendukung diagnosis dokter.</p>
+                        <p class="svc-desc">Laboratorium RSU Allam Medica dilengkapi peralatan diagnostik modern untuk berbagai jenis pemeriksaan. Beroperasi 24 jam termasuk hari Minggu dan hari libur nasional.</p>
                         <ul class="svc-list">
                             <li>Pemeriksaan darah lengkap</li>
                             <li>Tes urin dan feses</li>
@@ -1514,15 +1281,11 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
     </section>
 
-
-    {{-- ============================================================
-         RADIOLOGI
-    ============================================================ --}}
-    <section id="radiologi" class="lay-section" style="position:relative; overflow:hidden;">
-        <div class="ornamen" style="top:-20px; left:-40px; width:320px; height:320px; opacity:0.04;"></div>
-        <div class="ornamen" style="bottom:-60px; right:-70px; width:270px; height:270px; opacity:0.035;"></div>
+    {{-- RADIOLOGI --}}
+    <section id="radiologi" class="lay-section" style="position:relative;overflow:hidden;">
+        <div class="ornamen" style="top:-20px;left:-40px;width:320px;height:320px;opacity:0.04;"></div>
         <div class="sec-divider"></div>
-        <div class="svc-card" style="position:relative; z-index:1;">
+        <div class="svc-card" style="position:relative;z-index:1;">
             <div class="row g-0">
                 <div class="col-lg-4">
                     <div class="svc-header h-100" style="background:linear-gradient(135deg,#1e1b4b 0%,#6366f1 100%);border-radius:20px 0 0 20px;">
@@ -1549,15 +1312,11 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
     </section>
 
-
-    {{-- ============================================================
-         FARMASI
-    ============================================================ --}}
-    <section id="farmasi" class="lay-section" style="position:relative; overflow:hidden;">
-        <div class="ornamen" style="top:-20px; right:-80px; width:400px; height:400px; opacity:0.04;"></div>
-        <div class="ornamen" style="bottom:-50px; left:-60px; width:280px; height:280px; opacity:0.035;"></div>
+    {{-- FARMASI --}}
+    <section id="farmasi" class="lay-section" style="position:relative;overflow:hidden;">
+        <div class="ornamen" style="top:-20px;right:-80px;width:400px;height:400px;opacity:0.04;"></div>
         <div class="sec-divider"></div>
-        <div class="row g-4" style="position:relative; z-index:1;">
+        <div class="row g-4" style="position:relative;z-index:1;">
             <div class="col-lg-5">
                 <div class="svc-card h-100">
                     <div class="svc-header" style="background:linear-gradient(135deg,#831843 0%,#ec4899 100%);">
@@ -1566,7 +1325,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <div class="svc-tagline">Obat-obatan lengkap berkualitas, buka 24 jam setiap hari termasuk hari libur</div>
                     </div>
                     <div class="svc-body">
-                        <p class="svc-desc">Instalasi Farmasi RSU Allam Medica menyediakan obat-obatan lengkap dan berkualitas. Melayani resep dokter rumah sakit - buka 24 jam termasuk hari Minggu dan hari libur nasional.</p>
+                        <p class="svc-desc">Instalasi Farmasi RSU Allam Medica menyediakan obat-obatan lengkap dan berkualitas. Melayani resep dokter rumah sakit — buka 24 jam termasuk hari Minggu dan hari libur nasional.</p>
                         <ul class="svc-list">
                             <li>Melayani resep BPJS dan umum</li>
                             <li>Konsultasi apoteker tersedia</li>
@@ -1598,16 +1357,12 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
     </section>
 
-
-    {{-- ============================================================
-         MCU
-    ============================================================ --}}
-    <section id="mcu" class="lay-section" style="padding-bottom:60px; position:relative; overflow:hidden;">
-        <div class="ornamen" style="top:-20px; left:-20px; width:340px; height:340px; opacity:0.04;"></div>
-        <div class="ornamen" style="bottom:-20px; right:-20px; width:300px; height:300px; opacity:0.04;"></div>
-        <div class="ornamen" style="top:50%; left:50%; transform:translate(-50%,-50%); width:440px; height:440px; opacity:0.02;"></div>
+    {{-- MCU --}}
+    <section id="mcu" class="lay-section" style="padding-bottom:60px;position:relative;overflow:hidden;">
+        <div class="ornamen" style="top:-20px;left:-20px;width:340px;height:340px;opacity:0.04;"></div>
+        <div class="ornamen" style="bottom:-20px;right:-20px;width:300px;height:300px;opacity:0.04;"></div>
         <div class="sec-divider"></div>
-        <div class="row g-4 align-items-start" style="position:relative; z-index:1;">
+        <div class="row g-4 align-items-start" style="position:relative;z-index:1;">
             <div class="col-lg-5">
                 <div class="svc-card">
                     <div class="svc-header" style="background:linear-gradient(135deg,#134e4a 0%,#0d9488 100%);">
@@ -1629,67 +1384,45 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
             </div>
             <div class="col-lg-7">
-                <div style="font-size:11px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;margin-top:4px;">
-                    <i class="bi bi-list-check" style="margin-right:5px;"></i> Paket Tersedia
-                </div>
+                <div style="font-size:11px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;margin-top:4px;"><i class="bi bi-list-check" style="margin-right:5px;"></i> Paket Tersedia</div>
                 <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
-                    <span style="font-size:11px;font-weight:800;color:#be185d;text-transform:uppercase;letter-spacing:.8px;background:#fdf2f8;border:1px solid #fbcfe8;padding:4px 12px;border-radius:20px;">
-                        <i class="bi bi-heart-fill" style="margin-right:4px;font-size:10px;"></i> MCU Premarital
-                    </span>
+                    <span style="font-size:11px;font-weight:800;color:#be185d;text-transform:uppercase;letter-spacing:.8px;background:#fdf2f8;border:1px solid #fbcfe8;padding:4px 12px;border-radius:20px;"><i class="bi bi-heart-fill" style="margin-right:4px;font-size:10px;"></i> MCU Premarital</span>
                     <span style="font-size:12px;color:#94a3b8;">Persiapan sehat untuk masa depan bahagia</span>
                 </div>
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;">
                     <div style="border-radius:16px;border:1px solid #bfdbfe;background:linear-gradient(135deg,#eff6ff 0%,#dbeafe 100%);padding:18px;position:relative;overflow:hidden;">
-                        <div style="position:absolute;top:-20px;right:-20px;width:80px;height:80px;border-radius:50%;background:rgba(59,130,246,.08);"></div>
                         <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
                             <div style="width:36px;height:36px;border-radius:50%;background:#2563eb;color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;"><i class="bi bi-gender-male"></i></div>
-                            <div>
-                                <div style="font-size:13px;font-weight:800;color:#1e40af;">PRIA</div>
-                                <div style="font-size:17px;font-weight:900;color:#1d4ed8;line-height:1.1;">Rp 649.000<span style="font-size:11px;font-weight:600;">,-</span></div>
-                            </div>
+                            <div><div style="font-size:13px;font-weight:800;color:#1e40af;">PRIA</div><div style="font-size:17px;font-weight:900;color:#1d4ed8;line-height:1.1;">Rp 649.000<span style="font-size:11px;font-weight:600;">,-</span></div></div>
                         </div>
                         <div style="display:flex;flex-direction:column;gap:5px;">
                             @foreach(['Darah Lengkap','Golongan Darah','Gula Darah Sewaktu','Rontgen Thorax','HBsAg','Anti HIV','Urine Lengkap'] as $item)
-                            <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:#1e40af;">
-                                <i class="bi bi-check-circle-fill" style="color:#2563eb;font-size:10px;flex-shrink:0;"></i> {{ $item }}
-                            </div>
+                            <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:#1e40af;"><i class="bi bi-check-circle-fill" style="color:#2563eb;font-size:10px;flex-shrink:0;"></i> {{ $item }}</div>
                             @endforeach
                         </div>
                     </div>
                     <div style="border-radius:16px;border:1px solid #fbcfe8;background:linear-gradient(135deg,#fdf2f8 0%,#fce7f3 100%);padding:18px;position:relative;overflow:hidden;">
-                        <div style="position:absolute;top:-20px;right:-20px;width:80px;height:80px;border-radius:50%;background:rgba(236,72,153,.08);"></div>
                         <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
                             <div style="width:36px;height:36px;border-radius:50%;background:#db2777;color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;"><i class="bi bi-gender-female"></i></div>
-                            <div>
-                                <div style="font-size:13px;font-weight:800;color:#9d174d;">WANITA</div>
-                                <div style="font-size:17px;font-weight:900;color:#be185d;line-height:1.1;">Rp 759.000<span style="font-size:11px;font-weight:600;">,-</span></div>
-                            </div>
+                            <div><div style="font-size:13px;font-weight:800;color:#9d174d;">WANITA</div><div style="font-size:17px;font-weight:900;color:#be185d;line-height:1.1;">Rp 759.000<span style="font-size:11px;font-weight:600;">,-</span></div></div>
                         </div>
                         <div style="display:flex;flex-direction:column;gap:5px;">
                             @foreach(['Darah Lengkap','Golongan Darah','Gula Darah Sewaktu','Rontgen Thorax','HBsAg','Anti HIV','Urine Lengkap','Cek Sifilis'] as $item)
-                            <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:#9d174d;">
-                                <i class="bi bi-check-circle-fill" style="color:#db2777;font-size:10px;flex-shrink:0;"></i> {{ $item }}
-                            </div>
+                            <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:#9d174d;"><i class="bi bi-check-circle-fill" style="color:#db2777;font-size:10px;flex-shrink:0;"></i> {{ $item }}</div>
                             @endforeach
                         </div>
                     </div>
                 </div>
-                <p style="font-size:12px;color:#94a3b8;margin-top:4px;display:flex;align-items:center;gap:6px;">
-                    <i class="bi bi-info-circle"></i> Harga dan detail paket dapat berubah. Hubungi kami untuk informasi terkini.
-                </p>
+                <p style="font-size:12px;color:#94a3b8;margin-top:4px;display:flex;align-items:center;gap:6px;"><i class="bi bi-info-circle"></i> Harga dan detail paket dapat berubah. Hubungi kami untuk informasi terkini.</p>
             </div>
         </div>
     </section>
 
 </div>
 </div>
-
 @endif
 
-
-<!-- ============================================================
-     FOOTER
-============================================================ -->
+{{-- FOOTER --}}
 <style>
 .footer-rsu{background:linear-gradient(to bottom,#ffffff 0%,#fefefd 3%,#fdfcf6 8%,#fcfbf3 13%,#faf8ee 20%,#f7f5e8 30%,#f3f0e1 45%,#ede9d9 65%,#e8e3d2 85%,#e3deca 100%);color:#1C145C;padding:56px 0 0;position:relative;overflow:hidden;}
 .footer-rsu .footer-ornament{position:absolute;right:-80px;bottom:-150px;width:420px;height:420px;opacity:.07;background-image:url('{{ asset("images/beranda/ornamen.png") }}');background-size:contain;background-repeat:no-repeat;background-position:center;pointer-events:none;z-index:0;}
@@ -1723,7 +1456,6 @@ document.addEventListener('DOMContentLoaded', function () {
 @media(max-width:991px){.footer-rsu{padding:45px 0 0;}.footer-rsu .row>div{margin-bottom:24px;}.footer-rsu .footer-desc{max-width:100%;}}
 @media(max-width:768px){.footer-rsu{padding:40px 0 0;}.footer-rsu .container-fluid{padding-left:20px!important;padding-right:20px!important;}.footer-rsu .footer-copy{flex-direction:column;align-items:flex-start;gap:8px;}.footer-rsu .footer-bottom{padding:15px 20px;}.footer-rsu a:hover{padding-left:0;}.footer-rsu .footer-logo{height:34px;}}
 </style>
-
 <footer class="footer-rsu">
     <div class="footer-ornament"></div>
     <div class="footer-ornament2"></div>
@@ -1778,22 +1510,10 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
             <div class="col-lg-3 col-md-12">
                 <h6 class="footer-heading">Hubungi Kami</h6>
-                <div class="footer-contact-row">
-                    <div class="footer-contact-icon"><i class="bi bi-telephone-fill"></i></div>
-                    <div class="footer-contact-text">(0289) 430822</div>
-                </div>
-                <div class="footer-contact-row">
-                    <div class="footer-contact-icon"><i class="bi bi-envelope-fill"></i></div>
-                    <div class="footer-contact-text">allam.medica@yahoo.co.id</div>
-                </div>
-                <div class="footer-contact-row">
-                    <div class="footer-contact-icon"><i class="bi bi-clock-fill"></i></div>
-                    <div class="footer-contact-text">IGD, Lab & Farmasi : 24 Jam<br>Rawat Jalan : Sen – Sab 07.00 – 21.00</div>
-                </div>
-                <div class="footer-contact-row">
-                    <div class="footer-contact-icon"><i class="bi bi-geo-alt-fill"></i></div>
-                    <div class="footer-contact-text">Jl. Pangeran Diponegoro No. 609,<br>Bumiayu, Brebes</div>
-                </div>
+                <div class="footer-contact-row"><div class="footer-contact-icon"><i class="bi bi-telephone-fill"></i></div><div class="footer-contact-text">(0289) 430822</div></div>
+                <div class="footer-contact-row"><div class="footer-contact-icon"><i class="bi bi-envelope-fill"></i></div><div class="footer-contact-text">allam.medica@yahoo.co.id</div></div>
+                <div class="footer-contact-row"><div class="footer-contact-icon"><i class="bi bi-clock-fill"></i></div><div class="footer-contact-text">IGD, Lab & Farmasi : 24 Jam<br>Rawat Jalan : Sen – Sab 07.00 – 21.00</div></div>
+                <div class="footer-contact-row"><div class="footer-contact-icon"><i class="bi bi-geo-alt-fill"></i></div><div class="footer-contact-text">Jl. Pangeran Diponegoro No. 609,<br>Bumiayu, Brebes</div></div>
             </div>
         </div>
         <hr>
@@ -1809,8 +1529,68 @@ document.addEventListener('DOMContentLoaded', function () {
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 <script>
+document.addEventListener('DOMContentLoaded', function () {
+    const burger   = document.getElementById('navBurger');
+    const drawer   = document.getElementById('navDrawer');
+    const overlay  = document.getElementById('navOverlay');
+    const closeBtn = document.getElementById('drawerClose');
+    const navbar   = document.getElementById('mainNavbar');
+
+    function openDrawer()  { burger.classList.add('open');drawer.classList.add('open');overlay.classList.add('show');document.body.style.overflow='hidden'; }
+    function closeDrawer() { burger.classList.remove('open');drawer.classList.remove('open');overlay.classList.remove('show');if(!bsOpen())document.body.style.overflow=''; }
+
+    burger.addEventListener('click', e => { e.stopPropagation(); drawer.classList.contains('open') ? closeDrawer() : openDrawer(); });
+    closeBtn.addEventListener('click', closeDrawer);
+    overlay.addEventListener('click', () => { closeDrawer(); closeBs(); });
+    drawer.querySelectorAll('.d-link, .d-sub-link').forEach(l => l.addEventListener('click', closeDrawer));
+
+    drawer.querySelectorAll('.d-accordion-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const targetId = this.dataset.target;
+            const body = document.getElementById(targetId);
+            const isOpen = body.classList.contains('open');
+            drawer.querySelectorAll('.d-accordion-body').forEach(b => b.classList.remove('open'));
+            drawer.querySelectorAll('.d-accordion-btn').forEach(b => b.classList.remove('open'));
+            if (!isOpen) { body.classList.add('open'); this.classList.add('open'); }
+        });
+    });
+    drawer.querySelectorAll('.d-accordion-body.open').forEach(b => {
+        const btn = drawer.querySelector('[data-target="' + b.id + '"]');
+        if (btn) btn.classList.add('open');
+    });
+
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 10), { passive: true });
+
+    const kontakWrap = document.getElementById('kontakWrap');
+    const kontakMega = document.getElementById('kontakMega');
+    let megaTimer;
+    if (kontakWrap && kontakMega) {
+        kontakWrap.addEventListener('mouseenter', () => { clearTimeout(megaTimer); kontakMega.classList.add('open'); });
+        kontakWrap.addEventListener('mouseleave', () => { megaTimer = setTimeout(() => kontakMega.classList.remove('open'), 120); });
+        kontakMega.addEventListener('mouseenter', () => clearTimeout(megaTimer));
+        kontakMega.addEventListener('mouseleave', () => { megaTimer = setTimeout(() => kontakMega.classList.remove('open'), 120); });
+        document.getElementById('btnKontakDesktop').addEventListener('click', function(e) { e.stopPropagation(); kontakMega.classList.toggle('open'); });
+        document.addEventListener('click', function(e) { if (!kontakWrap.contains(e.target)) kontakMega.classList.remove('open'); });
+    }
+
+    const bsSheet   = document.getElementById('bsSheet');
+    const bsOverlay = document.getElementById('bsOverlay');
+    const bsClose   = document.getElementById('bsClose');
+    const btnMobile = document.getElementById('btnKontakMobile');
+    function bsOpen()  { return bsSheet && bsSheet.classList.contains('open'); }
+    function openBs()  { if(bsSheet) { bsSheet.classList.add('open');bsOverlay.classList.add('show');document.body.style.overflow='hidden';closeDrawer(); } }
+    function closeBs() { if(bsSheet) { bsSheet.classList.remove('open');bsOverlay.classList.remove('show');document.body.style.overflow=''; } }
+    if(btnMobile) btnMobile.addEventListener('click', openBs);
+    if(bsClose) bsClose.addEventListener('click', closeBs);
+    if(bsOverlay) bsOverlay.addEventListener('click', closeBs);
+    if(bsSheet) {
+        let startY = 0;
+        bsSheet.addEventListener('touchstart', e => { startY = e.touches[0].clientY; }, { passive: true });
+        bsSheet.addEventListener('touchend',   e => { if (e.changedTouches[0].clientY - startY > 80) closeBs(); }, { passive: true });
+    }
+});
+
 /* POLI COUNT */
 document.addEventListener('DOMContentLoaded', function () {
     const cards  = document.querySelectorAll('#poliGrid .poli-card');
@@ -1820,7 +1600,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if (cntEl)  cntEl.textContent  = cards.length || '—';
 });
 
-/* FILTER POLI — DESKTOP */
 function filterPoliDesktop() {
     const q   = (document.getElementById('searchPoliDesktop').value || '').toLowerCase().trim();
     const sta = document.getElementById('filterPoliStatusDesktop').value;
@@ -1834,7 +1613,6 @@ function filterPoliDesktop() {
     if (empty) empty.style.display = (visible === 0) ? '' : 'none';
 }
 
-/* FILTER POLI — MOBILE */
 function filterPoliMobile() {
     const q   = (document.getElementById('searchPoliMobile').value || '').toLowerCase().trim();
     const sta = document.getElementById('filterPoliStatusMobile').value;
@@ -1850,26 +1628,21 @@ function filterPoliMobile() {
     if (listEl) listEl.style.display = visible > 0 ? 'flex' : 'none';
 }
 
-/* RAWAT INAP — MOBILE PILL */
 function showKelas(index) {
     document.querySelectorAll('[id^="kelasPanel"]').forEach(function (el) { el.style.display = 'none'; });
     const target = document.getElementById('kelasPanel' + index);
     if (target) { target.style.display = 'block'; target.style.animation = 'fadeUp .3s ease both'; }
-    document.querySelectorAll('.kelas-pill').forEach(function (btn) {
-        btn.classList.toggle('active', parseInt(btn.dataset.index) === index);
-    });
+    document.querySelectorAll('.kelas-pill').forEach(function (btn) { btn.classList.toggle('active', parseInt(btn.dataset.index) === index); });
     const pill = document.querySelector('.kelas-pill[data-index="' + index + '"]');
     if (pill) pill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
 }
 
-/* SMOOTH SCROLL */
 function smoothTo(id) {
     const el = document.getElementById(id);
     if (!el) return;
     window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
 }
 
-/* TAB ACTIVE ON SCROLL */
 (function () {
     const sections = ['igd','rawatjalan','rawatinap','ambulans','laboratorium','radiologi','farmasi','mcu'];
     const tabs = document.querySelectorAll('.lay-tab');
@@ -1882,12 +1655,9 @@ function smoothTo(id) {
         tabs.forEach(function (tab) { tab.classList.toggle('active', tab.dataset.section === current); });
     }
     window.addEventListener('scroll', updateTab, { passive: true });
-    tabs.forEach(function (tab) {
-        tab.addEventListener('click', function (e) { e.preventDefault(); smoothTo(tab.dataset.section); });
-    });
+    tabs.forEach(function (tab) { tab.addEventListener('click', function (e) { e.preventDefault(); smoothTo(tab.dataset.section); }); });
 })();
 
-/* ORNAMEN BUNGA (fixed scroll reveal) */
 (function () {
     const orns = [
         { el: document.getElementById('pgOrn1'), triggerPct: 0.08 },
@@ -1908,13 +1678,11 @@ function smoothTo(id) {
     updateOrns();
 })();
 
-/* COPY LINK */
 function copyLink() {
     const btn = document.getElementById('copyBtn');
     if (!btn) return;
     navigator.clipboard.writeText(window.location.href).then(function () {
-        btn.classList.add('copied');
-        btn.innerHTML = '<i class="bi bi-check-lg"></i> Tersalin!';
+        btn.classList.add('copied'); btn.innerHTML = '<i class="bi bi-check-lg"></i> Tersalin!';
         setTimeout(function () { btn.classList.remove('copied'); btn.innerHTML = '<i class="bi bi-link-45deg"></i> Salin Link'; }, 2500);
     }).catch(function () {
         const ta = document.createElement('textarea');
@@ -1925,13 +1693,11 @@ function copyLink() {
     });
 }
 
-/* HASH ON LOAD */
 window.addEventListener('load', function () {
     if (window.location.hash) {
         setTimeout(function () { smoothTo(window.location.hash.replace('#','')); }, 400);
     }
 });
 </script>
-
 </body>
 </html>
