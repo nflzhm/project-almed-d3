@@ -10,30 +10,30 @@ use Illuminate\Support\Facades\Hash;
 class PenggunaController extends Controller
 {
     public function index()
-{
-    $users = User::latest()->paginate(10);
+    {
+        $users = User::latest()->paginate(10);
 
-    $totalAdmin = User::where('role', 'admin')->count();
+        $totalAdmin = User::where('role', 'admin')->count();
 
-    $totalSuperAdmin = User::where('role', 'superadmin')->count();
+        $totalSuperAdmin = User::where('role', 'superadmin')->count();
 
-    $newThisMonth = User::whereMonth('created_at', now()->month)
-        ->whereYear('created_at', now()->year)
-        ->count();
+        $newThisMonth = User::whereMonth('created_at', now()->month)
+            ->whereYear('created_at', now()->year)
+            ->count();
 
-    return view('admin.pengguna', compact(
-        'users',
-        'totalAdmin',
-        'totalSuperAdmin',
-        'newThisMonth'
-    ));
-}
+        return view('admin.pengguna', compact(
+            'users',
+            'totalAdmin',
+            'totalSuperAdmin',
+            'newThisMonth'
+        ));
+    }
 
     public function store(Request $request)
     {
         $request->validate([
             'nama_lengkap' => 'required|max:100',
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|email:rfc,dns|unique:users,email',
             'username' => 'required|unique:users,username',
             'password' => 'required|confirmed|min:8',
             'role' => 'required'
@@ -56,7 +56,7 @@ class PenggunaController extends Controller
 
         $request->validate([
             'nama_lengkap' => 'required|max:100',
-            'email' => 'required|email|unique:users,email,' . $id,
+            'email' => 'required|email:rfc,dns|unique:users,email,' . $id,
             'username' => 'required|unique:users,username,' . $id,
             'role' => 'required'
         ]);
