@@ -225,7 +225,7 @@ body {
     position: relative;
     background:
         linear-gradient(rgba(0,0,0,0.50), rgba(0,0,0,0.50)),
-        url('{{ asset("images/beranda/soretentangkami.png") }}') center/cover no-repeat;
+        url('{{ asset("images/beranda/Perspektif 2_Sore.png") }}') center/cover no-repeat;
     /* Naikan hero agar menempel tepat di bawah topbar+navbar */
     margin-top: calc(-1 * (38px + 70px));
     padding-top: calc(38px + 70px);
