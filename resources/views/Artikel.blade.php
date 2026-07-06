@@ -969,8 +969,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         </div>
                         <div class="share-btns">
                             <a href="https://wa.me/?text={{ urlencode($artikel->judul . ' — ' . url()->current()) }}"
-                               target="_blank" class="share-btn btn-wa">
-                                <i class="brands fa-whatsapp"></i> WhatsApp
+                            target="_blank" class="share-btn btn-wa">
+                                <i class="fa-brands fa-whatsapp"></i> WhatsApp
                             </a>
                             <button class="share-btn btn-copy" id="copyBtn" onclick="copyLink()">
                                 <i class="fa-solid fa-link"></i> Salin Link
