@@ -253,7 +253,29 @@ body {
 /* ============================================================
    ORNAMEN HALAMAN TENTANG KAMI
 ============================================================ */
-.profile-section,.medica-section,.visi-misi-section,.timeline-section,.filosofi-section { position:relative;overflow:hidden; }
+/* ============================================================
+   ABOUT-FLOW WRAPPER (gradasi tunggal & mulus untuk seluruh
+   konten "Tentang Kami" — Profil s.d. Akreditasi)
+============================================================ */
+.about-flow {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg,
+        #ffffff 0%,
+        #ffffff 8%,
+        #fdfcf7 18%,
+        #faf8ee 30%,
+        #f5f2e5 42%,
+        #f0ecdc 52%,
+        #f5f2e5 62%,
+        #faf8ee 74%,
+        #fdfcf7 86%,
+        #ffffff 96%,
+        #ffffff 100%
+    );
+}
+
+.profile-section,.medica-section,.visi-misi-section,.timeline-section,.filosofi-section,.sambutan-section,.struktur-section,.akreditasi-section { position:relative;overflow:visible; }
 .profile-section::before { content:'';position:absolute;top:-20px;right:-120px;width:380px;height:380px;background:url('{{ asset("images/beranda/ornamen.png") }}') center/contain no-repeat;opacity:.04;pointer-events:none;z-index:0; }
 .medica-section::after { content:'';position:absolute;left:-140px;top:50%;transform:translateY(-50%);width:340px;height:340px;background:url('{{ asset("images/beranda/ornamen.png") }}') center/contain no-repeat;opacity:.035;pointer-events:none;z-index:0; }
 .visi-misi-section::before { content:'';position:absolute;right:-150px;bottom:-20px;width:400px;height:400px;background:url('{{ asset("images/beranda/ornamen.png") }}') center/contain no-repeat;opacity:.035;pointer-events:none;z-index:0; }
@@ -264,7 +286,7 @@ body {
 /* ============================================================
    PROFIL
 ============================================================ */
-.profile-section { background:#fff;padding:60px 0; }
+.profile-section { background:transparent;padding:60px 0; }
 .profile-text { font-size:15px;color:#555;line-height:1.7;text-align:justify;text-justify:inter-word; }
 .info-card { background:#fff;border-radius:12px;padding:14px;box-shadow:0 5px 15px rgba(0,0,0,0.05);transition:0.3s;display:flex;gap:10px;align-items:flex-start; }
 .info-card:hover { transform:translateY(-4px);box-shadow:0 10px 20px rgba(0,0,0,0.08); }
@@ -279,7 +301,7 @@ body {
 /* ============================================================
    NILAI MEDICA
 ============================================================ */
-.medica-section { padding:60px 0;background:#fff; }
+.medica-section { padding:60px 0;background:transparent; }
 .medica-label { font-size:11px;color:#888;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;display:block;margin-bottom:4px; }
 .medica-heading { font-size:26px;font-weight:800;letter-spacing:3px;margin-bottom:30px; }
 .medica-card { border-radius:14px;padding:18px 10px;border:2px solid;height:100%;transition:0.3s; }
@@ -297,7 +319,7 @@ body {
 /* ============================================================
    VISI MISI
 ============================================================ */
-.visi-misi-section { padding:60px 0;background:#fff; }
+.visi-misi-section { padding:60px 0;background:transparent; }
 .visi-block { position:relative;border-radius:16px;overflow:hidden;margin-bottom:20px;background:#1C145C; }
 .visi-inner { display:flex;align-items:center;gap:28px;padding:28px 32px;position:relative;z-index:1; }
 .visi-icon-box { width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:22px;color:#fff; }
@@ -319,7 +341,7 @@ body {
 /* ============================================================
    TIMELINE
 ============================================================ */
-.timeline-section { padding:100px 0;position:relative;overflow:hidden;background:linear-gradient(to bottom,#ffffff 0%,#faf8ee 25%,#ede9d9 50%,#faf8ee 75%,#ffffff 100%); }
+.timeline-section { padding:100px 0;position:relative;overflow:visible;background:transparent; }
 .timeline { position:relative;max-width:1100px;margin:auto; }
 .timeline::before { content:'';position:absolute;left:50%;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,#1C145C,#6c63ff);transform:translateX(-50%); }
 .timeline-item { position:relative;width:50%;padding:40px 60px;display:flex; }
@@ -346,7 +368,7 @@ body {
 /* ============================================================
    FILOSOFI
 ============================================================ */
-.filosofi-section { padding:80px 0;background:#ffffff; }
+.filosofi-section { padding:80px 0;background:transparent; }
 .filosofi-card { border-radius:16px;padding:30px;position:relative;overflow:hidden;height:100%;box-shadow:0 10px 30px rgba(0,0,0,0.08);transition:0.3s; }
 .filosofi-card:hover { transform:translateY(-6px);box-shadow:0 15px 40px rgba(0,0,0,0.12); }
 .card-filosofi { background:#fff; }
@@ -407,6 +429,154 @@ body {
     color: #fff;
     overflow: hidden;
 }
+
+/* ============================================================
+   SAMBUTAN DIREKTUR
+============================================================ */
+.sambutan-section { padding:60px 0;background:transparent;position:relative;overflow:visible; }
+.sambutan-section::before { content:'';position:absolute;left:-130px;bottom:-80px;width:360px;height:360px;background:url('{{ asset("images/beranda/ornamen.png") }}') center/contain no-repeat;opacity:.04;pointer-events:none;z-index:0; }
+.sambutan-section .container { position:relative;z-index:2; }
+.sambutan-photo-wrap { position:relative;border-radius:20px;overflow:hidden;box-shadow:0 15px 40px rgba(0,0,0,0.12); }
+.sambutan-photo-wrap img { width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:4/5; }
+.sambutan-photo-caption { position:absolute;left:0;right:0;bottom:0;background:linear-gradient(to top,rgba(28,20,92,.92),rgba(28,20,92,0));padding:26px 20px 16px;color:#fff; }
+.sambutan-photo-caption .nama { font-weight:800;font-size:16px;margin-bottom:2px; }
+.sambutan-photo-caption .jabatan { font-size:12px;color:rgba(255,255,255,.8); }
+.sambutan-quote-icon { font-size:46px;color:rgba(28,20,92,.12);line-height:1;margin-bottom:6px; }
+.sambutan-text { font-size:14.5px;color:#555;line-height:1.85;text-align:justify; }
+.sambutan-signoff { margin-top:18px;display:flex;align-items:center;gap:12px; }
+.sambutan-signoff .icon-box { width:38px;height:38px; }
+
+/* ============================================================
+   STRUKTUR ORGANISASI
+============================================================ */
+.struktur-section { padding:70px 0;background:transparent;position:relative;overflow:visible; }
+.struktur-section::after { content:'';position:absolute;right:-160px;top:-40px;width:380px;height:380px;background:url('{{ asset("images/beranda/ornamen.png") }}') center/contain no-repeat;opacity:.035;pointer-events:none;z-index:0; }
+.struktur-section .container { position:relative;z-index:2; }
+
+.org-top-chart { display:flex;flex-direction:column;align-items:center;max-width:900px;margin:0 auto 46px; }
+.org-node { border-radius:12px;padding:10px 22px;text-align:center;position:relative;z-index:2; }
+.org-node.org-direktur { background:#1C145C;color:#fff;box-shadow:0 10px 24px rgba(28,20,92,.25); }
+.org-node.org-direktur .jabatan { font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6); }
+.org-node.org-direktur .nama { font-size:14px;font-weight:800; }
+.org-connector { width:2px;background:#c9c3e8;height:22px; }
+.org-top-row { display:flex;justify-content:center;align-items:flex-start;gap:40px;width:100%;position:relative;margin-top:2px; }
+.org-node.org-side { background:#f8f7ff;border:1.5px solid #ece9f8;flex:1;max-width:340px; }
+.org-node.org-side .jabatan { font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#7a74a0;margin-bottom:4px;font-weight:700; }
+.org-node.org-side .nama { font-size:12px;font-weight:600;color:#3C3489;line-height:1.6; }
+
+.org-wadir-grid { display:grid;grid-template-columns:1fr 1fr;gap:22px; }
+.org-wadir-card { background:#fff;border:1.5px solid #e9ecef;border-radius:16px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.04); }
+.org-wadir-head { background:#1C145C;color:#fff;padding:18px 20px;position:relative;overflow:hidden; }
+.org-wadir-head .wh-ornament { position:absolute;bottom:-30px;right:-30px;width:110px;height:110px;opacity:.08;background-image:url('{{ asset("images/beranda/ornamen.png") }}');background-size:contain;background-repeat:no-repeat;pointer-events:none;filter:brightness(10); }
+.org-wadir-head .jabatan { font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);position:relative;z-index:1; }
+.org-wadir-head .nama { font-size:16px;font-weight:800;color:#fff;position:relative;z-index:1;margin-top:2px; }
+.org-manajer-list { padding:10px 12px; }
+.org-manajer-item { border-bottom:1px solid #f0eff7; }
+.org-manajer-item:last-child { border-bottom:none; }
+.org-manajer-btn { display:flex;justify-content:space-between;align-items:center;gap:10px;padding:13px 8px;cursor:pointer;width:100%;background:none;border:none;text-align:left;font-family:inherit; }
+.org-manajer-btn .om-text .jabatan { font-size:10px;color:#888;text-transform:uppercase;letter-spacing:.06em;font-weight:700; }
+.org-manajer-btn .om-text .nama { font-size:13px;font-weight:700;color:#1C145C;margin-top:1px; }
+.org-manajer-chevron { font-size:11px;color:#aaa;transition:transform .25s;flex-shrink:0; }
+.org-manajer-btn.open .org-manajer-chevron { transform:rotate(180deg); }
+.org-manajer-body { display:none;padding:0 8px 12px 8px; }
+.org-manajer-body.open { display:block; }
+.org-staff-row { display:flex;justify-content:space-between;gap:10px;padding:7px 10px;font-size:12px;color:#555;border-bottom:1px dashed #f0eff7;background:#faf9ff;border-radius:8px;margin-bottom:4px; }
+.org-staff-row:last-child { margin-bottom:0; }
+.org-staff-row .jabatan-kecil { color:#8d87b0;flex-shrink:0;font-size:11px; }
+.org-staff-row .nama-kecil { font-weight:600;color:#333;text-align:right; }
+@media(max-width:991px){ .org-wadir-grid{ grid-template-columns:1fr; } .org-top-row{ flex-direction:column;align-items:center;gap:14px; } .org-node.org-side{ max-width:100%; } }
+
+/* ============================================================
+   AKREDITASI & KAPASITAS TEMPAT TIDUR
+============================================================ */
+.akreditasi-section { padding:70px 0 90px;background:transparent;position:relative;overflow:visible; }
+.akreditasi-section::before { content:'';position:absolute;left:-140px;top:-60px;width:360px;height:360px;background:url('{{ asset("images/beranda/ornamen.png") }}') center/contain no-repeat;opacity:.04;pointer-events:none;z-index:0; }
+.akreditasi-section .container { position:relative;z-index:2; }
+.akreditasi-card { background:#1C145C;border-radius:18px;padding:30px;display:flex;align-items:center;gap:22px;position:relative;overflow:hidden;height:100%; }
+.akreditasi-card .ak-ornament { position:absolute;bottom:-40px;right:-40px;width:150px;height:150px;opacity:.08;background-image:url('{{ asset("images/beranda/ornamen.png") }}');background-size:contain;background-repeat:no-repeat;pointer-events:none;filter:brightness(10); }
+.akreditasi-badge { width:64px;height:64px;border-radius:16px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-size:28px;color:#fff;flex-shrink:0;position:relative;z-index:1; }
+.akreditasi-info { position:relative;z-index:1; }
+.akreditasi-label { font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:4px; }
+.akreditasi-title { font-size:19px;font-weight:800;color:#fff;margin-bottom:4px; }
+.akreditasi-desc { font-size:12.5px;color:rgba(255,255,255,.75);line-height:1.6; }
+.tt-heading { font-size:15px;font-weight:700;color:#1C145C;margin:40px 0 18px; }
+.tt-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:14px; }
+.tt-card { background:#fff;border:1.5px solid #ece9f8;border-radius:14px;padding:18px 14px;text-align:center;box-shadow:0 5px 15px rgba(0,0,0,0.04);transition:.3s; }
+.tt-card:hover { transform:translateY(-4px);box-shadow:0 10px 22px rgba(0,0,0,0.08); }
+.tt-card .tt-icon { width:40px;height:40px;border-radius:10px;background:rgba(28,20,92,.08);color:#1C145C;display:flex;align-items:center;justify-content:center;font-size:17px;margin:0 auto 10px; }
+.tt-card .tt-jumlah { font-size:26px;font-weight:800;color:#1C145C;line-height:1; }
+.tt-card .tt-satuan { font-size:10.5px;color:#999;margin-bottom:6px; }
+.tt-card .tt-nama { font-size:12.5px;font-weight:600;color:#444; }
+.tt-total-card { 
+    background: linear-gradient(135deg, #1C145C 0%, #2c2085 100%); 
+    border-radius: 14px; 
+    padding: 18px 14px; 
+    text-align: center; 
+    color: #fff; 
+    box-shadow: 0 5px 15px rgba(28, 20, 92, 0.15);
+    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
+    border: 1.5px solid transparent;
+}
+
+/* Efek Hover senada dengan card lain */
+.tt-total-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 22px rgba(28, 20, 92, 0.25);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Ornamen radial tipis di background agar tidak terlalu polos */
+.tt-total-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+/* Tambahkan Icon Box khusus Total */
+.tt-total-card .tt-icon { 
+    width: 40px; 
+    height: 40px; 
+    border-radius: 10px; 
+    background: rgba(255, 255, 255, 0.12); 
+    color: #fff; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 17px; 
+    margin: 0 auto 10px; 
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2); /* Sentuhan clean/glass tipis */
+}
+
+/* Samakan ukuran tipografi dengan card reguler */
+.tt-total-card .tt-jumlah { 
+    font-size: 26px; 
+    font-weight: 800; 
+    color: #fff; 
+    line-height: 1; 
+    position: relative;
+}
+.tt-total-card .tt-satuan { 
+    font-size: 10.5px; 
+    color: rgba(255, 255, 255, 0.65); 
+    margin-bottom: 6px; 
+    position: relative;
+}
+.tt-total-card .tt-nama { 
+    font-size: 12.5px; 
+    font-weight: 700; 
+    color: #fff; 
+    position: relative;
+}
+.tt-note { font-size:10px;color:#9994bb;line-height:1.5;margin-top:6px;padding-top:6px;border-top:1px dashed #ece9f8; }
+.tt-subheading { font-size:13px;font-weight:700;color:#7a74a0;text-transform:uppercase;letter-spacing:.08em;margin:34px 0 14px; }
+@media(max-width:768px){ .tt-grid{ grid-template-columns:repeat(2,1fr); } .akreditasi-card{ flex-direction:column;text-align:center; } }
 </style>
 
 <body>
@@ -659,6 +829,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     /* ─── Navbar scroll ─── */
     window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 10), { passive: true });
+
+    /* ─── Accordion Struktur Organisasi ─── */
+    document.querySelectorAll('.org-manajer-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const body = this.parentElement.querySelector('.org-manajer-body');
+            const isOpen = body.classList.contains('open');
+            body.classList.toggle('open', !isOpen);
+            this.classList.toggle('open', !isOpen);
+        });
+    });
 });
 </script>
 
@@ -687,6 +867,11 @@ document.addEventListener('DOMContentLoaded', function () {
         </svg>
     </div>
 </section>
+
+<!-- ============================================================
+     ABOUT FLOW WRAPPER (Profil s.d. Akreditasi — satu gradasi background)
+============================================================ -->
+<div class="about-flow">
 
 <!-- ============================================================
      PROFIL
@@ -718,6 +903,46 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="info-card">
                     <div class="icon-box icon-danger"><i class="bi bi-telephone-fill"></i></div>
                     <div><small>Kontak</small><br><b>(0289) 430822</b></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     SAMBUTAN DIREKTUR
+============================================================ -->
+<section class="sambutan-section">
+    <div class="container">
+        <h4 class="fw-bold mb-4">Sambutan Direktur</h4>
+        <div class="row align-items-center g-4">
+            <div class="col-md-4">
+                <div class="sambutan-photo-wrap">
+                    {{-- Ganti src di bawah dengan foto Direktur --}}
+                    <img src="{{ asset('images/beranda/dr. hardyansyah, MPH-MMR.png') }}" alt="Direktur RSU Allam Medica">
+                    <div class="sambutan-photo-caption">
+                        <div class="nama">dr. Hardyansyah, MPH-MMR</div>
+                        <div class="jabatan">Direktur RSU Allam Medica Bumiayu</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="sambutan-quote-icon"><i class="bi bi-quote"></i></div>
+                <p class="sambutan-text">
+                    Assalamu'alaikum warahmatullahi wabarakatuh. Puji syukur kami panjatkan atas rahmat dan karunia-Nya sehingga RSU Allam Medica Bumiayu dapat terus tumbuh dan berkembang dalam melayani masyarakat Kabupaten Brebes dan sekitarnya sejak tahun 2012.
+                </p>
+                <p class="sambutan-text">
+                    Kami berkomitmen untuk terus meningkatkan mutu pelayanan melalui pengembangan sumber daya manusia yang kompeten, fasilitas yang memadai, serta penerapan standar keselamatan pasien yang berkelanjutan menuju akreditasi paripurna. Seluruh jajaran manajemen dan staf RSU Allam Medica berkomitmen menjadikan kesehatan Anda sebagai prioritas utama kami.
+                </p>
+                <p class="sambutan-text">
+                    Atas nama seluruh keluarga besar RSU Allam Medica Bumiayu, kami mengucapkan terima kasih atas kepercayaan masyarakat yang telah menjadikan kami sebagai mitra kesehatan. Semoga kerja sama dan kepercayaan ini terus terjalin dengan baik.
+                </p>
+                <div class="sambutan-signoff">
+                    <div class="icon-box icon-primary"><i class="bi bi-pen-fill"></i></div>
+                    <div>
+                        <div style="font-weight:700;color:#1C145C;font-size:13.5px;">dr. Hardyansyah, MPH-MMR</div>
+                        <div style="font-size:11.5px;color:#888;">Direktur RSU Allam Medica Bumiayu</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -770,6 +995,201 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="misi-item"><div class="misi-num">3</div><p class="misi-txt">Menjalankan prinsip tatakelola perusahaan yang baik guna menciptakan nilai tambah bagi stakeholders (pelanggan, pekerja, mitrakerja, pemilik, dan masyarakat) dan berdampak positif terhadap lingkungan.</p></div>
                 <div class="misi-item"><div class="misi-num">4</div><p class="misi-txt">Mengembangkan infrastruktur modern dan tatakelola sumberdaya manusia berkualitas guna mencapai SDM yang Unggul, Kompeten dan berdaya saing.</p></div>
             </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     STRUKTUR ORGANISASI
+============================================================ -->
+<section class="struktur-section">
+    <div class="container">
+        <h4 class="fw-bold mb-2 text-center">Struktur Organisasi</h4>
+        <p class="text-center text-muted mb-5" style="font-size:13.5px;">Susunan tata kelola RSU Allam Medica Bumiayu</p>
+
+        <!-- TOP: DIREKTUR, KOMITE/TIM, SPI -->
+        <div class="org-top-chart">
+            <div class="org-node org-direktur">
+                <div class="jabatan">Direktur</div>
+                <div class="nama">dr. Hardyansyah, MPH-MMR</div>
+            </div>
+            <div class="org-connector"></div>
+            <div class="org-top-row">
+                <div class="org-node org-side">
+                    <div class="jabatan">Komite / Tim</div>
+                </div>
+                <div class="org-node org-side">
+                    <div class="jabatan">SPI</div>
+                    <div class="nama">
+                        dr. Ely Hikmawati, M.H.Kes<br>
+                        Akhmad Tauhid, S.T<br>
+                        dr. Mutiara Kantika, M.M<br>
+                        dr. Novie Eko Puspitasari, M.H.Kes
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DUA WAKIL DIREKTUR -->
+        <div class="org-wadir-grid">
+
+            <!-- WADIR PELAYANAN -->
+            <div class="org-wadir-card">
+                <div class="org-wadir-head">
+                    <div class="wh-ornament"></div>
+                    <div class="jabatan">Wakil Direktur Pelayanan</div>
+                    <div class="nama">dr. Artono Tri Pamungkas, Sp.PD</div>
+                </div>
+                <div class="org-manajer-list" data-accordion-group>
+
+                    <div class="org-manajer-item">
+                        <button class="org-manajer-btn" type="button">
+                            <div class="om-text"><div class="jabatan">Manajer Pelayanan Medis</div><div class="nama">dr. Nurkholis Majid</div></div>
+                            <i class="bi bi-chevron-down org-manajer-chevron"></i>
+                        </button>
+                        <div class="org-manajer-body">
+                            <div class="org-staff-row"><span class="jabatan-kecil">Kepala IMP</span><span class="nama-kecil">dr. Dessy Wulandari, Sp. OG</span></div>
+                            <div class="org-staff-row"><span class="jabatan-kecil">Kepala IBS</span><span class="nama-kecil">dr. Heri Sugianto, M.Si.Med., Sp.B</span></div>
+                            <div class="org-staff-row"><span class="jabatan-kecil">Kepala ICU</span><span class="nama-kecil">dr. Igun Winarno, Sp.An</span></div>
+                            <div class="org-staff-row"><span class="jabatan-kecil">Kepala IGD & Rajal</span><span class="nama-kecil">dr. Lintang Fifgi Andila, Sp.PD</span></div>
+                            <div class="org-staff-row"><span class="jabatan-kecil">Kepala IRNA</span><span class="nama-kecil">dr. Iin Nila Nuraini</span></div>
+                        </div>
+                    </div>
+
+                    <div class="org-manajer-item">
+                        <button class="org-manajer-btn" type="button">
+                            <div class="om-text"><div class="jabatan">Manajer Penunjang Medis</div><div class="nama">dr. Iput Syarhil Musthofa</div></div>
+                            <i class="bi bi-chevron-down org-manajer-chevron"></i>
+                        </button>
+                        <div class="org-manajer-body">
+                            <div class="org-staff-row"><span class="jabatan-kecil">Kepala Inst. Farmasi</span><span class="nama-kecil">Nurul Maryana, S.Farm., Apt</span></div>
+                            <div class="org-staff-row"><span class="jabatan-kecil">Kepala Inst. Radiologi</span><span class="nama-kecil">dr. Rochmawati Istutiningrum, Sp.Rad</span></div>
+                            <div class="org-staff-row"><span class="jabatan-kecil">Kepala Inst. Laboratorium</span><span class="nama-kecil">dr. Adika Zhulhi Arjana, M.Med.Sc., Sp.PK</span></div>
+                            <div class="org-staff-row"><span class="jabatan-kecil">Kepala Inst. BDRS</span><span class="nama-kecil">dr. Adika Zhulhi Arjana, M.Med.Sc., Sp.PK</span></div>
+                            <div class="org-staff-row"><span class="jabatan-kecil">Kepala Inst. Rekam Medis</span><span class="nama-kecil">Danang Try Pamungkas, A.Md.Kes</span></div>
+                            <div class="org-staff-row"><span class="jabatan-kecil">Kepala Inst. Rehab Medik</span><span class="nama-kecil">Pramudita Setya Widya Utami, S.Kes., Ftr</span></div>
+                        </div>
+                    </div>
+
+                    <div class="org-manajer-item">
+                        <button class="org-manajer-btn" type="button">
+                            <div class="om-text"><div class="jabatan">Manajer Penunjang Non Medis</div><div class="nama">dr. Ligar Hervian</div></div>
+                            <i class="bi bi-chevron-down org-manajer-chevron"></i>
+                        </button>
+                        <div class="org-manajer-body">
+                            <div class="org-staff-row"><span class="jabatan-kecil">Ka. Inst. Gizi</span><span class="nama-kecil">Tya Yunitasari, S.Tr.Gz</span></div>
+                            <div class="org-staff-row"><span class="jabatan-kecil">Ka. Inst. Sanitasi & Linen</span><span class="nama-kecil">Wiyatri Sulharini Rahayu, A.Md, KL</span></div>
+                            <div class="org-staff-row"><span class="jabatan-kecil">Ka. Inst. CSSD</span><span class="nama-kecil">Suliyani, A.Md.Keb</span></div>
+                            <div class="org-staff-row"><span class="jabatan-kecil">Koor. Ambulance</span><span class="nama-kecil">Syaifulloh</span></div>
+                            <div class="org-staff-row"><span class="jabatan-kecil">Koor. Pemulasaraan Jenazah</span><span class="nama-kecil">Mukholifin</span></div>
+                            <div class="org-staff-row"><span class="jabatan-kecil">Koor. Security</span><span class="nama-kecil">Diski Farozi</span></div>
+                        </div>
+                    </div>
+
+                    <div class="org-manajer-item">
+                        <button class="org-manajer-btn" type="button">
+                            <div class="om-text"><div class="jabatan">Manajer Keperawatan</div><div class="nama">Yunizar, S.Kep., Ners</div></div>
+                            <i class="bi bi-chevron-down org-manajer-chevron"></i>
+                        </button>
+                        <div class="org-manajer-body">
+                            <div class="org-staff-row"><span class="jabatan-kecil">Supervisor Keperawatan IGD & Rajal</span><span class="nama-kecil">Efi Trusila Astuti, A.Md.Keb</span></div>
+                            <div class="org-staff-row"><span class="jabatan-kecil">Supervisor Keperawatan Intensif & Ranap</span><span class="nama-kecil">Sri Haryati, A.Md.Keb</span></div>
+                        </div>
+                    </div>
+
+                    <div class="org-manajer-item">
+                        <button class="org-manajer-btn" type="button">
+                            <div class="om-text"><div class="jabatan">Manajer Casemix</div><div class="nama">dr. Novie Eko Puspitasari, M.H.Kes</div></div>
+                            <i class="bi bi-chevron-down org-manajer-chevron"></i>
+                        </button>
+                        <div class="org-manajer-body">
+                            <div class="org-staff-row"><span class="jabatan-kecil">Supervisor Verifikasi Klinis</span><span class="nama-kecil">dr. Ligar Hervian</span></div>
+                            <div class="org-staff-row"><span class="jabatan-kecil">Supervisor Klaim & Administrasi Casemix</span><span class="nama-kecil">Citra Widining Afani, A.Md.Keb</span></div>
+                            <div class="org-staff-row"><span class="jabatan-kecil">Supervisor Coding & Grouping</span><span class="nama-kecil">Ananda Nur Fajarwati, A.Md.Kes</span></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- WADIR UMUM & KEUANGAN -->
+            <div class="org-wadir-card">
+                <div class="org-wadir-head">
+                    <div class="wh-ornament"></div>
+                    <div class="jabatan">Wakil Direktur Umum & Keuangan</div>
+                    <div class="nama">Akhmad Tauhid, S.T</div>
+                </div>
+                <div class="org-manajer-list" data-accordion-group>
+
+                    <div class="org-manajer-item">
+                        <button class="org-manajer-btn" type="button">
+                            <div class="om-text"><div class="jabatan">Manajer Humas & Kerjasama</div><div class="nama">dr. Soviyanti Wulandari</div></div>
+                            <i class="bi bi-chevron-down org-manajer-chevron"></i>
+                        </button>
+                        <div class="org-manajer-body">
+                            <div class="org-staff-row"><span class="jabatan-kecil">Supervisor Humas & Kerjasama</span><span class="nama-kecil">Esih Kurniasih, S.M</span></div>
+                            <div class="org-staff-row"><span class="jabatan-kecil">Supervisor Hukum & Kerjasama</span><span class="nama-kecil">Gani Yunanto, S.H</span></div>
+                            <div class="org-staff-row"><span class="jabatan-kecil">Supervisor Marketing</span><span class="nama-kecil">Ns. Anggraeni, S.Kep</span></div>
+                        </div>
+                    </div>
+
+                    <div class="org-manajer-item">
+                        <button class="org-manajer-btn" type="button">
+                            <div class="om-text"><div class="jabatan">Manajer Administrasi Umum & Remunisasi</div><div class="nama">Erdaf Galih Tri Abimanyu, S.M</div></div>
+                            <i class="bi bi-chevron-down org-manajer-chevron"></i>
+                        </button>
+                        <div class="org-manajer-body">
+                            <div class="org-staff-row"><span class="jabatan-kecil">Supervisor Alkes & Non Alkes</span><span class="nama-kecil">Muhammad Zulfa Amarta, S.M</span></div>
+                            <div class="org-staff-row"><span class="jabatan-kecil">Supervisor SIM RS & Pelaporan</span><span class="nama-kecil">Tri Setiyo Nugroho, A.Md</span></div>
+                        </div>
+                    </div>
+
+                    <div class="org-manajer-item">
+                        <button class="org-manajer-btn" type="button">
+                            <div class="om-text"><div class="jabatan">Manajer Keuangan</div><div class="nama">Adi Susilo, S.E</div></div>
+                            <i class="bi bi-chevron-down org-manajer-chevron"></i>
+                        </button>
+                        <div class="org-manajer-body">
+                            <div class="org-staff-row"><span class="jabatan-kecil">Supervisor Perbendaharaan</span><span class="nama-kecil">Siti Marwati</span></div>
+                            <div class="org-staff-row"><span class="jabatan-kecil">Supervisor Pendapatan</span><span class="nama-kecil">Rohmah Dewi Komalasari, S.Ak</span></div>
+                            <div class="org-staff-row"><span class="jabatan-kecil">Supervisor Akuntansi</span><span class="nama-kecil">Lailatul Amaliah, S.E</span></div>
+                        </div>
+                    </div>
+
+                    <div class="org-manajer-item">
+                        <button class="org-manajer-btn" type="button">
+                            <div class="om-text"><div class="jabatan">Manajer HR</div><div class="nama">dr. Rivai Harun Arrasid</div></div>
+                            <i class="bi bi-chevron-down org-manajer-chevron"></i>
+                        </button>
+                        <div class="org-manajer-body">
+                            <div class="org-staff-row"><span class="jabatan-kecil">Supervisor Kepegawaian</span><span class="nama-kecil">Plt. Tresno Waluyo</span></div>
+                            <div class="org-staff-row"><span class="jabatan-kecil">Supervisor Diklat</span><span class="nama-kecil">Dikara Nurmalitasari, S.ST</span></div>
+                        </div>
+                    </div>
+
+                    <div class="org-manajer-item">
+                        <button class="org-manajer-btn" type="button">
+                            <div class="om-text"><div class="jabatan">Manajer Sarpras</div><div class="nama">Gani Yunanto, S.H</div></div>
+                            <i class="bi bi-chevron-down org-manajer-chevron"></i>
+                        </button>
+                        <div class="org-manajer-body">
+                            <div class="org-staff-row"><span class="jabatan-kecil">Supervisor Bangunan & Engineering</span><span class="nama-kecil">M. Lukman Nur Hamdani</span></div>
+                            <div class="org-staff-row"><span class="jabatan-kecil">Supervisor IPSRS</span><span class="nama-kecil">Bahtiar Ismono Hadi</span></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="{{ asset('images/beranda/BANNER STRUKTUR ORGANISASI.png') }}"
+            download="Struktur-Organisasi-RSU-Allam-Medica.png"
+            class="btn-kontak"
+            style="text-decoration:none;">
+                <i class="bi bi-download"></i> Unduh Bagan Struktur Organisasi
+            </a>
         </div>
     </div>
 </section>
@@ -831,6 +1251,139 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
     </div>
 </section>
+
+<!-- ============================================================
+     AKREDITASI & KAPASITAS TEMPAT TIDUR
+============================================================ -->
+<section class="akreditasi-section">
+    <div class="container">
+        <h4 class="fw-bold mb-4">Status Akreditasi</h4>
+        <div class="row g-3">
+            <div class="col-md-6">
+                <div class="akreditasi-card">
+                    <div class="ak-ornament"></div>
+                    <div class="akreditasi-badge"><i class="bi bi-patch-check-fill"></i></div>
+                    <div class="akreditasi-info">
+                        <div class="akreditasi-label">Status Akreditasi</div>
+                        {{-- Sesuaikan dengan status akreditasi KARS terbaru --}}
+                        <div class="akreditasi-title">Akreditasi Paripurna</div>
+                        <div class="akreditasi-desc">Terakreditasi oleh Komisi Akreditasi Rumah Sakit (KARS) No. Sertifikat: KARS-SERT/482/XI/2022 - Berlaku s.d. 23 November 2026</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="akreditasi-card">
+                    <div class="ak-ornament"></div>
+                    <div class="akreditasi-badge"><i class="bi bi-award-fill"></i></div>
+                    <div class="akreditasi-info">
+                        <div class="akreditasi-label">Kelas Rumah Sakit</div>
+                        <div class="akreditasi-title">Rumah Sakit Umum Tipe C</div>
+                        <div class="akreditasi-desc">Ditetapkan berdasarkan SK 91/2008/02/7/2001, resmi menjadi Tipe C sejak tahun 2023.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h5 class="tt-heading">Kapasitas Tempat Tidur</h5>
+
+        <div class="tt-grid">
+            <div class="tt-card">
+                <div class="tt-icon"><i class="bi bi-star-fill"></i></div>
+                <div class="tt-jumlah">8</div>
+                <div class="tt-satuan">Tempat Tidur</div>
+                <div class="tt-nama">VIP</div>
+            </div>
+            <div class="tt-card">
+                <div class="tt-icon"><i class="bi bi-hospital"></i></div>
+                <div class="tt-jumlah">24</div>
+                <div class="tt-satuan">Tempat Tidur</div>
+                <div class="tt-nama">Kelas I</div>
+            </div>
+            <div class="tt-card">
+                <div class="tt-icon"><i class="bi bi-hospital"></i></div>
+                <div class="tt-jumlah">12</div>
+                <div class="tt-satuan">Tempat Tidur</div>
+                <div class="tt-nama">Kelas II</div>
+            </div>
+            <div class="tt-card">
+                <div class="tt-icon"><i class="bi bi-hospital"></i></div>
+                <div class="tt-jumlah">58</div>
+                <div class="tt-satuan">Tempat Tidur</div>
+                <div class="tt-nama">Kelas III</div>
+            </div>
+            <div class="tt-card">
+                <div class="tt-icon"><i class="bi bi-activity"></i></div>
+                <div class="tt-jumlah">4</div>
+                <div class="tt-satuan">Tempat Tidur</div>
+                <div class="tt-nama">Intermediate</div>
+            </div>
+            <div class="tt-card">
+                <div class="tt-icon"><i class="bi bi-shield-fill-plus"></i></div>
+                <div class="tt-jumlah">14</div>
+                <div class="tt-satuan">Tempat Tidur</div>
+                <div class="tt-nama">Isolasi</div>
+                <div class="tt-note">Cempaka 1 · Perina 3 · Dahlia 8 · Freesia 1 · BGV 1</div>
+            </div>
+            <div class="tt-card">
+                <div class="tt-icon"><i class="bi bi-heart-pulse-fill"></i></div>
+                <div class="tt-jumlah">9</div>
+                <div class="tt-satuan">Tempat Tidur</div>
+                <div class="tt-nama">ICU, RICU, ICCU</div>
+                <div class="tt-note">ICU 7 · RICU 1 · ICCU 1</div>
+            </div>
+            <div class="tt-card">
+                <div class="tt-icon"><i class="bi bi-heart-pulse-fill"></i></div>
+                <div class="tt-jumlah">7</div>
+                <div class="tt-satuan">Tempat Tidur</div>
+                <div class="tt-nama">PICU, NICU, HCU</div>
+                <div class="tt-note">PICU 2 · NICU 3 · HCU 2</div>
+            </div>
+            <div class="tt-card">
+                <div class="tt-icon"><i class="bi bi-file-medical-fill"></i></div>
+                <div class="tt-jumlah">4</div>
+                <div class="tt-satuan">Tempat Tidur</div>
+                <div class="tt-nama">Perina</div>
+            </div>
+            <div class="tt-total-card">
+    <div class="tt-icon"><i class="bi bi-grid-fill"></i></div>
+    <div class="tt-jumlah">140</div>
+    <div class="tt-satuan">Tempat Tidur</div>
+    <div class="tt-nama">Total Keseluruhan</div>
+</div>
+        </div>
+
+        <h5 class="tt-subheading">Tempat Tidur Tindakan</h5>
+        <div class="tt-grid">
+            <div class="tt-card">
+                <div class="tt-icon"><i class="bi bi-bandaid-fill"></i></div>
+                <div class="tt-jumlah">12</div>
+                <div class="tt-satuan">Tempat Tidur</div>
+                <div class="tt-nama">IGD</div>
+            </div>
+            <div class="tt-card">
+                <div class="tt-icon"><i class="bi bi-clipboard2-pulse"></i></div>
+                <div class="tt-jumlah">3</div>
+                <div class="tt-satuan">Tempat Tidur</div>
+                <div class="tt-nama">VK Observasi</div>
+            </div>
+            <div class="tt-card">
+                <div class="tt-icon"><i class="bi bi-clipboard2-pulse"></i></div>
+                <div class="tt-jumlah">4</div>
+                <div class="tt-satuan">Tempat Tidur</div>
+                <div class="tt-nama">VK Tindakan</div>
+            </div>
+            <div class="tt-card">
+                <div class="tt-icon"><i class="bi bi-hospital-fill"></i></div>
+                <div class="tt-jumlah">5</div>
+                <div class="tt-satuan">Tempat Tidur</div>
+                <div class="tt-nama">IBS</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</div>
+<!-- END ABOUT FLOW WRAPPER -->
 
 <!-- ============================================================
      FOOTER
