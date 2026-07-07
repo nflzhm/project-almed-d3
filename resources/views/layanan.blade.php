@@ -28,8 +28,6 @@ Layanan — RSU Allam Medica
 ============================================================ */
 body { font-family: 'Segoe UI', sans-serif; background: #ffffff; overflow-x: hidden; padding-top: 38px; }
 
-
-
 /* ============================================================
    TOPBAR
 ============================================================ */
@@ -253,7 +251,7 @@ body { font-family: 'Segoe UI', sans-serif; background: #ffffff; overflow-x: hid
    PAGE BODY
 ============================================================ */
 .layanan-page-body { padding:0 0 80px;background:#ffffff;position:relative;z-index:1; }
-.lay-section { padding:60px 0 0;scroll-margin-top:80px;position:relative; }
+.lay-section { padding:60px 0 0; scroll-margin-top:80px; position:relative; overflow:visible !important; }
 .sec-label { display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px; }
 .sec-title { font-family:'DM Serif Display',serif;font-size:clamp(22px,3vw,30px);font-weight:400;color:#1C145C;line-height:1.2; }
 .sec-sub { font-size:14px;color:#64748b;margin-top:6px;line-height:1.6; }
@@ -843,7 +841,6 @@ body { font-family: 'Segoe UI', sans-serif; background: #ffffff; overflow-x: hid
     </div>
 </div>
 </div>
-</div>
 
 @else
 
@@ -860,16 +857,16 @@ body { font-family: 'Segoe UI', sans-serif; background: #ffffff; overflow-x: hid
             <span class="sep"><i class="bi bi-chevron-right"></i></span>
             <span class="cur">Layanan</span>
         </div>
-        <div class="hero-kat"><i class="bi bi-hospital-fill"></i> Poliklinik &amp; Layanan Medis</div>
+        <div class="hero-kat"><i class="bi bi-hospital-fill"></i> Poliklinik & Layanan Medis</div>
         <h1 class="hero-title">Layanan Kesehatan<br><em>RSU Allam Medica</em></h1>
         <div class="hero-meta">
             <span class="hero-meta-pill"><i class="bi bi-geo-alt-fill"></i> RSU Allam Medica Bumiayu</span>
-            <span class="hero-meta-pill"><i class="bi bi-grid-3x3-gap"></i> 8 Jenis Layanan</span>
+            <span class="hero-meta-pill"><i class="bi bi-grid-3x3-gap"></i> 12 Jenis Layanan</span>
             <span class="hero-meta-pill"><i class="bi bi-bandaid-fill"></i> IGD 24 Jam</span>
             <span class="hero-meta-pill"><i class="bi bi-shield-check"></i> Melayani BPJS</span>
         </div>
         <div class="hero-stats">
-            <div class="hero-stat-item"><span class="hero-stat-num">8</span><div class="hero-stat-label">Jenis Layanan</div></div>
+            <div class="hero-stat-item"><span class="hero-stat-num">12</span><div class="hero-stat-label">Jenis Layanan</div></div>
             <div class="hero-stat-item"><span class="hero-stat-num">24<small style="font-size:13px">/7</small></span><div class="hero-stat-label">IGD Siaga</div></div>
             <div class="hero-stat-item"><span class="hero-stat-num">BPJS</span><div class="hero-stat-label">Menerima BPJS</div></div>
             <div class="hero-stat-item"><span class="hero-stat-num" id="statPoli">—</span><div class="hero-stat-label">Poliklinik</div></div>
@@ -931,6 +928,10 @@ body { font-family: 'Segoe UI', sans-serif; background: #ffffff; overflow-x: hid
             <a href="#radiologi"    class="lay-tab" data-section="radiologi"><i class="bi bi-radioactive"></i> Radiologi</a>
             <a href="#farmasi"      class="lay-tab" data-section="farmasi"><i class="bi bi-capsule"></i> Farmasi</a>
             <a href="#mcu"          class="lay-tab" data-section="mcu"><i class="bi bi-heart-pulse"></i> Medical Check Up</a>
+            <a href="#intensif"     class="lay-tab" data-section="intensif"><i class="bi bi-heart-pulse-fill"></i> ICU/NICU/HCU</a>
+            <a href="#vk"           class="lay-tab" data-section="vk"><i class="bi bi-gender-female"></i> Ruang Bersalin (VK)</a>
+            <a href="#ibs"          class="lay-tab" data-section="ibs"><i class="bi bi-scissors"></i> Bedah Sentral (IBS)</a>
+            <a href="#rehab"        class="lay-tab" data-section="rehab"><i class="bi bi-person-wheelchair"></i> Rehab Medik</a>
         </div>
     </div>
 </div>
@@ -959,11 +960,11 @@ body { font-family: 'Segoe UI', sans-serif; background: #ffffff; overflow-x: hid
                     <div class="svc-body">
                         <p class="svc-desc">Instalasi Gawat Darurat RSU Allam Medica beroperasi penuh 24 jam sehari, 7 hari seminggu, 365 hari setahun. Ditangani oleh tim dokter dan perawat terlatih yang siap memberikan pertolongan pertama dan penanganan medis darurat.</p>
                         <ul class="svc-list">
-                            <li>Buka 24 jam, 7 hari seminggu</li>
-                            <li>Tim dokter dan perawat terlatih</li>
-                            <li>Peralatan medis darurat lengkap</li>
-                            <li>Ruang observasi dan stabilisasi</li>
-                            <li>Menerima pasien BPJS dan umum</li>
+                            <li><strong style="color:#1C145C;">Jam Pelayanan:</strong> Buka 24 Jam, 7 hari seminggu</li>
+                            <li><strong style="color:#1C145C;">Lokasi:</strong> Gedung Utama Lantai 1 (Akses Depan)</li>
+                            <li><strong style="color:#1C145C;">Persyaratan:</strong> KTP/Identitas Diri, Kartu BPJS (jika ada)</li>
+                            <li><strong style="color:#1C145C;">Alur Pelayanan:</strong> Triage &rarr; Pemeriksaan Awal &rarr; Penanganan & Observasi &rarr; Rawat Inap/Rujuk/Pulang</li>
+                            <li><strong style="color:#1C145C;">Kontak & Informasi:</strong> 085292224886 (WhatsApp/Telepon)</li>
                         </ul>
                     </div>
                     <div class="svc-footer">
@@ -972,8 +973,8 @@ body { font-family: 'Segoe UI', sans-serif; background: #ffffff; overflow-x: hid
                     </div>
                 </div>
             </div>
-            <div class="col-lg-7 d-flex align-items-stretch">
-                <div style="background:#fff;border-radius:20px;border:1px solid #e8edf5;box-shadow:0 4px 20px rgba(28,20,92,.05);padding:32px;width:100%;position:relative;overflow:hidden;">
+            <div class="col-lg-7 d-flex align-items-stretch flex-column">
+                <div style="background:#fff;border-radius:20px;border:1px solid #e8edf5;box-shadow:0 4px 20px rgba(28,20,92,.05);padding:32px;width:100%;position:relative;overflow:hidden;flex:1;">
                     <div style="font-size:11px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.8px;margin-bottom:18px;">Prosedur Penanganan</div>
                     <div style="display:flex;flex-direction:column;gap:16px;">
                         @php $steps=[['num'=>'01','icon'=>'bi-funnel','title'=>'Triage','desc'=>'Pasien diklasifikasikan berdasarkan tingkat kegawatan untuk menentukan prioritas penanganan.'],['num'=>'02','icon'=>'bi-person-check','title'=>'Pemeriksaan Awal','desc'=>'Dokter IGD melakukan pemeriksaan fisik dan penanganan stabilisasi kondisi pasien.'],['num'=>'03','icon'=>'bi-activity','title'=>'Penanganan & Observasi','desc'=>'Tindakan medis darurat diberikan dan pasien diobservasi hingga kondisi stabil.'],['num'=>'04','icon'=>'bi-arrow-right-circle','title'=>'Rawat Inap atau Rujukan','desc'=>'Pasien dirujuk ke rawat inap atau difasilitasi rujukan ke rumah sakit lain bila diperlukan.']]; @endphp
@@ -983,6 +984,32 @@ body { font-family: 'Segoe UI', sans-serif; background: #ffffff; overflow-x: hid
                             <div>
                                 <div style="font-size:14px;font-weight:700;color:#1e293b;margin-bottom:3px;display:flex;align-items:center;gap:7px;"><i class="bi {{ $s['icon'] }}" style="color:#dc2626;font-size:13px;"></i>{{ $s['title'] }}</div>
                                 <div style="font-size:13px;color:#64748b;line-height:1.6;">{{ $s['desc'] }}</div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-12 mt-4" style="position:relative;z-index:1;">
+                <div style="background:#fff;border-radius:20px;border:1px solid #e8edf5;box-shadow:0 4px 20px rgba(28,20,92,.05);padding:32px;">
+                    <div style="font-size:11px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.8px;margin-bottom:18px;"><i class="bi bi-people-fill" style="margin-right:5px;color:#dc2626;"></i> Tim Dokter Umum IGD</div>
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:14px;">
+                        @php 
+                        $dokterIgd = [
+                            ['nama' => 'dr. Andi Saputra', 'jadwal' => 'Jadwal: Shift Pagi/Malam'],
+                            ['nama' => 'dr. Budi Santoso', 'jadwal' => 'Jadwal: Shift Pagi/Sore'],
+                            ['nama' => 'dr. Citra Lestari', 'jadwal' => 'Jadwal: Shift Sore/Malam'],
+                            ['nama' => 'dr. Dewi Anggraini', 'jadwal' => 'Jadwal: Shift Pagi/Malam'],
+                            ['nama' => 'dr. Eka Pratama', 'jadwal' => 'Jadwal: Shift Sore/Malam']
+                        ]; 
+                        @endphp
+                        @foreach($dokterIgd as $dok)
+                        <div style="display:flex;align-items:center;gap:12px;padding:12px;background:#f8faff;border-radius:12px;border:1px solid #e8edf5;">
+                            <div style="width:40px;height:40px;border-radius:50%;background:#fee2e2;color:#dc2626;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;"><i class="fa-solid fa-user-doctor"></i></div>
+                            <div>
+                                <div style="font-size:13.5px;font-weight:700;color:#1e293b;">{{ $dok['nama'] }}</div>
+                                <div style="font-size:11px;color:#64748b;">{{ $dok['jadwal'] }}</div>
                             </div>
                         </div>
                         @endforeach
@@ -1008,6 +1035,18 @@ body { font-family: 'Segoe UI', sans-serif; background: #ffffff; overflow-x: hid
             </div>
         </div>
         <div class="sec-divider"></div>
+
+        <div style="background:#fff;border-radius:16px;border:1px solid #e8edf5;padding:24px 28px;margin-bottom:24px;box-shadow:0 2px 12px rgba(28,20,92,.05);position:relative;z-index:1;">
+            <div style="font-size:14px;font-weight:700;color:#1C145C;margin-bottom:12px;"><i class="bi bi-info-circle-fill" style="margin-right:6px;"></i> Informasi Umum Rawat Jalan</div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:12px;">
+                <div style="font-size:13px;"><strong style="color:#1C145C;">Jam Pelayanan:</strong><br>Senin - Sabtu: 07.00 - 21.00 WIB<br>Minggu: 08.00 - 14.00 WIB</div>
+                <div style="font-size:13px;"><strong style="color:#1C145C;">Lokasi:</strong><br>Gedung Poliklinik Lantai 1 & 2</div>
+                <div style="font-size:13px;"><strong style="color:#1C145C;">Persyaratan:</strong><br>KTP, Surat Rujukan (Untuk BPJS), Kartu Berobat/Identitas Pasien</div>
+                <div style="font-size:13px;"><strong style="color:#1C145C;">Alur Pelayanan:</strong><br>Pendaftaran &rarr; Antrean Poli &rarr; Pemeriksaan Dokter &rarr; Farmasi/Kasir</div>
+                <div style="font-size:13px;"><strong style="color:#1C145C;">Kontak & Pendaftaran:</strong><br><i class="bi bi-telephone-fill"></i> 085292224886</div>
+            </div>
+        </div>
+
         <div class="d-none d-lg-flex" style="background:#fff;border-radius:12px;border:1px solid #e8edf5;padding:12px 16px;align-items:center;gap:10px;margin-bottom:20px;box-shadow:0 2px 8px rgba(28,20,92,.04);flex-wrap:wrap;position:relative;z-index:1;">
             <div style="position:relative;flex:1;min-width:180px;">
                 <i class="bi bi-search" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#94a3b8;font-size:13px;pointer-events:none;"></i>
@@ -1104,6 +1143,17 @@ body { font-family: 'Segoe UI', sans-serif; background: #ffffff; overflow-x: hid
             <div class="sec-title">Fasilitas Rawat Inap</div>
             <div class="sec-sub">RSU Allam Medica menyediakan berbagai pilihan kelas perawatan sesuai kebutuhan dan kondisi pasien.</div>
         </div>
+        
+        <div style="background:#fff;border-radius:16px;border:1px solid #e8edf5;padding:24px 28px;margin-bottom:24px;box-shadow:0 2px 12px rgba(28,20,92,.05);position:relative;z-index:1;">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:12px;">
+                <div style="font-size:13px;"><strong style="color:#1C145C;">Jam Pelayanan:</strong><br>24 Jam Terjadwal</div>
+                <div style="font-size:13px;"><strong style="color:#1C145C;">Lokasi:</strong><br>Gedung Rawat Inap (Lantai 2 & 3)</div>
+                <div style="font-size:13px;"><strong style="color:#1C145C;">Persyaratan:</strong><br>Surat Pengantar Rawat Inap, KTP/KK, BPJS</div>
+                <div style="font-size:13px;"><strong style="color:#1C145C;">Alur Pelayanan:</strong><br>Rekomendasi IGD/Poli &rarr; Registrasi Ranap &rarr; Ruang Perawatan</div>
+                <div style="font-size:13px;"><strong style="color:#1C145C;">Kontak & Informasi:</strong><br><i class="bi bi-whatsapp"></i> 085292224886</div>
+            </div>
+        </div>
+
         @php
         $kelasRawat = [
             ['nama'=>'Kelas VIP','foto'=>asset('assets/KelasVIP.png'),'icon'=>'bi-gem','grad'=>'linear-gradient(135deg,#0f0c29 0%,#302b63 50%,#24243e 100%)','badge_bg'=>'#ede9fe','badge_c'=>'#4c1d95','badge'=>'VIP','fitur'=>[['icon'=>'bi-door-open','teks'=>'Kamar pribadi 1 tempat tidur'],['icon'=>'bi-tv','teks'=>'TV & AC'],['icon'=>'bi-box-seam','teks'=>'Kulkas mini, kamar mandi dalam'],['icon'=>'bi-person-hearts','teks'=>'Ruang kunjungan keluarga'],['icon'=>'bi-patch-check','teks'=>'Melayani pasien BPJS']]],
@@ -1112,9 +1162,6 @@ body { font-family: 'Segoe UI', sans-serif; background: #ffffff; overflow-x: hid
             ['nama'=>'Kelas 3','foto'=>asset('assets/Kelas3.png'),'icon'=>'bi-star','grad'=>'linear-gradient(135deg,#3d2a0f 0%,#d97706 100%)','badge_bg'=>'#fef3c7','badge_c'=>'#92400e','badge'=>'Kelas 3','fitur'=>[['icon'=>'bi-door-open','teks'=>'5–6 tempat tidur per kamar'],['icon'=>'bi-patch-check','teks'=>'Melayani pasien BPJS'],['icon'=>'bi-shield-plus','teks'=>'Perawatan medis lengkap'],['icon'=>'bi-people','teks'=>'Area keluarga tersedia']]],
             ['nama'=>'Intermediet','foto'=>asset('assets/Intermediet.png'),'icon'=>'bi-activity','grad'=>'linear-gradient(135deg,#1a1a5e 0%,#6366f1 100%)','badge_bg'=>'#ede9fe','badge_c'=>'#4c1d95','badge'=>'Perawatan Khusus','fitur'=>[['icon'=>'bi-heart-pulse-fill','teks'=>'Monitor vital sign kontinu'],['icon'=>'bi-person-badge','teks'=>'Perawat terlatih 24 jam'],['icon'=>'bi-capsule','teks'=>'Obat-obatan khusus tersedia'],['icon'=>'bi-exclamation-triangle','teks'=>'Untuk pasien semi-kritis']]],
             ['nama'=>'Perinatologi','foto'=>asset('assets/Perinatologi.png'),'icon'=>'bi-balloon-heart','grad'=>'linear-gradient(135deg,#831843 0%,#ec4899 100%)','badge_bg'=>'#fce7f3','badge_c'=>'#9d174d','badge'=>'Bayi Baru Lahir','fitur'=>[['icon'=>'bi-thermometer','teks'=>'Inkubator & penghangat bayi'],['icon'=>'bi-lungs','teks'=>'Monitor oksigen neonatus'],['icon'=>'bi-person-badge','teks'=>'Perawat neonatus terlatih'],['icon'=>'bi-heart','teks'=>'Perawatan bayi baru lahir']]],
-            ['nama'=>'IGD','foto'=>asset('assets/IGD.png'),'icon'=>'bi-bandaid-fill','grad'=>'linear-gradient(135deg,#7f1d1d 0%,#dc2626 100%)','badge_bg'=>'#fee2e2','badge_c'=>'#991b1b','badge'=>'Gawat Darurat','fitur'=>[['icon'=>'bi-lightning-fill','teks'=>'Penanganan darurat cepat'],['icon'=>'bi-activity','teks'=>'Monitor pasien real-time'],['icon'=>'bi-clock-fill','teks'=>'Siaga 24 jam penuh'],['icon'=>'bi-people-fill','teks'=>'Tim dokter & perawat siaga']]],
-            ['nama'=>'HCU / ICU / PICU / NICU','foto'=>asset('assets/HCU_ICU_PICU_NICU.png'),'icon'=>'bi-heart-pulse-fill','grad'=>'linear-gradient(135deg,#134e4a 0%,#0d9488 100%)','badge_bg'=>'#ccfbf1','badge_c'=>'#134e4a','badge'=>'Perawatan Intensif','fitur'=>[['icon'=>'bi-heart-pulse-fill','teks'=>'Monitor intensif 24 jam'],['icon'=>'bi-lungs','teks'=>'Ventilator & alat bantu napas'],['icon'=>'bi-person-badge','teks'=>'Dokter spesialis jaga'],['icon'=>'bi-shield-fill-check','teks'=>'Penanganan kritis komprehensif']]],
-            ['nama'=>'Ruang Bersalin','foto'=>asset('assets/Bersalin.png'),'icon'=>'bi-gender-female','grad'=>'linear-gradient(135deg,#5b21b6 0%,#8b5cf6 100%)','badge_bg'=>'#ede9fe','badge_c'=>'#5b21b6','badge'=>'Kebidanan','fitur'=>[['icon'=>'bi-heart','teks'=>'Ruang persalinan nyaman & bersih'],['icon'=>'bi-person-badge','teks'=>'Bidan & dokter kebidanan siap'],['icon'=>'bi-shield-plus','teks'=>'Mendukung metode VBAC & SC'],['icon'=>'bi-people-fill','teks'=>'Pendamping persalinan diizinkan']]],
         ];
         @endphp
         <div class="kelas-grid" style="position:relative;z-index:1;">
@@ -1200,9 +1247,15 @@ body { font-family: 'Segoe UI', sans-serif; background: #ffffff; overflow-x: hid
                 </div>
                 <div class="col-lg-8">
                     <div class="svc-body">
-                        <p class="svc-desc">Layanan ambulans RSU Allam Medica siap 24 jam untuk transportasi pasien gawat darurat maupun rujukan. Armada dilengkapi peralatan medis darurat dan ditangani oleh pengemudi serta petugas medis terlatih.</p>
-                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-                            @php $fiturAmb=[['icon'=>'bi-clock-fill','bg'=>'#fef3c7','c'=>'#d97706','title'=>'Siaga 24 Jam','desc'=>'Tersedia setiap saat termasuk hari libur nasional'],['icon'=>'bi-geo-alt-fill','bg'=>'#dbeafe','c'=>'#1d4ed8','title'=>'Jangkauan Luas','desc'=>'Melayani wilayah Bumiayu dan sekitarnya'],['icon'=>'bi-bag-plus-fill','bg'=>'#fee2e2','c'=>'#dc2626','title'=>'Perlengkapan Medis','desc'=>'Tabung oksigen, defibrilator, dan alat medis darurat'],['icon'=>'bi-person-badge-fill','bg'=>'#d1fae5','c'=>'#059669','title'=>'Tim Terlatih','desc'=>'Pengemudi dan petugas medis bersertifikat']]; @endphp
+                        <ul class="svc-list" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:16px;">
+                            <li><strong style="color:#1C145C;">Jam Pelayanan:</strong> Siaga 24 Jam</li>
+                            <li><strong style="color:#1C145C;">Lokasi:</strong> Area Parkir Utama RSU</li>
+                            <li><strong style="color:#1C145C;">Persyaratan:</strong> Info identitas & lokasi detail pasien</li>
+                            <li><strong style="color:#1C145C;">Alur Pelayanan:</strong> Hubungi Telepon/WA &rarr; Konfirmasi Lokasi &rarr; Ambulans Meluncur ke Titik Jemput</li>
+                            <li><strong style="color:#1C145C;">Kontak & Penjemputan:</strong> 085292224886</li>
+                        </ul>
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;">
+                            @php $fiturAmb=[['icon'=>'bi-bag-plus-fill','bg'=>'#fee2e2','c'=>'#dc2626','title'=>'Perlengkapan Medis','desc'=>'Oksigen & alat darurat standar'],['icon'=>'bi-person-badge-fill','bg'=>'#d1fae5','c'=>'#059669','title'=>'Tim Terlatih','desc'=>'Pengemudi & nakes bersertifikat']]; @endphp
                             @foreach($fiturAmb as $f)
                             <div style="padding:14px 16px;background:#f8faff;border-radius:12px;border:1px solid #e8edf5;">
                                 <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
@@ -1230,17 +1283,15 @@ body { font-family: 'Segoe UI', sans-serif; background: #ffffff; overflow-x: hid
                         <div class="svc-header-icon"><i class="bi bi-eyedropper"></i></div>
                         <div class="svc-title">Laboratorium</div>
                         <div class="svc-tagline">Pemeriksaan akurat dengan teknologi modern, buka 24 jam termasuk hari libur</div>
-                        <div style="margin-top:16px;display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:12px;font-weight:700;padding:5px 12px;border-radius:20px;position:relative;z-index:1;"><i class="bi bi-clock-fill"></i> Buka 24 Jam Setiap Hari</div>
                     </div>
                     <div class="svc-body">
-                        <p class="svc-desc">Laboratorium RSU Allam Medica dilengkapi peralatan diagnostik modern untuk berbagai jenis pemeriksaan. Beroperasi 24 jam termasuk hari Minggu dan hari libur nasional.</p>
+                        <p class="svc-desc">Laboratorium RSU Allam Medica dilengkapi peralatan diagnostik modern untuk berbagai jenis pemeriksaan.</p>
                         <ul class="svc-list">
-                            <li>Pemeriksaan darah lengkap</li>
-                            <li>Tes urin dan feses</li>
-                            <li>Pemeriksaan kimia klinik</li>
-                            <li>Serologi dan imunologi</li>
-                            <li>Kultur dan sensitivitas bakteri</li>
-                            <li>Pemeriksaan elektrolit & hormon</li>
+                            <li><strong style="color:#1C145C;">Jam Pelayanan:</strong> 24 Jam Setiap Hari</li>
+                            <li><strong style="color:#1C145C;">Lokasi:</strong> Gedung Penunjang Medis Lt. 1</li>
+                            <li><strong style="color:#1C145C;">Persyaratan:</strong> Pengantar Dokter/Identitas (Mandiri)</li>
+                            <li><strong style="color:#1C145C;">Alur Pelayanan:</strong> Pendaftaran &rarr; Pengambilan Sampel &rarr; Analisis &rarr; Hasil Diterima</li>
+                            <li><strong style="color:#1C145C;">Kontak & Informasi:</strong> 085292224886</li>
                         </ul>
                     </div>
                 </div>
@@ -1256,12 +1307,6 @@ body { font-family: 'Segoe UI', sans-serif; background: #ffffff; overflow-x: hid
                             </div>
                         </div>
                         <p style="font-size:13.5px;color:#15803d;line-height:1.75;margin-bottom:14px;">Tidak perlu datang ke rumah sakit. Petugas laboratorium kami siap datang ke rumah Anda untuk pengambilan sampel darah, urin, dan pemeriksaan lainnya.</p>
-                        <ul class="svc-list" style="margin-bottom:16px;">
-                            <li>Jadwal fleksibel sesuai permintaan</li>
-                            <li>Tersedia untuk area Bumiayu dan sekitarnya</li>
-                            <li>Hasil dikirim via WhatsApp atau diambil langsung</li>
-                            <li>Petugas bersertifikat & berpengalaman</li>
-                        </ul>
                         <a href="https://wa.me/6282328642154?text=Halo,%20saya%20ingin%20pesan%20home%20service%20laboratorium" target="_blank" style="display:inline-flex;align-items:center;gap:7px;padding:10px 20px;border-radius:10px;background:#059669;color:#fff;font-size:13px;font-weight:700;text-decoration:none;"><i class="bi bi-whatsapp"></i> Pesan Home Service</a>
                     </div>
                     <div style="background:#fff;border-radius:14px;border:1px solid #e8edf5;padding:20px 22px;box-shadow:0 2px 10px rgba(28,20,92,.04);">
@@ -1296,7 +1341,13 @@ body { font-family: 'Segoe UI', sans-serif; background: #ffffff; overflow-x: hid
                 </div>
                 <div class="col-lg-8">
                     <div class="svc-body">
-                        <p class="svc-desc">Instalasi Radiologi RSU Allam Medica menyediakan layanan diagnostik pencitraan dengan peralatan modern. Didukung dokter spesialis radiologi berpengalaman untuk interpretasi yang akurat.</p>
+                        <ul class="svc-list" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:16px;margin-bottom:20px;">
+                            <li><strong style="color:#1C145C;">Jam Pelayanan:</strong> Buka 24 Jam</li>
+                            <li><strong style="color:#1C145C;">Lokasi:</strong> Gedung Penunjang Medis Lt. 1</li>
+                            <li><strong style="color:#1C145C;">Persyaratan:</strong> Pengantar Dokter & Persiapan Khusus (jika ada)</li>
+                            <li><strong style="color:#1C145C;">Alur Pelayanan:</strong> Pendaftaran &rarr; Persiapan &rarr; Tindakan &rarr; Hasil</li>
+                            <li><strong style="color:#1C145C;">Kontak & Informasi:</strong> 085292224886</li>
+                        </ul>
                         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
                             @php $radLayanan=[['icon'=>'bi-radioactive','bg'=>'#ede9fe','c'=>'#6366f1','nama'=>'Rontgen / X-Ray'],['icon'=>'bi-soundwave','bg'=>'#e0f2fe','c'=>'#0284c7','nama'=>'USG'],['icon'=>'bi-bullseye','bg'=>'#fee2e2','c'=>'#dc2626','nama'=>'CT Scan'],['icon'=>'bi-heart-pulse','bg'=>'#d1fae5','c'=>'#059669','nama'=>'EKG'],['icon'=>'bi-reception-4','bg'=>'#fef3c7','c'=>'#d97706','nama'=>'Echo'],['icon'=>'bi-lungs','bg'=>'#fce7f3','c'=>'#db2777','nama'=>'Foto Thorax']]; @endphp
                             @foreach($radLayanan as $r)
@@ -1325,15 +1376,13 @@ body { font-family: 'Segoe UI', sans-serif; background: #ffffff; overflow-x: hid
                         <div class="svc-tagline">Obat-obatan lengkap berkualitas, buka 24 jam setiap hari termasuk hari libur</div>
                     </div>
                     <div class="svc-body">
-                        <p class="svc-desc">Instalasi Farmasi RSU Allam Medica menyediakan obat-obatan lengkap dan berkualitas. Melayani resep dokter rumah sakit — buka 24 jam termasuk hari Minggu dan hari libur nasional.</p>
                         <ul class="svc-list">
-                            <li>Melayani resep BPJS dan umum</li>
-                            <li>Konsultasi apoteker tersedia</li>
-                            <li>Buka 24 jam setiap hari</li>
+                            <li><strong style="color:#1C145C;">Jam Pelayanan:</strong> 24 Jam Setiap Hari</li>
+                            <li><strong style="color:#1C145C;">Lokasi:</strong> Dekat Lobi Utama Poliklinik</li>
+                            <li><strong style="color:#1C145C;">Persyaratan:</strong> Resep Dokter (Asli)</li>
+                            <li><strong style="color:#1C145C;">Alur Pelayanan:</strong> Serahkan Resep &rarr; Penyiapan &rarr; Panggilan & Edukasi Obat</li>
+                            <li><strong style="color:#1C145C;">Kontak & Informasi:</strong> 085292224886</li>
                         </ul>
-                    </div>
-                    <div class="svc-footer">
-                        <span class="svc-badge" style="background:#fce7f3;color:#db2777;border:1px solid #f9a8d4;"><i class="bi bi-clock-fill"></i> Buka 24 Jam — Termasuk Hari Libur</span>
                     </div>
                 </div>
             </div>
@@ -1358,7 +1407,7 @@ body { font-family: 'Segoe UI', sans-serif; background: #ffffff; overflow-x: hid
     </section>
 
     {{-- MCU --}}
-    <section id="mcu" class="lay-section" style="padding-bottom:60px;position:relative;overflow:hidden;">
+    <section id="mcu" class="lay-section" style="position:relative;overflow:hidden;">
         <div class="ornamen" style="top:-20px;left:-20px;width:340px;height:340px;opacity:0.04;"></div>
         <div class="ornamen" style="bottom:-20px;right:-20px;width:300px;height:300px;opacity:0.04;"></div>
         <div class="sec-divider"></div>
@@ -1371,11 +1420,12 @@ body { font-family: 'Segoe UI', sans-serif; background: #ffffff; overflow-x: hid
                         <div class="svc-tagline">Deteksi dini untuk hidup lebih sehat dan produktif</div>
                     </div>
                     <div class="svc-body">
-                        <p class="svc-desc">Program MCU RSU Allam Medica dirancang untuk pemeriksaan kesehatan menyeluruh. Tersedia berbagai paket sesuai kebutuhan individu maupun instansi.</p>
                         <ul class="svc-list">
-                            <li>Paket MCU Premarital untuk Pria & Wanita</li>
-                            <li>MCU untuk instansi dan perusahaan</li>
-                            <li>Hasil dan konsultasi dokter</li>
+                            <li><strong style="color:#1C145C;">Jam Pelayanan:</strong> Sen - Sab (08.00 - 14.00)</li>
+                            <li><strong style="color:#1C145C;">Lokasi:</strong> Poliklinik MCU Lantai 2</li>
+                            <li><strong style="color:#1C145C;">Persyaratan:</strong> KTP, Puasa (tergantung paket)</li>
+                            <li><strong style="color:#1C145C;">Alur Pelayanan:</strong> Pendaftaran &rarr; Pemeriksaan &rarr; Konsultasi Dokter</li>
+                            <li><strong style="color:#1C145C;">Kontak & Reservasi:</strong> 085292224886</li>
                         </ul>
                     </div>
                     <div class="svc-footer">
@@ -1414,6 +1464,106 @@ body { font-family: 'Segoe UI', sans-serif; background: #ffffff; overflow-x: hid
                     </div>
                 </div>
                 <p style="font-size:12px;color:#94a3b8;margin-top:4px;display:flex;align-items:center;gap:6px;"><i class="bi bi-info-circle"></i> Harga dan detail paket dapat berubah. Hubungi kami untuk informasi terkini.</p>
+            </div>
+        </div>
+    </section>
+
+    {{-- RUANG INTENSIF (ICU/NICU/HCU) --}}
+    <section id="intensif" class="lay-section" style="position:relative;overflow:hidden;">
+        <div class="sec-divider"></div>
+        <div class="row g-4" style="position:relative;z-index:1;">
+            <div class="col-lg-12">
+                <div class="svc-card">
+                    <div class="svc-header" style="background:linear-gradient(135deg,#134e4a 0%,#0d9488 100%);">
+                        <div class="svc-header-icon"><i class="bi bi-heart-pulse-fill"></i></div>
+                        <div class="svc-title">Perawatan Intensif (ICU / NICU / HCU)</div>
+                        <div class="svc-tagline">Pemantauan medis berkelanjutan untuk pasien kondisi kritis dan bayi baru lahir</div>
+                    </div>
+                    <div class="svc-body">
+                        <ul class="svc-list" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:16px;">
+                            <li><strong style="color:#1C145C;">Jam Pelayanan:</strong> Buka 24 Jam</li>
+                            <li><strong style="color:#1C145C;">Lokasi:</strong> Gedung Utama Lantai 2</li>
+                            <li><strong style="color:#1C145C;">Persyaratan:</strong> KTP/KK, BPJS (jika ada), Surat Pengantar/Rujukan Dokter, Persetujuan Tindakan Medis (Informed Consent)</li>
+                            <li><strong style="color:#1C145C;">Alur Pelayanan:</strong> Rekomendasi Dokter IGD/Poli/Inap &rarr; Persetujuan Keluarga &rarr; Observasi Intensif &rarr; Pemindahan ke Rawat Inap Reguler jika stabil</li>
+                            <li><strong style="color:#1C145C;">Kontak & Informasi:</strong> 085292224886 (WhatsApp/Telepon)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{-- RUANG BERSALIN (VK) --}}
+    <section id="vk" class="lay-section" style="position:relative;overflow:hidden;">
+        <div class="sec-divider"></div>
+        <div class="row g-4" style="position:relative;z-index:1;">
+            <div class="col-lg-12">
+                <div class="svc-card">
+                    <div class="svc-header" style="background:linear-gradient(135deg,#831843 0%,#ec4899 100%);">
+                        <div class="svc-header-icon"><i class="bi bi-gender-female"></i></div>
+                        <div class="svc-title">Ruang Bersalin (VK)</div>
+                        <div class="svc-tagline">Fasilitas persalinan yang nyaman, aman, dan ditangani oleh bidan serta dokter spesialis kandungan</div>
+                    </div>
+                    <div class="svc-body">
+                        <ul class="svc-list" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:16px;">
+                            <li><strong style="color:#1C145C;">Jam Pelayanan:</strong> Buka 24 Jam</li>
+                            <li><strong style="color:#1C145C;">Lokasi:</strong> Gedung Utama Lantai 1 (Sayap Kanan)</li>
+                            <li><strong style="color:#1C145C;">Persyaratan:</strong> KTP Ibu & Suami, KK, Buku KIA, Kartu BPJS (jika menggunakan BPJS)</li>
+                            <li><strong style="color:#1C145C;">Alur Pelayanan:</strong> Pendaftaran/IGD &rarr; Pemeriksaan Awal Bidan &rarr; Proses Persalinan (Normal/SC) &rarr; Ruang Nifas / Rawat Inap</li>
+                            <li><strong style="color:#1C145C;">Kontak & Informasi:</strong> 085292224886 (WhatsApp/Telepon)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{-- INSTALASI BEDAH SENTRAL (IBS) --}}
+    <section id="ibs" class="lay-section" style="position:relative;overflow:hidden;">
+        <div class="sec-divider"></div>
+        <div class="row g-4" style="position:relative;z-index:1;">
+            <div class="col-lg-12">
+                <div class="svc-card">
+                    <div class="svc-header" style="background:linear-gradient(135deg,#1e3a6e 0%,#2563eb 100%);">
+                        <div class="svc-header-icon"><i class="bi bi-scissors"></i></div>
+                        <div class="svc-title">Instalasi Bedah Sentral (IBS)</div>
+                        <div class="svc-tagline">Layanan operasi elektif dan cito (darurat) dengan standar keamanan tinggi</div>
+                    </div>
+                    <div class="svc-body">
+                        <ul class="svc-list" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:16px;">
+                            <li><strong style="color:#1C145C;">Jam Pelayanan:</strong> 24 Jam (Operasi Darurat) / Terjadwal (Operasi Elektif)</li>
+                            <li><strong style="color:#1C145C;">Lokasi:</strong> Gedung Utama Lantai 2</li>
+                            <li><strong style="color:#1C145C;">Persyaratan:</strong> Rujukan Dokter, Hasil Lab/Radiologi, Puasa (Sesuai Instruksi), Surat Persetujuan Operasi</li>
+                            <li><strong style="color:#1C145C;">Alur Pelayanan:</strong> Penjadwalan dari Poli/IGD/Inap &rarr; Ruang Persiapan (Pre-op) &rarr; Ruang Operasi &rarr; Ruang Pemulihan (Recovery Room) &rarr; Rawat Inap</li>
+                            <li><strong style="color:#1C145C;">Kontak & Informasi:</strong> 085292224886 (WhatsApp/Telepon)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{-- REHABILITASI MEDIK --}}
+    <section id="rehab" class="lay-section" style="position:relative;overflow:hidden;padding-bottom:80px;">
+        <div class="sec-divider"></div>
+        <div class="row g-4" style="position:relative;z-index:1;">
+            <div class="col-lg-12">
+                <div class="svc-card">
+                    <div class="svc-header" style="background:linear-gradient(135deg,#1e4d3a 0%,#059669 100%);">
+                        <div class="svc-header-icon"><i class="bi bi-person-wheelchair"></i></div>
+                        <div class="svc-title">Rehabilitasi Medik (Fisioterapi)</div>
+                        <div class="svc-tagline">Pemulihan fungsi gerak dan tubuh paska cedera, operasi, atau gangguan syaraf</div>
+                    </div>
+                    <div class="svc-body">
+                        <ul class="svc-list" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:16px;">
+                            <li><strong style="color:#1C145C;">Jam Pelayanan:</strong> Senin - Sabtu (08.00 - 14.00 WIB)</li>
+                            <li><strong style="color:#1C145C;">Lokasi:</strong> Gedung Sayap Kiri Lantai 1</li>
+                            <li><strong style="color:#1C145C;">Persyaratan:</strong> KTP, BPJS, Surat Rujukan/Pengantar dari Dokter Spesialis (Ortopedi/Saraf/Penyakit Dalam)</li>
+                            <li><strong style="color:#1C145C;">Alur Pelayanan:</strong> Pendaftaran Poli &rarr; Asesmen Dokter Rehab Medik &rarr; Penjadwalan Terapi &rarr; Pelaksanaan Fisioterapi</li>
+                            <li><strong style="color:#1C145C;">Kontak & Informasi:</strong> 085292224886 (WhatsApp/Telepon)</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1644,7 +1794,7 @@ function smoothTo(id) {
 }
 
 (function () {
-    const sections = ['igd','rawatjalan','rawatinap','ambulans','laboratorium','radiologi','farmasi','mcu'];
+    const sections = ['igd','rawatjalan','rawatinap','ambulans','laboratorium','radiologi','farmasi','mcu','intensif','vk','ibs','rehab'];
     const tabs = document.querySelectorAll('.lay-tab');
     function updateTab() {
         let current = 'igd';
