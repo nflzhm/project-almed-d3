@@ -64,6 +64,10 @@ body {
 .drop-item i { font-size:14px;color:#64748b;flex-shrink:0; }
 .drop-item:hover i { color:#1C145C; }
 .drop-divider { height:1px;background:rgba(0,0,0,.07);margin:4px 8px; }
+.drop-menu-layanan { min-width:560px;max-width:min(94vw, 620px);padding:14px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 12px;align-items:start; }
+.drop-menu-layanan .drop-column { display:flex;flex-direction:column;gap:2px; }
+.drop-menu-layanan .drop-column + .drop-column { border-left:1px solid rgba(15,23,42,.06);padding-left:10px; }
+.drop-menu-layanan .drop-item { padding:8px 10px;font-size:13px; }
 .chevron { font-size:11px;opacity:.6;transition:.25s; }
 .drop-wrap:hover .chevron { transform:rotate(180deg); }
 .nav-cta { position:relative;z-index:2; }
@@ -622,17 +626,26 @@ body {
                 <a href="/layanan" class="nav-link-pill {{ request()->is('layanan*') ? 'active' : '' }}">
                     Layanan <i class="bi bi-chevron-down chevron"></i>
                 </a>
-                <div class="drop-menu" style="min-width:220px;">
-                    <a href="{{ url('/layanan') }}"              class="drop-item"><i class="bi bi-grid-3x3-gap"></i> Semua Layanan</a>
-                    <div class="drop-divider"></div>
-                    <a href="{{ url('/layanan#igd') }}"          class="drop-item"><i class="bi bi-bandaid-fill"></i> IGD 24 Jam</a>
-                    <a href="{{ url('/layanan#rawatjalan') }}"   class="drop-item"><i class="bi bi-clipboard2-pulse"></i> Rawat Jalan</a>
-                    <a href="{{ url('/layanan#rawatinap') }}"    class="drop-item"><i class="bi bi-hospital"></i> Rawat Inap</a>
-                    <a href="{{ url('/layanan#ambulans') }}"     class="drop-item"><i class="bi bi-truck"></i> Ambulans</a>
-                    <a href="{{ url('/layanan#laboratorium') }}" class="drop-item"><i class="bi bi-eyedropper"></i> Laboratorium</a>
-                    <a href="{{ url('/layanan#radiologi') }}"    class="drop-item"><i class="bi bi-radioactive"></i> Radiologi</a>
-                    <a href="{{ url('/layanan#farmasi') }}"      class="drop-item"><i class="bi bi-capsule"></i> Farmasi</a>
-                    <a href="{{ url('/layanan#mcu') }}"          class="drop-item"><i class="bi bi-heart-pulse"></i> Medical Check Up</a>
+                <div class="drop-menu drop-menu-layanan">
+                    <div class="drop-column">
+                        <a href="{{ url('/layanan') }}" class="drop-item"><i class="bi bi-grid-3x3-gap"></i> Semua Layanan</a>
+                        <a href="{{ url('/layanan#igd') }}" class="drop-item"><i class="bi bi-bandaid-fill"></i> IGD 24 Jam</a>
+                        <a href="{{ url('/layanan#rawatjalan') }}" class="drop-item"><i class="bi bi-clipboard2-pulse"></i> Rawat Jalan</a>
+                        <a href="{{ url('/layanan#rawatinap') }}" class="drop-item"><i class="bi bi-hospital"></i> Rawat Inap</a>
+                        <a href="{{ url('/layanan#ambulans') }}" class="drop-item"><i class="bi bi-truck"></i> Ambulans</a>
+                    </div>
+                    <div class="drop-column">
+                        <a href="{{ url('/layanan#laboratorium') }}" class="drop-item"><i class="bi bi-eyedropper"></i> Laboratorium</a>
+                        <a href="{{ url('/layanan#radiologi') }}" class="drop-item"><i class="bi bi-radioactive"></i> Radiologi</a>
+                        <a href="{{ url('/layanan#farmasi') }}" class="drop-item"><i class="bi bi-capsule"></i> Farmasi</a>
+                        <a href="{{ url('/layanan#mcu') }}" class="drop-item"><i class="bi bi-heart-pulse"></i> Medical Check Up</a>
+                        <a href="{{ url('/layanan#intensif') }}" class="drop-item"><i class="bi bi-heart-pulse-fill"></i> ICU/NICU/HCU</a>
+                    </div>
+                    <div class="drop-column">
+                        <a href="{{ url('/layanan#vk') }}" class="drop-item"><i class="bi bi-gender-female"></i> Ruang Bersalin (VK)</a>
+                        <a href="{{ url('/layanan#ibs') }}" class="drop-item"><i class="bi bi-scissors"></i> Bedah Sentral (IBS)</a>
+                        <a href="{{ url('/layanan#rehab') }}" class="drop-item"><i class="bi bi-person-wheelchair"></i> Fisioterapi</a>
+                    </div>
                 </div>
             </div>
             <a href="/artikel"  class="nav-link-pill {{ request()->is('artikel*')  ? 'active' : '' }}">Artikel</a>
@@ -710,15 +723,19 @@ body {
             <i class="bi bi-chevron-down d-accordion-chevron"></i>
         </button>
         <div class="d-accordion-body {{ request()->is('layanan*') ? 'open' : '' }}" id="acc-layanan">
-            <a href="{{ url('/layanan') }}"              class="d-sub-link"><i class="bi bi-grid-3x3-gap"></i> Semua Layanan</a>
-            <a href="{{ url('/layanan#igd') }}"          class="d-sub-link"><i class="bi bi-bandaid-fill"></i> IGD 24 Jam</a>
-            <a href="{{ url('/layanan#rawatjalan') }}"   class="d-sub-link"><i class="bi bi-clipboard2-pulse"></i> Rawat Jalan</a>
-            <a href="{{ url('/layanan#rawatinap') }}"    class="d-sub-link"><i class="bi bi-hospital"></i> Rawat Inap</a>
-            <a href="{{ url('/layanan#ambulans') }}"     class="d-sub-link"><i class="bi bi-truck"></i> Ambulans 24 Jam</a>
+            <a href="{{ url('/layanan') }}" class="d-sub-link"><i class="bi bi-grid-3x3-gap"></i> Semua Layanan</a>
+            <a href="{{ url('/layanan#igd') }}" class="d-sub-link"><i class="bi bi-bandaid-fill"></i> IGD 24 Jam</a>
+            <a href="{{ url('/layanan#rawatjalan') }}" class="d-sub-link"><i class="bi bi-clipboard2-pulse"></i> Rawat Jalan</a>
+            <a href="{{ url('/layanan#rawatinap') }}" class="d-sub-link"><i class="bi bi-hospital"></i> Rawat Inap</a>
+            <a href="{{ url('/layanan#ambulans') }}" class="d-sub-link"><i class="bi bi-truck"></i> Ambulans</a>
             <a href="{{ url('/layanan#laboratorium') }}" class="d-sub-link"><i class="bi bi-eyedropper"></i> Laboratorium</a>
-            <a href="{{ url('/layanan#radiologi') }}"    class="d-sub-link"><i class="bi bi-radioactive"></i> Radiologi</a>
-            <a href="{{ url('/layanan#farmasi') }}"      class="d-sub-link"><i class="bi bi-capsule"></i> Farmasi</a>
-            <a href="{{ url('/layanan#mcu') }}"          class="d-sub-link"><i class="bi bi-heart-pulse"></i> Medical Check Up</a>
+            <a href="{{ url('/layanan#radiologi') }}" class="d-sub-link"><i class="bi bi-radioactive"></i> Radiologi</a>
+            <a href="{{ url('/layanan#farmasi') }}" class="d-sub-link"><i class="bi bi-capsule"></i> Farmasi</a>
+            <a href="{{ url('/layanan#mcu') }}" class="d-sub-link"><i class="bi bi-heart-pulse"></i> Medical Check Up</a>
+            <a href="{{ url('/layanan#intensif') }}" class="d-sub-link"><i class="bi bi-heart-pulse-fill"></i> ICU/NICU/HCU</a>
+            <a href="{{ url('/layanan#vk') }}" class="d-sub-link"><i class="bi bi-gender-female"></i> Ruang Bersalin (VK)</a>
+            <a href="{{ url('/layanan#ibs') }}" class="d-sub-link"><i class="bi bi-scissors"></i> Bedah Sentral (IBS)</a>
+            <a href="{{ url('/layanan#rehab') }}" class="d-sub-link"><i class="bi bi-person-wheelchair"></i> Fisioterapi</a>
         </div>
         <div class="d-divider"></div>
         <a href="/artikel"  class="d-link {{ request()->is('artikel*')  ? 'active' : '' }}"><span class="d-icon"><i class="bi bi-journal-text"></i></span> Artikel</a>

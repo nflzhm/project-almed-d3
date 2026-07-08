@@ -18,16 +18,17 @@ class AdminDataDokter extends Model
         'deskripsi',
     ];
 
-    /**
-     * Accessor: URL foto dokter
-     * Otomatis handle null & path storage
-     */
     public function getFotoUrlAttribute(): ?string
     {
         if (!$this->foto) {
             return null;
         }
 
-        return asset('storage/' . $this->foto);
+        return asset('uploads/dokter/' . $this->foto);
+    }
+
+    public function jadwal()
+    {
+        return $this->hasMany(Jadwal::class, 'dokter_id', 'id');
     }
 }

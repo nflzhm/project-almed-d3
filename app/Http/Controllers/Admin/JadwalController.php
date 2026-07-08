@@ -5,11 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Jadwal;
-use App\Models\Dokter;
+use App\Models\AdminDataDokter;
 
 class JadwalController extends Controller
 {
-    // ── Helper: tentukan sesi berdasarkan jam_mulai ──────────────────
     private function getNote(string $jamMulai): string
     {
         $hour = (int) explode(':', $jamMulai)[0];
@@ -24,10 +23,10 @@ class JadwalController extends Controller
 
     public function index()
     {
-        $dokterList = Dokter::with('jadwal')->get();
+        $dokterList = AdminDataDokter::with('jadwal')->get();
 
         $totalJadwal       = Jadwal::count();
-        $totalDokterAktif  = Dokter::has('jadwal')->count();
+        $totalDokterAktif  = AdminDataDokter::has('jadwal')->count();
 
         $hariIni = [
             'Sunday'    => 'Minggu',
@@ -52,7 +51,7 @@ class JadwalController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'dokter_id'   => 'required|exists:dokter,id',
+            'dokter_id'   => 'required|exists:admin_data_dokters,id',
             'hari'        => 'required|array',
             'poli'        => 'required|string',
             'jam_mulai'   => 'required',
@@ -65,19 +64,16 @@ class JadwalController extends Controller
                 'hari'      => $hari,
                 'klinik'    => $request->poli,
                 'jam'       => $request->jam_mulai . ' - ' . $request->jam_selesai,
-                'note'      => $this->getNote($request->jam_mulai), // ← otomatis
+                'note'      => $this->getNote($request->jam_mulai),
             ]);
         }
 
-        return redirect()->back()
-            ->with('success', 'Jadwal berhasil ditambahkan');
+        return redirect()->back()->with('success', 'Jadwal berhasil ditambahkan');
     }
 
     public function edit($id)
     {
-        $jadwal = Jadwal::findOrFail($id);
-
-        return response()->json($jadwal);
+        return response()->json(Jadwal::findOrFail($id));
     }
 
     public function update(Request $request, $id)
@@ -93,19 +89,16 @@ class JadwalController extends Controller
         $jadwal->update([
             'klinik' => $request->poli,
             'jam'    => $request->jam_mulai . ' - ' . $request->jam_selesai,
-            'note'   => $this->getNote($request->jam_mulai), // ← otomatis
+            'note'   => $this->getNote($request->jam_mulai),
         ]);
 
-        return redirect()->back()
-            ->with('success', 'Jadwal berhasil diperbarui');
+        return redirect()->back()->with('success', 'Jadwal berhasil diperbarui');
     }
 
     public function destroy($id)
     {
-        $jadwal = Jadwal::findOrFail($id);
-        $jadwal->delete();
+        Jadwal::findOrFail($id)->delete();
 
-        return redirect()->back()
-            ->with('success', 'Jadwal berhasil dihapus');
+        return redirect()->back()->with('success', 'Jadwal berhasil dihapus');
     }
 }

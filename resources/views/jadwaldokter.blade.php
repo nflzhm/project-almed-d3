@@ -1349,11 +1349,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 {{-- LEFT: DOCTOR CARD --}}
                 <div class="doctor-card">
-                    @if($item->foto && file_exists(public_path('images/beranda/'.$item->foto)))
-                        <img src="{{ asset('images/beranda/' . $item->foto) }}" alt="{{ $item->nama }}">
-                    @else
-                        <img src="{{ asset('images/beranda/default-dokter.png') }}" alt="{{ $item->nama }}">
-                    @endif
+                    @if($item->foto && file_exists(public_path('uploads/dokter/'.$item->foto)))
+    <img src="{{ asset('uploads/dokter/' . $item->foto) }}" alt="{{ $item->nama }}">
+@else
+    <img src="{{ asset('images/beranda/default-dokter.png') }}" alt="{{ $item->nama }}">
+@endif
                     {{-- Wrapper info nama+spesialis --}}
                     <div class="doc-info">
                         <div class="doctor-name">{{ $item->nama }}</div>

@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Dokter;
+use App\Models\AdminDataDokter;
 
 class Jadwal extends Model
 {
@@ -19,6 +19,6 @@ class Jadwal extends Model
 
     public function dokter()
     {
-        return $this->belongsTo(Dokter::class, 'dokter_id', 'id');
+        return $this->belongsTo(AdminDataDokter::class, 'dokter_id', 'id');
     }
 }

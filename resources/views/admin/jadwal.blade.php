@@ -574,7 +574,7 @@ $dokterList = $dokterList ?? [];
     $nama      = $dok->nama;
     $spesialis = $dok->spesialis;
     $gambar    = $dok->foto;
-    $imgUrl    = $gambar ? asset('storage/' . $gambar) : null;
+    $imgUrl    = $gambar ? asset('uploads/dokter/' . $gambar) : null;
 
     $inisial = strtoupper(substr($nama, 0, 1));
 

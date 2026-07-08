@@ -17,6 +17,12 @@ class AdminDokterController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'nama'      => 'required|string|max:100',
+            'spesialis' => 'required|string',
+            'foto'      => 'nullable|image|mimes:jpeg,png,webp|max:5120',
+        ]);
+
         $foto = null;
 
         if ($request->hasFile('foto')) {
@@ -25,9 +31,9 @@ class AdminDokterController extends Controller
         }
 
         AdminDataDokter::create([
-            'nama' => $request->nama,
+            'nama'      => $request->nama,
             'spesialis' => $request->spesialis,
-            'foto' => $foto,
+            'foto'      => $foto,
             'deskripsi' => $request->deskripsi,
         ]);
 
@@ -36,9 +42,14 @@ class AdminDokterController extends Controller
 
     public function update(Request $request, $id)
     {
-        $dokter = AdminDataDokter::findOrFail($id);
+        $request->validate([
+            'nama'      => 'required|string|max:100',
+            'spesialis' => 'required|string',
+            'foto'      => 'nullable|image|mimes:jpeg,png,webp|max:5120',
+        ]);
 
-        $foto = $dokter->foto;
+        $dokter = AdminDataDokter::findOrFail($id);
+        $foto   = $dokter->foto;
 
         if ($request->hasFile('foto')) {
             $foto = time() . '.' . $request->foto->extension();
@@ -46,9 +57,9 @@ class AdminDokterController extends Controller
         }
 
         $dokter->update([
-            'nama' => $request->nama,
+            'nama'      => $request->nama,
             'spesialis' => $request->spesialis,
-            'foto' => $foto,
+            'foto'      => $foto,
             'deskripsi' => $request->deskripsi,
         ]);
 

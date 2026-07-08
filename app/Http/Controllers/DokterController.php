@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Dokter;
+use App\Models\AdminDataDokter;
 
 class DokterController extends Controller
 {
@@ -12,7 +12,7 @@ class DokterController extends Controller
         $hari   = $request->hari;
         $search = $request->search;
 
-        $dokter = Dokter::with(['jadwal' => function ($query) use ($hari) {
+        $dokter = AdminDataDokter::with(['jadwal' => function ($query) use ($hari) {
 
             if ($hari && $hari != 'Semua') {
                 $query->where('hari', $hari);

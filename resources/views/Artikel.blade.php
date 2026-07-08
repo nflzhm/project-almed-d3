@@ -455,77 +455,52 @@
 .drop-item i { font-size:14px;color:#64748b;flex-shrink:0; }
 .drop-item:hover i { color:#1C145C; }
 .drop-divider { height:1px;background:rgba(0,0,0,.07);margin:4px 8px; }
+.drop-menu-layanan { min-width:560px;max-width:min(94vw, 620px);padding:14px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 12px;align-items:start; }
+.drop-menu-layanan .drop-column { display:flex;flex-direction:column;gap:2px; }
+.drop-menu-layanan .drop-column + .drop-column { border-left:1px solid rgba(15,23,42,.06);padding-left:10px; }
+.drop-menu-layanan .drop-item { padding:8px 10px;font-size:13px; }
 .chevron { font-size:11px;opacity:.6;transition:.25s; }
 .drop-wrap:hover .chevron { transform:rotate(180deg); }
-
 .nav-burger { display:none;flex-direction:column;gap:5px;cursor:pointer;border:none;background:transparent;padding:6px;position:relative;z-index:2; }
 .nav-burger span { width:22px;height:2px;background:#1C145C;border-radius:2px;display:block;transition:.3s; }
 .nav-burger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
 .nav-burger.open span:nth-child(2) { opacity:0; }
 .nav-burger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
-
-/* Mega Dropdown & Kontak CSS */
 .nav-cta { position:relative;z-index:2; }
-.kontak-wrap { position: relative; }
-.btn-kontak {
-    padding:10px 22px; border-radius:50px; background:#1C145C;
-    color:#fff!important; text-decoration:none!important; font-size:14px;
-    font-weight:600; display:inline-flex; align-items:center; gap:6px;
-    border:none; box-shadow:0 8px 20px rgba(28,20,92,.25);
-    transition:.2s; cursor:pointer; font-family:inherit;
-}
-.btn-kontak:hover { background:#2a1e8a; transform:translateY(-1px); }
-
-.kontak-mega {
-    position: absolute; top: calc(100% + 18px); right: 0;
-    width: 780px; max-width: calc(100vw - 40px);
-    background: rgba(255,255,255,0.97);
-    backdrop-filter: blur(28px) saturate(180%);
-    border: 1px solid rgba(255,255,255,0.5); border-radius: 24px;
-    box-shadow: 0 24px 60px rgba(15,23,42,.16), 0 2px 12px rgba(15,23,42,.06);
-    padding: 28px; opacity: 0; visibility: hidden;
-    transform: translateY(12px);
-    transition: opacity .26s, visibility .26s, transform .26s;
-    z-index: 9999;
-}
-.kontak-wrap:hover .kontak-mega,
-.kontak-mega:hover,
-.kontak-mega.open { opacity: 1; visibility: visible; transform: translateY(0); }
-.kontak-mega::before {
-    content:''; position:absolute; top:0; left:24px; right:24px; height:2px;
-    background:linear-gradient(90deg,transparent,rgba(28,20,92,.2) 50%,transparent);
-    border-radius:2px;
-}
-.kontak-mega-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 22px; }
-.kontak-form-panel { background: #1C145C; border-radius: 16px; padding: 22px 20px; position: relative; overflow: hidden; }
-.kontak-form-panel .form-ornament { position: absolute; bottom: -50px; right: -50px; width: 160px; height: 160px; opacity: .07; background-image: url('{{ asset("images/beranda/ornamen.png") }}'); background-size: contain; background-repeat: no-repeat; pointer-events: none; filter: brightness(10); }
-.kontak-form-panel > *:not(.form-ornament) { position: relative; z-index: 1; }
-.kontak-form-sublabel { font-size: 10px; font-weight: 700; color: rgba(254,252,241,.45); text-transform: uppercase; letter-spacing: .12em; margin-bottom: 4px; }
-.kontak-form-title { font-family: 'GothamBlack', sans-serif !important; font-size: 19px; color: #FEFCF1; margin-bottom: 16px; line-height: 1.2; }
-.kontak-form-title span { background: linear-gradient(90deg, #a89eff, #FEFCF1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.ck-field { margin-bottom: 10px; }
+.kontak-wrap { position:relative; }
+.btn-kontak { padding:10px 22px;border-radius:50px;background:#1C145C;color:#fff!important;text-decoration:none!important;font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:6px;border:none;box-shadow:0 8px 20px rgba(28,20,92,.25);transition:.2s;cursor:pointer;font-family:inherit; }
+.btn-kontak:hover { background:#2a1e8a;transform:translateY(-1px); }
+.kontak-mega { position:absolute;top:calc(100% + 18px);right:0;width:780px;max-width:calc(100vw - 40px);background:rgba(255,255,255,0.97);backdrop-filter:blur(28px) saturate(180%);border:1px solid rgba(255,255,255,0.5);border-radius:24px;box-shadow:0 24px 60px rgba(15,23,42,.16),0 2px 12px rgba(15,23,42,.06);padding:28px;opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .26s,visibility .26s,transform .26s;z-index:9999; }
+.kontak-wrap:hover .kontak-mega,.kontak-mega:hover,.kontak-mega.open { opacity:1;visibility:visible;transform:translateY(0); }
+.kontak-mega::before { content:'';position:absolute;top:0;left:24px;right:24px;height:2px;background:linear-gradient(90deg,transparent,rgba(28,20,92,.2) 50%,transparent);border-radius:2px; }
+.kontak-mega-grid { display:grid;grid-template-columns:1.1fr 0.9fr;gap:22px; }
+.kontak-form-panel { background:#1C145C;border-radius:16px;padding:22px 20px;position:relative;overflow:hidden; }
+.kontak-form-panel .form-ornament { position:absolute;bottom:-50px;right:-50px;width:160px;height:160px;opacity:.07;background-image:url('{{ asset("images/beranda/ornamen.png") }}');background-size:contain;background-repeat:no-repeat;pointer-events:none;filter:brightness(10); }
+.kontak-form-panel > *:not(.form-ornament) { position:relative;z-index:1; }
+.kontak-form-sublabel { font-size:10px;font-weight:700;color:rgba(254,252,241,.45);text-transform:uppercase;letter-spacing:.12em;margin-bottom:4px; }
+.kontak-form-title { font-family:'GothamBlack',sans-serif!important;font-size:19px;color:#FEFCF1;margin-bottom:16px;line-height:1.2; }
+.kontak-form-title span { background:linear-gradient(90deg,#a89eff,#FEFCF1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+.ck-field { margin-bottom:10px; }
 .ck-field label { display:block;font-size:10.5px;color:rgba(254,252,241,.55);margin-bottom:3px;letter-spacing:.04em; }
-.ck-field input, .ck-field textarea { width: 100%; background: rgba(255,255,255,.1); border: 1px solid rgba(254,252,241,.18); border-radius: 7px; padding: 8px 11px; font-size: 12.5px; color: #FEFCF1; outline: none; transition: .2s; font-family: inherit; box-sizing: border-box; }
-.ck-field input::placeholder, .ck-field textarea::placeholder { color: rgba(254,252,241,.35); }
-.ck-field input:focus, .ck-field textarea:focus { border-color: rgba(254,252,241,.5); background:rgba(255,255,255,.15); }
-.ck-field textarea { resize:vertical; min-height:72px; }
-.ck-row { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
-.btn-send-mega { margin-top: 12px; width: 100%; padding: 10px; background: #FEFCF1; color: #1C145C; border: none; border-radius: 50px; font-size: 13px; font-weight: 700; cursor: pointer; transition: .2s; display: flex; align-items: center; justify-content: center; gap: 7px; font-family: inherit; }
-.btn-send-mega:hover { background:#fff; transform:translateY(-1px); box-shadow:0 4px 14px rgba(0,0,0,.18); }
-.kontak-info-panel { display:flex; flex-direction:column; gap:14px; }
-.kontak-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.kontak-info-card { background: #f8f7ff; border: 1px solid #ece9f8; border-radius: 12px; padding: 12px; text-align: center; }
-.kontak-info-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; margin: 0 auto 8px; }
-.ci-phone { background:rgba(25,135,84,.12);  color:#198754; }
-.ci-email { background:rgba(220,53,69,.1);   color:#dc3545; }
-.ci-igd   { background:rgba(245,158,11,.12); color:#d97706; }
-.ci-map   { background:rgba(28,20,92,.1);    color:#1C145C; }
-.kontak-info-title { font-size:11px; font-weight:700; color:#1C145C; margin-bottom:2px; }
-.kontak-info-val   { font-size:11.5px; color:#5a5480; line-height:1.45; }
-.kontak-map-box { border-radius: 12px; overflow:hidden; border:1px solid #e8e4d8; flex:1; }
-.kontak-map-box iframe { width:100%; height:140px; display:block; border:0; }
-
-/* Drawer & Mobile Bottom Sheet CSS */
+.ck-field input,.ck-field textarea { width:100%;background:rgba(255,255,255,.1);border:1px solid rgba(254,252,241,.18);border-radius:7px;padding:8px 11px;font-size:12.5px;color:#FEFCF1;outline:none;transition:.2s;font-family:inherit;box-sizing:border-box; }
+.ck-field input::placeholder,.ck-field textarea::placeholder { color:rgba(254,252,241,.35); }
+.ck-field input:focus,.ck-field textarea:focus { border-color:rgba(254,252,241,.5);background:rgba(255,255,255,.15); }
+.ck-field textarea { resize:vertical;min-height:72px; }
+.ck-row { display:grid;grid-template-columns:1fr 1fr;gap:8px; }
+.btn-send-mega { margin-top:12px;width:100%;padding:10px;background:#FEFCF1;color:#1C145C;border:none;border-radius:50px;font-size:13px;font-weight:700;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;gap:7px;font-family:inherit; }
+.btn-send-mega:hover { background:#fff;transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.18); }
+.kontak-info-panel { display:flex;flex-direction:column;gap:14px; }
+.kontak-info-grid { display:grid;grid-template-columns:1fr 1fr;gap:10px; }
+.kontak-info-card { background:#f8f7ff;border:1px solid #ece9f8;border-radius:12px;padding:12px;text-align:center; }
+.kontak-info-icon { width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;margin:0 auto 8px; }
+.ci-phone { background:rgba(25,135,84,.12);color:#198754; }
+.ci-email { background:rgba(220,53,69,.1);color:#dc3545; }
+.ci-igd   { background:rgba(245,158,11,.12);color:#d97706; }
+.ci-map   { background:rgba(28,20,92,.1);color:#1C145C; }
+.kontak-info-title { font-size:11px;font-weight:700;color:#1C145C;margin-bottom:2px; }
+.kontak-info-val   { font-size:11.5px;color:#5a5480;line-height:1.45; }
+.kontak-map-box { border-radius:12px;overflow:hidden;border:1px solid #e8e4d8;flex:1; }
+.kontak-map-box iframe { width:100%;height:140px;display:block;border:0; }
 .nav-overlay { display:none;position:fixed;inset:0;background:rgba(15,23,42,0);z-index:9999990;transition:background .3s; }
 .nav-overlay.show { display:block;background:rgba(15,23,42,0.42); }
 .nav-drawer { position:fixed;top:0;right:0;width:72%;max-width:300px;height:100dvh;z-index:9999995;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);background:rgba(255,255,255,0.97);backdrop-filter:blur(24px) saturate(180%);border-left:1px solid rgba(255,255,255,0.45);box-shadow:-8px 0 32px rgba(15,23,42,.12);display:flex;flex-direction:column;overflow-y:auto;overscroll-behavior:contain; }
@@ -541,9 +516,8 @@
 .d-link.active .d-icon { color:#1C145C; }
 .d-divider { height:1px;background:rgba(0,0,0,.07);margin:4px 2px; }
 .drawer-footer { padding:12px 14px 24px;border-top:1px solid rgba(0,0,0,.07);flex-shrink:0; }
-.btn-kontak-drawer { border-radius:14px; display:block; text-align:center; padding:12px 22px; background:#1C145C; color:#fff!important; text-decoration:none!important; font-size:14px; font-weight:600; border:none; cursor:pointer; font-family:inherit; width:100%; transition:.2s; }
+.btn-kontak-drawer { border-radius:14px;display:block;text-align:center;padding:12px 22px;background:#1C145C;color:#fff!important;text-decoration:none!important;font-size:14px;font-weight:600;border:none;cursor:pointer;font-family:inherit;width:100%;transition:.2s; }
 .btn-kontak-drawer:hover { background:#2a1e8a; }
-
 .d-accordion-btn { display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;border-radius:12px;font-size:14px;font-weight:600;color:#1e293b;cursor:pointer;background:none;border:none;width:100%;font-family:'Plus Jakarta Sans',sans-serif;transition:.16s; }
 .d-accordion-btn:hover { background:rgba(28,20,92,.06);color:#1C145C; }
 .d-accordion-btn.active-parent { color:#1C145C; }
@@ -556,46 +530,39 @@
 .d-sub-link:hover { background:rgba(28,20,92,.06);color:#1C145C; }
 .d-sub-link i { font-size:13px;color:#94a3b8;flex-shrink:0;width:16px;text-align:center; }
 .d-sub-link:hover i { color:#1C145C; }
-
-.bs-overlay { display:none; position:fixed; inset:0; background:rgba(15,23,42,0); z-index:10000001; transition:background .3s; }
-.bs-overlay.show { display:block; background:rgba(15,23,42,0.5); }
-.bs-sheet { position:fixed; left:0; right:0; bottom:0; z-index:10000002; background:#fff; border-radius:24px 24px 0 0; box-shadow:0 -8px 40px rgba(15,23,42,.18); transform:translateY(100%); transition:transform .35s cubic-bezier(.4,0,.2,1); height:92dvh; display:flex; flex-direction:column; overflow:visible; }
+.bs-overlay { display:none;position:fixed;inset:0;background:rgba(15,23,42,0);z-index:10000001;transition:background .3s; }
+.bs-overlay.show { display:block;background:rgba(15,23,42,0.5); }
+.bs-sheet { position:fixed;left:0;right:0;bottom:0;z-index:10000002;background:#fff;border-radius:24px 24px 0 0;box-shadow:0 -8px 40px rgba(15,23,42,.18);transform:translateY(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);height:92dvh;display:flex;flex-direction:column;overflow:visible; }
 .bs-sheet.open { transform:translateY(0); }
-.bs-handle-wrap { flex-shrink:0; display:flex; align-items:center; justify-content:center; padding:10px 16px 6px; }
-.bs-handle { width:40px; height:4px; border-radius:2px; background:rgba(0,0,0,.15); }
-.bs-header { flex-shrink:0; display:flex; align-items:center; justify-content:space-between; padding:0 18px 14px; border-bottom:1px solid rgba(0,0,0,.07); }
+.bs-handle-wrap { flex-shrink:0;display:flex;align-items:center;justify-content:center;padding:10px 16px 6px; }
+.bs-handle { width:40px;height:4px;border-radius:2px;background:rgba(0,0,0,.15); }
+.bs-header { flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 18px 14px;border-bottom:1px solid rgba(0,0,0,.07); }
 .bs-title { font-family:'GothamBlack', sans-serif !important; font-size:17px; color:#1C145C; margin:0; }
-.bs-close { width:32px; height:32px; border-radius:50%; background:rgba(28,20,92,.08); border:none; display:flex; align-items:center; justify-content:center; color:#1C145C; cursor:pointer; font-size:15px; }
-.bs-body { flex:1; min-height:0; overflow-y:auto; -webkit-overflow-scrolling:touch; overscroll-behavior:contain; padding:18px 18px calc(18px + env(safe-area-inset-bottom)) 18px; display:flex; flex-direction:column; gap:16px; }
-.bs-form-card { background:#1C145C; border-radius:14px; padding:18px 16px; position:relative; overflow:hidden; flex-shrink:0; }
-.bs-form-card .bs-form-ornament { position:absolute; bottom:-40px; right:-40px; width:130px; height:130px; opacity:.07; background-image:url('{{ asset("images/beranda/ornamen.png") }}'); background-size:contain; background-repeat:no-repeat; pointer-events:none; filter:brightness(10); }
-.bs-form-card > *:not(.bs-form-ornament) { position:relative; z-index:1; }
-.bs-sublabel { font-size:10px; font-weight:700; color:rgba(254,252,241,.45); text-transform:uppercase; letter-spacing:.12em; margin-bottom:3px; }
-.bs-form-title { font-family:'GothamBlack', sans-serif !important; font-size:17px; color:#FEFCF1; margin-bottom:14px; }
-.bs-form-title span { background:linear-gradient(90deg,#a89eff,#FEFCF1); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.bs-close { width:32px;height:32px;border-radius:50%;background:rgba(28,20,92,.08);border:none;display:flex;align-items:center;justify-content:center;color:#1C145C;cursor:pointer;font-size:15px; }
+.bs-body { flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:18px 18px calc(18px + env(safe-area-inset-bottom)) 18px;display:flex;flex-direction:column;gap:16px; }
+.bs-form-card { background:#1C145C;border-radius:14px;padding:18px 16px;position:relative;overflow:hidden;flex-shrink:0; }
+.bs-form-card .bs-form-ornament { position:absolute;bottom:-40px;right:-40px;width:130px;height:130px;opacity:.07;background-image:url('{{ asset("images/beranda/ornamen.png") }}');background-size:contain;background-repeat:no-repeat;pointer-events:none;filter:brightness(10); }
+.bs-form-card > *:not(.bs-form-ornament) { position:relative;z-index:1; }
+.bs-sublabel { font-size:10px;font-weight:700;color:rgba(254,252,241,.45);text-transform:uppercase;letter-spacing:.12em;margin-bottom:3px; }
+.bs-form-title { font-family:'GothamBlack',sans-serif!important;font-size:17px;color:#FEFCF1;margin-bottom:14px; }
+.bs-form-title span { background:linear-gradient(90deg,#a89eff,#FEFCF1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
 .bs-form-card .ck-field { margin-bottom:9px; }
-.bs-form-card .ck-field label { font-size:10px; color:rgba(254,252,241,.5); margin-bottom:2px; }
-.bs-form-card .ck-field input, .bs-form-card .ck-field textarea { font-size:12px; padding:7px 10px; border-radius:7px; background:rgba(255,255,255,.1); border:1px solid rgba(254,252,241,.18); color:#FEFCF1; width:100%; box-sizing:border-box; outline:none; font-family:inherit; transition:.2s; }
-.bs-form-card .ck-field input::placeholder, .bs-form-card .ck-field textarea::placeholder { color:rgba(254,252,241,.35); }
-.bs-form-card .ck-field input:focus, .bs-form-card .ck-field textarea:focus { border-color:rgba(254,252,241,.5); background:rgba(255,255,255,.15); }
-.bs-form-card .ck-field textarea { min-height:68px; resize:vertical; }
-.btn-send-bs { width:100%; padding:11px; background:#FEFCF1; color:#1C145C; border:none; border-radius:50px; font-size:13px; font-weight:700; cursor:pointer; transition:.2s; display:flex; align-items:center; justify-content:center; gap:7px; font-family:inherit; margin-top:10px; }
-.btn-send-bs:hover { background:#fff; box-shadow:0 4px 14px rgba(0,0,0,.18); }
-.bs-info-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; flex-shrink:0; }
-.bs-info-card { background:#f8f7ff; border:1px solid #ece9f8; border-radius:12px; padding:12px; text-align:center; }
-.bs-info-icon { width:34px; height:34px; border-radius:9px; display:flex; align-items:center; justify-content:center; font-size:15px; margin:0 auto 7px; }
-.bs-info-title { font-size:11px; font-weight:700; color:#1C145C; margin-bottom:1px; }
-.bs-info-val   { font-size:11px; color:#5a5480; line-height:1.45; }
-.bs-map-box { border-radius:12px; overflow:hidden; border:1px solid #e8e4d8; flex-shrink:0; }
-.bs-map-box iframe { width:100%; height:160px; display:block; border:0; }
-
+.bs-form-card .ck-field label { font-size:10px;color:rgba(254,252,241,.5);margin-bottom:2px; }
+.bs-form-card .ck-field input,.bs-form-card .ck-field textarea { font-size:12px;padding:7px 10px;border-radius:7px;background:rgba(255,255,255,.1);border:1px solid rgba(254,252,241,.18);color:#FEFCF1;width:100%;box-sizing:border-box;outline:none;font-family:inherit;transition:.2s; }
+.bs-form-card .ck-field input::placeholder,.bs-form-card .ck-field textarea::placeholder { color:rgba(254,252,241,.35); }
+.bs-form-card .ck-field input:focus,.bs-form-card .ck-field textarea:focus { border-color:rgba(254,252,241,.5);background:rgba(255,255,255,.15); }
+.bs-form-card .ck-field textarea { min-height:68px;resize:vertical; }
+.btn-send-bs { width:100%;padding:11px;background:#FEFCF1;color:#1C145C;border:none;border-radius:50px;font-size:13px;font-weight:700;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;gap:7px;font-family:inherit;margin-top:10px; }
+.btn-send-bs:hover { background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18); }
+.bs-info-grid { display:grid;grid-template-columns:1fr 1fr;gap:10px;flex-shrink:0; }
+.bs-info-card { background:#f8f7ff;border:1px solid #ece9f8;border-radius:12px;padding:12px;text-align:center; }
+.bs-info-icon { width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;margin:0 auto 7px; }
+.bs-info-title { font-size:11px;font-weight:700;color:#1C145C;margin-bottom:1px; }
+.bs-info-val   { font-size:11px;color:#5a5480;line-height:1.45; }
+.bs-map-box { border-radius:12px;overflow:hidden;border:1px solid #e8e4d8;flex-shrink:0; }
+.bs-map-box iframe { width:100%;height:160px;display:block;border:0; }
 @media(max-width:1100px) { .nav-link-pill{padding:7px 11px;font-size:13px;} }
-@media(max-width:991px) {
-    .navbar-float-wrap { top:38px;padding:4px 12px; }
-    .navbar-float { border-radius:26px;padding:8px 14px; }
-    .nav-links,.nav-cta { display:none; }
-    .nav-burger { display:flex; }
-}
+@media(max-width:991px) { .navbar-float-wrap { top:38px;padding:4px 12px; } .navbar-float { border-radius:26px;padding:8px 14px; } .nav-links,.nav-cta { display:none; } .nav-burger { display:flex; } }
 @media(max-width:480px) { .navbar-float { border-radius:22px; } }
 </style>
 
@@ -620,17 +587,26 @@
                 <a href="/layanan" class="nav-link-pill {{ request()->is('layanan*') ? 'active' : '' }}">
                     Layanan <i class="bi bi-chevron-down chevron"></i>
                 </a>
-                <div class="drop-menu" style="min-width:220px;">
-                    <a href="{{ url('/layanan') }}" class="drop-item"><i class="bi bi-grid-3x3-gap"></i> Semua Layanan</a>
-                    <div class="drop-divider"></div>
-                    <a href="{{ url('/layanan#igd') }}"          class="drop-item"><i class="bi bi-bandaid-fill"></i> IGD 24 Jam</a>
-                    <a href="{{ url('/layanan#rawatjalan') }}"   class="drop-item"><i class="bi bi-clipboard2-pulse"></i> Rawat Jalan</a>
-                    <a href="{{ url('/layanan#rawatinap') }}"    class="drop-item"><i class="bi bi-hospital"></i> Rawat Inap</a>
-                    <a href="{{ url('/layanan#ambulans') }}"     class="drop-item"><i class="bi bi-truck"></i> Ambulans</a>
-                    <a href="{{ url('/layanan#laboratorium') }}" class="drop-item"><i class="bi bi-eyedropper"></i> Laboratorium</a>
-                    <a href="{{ url('/layanan#radiologi') }}"    class="drop-item"><i class="bi bi-radioactive"></i> Radiologi</a>
-                    <a href="{{ url('/layanan#farmasi') }}"      class="drop-item"><i class="bi bi-capsule"></i> Farmasi</a>
-                    <a href="{{ url('/layanan#mcu') }}"          class="drop-item"><i class="bi bi-heart-pulse"></i> Medical Check Up</a>
+                <div class="drop-menu drop-menu-layanan">
+                    <div class="drop-column">
+                        <a href="{{ url('/layanan') }}" class="drop-item"><i class="bi bi-grid-3x3-gap"></i> Semua Layanan</a>
+                        <a href="{{ url('/layanan#igd') }}" class="drop-item"><i class="bi bi-bandaid-fill"></i> IGD 24 Jam</a>
+                        <a href="{{ url('/layanan#rawatjalan') }}" class="drop-item"><i class="bi bi-clipboard2-pulse"></i> Rawat Jalan</a>
+                        <a href="{{ url('/layanan#rawatinap') }}" class="drop-item"><i class="bi bi-hospital"></i> Rawat Inap</a>
+                        <a href="{{ url('/layanan#ambulans') }}" class="drop-item"><i class="bi bi-truck"></i> Ambulans</a>
+                    </div>
+                    <div class="drop-column">
+                        <a href="{{ url('/layanan#laboratorium') }}" class="drop-item"><i class="bi bi-eyedropper"></i> Laboratorium</a>
+                        <a href="{{ url('/layanan#radiologi') }}" class="drop-item"><i class="bi bi-radioactive"></i> Radiologi</a>
+                        <a href="{{ url('/layanan#farmasi') }}" class="drop-item"><i class="bi bi-capsule"></i> Farmasi</a>
+                        <a href="{{ url('/layanan#mcu') }}" class="drop-item"><i class="bi bi-heart-pulse"></i> Medical Check Up</a>
+                        <a href="{{ url('/layanan#intensif') }}" class="drop-item"><i class="bi bi-heart-pulse-fill"></i> ICU/NICU/HCU</a>
+                    </div>
+                    <div class="drop-column">
+                        <a href="{{ url('/layanan#vk') }}" class="drop-item"><i class="bi bi-gender-female"></i> Ruang Bersalin (VK)</a>
+                        <a href="{{ url('/layanan#ibs') }}" class="drop-item"><i class="bi bi-scissors"></i> Bedah Sentral (IBS)</a>
+                        <a href="{{ url('/layanan#rehab') }}" class="drop-item"><i class="bi bi-person-wheelchair"></i> Fisioterapi</a>
+                    </div>
                 </div>
             </div>
             <a href="/artikel"  class="nav-link-pill {{ request()->is('artikel*')  ? 'active' : '' }}">Artikel</a>
@@ -737,15 +713,19 @@
             <i class="bi bi-chevron-down d-accordion-chevron"></i>
         </button>
         <div class="d-accordion-body {{ request()->is('layanan*') ? 'open' : '' }}" id="acc-layanan">
-            <a href="{{ url('/layanan') }}"              class="d-sub-link"><i class="bi bi-grid-3x3-gap"></i> Semua Layanan</a>
-            <a href="{{ url('/layanan#igd') }}"          class="d-sub-link"><i class="bi bi-bandaid-fill"></i> IGD 24 Jam</a>
-            <a href="{{ url('/layanan#rawatjalan') }}"   class="d-sub-link"><i class="bi bi-clipboard2-pulse"></i> Rawat Jalan</a>
-            <a href="{{ url('/layanan#rawatinap') }}"    class="d-sub-link"><i class="bi bi-hospital"></i> Rawat Inap</a>
-            <a href="{{ url('/layanan#ambulans') }}"     class="d-sub-link"><i class="bi bi-truck"></i> Ambulans 24 Jam</a>
+            <a href="{{ url('/layanan') }}" class="d-sub-link"><i class="bi bi-grid-3x3-gap"></i> Semua Layanan</a>
+            <a href="{{ url('/layanan#igd') }}" class="d-sub-link"><i class="bi bi-bandaid-fill"></i> IGD 24 Jam</a>
+            <a href="{{ url('/layanan#rawatjalan') }}" class="d-sub-link"><i class="bi bi-clipboard2-pulse"></i> Rawat Jalan</a>
+            <a href="{{ url('/layanan#rawatinap') }}" class="d-sub-link"><i class="bi bi-hospital"></i> Rawat Inap</a>
+            <a href="{{ url('/layanan#ambulans') }}" class="d-sub-link"><i class="bi bi-truck"></i> Ambulans</a>
             <a href="{{ url('/layanan#laboratorium') }}" class="d-sub-link"><i class="bi bi-eyedropper"></i> Laboratorium</a>
-            <a href="{{ url('/layanan#radiologi') }}"    class="d-sub-link"><i class="bi bi-radioactive"></i> Radiologi</a>
-            <a href="{{ url('/layanan#farmasi') }}"      class="d-sub-link"><i class="bi bi-capsule"></i> Farmasi</a>
-            <a href="{{ url('/layanan#mcu') }}"          class="d-sub-link"><i class="bi bi-heart-pulse"></i> Medical Check Up</a>
+            <a href="{{ url('/layanan#radiologi') }}" class="d-sub-link"><i class="bi bi-radioactive"></i> Radiologi</a>
+            <a href="{{ url('/layanan#farmasi') }}" class="d-sub-link"><i class="bi bi-capsule"></i> Farmasi</a>
+            <a href="{{ url('/layanan#mcu') }}" class="d-sub-link"><i class="bi bi-heart-pulse"></i> Medical Check Up</a>
+            <a href="{{ url('/layanan#intensif') }}" class="d-sub-link"><i class="bi bi-heart-pulse-fill"></i> ICU/NICU/HCU</a>
+            <a href="{{ url('/layanan#vk') }}" class="d-sub-link"><i class="bi bi-gender-female"></i> Ruang Bersalin (VK)</a>
+            <a href="{{ url('/layanan#ibs') }}" class="d-sub-link"><i class="bi bi-scissors"></i> Bedah Sentral (IBS)</a>
+            <a href="{{ url('/layanan#rehab') }}" class="d-sub-link"><i class="bi bi-person-wheelchair"></i> Fisioterapi</a>
         </div>
         <div class="d-divider"></div>
         <a href="/artikel"  class="d-link {{ request()->is('artikel*')  ? 'active' : '' }}"><span class="d-icon"><i class="bi bi-journal-text"></i></span> Artikel</a>
