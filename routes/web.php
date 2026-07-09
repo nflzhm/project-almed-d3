@@ -27,6 +27,7 @@ use App\Http\Controllers\Admin\AdminDokterController;
 use App\Http\Controllers\Admin\ArtikelAdminController;
 use App\Http\Controllers\Admin\MutuController as AdminMutuController;
 use App\Http\Controllers\Admin\FormMutuController;
+use App\Http\Controllers\Admin\GaleriController as AdminGaleriController;
 
 Route::get('/mutu', [MutuController::class, 'index'])
     ->name('mutu');
@@ -222,3 +223,9 @@ Route::get('/layanan/poli/{id}', [LayananController::class, 'showPoli'])
     ->name('layanan.poli');
 
 
+Route::resource('galeri', AdminGaleriController::class);
+
+Route::get('/galeri', [\App\Http\Controllers\GaleriController::class, 'index'])
+    ->name('galeri');
+
+    

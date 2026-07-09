@@ -1104,5 +1104,331 @@ document.addEventListener('DOMContentLoaded', function () {
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<style>
+/* ============================================================
+   FLOATING WHATSAPP BUTTON
+============================================================ */
+.wa-float-btn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    width: 68px;
+    height: 68px;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    box-shadow: 0 16px 40px rgba(37, 211, 102, 0.32);
+    z-index: 99999;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+    animation: waFloatIn .7s cubic-bezier(.2,.8,.2,1) both;
+}
+.wa-float-btn::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    border: 1px solid rgba(255,255,255,.22);
+    animation: waPulse 3.4s ease-in-out infinite;
+    pointer-events: none;
+}
+.wa-float-btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: rgba(255,255,255,.18);
+    transform: scale(0);
+    opacity: 0;
+    pointer-events: none;
+}
+.wa-float-btn.is-clicked::after { animation: waRipple .55s ease-out; }
+.wa-float-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 22px 48px rgba(18, 140, 126, 0.38);
+    filter: saturate(1.08);
+}
+.wa-float-btn:active { transform: scale(1.02); }
+.wa-float-btn:hover .wa-float-icon { animation: waWiggle .35s ease-in-out 2; }
+.wa-float-icon { position: relative; z-index: 1; font-size: 30px; line-height: 1; }
+
+.wa-tooltip {
+    position: fixed;
+    right: 100px;
+    bottom: 35px;
+    max-width: 290px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    border-radius: 16px;
+    background: rgba(255,255,255,.97);
+    border: 1px solid rgba(28,20,92,.12);
+    box-shadow: 0 18px 40px rgba(15,23,42,.16);
+    color: #1C145C;
+    z-index: 99998;
+    opacity: 0;
+    transform: translateX(16px);
+    pointer-events: none;
+}
+.wa-tooltip.show {
+    opacity: 1;
+    transform: translateX(0);
+    animation: waTooltipIn .35s ease forwards;
+    pointer-events: auto;
+}
+.wa-tooltip.is-hidden {
+    opacity: 0;
+    transform: translateX(16px);
+    animation: waTooltipOut .28s ease forwards;
+    pointer-events: none;
+}
+.wa-tooltip-icon {
+    width: 34px; height: 34px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; background: rgba(37, 211, 102, .14);
+    color: #128C7E; font-size: 16px;
+}
+.wa-tooltip-body { flex: 1; }
+.wa-tooltip-title { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+.wa-tooltip-text { font-size: 12.5px; line-height: 1.45; color: #5a5480; }
+.wa-tooltip-close { border: none; background: transparent; color: #64748b; cursor: pointer; padding: 2px; margin-left: 4px; }
+
+.wa-modal-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(15, 23, 42, .6);
+    z-index: 10000003;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .25s ease, visibility .25s ease;
+}
+.wa-modal-overlay.show { opacity: 1; visibility: visible; }
+.wa-modal-card {
+    position: relative;
+    width: min(92vw, 480px);
+    background: #fff;
+    border-radius: 24px;
+    padding: 24px 22px 20px;
+    box-shadow: 0 24px 60px rgba(15,23,42,.18);
+    transform: scale(.96);
+    opacity: 0;
+    transition: transform .25s ease, opacity .25s ease;
+}
+.wa-modal-overlay.show .wa-modal-card { transform: scale(1); opacity: 1; }
+.wa-modal-icon {
+    width: 54px; height: 54px; border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(37, 211, 102, .14); color: #128C7E;
+    font-size: 24px; margin-bottom: 14px;
+}
+.wa-modal-card h3 { margin: 0 0 8px; font-size: 20px; color: #1C145C; }
+.wa-modal-card p { margin: 0 0 12px; color: #5a5480; line-height: 1.65; font-size: 14px; }
+.wa-modal-pre {
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: #f7f9fc;
+    border: 1px solid #ecf0f6;
+    color: #334155;
+    font-size: 13px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    margin-bottom: 16px;
+}
+.wa-modal-actions { display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap; }
+.wa-btn {
+    border: none; border-radius: 999px; padding: 10px 16px;
+    font-weight: 600; text-decoration: none;
+    display: inline-flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: transform .18s ease, box-shadow .18s ease;
+}
+.wa-btn:hover { transform: translateY(-1px); }
+.wa-btn-secondary { background: #f3f4f6; color: #334155; }
+.wa-btn-primary {
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    color: #fff;
+    box-shadow: 0 10px 24px rgba(37, 211, 102, .24);
+}
+
+@keyframes waFloatIn {
+    from { opacity: 0; transform: translateY(18px) scale(.92); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes waPulse {
+    0%, 100% { transform: scale(1); opacity: .55; }
+    50%      { transform: scale(1.08); opacity: .2; }
+}
+@keyframes waWiggle {
+    0%, 100% { transform: rotate(0); }
+    25%      { transform: rotate(-8deg); }
+    75%      { transform: rotate(8deg); }
+}
+@keyframes waRipple {
+    0%   { transform: scale(.72); opacity: .45; }
+    100% { transform: scale(1.7); opacity: 0; }
+}
+@keyframes waTooltipIn {
+    from { opacity: 0; transform: translateX(16px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes waTooltipOut {
+    from { opacity: 1; transform: translateX(0); }
+    to   { opacity: 0; transform: translateX(16px); }
+}
+
+@media(max-width: 575px) {
+    .wa-float-btn { right: 20px; bottom: 20px; width: 60px; height: 60px; }
+    .wa-float-icon { font-size: 26px; }
+    .wa-tooltip { right: 78px; bottom: 24px; max-width: min(72vw, 240px); padding: 11px 12px; }
+    .wa-modal-card { padding: 20px 18px 18px; }
+    .wa-modal-actions { justify-content: stretch; }
+    .wa-modal-actions .wa-btn { flex: 1 1 100%; }
+}
+</style>
+
+<!-- ============================================================
+     FLOATING WHATSAPP BUTTON — HTML
+============================================================ -->
+<button class="wa-float-btn" id="waFloatButton" type="button" aria-label="Hubungi Admin WhatsApp">
+    <span class="wa-float-icon"><i class="fab fa-whatsapp"></i></span>
+</button>
+
+<div class="wa-tooltip" id="waTooltip" role="status" aria-live="polite">
+    <div class="wa-tooltip-icon"><i class="fab fa-whatsapp"></i></div>
+    <div class="wa-tooltip-body">
+        <div class="wa-tooltip-title">Butuh bantuan?</div>
+        <div class="wa-tooltip-text">Chat Admin kami melalui WhatsApp.</div>
+    </div>
+    <button class="wa-tooltip-close" id="waTooltipClose" type="button" aria-label="Tutup tooltip">
+        <i class="bi bi-x-lg"></i>
+    </button>
+</div>
+
+<div class="wa-modal-overlay" id="waModalOverlay" aria-hidden="true">
+    <div class="wa-modal-card" role="dialog" aria-modal="true" aria-labelledby="waModalTitle">
+        <div class="wa-modal-icon"><i class="fab fa-whatsapp"></i></div>
+        <h3 id="waModalTitle">Hubungi Admin RSU Allam Medica</h3>
+        <p>
+            Anda akan terhubung dengan Admin RSU Allam Medica melalui WhatsApp.
+            Silakan klik tombol <strong>Lanjutkan ke WhatsApp</strong> untuk memulai percakapan.
+            Tim kami siap membantu memberikan informasi mengenai layanan rumah sakit.
+        </p>
+        <div class="wa-modal-pre">Halo Admin RSU Allam Medica,
+
+Saya ingin mendapatkan informasi mengenai layanan rumah sakit.
+Terima kasih.</div>
+        <div class="wa-modal-actions">
+            <button class="wa-btn wa-btn-secondary" id="waCancelBtn" type="button">Batal</button>
+            <a class="wa-btn wa-btn-primary" id="waContinueBtn" href="#" target="_blank" rel="noopener noreferrer">
+                Lanjutkan ke WhatsApp
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================================
+     FLOATING WHATSAPP BUTTON — JAVASCRIPT
+============================================================ -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const waButton        = document.getElementById('waFloatButton');
+    const waTooltip        = document.getElementById('waTooltip');
+    const waTooltipClose   = document.getElementById('waTooltipClose');
+    const waModalOverlay   = document.getElementById('waModalOverlay');
+    const waCancelBtn      = document.getElementById('waCancelBtn');
+    const waContinueBtn    = document.getElementById('waContinueBtn');
+
+    const waPhone   = '6285292224886';
+    const waMessage = 'Halo Admin RSU Allam Medica,\n\nSaya ingin mendapatkan informasi mengenai layanan rumah sakit.\nTerima kasih.';
+
+    function openWaModal() {
+        if (!waModalOverlay) return;
+        waModalOverlay.classList.add('show');
+        waModalOverlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeWaModal() {
+        if (!waModalOverlay) return;
+        waModalOverlay.classList.remove('show');
+        waModalOverlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    function showTooltip() {
+        if (!waTooltip) return;
+        waTooltip.classList.remove('is-hidden');
+        waTooltip.classList.add('show');
+    }
+
+    function hideTooltip() {
+        if (!waTooltip) return;
+        waTooltip.classList.remove('show');
+        waTooltip.classList.add('is-hidden');
+    }
+
+    if (waButton) {
+        waButton.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            waButton.classList.remove('is-clicked');
+            void waButton.offsetWidth;
+            waButton.classList.add('is-clicked');
+            setTimeout(openWaModal, 220);
+        });
+    }
+
+    if (waTooltipClose) {
+        waTooltipClose.addEventListener('click', function () {
+            hideTooltip();
+        });
+    }
+
+    if (waCancelBtn) {
+        waCancelBtn.addEventListener('click', closeWaModal);
+    }
+
+    if (waContinueBtn) {
+        waContinueBtn.href = 'https://wa.me/' + waPhone + '?text=' + encodeURIComponent(waMessage);
+        waContinueBtn.addEventListener('click', closeWaModal);
+    }
+
+    if (waModalOverlay) {
+        waModalOverlay.addEventListener('click', function (e) {
+            if (e.target === waModalOverlay) closeWaModal();
+        });
+    }
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && waModalOverlay && waModalOverlay.classList.contains('show')) {
+            closeWaModal();
+        }
+    });
+
+    let tooltipShowTimer;
+    let tooltipHideTimer;
+
+    function scheduleTooltip() {
+        clearTimeout(tooltipShowTimer);
+        clearTimeout(tooltipHideTimer);
+        tooltipShowTimer = setTimeout(showTooltip, 5000);
+        tooltipHideTimer = setTimeout(() => hideTooltip(), 11000);
+    }
+
+    scheduleTooltip();
+    window.addEventListener('focus', scheduleTooltip);
+
+});
+</script>
 </body>
 </html>
