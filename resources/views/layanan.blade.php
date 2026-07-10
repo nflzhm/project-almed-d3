@@ -1046,14 +1046,15 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
                     <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:14px;">
                         @php 
                         $dokterIgd = [
-                            ['nama' => 'dr. Wildan', 'jadwal' => 'Dokter Umum IGD 24 Jam'],
-                            ['nama' => 'dr. Laelatul', 'jadwal' => 'Dokter Umum IGD 24 Jam'],
-                            ['nama' => 'dr. Almira', 'jadwal' => 'Dokter Umum IGD 24 Jam'],
-                            ['nama' => 'dr. Vania', 'jadwal' => 'Dokter Umum IGD 24 Jam'],
-                            ['nama' => 'dr. Salman', 'jadwal' => 'Dokter Umum IGD 24 Jam'],
-                            ['nama' => 'dr. Windy', 'jadwal' => 'Dokter Umum IGD 24 Jam'],
-                            ['nama' => 'dr. Akhdan', 'jadwal' => 'Dokter Umum IGD 24 Jam'],
-                            ['nama' => 'dr. Hilda', 'jadwal' => 'Dokter Umum IGD 24 Jam'],
+                            ['nama' => 'dr. Wildan Baiti Al Anwari', 'jadwal' => 'Dokter Umum IGD 24 Jam'],
+                            ['nama' => 'dr. Laelatul Faizah', 'jadwal' => 'Dokter Umum IGD 24 Jam'],
+                            ['nama' => 'dr. Almira Meida Resi Fauzia', 'jadwal' => 'Dokter Umum IGD 24 Jam'],
+                            ['nama' => 'dr. Vania Salsabila Ihwanah', 'jadwal' => 'Dokter Umum IGD 24 Jam'],
+                            ['nama' => 'dr. Muhammad Salman Shalahudgin', 'jadwal' => 'Dokter Umum IGD 24 Jam'],
+                            ['nama' => 'dr. Windy Listiana', 'jadwal' => 'Dokter Umum IGD 24 Jam'],
+                            ['nama' => 'dr. Akhdan Baghaskara Rahmatullah', 'jadwal' => 'Dokter Umum IGD 24 Jam'],
+                            ['nama' => 'dr. Hilda Maulyda Utamie', 'jadwal' => 'Dokter Umum IGD 24 Jam'],
+                            ['nama' => 'dr. Solikha', 'jadwal' => 'Dokter Umum IGD 24 Jam'],
                         ];
                         @endphp
                         @foreach($dokterIgd as $dok)
