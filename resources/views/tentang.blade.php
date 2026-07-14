@@ -13,6 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
+<body>
 <style>
 @font-face {
     font-family: 'GothamBlack';
@@ -58,6 +59,8 @@ body {
 .nav-link-pill.active { background:rgba(255,255,255,.35);color:#1C145C;font-weight:600; }
 .drop-wrap { position:relative; }
 .drop-menu { position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%) translateY(8px);min-width:200px;padding:8px;border-radius:22px;background:rgba(255,255,255,.92);backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.35);box-shadow:0 12px 35px rgba(15,23,42,.14);opacity:0;visibility:hidden;transition:.22s;z-index:100; }
+/* FIX Hover Gap */
+.drop-menu::before { content: ""; position: absolute; top: -15px; left: 0; width: 100%; height: 15px; background: transparent; }
 .drop-wrap:hover .drop-menu { opacity:1;visibility:visible;transform:translateX(-50%) translateY(0); }
 .drop-item { display:flex;align-items:center;gap:9px;padding:9px 13px;border-radius:12px;font-size:13.5px;color:#334155;text-decoration:none;transition:.18s;font-weight:500; }
 .drop-item:hover { background:rgba(28,20,92,.07);color:#1C145C; }
@@ -92,8 +95,8 @@ body {
 .kontak-mega {
     position: absolute;top: calc(100% + 18px);right: 0;width: 780px;
     max-width: calc(100vw - 40px);background: rgba(255,255,255,0.97);
-    backdrop-filter: blur(24px);-webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(255,255,255,0.35);border-radius: 24px;
+    backdrop-filter: blur(28px) saturate(180%);-webkit-backdrop-filter: blur(28px) saturate(180%);
+    border: 1px solid rgba(255,255,255,0.5);border-radius: 24px;
     box-shadow: 0 24px 60px rgba(15,23,42,.16), 0 2px 12px rgba(15,23,42,.06);
     padding: 28px;opacity: 0;visibility: hidden;transform: translateY(12px);
     transition: opacity .26s, visibility .26s, transform .26s;z-index: 9999;
@@ -141,6 +144,47 @@ body {
 .ci-email { background:rgba(220,53,69,.1);color:#dc3545; }
 .ci-igd   { background:rgba(245,158,11,.12);color:#d97706; }
 .ci-map   { background:rgba(28,20,92,.1);color:#1C145C; }
+
+.ci-ambulans { background: rgba(239,68,68,.12); color: #ef4444; }
+.ci-wa       { background: rgba(37,211,102,.14); color: #128C7E; }
+
+.kontak-info-card {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: .2s;
+}
+.kontak-info-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(28,20,92,.1);
+    border-color: #d8d4f0;
+}
+.bs-info-card {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.kontak-social-row {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 4px 0 2px;
+}
+.kontak-social-row a {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: #f8f7ff; border: 1px solid #ece9f8;
+    display: flex; align-items: center; justify-content: center;
+    color: #1C145C; font-size: 15px; text-decoration: none; transition: .2s;
+}
+.kontak-social-row a:hover { background: #1C145C; color: #fff; transform: translateY(-2px); }
+
+.kontak-map-caption {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 11.5px; color: #5a5480; text-decoration: none; margin-top: 8px;
+}
+.kontak-map-caption:hover { color: #1C145C; }
+.kontak-map-caption i { color: #1C145C; font-size: 11px; }
+
+
 .kontak-info-title { font-size:11px;font-weight:700;color:#1C145C;margin-bottom:2px; }
 .kontak-info-val   { font-size:11.5px;color:#5a5480;line-height:1.45; }
 .kontak-map-box { border-radius: 12px;overflow:hidden;border:1px solid #e8e4d8;flex:1; }
@@ -583,8 +627,6 @@ body {
 @media(max-width:768px){ .tt-grid{ grid-template-columns:repeat(2,1fr); } .akreditasi-card{ flex-direction:column;text-align:center; } }
 </style>
 
-<body>
-
 <!-- ============================================================
      TOPBAR
 ============================================================ -->
@@ -613,13 +655,14 @@ body {
         <div class="nav-links">
             <a href="/" class="nav-link-pill {{ request()->is('/') ? 'active' : '' }}">Beranda</a>
             <div class="drop-wrap">
-                <a href="#" class="nav-link-pill {{ request()->is('karir*','berita*','video*') ? 'active' : '' }}">
+                <a href="#" class="nav-link-pill {{ request()->is('karir*','berita*','video*','galeri*') ? 'active' : '' }}">
                     Menu <i class="bi bi-chevron-down chevron"></i>
                 </a>
                 <div class="drop-menu">
                     <a href="{{ url('/karir') }}"  class="drop-item"><i class="bi bi-briefcase"></i> Karir</a>
                     <a href="{{ url('/berita') }}" class="drop-item"><i class="bi bi-newspaper"></i> Berita</a>
                     <a href="{{ url('/video') }}"  class="drop-item"><i class="bi bi-play-circle"></i> Video</a>
+                    <a href="{{ url('/galeri') }}" class="drop-item"><i class="bi bi-images"></i> Galeri</a>
                 </div>
             </div>
             <div class="drop-wrap">
@@ -676,17 +719,45 @@ body {
                             <button type="submit" class="btn-send-mega"><i class="bi bi-send-fill"></i> Kirim Pesan</button>
                         </form>
                     </div>
-                    <div class="kontak-info-panel">
-                        <div class="kontak-info-grid">
-                            <div class="kontak-info-card"><div class="kontak-info-icon ci-phone"><i class="bi bi-telephone-fill"></i></div><div class="kontak-info-title">Telepon</div><div class="kontak-info-val">(0289) 430822</div></div>
-                            <div class="kontak-info-card"><div class="kontak-info-icon ci-email"><i class="bi bi-envelope-fill"></i></div><div class="kontak-info-title">Email</div><div class="kontak-info-val">allam.medica@<br>yahoo.co.id</div></div>
-                            <div class="kontak-info-card"><div class="kontak-info-icon ci-igd"><i class="bi bi-clock-fill"></i></div><div class="kontak-info-title">IGD</div><div class="kontak-info-val">24 Jam</div></div>
-                            <div class="kontak-info-card"><div class="kontak-info-icon ci-map"><i class="bi bi-geo-alt-fill"></i></div><div class="kontak-info-title">Alamat</div><div class="kontak-info-val">Jl. P. Diponegoro No.609, Bumiayu</div></div>
-                        </div>
-                        <div class="kontak-map-box">
-                            <iframe src="https://www.google.com/maps?q=RSU+Allam+Medica+Bumiayu&output=embed" loading="lazy"></iframe>
-                        </div>
-                    </div>
+                   <div class="kontak-info-panel">
+    <div class="kontak-info-grid">
+        <!-- TODO: ganti nomor IGD asli -->
+        <a href="https://wa.me/6281234500001" target="_blank" class="kontak-info-card">
+            <div class="kontak-info-icon ci-igd"><i class="bi bi-heart-pulse-fill"></i></div>
+            <div class="kontak-info-title">IGD 24 Jam</div>
+            <div class="kontak-info-val">0812-3450-0001</div>
+        </a>
+        <!-- TODO: ganti nomor Ambulans asli -->
+        <a href="https://wa.me/6281234500002" target="_blank" class="kontak-info-card">
+            <div class="kontak-info-icon ci-ambulans"><i class="bi bi-truck"></i></div>
+            <div class="kontak-info-title">Ambulans</div>
+            <div class="kontak-info-val">0812-3450-0002</div>
+        </a>
+        <a href="https://wa.me/6285292224886" target="_blank" class="kontak-info-card">
+            <div class="kontak-info-icon ci-wa"><i class="fa-brands fa-whatsapp"></i></div>
+            <div class="kontak-info-title">WhatsApp</div>
+            <div class="kontak-info-val">0852-9222-4886</div>
+        </a>
+        <a href="mailto:allam.medica@yahoo.co.id" class="kontak-info-card">
+            <div class="kontak-info-icon ci-email"><i class="bi bi-envelope-fill"></i></div>
+            <div class="kontak-info-title">Email</div>
+            <div class="kontak-info-val">allam.medica@<br>yahoo.co.id</div>
+        </a>
+    </div>
+
+    <div class="kontak-social-row">
+        <a href="https://www.tiktok.com/@allam.medica" target="_blank" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+        <a href="https://www.facebook.com/allam.medicabmy?mibextid=LQQJ4d" target="_blank" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+        <a href="https://www.instagram.com/allam.medica/" target="_blank" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+    </div>
+
+    <div class="kontak-map-box">
+        <iframe src="https://www.google.com/maps?q=RSU+Allam+Medica+Bumiayu&output=embed" loading="lazy"></iframe>
+    </div>
+    <a href="https://www.google.com/maps?q=RSU+Allam+Medica+Bumiayu" target="_blank" class="kontak-map-caption">
+        <i class="bi bi-geo-alt-fill"></i> Jl. P. Diponegoro No.609, Bumiayu, Brebes
+    </a>
+</div>
                 </div>
             </div>
         </div>
@@ -708,14 +779,15 @@ body {
         <a href="/" class="d-link {{ request()->is('/') ? 'active' : '' }}">
             <span class="d-icon"><i class="bi bi-house"></i></span> Beranda
         </a>
-        <button class="d-accordion-btn {{ request()->is('karir*','berita*','video*') ? 'active-parent' : '' }}" data-target="acc-menu">
+        <button class="d-accordion-btn {{ request()->is('karir*','berita*','video*','galeri*') ? 'active-parent' : '' }}" data-target="acc-menu">
             <span class="d-acc-left"><span class="d-icon"><i class="bi bi-grid"></i></span> Menu</span>
             <i class="bi bi-chevron-down d-accordion-chevron"></i>
         </button>
-        <div class="d-accordion-body {{ request()->is('karir*','berita*','video*') ? 'open' : '' }}" id="acc-menu">
+        <div class="d-accordion-body {{ request()->is('karir*','berita*','video*','galeri*') ? 'open' : '' }}" id="acc-menu">
             <a href="{{ url('/karir') }}"  class="d-sub-link"><i class="bi bi-briefcase"></i> Karir</a>
             <a href="{{ url('/berita') }}" class="d-sub-link"><i class="bi bi-newspaper"></i> Berita</a>
             <a href="{{ url('/video') }}"  class="d-sub-link"><i class="bi bi-play-circle"></i> Video</a>
+            <a href="{{ url('/galeri') }}" class="d-sub-link"><i class="bi bi-images"></i> Galeri</a>
         </div>
         <div class="d-divider"></div>
         <button class="d-accordion-btn {{ request()->is('layanan*') ? 'active-parent' : '' }}" data-target="acc-layanan">
@@ -772,15 +844,41 @@ body {
                 <button type="submit" class="btn-send-bs"><i class="bi bi-send-fill"></i> Kirim Pesan</button>
             </form>
         </div>
-        <div class="bs-info-grid">
-            <div class="bs-info-card"><div class="bs-info-icon ci-phone"><i class="bi bi-telephone-fill"></i></div><div class="bs-info-title">Telepon</div><div class="bs-info-val">(0289) 430822</div></div>
-            <div class="bs-info-card"><div class="bs-info-icon ci-email"><i class="bi bi-envelope-fill"></i></div><div class="bs-info-title">Email</div><div class="bs-info-val">allam.medica@yahoo.co.id</div></div>
-            <div class="bs-info-card"><div class="bs-info-icon ci-igd"><i class="bi bi-clock-fill"></i></div><div class="bs-info-title">IGD</div><div class="bs-info-val">24 Jam</div></div>
-            <div class="bs-info-card"><div class="bs-info-icon ci-map"><i class="bi bi-geo-alt-fill"></i></div><div class="bs-info-title">Alamat</div><div class="bs-info-val">Jl. P. Diponegoro No.609, Bumiayu, Brebes</div></div>
-        </div>
-        <div class="bs-map-box">
-            <iframe src="https://www.google.com/maps?q=RSU+Allam+Medica+Bumiayu&output=embed" loading="lazy"></iframe>
-        </div>
+       <div class="bs-info-grid">
+    <a href="https://wa.me/6281234500001" target="_blank" class="bs-info-card">
+        <div class="bs-info-icon ci-igd"><i class="bi bi-heart-pulse-fill"></i></div>
+        <div class="bs-info-title">IGD 24 Jam</div>
+        <div class="bs-info-val">0812-3450-0001</div>
+    </a>
+    <a href="https://wa.me/6281234500002" target="_blank" class="bs-info-card">
+        <div class="bs-info-icon ci-ambulans"><i class="bi bi-truck"></i></div>
+        <div class="bs-info-title">Ambulans</div>
+        <div class="bs-info-val">0812-3450-0002</div>
+    </a>
+    <a href="https://wa.me/6285292224886" target="_blank" class="bs-info-card">
+        <div class="bs-info-icon ci-wa"><i class="fa-brands fa-whatsapp"></i></div>
+        <div class="bs-info-title">WhatsApp</div>
+        <div class="bs-info-val">0852-9222-4886</div>
+    </a>
+    <a href="mailto:allam.medica@yahoo.co.id" class="bs-info-card">
+        <div class="bs-info-icon ci-email"><i class="bi bi-envelope-fill"></i></div>
+        <div class="bs-info-title">Email</div>
+        <div class="bs-info-val">allam.medica@yahoo.co.id</div>
+    </a>
+</div>
+
+<div class="kontak-social-row">
+    <a href="https://www.tiktok.com/@allam.medica" target="_blank" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+    <a href="https://www.facebook.com/allam.medicabmy?mibextid=LQQJ4d" target="_blank" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+    <a href="https://www.instagram.com/allam.medica/" target="_blank" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+</div>
+
+<div class="bs-map-box">
+    <iframe src="https://www.google.com/maps?q=RSU+Allam+Medica+Bumiayu&output=embed" loading="lazy"></iframe>
+</div>
+<a href="https://www.google.com/maps?q=RSU+Allam+Medica+Bumiayu" target="_blank" class="kontak-map-caption">
+    <i class="bi bi-geo-alt-fill"></i> Jl. P. Diponegoro No.609, Bumiayu, Brebes
+</a>
     </div>
 </div>
 
@@ -1362,11 +1460,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="tt-nama">Perina</div>
             </div>
             <div class="tt-total-card">
-    <div class="tt-icon"><i class="bi bi-grid-fill"></i></div>
-    <div class="tt-jumlah">140</div>
-    <div class="tt-satuan">Tempat Tidur</div>
-    <div class="tt-nama">Total Keseluruhan</div>
-</div>
+                <div class="tt-icon"><i class="bi bi-grid-fill"></i></div>
+                <div class="tt-jumlah">140</div>
+                <div class="tt-satuan">Tempat Tidur</div>
+                <div class="tt-nama">Total Keseluruhan</div>
+            </div>
         </div>
 
         <h5 class="tt-subheading">Tempat Tidur Tindakan</h5>
@@ -1415,8 +1513,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 <h5 class="footer-title">RSU Allam Medica Bumiayu</h5>
                 <p class="footer-desc">Jl. Pangeran Diponegoro No. 609, Jatisawit, Bumiayu, Kabupaten Brebes, Jawa Tengah 52273</p>
                 <div class="footer-social">
-                    <a href="https://www.tiktok.com/@rsuallammedicabumiayu" target="_blank"><i class="bi bi-tiktok"></i></a>
-                    <a href="https://www.facebook.com/allam.medicabmy" target="_blank"><i class="bi bi-facebook"></i></a>
+                    <a href="https://www.tiktok.com/@rsuallammedicabumiayu?_t=8fLMQk9idhI&_r=1" target="_blank"><i class="bi bi-tiktok"></i></a>
+                    <a href="https://www.facebook.com/allam.medicabmy?mibextid=LQQJ4d" target="_blank"><i class="bi bi-facebook"></i></a>
                     <a href="https://www.instagram.com/allam.medica/" target="_blank"><i class="bi bi-instagram"></i></a>
                 </div>
                 <div class="footer-mitra-label">Akreditasi & Mitra</div>
@@ -1433,6 +1531,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <li><a href="{{ url('/download') }}">Pengadaan</a></li>
                     <li><a href="{{ url('/tentang') }}">Tentang Kami</a></li>
                     <li><a href="{{ url('/mutu') }}">Mutu</a></li>
+                    <li><a href="{{ url('/kontak') }}">Kontak</a></li>
                 </ul>
             </div>
             <div class="col-lg-2 col-md-4 col-6">
@@ -1441,6 +1540,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <li><a href="{{ url('/karir') }}">Karir</a></li>
                     <li><a href="{{ url('/berita') }}">Berita</a></li>
                     <li><a href="{{ url('/video') }}">Video</a></li>
+                    <li><a href="{{ url('/galeri') }}">Galeri</a></li>
                 </ul>
             </div>
             <div class="col-lg-2 col-md-4 col-6">

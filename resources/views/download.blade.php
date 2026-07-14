@@ -8,13 +8,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 </head>
 
 <body>
 <style>
 @font-face {
     font-family: 'GothamBlack';
-    src: url('{{ asset('fonts/Gotham-Black.otf') }}') format('opentype');
+    src: url('{{ asset("fonts/Gotham-Black.otf") }}') format('opentype');
     font-weight: 900; font-style: normal;
 }
 h1, h2, h3, h4 { font-family: 'GothamBlack', sans-serif !important; }
@@ -24,6 +26,7 @@ body {
     background: #ffffff;
     overflow-x: hidden;
     position: relative;
+    padding-top: 38px;
 }
 
 /* ============================================================
@@ -54,12 +57,21 @@ body {
 .nav-link-pill.active { background:rgba(255,255,255,.35);color:#1C145C;font-weight:600; }
 .drop-wrap { position:relative; }
 .drop-menu { position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%) translateY(8px);min-width:200px;padding:8px;border-radius:22px;background:rgba(255,255,255,.92);backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.35);box-shadow:0 12px 35px rgba(15,23,42,.14);opacity:0;visibility:hidden;transition:.22s;z-index:100; }
+/* FIX Hover Gap */
+.drop-menu::before { content: ""; position: absolute; top: -15px; left: 0; width: 100%; height: 15px; background: transparent; }
 .drop-wrap:hover .drop-menu { opacity:1;visibility:visible;transform:translateX(-50%) translateY(0); }
 .drop-item { display:flex;align-items:center;gap:9px;padding:9px 13px;border-radius:12px;font-size:13.5px;color:#334155;text-decoration:none;transition:.18s;font-weight:500; }
 .drop-item:hover { background:rgba(28,20,92,.07);color:#1C145C; }
 .drop-item i { font-size:14px;color:#64748b;flex-shrink:0; }
 .drop-item:hover i { color:#1C145C; }
 .drop-divider { height:1px;background:rgba(0,0,0,.07);margin:4px 8px; }
+
+/* LAYANAN MEGA DROPDOWN (Navbar) */
+.drop-menu-layanan { min-width:560px;max-width:min(94vw, 620px);padding:14px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 12px;align-items:start; }
+.drop-menu-layanan .drop-column { display:flex;flex-direction:column;gap:2px; }
+.drop-menu-layanan .drop-column + .drop-column { border-left:1px solid rgba(15,23,42,.06);padding-left:10px; }
+.drop-menu-layanan .drop-item { padding:8px 10px;font-size:13px; }
+
 .chevron { font-size:11px;opacity:.6;transition:.25s; }
 .drop-wrap:hover .chevron { transform:rotate(180deg); }
 .nav-cta { position:relative;z-index:2; }
@@ -74,6 +86,11 @@ body {
    KONTAK MEGA DROPDOWN (desktop)
 ============================================================ */
 .kontak-wrap { position: relative; }
+.kontak-form-title, .bs-form-title {
+    font-family: 'GothamBlack', sans-serif !important;
+    font-size: 19px; color: #FEFCF1; margin-bottom: 16px; line-height: 1.2;
+}
+.bs-title { font-family:'GothamBlack', sans-serif !important; font-size:17px; color:#1C145C; margin:0; }
 
 .btn-kontak {
     padding:10px 22px; border-radius:50px; background:#1C145C;
@@ -89,124 +106,59 @@ body {
     width: 780px; max-width: calc(100vw - 40px);
     background: rgba(255,255,255,0.97);
     backdrop-filter: blur(28px) saturate(180%);
-    border: 1px solid rgba(255,255,255,0.5); border-radius: 24px;
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    border: 1px solid rgba(255,255,255,0.5);
+    border-radius: 24px;
     box-shadow: 0 24px 60px rgba(15,23,42,.16), 0 2px 12px rgba(15,23,42,.06);
     padding: 28px; opacity: 0; visibility: hidden;
     transform: translateY(12px);
     transition: opacity .26s, visibility .26s, transform .26s;
     z-index: 9999;
 }
-.kontak-wrap:hover .kontak-mega,
-.kontak-mega:hover,
-.kontak-mega.open { opacity: 1; visibility: visible; transform: translateY(0); }
-
+.kontak-wrap:hover .kontak-mega, .kontak-mega:hover, .kontak-mega.open { opacity: 1; visibility: visible; transform: translateY(0); }
 .kontak-mega::before {
     content:''; position:absolute; top:0; left:24px; right:24px; height:2px;
     background:linear-gradient(90deg,transparent,rgba(28,20,92,.2) 50%,transparent);
     border-radius:2px;
 }
-
 .kontak-mega-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 22px; }
-
-.kontak-form-panel {
-    background: #1C145C; border-radius: 16px; padding: 22px 20px;
-    position: relative; overflow: hidden;
-}
-.kontak-form-panel .form-ornament {
-    position: absolute; bottom: -50px; right: -50px; width: 160px; height: 160px;
-    opacity: .07; background-image: url('{{ asset("images/beranda/ornamen.png") }}');
-    background-size: contain; background-repeat: no-repeat;
-    pointer-events: none; filter: brightness(10);
-}
+.kontak-form-panel { background: #1C145C; border-radius: 16px; padding: 22px 20px; position: relative; overflow: hidden; }
+.kontak-form-panel .form-ornament { position: absolute; bottom: -50px; right: -50px; width: 160px; height: 160px; opacity: .07; background-image: url('{{ asset("images/beranda/ornamen.png") }}'); background-size: contain; background-repeat: no-repeat; pointer-events: none; filter: brightness(10); }
 .kontak-form-panel > *:not(.form-ornament) { position: relative; z-index: 1; }
-
-.kontak-form-sublabel {
-    font-size: 10px; font-weight: 700; color: rgba(254,252,241,.45);
-    text-transform: uppercase; letter-spacing: .12em; margin-bottom: 4px;
-}
-.kontak-form-title {
-    font-family: 'GothamBlack', sans-serif !important;
-    font-size: 19px; color: #FEFCF1; margin-bottom: 16px; line-height: 1.2;
-}
-.kontak-form-title span {
-    background: linear-gradient(90deg, #a89eff, #FEFCF1);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-}
-
+.kontak-form-sublabel { font-size: 10px; font-weight: 700; color: rgba(254,252,241,.45); text-transform: uppercase; letter-spacing: .12em; margin-bottom: 4px; }
+.kontak-form-title span { background: linear-gradient(90deg, #a89eff, #FEFCF1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .ck-field { margin-bottom: 10px; }
 .ck-field label { display:block;font-size:10.5px;color:rgba(254,252,241,.55);margin-bottom:3px;letter-spacing:.04em; }
-.ck-field input, .ck-field textarea {
-    width: 100%; background: rgba(255,255,255,.1);
-    border: 1px solid rgba(254,252,241,.18); border-radius: 7px;
-    padding: 8px 11px; font-size: 12.5px; color: #FEFCF1;
-    outline: none; transition: .2s; font-family: inherit; box-sizing: border-box;
-}
+.ck-field input, .ck-field textarea { width: 100%; background: rgba(255,255,255,.1); border: 1px solid rgba(254,252,241,.18); border-radius: 7px; padding: 8px 11px; font-size: 12.5px; color: #FEFCF1; outline: none; transition: .2s; font-family: inherit; box-sizing: border-box; }
 .ck-field input::placeholder, .ck-field textarea::placeholder { color: rgba(254,252,241,.35); }
 .ck-field input:focus, .ck-field textarea:focus { border-color: rgba(254,252,241,.5); background:rgba(255,255,255,.15); }
 .ck-field textarea { resize:vertical; min-height:72px; }
 .ck-row { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
-
-.btn-send-mega {
-    margin-top: 12px; width: 100%; padding: 10px;
-    background: #FEFCF1; color: #1C145C; border: none; border-radius: 50px;
-    font-size: 13px; font-weight: 700; cursor: pointer; transition: .2s;
-    display: flex; align-items: center; justify-content: center; gap: 7px; font-family: inherit;
-}
+.btn-send-mega { margin-top: 12px; width: 100%; padding: 10px; background: #FEFCF1; color: #1C145C; border: none; border-radius: 50px; font-size: 13px; font-weight: 700; cursor: pointer; transition: .2s; display: flex; align-items: center; justify-content: center; gap: 7px; font-family: inherit; }
 .btn-send-mega:hover { background:#fff; transform:translateY(-1px); box-shadow:0 4px 14px rgba(0,0,0,.18); }
 
 .kontak-info-panel { display:flex; flex-direction:column; gap:14px; }
 .kontak-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.kontak-info-card {
-    background: #f8f7ff; border: 1px solid #ece9f8;
-    border-radius: 12px; padding: 12px; text-align: center;
-}
-.kontak-info-icon {
-    width: 36px; height: 36px; border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px; margin: 0 auto 8px;
-}
+.kontak-info-card { background: #f8f7ff; border: 1px solid #ece9f8; border-radius: 12px; padding: 12px; text-align: center; }
+.kontak-info-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; margin: 0 auto 8px; }
 .ci-phone { background:rgba(25,135,84,.12);  color:#198754; }
 .ci-email { background:rgba(220,53,69,.1);   color:#dc3545; }
 .ci-igd   { background:rgba(245,158,11,.12); color:#d97706; }
 .ci-map   { background:rgba(28,20,92,.1);    color:#1C145C; }
-
-
 .ci-ambulans { background: rgba(239,68,68,.12); color: #ef4444; }
 .ci-wa       { background: rgba(37,211,102,.14); color: #128C7E; }
 
-.kontak-info-card {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-    transition: .2s;
-}
-.kontak-info-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(28,20,92,.1);
-    border-color: #d8d4f0;
-}
-.bs-info-card {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-}
+.kontak-info-card { text-decoration: none; color: inherit; display: block; transition: .2s; }
+.kontak-info-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(28,20,92,.1); border-color: #d8d4f0; }
+.bs-info-card { text-decoration: none; color: inherit; display: block; }
 
-.kontak-social-row {
-    display: flex; align-items: center; justify-content: center; gap: 10px;
-    padding: 4px 0 2px;
-}
-.kontak-social-row a {
-    width: 34px; height: 34px; border-radius: 50%;
-    background: #f8f7ff; border: 1px solid #ece9f8;
-    display: flex; align-items: center; justify-content: center;
-    color: #1C145C; font-size: 15px; text-decoration: none; transition: .2s;
-}
+.kontak-social-row { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 4px 0 2px; }
+.kontak-social-row a { width: 34px; height: 34px; border-radius: 50%; background: #f8f7ff; border: 1px solid #ece9f8; display: flex; align-items: center; justify-content: center; color: #1C145C; font-size: 15px; text-decoration: none; transition: .2s; }
 .kontak-social-row a:hover { background: #1C145C; color: #fff; transform: translateY(-2px); }
 
-.kontak-map-caption {
-    display: flex; align-items: center; gap: 6px;
-    font-size: 11.5px; color: #5a5480;
-}
+.kontak-map-caption { display: flex; align-items: center; gap: 6px; font-size: 11.5px; color: #5a5480; text-decoration: none; margin-top: 8px; }
+.kontak-map-caption:hover { color: #1C145C; }
+.kontak-map-caption i { color: #1C145C; font-size: 11px; }
 
 .kontak-info-title { font-size:11px; font-weight:700; color:#1C145C; margin-bottom:2px; }
 .kontak-info-val   { font-size:11.5px; color:#5a5480; line-height:1.45; }
@@ -231,7 +183,8 @@ body {
 .d-link.active .d-icon { color:#1C145C; }
 .d-divider { height:1px;background:rgba(0,0,0,.07);margin:4px 2px; }
 .drawer-footer { padding:12px 14px 24px;border-top:1px solid rgba(0,0,0,.07);flex-shrink:0; }
-.d-accordion-btn { display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;border-radius:12px;font-size:14px;font-weight:600;color:#1e293b;cursor:pointer;background:none;border:none;width:100%;font-family:'Segoe UI',sans-serif;transition:.16s; }
+
+.d-accordion-btn { display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;border-radius:12px;font-size:14px;font-weight:600;color:#1e293b;cursor:pointer;background:none;border:none;width:100%;font-family:'Plus Jakarta Sans',sans-serif;transition:.16s; }
 .d-accordion-btn:hover { background:rgba(28,20,92,.06);color:#1C145C; }
 .d-accordion-btn.active-parent { color:#1C145C; }
 .d-accordion-btn .d-acc-left { display:flex;align-items:center;gap:10px; }
@@ -244,137 +197,54 @@ body {
 .d-sub-link i { font-size:13px;color:#94a3b8;flex-shrink:0;width:16px;text-align:center; }
 .d-sub-link:hover i { color:#1C145C; }
 
-.btn-kontak-drawer {
-    border-radius:14px; display:block; text-align:center; padding:12px 22px;
-    background:#1C145C; color:#fff!important; text-decoration:none!important;
-    font-size:14px; font-weight:600; border:none; cursor:pointer;
-    font-family:inherit; width:100%; transition:.2s;
-}
+.btn-kontak-drawer { border-radius:14px; display:block; text-align:center; padding:12px 22px; background:#1C145C; color:#fff!important; text-decoration:none!important; font-size:14px; font-weight:600; border:none; cursor:pointer; font-family:inherit; width:100%; transition:.2s; }
 .btn-kontak-drawer:hover { background:#2a1e8a; }
 
 /* ============================================================
    BOTTOM SHEET (mobile kontak)
 ============================================================ */
-.bs-overlay {
-    display:none; position:fixed; inset:0;
-    background:rgba(15,23,42,0); z-index:10000001; transition:background .3s;
-}
+.bs-overlay { display:none; position:fixed; inset:0; background:rgba(15,23,42,0); z-index:10000001; transition:background .3s; }
 .bs-overlay.show { display:block; background:rgba(15,23,42,0.5); }
-
-.bs-sheet {
-    position:fixed; left:0; right:0; bottom:0;
-    z-index:10000002; background:#fff;
-    border-radius:24px 24px 0 0;
-    box-shadow:0 -8px 40px rgba(15,23,42,.18);
-    transform:translateY(100%);
-    transition:transform .35s cubic-bezier(.4,0,.2,1);
-    height:92dvh; display:flex; flex-direction:column; overflow:visible;
-}
+.bs-sheet { position:fixed; left:0; right:0; bottom:0; z-index:10000002; background:#fff; border-radius:24px 24px 0 0; box-shadow:0 -8px 40px rgba(15,23,42,.18); transform:translateY(100%); transition:transform .35s cubic-bezier(.4,0,.2,1); height:92dvh; display:flex; flex-direction:column; overflow:visible; }
 .bs-sheet.open { transform:translateY(0); }
-
-.bs-handle-wrap {
-    flex-shrink:0; display:flex; align-items:center;
-    justify-content:center; padding:10px 16px 6px;
-}
+.bs-handle-wrap { flex-shrink:0; display:flex; align-items:center; justify-content:center; padding:10px 16px 6px; }
 .bs-handle { width:40px; height:4px; border-radius:2px; background:rgba(0,0,0,.15); }
-
-.bs-header {
-    flex-shrink:0; display:flex; align-items:center;
-    justify-content:space-between; padding:0 18px 14px;
-    border-bottom:1px solid rgba(0,0,0,.07);
-}
-.bs-title { font-family:'GothamBlack',sans-serif; font-size:17px; color:#1C145C; margin:0; }
-.bs-close {
-    width:32px; height:32px; border-radius:50%;
-    background:rgba(28,20,92,.08); border:none;
-    display:flex; align-items:center; justify-content:center;
-    color:#1C145C; cursor:pointer; font-size:15px;
-}
-
-.bs-body {
-    flex:1; min-height:0;
-    overflow-y:auto; -webkit-overflow-scrolling:touch;
-    overscroll-behavior:contain;
-    padding:18px 18px calc(18px + env(safe-area-inset-bottom)) 18px;
-    display:flex; flex-direction:column; gap:16px;
-}
-
-.bs-form-card {
-    background:#1C145C; border-radius:14px; padding:18px 16px;
-    position:relative; overflow:hidden; flex-shrink:0;
-}
-.bs-form-card .bs-form-ornament {
-    position:absolute; bottom:-40px; right:-40px; width:130px; height:130px;
-    opacity:.07; background-image:url('{{ asset("images/beranda/ornamen.png") }}');
-    background-size:contain; background-repeat:no-repeat;
-    pointer-events:none; filter:brightness(10);
-}
+.bs-header { flex-shrink:0; display:flex; align-items:center; justify-content:space-between; padding:0 18px 14px; border-bottom:1px solid rgba(0,0,0,.07); }
+.bs-close { width:32px; height:32px; border-radius:50%; background:rgba(28,20,92,.08); border:none; display:flex; align-items:center; justify-content:center; color:#1C145C; cursor:pointer; font-size:15px; }
+.bs-body { flex:1; min-height:0; overflow-y:auto; -webkit-overflow-scrolling:touch; overscroll-behavior:contain; padding:18px 18px calc(18px + env(safe-area-inset-bottom)) 18px; display:flex; flex-direction:column; gap:16px; }
+.bs-form-card { background:#1C145C; border-radius:14px; padding:18px 16px; position:relative; overflow:hidden; flex-shrink:0; }
+.bs-form-card .bs-form-ornament { position:absolute; bottom:-40px; right:-40px; width:130px; height:130px; opacity:.07; background-image:url('{{ asset("images/beranda/ornamen.png") }}'); background-size:contain; background-repeat:no-repeat; pointer-events:none; filter:brightness(10); }
 .bs-form-card > *:not(.bs-form-ornament) { position:relative; z-index:1; }
-
-.bs-sublabel {
-    font-size:10px; font-weight:700; color:rgba(254,252,241,.45);
-    text-transform:uppercase; letter-spacing:.12em; margin-bottom:3px;
-}
-.bs-form-title { font-family:'GothamBlack',sans-serif!important; font-size:17px; color:#FEFCF1; margin-bottom:14px; }
-.bs-form-title span {
-    background:linear-gradient(90deg,#a89eff,#FEFCF1);
-    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-}
-
+.bs-sublabel { font-size:10px; font-weight:700; color:rgba(254,252,241,.45); text-transform:uppercase; letter-spacing:.12em; margin-bottom:3px; }
 .bs-form-card .ck-field { margin-bottom:9px; }
 .bs-form-card .ck-field label { font-size:10px; color:rgba(254,252,241,.5); margin-bottom:2px; }
-.bs-form-card .ck-field input,
-.bs-form-card .ck-field textarea {
-    font-size:12px; padding:7px 10px; border-radius:7px;
-    background:rgba(255,255,255,.1); border:1px solid rgba(254,252,241,.18);
-    color:#FEFCF1; width:100%; box-sizing:border-box; outline:none; font-family:inherit; transition:.2s;
-}
-.bs-form-card .ck-field input::placeholder,
-.bs-form-card .ck-field textarea::placeholder { color:rgba(254,252,241,.35); }
-.bs-form-card .ck-field input:focus,
-.bs-form-card .ck-field textarea:focus { border-color:rgba(254,252,241,.5); background:rgba(255,255,255,.15); }
+.bs-form-card .ck-field input, .bs-form-card .ck-field textarea { font-size:12px; padding:7px 10px; border-radius:7px; background:rgba(255,255,255,.1); border:1px solid rgba(254,252,241,.18); color:#FEFCF1; width:100%; box-sizing:border-box; outline:none; font-family:inherit; transition:.2s; }
+.bs-form-card .ck-field input::placeholder, .bs-form-card .ck-field textarea::placeholder { color:rgba(254,252,241,.35); }
+.bs-form-card .ck-field input:focus, .bs-form-card .ck-field textarea:focus { border-color:rgba(254,252,241,.5); background:rgba(255,255,255,.15); }
 .bs-form-card .ck-field textarea { min-height:68px; resize:vertical; }
-
-.btn-send-bs {
-    width:100%; padding:11px; background:#FEFCF1; color:#1C145C;
-    border:none; border-radius:50px; font-size:13px; font-weight:700;
-    cursor:pointer; transition:.2s; display:flex; align-items:center;
-    justify-content:center; gap:7px; font-family:inherit; margin-top:10px;
-}
+.btn-send-bs { width:100%; padding:11px; background:#FEFCF1; color:#1C145C; border:none; border-radius:50px; font-size:13px; font-weight:700; cursor:pointer; transition:.2s; display:flex; align-items:center; justify-content:center; gap:7px; font-family:inherit; margin-top:10px; }
 .btn-send-bs:hover { background:#fff; box-shadow:0 4px 14px rgba(0,0,0,.18); }
-
 .bs-info-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; flex-shrink:0; }
-.bs-info-card {
-    background:#f8f7ff; border:1px solid #ece9f8;
-    border-radius:12px; padding:12px; text-align:center;
-}
-.bs-info-icon {
-    width:34px; height:34px; border-radius:9px; display:flex;
-    align-items:center; justify-content:center; font-size:15px; margin:0 auto 7px;
-}
+.bs-info-card { background:#f8f7ff; border:1px solid #ece9f8; border-radius:12px; padding:12px; text-align:center; }
+.bs-info-icon { width:34px; height:34px; border-radius:9px; display:flex; align-items:center; justify-content:center; font-size:15px; margin:0 auto 7px; }
 .bs-info-title { font-size:11px; font-weight:700; color:#1C145C; margin-bottom:1px; }
 .bs-info-val   { font-size:11px; color:#5a5480; line-height:1.45; }
-
 .bs-map-box { border-radius:12px; overflow:hidden; border:1px solid #e8e4d8; flex-shrink:0; }
 .bs-map-box iframe { width:100%; height:160px; display:block; border:0; }
 
-/* ============================================================
-   RESPONSIVE NAVBAR
-============================================================ */
-@media(max-width:1100px) { .nav-link-pill{ padding:7px 11px; font-size:13px; } }
+@media(max-width:1100px) { .nav-link-pill{padding:7px 11px;font-size:13px;} }
 @media(max-width:991px) {
-    body { padding-top: calc(38px + 64px); }
-    .navbar-float-wrap { top:38px; padding:4px 12px; }
-    .navbar-float { border-radius:26px; padding:8px 14px; }
-    .nav-links, .nav-cta { display:none; }
+    body { padding-top: calc(38px + 64px); } /* Mengikuti aturan untuk layar kecil di template awal atau disesuaikan dengan kebutuhan (disini saya biarkan body styling default download) */
+    .navbar-float-wrap { top:38px;padding:4px 12px; }
+    .navbar-float { border-radius:26px;padding:8px 14px; }
+    .nav-links,.nav-cta { display:none; }
     .nav-burger { display:flex; }
     .kontak-mega { display:none !important; }
 }
 @media(max-width:480px) { .navbar-float { border-radius:22px; } }
 
-
 /* ================================================================
-   BODY OVERRIDE (halaman download tidak punya padding extra)
+   BODY OVERRIDE (halaman download)
 ================================================================ */
 body { padding-top: 38px; }
 @media(max-width:991px){ body { padding-top: 38px; } }
@@ -386,8 +256,8 @@ body { padding-top: 38px; }
     position: relative; 
     height: 360px; 
     width: 100%;
-    display: flex; a
-    lign-items: center; 
+    display: flex; 
+    align-items: center; 
     color: #fff; 
     overflow: hidden;
 }
@@ -572,7 +442,6 @@ body { padding-top: 38px; }
 }
 </style>
 
-
 <!-- ============================================================
      TOPBAR
 ============================================================ -->
@@ -590,7 +459,6 @@ body { padding-top: 38px; }
     </div>
 </div>
 
-
 <!-- ============================================================
      NAVBAR
 ============================================================ -->
@@ -603,30 +471,40 @@ body { padding-top: 38px; }
         <div class="nav-links">
             <a href="/" class="nav-link-pill {{ request()->is('/') ? 'active' : '' }}">Beranda</a>
             <div class="drop-wrap">
-                <a href="#" class="nav-link-pill {{ request()->is('karir*','berita*','video*') ? 'active' : '' }}">
+                <a href="#" class="nav-link-pill {{ request()->is('karir*','berita*','video*','galeri*') ? 'active' : '' }}">
                     Menu <i class="bi bi-chevron-down chevron"></i>
                 </a>
                 <div class="drop-menu">
                     <a href="{{ url('/karir') }}"  class="drop-item"><i class="bi bi-briefcase"></i> Karir</a>
                     <a href="{{ url('/berita') }}" class="drop-item"><i class="bi bi-newspaper"></i> Berita</a>
                     <a href="{{ url('/video') }}"  class="drop-item"><i class="bi bi-play-circle"></i> Video</a>
+                    <a href="{{ url('/galeri') }}" class="drop-item"><i class="bi bi-images"></i> Galeri</a>
                 </div>
             </div>
             <div class="drop-wrap">
                 <a href="/layanan" class="nav-link-pill {{ request()->is('layanan*') ? 'active' : '' }}">
                     Layanan <i class="bi bi-chevron-down chevron"></i>
                 </a>
-                <div class="drop-menu" style="min-width:220px;">
-                    <a href="{{ url('/layanan') }}" class="drop-item"><i class="bi bi-grid-3x3-gap"></i> Semua Layanan</a>
-                    <div class="drop-divider"></div>
-                    <a href="{{ url('/layanan#igd') }}"          class="drop-item"><i class="bi bi-bandaid-fill"></i> IGD 24 Jam</a>
-                    <a href="{{ url('/layanan#rawatjalan') }}"   class="drop-item"><i class="bi bi-clipboard2-pulse"></i> Rawat Jalan</a>
-                    <a href="{{ url('/layanan#rawatinap') }}"    class="drop-item"><i class="bi bi-hospital"></i> Rawat Inap</a>
-                    <a href="{{ url('/layanan#ambulans') }}"     class="drop-item"><i class="bi bi-truck"></i> Ambulans</a>
-                    <a href="{{ url('/layanan#laboratorium') }}" class="drop-item"><i class="bi bi-eyedropper"></i> Laboratorium</a>
-                    <a href="{{ url('/layanan#radiologi') }}"    class="drop-item"><i class="bi bi-radioactive"></i> Radiologi</a>
-                    <a href="{{ url('/layanan#farmasi') }}"      class="drop-item"><i class="bi bi-capsule"></i> Farmasi</a>
-                    <a href="{{ url('/layanan#mcu') }}"          class="drop-item"><i class="bi bi-heart-pulse"></i> Medical Check Up</a>
+                <div class="drop-menu drop-menu-layanan">
+                    <div class="drop-column">
+                        <a href="{{ url('/layanan') }}" class="drop-item"><i class="bi bi-grid-3x3-gap"></i> Semua Layanan</a>
+                        <a href="{{ url('/layanan#igd') }}" class="drop-item"><i class="bi bi-bandaid-fill"></i> IGD 24 Jam</a>
+                        <a href="{{ url('/layanan#rawatjalan') }}" class="drop-item"><i class="bi bi-clipboard2-pulse"></i> Rawat Jalan</a>
+                        <a href="{{ url('/layanan#rawatinap') }}" class="drop-item"><i class="bi bi-hospital"></i> Rawat Inap</a>
+                        <a href="{{ url('/layanan#ambulans') }}" class="drop-item"><i class="bi bi-truck"></i> Ambulans</a>
+                    </div>
+                    <div class="drop-column">
+                        <a href="{{ url('/layanan#laboratorium') }}" class="drop-item"><i class="bi bi-eyedropper"></i> Laboratorium</a>
+                        <a href="{{ url('/layanan#radiologi') }}" class="drop-item"><i class="bi bi-radioactive"></i> Radiologi</a>
+                        <a href="{{ url('/layanan#farmasi') }}" class="drop-item"><i class="bi bi-capsule"></i> Farmasi</a>
+                        <a href="{{ url('/layanan#mcu') }}" class="drop-item"><i class="bi bi-heart-pulse"></i> Medical Check Up</a>
+                        <a href="{{ url('/layanan#intensif') }}" class="drop-item"><i class="bi bi-heart-pulse-fill"></i> ICU/NICU/HCU</a>
+                    </div>
+                    <div class="drop-column">
+                        <a href="{{ url('/layanan#vk') }}" class="drop-item"><i class="bi bi-gender-female"></i> Ruang Bersalin (VK)</a>
+                        <a href="{{ url('/layanan#ibs') }}" class="drop-item"><i class="bi bi-scissors"></i> Bedah Sentral (IBS)</a>
+                        <a href="{{ url('/layanan#rehab') }}" class="drop-item"><i class="bi bi-person-wheelchair"></i> Fisioterapi</a>
+                    </div>
                 </div>
             </div>
             <a href="/artikel"  class="nav-link-pill {{ request()->is('artikel*')  ? 'active' : '' }}">Artikel</a>
@@ -678,45 +556,43 @@ body { padding-top: 38px; }
                         </form>
                     </div>
                     <!-- KANAN: INFO + MAP -->
-                   <div class="kontak-info-panel">
-    <div class="kontak-info-grid">
-        <!-- TODO: ganti nomor IGD asli -->
-        <a href="https://wa.me/6281234500001" target="_blank" class="kontak-info-card">
-            <div class="kontak-info-icon ci-igd"><i class="bi bi-heart-pulse-fill"></i></div>
-            <div class="kontak-info-title">IGD 24 Jam</div>
-            <div class="kontak-info-val">0812-3450-0001</div>
-        </a>
-        <!-- TODO: ganti nomor Ambulans asli -->
-        <a href="https://wa.me/6281234500002" target="_blank" class="kontak-info-card">
-            <div class="kontak-info-icon ci-ambulans"><i class="bi bi-truck"></i></div>
-            <div class="kontak-info-title">Ambulans</div>
-            <div class="kontak-info-val">0812-3450-0002</div>
-        </a>
-        <a href="https://wa.me/6285292224886" target="_blank" class="kontak-info-card">
-            <div class="kontak-info-icon ci-wa"><i class="fa-brands fa-whatsapp"></i></div>
-            <div class="kontak-info-title">WhatsApp</div>
-            <div class="kontak-info-val">0852-9222-4886</div>
-        </a>
-        <a href="mailto:allam.medica@yahoo.co.id" class="kontak-info-card">
-            <div class="kontak-info-icon ci-email"><i class="bi bi-envelope-fill"></i></div>
-            <div class="kontak-info-title">Email</div>
-            <div class="kontak-info-val">allam.medica@<br>yahoo.co.id</div>
-        </a>
-    </div>
+                    <div class="kontak-info-panel">
+                        <div class="kontak-info-grid">
+                            <a href="https://wa.me/6281234500001" target="_blank" class="kontak-info-card">
+                                <div class="kontak-info-icon ci-igd"><i class="bi bi-heart-pulse-fill"></i></div>
+                                <div class="kontak-info-title">IGD 24 Jam</div>
+                                <div class="kontak-info-val">0812-3450-0001</div>
+                            </a>
+                            <a href="https://wa.me/6281234500002" target="_blank" class="kontak-info-card">
+                                <div class="kontak-info-icon ci-ambulans"><i class="bi bi-truck"></i></div>
+                                <div class="kontak-info-title">Ambulans</div>
+                                <div class="kontak-info-val">0812-3450-0002</div>
+                            </a>
+                            <a href="https://wa.me/6285292224886" target="_blank" class="kontak-info-card">
+                                <div class="kontak-info-icon ci-wa"><i class="fa-brands fa-whatsapp"></i></div>
+                                <div class="kontak-info-title">WhatsApp</div>
+                                <div class="kontak-info-val">0852-9222-4886</div>
+                            </a>
+                            <a href="mailto:allam.medica@yahoo.co.id" class="kontak-info-card">
+                                <div class="kontak-info-icon ci-email"><i class="bi bi-envelope-fill"></i></div>
+                                <div class="kontak-info-title">Email</div>
+                                <div class="kontak-info-val">allam.medica@<br>yahoo.co.id</div>
+                            </a>
+                        </div>
 
-    <div class="kontak-social-row">
-        <a href="https://www.tiktok.com/@allam.medica" target="_blank" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
-        <a href="https://www.facebook.com/allam.medicabmy?mibextid=LQQJ4d" target="_blank" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-        <a href="https://www.instagram.com/allam.medica/" target="_blank" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-    </div>
+                        <div class="kontak-social-row">
+                            <a href="https://www.tiktok.com/@allam.medica" target="_blank" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+                            <a href="https://www.facebook.com/allam.medicabmy?mibextid=LQQJ4d" target="_blank" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                            <a href="https://www.instagram.com/allam.medica/" target="_blank" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        </div>
 
-    <div class="kontak-map-box">
-        <iframe src="https://www.google.com/maps?q=RSU+Allam+Medica+Bumiayu&output=embed" loading="lazy"></iframe>
-    </div>
-    <a href="https://www.google.com/maps?q=RSU+Allam+Medica+Bumiayu" target="_blank" class="kontak-map-caption">
-        <i class="bi bi-geo-alt-fill"></i> Jl. P. Diponegoro No.609, Bumiayu, Brebes
-    </a>
-</div>
+                        <div class="kontak-map-box">
+                            <iframe src="https://www.google.com/maps?q=RSU+Allam+Medica+Bumiayu&output=embed" loading="lazy"></iframe>
+                        </div>
+                        <a href="https://www.google.com/maps?q=RSU+Allam+Medica+Bumiayu" target="_blank" class="kontak-map-caption">
+                            <i class="bi bi-geo-alt-fill"></i> Jl. P. Diponegoro No.609, Bumiayu, Brebes
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -739,14 +615,15 @@ body { padding-top: 38px; }
         <a href="/" class="d-link {{ request()->is('/') ? 'active' : '' }}">
             <span class="d-icon"><i class="bi bi-house"></i></span> Beranda
         </a>
-        <button class="d-accordion-btn {{ request()->is('karir*','berita*','video*') ? 'active-parent' : '' }}" data-target="acc-menu">
+        <button class="d-accordion-btn {{ request()->is('karir*','berita*','video*','galeri*') ? 'active-parent' : '' }}" data-target="acc-menu">
             <span class="d-acc-left"><span class="d-icon"><i class="bi bi-grid"></i></span> Menu</span>
             <i class="bi bi-chevron-down d-accordion-chevron"></i>
         </button>
-        <div class="d-accordion-body {{ request()->is('karir*','berita*','video*') ? 'open' : '' }}" id="acc-menu">
+        <div class="d-accordion-body {{ request()->is('karir*','berita*','video*','galeri*') ? 'open' : '' }}" id="acc-menu">
             <a href="{{ url('/karir') }}"  class="d-sub-link"><i class="bi bi-briefcase"></i> Karir</a>
             <a href="{{ url('/berita') }}" class="d-sub-link"><i class="bi bi-newspaper"></i> Berita</a>
             <a href="{{ url('/video') }}"  class="d-sub-link"><i class="bi bi-play-circle"></i> Video</a>
+            <a href="{{ url('/galeri') }}" class="d-sub-link"><i class="bi bi-images"></i> Galeri</a>
         </div>
         <div class="d-divider"></div>
         <button class="d-accordion-btn {{ request()->is('layanan*') ? 'active-parent' : '' }}" data-target="acc-layanan">
@@ -763,6 +640,10 @@ body { padding-top: 38px; }
             <a href="{{ url('/layanan#radiologi') }}"    class="d-sub-link"><i class="bi bi-radioactive"></i> Radiologi</a>
             <a href="{{ url('/layanan#farmasi') }}"      class="d-sub-link"><i class="bi bi-capsule"></i> Farmasi</a>
             <a href="{{ url('/layanan#mcu') }}"          class="d-sub-link"><i class="bi bi-heart-pulse"></i> Medical Check Up</a>
+            <a href="{{ url('/layanan#intensif') }}"     class="d-sub-link"><i class="bi bi-heart-pulse-fill"></i> ICU/NICU/HCU</a>
+            <a href="{{ url('/layanan#vk') }}"           class="d-sub-link"><i class="bi bi-gender-female"></i> Ruang Bersalin (VK)</a>
+            <a href="{{ url('/layanan#ibs') }}"          class="d-sub-link"><i class="bi bi-scissors"></i> Bedah Sentral (IBS)</a>
+            <a href="{{ url('/layanan#rehab') }}"        class="d-sub-link"><i class="bi bi-person-wheelchair"></i> Fisioterapi</a>
         </div>
         <div class="d-divider"></div>
         <a href="/artikel"  class="d-link {{ request()->is('artikel*')  ? 'active' : '' }}"><span class="d-icon"><i class="bi bi-journal-text"></i></span> Artikel</a>
@@ -775,12 +656,10 @@ body { padding-top: 38px; }
     </div>
 </aside>
 
-
 <!-- ============================================================
      BOTTOM SHEET KONTAK (mobile)
 ============================================================ -->
 <div class="bs-overlay" id="bsOverlay"></div>
-
 <div class="bs-sheet" id="bsSheet">
     <div class="bs-handle-wrap"><div class="bs-handle"></div></div>
     <div class="bs-header">
@@ -793,69 +672,49 @@ body { padding-top: 38px; }
             <div class="bs-sublabel">Kirim Pesan</div>
             <div class="bs-form-title">Get In <span>Touch</span></div>
             <form action="https://formspree.io/f/xaqzzypq" method="POST">
-                <div class="ck-field">
-                    <label>Nama</label>
-                    <input type="text" name="nama" placeholder="Nama lengkap" required>
-                </div>
-                <div class="ck-field">
-                    <label>Telepon</label>
-                    <input type="text" name="telepon" placeholder="No. telepon" required>
-                </div>
-                <div class="ck-field">
-                    <label>Email</label>
-                    <input type="email" name="email" placeholder="Email Anda" required>
-                </div>
-                <div class="ck-field">
-                    <label>Subject</label>
-                    <input type="text" name="subject" placeholder="Perihal" required>
-                </div>
-                <div class="ck-field">
-                    <label>Pesan</label>
-                    <textarea name="pesan" placeholder="Tulis pesan Anda..." required></textarea>
-                </div>
-                <button type="submit" class="btn-send-bs">
-                    <i class="bi bi-send-fill"></i> Kirim Pesan
-                </button>
+                <div class="ck-field"><label>Nama</label><input type="text" name="nama" placeholder="Nama lengkap" required></div>
+                <div class="ck-field"><label>Telepon</label><input type="text" name="telepon" placeholder="No. telepon" required></div>
+                <div class="ck-field"><label>Email</label><input type="email" name="email" placeholder="Email Anda" required></div>
+                <div class="ck-field"><label>Subject</label><input type="text" name="subject" placeholder="Perihal" required></div>
+                <div class="ck-field"><label>Pesan</label><textarea name="pesan" placeholder="Tulis pesan Anda..." required></textarea></div>
+                <button type="submit" class="btn-send-bs"><i class="bi bi-send-fill"></i> Kirim Pesan</button>
             </form>
         </div>
-       <div class="bs-info-grid">
-    <a href="https://wa.me/6281234500001" target="_blank" class="bs-info-card">
-        <div class="bs-info-icon ci-igd"><i class="bi bi-heart-pulse-fill"></i></div>
-        <div class="bs-info-title">IGD 24 Jam</div>
-        <div class="bs-info-val">0812-3450-0001</div>
-    </a>
-    <a href="https://wa.me/6281234500002" target="_blank" class="bs-info-card">
-        <div class="bs-info-icon ci-ambulans"><i class="bi bi-truck"></i></div>
-        <div class="bs-info-title">Ambulans</div>
-        <div class="bs-info-val">0812-3450-0002</div>
-    </a>
-    <a href="https://wa.me/6285292224886" target="_blank" class="bs-info-card">
-        <div class="bs-info-icon ci-wa"><i class="fa-brands fa-whatsapp"></i></div>
-        <div class="bs-info-title">WhatsApp</div>
-        <div class="bs-info-val">0852-9222-4886</div>
-    </a>
-    <a href="mailto:allam.medica@yahoo.co.id" class="bs-info-card">
-        <div class="bs-info-icon ci-email"><i class="bi bi-envelope-fill"></i></div>
-        <div class="bs-info-title">Email</div>
-        <div class="bs-info-val">allam.medica@yahoo.co.id</div>
-    </a>
-</div>
-
-<div class="kontak-social-row">
-    <a href="https://www.tiktok.com/@allam.medica" target="_blank" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
-    <a href="https://www.facebook.com/allam.medicabmy?mibextid=LQQJ4d" target="_blank" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-    <a href="https://www.instagram.com/allam.medica/" target="_blank" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-</div>
-
-<div class="bs-map-box">
-    <iframe src="https://www.google.com/maps?q=RSU+Allam+Medica+Bumiayu&output=embed" loading="lazy"></iframe>
-</div>
-<a href="https://www.google.com/maps?q=RSU+Allam+Medica+Bumiayu" target="_blank" class="kontak-map-caption">
-    <i class="bi bi-geo-alt-fill"></i> Jl. P. Diponegoro No.609, Bumiayu, Brebes
-</a>
+        <div class="bs-info-grid">
+            <a href="https://wa.me/6281234500001" target="_blank" class="bs-info-card">
+                <div class="bs-info-icon ci-igd"><i class="bi bi-heart-pulse-fill"></i></div>
+                <div class="bs-info-title">IGD 24 Jam</div>
+                <div class="bs-info-val">0812-3450-0001</div>
+            </a>
+            <a href="https://wa.me/6281234500002" target="_blank" class="bs-info-card">
+                <div class="bs-info-icon ci-ambulans"><i class="bi bi-truck"></i></div>
+                <div class="bs-info-title">Ambulans</div>
+                <div class="bs-info-val">0812-3450-0002</div>
+            </a>
+            <a href="https://wa.me/6285292224886" target="_blank" class="bs-info-card">
+                <div class="bs-info-icon ci-wa"><i class="fa-brands fa-whatsapp"></i></div>
+                <div class="bs-info-title">WhatsApp</div>
+                <div class="bs-info-val">0852-9222-4886</div>
+            </a>
+            <a href="mailto:allam.medica@yahoo.co.id" class="bs-info-card">
+                <div class="bs-info-icon ci-email"><i class="bi bi-envelope-fill"></i></div>
+                <div class="bs-info-title">Email</div>
+                <div class="bs-info-val">allam.medica@yahoo.co.id</div>
+            </a>
+        </div>
+        <div class="kontak-social-row">
+            <a href="https://www.tiktok.com/@allam.medica" target="_blank" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+            <a href="https://www.facebook.com/allam.medicabmy?mibextid=LQQJ4d" target="_blank" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.instagram.com/allam.medica/" target="_blank" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+        </div>
+        <div class="bs-map-box">
+            <iframe src="https://www.google.com/maps?q=RSU+Allam+Medica+Bumiayu&output=embed" loading="lazy"></iframe>
+        </div>
+        <a href="https://www.google.com/maps?q=RSU+Allam+Medica+Bumiayu" target="_blank" class="kontak-map-caption">
+            <i class="bi bi-geo-alt-fill"></i> Jl. P. Diponegoro No.609, Bumiayu, Brebes
+        </a>
     </div>
 </div>
-
 
 <!-- ============================================================
      SCRIPTS: NAVBAR + MEGA DROPDOWN + BOTTOM SHEET
@@ -930,7 +789,6 @@ document.addEventListener('DOMContentLoaded', function () {
     bsSheet.addEventListener('touchend',   e => { if (e.changedTouches[0].clientY - startY > 80) closeBs(); }, { passive: true });
 });
 </script>
-<!-- END NAVBAR + KONTAK PANEL -->
 
 
 <!-- ================================================================
@@ -1069,7 +927,7 @@ document.addEventListener('DOMContentLoaded', function () {
 .footer-rsu a:hover { color:#1C145C;padding-left:3px; }
 .footer-rsu .footer-contact-row  { display:flex;align-items:flex-start;gap:11px;margin-bottom:16px; }
 .footer-rsu .footer-contact-icon { width:34px;height:34px;border-radius:8px;background:rgba(28,20,92,.07);border:1px solid rgba(28,20,92,.1);display:flex;align-items:center;justify-content:center;color:#1C145C;flex-shrink:0; }
-.footer-rsu .footer-contact-text { font-size:13px;color:#5a5480;line-height:1.7; }
+.footer-rsu .footer-contact-text { font-size:13px;color:#5a5480;line-height:1.7;word-break:normal; }
 .footer-rsu hr { height:1px;background:linear-gradient(90deg,rgba(28,20,92,0) 0%,rgba(28,20,92,.12) 30%,rgba(28,20,92,.12) 70%,rgba(28,20,92,0) 100%);border:none;margin:36px 0 0; }
 .footer-rsu .footer-bottom { background:rgba(28,20,92,.05);padding:15px 36px; }
 .footer-rsu .footer-copy   { font-size:12.5px;color:#9994bb;display:flex;justify-content:space-between;align-items:center;gap:12px; }
@@ -1116,6 +974,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <li><a href="{{ url('/karir') }}">Karir</a></li>
                     <li><a href="{{ url('/berita') }}">Berita</a></li>
                     <li><a href="{{ url('/video') }}">Video</a></li>
+                    <li><a href="{{ url('/galeri') }}">Galeri</a></li>
                 </ul>
             </div>
             <div class="col-lg-2 col-md-4 col-6">
@@ -1164,6 +1023,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 <style>
 /* ============================================================
    FLOATING WHATSAPP BUTTON
