@@ -11,7 +11,8 @@ class GaleriController extends Controller
     {
         $kategori = $request->kategori;
 
-        $galeri = Galeri::when($kategori && $kategori != 'Semua', function ($q) use ($kategori) {
+        $galeri = Galeri::with('fotos')
+            ->when($kategori && $kategori != 'Semua', function ($q) use ($kategori) {
                 $q->where('kategori', $kategori);
             })
             ->latest()

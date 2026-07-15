@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Video;
-
+use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\IklanSliderController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\LayananController;
@@ -223,9 +223,21 @@ Route::get('/layanan/poli/{id}', [LayananController::class, 'showPoli'])
     ->name('layanan.poli');
 
 
-Route::resource('galeri', AdminGaleriController::class);
+// ADMIN
+Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+    // ...route admin lain yang sudah ada...
 
-Route::get('/galeri', [\App\Http\Controllers\GaleriController::class, 'index'])
-    ->name('galeri');
+    Route::prefix('galeri')->name('galeri.')->group(function () {
+        Route::get('/', [AdminGaleriController::class, 'index'])->name('index');
+        Route::post('/', [AdminGaleriController::class, 'store'])->name('store');
+        Route::put('/{id}', [AdminGaleriController::class, 'update'])->name('update');
+        Route::delete('/{id}', [AdminGaleriController::class, 'destroy'])->name('destroy');
+    });
+});
 
-    
+// PUBLIK
+Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri');
+
+Route::get('/faq', function () {
+    return view('faq');
+})->name('faq');

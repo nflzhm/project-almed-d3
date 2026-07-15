@@ -12,15 +12,16 @@ class Galeri extends Model
         'judul',
         'deskripsi',
         'kategori',
-        'gambar',
     ];
 
-    public function getGambarUrlAttribute(): ?string
+    public function fotos()
     {
-        if (!$this->gambar) {
-            return null;
-        }
+        return $this->hasMany(GaleriFoto::class)->orderBy('urutan');
+    }
 
-        return asset('uploads/galeri/' . $this->gambar);
+    public function getCoverFotoAttribute(): ?string
+    {
+        $first = $this->fotos->first();
+        return $first ? asset('uploads/galeri/' . $first->gambar) : null;
     }
 }

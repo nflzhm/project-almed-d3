@@ -674,7 +674,11 @@
                     <span class="submenu-dot"></span>
                     <span class="sidebar-label">Form Mutu</span>
                 </a>
-                
+                <a href="{{ route('admin.galeri.index') }}"
+                class="nav-link {{ request()->routeIs('admin.galeri.*') ? 'active' : '' }}">
+                    <span class="submenu-dot"></span>
+                    <span class="sidebar-label">Galeri</span>
+                </a>
             </div>
         </div>
 

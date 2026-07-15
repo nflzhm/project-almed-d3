@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
-    
+
     <style>
     @font-face {
         font-family: 'GothamBlack';
@@ -18,7 +18,7 @@
         font-weight: 900; font-style: normal;
     }
     h1, h2, h3, h4, h5 { font-family: 'GothamBlack', sans-serif !important; }
-    
+
     body {
         font-family: 'Segoe UI', sans-serif;
         background: #ffffff;
@@ -55,23 +55,23 @@
     .nav-link-pill.active { background:rgba(255,255,255,.35);color:#1C145C;font-weight:600; }
     .drop-wrap { position:relative; }
     .drop-menu { position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%) translateY(8px);min-width:200px;padding:8px;border-radius:22px;background:rgba(255,255,255,.92);backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.35);box-shadow:0 12px 35px rgba(15,23,42,.14);opacity:0;visibility:hidden;transition:.22s;z-index:100; }
-    
+
     /* FIX Hover Gap */
     .drop-menu::before { content: ""; position: absolute; top: -15px; left: 0; width: 100%; height: 15px; background: transparent; }
-    
+
     .drop-wrap:hover .drop-menu { opacity:1;visibility:visible;transform:translateX(-50%) translateY(0); }
     .drop-item { display:flex;align-items:center;gap:9px;padding:9px 13px;border-radius:12px;font-size:13.5px;color:#334155;text-decoration:none;transition:.18s;font-weight:500; }
     .drop-item:hover { background:rgba(28,20,92,.07);color:#1C145C; }
     .drop-item i { font-size:14px;color:#64748b;flex-shrink:0; }
     .drop-item:hover i { color:#1C145C; }
     .drop-divider { height:1px;background:rgba(0,0,0,.07);margin:4px 8px; }
-    
+
     /* LAYANAN MEGA DROPDOWN (Navbar) */
     .drop-menu-layanan { min-width:560px;max-width:min(94vw, 620px);padding:14px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 12px;align-items:start; }
     .drop-menu-layanan .drop-column { display:flex;flex-direction:column;gap:2px; }
     .drop-menu-layanan .drop-column + .drop-column { border-left:1px solid rgba(15,23,42,.06);padding-left:10px; }
     .drop-menu-layanan .drop-item { padding:8px 10px;font-size:13px; }
-    
+
     .chevron { font-size:11px;opacity:.6;transition:.25s; }
     .drop-wrap:hover .chevron { transform:rotate(180deg); }
     .nav-cta { position:relative;z-index:2; }
@@ -130,7 +130,7 @@
     .ck-row { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
     .btn-send-mega { margin-top: 12px; width: 100%; padding: 10px; background: #FEFCF1; color: #1C145C; border: none; border-radius: 50px; font-size: 13px; font-weight: 700; cursor: pointer; transition: .2s; display: flex; align-items: center; justify-content: center; gap: 7px; font-family: inherit; }
     .btn-send-mega:hover { background:#fff; transform:translateY(-1px); box-shadow:0 4px 14px rgba(0,0,0,.18); }
-    
+
     .kontak-info-panel { display:flex; flex-direction:column; gap:14px; }
     .kontak-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .kontak-info-card { background: #f8f7ff; border: 1px solid #ece9f8; border-radius: 12px; padding: 12px; text-align: center; }
@@ -177,7 +177,7 @@
     .d-link.active .d-icon { color:#1C145C; }
     .d-divider { height:1px;background:rgba(0,0,0,.07);margin:4px 2px; }
     .drawer-footer { padding:12px 14px 24px;border-top:1px solid rgba(0,0,0,.07);flex-shrink:0; }
-    
+
     .btn-kontak-drawer { border-radius:14px; display:block; text-align:center; padding:12px 22px; background:#1C145C; color:#fff!important; text-decoration:none!important; font-size:14px; font-weight:600; border:none; cursor:pointer; font-family:inherit; width:100%; transition:.2s; }
     .btn-kontak-drawer:hover { background:#2a1e8a; }
 
@@ -296,6 +296,14 @@
     .galeri-lightbox img { max-width:90vw;max-height:80vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.4); }
     .galeri-lightbox-caption { position:absolute;bottom:30px;left:0;right:0;text-align:center;color:#fff; }
     .galeri-lightbox-close { position:absolute;top:24px;right:28px;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.12);border:none;color:#fff;font-size:18px;cursor:pointer; }
+
+    /* Badge jumlah foto + navigasi lightbox (album multi-foto) */
+    .galeri-count-badge { position:absolute;top:12px;right:12px;background:rgba(12,26,46,.75);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;display:flex;align-items:center;gap:5px;z-index:2; }
+    .galeri-lightbox-nav { position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.12);border:none;color:#fff;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s; }
+    .galeri-lightbox-nav:hover { background:rgba(255,255,255,.22); }
+    .galeri-lightbox-prev { left:24px; }
+    .galeri-lightbox-next { right:24px; }
+    @media(max-width:576px) { .galeri-lightbox-nav { width:38px;height:38px;font-size:16px; } .galeri-lightbox-prev { left:10px; } .galeri-lightbox-next { right:10px; } }
 
     @media(max-width:576px) { .galeri-grid { grid-template-columns:repeat(2,1fr);gap:10px; } }
 
@@ -456,7 +464,7 @@
             <a href="/tentang"  class="nav-link-pill {{ request()->is('tentang*')  ? 'active' : '' }}">Tentang Kami</a>
             <a href="/mutu"     class="nav-link-pill {{ request()->is('mutu*')     ? 'active' : '' }}">Mutu</a>
         </div>
-        
+
         <!-- KONTAK MEGA DROPDOWN -->
         <div class="nav-cta kontak-wrap" id="kontakWrap">
             <button class="btn-kontak" id="btnKontakDesktop" type="button">Kontak</button>
@@ -742,8 +750,17 @@ document.addEventListener('DOMContentLoaded', function () {
         @if($galeri->count())
         <div class="galeri-grid">
             @foreach($galeri as $item)
-            <div class="galeri-card" onclick="openLightbox('{{ asset('uploads/galeri/'.$item->gambar) }}', `{{ addslashes($item->judul) }}`)">
-                <img src="{{ asset('uploads/galeri/' . $item->gambar) }}" alt="{{ $item->judul }}" loading="lazy">
+            @php $fotos = $item->fotos->map(fn($f) => asset('uploads/galeri/'.$f->gambar)); @endphp
+            <div class="galeri-card"
+                 data-fotos="{{ $fotos->toJson() }}"
+                 data-judul="{{ $item->judul }}"
+                 onclick="openAlbum(this)">
+                @if($fotos->first())
+                <img src="{{ $fotos->first() }}" alt="{{ $item->judul }}" loading="lazy">
+                @endif
+                @if($fotos->count() > 1)
+                <span class="galeri-count-badge"><i class="bi bi-images"></i> {{ $fotos->count() }}</span>
+                @endif
                 <div class="galeri-overlay">
                     <span class="galeri-cat">{{ $item->kategori }}</span>
                     <div class="galeri-title">{{ $item->judul }}</div>
@@ -763,7 +780,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 <div class="galeri-lightbox" id="galeriLightbox" onclick="closeLightbox(event)">
     <button class="galeri-lightbox-close" onclick="closeLightbox(event)"><i class="bi bi-x-lg"></i></button>
+    <button class="galeri-lightbox-nav galeri-lightbox-prev" onclick="navAlbum(event,-1)"><i class="bi bi-chevron-left"></i></button>
     <img id="galeriLightboxImg" src="" alt="">
+    <button class="galeri-lightbox-nav galeri-lightbox-next" onclick="navAlbum(event,1)"><i class="bi bi-chevron-right"></i></button>
     <div class="galeri-lightbox-caption" id="galeriLightboxCaption"></div>
 </div>
 
@@ -854,18 +873,48 @@ document.addEventListener('DOMContentLoaded', function () {
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-function openLightbox(src, caption) {
-    document.getElementById('galeriLightboxImg').src = src;
-    document.getElementById('galeriLightboxCaption').textContent = caption;
+let currentFotos = [];
+let currentIndex = 0;
+let currentJudul = '';
+
+function openAlbum(el) {
+    currentFotos = JSON.parse(el.dataset.fotos);
+    currentJudul = el.dataset.judul;
+    currentIndex = 0;
+    if (!currentFotos.length) return;
+    showLightboxImage();
     document.getElementById('galeriLightbox').classList.add('show');
     document.body.style.overflow = 'hidden';
 }
+
+function showLightboxImage() {
+    document.getElementById('galeriLightboxImg').src = currentFotos[currentIndex];
+    const caption = currentFotos.length > 1
+        ? `${currentJudul} (${currentIndex + 1}/${currentFotos.length})`
+        : currentJudul;
+    document.getElementById('galeriLightboxCaption').textContent = caption;
+}
+
+function navAlbum(e, dir) {
+    e.stopPropagation();
+    if (currentFotos.length <= 1) return;
+    currentIndex = (currentIndex + dir + currentFotos.length) % currentFotos.length;
+    showLightboxImage();
+}
+
 function closeLightbox(e) {
     if (e.target.id === 'galeriLightbox' || e.target.closest('.galeri-lightbox-close')) {
         document.getElementById('galeriLightbox').classList.remove('show');
         document.body.style.overflow = '';
     }
 }
+
+document.addEventListener('keydown', function (e) {
+    if (!document.getElementById('galeriLightbox').classList.contains('show')) return;
+    if (e.key === 'ArrowRight') navAlbum(e, 1);
+    if (e.key === 'ArrowLeft') navAlbum(e, -1);
+    if (e.key === 'Escape') { document.getElementById('galeriLightbox').classList.remove('show'); document.body.style.overflow = ''; }
+});
 </script>
 
 <!-- ============================================================
