@@ -1633,6 +1633,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <li><a href="{{ url('/tentang') }}">Tentang Kami</a></li>
                     <li><a href="{{ url('/mutu') }}">Mutu</a></li>
                     <li><a href="{{ url('/kontak') }}">Kontak</a></li>
+                    <li><a href="{{ url('/faq') }}">FAQ</a></li>
                 </ul>
 
             </div>

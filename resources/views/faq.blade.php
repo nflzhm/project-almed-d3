@@ -741,8 +741,8 @@
 <style>body { padding-top: 38px; }</style>
 
 {{-- ============================================================
-     DUMMY DATA FAQ — dikelompokkan per kategori
-     Ganti / sambungkan ke database (mis. Faq::all()->groupBy('kategori')) kapan pun dibutuhkan
+     DATA FAQ — dikelompokkan per kategori dengan penambahan pertanyaan 
+     seputar rumah sakit
 ============================================================ --}}
 @php
 $faqGroups = [
@@ -752,6 +752,8 @@ $faqGroups = [
         'items' => [
             ['q' => 'Bagaimana cara mendaftar sebagai pasien baru di RSU Allam Medica?', 'a' => 'Pasien baru dapat mendaftar langsung di loket pendaftaran rawat jalan dengan membawa KTP dan kartu BPJS (jika ada). Pendaftaran juga dapat dilakukan melalui WhatsApp Admin untuk mendapatkan nomor antrean lebih awal.'],
             ['q' => 'Apakah bisa mendaftar rawat jalan secara online?', 'a' => 'Saat ini pendaftaran online tersedia melalui WhatsApp Admin. Cukup kirimkan nama, keluhan, dan poli yang dituju, admin kami akan membantu mengatur jadwal kunjungan Anda.'],
+            ['q' => 'Bisakah saya mendaftar untuk jadwal dokter hari berikutnya (H-1)?', 'a' => 'Ya, pendaftaran untuk hari berikutnya (H-1) sangat disarankan untuk mengamankan nomor antrean. Anda bisa mendaftar melalui WhatsApp Admin sehari sebelum jadwal periksa.'],
+            ['q' => 'Jam berapa loket pendaftaran rawat jalan mulai dibuka?', 'a' => 'Loket pendaftaran rawat jalan buka setiap hari Senin-Sabtu mulai pukul 07.00 WIB.'],
         ],
     ],
     [
@@ -759,7 +761,9 @@ $faqGroups = [
         'icon' => 'bi-shield-check',
         'items' => [
             ['q' => 'Apakah RSU Allam Medica melayani pasien BPJS Kesehatan?', 'a' => 'Ya, kami melayani pasien BPJS Kesehatan untuk rawat jalan maupun rawat inap sesuai dengan prosedur rujukan yang berlaku. Pastikan kartu BPJS dan rujukan (jika diperlukan) dibawa saat berkunjung.'],
-            ['q' => 'Apa saja syarat menggunakan BPJS untuk rawat inap?', 'a' => 'Syarat umumnya meliputi kartu BPJS aktif, KTP, kartu keluarga, dan surat rujukan dari FKTP atau puskesmas, kecuali untuk kondisi gawat darurat yang dapat langsung ditangani di IGD.'],
+            ['q' => 'Apa saja syarat menggunakan BPJS untuk rawat inap?', 'a' => 'Syarat umumnya meliputi kartu BPJS aktif, KTP, kartu keluarga, dan surat rujukan dari FKTP atau puskesmas, kecuali untuk kondisi gawat darurat yang dapat langsung ditangani di IGD tanpa rujukan awal.'],
+            ['q' => 'Apakah surat rujukan BPJS dari Faskes Tingkat 1 ada masa berlakunya?', 'a' => 'Ya, surat rujukan BPJS umumnya berlaku maksimal selama 90 hari sejak tanggal diterbitkan, selama pasien masih membutuhkan kontrol rutin untuk penyakit yang sama.'],
+            ['q' => 'Selain BPJS, asuransi kesehatan swasta apa saja yang diterima?', 'a' => 'RSU Allam Medica bekerjasama dengan Jasa Raharja untuk kasus kecelakaan lalu lintas, serta beberapa penyedia asuransi swasta lainnya. Silakan hubungi bagian pendaftaran/admin untuk memastikan asuransi Anda telah ter-cover.'],
         ],
     ],
     [
@@ -767,15 +771,36 @@ $faqGroups = [
         'icon' => 'bi-calendar-week',
         'items' => [
             ['q' => 'Bagaimana cara mengetahui jadwal praktik dokter spesialis?', 'a' => 'Jadwal dokter dapat dilihat pada halaman Jadwal Dokter di website kami, atau dengan menghubungi Admin melalui WhatsApp untuk informasi jadwal terbaru dan ketersediaan kuota.'],
-            ['q' => 'Apakah jadwal dokter bisa berubah sewaktu-waktu?', 'a' => 'Ya, jadwal praktik dokter dapat berubah sewaktu-waktu menyesuaikan kondisi tertentu. Kami sarankan untuk mengonfirmasi kembali melalui WhatsApp Admin sebelum berkunjung.'],
+            ['q' => 'Apakah jadwal dokter bisa berubah sewaktu-waktu?', 'a' => 'Ya, jadwal praktik dokter dapat berubah sewaktu-waktu menyesuaikan kondisi tertentu atau tindakan operasi mendadak. Kami sarankan untuk mengonfirmasi kembali melalui WhatsApp Admin sebelum berkunjung.'],
+            ['q' => 'Apakah tersedia layanan Dokter Spesialis Kandungan (Obgyn) perempuan?', 'a' => 'Ya, kami memiliki dokter spesialis kandungan perempuan. Anda dapat memeriksa jadwal spesifik beliau di halaman jadwal atau bertanya langsung ke Admin WhatsApp kami.'],
+            ['q' => 'Bagaimana jika dokter yang saya tuju berhalangan hadir (cuti/sakit)?', 'a' => 'Jika Anda sudah mendaftar dan dokter berhalangan, admin kami akan menghubungi Anda untuk menawarkan penjadwalan ulang atau pengalihan ke dokter spesialis lain yang bertugas di hari tersebut.'],
         ],
     ],
     [
-        'kategori' => 'Layanan IGD',
+        'kategori' => 'Rawat Inap & Jam Besuk',
+        'icon' => 'bi-hospital',
+        'items' => [
+            ['q' => 'Apa saja pilihan kelas ruang rawat inap di RSU Allam Medica?', 'a' => 'Kami menyediakan berbagai fasilitas ruang rawat inap mulai dari Kelas 3, Kelas 2, Kelas 1, VIP, hingga VVIP yang dirancang untuk kenyamanan pemulihan pasien.'],
+            ['q' => 'Apakah ada aturan jam besuk (jam kunjungan) untuk pasien rawat inap?', 'a' => 'Ya, untuk mendukung istirahat pasien, jam besuk dibagi dua: Siang (11.00-13.00 WIB) dan Sore/Malam (16.00-19.00 WIB). Anak sehat di bawah usia 12 tahun tidak disarankan dibawa berkunjung ke area perawatan.'],
+            ['q' => 'Berapa jumlah maksimal penunggu pasien di ruang rawat inap?', 'a' => 'Demi kenyamanan dan pencegahan infeksi, pasien diizinkan ditunggu oleh maksimal 1 hingga 2 orang keluarga dengan kartu tunggu resmi dari rumah sakit.'],
+        ],
+    ],
+    [
+        'kategori' => 'Layanan IGD & Ambulans',
         'icon' => 'bi-bandaid-fill',
         'items' => [
-            ['q' => 'Apakah IGD RSU Allam Medica buka 24 jam?', 'a' => 'Ya, Instalasi Gawat Darurat (IGD) kami melayani pasien selama 24 jam penuh, 7 hari seminggu, termasuk hari libur nasional.'],
-            ['q' => 'Bagaimana cara memanggil ambulans dalam kondisi darurat?', 'a' => 'Anda dapat menghubungi nomor Ambulans kami yang tertera pada bagian Kontak di website, atau melalui tombol WhatsApp Admin untuk penanganan cepat dalam situasi darurat.'],
+            ['q' => 'Apakah IGD RSU Allam Medica buka 24 jam?', 'a' => 'Ya, Instalasi Gawat Darurat (IGD) kami melayani pasien dengan keluhan kegawatdaruratan medis selama 24 jam penuh, 7 hari seminggu, termasuk hari libur nasional.'],
+            ['q' => 'Bagaimana cara memanggil ambulans dalam kondisi darurat?', 'a' => 'Anda dapat menghubungi nomor Ambulans kami di 0812-3450-0002 atau melalui tombol bantuan WhatsApp darurat yang tertera pada website.'],
+            ['q' => 'Apakah pelayanan IGD mengutamakan nomor antrean?', 'a' => 'Tidak. Penanganan di IGD menggunakan sistem Triase (berdasarkan tingkat keparahan dan kegawatdaruratan medis pasien), bukan berdasarkan siapa yang datang lebih dulu.'],
+        ],
+    ],
+    [
+        'kategori' => 'Fasilitas & Penunjang',
+        'icon' => 'bi-capsule',
+        'items' => [
+            ['q' => 'Apakah rumah sakit ini memiliki layanan laboratorium dan rontgen sendiri?', 'a' => 'Ya, kami memiliki Instalasi Laboratorium dan Radiologi (Rontgen) mandiri yang beroperasi 24 jam untuk mendukung diagnosis dokter secara cepat dan tepat.'],
+            ['q' => 'Apakah bisa membeli obat langsung tanpa resep dari dalam rumah sakit?', 'a' => 'Instalasi Farmasi kami melayani resep dari dokter RSU Allam Medica maupun resep luar. Untuk obat-obatan bebas (tanpa resep dokter merah), dapat dilayani sesuai ketersediaan.'],
+            ['q' => 'Apakah tersedia fasilitas area parkir dan kantin?', 'a' => 'Ya, kami menyediakan area parkir kendaraan (motor dan mobil) di lingkungan rumah sakit, serta fasilitas kantin untuk memudahkan kebutuhan keluarga pasien.'],
         ],
     ],
     [
@@ -783,7 +808,8 @@ $faqGroups = [
         'icon' => 'bi-question-circle',
         'items' => [
             ['q' => 'Dimana lokasi RSU Allam Medica berada?', 'a' => 'RSU Allam Medica berlokasi di Jl. Pangeran Diponegoro No. 609, Jatisawit, Bumiayu, Kabupaten Brebes, Jawa Tengah 52273. Peta lokasi tersedia pada menu Kontak.'],
-            ['q' => 'Apa saja jam operasional layanan rawat jalan?', 'a' => 'Layanan rawat jalan buka setiap Senin–Sabtu pukul 07.00–21.00 WIB, sedangkan IGD, Laboratorium, dan Farmasi melayani selama 24 jam.'],
+            ['q' => 'Apa saja jam operasional layanan rawat jalan?', 'a' => 'Layanan rawat jalan (poliklinik) buka setiap Senin–Sabtu pukul 07.00–21.00 WIB. Hari Minggu poliklinik tutup, namun IGD, Laboratorium, dan Farmasi tetap melayani 24 jam penuh.'],
+            ['q' => 'Apakah menerima pasien untuk layanan Medical Check Up (MCU) kerja?', 'a' => 'Ya, kami menyediakan layanan Medical Check Up (MCU) untuk keperluan melamar kerja, masuk perguruan tinggi, maupun skrining kesehatan rutin.'],
         ],
     ],
 ];
@@ -834,7 +860,7 @@ $totalFaq = collect($faqGroups)->sum(fn($g) => count($g['items']));
                     Semua <span class="cat-count">{{ $totalFaq }}</span>
                 </button>
                 @foreach($faqGroups as $group)
-                    <button type="button" class="faq-cat-btn" data-kat="{{ strtolower($group['kategori']) }}">
+                    <button type="button" class="faq-cat-btn" data-kat="{{ strtolower(str_replace([' ', '&'], ['-', 'and'], $group['kategori'])) }}">
                         {{ $group['kategori'] }} <span class="cat-count">{{ count($group['items']) }}</span>
                     </button>
                 @endforeach
@@ -844,11 +870,11 @@ $totalFaq = collect($faqGroups)->sum(fn($g) => count($g['items']));
             <div>
                 <div class="faq-list" id="faqList">
                     @forelse($faqGroups as $gi => $group)
-                    <div class="faq-group" data-kat="{{ strtolower($group['kategori']) }}">
+                    <div class="faq-group" data-kat="{{ strtolower(str_replace([' ', '&'], ['-', 'and'], $group['kategori'])) }}">
                         <div class="faq-group-label">{{ $group['kategori'] }}</div>
                         @foreach($group['items'] as $ii => $item)
                         @php $key = $gi.'-'.$ii; @endphp
-                        <div class="faq-item" data-kat="{{ strtolower($group['kategori']) }}" data-q="{{ strtolower($item['q']) }}">
+                        <div class="faq-item" data-kat="{{ strtolower(str_replace([' ', '&'], ['-', 'and'], $group['kategori'])) }}" data-q="{{ strtolower($item['q']) }}">
                             <button type="button" class="faq-q" data-target="faqA{{ $key }}">
                                 <div class="faq-q-left">
                                     <div class="faq-q-icon"><i class="bi {{ $group['icon'] }}"></i></div>
@@ -882,7 +908,7 @@ $totalFaq = collect($faqGroups)->sum(fn($g) => count($g['items']));
 
                 <div class="faq-cta">
                     <div class="faq-cta-text">
-                        <h4>Masih punya pertanyaan? 🙋</h4>
+                        <h4>Masih punya pertanyaan?</h4>
                         <p>Tim Admin kami siap membantu Anda, hubungi kami langsung.</p>
                     </div>
                     <div class="faq-cta-btns">
@@ -1272,6 +1298,7 @@ $totalFaq = collect($faqGroups)->sum(fn($g) => count($g['items']));
                     <li><a href="{{ url('/tentang') }}">Tentang Kami</a></li>
                     <li><a href="{{ url('/mutu') }}">Mutu</a></li>
                     <li><a href="{{ url('/kontak') }}">Kontak</a></li>
+                    <li><a href="{{ url('/faq') }}">FAQ</a></li>
                 </ul>
 
             </div>

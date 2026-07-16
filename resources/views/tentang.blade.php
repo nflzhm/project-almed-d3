@@ -481,18 +481,57 @@ body {
 /* ============================================================
    SAMBUTAN DIREKTUR
 ============================================================ */
-.sambutan-section { padding:60px 0;background:transparent;position:relative;overflow:visible; }
+.sambutan-section { padding:80px 0 70px;background:transparent;position:relative;overflow:visible; }
 .sambutan-section::before { content:'';position:absolute;left:-130px;bottom:-80px;width:360px;height:360px;background:url('{{ asset("images/beranda/ornamen.png") }}') center/contain no-repeat;opacity:.04;pointer-events:none;z-index:0; }
 .sambutan-section .container { position:relative;z-index:2; }
-.sambutan-photo-wrap { position:relative;border-radius:20px;overflow:hidden;box-shadow:0 15px 40px rgba(0,0,0,0.12); }
-.sambutan-photo-wrap img { width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:4/5; }
-.sambutan-photo-caption { position:absolute;left:0;right:0;bottom:0;background:linear-gradient(to top,rgba(28,20,92,.92),rgba(28,20,92,0));padding:26px 20px 16px;color:#fff; }
-.sambutan-photo-caption .nama { font-weight:800;font-size:16px;margin-bottom:2px; }
-.sambutan-photo-caption .jabatan { font-size:12px;color:rgba(255,255,255,.8); }
-.sambutan-quote-icon { font-size:46px;color:rgba(28,20,92,.12);line-height:1;margin-bottom:6px; }
-.sambutan-text { font-size:14.5px;color:#555;line-height:1.85;text-align:justify; }
-.sambutan-signoff { margin-top:18px;display:flex;align-items:center;gap:12px; }
-.sambutan-signoff .icon-box { width:38px;height:38px; }
+
+.sambutan-eyebrow { display:flex;align-items:center;gap:10px;margin-bottom:8px; }
+.sambutan-eyebrow span { font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#1C145C; }
+.sambutan-eyebrow::before { content:'';width:26px;height:2px;background:#1C145C;border-radius:2px; }
+.sambutan-heading-sub { font-size:13px;color:#8d87b0;margin-bottom:34px; }
+
+.sambutan-card { background:#fff;border-radius:26px;box-shadow:0 20px 55px rgba(15,23,42,.08);border:1px solid #f0eef8;overflow:hidden;position:relative; }
+.sambutan-card::before { content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,#1C145C 0%,#6c63ff 50%,#1C145C 100%); }
+.sambutan-card-inner { display:grid;grid-template-columns:300px 1fr;gap:0; }
+
+/* kolom foto */
+.sambutan-photo-col { background:#f8f7ff;padding:36px 30px;display:flex;flex-direction:column;align-items:center;text-align:center;border-right:1px solid #f0eef8;position:relative; }
+.sambutan-photo-ring { width:100%;max-width:220px;aspect-ratio:1/1;border-radius:50%;padding:6px;background:linear-gradient(135deg,#1C145C,#6c63ff);margin-bottom:18px;position:relative; }
+.sambutan-photo-ring img { width:100%;height:100%;object-fit:cover;border-radius:50%;border:4px solid #f8f7ff;display:block; }
+.sambutan-photo-badge { position:absolute;bottom:14px;right:calc(50% - 110px + 4px);background:#1C145C;color:#fff;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;border:3px solid #f8f7ff;box-shadow:0 6px 14px rgba(28,20,92,.3); }
+.sambutan-photo-nama { font-weight:800;font-size:15.5px;color:#1C145C;line-height:1.35; }
+.sambutan-photo-jabatan { font-size:11.5px;color:#8d87b0;margin-top:4px;margin-bottom:18px; }
+.sambutan-photo-tagbox { background:#1C145C;border-radius:12px;padding:12px 14px;position:relative;overflow:hidden;width:100%; }
+.sambutan-photo-tagbox .tb-ornament { position:absolute;bottom:-24px;right:-24px;width:90px;height:90px;opacity:.1;background-image:url('{{ asset("images/beranda/ornamen.png") }}');background-size:contain;background-repeat:no-repeat;filter:brightness(10);pointer-events:none; }
+.sambutan-photo-tagbox p { position:relative;z-index:1;font-size:11.5px;font-weight:700;color:#FEFCF1;margin:0;line-height:1.5;font-style:italic; }
+
+/* kolom surat */
+.sambutan-letter-col { padding:38px 42px 34px;position:relative; }
+.sambutan-quote-icon { font-size:44px;color:rgba(28,20,92,.10);line-height:1;margin-bottom:2px; }
+.sambutan-salam { font-size:15px;color:#1C145C;font-weight:700;margin-bottom:2px; }
+.sambutan-salam + .sambutan-salam { font-weight:600;color:#3C3489;margin-bottom:16px; }
+.sambutan-text { font-size:14.5px;color:#555;line-height:1.9;text-align:justify;margin-bottom:14px; }
+.sambutan-motto-box { background:linear-gradient(135deg,#f8f7ff,#f1effc);border-left:3px solid #1C145C;border-radius:0 14px 14px 0;padding:18px 22px;margin:22px 0; }
+.sambutan-motto-box p.sambutan-text { margin-bottom:0;text-align:left;color:#3C3489; }
+.sambutan-motto-box strong { color:#1C145C; }
+.sambutan-divider { height:1px;background:linear-gradient(90deg,rgba(28,20,92,.14),transparent);margin:26px 0 22px; }
+.sambutan-signoff { display:flex;align-items:center;gap:14px; }
+.sambutan-signoff .icon-box { width:44px;height:44px;flex-shrink:0; }
+.sambutan-signoff-name { font-weight:800;color:#1C145C;font-size:14.5px; }
+.sambutan-signoff-jabatan { font-size:11.5px;color:#8d87b0;margin-top:1px; }
+.sambutan-signoff-tagline { margin-top:10px;font-size:11.5px;color:#666;font-style:italic;line-height:1.6; }
+.sambutan-signoff-tagline strong { color:#1C145C;font-style:normal; }
+
+@media(max-width:991px) {
+    .sambutan-card-inner { grid-template-columns:1fr; }
+    .sambutan-photo-col { border-right:none;border-bottom:1px solid #f0eef8;padding:30px 24px; }
+    .sambutan-photo-ring { max-width:160px; }
+    .sambutan-letter-col { padding:30px 24px; }
+}
+@media(max-width:480px) {
+    .sambutan-letter-col { padding:26px 18px; }
+    .sambutan-photo-col { padding:26px 18px; }
+}
 
 /* ============================================================
    STRUKTUR ORGANISASI
@@ -1024,49 +1063,99 @@ document.addEventListener('DOMContentLoaded', function () {
     </div>
 </section>
 
-<!-- ============================================================
-     SAMBUTAN DIREKTUR
-============================================================ -->
+
 <section class="sambutan-section">
     <div class="container">
-        <h4 class="fw-bold mb-4">Sambutan Direktur</h4>
-        <div class="row align-items-center g-4">
-            <div class="col-md-4">
-                <div class="sambutan-photo-wrap">
-                    {{-- Ganti src di bawah dengan foto Direktur --}}
-                    <img src="{{ asset('images/beranda/dr. hardyansyah, MPH-MMR.png') }}" alt="Direktur RSU Allam Medica">
-                    <div class="sambutan-photo-caption">
-                        <div class="nama">dr. Hardyansyah, MPH-MMR</div>
-                        <div class="jabatan">Direktur RSU Allam Medica Bumiayu</div>
+        <div class="sambutan-eyebrow"><span>Sambutan</span></div>
+        <h4 class="fw-bold mb-1">Sambutan Direktur</h4>
+        <p class="sambutan-heading-sub">Pesan resmi dari pimpinan RSU Allam Medica Bumiayu</p>
+
+        <div class="sambutan-card" data-aos="fade-up">
+            <div class="sambutan-card-inner">
+
+                <div class="sambutan-photo-col">
+                    <div class="sambutan-photo-ring">
+                        {{-- Ganti src di bawah dengan foto Direktur --}}
+                        <img src="{{ asset('images/beranda/dr. hardyansyah, MPH-MMR.png') }}" alt="Direktur RSU Allam Medica">
+                        <div class="sambutan-photo-badge"><i class="bi bi-patch-check-fill"></i></div>
+                    </div>
+                    <div class="sambutan-photo-nama">dr. Hardyansyah, MPH-MMR</div>
+                    <div class="sambutan-photo-jabatan">Direktur RSU Allam Medica Bumiayu</div>
+                    <div class="sambutan-photo-tagbox">
+                        <div class="tb-ornament"></div>
+                        <p>"Kesehatan Anda, Tujuan Kami"</p>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-8">
-                <div class="sambutan-quote-icon"><i class="bi bi-quote"></i></div>
-                <p class="sambutan-text">
-                    Assalamu'alaikum warahmatullahi wabarakatuh. Puji syukur kami panjatkan atas rahmat dan karunia-Nya sehingga RSU Allam Medica Bumiayu dapat terus tumbuh dan berkembang dalam melayani masyarakat Kabupaten Brebes dan sekitarnya sejak tahun 2012.
-                </p>
-                <p class="sambutan-text">
-                    Kami berkomitmen untuk terus meningkatkan mutu pelayanan melalui pengembangan sumber daya manusia yang kompeten, fasilitas yang memadai, serta penerapan standar keselamatan pasien yang berkelanjutan menuju akreditasi paripurna. Seluruh jajaran manajemen dan staf RSU Allam Medica berkomitmen menjadikan kesehatan Anda sebagai prioritas utama kami.
-                </p>
-                <p class="sambutan-text">
-                    Atas nama seluruh keluarga besar RSU Allam Medica Bumiayu, kami mengucapkan terima kasih atas kepercayaan masyarakat yang telah menjadikan kami sebagai mitra kesehatan. Semoga kerja sama dan kepercayaan ini terus terjalin dengan baik.
-                </p>
-                <div class="sambutan-signoff">
-                    <div class="icon-box icon-primary"><i class="bi bi-pen-fill"></i></div>
-                    <div>
-                        <div style="font-weight:700;color:#1C145C;font-size:13.5px;">dr. Hardyansyah, MPH-MMR</div>
-                        <div style="font-size:11.5px;color:#888;">Direktur RSU Allam Medica Bumiayu</div>
+
+                <div class="sambutan-letter-col">
+                    <div class="sambutan-quote-icon">
+                        <i class="bi bi-quote"></i>
+                    </div>
+
+                    <p class="sambutan-salam">Assalamu'alaikum warahmatullahi wabarakatuh.</p>
+                    <p class="sambutan-salam">Selamat datang di RSU Allam Medica Bumiayu.</p>
+
+                    <p class="sambutan-text">
+                        Merupakan sebuah kehormatan bagi kami untuk menjadi bagian dari perjalanan kesehatan masyarakat Kabupaten Brebes dan sekitarnya. Sejak berdiri pada tahun 2012, kami terus bertumbuh dengan satu keyakinan bahwa pelayanan kesehatan terbaik lahir dari perpaduan antara kompetensi, kepedulian, inovasi, dan integritas.
+                    </p>
+
+                    <p class="sambutan-text">
+                        Di RSU Allam Medica Bumiayu, setiap pasien adalah amanah yang kami layani dengan sepenuh hati. Oleh karena itu, kami terus memperkuat kualitas sumber daya manusia, menghadirkan teknologi medis yang semakin modern, mengembangkan layanan-layanan unggulan, serta membangun budaya pelayanan yang mengutamakan keselamatan pasien, profesionalisme, dan pengalaman berobat yang nyaman.
+                    </p>
+
+                    <p class="sambutan-text">
+                        Kami percaya bahwa rumah sakit bukan hanya tempat untuk mengobati penyakit, tetapi juga menjadi mitra kesehatan keluarga yang mampu memberikan solusi pelayanan secara komprehensif, cepat, tepat, dan terpercaya.
+                    </p>
+
+                    <p class="sambutan-text">
+                        Ke depan, kami memiliki komitmen untuk menjadikan RSU Allam Medica Bumiayu sebagai rumah sakit rujukan yang unggul di wilayah selatan Kabupaten Brebes dan sekitarnya melalui pengembangan layanan berbasis kompetensi, digitalisasi pelayanan, peningkatan mutu berkelanjutan, serta penguatan layanan unggulan seperti Neuroscience Center, Rehabilitation Center, Orthopaedi, Jantung, Mata, dan layanan spesialistik lainnya yang didukung oleh fasilitas diagnostik modern dan tenaga kesehatan yang kompeten.
+                    </p>
+
+                    <p class="sambutan-text">
+                        Kepercayaan masyarakat merupakan motivasi terbesar bagi kami untuk terus berbenah dan memberikan pelayanan yang semakin baik dari waktu ke waktu.
+                    </p>
+
+                    <p class="sambutan-text">
+                        Kami percaya bahwa pelayanan kesehatan yang unggul lahir dari komitmen untuk terus belajar, berinovasi, dan berkembang. Dengan dukungan masyarakat serta dedikasi seluruh insan RSU Allam Medica Bumiayu, kami optimis melangkah menuju masa depan sebagai rumah sakit yang mampu memberikan pelayanan kesehatan yang berkualitas, berorientasi pada keselamatan pasien, serta menjadi rumah sakit rujukan yang dipercaya masyarakat Brebes dan sekitarnya.
+                    </p>
+
+                    <div class="sambutan-motto-box">
+                        <p class="sambutan-text">
+                            Setiap langkah yang kami lakukan senantiasa berlandaskan pada satu komitmen sederhana namun bermakna, yaitu <strong>"Kesehatan Anda, Tujuan Kami."</strong> Motto ini menjadi semangat bagi seluruh insan RSU Allam Medica Bumiayu untuk terus memberikan pelayanan yang profesional, humanis, dan berorientasi pada kebutuhan setiap pasien.
+                        </p>
+                    </div>
+
+                    <p class="sambutan-text">
+                        Atas nama seluruh keluarga besar RSU Allam Medica Bumiayu, kami mengucapkan terima kasih atas kepercayaan yang telah diberikan. Semoga kami senantiasa dapat menjadi sahabat dan mitra kesehatan terpercaya bagi Anda dan keluarga.
+                    </p>
+
+                    <p class="sambutan-text">
+                        Wassalamu'alaikum warahmatullahi wabarakatuh.
+                    </p>
+
+                    <div class="sambutan-divider"></div>
+
+                    <div class="sambutan-signoff">
+                        <div class="icon-box icon-primary">
+                            <i class="bi bi-pen-fill"></i>
+                        </div>
+                        <div>
+                            <div class="sambutan-signoff-name">dr. Hardyansyah, MPH-MMR</div>
+                            <div class="sambutan-signoff-jabatan">Direktur RSU Allam Medica Bumiayu</div>
+                        </div>
+                    </div>
+                    <div class="sambutan-signoff-tagline">
+                        <strong>Kesehatan Anda, Tujuan Kami</strong><br>
+                        "Membangun Kepercayaan • Menghadirkan Pelayanan Berkualitas • Menuju Rumah Sakit Rujukan yang Inovatif, Modern, dan Handal."
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
 </section>
 
-<!-- ============================================================
-     NILAI KEUTAMAAN
-============================================================ -->
+
 <section class="medica-section">
     <div class="container">
         <h4 class="fw-bold mb-3">Nilai Keutamaan</h4>
@@ -1082,9 +1171,7 @@ document.addEventListener('DOMContentLoaded', function () {
     </div>
 </section>
 
-<!-- ============================================================
-     VISI MISI
-============================================================ -->
+
 <section class="visi-misi-section">
     <div class="container">
         <h4 class="fw-bold mb-4">Visi &amp; Misi</h4>
@@ -1114,9 +1201,7 @@ document.addEventListener('DOMContentLoaded', function () {
     </div>
 </section>
 
-<!-- ============================================================
-     STRUKTUR ORGANISASI
-============================================================ -->
+
 <section class="struktur-section">
     <div class="container">
         <h4 class="fw-bold mb-2 text-center">Struktur Organisasi</h4>
@@ -1309,9 +1394,7 @@ document.addEventListener('DOMContentLoaded', function () {
     </div>
 </section>
 
-<!-- ============================================================
-     TIMELINE
-============================================================ -->
+
 <section class="timeline-section">
     <div class="container">
         <h4 class="fw-bold mb-5 text-center">Tonggak Sejarah</h4>
@@ -1336,9 +1419,6 @@ document.addEventListener('DOMContentLoaded', function () {
     </div>
 </section>
 
-<!-- ============================================================
-     FILOSOFI
-============================================================ -->
 <section class="filosofi-section">
     <div class="container">
         <div class="row g-4">
@@ -1367,9 +1447,7 @@ document.addEventListener('DOMContentLoaded', function () {
     </div>
 </section>
 
-<!-- ============================================================
-     AKREDITASI & KAPASITAS TEMPAT TIDUR
-============================================================ -->
+
 <section class="akreditasi-section">
     <div class="container">
         <h4 class="fw-bold mb-4">Status Akreditasi</h4>
@@ -1498,11 +1576,8 @@ document.addEventListener('DOMContentLoaded', function () {
 </section>
 
 </div>
-<!-- END ABOUT FLOW WRAPPER -->
 
-<!-- ============================================================
-     FOOTER
-============================================================ -->
+
 <footer class="footer-rsu">
     <div class="footer-ornament"></div>
     <div class="footer-ornament2"></div>
@@ -1532,6 +1607,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <li><a href="{{ url('/tentang') }}">Tentang Kami</a></li>
                     <li><a href="{{ url('/mutu') }}">Mutu</a></li>
                     <li><a href="{{ url('/kontak') }}">Kontak</a></li>
+                    <li><a href="{{ url('/faq') }}">FAQ</a></li>
                 </ul>
             </div>
             <div class="col-lg-2 col-md-4 col-6">
