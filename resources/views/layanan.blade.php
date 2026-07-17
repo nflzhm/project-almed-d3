@@ -540,7 +540,18 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
 .detail-hero-chips { display:flex;align-items:center;gap:8px;flex-wrap:wrap; }
 .detail-chip { display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.85);font-size:12px;font-weight:600;padding:5px 13px;border-radius:20px; }
 .detail-chip.aktif { background:rgba(16,185,129,.18);border-color:rgba(16,185,129,.35);color:#6ee7b7; }
-.detail-body { padding:0 0 80px; }
+.detail-body {
+    padding: 0 0 64px;
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(180deg,
+        #fdfcf7 0%,
+        #faf8ee 22%,
+        #f5f2e5 45%,
+        #faf8ee 75%,
+        #ffffff 100%
+    );
+}
 .detail-main { background:#fff;border-radius:20px;border:1px solid #e8edf5;box-shadow:0 8px 32px rgba(28,20,92,.07);overflow:hidden;margin-top:-32px;position:relative;z-index:5; }
 .detail-featured-img { width:100%;height:auto;display:block;object-fit:contain; }
 .detail-img-placeholder { width:100%;height:280px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#e0e7ff,#dbeafe);font-size:72px;color:#818cf8; }
@@ -1044,6 +1055,8 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
                 @endforeach
             </div>
         </div>
+        @else
+        <div style="height:24px;"></div>
         @endif
     </div>
     <div class="col-lg-4">
@@ -1078,20 +1091,7 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
                     @endif
                 </div>
             </div>
-            <div style="background:#fff;border-radius:16px;border:1px solid #e8edf5;padding:18px 20px;margin-top:14px;box-shadow:0 2px 12px rgba(28,20,92,.05);">
-                <div style="font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;"><i class="bi bi-clock" style="margin-right:5px;"></i> Jam Rawat Jalan</div>
-                <div style="display:flex;flex-direction:column;gap:8px;">
-                    <div style="display:flex;justify-content:space-between;padding:9px 12px;background:#f8faff;border-radius:8px;border:1px solid #e8edf5;">
-                        <span style="font-size:13px;font-weight:600;color:#1e293b;">Senin – Sabtu</span>
-                        <span style="font-size:13px;font-weight:700;color:#059669;">07.00 – 21.00</span>
-                    </div>
-                    <div style="display:flex;justify-content:space-between;padding:9px 12px;background:#f8faff;border-radius:8px;border:1px solid #e8edf5;">
-                        <span style="font-size:13px;font-weight:600;color:#1e293b;">Minggu</span>
-                        <span style="font-size:13px;font-weight:700;color:#d97706;">08.00 – 14.00</span>
-                    </div>
-                </div>
-                <p style="font-size:11.5px;color:#94a3b8;margin-top:10px;margin-bottom:0;line-height:1.5;">Jam praktik dapat berubah. Konfirmasi melalui telepon sebelum kunjungan.</p>
-            </div>
+            
             <a href="{{ route('jadwaldokter') }}" class="jadwal-cta">
                 <div class="jadwal-inner">
                     <div style="width:40px;height:40px;border-radius:11px;background:#fff;border:1px solid rgba(28,20,92,.15);display:flex;align-items:center;justify-content:center;font-size:18px;color:#1C145C;flex-shrink:0;"><i class="bi bi-calendar2-week-fill"></i></div>

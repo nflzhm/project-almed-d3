@@ -1119,6 +1119,80 @@ body {
 
 </section>
 
+<style>
+.section-epasien {
+    background: #fff;
+    padding: 55px 0;
+}
+.epasien-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+}
+.epasien-title {
+    font-size: 24px;
+    font-weight: 900;
+    color: #000000;
+}
+.epasien-underline {
+    width: 80px;
+    height: 3px;
+    background: #1C145C;
+    margin: 8px auto 18px;
+    border-radius: 10px;
+}
+.epasien-desc {
+    line-height: 1.8;
+    font-size: 15px;
+    color: #333;
+    margin-bottom: 26px;
+}
+.btn-epasien-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 26px;
+    border-radius: 50px;
+    background: #1C145C;
+    color: #fff !important;
+    text-decoration: none !important;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 8px 20px rgba(28,20,92,.25);
+    transition: .2s;
+}
+.btn-epasien-cta:hover {
+    background: #2a1e8a;
+    transform: translateY(-1px);
+}
+.btn-epasien-cta .ext-icon {
+    font-size: 12px;
+    opacity: .8;
+}
+</style>
+
+<section class="section-epasien">
+    <div class="container">
+        <div class="epasien-inner">
+            <h2 class="epasien-title">Hemat Waktu dengan Pendaftaran Online</h2>
+            <div class="epasien-underline"></div>
+            <p class="epasien-desc">
+                Gunakan layanan e-Pasien untuk mendaftar rawat jalan secara online,
+                pilih jadwal dokter, pilih jam, pilih poli dan hemat waktu tunggu Anda di rumah sakit.
+            </p>
+            <a href="https://epasien.allammedica.com/"
+               target="_blank"
+               rel="noopener"
+               title="Pendaftaran Online Pasien - e-Pasien RSU Allam Medica"
+               class="btn-epasien-cta">
+                <i class="bi bi-calendar2-plus-fill"></i>
+                <span>Daftar Online Sekarang</span>
+                <i class="bi bi-box-arrow-up-right ext-icon"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
 <section style="background:#fff; padding:50px 0;">
 
     <div class="container">

@@ -750,9 +750,9 @@ $faqGroups = [
         'kategori' => 'Pendaftaran',
         'icon' => 'bi-clipboard2-check',
         'items' => [
-            ['q' => 'Bagaimana cara mendaftar sebagai pasien baru di RSU Allam Medica?', 'a' => 'Pasien baru dapat mendaftar langsung di loket pendaftaran rawat jalan dengan membawa KTP dan kartu BPJS (jika ada). Pendaftaran juga dapat dilakukan melalui WhatsApp Admin untuk mendapatkan nomor antrean lebih awal.'],
-            ['q' => 'Apakah bisa mendaftar rawat jalan secara online?', 'a' => 'Saat ini pendaftaran online tersedia melalui WhatsApp Admin. Cukup kirimkan nama, keluhan, dan poli yang dituju, admin kami akan membantu mengatur jadwal kunjungan Anda.'],
-            ['q' => 'Bisakah saya mendaftar untuk jadwal dokter hari berikutnya (H-1)?', 'a' => 'Ya, pendaftaran untuk hari berikutnya (H-1) sangat disarankan untuk mengamankan nomor antrean. Anda bisa mendaftar melalui WhatsApp Admin sehari sebelum jadwal periksa.'],
+            ['q' => 'Bagaimana cara mendaftar sebagai pasien baru di RSU Allam Medica?', 'a' => 'Pasien baru dapat mendaftar langsung di loket pendaftaran rawat jalan dengan membawa KTP dan kartu BPJS (jika ada). Pendaftaran juga dapat dilakukan melalui website epasien.allammedica.com agar lebih praktis.'],
+            ['q' => 'Apakah bisa mendaftar rawat jalan secara online?', 'a' => 'Saat ini pendaftaran online tersedia melalui website epasien.allammedica.com, anda dapat mencarinya dimesin pencari atau langsung menuju beranda pada website ini ada button "Daftar online sekarang" untuk mengarahkan ke website epasien.'],
+            ['q' => 'Bisakah saya mendaftar untuk jadwal dokter hari berikutnya (H-1)?', 'a' => 'Ya, pendaftaran untuk hari berikutnya (H-1) sangat disarankan untuk mengamankan nomor antrean. Anda bisa mendaftar melalui website epasien.allammedica.com sehari sebelum jadwal periksa.'],
             ['q' => 'Jam berapa loket pendaftaran rawat jalan mulai dibuka?', 'a' => 'Loket pendaftaran rawat jalan buka setiap hari Senin-Sabtu mulai pukul 07.00 WIB.'],
         ],
     ],
