@@ -761,16 +761,16 @@ body {
                    <div class="kontak-info-panel">
     <div class="kontak-info-grid">
         <!-- TODO: ganti nomor IGD asli -->
-        <a href="https://wa.me/6281234500001" target="_blank" class="kontak-info-card">
+        <a href="https://wa.me/6285290273097" target="_blank" class="kontak-info-card">
             <div class="kontak-info-icon ci-igd"><i class="bi bi-heart-pulse-fill"></i></div>
             <div class="kontak-info-title">IGD 24 Jam</div>
-            <div class="kontak-info-val">0812-3450-0001</div>
+            <div class="kontak-info-val">0852-9027-3097</div>
         </a>
         <!-- TODO: ganti nomor Ambulans asli -->
-        <a href="https://wa.me/6281234500002" target="_blank" class="kontak-info-card">
+        <a href="https://wa.me/6285290273097" target="_blank" class="kontak-info-card">
             <div class="kontak-info-icon ci-ambulans"><i class="bi bi-truck"></i></div>
             <div class="kontak-info-title">Ambulans</div>
-            <div class="kontak-info-val">0812-3450-0002</div>
+            <div class="kontak-info-val">0852-9027-3097</div>
         </a>
         <a href="https://wa.me/6285292224886" target="_blank" class="kontak-info-card">
             <div class="kontak-info-icon ci-wa"><i class="fa-brands fa-whatsapp"></i></div>
@@ -884,15 +884,15 @@ body {
             </form>
         </div>
        <div class="bs-info-grid">
-    <a href="https://wa.me/6281234500001" target="_blank" class="bs-info-card">
+    <a href="https://wa.me/6285290273097" target="_blank" class="bs-info-card">
         <div class="bs-info-icon ci-igd"><i class="bi bi-heart-pulse-fill"></i></div>
         <div class="bs-info-title">IGD 24 Jam</div>
-        <div class="bs-info-val">0812-3450-0001</div>
+        <div class="bs-info-val">0852-9027-3097</div>
     </a>
-    <a href="https://wa.me/6281234500002" target="_blank" class="bs-info-card">
+    <a href="https://wa.me/6285290273097" target="_blank" class="bs-info-card">
         <div class="bs-info-icon ci-ambulans"><i class="bi bi-truck"></i></div>
         <div class="bs-info-title">Ambulans</div>
-        <div class="bs-info-val">0812-3450-0002</div>
+        <div class="bs-info-val">0852-9027-3097</div>
     </a>
     <a href="https://wa.me/6285292224886" target="_blank" class="bs-info-card">
         <div class="bs-info-icon ci-wa"><i class="fa-brands fa-whatsapp"></i></div>

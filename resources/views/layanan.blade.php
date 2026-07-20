@@ -761,16 +761,16 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
                    <div class="kontak-info-panel">
     <div class="kontak-info-grid">
         <!-- TODO: ganti nomor IGD asli -->
-        <a href="https://wa.me/6281234500001" target="_blank" class="kontak-info-card">
+        <a href="https://wa.me/6285290273097" target="_blank" class="kontak-info-card">
             <div class="kontak-info-icon ci-igd"><i class="bi bi-heart-pulse-fill"></i></div>
             <div class="kontak-info-title">IGD 24 Jam</div>
-            <div class="kontak-info-val">0812-3450-0001</div>
+            <div class="kontak-info-val">0852-9027-3097</div>
         </a>
         <!-- TODO: ganti nomor Ambulans asli -->
-        <a href="https://wa.me/6281234500002" target="_blank" class="kontak-info-card">
+        <a href="https://wa.me/6285290273097" target="_blank" class="kontak-info-card">
             <div class="kontak-info-icon ci-ambulans"><i class="bi bi-truck"></i></div>
             <div class="kontak-info-title">Ambulans</div>
-            <div class="kontak-info-val">0812-3450-0002</div>
+            <div class="kontak-info-val">0852-9027-3097</div>
         </a>
         <a href="https://wa.me/6285292224886" target="_blank" class="kontak-info-card">
             <div class="kontak-info-icon ci-wa"><i class="fa-brands fa-whatsapp"></i></div>
@@ -875,15 +875,15 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
             </form>
         </div>
         <div class="bs-info-grid">
-    <a href="https://wa.me/6281234500001" target="_blank" class="bs-info-card">
+    <a href="https://wa.me/6285290273097" target="_blank" class="bs-info-card">
         <div class="bs-info-icon ci-igd"><i class="bi bi-heart-pulse-fill"></i></div>
         <div class="bs-info-title">IGD 24 Jam</div>
-        <div class="bs-info-val">0812-3450-0001</div>
+        <div class="bs-info-val">0852-9027-3097</div>
     </a>
-    <a href="https://wa.me/6281234500002" target="_blank" class="bs-info-card">
+    <a href="https://wa.me/6285290273097" target="_blank" class="bs-info-card">
         <div class="bs-info-icon ci-ambulans"><i class="bi bi-truck"></i></div>
         <div class="bs-info-title">Ambulans</div>
-        <div class="bs-info-val">0812-3450-0002</div>
+        <div class="bs-info-val">0852-9027-3097</div>
     </a>
     <a href="https://wa.me/6285292224886" target="_blank" class="bs-info-card">
         <div class="bs-info-icon ci-wa"><i class="fa-brands fa-whatsapp"></i></div>
@@ -1230,12 +1230,12 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
                             <li><strong style="color:#1C145C;">Lokasi:</strong> Gedung Utama Lantai 1 (Akses Depan)</li>
                             <li><strong style="color:#1C145C;">Persyaratan:</strong> KTP/Identitas Diri, Kartu BPJS (jika ada)</li>
                             <li><strong style="color:#1C145C;">Alur Pelayanan:</strong> Triage &rarr; Pemeriksaan Awal &rarr; Penanganan & Observasi &rarr; Rawat Inap/Rujuk/Pulang</li>
-                            <li><strong style="color:#1C145C;">Kontak & Informasi:</strong> 085292224886 (WhatsApp/Telepon)</li>
+                            <li><strong style="color:#1C145C;">Kontak & Informasi:</strong> 085290273097 (WhatsApp/Telepon)</li>
                         </ul>
                     </div>
                     <div class="svc-footer">
-                        <a href="tel:085292224886" class="svc-badge" style="background:#fee2e2;color:#dc2626;border:1px solid #fca5a5;"><i class="bi bi-telephone-fill"></i> 085292224886</a>
-                        <a href="https://wa.me/6285292224886" target="_blank" class="svc-badge" style="background:#dcfce7;color:#15803d;border:1px solid #86efac;"><i class="bi bi-whatsapp"></i> WhatsApp</a>
+                        <a href="tel:085290273097" class="svc-badge" style="background:#fee2e2;color:#dc2626;border:1px solid #fca5a5;"><i class="bi bi-telephone-fill"></i> 085290273097</a>
+                        <a href="https://wa.me/6285290273097" target="_blank" class="svc-badge" style="background:#dcfce7;color:#15803d;border:1px solid #86efac;"><i class="bi bi-whatsapp"></i> WhatsApp</a>
                     </div>
                 </div>
             </div>
@@ -1522,7 +1522,7 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
                             <li><strong style="color:#1C145C;">Lokasi:</strong> Area Parkir Utama RSU</li>
                             <li><strong style="color:#1C145C;">Persyaratan:</strong> Info identitas & lokasi detail pasien</li>
                             <li><strong style="color:#1C145C;">Alur Pelayanan:</strong> Hubungi Telepon/WA &rarr; Konfirmasi Lokasi &rarr; Ambulans Meluncur ke Titik Jemput</li>
-                            <li><strong style="color:#1C145C;">Kontak & Penjemputan:</strong> 085292224886</li>
+                            <li><strong style="color:#1C145C;">Kontak & Penjemputan:</strong> 085290273097</li>
                         </ul>
                         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;">
                             @php $fiturAmb=[['icon'=>'bi-bag-plus-fill','bg'=>'#fee2e2','c'=>'#dc2626','title'=>'Perlengkapan Medis','desc'=>'Oksigen & alat darurat standar'],['icon'=>'bi-person-badge-fill','bg'=>'#d1fae5','c'=>'#059669','title'=>'Tim Terlatih','desc'=>'Pengemudi & nakes bersertifikat']]; @endphp
@@ -1561,7 +1561,7 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
                             <li><strong style="color:#1C145C;">Lokasi:</strong> Gedung Penunjang Medis Lt. 1</li>
                             <li><strong style="color:#1C145C;">Persyaratan:</strong> Pengantar Dokter/Identitas (Mandiri)</li>
                             <li><strong style="color:#1C145C;">Alur Pelayanan:</strong> Pendaftaran &rarr; Pengambilan Sampel &rarr; Analisis &rarr; Hasil Diterima</li>
-                            <li><strong style="color:#1C145C;">Kontak & Informasi:</strong> 085292224886</li>
+                            <li><strong style="color:#1C145C;">Kontak & Informasi:</strong> 082328642154</li>
                         </ul>
                     </div>
                 </div>
@@ -1616,12 +1616,28 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
                             <li><strong style="color:#1C145C;">Lokasi:</strong> Gedung Penunjang Medis Lt. 1</li>
                             <li><strong style="color:#1C145C;">Persyaratan:</strong> Pengantar Dokter & Persiapan Khusus (jika ada)</li>
                             <li><strong style="color:#1C145C;">Alur Pelayanan:</strong> Pendaftaran &rarr; Persiapan &rarr; Tindakan &rarr; Hasil</li>
-                            <li><strong style="color:#1C145C;">Kontak & Informasi:</strong> 085292224886</li>
+                            <li><strong style="color:#1C145C;">Kontak & Informasi:</strong> 085640782510</li>
                         </ul>
                         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
-                            @php $radLayanan=[['icon'=>'bi-radioactive','bg'=>'#ede9fe','c'=>'#6366f1','nama'=>'Rontgen / X-Ray'],['icon'=>'bi-soundwave','bg'=>'#e0f2fe','c'=>'#0284c7','nama'=>'USG'],['icon'=>'bi-bullseye','bg'=>'#fee2e2','c'=>'#dc2626','nama'=>'CT Scan'],['icon'=>'bi-heart-pulse','bg'=>'#d1fae5','c'=>'#059669','nama'=>'EKG'],['icon'=>'bi-reception-4','bg'=>'#fef3c7','c'=>'#d97706','nama'=>'Echo'],['icon'=>'bi-lungs','bg'=>'#fce7f3','c'=>'#db2777','nama'=>'Foto Thorax']]; @endphp
+                            @php 
+                            $radLayanan=[
+                                ['icon'=>'bi-radioactive','bg'=>'#ede9fe','c'=>'#6366f1','nama'=>'Rontgen / X-Ray'],
+                                ['icon'=>'bi-soundwave','bg'=>'#e0f2fe','c'=>'#0284c7','nama'=>'USG'],
+                                ['icon'=>'bi-bullseye','bg'=>'#fee2e2','c'=>'#dc2626','nama'=>'CT Scan','status'=>'coming_soon'],
+                                ['icon'=>'bi-heart-pulse','bg'=>'#d1fae5','c'=>'#059669','nama'=>'EKG / EEG'],
+                                ['icon'=>'bi-reception-4','bg'=>'#fef3c7','c'=>'#d97706','nama'=>'Echo'],
+                                ['icon'=>'bi-lungs','bg'=>'#fce7f3','c'=>'#db2777','nama'=>'Foto Thorax'],
+                            ]; 
+                            @endphp
                             @foreach($radLayanan as $r)
-                            <div style="text-align:center;padding:16px 8px;background:#f8faff;border-radius:12px;border:1px solid #e8edf5;transition:transform .2s,border-color .2s;" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='#c7d2fe';" onmouseout="this.style.transform='';this.style.borderColor='#e8edf5';">
+                            @php $isComingSoon = ($r['status'] ?? null) === 'coming_soon'; @endphp
+                            <div style="position:relative;text-align:center;padding:16px 8px;background:#f8faff;border-radius:12px;border:1px solid #e8edf5;transition:transform .2s,border-color .2s;{{ $isComingSoon ? 'opacity:.6;' : '' }}"
+                                 @if(!$isComingSoon)
+                                 onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='#c7d2fe';" onmouseout="this.style.transform='';this.style.borderColor='#e8edf5';"
+                                 @endif>
+                                @if($isComingSoon)
+                                <span style="position:absolute;top:-8px;right:-6px;background:#1C145C;color:#FEFCF1;font-size:9px;font-weight:700;padding:2px 7px;border-radius:999px;text-transform:uppercase;letter-spacing:.3px;white-space:nowrap;">Segera</span>
+                                @endif
                                 <div style="width:36px;height:36px;border-radius:10px;background:{{ $r['bg'] }};display:flex;align-items:center;justify-content:center;margin:0 auto 8px;"><i class="bi {{ $r['icon'] }}" style="color:{{ $r['c'] }};font-size:16px;"></i></div>
                                 <div style="font-size:12.5px;font-weight:700;color:#1e293b;">{{ $r['nama'] }}</div>
                             </div>
