@@ -1,4 +1,5 @@
 <?php
+// Lokasi file: app/Http/Controllers/Admin/AdminDokterController.php
 
 namespace App\Http\Controllers\Admin;
 
@@ -52,8 +53,19 @@ class AdminDokterController extends Controller
         $foto   = $dokter->foto;
 
         if ($request->hasFile('foto')) {
+            // Ada foto baru diupload -> hapus foto lama (kalau ada), simpan yang baru
+            if ($foto && file_exists(public_path('uploads/dokter/' . $foto))) {
+                unlink(public_path('uploads/dokter/' . $foto));
+            }
             $foto = time() . '.' . $request->foto->extension();
             $request->foto->move(public_path('uploads/dokter'), $foto);
+
+        } elseif ($request->hapus_gambar == '1') {
+            // User klik "Hapus" foto tanpa upload foto baru
+            if ($foto && file_exists(public_path('uploads/dokter/' . $foto))) {
+                unlink(public_path('uploads/dokter/' . $foto));
+            }
+            $foto = null;
         }
 
         $dokter->update([
@@ -68,8 +80,15 @@ class AdminDokterController extends Controller
 
     public function destroy($id)
     {
-        AdminDataDokter::findOrFail($id)->delete();
+        $dokter = AdminDataDokter::findOrFail($id);
+
+        if ($dokter->foto && file_exists(public_path('uploads/dokter/' . $dokter->foto))) {
+            unlink(public_path('uploads/dokter/' . $dokter->foto));
+        }
+
+        $dokter->delete();
 
         return redirect()->back()->with('success', 'Dokter berhasil dihapus');
     }
+    
 }

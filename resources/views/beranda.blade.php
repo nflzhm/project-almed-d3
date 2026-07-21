@@ -1077,7 +1077,7 @@ body {
 
             <div class="col-6 col-md-3 d-flex flex-column align-items-center py-3">
                 <i class="fa-solid fa-user-doctor" style="font-size:32px;"></i>
-                <h4 class="fw-bold mt-2 mb-0">44</h4>
+                <h4 class="fw-bold mt-2 mb-0">33</h4>
                 <small style="font-size:14px;">Dokter</small>
             </div>
 

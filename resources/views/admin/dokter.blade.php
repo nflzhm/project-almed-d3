@@ -1,3 +1,4 @@
+{{-- Lokasi file: resources/views/admin/dokter.blade.php --}}
 @extends('admin.layout')
 
 @section('title', 'Data Dokter')
@@ -1224,7 +1225,8 @@ $listDokter = isset($dokter) ? $dokter->items() : $dummyDokter;
                                 <div style="display:flex;gap:8px;">
                                     <label class="ppb ppb-change">
                                         <i class="fa-solid fa-arrow-up-from-bracket"></i> Ganti
-                                        <input type="file" name="gambar" id="editFoto2"
+                                        {{-- FIX: name diubah dari "gambar" menjadi "foto" agar cocok dengan yang dibaca controller --}}
+                                        <input type="file" name="foto" id="editFoto2"
                                                accept="image/jpeg,image/png,image/webp"
                                                onchange="previewPhoto(this,'edit')">
                                     </label>

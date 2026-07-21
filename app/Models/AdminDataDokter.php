@@ -31,4 +31,5 @@ class AdminDataDokter extends Model
     {
         return $this->hasMany(Jadwal::class, 'dokter_id', 'id');
     }
+    
 }
