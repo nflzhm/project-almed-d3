@@ -99,8 +99,22 @@ body {
 .nav-burger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
 
 /* ============================================================
+   RESPONSIVE NAVBAR
+============================================================ */
+@media(max-width:1100px) { .nav-link-pill{padding:7px 11px;font-size:13px;} }
+@media(max-width:991px) {
+    .navbar-float-wrap { top:38px;padding:4px 12px; }
+    .navbar-float { border-radius:26px;padding:8px 14px; }
+    .nav-links,.nav-cta { display:none; }
+    .nav-burger { display:flex; }
+    .kontak-mega { display:none !important; }
+}
+@media(max-width:480px) { .navbar-float { border-radius:22px; } }
+
+/* ============================================================
    KONTAK MEGA DROPDOWN (desktop)
 ============================================================ */
+
 .kontak-wrap { position: relative; }
 .kontak-form-title, .bs-form-title {
     font-family: 'GothamBlack', sans-serif !important;

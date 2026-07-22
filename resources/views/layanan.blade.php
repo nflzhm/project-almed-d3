@@ -1258,34 +1258,39 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
             </div>
             
             <div class="col-lg-12 mt-4" style="position:relative;z-index:1;">
-                <div style="background:#fff;border-radius:20px;border:1px solid #e8edf5;box-shadow:0 4px 20px rgba(28,20,92,.05);padding:32px;">
-                    <div style="font-size:11px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.8px;margin-bottom:18px;"><i class="bi bi-people-fill" style="margin-right:5px;color:#dc2626;"></i> Tim Dokter Umum IGD</div>
-                    <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:14px;">
-                        @php 
-                        $dokterIgd = [
-                            ['nama' => 'dr. Wildan Baiti Al Anwari', 'jadwal' => 'Dokter Umum IGD 24 Jam'],
-                            ['nama' => 'dr. Laelatul Faizah', 'jadwal' => 'Dokter Umum IGD 24 Jam'],
-                            ['nama' => 'dr. Almira Meida Resi Fauzia', 'jadwal' => 'Dokter Umum IGD 24 Jam'],
-                            ['nama' => 'dr. Vania Salsabila Ihwanah', 'jadwal' => 'Dokter Umum IGD 24 Jam'],
-                            ['nama' => 'dr. Muhammad Salman Shalahudgin', 'jadwal' => 'Dokter Umum IGD 24 Jam'],
-                            ['nama' => 'dr. Windy Listiana', 'jadwal' => 'Dokter Umum IGD 24 Jam'],
-                            ['nama' => 'dr. Akhdan Baghaskara Rahmatullah', 'jadwal' => 'Dokter Umum IGD 24 Jam'],
-                            ['nama' => 'dr. Hilda Maulyda Utamie', 'jadwal' => 'Dokter Umum IGD 24 Jam'],
-                            ['nama' => 'dr. Solikha', 'jadwal' => 'Dokter Umum IGD 24 Jam'],
-                        ];
-                        @endphp
-                        @foreach($dokterIgd as $dok)
-                        <div style="display:flex;align-items:center;gap:12px;padding:12px;background:#f8faff;border-radius:12px;border:1px solid #e8edf5;">
-                            <div style="width:40px;height:40px;border-radius:50%;background:#fee2e2;color:#dc2626;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;"><i class="fa-solid fa-user-doctor"></i></div>
-                            <div>
-                                <div style="font-size:13.5px;font-weight:700;color:#1e293b;">{{ $dok['nama'] }}</div>
-                                <div style="font-size:11px;color:#64748b;">{{ $dok['jadwal'] }}</div>
-                            </div>
-                        </div>
-                        @endforeach
-                    </div>
+    <div style="background:#fff;border-radius:20px;border:1px solid #e8edf5;box-shadow:0 4px 20px rgba(28,20,92,.05);padding:32px;">
+        <div style="font-size:11px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.8px;margin-bottom:18px;"><i class="bi bi-people-fill" style="margin-right:5px;color:#dc2626;"></i> Tim Dokter Umum IGD</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:14px;">
+            @php 
+            $dokterIgd = [
+                ['nama' => 'dr. Wildan Baiti Al Anwari', 'jadwal' => 'Dokter Umum IGD 24 Jam', 'foto' => 'dr.Wildan.jpg'],
+                ['nama' => 'dr. Laelatul Faizah', 'jadwal' => 'Dokter Umum IGD 24 Jam', 'foto' => 'dr.LaelatulFaizah.jpg'],
+                ['nama' => 'dr. Almira Meida Resi Fauzia', 'jadwal' => 'Dokter Umum IGD 24 Jam', 'foto' => 'almira.png'],
+                ['nama' => 'dr. Vania Salsabila Ihwanah', 'jadwal' => 'Dokter Umum IGD 24 Jam', 'foto' => 'dr.vania.jpg'],
+                ['nama' => 'dr. Muhammad Salman Shalahudgin', 'jadwal' => 'Dokter Umum IGD 24 Jam', 'foto' => 'dr.salman.jpg'],
+                ['nama' => 'dr. Windy Listiana', 'jadwal' => 'Dokter Umum IGD 24 Jam', 'foto' => 'dr.Windi.jpg.jpeg'],
+                ['nama' => 'dr. Akhdan Baghaskara Rahmatullah', 'jadwal' => 'Dokter Umum IGD 24 Jam', 'foto' => 'dr.bagas.jpg'],
+                ['nama' => 'dr. Hilda Maulyda Utamie', 'jadwal' => 'Dokter Umum IGD 24 Jam', 'foto' => 'dr.Hilda.jpg'],
+                ['nama' => 'dr. Solikha', 'jadwal' => 'Dokter Umum IGD 24 Jam', 'foto' => 'dr.Solikha.jpg.jpeg'],
+            ];
+            @endphp
+            @foreach($dokterIgd as $dok)
+            <div style="display:flex;align-items:center;gap:12px;padding:12px;background:#f8faff;border-radius:12px;border:1px solid #e8edf5;">
+                <div style="width:40px;height:40px;border-radius:50%;background:#fee2e2;color:#dc2626;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;overflow:hidden;">
+                    <img src="{{ asset('images/layanan/' . $dok['foto']) }}"
+                         alt="{{ $dok['nama'] }}"
+                         style="width:100%;height:100%;object-fit:cover;border-radius:50%;"
+                         onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('i'), {className:'fa-solid fa-user-doctor'}));">
+                </div>
+                <div>
+                    <div style="font-size:13.5px;font-weight:700;color:#1e293b;">{{ $dok['nama'] }}</div>
+                    <div style="font-size:11px;color:#64748b;">{{ $dok['jadwal'] }}</div>
                 </div>
             </div>
+            @endforeach
+        </div>
+    </div>
+</div>
         </div>
     </section>
 
@@ -1461,10 +1466,12 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
             </div>
             @endforeach
         </div>
+
+        {{-- ==== MOBILE PILLS + PANEL ==== --}}
         <div class="kelas-mobile-wrap" style="position:relative;z-index:1;">
             <div class="kelas-pills-scroll" id="kelasPills">
                 @foreach($kelasRawat as $i => $kelas)
-                <button class="kelas-pill {{ $i===0?'active':'' }}" data-index="{{ $i }}" style="background:{{ $kelas['grad'] }};" onclick="showKelas({{ $i }})">
+                <button type="button" class="kelas-pill {{ $i===0?'active':'' }}" data-index="{{ $i }}" style="background:{{ $kelas['grad'] }};">
                     <i class="bi {{ $kelas['icon'] }}"></i>{{ $kelas['nama'] }}
                 </button>
                 @endforeach
@@ -1489,6 +1496,7 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
             </div>
             @endforeach
         </div>
+
         <div style="margin-top:28px;background:#fff;border-radius:16px;border:1px solid #e8edf5;padding:24px 28px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;box-shadow:0 2px 12px rgba(28,20,92,.05);position:relative;z-index:1;">
             <div style="width:44px;height:44px;border-radius:12px;background:#ede9fe;display:flex;align-items:center;justify-content:center;font-size:20px;color:#7c3aed;flex-shrink:0;"><i class="bi bi-info-circle-fill"></i></div>
             <div style="flex:1;"><div style="font-size:14px;font-weight:700;color:#1e293b;margin-bottom:3px;">Informasi Ketersediaan Kamar</div><div style="font-size:13px;color:#64748b;line-height:1.6;">Untuk ketersediaan kamar dan informasi lebih lanjut, silakan hubungi petugas kami.</div></div>
@@ -1498,6 +1506,77 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
             </div>
         </div>
     </section>
+{{-- ==== FIX: cegah page ikut geser horizontal saat klik pill mobile ==== --}}
+    <style>
+        html, body {
+            overflow-x: hidden;
+            max-width: 100%;
+        }
+
+        .kelas-mobile-wrap {
+            width: 100%;
+            max-width: 100%;
+            overflow: hidden; /* pastikan wrapper tidak ikut melebar */
+        }
+
+        .kelas-pills-scroll {
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior-x: contain;
+            touch-action: pan-x;
+            scroll-behavior: smooth;
+            max-width: 100%;
+        }
+    </style>
+
+    <script>
+        (function () {
+            function showKelasRanap(index) {
+                var panels = document.querySelectorAll('#rawatinap .kelas-detail-panel');
+                panels.forEach(function (el, i) {
+                    el.style.display = (i === index) ? 'block' : 'none';
+                });
+
+                var pills = document.querySelectorAll('#rawatinap .kelas-pill');
+                pills.forEach(function (el, i) {
+                    el.classList.toggle('active', i === index);
+                });
+
+                var activePill = pills[index];
+                var container = document.getElementById('kelasPills');
+                if (activePill && container) {
+                    // Hitung manual posisi scroll HANYA di dalam container pill.
+                    // Tidak pakai scrollIntoView agar tidak pernah "bocor" ke scroll halaman.
+                    var targetLeft = activePill.offsetLeft
+                        - (container.clientWidth / 2)
+                        + (activePill.clientWidth / 2);
+
+                    // Clamp supaya tidak melebihi batas scroll container
+                    var maxScroll = container.scrollWidth - container.clientWidth;
+                    if (targetLeft < 0) targetLeft = 0;
+                    if (targetLeft > maxScroll) targetLeft = maxScroll;
+
+                    container.scrollTo({
+                        left: targetLeft,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', function () {
+                var pillsWrap = document.getElementById('kelasPills');
+                if (!pillsWrap) return;
+
+                pillsWrap.addEventListener('click', function (e) {
+                    var btn = e.target.closest('.kelas-pill');
+                    if (!btn) return;
+                    var index = parseInt(btn.getAttribute('data-index'), 10);
+                    showKelasRanap(index);
+                });
+            });
+        })();
+    </script>
 
     {{-- AMBULANS --}}
     <section id="ambulans" class="lay-section" style="position:relative;overflow:hidden;">

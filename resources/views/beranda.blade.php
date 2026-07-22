@@ -2602,7 +2602,7 @@ body {
                     Nomor IGD RSU Allam Medica
                 </p>
 
-                <p class="igd-number mb-3">(0289) 430822</p>
+                <p class="igd-number mb-3">085290273097</p>
 
                 <div class="alert alert-warning py-2 px-3 mb-0 rounded-3" style="background:#fffbeb; border:1px solid #fde68a; font-size:12px; color:#92400e;">
                     <i class="bi bi-exclamation-triangle-fill me-1"></i>
