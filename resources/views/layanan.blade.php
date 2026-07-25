@@ -22,15 +22,12 @@
     </style>
 </head>
 
+<body>
 <style>
 /* ============================================================
-   BASE
+   BASE & TOPBAR & NAVBAR
 ============================================================ */
 body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, #ffffff 0%, #ffffff 8%, #fdfcf7 18%, #faf8ee 30%, #f5f2e5 42%, #f0ecdc 52%, #f5f2e5 62%, #faf8ee 74%, #fdfcf7 86%, #ffffff 96%, #ffffff 100%); overflow-x: hidden; padding-top: 38px; color:#1f2937; }
-
-/* ============================================================
-   TOPBAR
-============================================================ */
 .topbar { background: linear-gradient(90deg,#1C145C 0%,#34258d 50%,#1C145C 100%); position:fixed; top:0;left:0;width:100%;height:38px;z-index:10000;display:flex;align-items:center; }
 .topbar .container { display:flex;align-items:center;justify-content:space-between; }
 .topbar-info { display:flex;align-items:center;gap:14px; }
@@ -40,10 +37,6 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
 .topbar-social a:hover { color:#fff; }
 @media(max-width:991px) { .topbar-info span { font-size:10px; } .topbar-social { gap:10px; } }
 @media(max-width:480px) { .topbar-info span { font-size:9px; } }
-
-/* ============================================================
-   NAVBAR
-============================================================ */
 .navbar-float-wrap { position:fixed;top:38px;left:0;width:100%;z-index:9998;padding:12px 20px; }
 .navbar-float { max-width:1200px;margin:0 auto;position:relative;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px 10px 22px;border-radius:60px;background:rgba(255,255,255,0.07);backdrop-filter:blur(22px) saturate(180%);-webkit-backdrop-filter:blur(22px) saturate(180%);border:1px solid rgba(255,255,255,0.16);box-shadow:0 8px 32px rgba(15,23,42,.08),inset 0 1px 0 rgba(255,255,255,.22);transition:background .3s,border .3s,box-shadow .3s; }
 .navbar-float.scrolled { background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);box-shadow:0 10px 40px rgba(15,23,42,.10),inset 0 1px 0 rgba(255,255,255,.28); }
@@ -56,7 +49,6 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
 .nav-link-pill.active { background:rgba(255,255,255,.35);color:#1C145C;font-weight:600; }
 .drop-wrap { position:relative; }
 .drop-menu { position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%) translateY(8px);min-width:200px;padding:8px;border-radius:22px;background:rgba(255,255,255,.92);backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.35);box-shadow:0 12px 35px rgba(15,23,42,.14);opacity:0;visibility:hidden;transition:.22s;z-index:100; }
-/* FIX Hover Gap */
 .drop-menu::before { content: ""; position: absolute; top: -15px; left: 0; width: 100%; height: 15px; background: transparent; }
 .drop-wrap:hover .drop-menu { opacity:1;visibility:visible;transform:translateX(-50%) translateY(0); }
 .drop-item { display:flex;align-items:center;gap:9px;padding:9px 13px;border-radius:12px;font-size:13.5px;color:#334155;text-decoration:none;transition:.18s;font-weight:500; }
@@ -65,8 +57,8 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
 .drop-item:hover i { color:#1C145C; }
 .drop-divider { height:1px;background:rgba(0,0,0,.07);margin:4px 8px; }
 
-/* LAYANAN MEGA DROPDOWN (Navbar) */
-.drop-menu-layanan { min-width:560px;max-width:min(94vw, 620px);padding:14px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 12px;align-items:start; }
+/* LAYANAN MEGA DROPDOWN (Navbar 2 Kolom) */
+.drop-menu-layanan { min-width:480px;max-width:min(94vw, 520px);padding:14px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 12px;align-items:start; }
 .drop-menu-layanan .drop-column { display:flex;flex-direction:column;gap:2px; }
 .drop-menu-layanan .drop-column + .drop-column { border-left:1px solid rgba(15,23,42,.06);padding-left:10px; }
 .drop-menu-layanan .drop-item { padding:8px 10px;font-size:13px; }
@@ -74,160 +66,58 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
 .chevron { font-size:11px;opacity:.6;transition:.25s; }
 .drop-wrap:hover .chevron { transform:rotate(180deg); }
 .nav-cta { position:relative;z-index:2; }
-
 .nav-burger { display:none;flex-direction:column;gap:5px;cursor:pointer;border:none;background:transparent;padding:6px;position:relative;z-index:2; }
 .nav-burger span { width:22px;height:2px;background:#1C145C;border-radius:2px;display:block;transition:.3s; }
 .nav-burger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
 .nav-burger.open span:nth-child(2) { opacity:0; }
 .nav-burger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
 
-/* ============================================================
-   KONTAK MEGA DROPDOWN (desktop)
-============================================================ */
+/* KONTAK MEGA */
 .kontak-wrap { position: relative; }
-.btn-kontak {
-    padding:10px 22px; border-radius:50px; background:#1C145C;
-    color:#fff!important; text-decoration:none!important; font-size:14px;
-    font-weight:600; display:inline-flex; align-items:center; gap:6px;
-    border:none; box-shadow:0 8px 20px rgba(28,20,92,.25);
-    transition:.2s; cursor:pointer; font-family:inherit;
-}
+.btn-kontak { padding:10px 22px; border-radius:50px; background:#1C145C; color:#fff!important; text-decoration:none!important; font-size:14px; font-weight:600; display:inline-flex; align-items:center; gap:6px; border:none; box-shadow:0 8px 20px rgba(28,20,92,.25); transition:.2s; cursor:pointer; font-family:inherit; }
 .btn-kontak:hover { background:#2a1e8a; transform:translateY(-1px); }
-
-.kontak-mega {
-    position: absolute; top: calc(100% + 18px); right: 0;
-    width: 780px; max-width: calc(100vw - 40px);
-    background: rgba(255,255,255,0.97);
-    backdrop-filter: blur(28px) saturate(180%);
-    -webkit-backdrop-filter: blur(28px) saturate(180%);
-    border: 1px solid rgba(255,255,255,0.5);
-    border-radius: 24px;
-    box-shadow: 0 24px 60px rgba(15,23,42,.16), 0 2px 12px rgba(15,23,42,.06);
-    padding: 28px; opacity: 0; visibility: hidden;
-    transform: translateY(12px);
-    transition: opacity .26s, visibility .26s, transform .26s;
-    z-index: 9999;
-}
-.kontak-wrap:hover .kontak-mega,
-.kontak-mega:hover,
-.kontak-mega.open { opacity: 1; visibility: visible; transform: translateY(0); }
-
-.kontak-mega::before {
-    content:''; position:absolute; top:0; left:24px; right:24px; height:2px;
-    background:linear-gradient(90deg,transparent,rgba(28,20,92,.2) 50%,transparent);
-    border-radius:2px;
-}
+.kontak-mega { position: absolute; top: calc(100% + 18px); right: 0; width: 780px; max-width: calc(100vw - 40px); background: rgba(255,255,255,0.97); backdrop-filter: blur(28px) saturate(180%); -webkit-backdrop-filter: blur(28px) saturate(180%); border: 1px solid rgba(255,255,255,0.5); border-radius: 24px; box-shadow: 0 24px 60px rgba(15,23,42,.16), 0 2px 12px rgba(15,23,42,.06); padding: 28px; opacity: 0; visibility: hidden; transform: translateY(12px); transition: opacity .26s, visibility .26s, transform .26s; z-index: 9999; }
+.kontak-wrap:hover .kontak-mega, .kontak-mega:hover, .kontak-mega.open { opacity: 1; visibility: visible; transform: translateY(0); }
+.kontak-mega::before { content:''; position:absolute; top:0; left:24px; right:24px; height:2px; background:linear-gradient(90deg,transparent,rgba(28,20,92,.2) 50%,transparent); border-radius:2px; }
 .kontak-mega-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 22px; }
-
-.kontak-form-panel {
-    background: #1C145C; border-radius: 16px; padding: 22px 20px;
-    position: relative; overflow: hidden;
-}
-.kontak-form-panel .form-ornament {
-    position: absolute; bottom: -50px; right: -50px; width: 160px; height: 160px;
-    opacity: .07; background-image: url('{{ asset("images/beranda/ornamen.png") }}');
-    background-size: contain; background-repeat: no-repeat;
-    pointer-events: none; filter: brightness(10);
-}
+.kontak-form-panel { background: #1C145C; border-radius: 16px; padding: 22px 20px; position: relative; overflow: hidden; }
+.kontak-form-panel .form-ornament { position: absolute; bottom: -50px; right: -50px; width: 160px; height: 160px; opacity: .07; background-image: url('{{ asset("images/beranda/ornamen.png") }}'); background-size: contain; background-repeat: no-repeat; pointer-events: none; filter: brightness(10); }
 .kontak-form-panel > *:not(.form-ornament) { position: relative; z-index: 1; }
-
-.kontak-form-sublabel {
-    font-size: 10px; font-weight: 700; color: rgba(254,252,241,.45);
-    text-transform: uppercase; letter-spacing: .12em; margin-bottom: 4px;
-}
-.kontak-form-title {
-    font-family: 'GothamBlack', sans-serif !important;
-    font-size: 19px; color: #FEFCF1; margin-bottom: 16px; line-height: 1.2;
-}
-.kontak-form-title span {
-    background: linear-gradient(90deg, #a89eff, #FEFCF1);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-}
-
+.kontak-form-sublabel { font-size: 10px; font-weight: 700; color: rgba(254,252,241,.45); text-transform: uppercase; letter-spacing: .12em; margin-bottom: 4px; }
+.kontak-form-title { font-family: 'GothamBlack', sans-serif !important; font-size: 19px; color: #FEFCF1; margin-bottom: 16px; line-height: 1.2; }
+.kontak-form-title span { background: linear-gradient(90deg, #a89eff, #FEFCF1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .ck-field { margin-bottom: 10px; }
 .ck-field label { display:block;font-size:10.5px;color:rgba(254,252,241,.55);margin-bottom:3px;letter-spacing:.04em; }
-.ck-field input, .ck-field textarea {
-    width: 100%; background: rgba(255,255,255,.1);
-    border: 1px solid rgba(254,252,241,.18); border-radius: 7px;
-    padding: 8px 11px; font-size: 12.5px; color: #FEFCF1;
-    outline: none; transition: .2s; font-family: inherit; box-sizing: border-box;
-}
+.ck-field input, .ck-field textarea { width: 100%; background: rgba(255,255,255,.1); border: 1px solid rgba(254,252,241,.18); border-radius: 7px; padding: 8px 11px; font-size: 12.5px; color: #FEFCF1; outline: none; transition: .2s; font-family: inherit; box-sizing: border-box; }
 .ck-field input::placeholder, .ck-field textarea::placeholder { color: rgba(254,252,241,.35); }
 .ck-field input:focus, .ck-field textarea:focus { border-color: rgba(254,252,241,.5); background:rgba(255,255,255,.15); }
 .ck-field textarea { resize:vertical; min-height:72px; }
 .ck-row { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
-
-.btn-send-mega {
-    margin-top: 12px; width: 100%; padding: 10px;
-    background: #FEFCF1; color: #1C145C; border: none; border-radius: 50px;
-    font-size: 13px; font-weight: 700; cursor: pointer; transition: .2s;
-    display: flex; align-items: center; justify-content: center; gap: 7px; font-family: inherit;
-}
+.btn-send-mega { margin-top: 12px; width: 100%; padding: 10px; background: #FEFCF1; color: #1C145C; border: none; border-radius: 50px; font-size: 13px; font-weight: 700; cursor: pointer; transition: .2s; display: flex; align-items: center; justify-content: center; gap: 7px; font-family: inherit; }
 .btn-send-mega:hover { background:#fff; transform:translateY(-1px); box-shadow:0 4px 14px rgba(0,0,0,.18); }
-
 .kontak-info-panel { display:flex; flex-direction:column; gap:14px; }
 .kontak-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.kontak-info-card {
-    background: #f8f7ff; border: 1px solid #ece9f8;
-    border-radius: 12px; padding: 12px; text-align: center;
-}
-.kontak-info-icon {
-    width: 36px; height: 36px; border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px; margin: 0 auto 8px;
-}
-.ci-phone { background:rgba(25,135,84,.12);  color:#198754; }
-.ci-email { background:rgba(220,53,69,.1);   color:#dc3545; }
-.ci-igd   { background:rgba(245,158,11,.12); color:#d97706; }
-.ci-map   { background:rgba(28,20,92,.1);    color:#1C145C; }
-
+.kontak-info-card { background: #f8f7ff; border: 1px solid #ece9f8; border-radius: 12px; padding: 12px; text-align: center; text-decoration: none; color: inherit; display: block; transition: .2s; }
+.kontak-info-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(28,20,92,.1); border-color: #d8d4f0; }
+.kontak-info-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; margin: 0 auto 8px; }
+.ci-phone { background:rgba(25,135,84,.12); color:#198754; }
+.ci-email { background:rgba(220,53,69,.1); color:#dc3545; }
+.ci-igd { background:rgba(245,158,11,.12); color:#d97706; }
+.ci-map { background:rgba(28,20,92,.1); color:#1C145C; }
 .ci-ambulans { background: rgba(239,68,68,.12); color: #ef4444; }
-.ci-wa       { background: rgba(37,211,102,.14); color: #128C7E; }
-
-.kontak-info-card {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-    transition: .2s;
-}
-.kontak-info-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(28,20,92,.1);
-    border-color: #d8d4f0;
-}
-.bs-info-card {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-}
-
-.kontak-social-row {
-    display: flex; align-items: center; justify-content: center; gap: 10px;
-    padding: 4px 0 2px;
-}
-.kontak-social-row a {
-    width: 34px; height: 34px; border-radius: 50%;
-    background: #f8f7ff; border: 1px solid #ece9f8;
-    display: flex; align-items: center; justify-content: center;
-    color: #1C145C; font-size: 15px; text-decoration: none; transition: .2s;
-}
+.ci-wa { background: rgba(37,211,102,.14); color: #128C7E; }
+.kontak-social-row { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 4px 0 2px; }
+.kontak-social-row a { width: 34px; height: 34px; border-radius: 50%; background: #f8f7ff; border: 1px solid #ece9f8; display: flex; align-items: center; justify-content: center; color: #1C145C; font-size: 15px; text-decoration: none; transition: .2s; }
 .kontak-social-row a:hover { background: #1C145C; color: #fff; transform: translateY(-2px); }
-
-.kontak-map-caption {
-    display: flex; align-items: center; gap: 6px;
-    font-size: 11.5px; color: #5a5480; text-decoration: none; margin-top: 8px;
-}
+.kontak-map-caption { display: flex; align-items: center; gap: 6px; font-size: 11.5px; color: #5a5480; text-decoration: none; margin-top: 8px; }
 .kontak-map-caption:hover { color: #1C145C; }
 .kontak-map-caption i { color: #1C145C; font-size: 11px; }
-
 .kontak-info-title { font-size:11px; font-weight:700; color:#1C145C; margin-bottom:2px; }
-.kontak-info-val   { font-size:11.5px; color:#5a5480; line-height:1.45; }
+.kontak-info-val { font-size:11.5px; color:#5a5480; line-height:1.45; }
 .kontak-map-box { border-radius: 12px; overflow:hidden; border:1px solid #e8e4d8; flex:1; }
 .kontak-map-box iframe { width:100%; height:140px; display:block; border:0; }
 
-/* ============================================================
-   DRAWER (MOBILE)
-============================================================ */
+/* DRAWER (MOBILE) */
 .nav-overlay { display:none;position:fixed;inset:0;background:rgba(15,23,42,0);z-index:9999990;transition:background .3s; }
 .nav-overlay.show { display:block;background:rgba(15,23,42,0.42); }
 .nav-drawer { position:fixed;top:0;right:0;width:72%;max-width:300px;height:100dvh;z-index:9999995;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);background:rgba(255,255,255,0.97);backdrop-filter:blur(24px) saturate(180%);border-left:1px solid rgba(255,255,255,0.45);box-shadow:-8px 0 32px rgba(15,23,42,.12);display:flex;flex-direction:column;overflow-y:auto;overscroll-behavior:contain; }
@@ -253,90 +143,41 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
 .d-accordion-body.open { display:block; }
 .d-sub-link { display:flex;align-items:center;gap:9px;padding:8px 12px;border-radius:10px;font-size:13.5px;font-weight:500;color:#475569;text-decoration:none;transition:.16s; }
 .d-sub-link:hover { background:rgba(28,20,92,.06);color:#1C145C; }
-.d-sub-link i { font-size:13px;color:#94a3b8;flex-shrink:0;width:16px;text-align:center; }
+.d-sub-link i { font-size:14px;color:#94a3b8;flex-shrink:0;width:18px;text-align:center; }
 .d-sub-link:hover i { color:#1C145C; }
-.btn-kontak-drawer {
-    border-radius:14px; display:block; text-align:center; padding:12px 22px;
-    background:#1C145C; color:#fff!important; text-decoration:none!important;
-    font-size:14px; font-weight:600; border:none; cursor:pointer;
-    font-family:inherit; width:100%; transition:.2s;
-}
+.btn-kontak-drawer { border-radius:14px; display:block; text-align:center; padding:12px 22px; background:#1C145C; color:#fff!important; text-decoration:none!important; font-size:14px; font-weight:600; border:none; cursor:pointer; font-family:inherit; width:100%; transition:.2s; }
 .btn-kontak-drawer:hover { background:#2a1e8a; }
 
-/* ============================================================
-   BOTTOM SHEET (mobile kontak)
-============================================================ */
+/* BOTTOM SHEET */
 .bs-overlay { display:none; position:fixed; inset:0; background:rgba(15,23,42,0); z-index:10000001; transition:background .3s; }
 .bs-overlay.show { display:block; background:rgba(15,23,42,0.5); }
-.bs-sheet {
-    position:fixed; left:0; right:0; bottom:0;
-    z-index:10000002; background:#fff;
-    border-radius:24px 24px 0 0;
-    box-shadow:0 -8px 40px rgba(15,23,42,.18);
-    transform:translateY(100%);
-    transition:transform .35s cubic-bezier(.4,0,.2,1);
-    height:92dvh; display:flex; flex-direction:column; overflow:visible;
-}
+.bs-sheet { position:fixed; left:0; right:0; bottom:0; z-index:10000002; background:#fff; border-radius:24px 24px 0 0; box-shadow:0 -8px 40px rgba(15,23,42,.18); transform:translateY(100%); transition:transform .35s cubic-bezier(.4,0,.2,1); height:92dvh; display:flex; flex-direction:column; overflow:visible; }
 .bs-sheet.open { transform:translateY(0); }
 .bs-handle-wrap { flex-shrink:0; display:flex; align-items:center; justify-content:center; padding:10px 16px 6px; }
 .bs-handle { width:40px; height:4px; border-radius:2px; background:rgba(0,0,0,.15); }
 .bs-header { flex-shrink:0; display:flex; align-items:center; justify-content:space-between; padding:0 18px 14px; border-bottom:1px solid rgba(0,0,0,.07); }
 .bs-title { font-family:'GothamBlack',sans-serif; font-size:17px; color:#1C145C; margin:0; }
 .bs-close { width:32px; height:32px; border-radius:50%; background:rgba(28,20,92,.08); border:none; display:flex; align-items:center; justify-content:center; color:#1C145C; cursor:pointer; font-size:15px; }
-.bs-body {
-    flex:1; min-height:0; overflow-y:auto; -webkit-overflow-scrolling:touch;
-    overscroll-behavior:contain;
-    padding:18px 18px calc(18px + env(safe-area-inset-bottom)) 18px;
-    display:flex; flex-direction:column; gap:16px;
-}
+.bs-body { flex:1; min-height:0; overflow-y:auto; -webkit-overflow-scrolling:touch; overscroll-behavior:contain; padding:18px 18px calc(18px + env(safe-area-inset-bottom)) 18px; display:flex; flex-direction:column; gap:16px; }
 .bs-form-card { background:#1C145C; border-radius:14px; padding:18px 16px; position:relative; overflow:hidden; flex-shrink:0; }
-.bs-form-card .bs-form-ornament {
-    position:absolute; bottom:-40px; right:-40px; width:130px; height:130px; opacity:.07;
-    background-image:url('{{ asset("images/beranda/ornamen.png") }}');
-    background-size:contain; background-repeat:no-repeat; pointer-events:none; filter:brightness(10);
-}
+.bs-form-card .bs-form-ornament { position:absolute; bottom:-40px; right:-40px; width:130px; height:130px; opacity:.07; background-image:url('{{ asset("images/beranda/ornamen.png") }}'); background-size:contain; background-repeat:no-repeat; pointer-events:none; filter:brightness(10); }
 .bs-form-card > *:not(.bs-form-ornament) { position:relative; z-index:1; }
 .bs-sublabel { font-size:10px; font-weight:700; color:rgba(254,252,241,.45); text-transform:uppercase; letter-spacing:.12em; margin-bottom:3px; }
 .bs-form-title { font-family:'GothamBlack',sans-serif!important; font-size:17px; color:#FEFCF1; margin-bottom:14px; }
 .bs-form-title span { background:linear-gradient(90deg,#a89eff,#FEFCF1); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
 .bs-form-card .ck-field { margin-bottom:9px; }
 .bs-form-card .ck-field label { font-size:10px; color:rgba(254,252,241,.5); margin-bottom:2px; }
-.bs-form-card .ck-field input,
-.bs-form-card .ck-field textarea {
-    font-size:12px; padding:7px 10px; border-radius:7px; background:rgba(255,255,255,.1);
-    border:1px solid rgba(254,252,241,.18); color:#FEFCF1; width:100%; box-sizing:border-box; outline:none; font-family:inherit; transition:.2s;
-}
-.bs-form-card .ck-field input::placeholder,
-.bs-form-card .ck-field textarea::placeholder { color:rgba(254,252,241,.35); }
-.bs-form-card .ck-field input:focus,
-.bs-form-card .ck-field textarea:focus { border-color:rgba(254,252,241,.5); background:rgba(255,255,255,.15); }
-.bs-form-card .ck-field textarea { min-height:68px; resize:vertical; }
-.btn-send-bs {
-    width:100%; padding:11px; background:#FEFCF1; color:#1C145C; border:none; border-radius:50px;
-    font-size:13px; font-weight:700; cursor:pointer; transition:.2s; display:flex; align-items:center;
-    justify-content:center; gap:7px; font-family:inherit; margin-top:10px;
-}
-.btn-send-bs:hover { background:#fff; box-shadow:0 4px 14px rgba(0,0,0,.18); }
+.bs-form-card .ck-field input, .bs-form-card .ck-field textarea { font-size:12px; padding:7px 10px; border-radius:7px; background:rgba(255,255,255,.1); border:1px solid rgba(254,252,241,.18); color:#FEFCF1; width:100%; box-sizing:border-box; outline:none; font-family:inherit; transition:.2s; }
+.btn-send-bs { width:100%; padding:11px; background:#FEFCF1; color:#1C145C; border:none; border-radius:50px; font-size:13px; font-weight:700; cursor:pointer; transition:.2s; display:flex; align-items:center; justify-content:center; gap:7px; font-family:inherit; margin-top:10px; }
 .bs-info-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; flex-shrink:0; }
-.bs-info-card { background:#f8f7ff; border:1px solid #ece9f8; border-radius:12px; padding:12px; text-align:center; }
+.bs-info-card { background:#f8f7ff; border:1px solid #ece9f8; border-radius:12px; padding:12px; text-align:center; text-decoration:none; color:inherit; display:block; }
 .bs-info-icon { width:34px; height:34px; border-radius:9px; display:flex; align-items:center; justify-content:center; font-size:15px; margin:0 auto 7px; }
 .bs-info-title { font-size:11px; font-weight:700; color:#1C145C; margin-bottom:1px; }
 .bs-info-val   { font-size:11px; color:#5a5480; line-height:1.45; }
 .bs-map-box { border-radius:12px; overflow:hidden; border:1px solid #e8e4d8; flex-shrink:0; }
 .bs-map-box iframe { width:100%; height:160px; display:block; border:0; }
 
-@media(max-width:1100px) { .nav-link-pill{padding:7px 11px;font-size:13px;} }
-@media(max-width:991px) {
-    .navbar-float-wrap { top:38px;padding:4px 12px; }
-    .navbar-float { border-radius:26px;padding:8px 14px; }
-    .nav-links,.nav-cta { display:none; }
-    .nav-burger { display:flex; }
-}
-@media(max-width:480px) { .navbar-float { border-radius:22px; } }
-
-/* ============================================================
-   ORNAMEN HELPER
-============================================================ */
+/* ORNAMEN HELPER */
 .ornamen { position:absolute;background-image:url('{{ asset("images/beranda/ornamen.png") }}');background-size:contain;background-repeat:no-repeat;background-position:center;pointer-events:none;z-index:0; }
 .page-ornament { position:fixed;pointer-events:none;z-index:0;background-image:url('{{ asset("images/beranda/ornamen.png") }}');background-size:contain;background-repeat:no-repeat;background-position:center;transition:opacity 0.6s ease,transform 0.6s ease;will-change:opacity,transform; }
 .orn-1 { right:-100px;top:20%;width:380px;height:380px;opacity:0;filter:hue-rotate(220deg) saturate(0.35); }
@@ -346,9 +187,7 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
 .orn-5 { right:-80px;top:110%;width:320px;height:320px;opacity:0;filter:hue-rotate(220deg) saturate(0.3); }
 .page-ornament.orn-visible { opacity:0.042; }
 
-/* ============================================================
-   HERO
-============================================================ */
+/* HERO & TICKER */
 .lay-hero { background:linear-gradient(150deg,#1C145C 0%,#231a72 40%,#0ea5e9 100%);padding:130px 0 72px;position:relative;overflow:hidden; }
 .lay-hero::before { content:'';position:absolute;right:-80px;top:-80px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.06),transparent 65%);pointer-events:none; }
 .lay-hero::after { content:'';position:absolute;left:-40px;bottom:-100px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(14,165,233,.12),transparent 65%);pointer-events:none; }
@@ -370,10 +209,6 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
 .hero-stat-item:last-child { border-right:none; }
 .hero-stat-num { font-weight:900;font-size:22px;color:#fff;display:block;line-height:1; }
 .hero-stat-label { font-size:10px;color:rgba(255,255,255,.6);margin-top:5px; }
-
-/* ============================================================
-   TICKER DOKTER
-============================================================ */
 .dokter-ticker-section { width:100vw;position:relative;left:50%;transform:translateX(-50%);overflow:hidden;background:linear-gradient(135deg,#1C145C 0%,#1e3a6e 50%,#0c6197 100%);box-shadow:0 4px 24px rgba(28,20,92,.18); }
 .dokter-ticker-section::before,.dokter-ticker-section::after { content:'';position:absolute;top:0;bottom:0;width:80px;z-index:3;pointer-events:none; }
 .dokter-ticker-section::before { left:0;background:linear-gradient(to right,#1C145C,transparent); }
@@ -393,26 +228,22 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
 .dtc-nama { font-size:12.5px;font-weight:800;color:#fff;white-space:nowrap;line-height:1.3;transition:color .2s; }
 .dtc-sp { font-size:10.5px;color:rgba(125,211,252,.8);white-space:nowrap;font-weight:500; }
 
-/* ============================================================
-   TABS
-============================================================ */
-.layanan-tabs-wrap { width:100%;display:flex;justify-content:center;position:relative;z-index:2;background:linear-gradient(180deg, #ffffff 0%, #fcfbf6 18%, #f7f3e8 42%, #f4efe4 68%, #ffffff 100%);border-bottom:1px solid rgba(28,20,92,.06);box-shadow:0 6px 18px rgba(28,20,92,.04); }
+/* TABS */
+.layanan-tabs-wrap { width:100%;display:flex;justify-content:center;position:relative;z-index:2;background:#1C145C;border-bottom:1px solid rgba(0,0,0,.15);box-shadow:0 6px 18px rgba(28,20,92,.15); }
 .layanan-tabs-wrap .container { width:100%;max-width:1400px;padding:0 20px; }
 .lay-tabs-shell { display:flex;align-items:center;gap:8px; }
-.lay-nav-btn { width:30px;height:30px;border:1px solid rgba(28,20,92,.06);border-radius:999px;background:rgba(255,255,255,.7);display:flex;align-items:center;justify-content:center;color:#8a93a4;cursor:pointer;transition:color .2s,border-color .2s,background .2s,transform .2s;flex-shrink:0;padding:0; }
-.lay-nav-btn:hover { color:#6b7280;border-color:rgba(28,20,92,.10);background:rgba(255,255,255,.9);transform:translateY(-1px); }
-.lay-nav-btn.is-active { color:#1C145C;border-color:rgba(28,20,92,.12);background:rgba(255,255,255,.95); }
+.lay-nav-btn { width:30px;height:30px;border:1px solid rgba(255,255,255,.2);border-radius:999px;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:#fff;cursor:pointer;transition:color .2s,border-color .2s,background .2s,transform .2s;flex-shrink:0;padding:0; }
+.lay-nav-btn:hover { border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.2);transform:translateY(-1px); }
+.lay-nav-btn.is-active { border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.3); }
 .lay-nav-btn:disabled { opacity:.25;cursor:not-allowed;transform:none; }
 .layanan-tabs { display:flex;align-items:center;justify-content:flex-start;width:100%;max-width:1400px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;scroll-behavior:smooth;padding:10px 0;gap:4px; }
 .layanan-tabs::-webkit-scrollbar { display:none; }
-.lay-tab { display:inline-flex;align-items:center;gap:7px;padding:10px 12px;border:none;border-bottom:1px solid transparent;font-size:13px;font-weight:600;color:#6b7280;text-decoration:none;white-space:nowrap;transition:color .2s,border-color .2s,background .2s;cursor:pointer;flex-shrink:0;border-radius:999px; }
-.lay-tab:hover { color:#64748b;background:transparent; }
-.lay-tab.active { color:#6b7280;border-bottom-color:transparent;background:transparent; }
-.lay-tab i { font-size:14px; }
+.lay-tab { display:inline-flex;align-items:center;gap:7px;padding:10px 14px;border:none;border-bottom:1px solid transparent;font-size:13.5px;font-weight:600;color:rgba(255,255,255,.75);text-decoration:none;white-space:nowrap;transition:color .2s,border-color .2s,background .2s;cursor:pointer;flex-shrink:0;border-radius:999px; }
+.lay-tab:hover { color:#fff;background:rgba(255,255,255,.15); }
+.lay-tab.active { color:#1C145C;background:#fff;font-weight:700; box-shadow:0 4px 10px rgba(0,0,0,.15); }
+.lay-tab i { font-size:15px; }
 
-/* ============================================================
-   PAGE BODY
-============================================================ */
+/* PAGE BODY */
 .layanan-page-body { padding:0 0 90px;background:linear-gradient(180deg, #ffffff 0%, #ffffff 8%, #fdfcf7 18%, #faf8ee 30%, #f5f2e5 42%, #f0ecdc 52%, #f5f2e5 62%, #faf8ee 74%, #fdfcf7 86%, #ffffff 96%, #ffffff 100%);position:relative;z-index:1;overflow:hidden; }
 .layanan-page-body::before { content:'';position:absolute;inset:0 auto 0 0;width:100%;height:100%;background-image:url('{{ asset("images/beranda/ornamen.png") }}');background-repeat:repeat-y;background-position:center top;background-size:260px auto;opacity:0.035;pointer-events:none;z-index:0; }
 .layanan-page-body > .container { position:relative;z-index:1; }
@@ -422,9 +253,7 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
 .sec-sub { font-size:14px;color:#64748b;margin-top:6px;line-height:1.6; }
 .sec-divider { width:100%;height:1px;background:linear-gradient(to right,#1C145C,#0ea5e9,transparent);margin-bottom:32px;opacity:.15; }
 
-/* ============================================================
-   SERVICE CARD
-============================================================ */
+/* SERVICE CARD */
 .svc-card { background:#fff;border-radius:20px;border:1px solid #e8edf5;box-shadow:0 4px 20px rgba(28,20,92,.05);overflow:hidden; }
 .svc-header { padding:36px 32px 30px;position:relative;overflow:hidden; }
 .svc-header-icon { width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.28);display:flex;align-items:center;justify-content:center;font-size:24px;color:#fff;margin-bottom:16px;position:relative;z-index:1;flex-shrink:0; }
@@ -438,9 +267,7 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
 .svc-footer { padding:0 32px 28px;display:flex;align-items:center;gap:10px;flex-wrap:wrap; }
 .svc-badge { display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:20px;font-size:12.5px;font-weight:600;text-decoration:none;transition:all .2s; }
 
-/* ============================================================
-   POLI GRID
-============================================================ */
+/* POLI GRID */
 .poli-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;margin-top:24px; }
 .poli-card { background:#fff;border-radius:16px;border:1px solid #e8edf5;overflow:hidden;display:flex;flex-direction:column;transition:transform .28s cubic-bezier(.22,.68,0,1.2),box-shadow .28s,border-color .28s;animation:fadeUp .45s cubic-bezier(.22,.68,0,1.2) both; }
 @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
@@ -462,12 +289,10 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
 .poli-detail { display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:9px;font-size:12px;font-weight:700;background:#1C145C;color:#fff;text-decoration:none;border:none;cursor:pointer;transition:background .2s; }
 .poli-detail:hover { background:#2a1f7a;color:#fff; }
 .poli-empty { grid-column:1/-1;padding:48px 24px;text-align:center;background:#fff;border-radius:16px;border:1px dashed #c7d2fe; }
-.poli-empty p { font-size:14px;color:#64748b;margin:0; }
 
 /* POLI MOBILE */
 .poli-mobile-list { display:none;flex-direction:column;gap:0;margin-top:16px;border-radius:14px;border:1px solid #e8edf5;overflow:hidden;box-shadow:0 2px 12px rgba(28,20,92,.05); }
 .poli-mobile-item { display:flex;align-items:center;gap:12px;padding:12px 14px;background:#fff;border-bottom:1px solid #f1f5f9;transition:background .18s; }
-.poli-mobile-item:last-child { border-bottom:none; }
 .pmi-icon { width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#e0e7ff,#dbeafe);display:flex;align-items:center;justify-content:center;font-size:17px;color:#818cf8;flex-shrink:0; }
 .pmi-info { flex:1;min-width:0; }
 .pmi-name { font-family:'DM Serif Display',serif;font-size:14px;font-weight:400;color:#1C145C;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
@@ -477,7 +302,6 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
 .pmi-status-badge::before { content:'';display:inline-block;width:5px;height:5px;border-radius:50%;background:currentColor;flex-shrink:0; }
 .pmi-actions { display:flex;align-items:center;gap:7px;flex-shrink:0; }
 .pmi-wa { width:34px;height:34px;border-radius:9px;background:#dcfce7;color:#15803d;border:1px solid #86efac;display:flex;align-items:center;justify-content:center;font-size:15px;text-decoration:none;transition:background .2s;flex-shrink:0; }
-.pmi-wa:hover { background:#25D366;color:#fff; }
 .pmi-detail { display:inline-flex;align-items:center;gap:5px;padding:7px 12px;border-radius:9px;font-size:12px;font-weight:700;background:#1C145C;color:#fff;text-decoration:none;flex-shrink:0; }
 .poli-mobile-search { display:flex;gap:8px;margin-bottom:12px; }
 .poli-mobile-search-wrap { position:relative;flex:1; }
@@ -486,9 +310,7 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
 .poli-mobile-search select { padding:9px 10px;border:1.5px solid #e2e8f0;border-radius:10px;font-size:13px;outline:none;background:#f8faff;flex-shrink:0; }
 .pmi-empty { padding:36px 20px;text-align:center;color:#94a3b8;font-size:13px; }
 
-/* ============================================================
-   RAWAT INAP KELAS GRID
-============================================================ */
+/* KELAS RAWAT INAP */
 .kelas-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:24px;grid-auto-rows:1fr; }
 .kelas-card { background:#fff;border-radius:16px;border:1px solid #e8edf5;overflow:hidden;box-shadow:0 3px 14px rgba(28,20,92,.05);transition:transform .28s cubic-bezier(.22,.68,0,1.2),box-shadow .28s,border-color .28s;animation:fadeUp .45s ease both;display:flex;flex-direction:column;height:100%; }
 .kelas-card:hover { transform:translateY(-5px);box-shadow:0 14px 36px rgba(28,20,92,.11);border-color:#c7d2fe; }
@@ -513,7 +335,6 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
 .kelas-pills-scroll::-webkit-scrollbar { display:none; }
 .kelas-pill { display:inline-flex;align-items:center;gap:7px;padding:9px 15px;border-radius:30px;font-size:12.5px;font-weight:700;color:#fff;border:2px solid transparent;white-space:nowrap;flex-shrink:0;cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s;opacity:.72; }
 .kelas-pill.active { opacity:1;border-color:rgba(255,255,255,.55);transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.18); }
-.kelas-pill i { font-size:13px; }
 .kelas-detail-panel { background:#fff;border-radius:18px;border:1px solid #e8edf5;overflow:hidden;box-shadow:0 4px 20px rgba(28,20,92,.07);animation:fadeUp .3s ease both; }
 .kdp-header { display:flex;align-items:center;gap:14px;padding:20px 20px 16px; }
 .kdp-icon { width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:21px;color:#fff;flex-shrink:0; }
@@ -528,10 +349,7 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
 .kdp-wa { background:#dcfce7;color:#15803d;border:1px solid #86efac; }
 .kdp-wa:hover { background:#25D366;color:#fff; }
 
-/* HOME SERVICE */
-.homeservice-card { background:linear-gradient(135deg,#f0fdf4 0%,#ecfdf5 100%);border-radius:16px;border:1.5px solid #86efac;padding:26px 28px;position:relative;overflow:hidden; }
-
-/* DETAIL POLI */
+/* DETAIL POLI HERO DLL */
 .detail-hero { background:linear-gradient(150deg,#1C145C 0%,#231a72 40%,#0ea5e9 100%);padding:130px 0 60px;position:relative;overflow:hidden; }
 .detail-hero::before { content:'';position:absolute;right:-80px;top:-80px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.06),transparent 65%);pointer-events:none; }
 .detail-hero .hero-orn { position:absolute;right:-40px;bottom:-60px;width:280px;height:280px;background-image:url('{{ asset("images/beranda/ornamen.png") }}');background-size:contain;background-repeat:no-repeat;background-position:center;opacity:0.08;filter:brightness(10);pointer-events:none; }
@@ -540,18 +358,7 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
 .detail-hero-chips { display:flex;align-items:center;gap:8px;flex-wrap:wrap; }
 .detail-chip { display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.85);font-size:12px;font-weight:600;padding:5px 13px;border-radius:20px; }
 .detail-chip.aktif { background:rgba(16,185,129,.18);border-color:rgba(16,185,129,.35);color:#6ee7b7; }
-.detail-body {
-    padding: 0 0 64px;
-    position: relative;
-    z-index: 1;
-    background: linear-gradient(180deg,
-        #fdfcf7 0%,
-        #faf8ee 22%,
-        #f5f2e5 45%,
-        #faf8ee 75%,
-        #ffffff 100%
-    );
-}
+.detail-body { padding: 0 0 64px; position: relative; z-index: 1; background: linear-gradient(180deg, #fdfcf7 0%, #faf8ee 22%, #f5f2e5 45%, #faf8ee 75%, #ffffff 100% ); }
 .detail-main { background:#fff;border-radius:20px;border:1px solid #e8edf5;box-shadow:0 8px 32px rgba(28,20,92,.07);overflow:hidden;margin-top:-32px;position:relative;z-index:5; }
 .detail-featured-img { width:100%;height:auto;display:block;object-fit:contain; }
 .detail-img-placeholder { width:100%;height:280px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#e0e7ff,#dbeafe);font-size:72px;color:#818cf8; }
@@ -566,7 +373,6 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
 .share-btn { display:inline-flex;align-items:center;gap:6px;padding:7px 15px;border-radius:8px;border:none;font-family:'Plus Jakarta Sans',sans-serif;font-size:12.5px;font-weight:700;cursor:pointer;text-decoration:none;transition:transform .2s; }
 .share-btn:hover { transform:translateY(-1px); }
 .btn-wa-share { background:#25D366;color:#fff; }
-.btn-wa-share:hover { color:#fff; }
 .btn-copy { background:#f1f5f9;color:#475569;border:1.5px solid #e2e8f0; }
 .btn-copy.copied { background:#10b981;color:#fff;border-color:#10b981; }
 .detail-sidebar { position:sticky;top:110px; }
@@ -637,7 +443,6 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
     .terkait-grid { grid-template-columns:1fr 1fr; }
     .kdp-body { grid-template-columns:1fr; }
     .page-ornament { display:none; }
-    .layanan-tabs-wrap .container { padding:0 14px; }
     .lay-tabs-shell { gap:6px; }
     .lay-nav-btn { display:none; }
     .layanan-tabs { padding:8px 0; gap:6px; grid-template-columns:1fr; }
@@ -650,10 +455,6 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
     .poli-mobile-search{flex-direction:column;}
     .poli-mobile-search select{width:100%;}
     .kdp-footer{flex-direction:column;}
-    .homeservice-card{padding:22px 20px;}
-    .detail-content{padding:24px 20px;}
-    .share-bar{margin:0 20px 24px;}
-    .detail-divider{margin:0 20px 24px;}
 }
 @media(max-width:480px) {
     .terkait-grid { grid-template-columns:1fr; }
@@ -667,6 +468,22 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
     .svc-title { font-size:20px; }
     .poli-mobile-item { padding:11px 12px; }
     .poli-mobile-search-wrap input { font-size:12px; }
+}
+/* ============================================================
+   RESPONSIVE TABS MOBILE (Penyesuaian Layar HP)
+============================================================ */
+@media (max-width: 768px) {
+    .layanan-tabs-wrap .container { padding: 0 12px; }
+    .lay-nav-btn { display: none !important; } /* Sembunyikan panah di mobile (cukup swipe) */
+    .layanan-tabs { padding: 12px 0; gap: 6px; justify-content: flex-start; }
+    .lay-tab { padding: 8px 14px; font-size: 12.5px; }
+}
+
+@media (max-width: 480px) {
+    .layanan-tabs-wrap .container { padding: 0 10px; }
+    .layanan-tabs { padding: 10px 0; gap: 5px; }
+    .lay-tab { padding: 7px 12px; font-size: 11.5px; }
+    .lay-tab i { font-size: 13px; } /* Ikon sedikit diperkecil */
 }
 </style>
 
@@ -711,22 +528,19 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
                 <div class="drop-menu drop-menu-layanan">
                     <div class="drop-column">
                         <a href="{{ url('/layanan') }}" class="drop-item"><i class="bi bi-grid-3x3-gap"></i> Semua Layanan</a>
+                        <div class="drop-divider"></div>
                         <a href="{{ url('/layanan#igd') }}" class="drop-item"><i class="bi bi-bandaid-fill"></i> IGD 24 Jam</a>
                         <a href="{{ url('/layanan#rawatjalan') }}" class="drop-item"><i class="bi bi-clipboard2-pulse"></i> Rawat Jalan</a>
                         <a href="{{ url('/layanan#rawatinap') }}" class="drop-item"><i class="bi bi-hospital"></i> Rawat Inap</a>
                         <a href="{{ url('/layanan#ambulans') }}" class="drop-item"><i class="bi bi-truck"></i> Ambulans</a>
-                    </div>
-                    <div class="drop-column">
-                        <a href="{{ url('/layanan#laboratorium') }}" class="drop-item"><i class="bi bi-eyedropper"></i> Laboratorium</a>
-                        <a href="{{ url('/layanan#radiologi') }}" class="drop-item"><i class="bi bi-radioactive"></i> Radiologi</a>
-                        <a href="{{ url('/layanan#farmasi') }}" class="drop-item"><i class="bi bi-capsule"></i> Farmasi</a>
                         <a href="{{ url('/layanan#mcu') }}" class="drop-item"><i class="bi bi-heart-pulse"></i> Medical Check Up</a>
-                        <a href="{{ url('/layanan#intensif') }}" class="drop-item"><i class="bi bi-heart-pulse-fill"></i> ICU/NICU/HCU</a>
                     </div>
                     <div class="drop-column">
+                        <a href="{{ url('/layanan#intensif') }}" class="drop-item"><i class="bi bi-heart-pulse-fill"></i> ICU/NICU/HCU</a>
                         <a href="{{ url('/layanan#vk') }}" class="drop-item"><i class="bi bi-gender-female"></i> Ruang Bersalin (VK)</a>
                         <a href="{{ url('/layanan#ibs') }}" class="drop-item"><i class="bi bi-scissors"></i> Bedah Sentral (IBS)</a>
-                        <a href="{{ url('/layanan#rehab') }}" class="drop-item"><i class="bi bi-person-wheelchair"></i> Fisioterapi</a>
+                        <a href="{{ url('/layanan#penunjang') }}" class="drop-item"><i class="bi bi-eyedropper"></i> Penunjang Medis</a>
+                        <a href="{{ url('/layanan#homeservice') }}" class="drop-item"><i class="bi bi-house-heart-fill"></i> Home Service</a>
                     </div>
                 </div>
             </div>
@@ -759,42 +573,38 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
                         </form>
                     </div>
                    <div class="kontak-info-panel">
-    <div class="kontak-info-grid">
-        <!-- TODO: ganti nomor IGD asli -->
-        <a href="https://wa.me/6285290273097" target="_blank" class="kontak-info-card">
-            <div class="kontak-info-icon ci-igd"><i class="bi bi-heart-pulse-fill"></i></div>
-            <div class="kontak-info-title">IGD 24 Jam</div>
-            <div class="kontak-info-val">0852-9027-3097</div>
-        </a>
-        <!-- TODO: ganti nomor Ambulans asli -->
-        <a href="https://wa.me/6285290273097" target="_blank" class="kontak-info-card">
-            <div class="kontak-info-icon ci-ambulans"><i class="bi bi-truck"></i></div>
-            <div class="kontak-info-title">Ambulans</div>
-            <div class="kontak-info-val">0852-9027-3097</div>
-        </a>
-        <a href="https://wa.me/6285292224886" target="_blank" class="kontak-info-card">
-            <div class="kontak-info-icon ci-wa"><i class="fa-brands fa-whatsapp"></i></div>
-            <div class="kontak-info-title">WhatsApp</div>
-            <div class="kontak-info-val">0852-9222-4886</div>
-        </a>
-        <a href="mailto:allam.medica@yahoo.co.id" class="kontak-info-card">
-            <div class="kontak-info-icon ci-email"><i class="bi bi-envelope-fill"></i></div>
-            <div class="kontak-info-title">Email</div>
-            <div class="kontak-info-val">allam.medica@yahoo.co.id</div>
-        </a>
-    </div>
-
-    <div class="kontak-social-row">
-        <a href="https://www.tiktok.com/@allam.medica" target="_blank" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
-        <a href="https://www.facebook.com/allam.medicabmy?mibextid=LQQJ4d" target="_blank" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-        <a href="https://www.instagram.com/allam.medica/" target="_blank" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-    </div>
-
-    <div class="kontak-map-box"><iframe src="https://www.google.com/maps?q=RSU+Allam+Medica+Bumiayu&output=embed" loading="lazy"></iframe></div>
-    <a href="https://www.google.com/maps?q=RSU+Allam+Medica+Bumiayu" target="_blank" class="kontak-map-caption">
-        <i class="bi bi-geo-alt-fill"></i> Jl. P. Diponegoro No.609, Bumiayu, Brebes
-    </a>
-</div>
+                        <div class="kontak-info-grid">
+                            <a href="https://wa.me/6285290273097" target="_blank" class="kontak-info-card">
+                                <div class="kontak-info-icon ci-igd"><i class="bi bi-heart-pulse-fill"></i></div>
+                                <div class="kontak-info-title">IGD 24 Jam</div>
+                                <div class="kontak-info-val">0852-9027-3097</div>
+                            </a>
+                            <a href="https://wa.me/6285290273097" target="_blank" class="kontak-info-card">
+                                <div class="kontak-info-icon ci-ambulans"><i class="bi bi-truck"></i></div>
+                                <div class="kontak-info-title">Ambulans</div>
+                                <div class="kontak-info-val">0852-9027-3097</div>
+                            </a>
+                            <a href="https://wa.me/6285292224886" target="_blank" class="kontak-info-card">
+                                <div class="kontak-info-icon ci-wa"><i class="fa-brands fa-whatsapp"></i></div>
+                                <div class="kontak-info-title">WhatsApp</div>
+                                <div class="kontak-info-val">0852-9222-4886</div>
+                            </a>
+                            <a href="mailto:allam.medica@yahoo.co.id" class="kontak-info-card">
+                                <div class="kontak-info-icon ci-email"><i class="bi bi-envelope-fill"></i></div>
+                                <div class="kontak-info-title">Email</div>
+                                <div class="kontak-info-val">allam.medica@yahoo.co.id</div>
+                            </a>
+                        </div>
+                        <div class="kontak-social-row">
+                            <a href="https://www.tiktok.com/@rsuallammedicabumiayu?_t=8fLMQk9idhI&_r=1" target="_blank" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+                            <a href="https://www.facebook.com/allam.medicabmy?mibextid=LQQJ4d" target="_blank" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                            <a href="https://www.instagram.com/allam.medica/" target="_blank" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        </div>
+                        <div class="kontak-map-box"><iframe src="https://www.google.com/maps?q=RSU+Allam+Medica+Bumiayu&output=embed" loading="lazy"></iframe></div>
+                        <a href="https://www.google.com/maps?q=RSU+Allam+Medica+Bumiayu" target="_blank" class="kontak-map-caption">
+                            <i class="bi bi-geo-alt-fill"></i> Jl. P. Diponegoro No.609, Bumiayu, Brebes
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -828,18 +638,17 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
         </button>
         <div class="d-accordion-body {{ request()->is('layanan*') ? 'open' : '' }}" id="acc-layanan">
             <a href="{{ url('/layanan') }}"              class="d-sub-link"><i class="bi bi-grid-3x3-gap"></i> Semua Layanan</a>
+            <div class="d-divider"></div>
             <a href="{{ url('/layanan#igd') }}"          class="d-sub-link"><i class="bi bi-bandaid-fill"></i> IGD 24 Jam</a>
             <a href="{{ url('/layanan#rawatjalan') }}"   class="d-sub-link"><i class="bi bi-clipboard2-pulse"></i> Rawat Jalan</a>
             <a href="{{ url('/layanan#rawatinap') }}"    class="d-sub-link"><i class="bi bi-hospital"></i> Rawat Inap</a>
             <a href="{{ url('/layanan#ambulans') }}"     class="d-sub-link"><i class="bi bi-truck"></i> Ambulans 24 Jam</a>
-            <a href="{{ url('/layanan#laboratorium') }}" class="d-sub-link"><i class="bi bi-eyedropper"></i> Laboratorium</a>
-            <a href="{{ url('/layanan#radiologi') }}"    class="d-sub-link"><i class="bi bi-radioactive"></i> Radiologi</a>
-            <a href="{{ url('/layanan#farmasi') }}"      class="d-sub-link"><i class="bi bi-capsule"></i> Farmasi</a>
             <a href="{{ url('/layanan#mcu') }}"          class="d-sub-link"><i class="bi bi-heart-pulse"></i> Medical Check Up</a>
             <a href="{{ url('/layanan#intensif') }}"     class="d-sub-link"><i class="bi bi-heart-pulse-fill"></i> ICU/NICU/HCU</a>
             <a href="{{ url('/layanan#vk') }}"           class="d-sub-link"><i class="bi bi-gender-female"></i> Ruang Bersalin (VK)</a>
             <a href="{{ url('/layanan#ibs') }}"          class="d-sub-link"><i class="bi bi-scissors"></i> Bedah Sentral (IBS)</a>
-            <a href="{{ url('/layanan#rehab') }}"        class="d-sub-link"><i class="bi bi-person-wheelchair"></i> Fisioterapi</a>
+            <a href="{{ url('/layanan#penunjang') }}"    class="d-sub-link"><i class="bi bi-eyedropper"></i> Penunjang Medis</a>
+            <a href="{{ url('/layanan#homeservice') }}"  class="d-sub-link"><i class="bi bi-house-heart-fill"></i> Home Service</a>
         </div>
         <div class="d-divider"></div>
         <a href="/artikel"  class="d-link {{ request()->is('artikel*')  ? 'active' : '' }}"><span class="d-icon"><i class="bi bi-journal-text"></i></span> Artikel</a>
@@ -875,50 +684,46 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
             </form>
         </div>
         <div class="bs-info-grid">
-    <a href="https://wa.me/6285290273097" target="_blank" class="bs-info-card">
-        <div class="bs-info-icon ci-igd"><i class="bi bi-heart-pulse-fill"></i></div>
-        <div class="bs-info-title">IGD 24 Jam</div>
-        <div class="bs-info-val">0852-9027-3097</div>
-    </a>
-    <a href="https://wa.me/6285290273097" target="_blank" class="bs-info-card">
-        <div class="bs-info-icon ci-ambulans"><i class="bi bi-truck"></i></div>
-        <div class="bs-info-title">Ambulans</div>
-        <div class="bs-info-val">0852-9027-3097</div>
-    </a>
-    <a href="https://wa.me/6285292224886" target="_blank" class="bs-info-card">
-        <div class="bs-info-icon ci-wa"><i class="fa-brands fa-whatsapp"></i></div>
-        <div class="bs-info-title">WhatsApp</div>
-        <div class="bs-info-val">0852-9222-4886</div>
-    </a>
-    <a href="mailto:allam.medica@yahoo.co.id" class="bs-info-card">
-        <div class="bs-info-icon ci-email"><i class="bi bi-envelope-fill"></i></div>
-        <div class="bs-info-title">Email</div>
-        <div class="bs-info-val">allam.medica@yahoo.co.id</div>
-    </a>
-</div>
-
-<div class="kontak-social-row">
-    <a href="https://www.tiktok.com/@allam.medica" target="_blank" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
-    <a href="https://www.facebook.com/allam.medicabmy?mibextid=LQQJ4d" target="_blank" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-    <a href="https://www.instagram.com/allam.medica/" target="_blank" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-</div>
-
-<div class="bs-map-box">
-    <iframe src="https://www.google.com/maps?q=RSU+Allam+Medica+Bumiayu&output=embed" loading="lazy"></iframe>
-</div>
-<a href="https://www.google.com/maps?q=RSU+Allam+Medica+Bumiayu" target="_blank" class="kontak-map-caption">
-    <i class="bi bi-geo-alt-fill"></i> Jl. P. Diponegoro No.609, Bumiayu, Brebes
-</a>
+            <a href="https://wa.me/6285290273097" target="_blank" class="bs-info-card">
+                <div class="bs-info-icon ci-igd"><i class="bi bi-heart-pulse-fill"></i></div>
+                <div class="bs-info-title">IGD 24 Jam</div>
+                <div class="bs-info-val">0852-9027-3097</div>
+            </a>
+            <a href="https://wa.me/6285290273097" target="_blank" class="bs-info-card">
+                <div class="bs-info-icon ci-ambulans"><i class="bi bi-truck"></i></div>
+                <div class="bs-info-title">Ambulans</div>
+                <div class="bs-info-val">0852-9027-3097</div>
+            </a>
+            <a href="https://wa.me/6285292224886" target="_blank" class="bs-info-card">
+                <div class="bs-info-icon ci-wa"><i class="fa-brands fa-whatsapp"></i></div>
+                <div class="bs-info-title">WhatsApp</div>
+                <div class="bs-info-val">0852-9222-4886</div>
+            </a>
+            <a href="mailto:allam.medica@yahoo.co.id" class="bs-info-card">
+                <div class="bs-info-icon ci-email"><i class="bi bi-envelope-fill"></i></div>
+                <div class="bs-info-title">Email</div>
+                <div class="bs-info-val">allam.medica@yahoo.co.id</div>
+            </a>
+        </div>
+        <div class="kontak-social-row">
+            <a href="https://www.tiktok.com/@rsuallammedicabumiayu?_t=8fLMQk9idhI&_r=1" target="_blank" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+            <a href="https://www.facebook.com/allam.medicabmy?mibextid=LQQJ4d" target="_blank" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.instagram.com/allam.medica/" target="_blank" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+        </div>
+        <div class="bs-map-box">
+            <iframe src="https://www.google.com/maps?q=RSU+Allam+Medica+Bumiayu&output=embed" loading="lazy"></iframe>
+        </div>
+        <a href="https://www.google.com/maps?q=RSU+Allam+Medica+Bumiayu" target="_blank" class="kontak-map-caption">
+            <i class="bi bi-geo-alt-fill"></i> Jl. P. Diponegoro No.609, Bumiayu, Brebes
+        </a>
     </div>
 </div>
 
-@unless(isset($poli))
 <div class="page-ornament orn-1" id="pgOrn1"></div>
 <div class="page-ornament orn-2" id="pgOrn2"></div>
 <div class="page-ornament orn-3" id="pgOrn3"></div>
 <div class="page-ornament orn-4" id="pgOrn4"></div>
 <div class="page-ornament orn-5" id="pgOrn5"></div>
-@endunless
 
 {{-- ============================================================
      DETAIL POLI
@@ -1123,12 +928,12 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
         <h1 class="hero-title">Layanan Kesehatan<br><em>RSU Allam Medica</em></h1>
         <div class="hero-meta">
             <span class="hero-meta-pill"><i class="bi bi-geo-alt-fill"></i> RSU Allam Medica Bumiayu</span>
-            <span class="hero-meta-pill"><i class="bi bi-grid-3x3-gap"></i> 13 Jenis Layanan</span>
+            <span class="hero-meta-pill"><i class="bi bi-grid-3x3-gap"></i> 10 Jenis Layanan</span>
             <span class="hero-meta-pill"><i class="bi bi-bandaid-fill"></i> IGD 24 Jam</span>
             <span class="hero-meta-pill"><i class="bi bi-shield-check"></i> Melayani BPJS</span>
         </div>
         <div class="hero-stats">
-            <div class="hero-stat-item"><span class="hero-stat-num">13</span><div class="hero-stat-label">Jenis Layanan</div></div>
+            <div class="hero-stat-item"><span class="hero-stat-num">10</span><div class="hero-stat-label">Jenis Layanan</div></div>
             <div class="hero-stat-item"><span class="hero-stat-num">24<small style="font-size:13px">/7</small></span><div class="hero-stat-label">IGD Siaga</div></div>
             <div class="hero-stat-item"><span class="hero-stat-num">BPJS</span><div class="hero-stat-label">Menerima BPJS</div></div>
             <div class="hero-stat-item"><span class="hero-stat-num" id="statPoli">—</span><div class="hero-stat-label">Poliklinik</div></div>
@@ -1188,14 +993,12 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
                 <a href="#rawatjalan"   class="lay-tab" data-section="rawatjalan"><i class="bi bi-clipboard2-pulse"></i> Rawat Jalan</a>
                 <a href="#rawatinap"    class="lay-tab" data-section="rawatinap"><i class="bi bi-hospital"></i> Rawat Inap</a>
                 <a href="#ambulans"     class="lay-tab" data-section="ambulans"><i class="bi bi-truck"></i> Ambulans</a>
-                <a href="#laboratorium" class="lay-tab" data-section="laboratorium"><i class="bi bi-eyedropper"></i> Laboratorium</a>
-                <a href="#radiologi"    class="lay-tab" data-section="radiologi"><i class="bi bi-radioactive"></i> Radiologi</a>
-                <a href="#farmasi"      class="lay-tab" data-section="farmasi"><i class="bi bi-capsule"></i> Farmasi</a>
                 <a href="#mcu"          class="lay-tab" data-section="mcu"><i class="bi bi-heart-pulse"></i> Medical Check Up</a>
                 <a href="#intensif"     class="lay-tab" data-section="intensif"><i class="bi bi-heart-pulse-fill"></i> ICU/NICU/HCU</a>
                 <a href="#vk"           class="lay-tab" data-section="vk"><i class="bi bi-gender-female"></i> Ruang Bersalin (VK)</a>
                 <a href="#ibs"          class="lay-tab" data-section="ibs"><i class="bi bi-scissors"></i> Bedah Sentral (IBS)</a>
-                <a href="#rehab"        class="lay-tab" data-section="rehab"><i class="bi bi-person-wheelchair"></i> Rehab Medik</a>
+                <a href="#penunjang"    class="lay-tab" data-section="penunjang"><i class="bi bi-eyedropper"></i> Penunjang Medis</a>
+                <a href="#homeservice"  class="lay-tab" data-section="homeservice"><i class="bi bi-house-heart-fill"></i> Home Service</a>
             </div>
             <button type="button" class="lay-nav-btn lay-nav-btn-next" aria-label="Scroll tab ke kanan"><i class="bi bi-chevron-right"></i></button>
         </div>
@@ -1258,39 +1061,39 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
             </div>
             
             <div class="col-lg-12 mt-4" style="position:relative;z-index:1;">
-    <div style="background:#fff;border-radius:20px;border:1px solid #e8edf5;box-shadow:0 4px 20px rgba(28,20,92,.05);padding:32px;">
-        <div style="font-size:11px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.8px;margin-bottom:18px;"><i class="bi bi-people-fill" style="margin-right:5px;color:#dc2626;"></i> Tim Dokter Umum IGD</div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:14px;">
-            @php 
-            $dokterIgd = [
-                ['nama' => 'dr. Wildan Baiti Al Anwari', 'jadwal' => 'Dokter Umum IGD 24 Jam', 'foto' => 'dr.Wildan.jpg'],
-                ['nama' => 'dr. Laelatul Faizah', 'jadwal' => 'Dokter Umum IGD 24 Jam', 'foto' => 'dr.LaelatulFaizah.jpg'],
-                ['nama' => 'dr. Almira Meida Resi Fauzia', 'jadwal' => 'Dokter Umum IGD 24 Jam', 'foto' => 'almira.png'],
-                ['nama' => 'dr. Vania Salsabila Ihwanah', 'jadwal' => 'Dokter Umum IGD 24 Jam', 'foto' => 'dr.vania.jpg'],
-                ['nama' => 'dr. Muhammad Salman Shalahudgin', 'jadwal' => 'Dokter Umum IGD 24 Jam', 'foto' => 'dr.salman.jpg'],
-                ['nama' => 'dr. Windy Listiana', 'jadwal' => 'Dokter Umum IGD 24 Jam', 'foto' => 'dr.Windi.jpg.jpeg'],
-                ['nama' => 'dr. Akhdan Baghaskara Rahmatullah', 'jadwal' => 'Dokter Umum IGD 24 Jam', 'foto' => 'dr.bagas.jpg'],
-                ['nama' => 'dr. Hilda Maulyda Utamie', 'jadwal' => 'Dokter Umum IGD 24 Jam', 'foto' => 'dr.Hilda.jpg'],
-                ['nama' => 'dr. Solikha', 'jadwal' => 'Dokter Umum IGD 24 Jam', 'foto' => 'dr.Solikha.jpg.jpeg'],
-            ];
-            @endphp
-            @foreach($dokterIgd as $dok)
-            <div style="display:flex;align-items:center;gap:12px;padding:12px;background:#f8faff;border-radius:12px;border:1px solid #e8edf5;">
-                <div style="width:40px;height:40px;border-radius:50%;background:#fee2e2;color:#dc2626;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;overflow:hidden;">
-                    <img src="{{ asset('images/layanan/' . $dok['foto']) }}"
-                         alt="{{ $dok['nama'] }}"
-                         style="width:100%;height:100%;object-fit:cover;border-radius:50%;"
-                         onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('i'), {className:'fa-solid fa-user-doctor'}));">
-                </div>
-                <div>
-                    <div style="font-size:13.5px;font-weight:700;color:#1e293b;">{{ $dok['nama'] }}</div>
-                    <div style="font-size:11px;color:#64748b;">{{ $dok['jadwal'] }}</div>
+                <div style="background:#fff;border-radius:20px;border:1px solid #e8edf5;box-shadow:0 4px 20px rgba(28,20,92,.05);padding:32px;">
+                    <div style="font-size:11px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.8px;margin-bottom:18px;"><i class="bi bi-people-fill" style="margin-right:5px;color:#dc2626;"></i> Tim Dokter Umum IGD</div>
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:14px;">
+                        @php 
+                        $dokterIgd = [
+                            ['nama' => 'dr. Wildan Baiti Al Anwari', 'jadwal' => 'Dokter Umum IGD 24 Jam', 'foto' => 'dr.Wildan.jpg'],
+                            ['nama' => 'dr. Laelatul Faizah', 'jadwal' => 'Dokter Umum IGD 24 Jam', 'foto' => 'dr.LaelatulFaizah.jpg'],
+                            ['nama' => 'dr. Almira Meida Resi Fauzia', 'jadwal' => 'Dokter Umum IGD 24 Jam', 'foto' => 'almira.png'],
+                            ['nama' => 'dr. Vania Salsabila Ihwanah', 'jadwal' => 'Dokter Umum IGD 24 Jam', 'foto' => 'dr.vania.jpg'],
+                            ['nama' => 'dr. Muhammad Salman Shalahudgin', 'jadwal' => 'Dokter Umum IGD 24 Jam', 'foto' => 'dr.salman.jpg'],
+                            ['nama' => 'dr. Windy Listiana', 'jadwal' => 'Dokter Umum IGD 24 Jam', 'foto' => 'dr.Windi.jpg.jpeg'],
+                            ['nama' => 'dr. Akhdan Baghaskara Rahmatullah', 'jadwal' => 'Dokter Umum IGD 24 Jam', 'foto' => 'dr.bagas.jpg'],
+                            ['nama' => 'dr. Hilda Maulyda Utamie', 'jadwal' => 'Dokter Umum IGD 24 Jam', 'foto' => 'dr.Hilda.jpg'],
+                            ['nama' => 'dr. Solikha', 'jadwal' => 'Dokter Umum IGD 24 Jam', 'foto' => 'dr.Solikha.jpg.jpeg'],
+                        ];
+                        @endphp
+                        @foreach($dokterIgd as $dok)
+                        <div style="display:flex;align-items:center;gap:12px;padding:12px;background:#f8faff;border-radius:12px;border:1px solid #e8edf5;">
+                            <div style="width:40px;height:40px;border-radius:50%;background:#fee2e2;color:#dc2626;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;overflow:hidden;">
+                                <img src="{{ asset('images/layanan/' . $dok['foto']) }}"
+                                     alt="{{ $dok['nama'] }}"
+                                     style="width:100%;height:100%;object-fit:cover;border-radius:50%;"
+                                     onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('i'), {className:'fa-solid fa-user-doctor'}));">
+                            </div>
+                            <div>
+                                <div style="font-size:13.5px;font-weight:700;color:#1e293b;">{{ $dok['nama'] }}</div>
+                                <div style="font-size:11px;color:#64748b;">{{ $dok['jadwal'] }}</div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
-            @endforeach
-        </div>
-    </div>
-</div>
         </div>
     </section>
 
@@ -1422,7 +1225,7 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
         <div style="background:#fff;border-radius:16px;border:1px solid #e8edf5;padding:24px 28px;margin-bottom:24px;box-shadow:0 2px 12px rgba(28,20,92,.05);position:relative;z-index:1;">
             <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:12px;">
                 <div style="font-size:13px;"><strong style="color:#1C145C;">Jam Pelayanan:</strong><br>24 Jam Terjadwal</div>
-                <div style="font-size:13px;"><strong style="color:#1C145C;">Lokasi:</strong><br>Gedung Rawat Inap (Lantai 2 & 3)</div>
+                <div style="font-size:13px;"><strong style="color:#1C145C;">Lokasi:</strong><br>Gedung Rawat Inap (Lantai 1 & 2)</div>
                 <div style="font-size:13px;"><strong style="color:#1C145C;">Persyaratan:</strong><br>Surat Pengantar Rawat Inap, KTP/KK, BPJS</div>
                 <div style="font-size:13px;"><strong style="color:#1C145C;">Alur Pelayanan:</strong><br>Rekomendasi IGD/Poli &rarr; Registrasi Ranap &rarr; Ruang Perawatan</div>
                 <div style="font-size:13px;"><strong style="color:#1C145C;">Kontak & Informasi:</strong><br><i class="bi bi-whatsapp"></i> 085292224886</div>
@@ -1467,7 +1270,6 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
             @endforeach
         </div>
 
-        {{-- ==== MOBILE PILLS + PANEL ==== --}}
         <div class="kelas-mobile-wrap" style="position:relative;z-index:1;">
             <div class="kelas-pills-scroll" id="kelasPills">
                 @foreach($kelasRawat as $i => $kelas)
@@ -1506,77 +1308,6 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
             </div>
         </div>
     </section>
-{{-- ==== FIX: cegah page ikut geser horizontal saat klik pill mobile ==== --}}
-    <style>
-        html, body {
-            overflow-x: hidden;
-            max-width: 100%;
-        }
-
-        .kelas-mobile-wrap {
-            width: 100%;
-            max-width: 100%;
-            overflow: hidden; /* pastikan wrapper tidak ikut melebar */
-        }
-
-        .kelas-pills-scroll {
-            overflow-x: auto;
-            overflow-y: hidden;
-            -webkit-overflow-scrolling: touch;
-            overscroll-behavior-x: contain;
-            touch-action: pan-x;
-            scroll-behavior: smooth;
-            max-width: 100%;
-        }
-    </style>
-
-    <script>
-        (function () {
-            function showKelasRanap(index) {
-                var panels = document.querySelectorAll('#rawatinap .kelas-detail-panel');
-                panels.forEach(function (el, i) {
-                    el.style.display = (i === index) ? 'block' : 'none';
-                });
-
-                var pills = document.querySelectorAll('#rawatinap .kelas-pill');
-                pills.forEach(function (el, i) {
-                    el.classList.toggle('active', i === index);
-                });
-
-                var activePill = pills[index];
-                var container = document.getElementById('kelasPills');
-                if (activePill && container) {
-                    // Hitung manual posisi scroll HANYA di dalam container pill.
-                    // Tidak pakai scrollIntoView agar tidak pernah "bocor" ke scroll halaman.
-                    var targetLeft = activePill.offsetLeft
-                        - (container.clientWidth / 2)
-                        + (activePill.clientWidth / 2);
-
-                    // Clamp supaya tidak melebihi batas scroll container
-                    var maxScroll = container.scrollWidth - container.clientWidth;
-                    if (targetLeft < 0) targetLeft = 0;
-                    if (targetLeft > maxScroll) targetLeft = maxScroll;
-
-                    container.scrollTo({
-                        left: targetLeft,
-                        behavior: 'smooth'
-                    });
-                }
-            }
-
-            document.addEventListener('DOMContentLoaded', function () {
-                var pillsWrap = document.getElementById('kelasPills');
-                if (!pillsWrap) return;
-
-                pillsWrap.addEventListener('click', function (e) {
-                    var btn = e.target.closest('.kelas-pill');
-                    if (!btn) return;
-                    var index = parseInt(btn.getAttribute('data-index'), 10);
-                    showKelasRanap(index);
-                });
-            });
-        })();
-    </script>
 
     {{-- AMBULANS --}}
     <section id="ambulans" class="lay-section" style="position:relative;overflow:hidden;">
@@ -1621,83 +1352,224 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
         </div>
     </section>
 
-    {{-- LABORATORIUM --}}
-    <section id="laboratorium" class="lay-section" style="position:relative;overflow:hidden;">
-        <div class="ornamen" style="top:-20px;right:-20px;width:360px;height:360px;opacity:0.04;"></div>
+    {{-- MCU --}}
+    <section id="mcu" class="lay-section" style="position:relative;overflow:hidden;">
+        <div class="ornamen" style="top:-20px;left:-20px;width:340px;height:340px;opacity:0.04;"></div>
+        <div class="ornamen" style="bottom:-20px;right:-20px;width:300px;height:300px;opacity:0.04;"></div>
         <div class="sec-divider"></div>
-        <div class="row g-4" style="position:relative;z-index:1;">
-            <div class="col-lg-5">
-                <div class="svc-card h-100">
-                    <div class="svc-header" style="background:linear-gradient(135deg,#064e3b 0%,#059669 100%);">
-                        <div class="svc-header-icon"><i class="bi bi-eyedropper"></i></div>
-                        <div class="svc-title">Laboratorium</div>
-                        <div class="svc-tagline">Pemeriksaan akurat dengan teknologi modern, buka 24 jam termasuk hari libur</div>
+        
+        <div class="svc-card mb-4" style="position:relative;z-index:1;">
+            <div class="svc-header" style="background:linear-gradient(135deg,#134e4a 0%,#0d9488 100%);">
+                <div class="svc-header-icon"><i class="bi bi-heart-pulse"></i></div>
+                <div class="svc-title">Medical Check Up (MCU)</div>
+                <div class="svc-tagline">Deteksi dini untuk hidup lebih sehat dan produktif. Memastikan kondisi tubuh Anda prima dengan berbagai pilihan paket.</div>
+            </div>
+            <div class="svc-body">
+                <ul class="svc-list" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:12px;">
+                    <li><strong style="color:#1C145C;">Jam Pelayanan:</strong> Sen - Sab (08.00 - 14.00)</li>
+                    <li><strong style="color:#1C145C;">Lokasi:</strong> Poliklinik MCU Lantai 1</li>
+                    <li><strong style="color:#1C145C;">Persyaratan:</strong> KTP, Puasa (tergantung paket)</li>
+                    <li><strong style="color:#1C145C;">Alur Pelayanan:</strong> Pendaftaran &rarr; Pemeriksaan &rarr; Konsultasi Dokter</li>
+                    <li><strong style="color:#1C145C;">Kontak & Reservasi:</strong> 085292224886</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div style="position:relative;z-index:1;">
+            <div style="font-size:11px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;"><i class="bi bi-list-check" style="margin-right:5px;"></i> Pilihan Paket MCU</div>
+            
+            <div class="row g-4 mb-3">
+                <!-- Paket Pria -->
+                <div class="col-lg-4 col-md-6">
+                    <div style="border-radius:16px;border:1px solid #bfdbfe;background:linear-gradient(135deg,#eff6ff 0%,#dbeafe 100%);padding:20px;height:100%;">
+                        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+                            <div style="width:42px;height:42px;border-radius:50%;background:#2563eb;color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;"><i class="bi bi-gender-male"></i></div>
+                            <div><div style="font-size:13px;font-weight:800;color:#1e40af;">PAKET PRIA</div><div style="font-size:18px;font-weight:900;color:#1d4ed8;line-height:1.1;">Rp 649.000<span style="font-size:11px;font-weight:600;">,-</span></div></div>
+                        </div>
+                        <div style="display:flex;flex-direction:column;gap:8px;">
+                            @foreach(['Darah Lengkap','Golongan Darah','Gula Darah Sewaktu','Rontgen Thorax','HBsAg','Anti HIV','Urine Lengkap'] as $item)
+                            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:#1e40af;"><i class="bi bi-check-circle-fill" style="color:#2563eb;font-size:12px;flex-shrink:0;"></i> {{ $item }}</div>
+                            @endforeach
+                        </div>
                     </div>
-                    <div class="svc-body">
-                        <p class="svc-desc">Laboratorium RSU Allam Medica dilengkapi peralatan diagnostik modern untuk berbagai jenis pemeriksaan.</p>
-                        <ul class="svc-list">
-                            <li><strong style="color:#1C145C;">Jam Pelayanan:</strong> 24 Jam Setiap Hari</li>
-                            <li><strong style="color:#1C145C;">Lokasi:</strong> Gedung Penunjang Medis Lt. 1</li>
-                            <li><strong style="color:#1C145C;">Persyaratan:</strong> Pengantar Dokter/Identitas (Mandiri)</li>
-                            <li><strong style="color:#1C145C;">Alur Pelayanan:</strong> Pendaftaran &rarr; Pengambilan Sampel &rarr; Analisis &rarr; Hasil Diterima</li>
-                            <li><strong style="color:#1C145C;">Kontak & Informasi:</strong> 082328642154</li>
-                        </ul>
+                </div>
+                
+                <!-- Paket Wanita -->
+                <div class="col-lg-4 col-md-6">
+                    <div style="border-radius:16px;border:1px solid #fbcfe8;background:linear-gradient(135deg,#fdf2f8 0%,#fce7f3 100%);padding:20px;height:100%;">
+                        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+                            <div style="width:42px;height:42px;border-radius:50%;background:#db2777;color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;"><i class="bi bi-gender-female"></i></div>
+                            <div><div style="font-size:13px;font-weight:800;color:#9d174d;">PAKET WANITA</div><div style="font-size:18px;font-weight:900;color:#be185d;line-height:1.1;">Rp 759.000<span style="font-size:11px;font-weight:600;">,-</span></div></div>
+                        </div>
+                        <div style="display:flex;flex-direction:column;gap:8px;">
+                            @foreach(['Darah Lengkap','Golongan Darah','Gula Darah Sewaktu','Rontgen Thorax','HBsAg','Anti HIV','Urine Lengkap','Cek Sifilis'] as $item)
+                            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:#9d174d;"><i class="bi bi-check-circle-fill" style="color:#db2777;font-size:12px;flex-shrink:0;"></i> {{ $item }}</div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Paket Karyawan -->
+                <div class="col-lg-4 col-md-12">
+                    <div style="border-radius:16px;border:1px solid #86efac;background:linear-gradient(135deg,#f0fdf4 0%,#dcfce7 100%);padding:20px;height:100%;">
+                        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+                            <div style="width:42px;height:42px;border-radius:50%;background:#059669;color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;"><i class="bi bi-person-badge-fill"></i></div>
+                            <div><div style="font-size:13px;font-weight:800;color:#065f46;">PAKET KARYAWAN</div><div style="font-size:18px;font-weight:900;color:#15803d;line-height:1.1;">Hubungi Kami</div></div>
+                        </div>
+                        <div style="display:flex;flex-direction:column;gap:8px;">
+                            @foreach(['Pemeriksaan Fisik Dokter','Darah Lengkap','Urine Lengkap','Rontgen Thorax','Buta Warna & Visus Mata','Bebas Narkoba'] as $item)
+                            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:#065f46;"><i class="bi bi-check-circle-fill" style="color:#059669;font-size:12px;flex-shrink:0;"></i> {{ $item }}</div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-7 d-flex align-items-stretch">
-                <div style="display:flex;flex-direction:column;gap:16px;width:100%;">
-                    <div class="homeservice-card">
-                        <div style="display:flex;align-items:flex-start;gap:14px;margin-bottom:16px;">
-                            <div style="width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#059669,#10b981);display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;flex-shrink:0;"><i class="bi bi-house-heart-fill"></i></div>
-                            <div>
-                                <div style="font-family:'DM Serif Display',serif;font-size:20px;color:#065f46;font-weight:400;margin-bottom:4px;">Home Service Laboratorium</div>
-                                <div style="font-size:12px;font-weight:700;color:#059669;background:#d1fae5;border:1px solid #6ee7b7;padding:2px 10px;border-radius:20px;display:inline-block;">Layanan ke Rumah Anda</div>
-                            </div>
-                        </div>
-                        <p style="font-size:13.5px;color:#15803d;line-height:1.75;margin-bottom:14px;">Tidak perlu datang ke rumah sakit. Petugas laboratorium kami siap datang ke rumah Anda untuk pengambilan sampel darah, urin, dan pemeriksaan lainnya.</p>
-                        <a href="https://wa.me/6282328642154?text=Halo,%20saya%20ingin%20pesan%20home%20service%20laboratorium" target="_blank" style="display:inline-flex;align-items:center;gap:7px;padding:10px 20px;border-radius:10px;background:#059669;color:#fff;font-size:13px;font-weight:700;text-decoration:none;"><i class="bi bi-whatsapp"></i> Pesan Home Service</a>
+            
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;">
+                <p style="font-size:12px;color:#94a3b8;margin:0;display:flex;align-items:center;gap:6px;"><i class="bi bi-info-circle"></i> Harga & detail paket dapat berubah sewaktu-waktu.</p>
+                <a href="https://wa.me/6285292224886?text=Halo,%20saya%20ingin%20info%20paket%20MCU" target="_blank" style="display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:10px;font-size:13px;font-weight:700;background:#ccfbf1;color:#0d9488;border:1px solid #5eead4;text-decoration:none;"><i class="bi bi-whatsapp"></i> Tanya Info MCU</a>
+            </div>
+        </div>
+    </section>
+
+    {{-- RUANG INTENSIF (ICU/NICU/HCU) --}}
+    <section id="intensif" class="lay-section" style="position:relative;overflow:hidden;">
+        <div class="sec-divider"></div>
+        <div class="row g-4" style="position:relative;z-index:1;">
+            <div class="col-lg-12">
+                <div class="svc-card">
+                    <div class="svc-header" style="background:linear-gradient(135deg,#134e4a 0%,#0d9488 100%);">
+                        <div class="svc-header-icon"><i class="bi bi-heart-pulse-fill"></i></div>
+                        <div class="svc-title">Perawatan Intensif (ICU / NICU / HCU)</div>
+                        <div class="svc-tagline">Pemantauan medis berkelanjutan untuk pasien kondisi kritis dan bayi baru lahir</div>
                     </div>
-                    <div style="background:#fff;border-radius:14px;border:1px solid #e8edf5;padding:20px 22px;box-shadow:0 2px 10px rgba(28,20,92,.04);">
-                        <div style="font-size:11px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;"><i class="bi bi-flask" style="margin-right:4px;"></i> Pemeriksaan Tambahan</div>
-                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;">
-                            @php $labExtra=[['icon'=>'bi-droplet-fill','bg'=>'#fee2e2','c'=>'#dc2626','nama'=>'Hemostasis'],['icon'=>'bi-virus','bg'=>'#ede9fe','c'=>'#7c3aed','nama'=>'Virologi'],['icon'=>'bi-activity','bg'=>'#d1fae5','c'=>'#059669','nama'=>'Enzim Jantung'],['icon'=>'bi-gender-ambiguous','bg'=>'#fce7f3','c'=>'#db2777','nama'=>'Hormon'],['icon'=>'bi-bug','bg'=>'#fef3c7','c'=>'#d97706','nama'=>'Mikrobiologi'],['icon'=>'bi-search-heart','bg'=>'#e0f2fe','c'=>'#0284c7','nama'=>'Tumor Marker']]; @endphp
-                            @foreach($labExtra as $ex)
-                            <div style="display:flex;align-items:center;gap:9px;padding:9px 11px;background:#f8faff;border-radius:9px;border:1px solid #e8edf5;">
-                                <div style="width:28px;height:28px;border-radius:7px;background:{{ $ex['bg'] }};display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="bi {{ $ex['icon'] }}" style="color:{{ $ex['c'] }};font-size:12px;"></i></div>
-                                <span style="font-size:12.5px;font-weight:600;color:#1e293b;">{{ $ex['nama'] }}</span>
-                            </div>
-                            @endforeach
-                        </div>
+                    <div class="svc-body">
+                        <ul class="svc-list" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:16px;">
+                            <li><strong style="color:#1C145C;">Jam Pelayanan:</strong> Buka 24 Jam</li>
+                            <li><strong style="color:#1C145C;">Lokasi:</strong> Gedung Utama Lantai 1</li>
+                            <li><strong style="color:#1C145C;">Persyaratan:</strong> KTP/KK, BPJS (jika ada), Surat Pengantar/Rujukan Dokter, Persetujuan Tindakan Medis (Informed Consent)</li>
+                            <li><strong style="color:#1C145C;">Alur Pelayanan:</strong> Rekomendasi Dokter IGD/Poli/Inap &rarr; Persetujuan Keluarga &rarr; Observasi Intensif &rarr; Pemindahan ke Rawat Inap Reguler jika stabil</li>
+                            <li><strong style="color:#1C145C;">Kontak & Informasi:</strong> 085292224886 (WhatsApp/Telepon)</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    {{-- RADIOLOGI --}}
-    <section id="radiologi" class="lay-section" style="position:relative;overflow:hidden;">
-        <div class="ornamen" style="top:-20px;left:-40px;width:320px;height:320px;opacity:0.04;"></div>
+    {{-- RUANG BERSALIN (VK) --}}
+    <section id="vk" class="lay-section" style="position:relative;overflow:hidden;">
         <div class="sec-divider"></div>
-        <div class="svc-card" style="position:relative;z-index:1;">
-            <div class="row g-0">
-                <div class="col-lg-4">
-                    <div class="svc-header h-100" style="background:linear-gradient(135deg,#1e1b4b 0%,#6366f1 100%);border-radius:20px 0 0 20px;">
+        <div class="row g-4" style="position:relative;z-index:1;">
+            <div class="col-lg-12">
+                <div class="svc-card">
+                    <div class="svc-header" style="background:linear-gradient(135deg,#831843 0%,#ec4899 100%);">
+                        <div class="svc-header-icon"><i class="bi bi-gender-female"></i></div>
+                        <div class="svc-title">Ruang Bersalin (VK)</div>
+                        <div class="svc-tagline">Fasilitas persalinan yang nyaman, aman, dan ditangani oleh bidan serta dokter spesialis kandungan</div>
+                    </div>
+                    <div class="svc-body">
+                        <ul class="svc-list" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:16px;">
+                            <li><strong style="color:#1C145C;">Jam Pelayanan:</strong> Buka 24 Jam</li>
+                            <li><strong style="color:#1C145C;">Lokasi:</strong> Gedung Utama Lantai 1</li>
+                            <li><strong style="color:#1C145C;">Persyaratan:</strong> KTP Ibu & Suami, KK, Buku KIA, Kartu BPJS (jika menggunakan BPJS)</li>
+                            <li><strong style="color:#1C145C;">Alur Pelayanan:</strong> Pendaftaran/IGD &rarr; Pemeriksaan Awal Bidan &rarr; Proses Persalinan (Normal/SC) &rarr; Ruang Nifas / Rawat Inap</li>
+                            <li><strong style="color:#1C145C;">Kontak & Informasi:</strong> 085292224886 (WhatsApp/Telepon)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{-- INSTALASI BEDAH SENTRAL (IBS) --}}
+    <section id="ibs" class="lay-section" style="position:relative;overflow:hidden;">
+        <div class="sec-divider"></div>
+        <div class="row g-4" style="position:relative;z-index:1;">
+            <div class="col-lg-12">
+                <div class="svc-card">
+                    <div class="svc-header" style="background:linear-gradient(135deg,#1e3a6e 0%,#2563eb 100%);">
+                        <div class="svc-header-icon"><i class="bi bi-scissors"></i></div>
+                        <div class="svc-title">Instalasi Bedah Sentral (IBS)</div>
+                        <div class="svc-tagline">Layanan operasi elektif dan cito (darurat) dengan standar keamanan tinggi</div>
+                    </div>
+                    <div class="svc-body">
+                        <ul class="svc-list" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:16px;">
+                            <li><strong style="color:#1C145C;">Jam Pelayanan:</strong> 24 Jam (Operasi Darurat) / Terjadwal (Operasi Elektif)</li>
+                            <li><strong style="color:#1C145C;">Lokasi:</strong> Gedung Utama Lantai 1</li>
+                            <li><strong style="color:#1C145C;">Persyaratan:</strong> Rujukan Dokter, Hasil Lab/Radiologi, Puasa (Sesuai Instruksi), Surat Persetujuan Operasi</li>
+                            <li><strong style="color:#1C145C;">Alur Pelayanan:</strong> Penjadwalan dari Poli/IGD/Inap &rarr; Ruang Persiapan (Pre-op) &rarr; Ruang Operasi &rarr; Ruang Pemulihan (Recovery Room) &rarr; Rawat Inap</li>
+                            <li><strong style="color:#1C145C;">Kontak & Informasi:</strong> 085292224886 (WhatsApp/Telepon)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{-- ========================== PENUNJANG MEDIS ========================== --}}
+    <section id="penunjang" class="lay-section" style="position:relative;overflow:hidden;">
+        <div class="ornamen" style="top:-20px;right:-20px;width:360px;height:360px;opacity:0.04;"></div>
+        <div class="sec-divider"></div>
+        <div style="margin-bottom:28px;position:relative;z-index:1;">
+            <div class="sec-label" style="background:#ede9fe;color:#7c3aed;"><i class="bi bi-eyedropper"></i> Diagnostik & Obat</div>
+            <div class="sec-title">Penunjang Medis</div>
+            <div class="sec-sub">Fasilitas diagnostik modern, penyediaan obat-obatan lengkap, dan layanan pemulihan gerak.</div>
+        </div>
+        
+        <!-- LABORATORIUM & RADIOLOGI (BARIS 1) -->
+        <div class="row g-4 mb-4" style="position:relative;z-index:1;">
+            
+            <div class="col-lg-6">
+                <!-- LABORATORIUM -->
+                <div class="svc-card h-100 d-flex flex-column">
+                    <div class="svc-header" style="background:linear-gradient(135deg,#064e3b 0%,#059669 100%);">
+                        <div class="svc-header-icon"><i class="bi bi-eyedropper"></i></div>
+                        <div class="svc-title">Laboratorium</div>
+                        <div class="svc-tagline">Pemeriksaan akurat dengan teknologi modern, buka 24 jam termasuk hari libur</div>
+                    </div>
+                    <div class="svc-body flex-grow-1">
+                        <p class="svc-desc">Laboratorium RSU Allam Medica dilengkapi peralatan diagnostik modern untuk berbagai jenis pemeriksaan.</p>
+                        <ul class="svc-list">
+                            <li><strong style="color:#1C145C;">Jam Pelayanan:</strong> 24 Jam Setiap Hari</li>
+                            <li><strong style="color:#1C145C;">Lokasi:</strong> Gedung utama lantai 1</li>
+                            <li><strong style="color:#1C145C;">Persyaratan:</strong> Pengantar Dokter/Identitas (Mandiri)</li>
+                            <li><strong style="color:#1C145C;">Alur Pelayanan:</strong> Pendaftaran &rarr; Pengambilan Sampel &rarr; Analisis &rarr; Hasil Diterima</li>
+                            <li><strong style="color:#1C145C;">Kontak & Informasi:</strong> 082328642154</li>
+                        </ul>
+                        <div style="margin-top:20px;border-top:1px solid #e8edf5;padding-top:16px;">
+                            <div style="font-size:11px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;"><i class="bi bi-flask" style="margin-right:4px;"></i> Pemeriksaan Tambahan</div>
+                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;">
+                                @php $labExtra=[['icon'=>'bi-droplet-fill','bg'=>'#fee2e2','c'=>'#dc2626','nama'=>'Hemostasis'],['icon'=>'bi-virus','bg'=>'#ede9fe','c'=>'#7c3aed','nama'=>'Virologi'],['icon'=>'bi-activity','bg'=>'#d1fae5','c'=>'#059669','nama'=>'Enzim Jantung'],['icon'=>'bi-gender-ambiguous','bg'=>'#fce7f3','c'=>'#db2777','nama'=>'Hormon'],['icon'=>'bi-bug','bg'=>'#fef3c7','c'=>'#d97706','nama'=>'Mikrobiologi'],['icon'=>'bi-search-heart','bg'=>'#e0f2fe','c'=>'#0284c7','nama'=>'Tumor Marker']]; @endphp
+                                @foreach($labExtra as $ex)
+                                <div style="display:flex;align-items:center;gap:9px;padding:9px 11px;background:#f8faff;border-radius:9px;border:1px solid #e8edf5;">
+                                    <div style="width:28px;height:28px;border-radius:7px;background:{{ $ex['bg'] }};display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="bi {{ $ex['icon'] }}" style="color:{{ $ex['c'] }};font-size:12px;"></i></div>
+                                    <span style="font-size:12.5px;font-weight:600;color:#1e293b;">{{ $ex['nama'] }}</span>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <!-- RADIOLOGI -->
+                <div class="svc-card h-100 d-flex flex-column">
+                    <div class="svc-header" style="background:linear-gradient(135deg,#1e1b4b 0%,#6366f1 100%);">
                         <div class="svc-header-icon"><i class="bi bi-radioactive"></i></div>
                         <div class="svc-title">Radiologi</div>
                         <div class="svc-tagline">Diagnostik pencitraan dengan peralatan modern dan akurasi tinggi</div>
                     </div>
-                </div>
-                <div class="col-lg-8">
-                    <div class="svc-body">
-                        <ul class="svc-list" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:16px;margin-bottom:20px;">
+                    <div class="svc-body flex-grow-1">
+                        <ul class="svc-list" style="margin-bottom:20px;">
                             <li><strong style="color:#1C145C;">Jam Pelayanan:</strong> Buka 24 Jam</li>
-                            <li><strong style="color:#1C145C;">Lokasi:</strong> Gedung Penunjang Medis Lt. 1</li>
+                            <li><strong style="color:#1C145C;">Lokasi:</strong> Gedung utama lantai 1</li>
                             <li><strong style="color:#1C145C;">Persyaratan:</strong> Pengantar Dokter & Persiapan Khusus (jika ada)</li>
                             <li><strong style="color:#1C145C;">Alur Pelayanan:</strong> Pendaftaran &rarr; Persiapan &rarr; Tindakan &rarr; Hasil</li>
                             <li><strong style="color:#1C145C;">Kontak & Informasi:</strong> 085640782510</li>
                         </ul>
-                        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+                        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:auto;">
                             @php 
                             $radLayanan=[
                                 ['icon'=>'bi-radioactive','bg'=>'#ede9fe','c'=>'#6366f1','nama'=>'Rontgen / X-Ray'],
@@ -1725,22 +1597,21 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    {{-- FARMASI --}}
-    <section id="farmasi" class="lay-section" style="position:relative;overflow:hidden;">
-        <div class="ornamen" style="top:-20px;right:-80px;width:400px;height:400px;opacity:0.04;"></div>
-        <div class="sec-divider"></div>
+        </div>
+
+        <!-- FARMASI & REHAB (BARIS 2) -->
         <div class="row g-4" style="position:relative;z-index:1;">
-            <div class="col-lg-5">
-                <div class="svc-card h-100">
+
+            <div class="col-lg-6">
+                <!-- FARMASI -->
+                <div class="svc-card h-100 d-flex flex-column">
                     <div class="svc-header" style="background:linear-gradient(135deg,#831843 0%,#ec4899 100%);">
                         <div class="svc-header-icon"><i class="bi bi-capsule"></i></div>
                         <div class="svc-title">Farmasi / Apotek</div>
                         <div class="svc-tagline">Obat-obatan lengkap berkualitas, buka 24 jam setiap hari termasuk hari libur</div>
                     </div>
-                    <div class="svc-body">
+                    <div class="svc-body flex-grow-1">
                         <ul class="svc-list">
                             <li><strong style="color:#1C145C;">Jam Pelayanan:</strong> 24 Jam Setiap Hari</li>
                             <li><strong style="color:#1C145C;">Lokasi:</strong> Dekat Lobi Utama Poliklinik</li>
@@ -1748,181 +1619,37 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
                             <li><strong style="color:#1C145C;">Alur Pelayanan:</strong> Serahkan Resep &rarr; Penyiapan &rarr; Panggilan & Edukasi Obat</li>
                             <li><strong style="color:#1C145C;">Kontak & Informasi:</strong> 085292224886</li>
                         </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-7 d-flex align-items-stretch">
-                <div style="background:#fff;border-radius:20px;border:1px solid #e8edf5;box-shadow:0 4px 20px rgba(28,20,92,.05);padding:32px;width:100%;display:flex;flex-direction:column;justify-content:center;">
-                    <div style="font-size:11px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.8px;margin-bottom:20px;"><i class="bi bi-capsule" style="margin-right:5px;color:#db2777;"></i> Layanan Kami</div>
-                    <div style="display:flex;flex-direction:column;gap:12px;">
-                        @php $infoFar=[['icon'=>'bi-prescription','bg'=>'#fce7f3','c'=>'#db2777','title'=>'Resep Dokter RS','desc'=>'Resep dari dokter RSU Allam Medica diproses dengan cepat dan diprioritaskan.'],['icon'=>'bi-patch-check-fill','bg'=>'#d1fae5','c'=>'#059669','title'=>'Jaminan Kualitas','desc'=>'Semua obat bersumber dari distributor resmi dan tersimpan sesuai standar farmasi.'],['icon'=>'bi-person-lines-fill','bg'=>'#fef3c7','c'=>'#d97706','title'=>'Konsultasi Apoteker','desc'=>'Apoteker siap memberikan informasi mengenai obat, dosis, dan interaksi obat.']]; @endphp
-                        @foreach($infoFar as $f)
-                        <div style="display:flex;align-items:flex-start;gap:12px;padding:14px 16px;background:#f8faff;border-radius:12px;border:1px solid #e8edf5;">
-                            <div style="width:36px;height:36px;border-radius:10px;background:{{ $f['bg'] }};display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="bi {{ $f['icon'] }}" style="color:{{ $f['c'] }};font-size:16px;"></i></div>
-                            <div>
-                                <div style="font-size:14px;font-weight:700;color:#1e293b;margin-bottom:3px;">{{ $f['title'] }}</div>
-                                <div style="font-size:13px;color:#64748b;line-height:1.6;">{{ $f['desc'] }}</div>
+                        <div style="margin-top:20px;border-top:1px solid #e8edf5;padding-top:16px;">
+                            <div style="font-size:11px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;"><i class="bi bi-capsule" style="margin-right:5px;color:#db2777;"></i> Layanan Kami</div>
+                            <div style="display:flex;flex-direction:column;gap:12px;">
+                                @php $infoFar=[['icon'=>'bi-prescription','bg'=>'#fce7f3','c'=>'#db2777','title'=>'Resep Dokter RS','desc'=>'Resep dari dokter RSU Allam Medica diproses dengan cepat dan diprioritaskan.'],['icon'=>'bi-patch-check-fill','bg'=>'#d1fae5','c'=>'#059669','title'=>'Jaminan Kualitas','desc'=>'Semua obat bersumber dari distributor resmi dan tersimpan sesuai standar farmasi.'],['icon'=>'bi-person-lines-fill','bg'=>'#fef3c7','c'=>'#d97706','title'=>'Konsultasi Apoteker','desc'=>'Apoteker siap memberikan informasi mengenai obat, dosis, dan interaksi obat.']]; @endphp
+                                @foreach($infoFar as $f)
+                                <div style="display:flex;align-items:flex-start;gap:12px;padding:14px 16px;background:#f8faff;border-radius:12px;border:1px solid #e8edf5;">
+                                    <div style="width:36px;height:36px;border-radius:10px;background:{{ $f['bg'] }};display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="bi {{ $f['icon'] }}" style="color:{{ $f['c'] }};font-size:16px;"></i></div>
+                                    <div>
+                                        <div style="font-size:14px;font-weight:700;color:#1e293b;margin-bottom:3px;">{{ $f['title'] }}</div>
+                                        <div style="font-size:13px;color:#64748b;line-height:1.6;">{{ $f['desc'] }}</div>
+                                    </div>
+                                </div>
+                                @endforeach
                             </div>
                         </div>
-                        @endforeach
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    {{-- MCU --}}
-    <section id="mcu" class="lay-section" style="position:relative;overflow:hidden;">
-        <div class="ornamen" style="top:-20px;left:-20px;width:340px;height:340px;opacity:0.04;"></div>
-        <div class="ornamen" style="bottom:-20px;right:-20px;width:300px;height:300px;opacity:0.04;"></div>
-        <div class="sec-divider"></div>
-        <div class="row g-4 align-items-start" style="position:relative;z-index:1;">
-            <div class="col-lg-5">
-                <div class="svc-card">
-                    <div class="svc-header" style="background:linear-gradient(135deg,#134e4a 0%,#0d9488 100%);">
-                        <div class="svc-header-icon"><i class="bi bi-heart-pulse"></i></div>
-                        <div class="svc-title">Medical Check Up</div>
-                        <div class="svc-tagline">Deteksi dini untuk hidup lebih sehat dan produktif</div>
-                    </div>
-                    <div class="svc-body">
-                        <ul class="svc-list">
-                            <li><strong style="color:#1C145C;">Jam Pelayanan:</strong> Sen - Sab (08.00 - 14.00)</li>
-                            <li><strong style="color:#1C145C;">Lokasi:</strong> Poliklinik MCU Lantai 2</li>
-                            <li><strong style="color:#1C145C;">Persyaratan:</strong> KTP, Puasa (tergantung paket)</li>
-                            <li><strong style="color:#1C145C;">Alur Pelayanan:</strong> Pendaftaran &rarr; Pemeriksaan &rarr; Konsultasi Dokter</li>
-                            <li><strong style="color:#1C145C;">Kontak & Reservasi:</strong> 085292224886</li>
-                        </ul>
-                    </div>
-                    <div class="svc-footer">
-                        <a href="https://wa.me/6285292224886?text=Halo,%20saya%20ingin%20info%20paket%20MCU" target="_blank" class="svc-badge" style="background:#ccfbf1;color:#0d9488;border:1px solid #5eead4;"><i class="bi bi-whatsapp"></i> Tanya Paket MCU</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-7">
-                <div style="font-size:11px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;margin-top:4px;"><i class="bi bi-list-check" style="margin-right:5px;"></i> Paket Tersedia</div>
-                <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
-                    <span style="font-size:11px;font-weight:800;color:#be185d;text-transform:uppercase;letter-spacing:.8px;background:#fdf2f8;border:1px solid #fbcfe8;padding:4px 12px;border-radius:20px;"><i class="bi bi-heart-fill" style="margin-right:4px;font-size:10px;"></i> MCU Premarital</span>
-                    <span style="font-size:12px;color:#94a3b8;">Persiapan sehat untuk masa depan bahagia</span>
-                </div>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;">
-                    <div style="border-radius:16px;border:1px solid #bfdbfe;background:linear-gradient(135deg,#eff6ff 0%,#dbeafe 100%);padding:18px;position:relative;overflow:hidden;">
-                        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
-                            <div style="width:36px;height:36px;border-radius:50%;background:#2563eb;color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;"><i class="bi bi-gender-male"></i></div>
-                            <div><div style="font-size:13px;font-weight:800;color:#1e40af;">PRIA</div><div style="font-size:17px;font-weight:900;color:#1d4ed8;line-height:1.1;">Rp 649.000<span style="font-size:11px;font-weight:600;">,-</span></div></div>
-                        </div>
-                        <div style="display:flex;flex-direction:column;gap:5px;">
-                            @foreach(['Darah Lengkap','Golongan Darah','Gula Darah Sewaktu','Rontgen Thorax','HBsAg','Anti HIV','Urine Lengkap'] as $item)
-                            <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:#1e40af;"><i class="bi bi-check-circle-fill" style="color:#2563eb;font-size:10px;flex-shrink:0;"></i> {{ $item }}</div>
-                            @endforeach
-                        </div>
-                    </div>
-                    <div style="border-radius:16px;border:1px solid #fbcfe8;background:linear-gradient(135deg,#fdf2f8 0%,#fce7f3 100%);padding:18px;position:relative;overflow:hidden;">
-                        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
-                            <div style="width:36px;height:36px;border-radius:50%;background:#db2777;color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;"><i class="bi bi-gender-female"></i></div>
-                            <div><div style="font-size:13px;font-weight:800;color:#9d174d;">WANITA</div><div style="font-size:17px;font-weight:900;color:#be185d;line-height:1.1;">Rp 759.000<span style="font-size:11px;font-weight:600;">,-</span></div></div>
-                        </div>
-                        <div style="display:flex;flex-direction:column;gap:5px;">
-                            @foreach(['Darah Lengkap','Golongan Darah','Gula Darah Sewaktu','Rontgen Thorax','HBsAg','Anti HIV','Urine Lengkap','Cek Sifilis'] as $item)
-                            <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:#9d174d;"><i class="bi bi-check-circle-fill" style="color:#db2777;font-size:10px;flex-shrink:0;"></i> {{ $item }}</div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-                <p style="font-size:12px;color:#94a3b8;margin-top:4px;display:flex;align-items:center;gap:6px;"><i class="bi bi-info-circle"></i> Harga dan detail paket dapat berubah. Hubungi kami untuk informasi terkini.</p>
-            </div>
-        </div>
-    </section>
-
-    {{-- RUANG INTENSIF (ICU/NICU/HCU) --}}
-    <section id="intensif" class="lay-section" style="position:relative;overflow:hidden;">
-        <div class="sec-divider"></div>
-        <div class="row g-4" style="position:relative;z-index:1;">
-            <div class="col-lg-12">
-                <div class="svc-card">
-                    <div class="svc-header" style="background:linear-gradient(135deg,#134e4a 0%,#0d9488 100%);">
-                        <div class="svc-header-icon"><i class="bi bi-heart-pulse-fill"></i></div>
-                        <div class="svc-title">Perawatan Intensif (ICU / NICU / HCU)</div>
-                        <div class="svc-tagline">Pemantauan medis berkelanjutan untuk pasien kondisi kritis dan bayi baru lahir</div>
-                    </div>
-                    <div class="svc-body">
-                        <ul class="svc-list" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:16px;">
-                            <li><strong style="color:#1C145C;">Jam Pelayanan:</strong> Buka 24 Jam</li>
-                            <li><strong style="color:#1C145C;">Lokasi:</strong> Gedung Utama Lantai 2</li>
-                            <li><strong style="color:#1C145C;">Persyaratan:</strong> KTP/KK, BPJS (jika ada), Surat Pengantar/Rujukan Dokter, Persetujuan Tindakan Medis (Informed Consent)</li>
-                            <li><strong style="color:#1C145C;">Alur Pelayanan:</strong> Rekomendasi Dokter IGD/Poli/Inap &rarr; Persetujuan Keluarga &rarr; Observasi Intensif &rarr; Pemindahan ke Rawat Inap Reguler jika stabil</li>
-                            <li><strong style="color:#1C145C;">Kontak & Informasi:</strong> 085292224886 (WhatsApp/Telepon)</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    {{-- RUANG BERSALIN (VK) --}}
-    <section id="vk" class="lay-section" style="position:relative;overflow:hidden;">
-        <div class="sec-divider"></div>
-        <div class="row g-4" style="position:relative;z-index:1;">
-            <div class="col-lg-12">
-                <div class="svc-card">
-                    <div class="svc-header" style="background:linear-gradient(135deg,#831843 0%,#ec4899 100%);">
-                        <div class="svc-header-icon"><i class="bi bi-gender-female"></i></div>
-                        <div class="svc-title">Ruang Bersalin (VK)</div>
-                        <div class="svc-tagline">Fasilitas persalinan yang nyaman, aman, dan ditangani oleh bidan serta dokter spesialis kandungan</div>
-                    </div>
-                    <div class="svc-body">
-                        <ul class="svc-list" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:16px;">
-                            <li><strong style="color:#1C145C;">Jam Pelayanan:</strong> Buka 24 Jam</li>
-                            <li><strong style="color:#1C145C;">Lokasi:</strong> Gedung Utama Lantai 1 (Sayap Kanan)</li>
-                            <li><strong style="color:#1C145C;">Persyaratan:</strong> KTP Ibu & Suami, KK, Buku KIA, Kartu BPJS (jika menggunakan BPJS)</li>
-                            <li><strong style="color:#1C145C;">Alur Pelayanan:</strong> Pendaftaran/IGD &rarr; Pemeriksaan Awal Bidan &rarr; Proses Persalinan (Normal/SC) &rarr; Ruang Nifas / Rawat Inap</li>
-                            <li><strong style="color:#1C145C;">Kontak & Informasi:</strong> 085292224886 (WhatsApp/Telepon)</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    {{-- INSTALASI BEDAH SENTRAL (IBS) --}}
-    <section id="ibs" class="lay-section" style="position:relative;overflow:hidden;">
-        <div class="sec-divider"></div>
-        <div class="row g-4" style="position:relative;z-index:1;">
-            <div class="col-lg-12">
-                <div class="svc-card">
-                    <div class="svc-header" style="background:linear-gradient(135deg,#1e3a6e 0%,#2563eb 100%);">
-                        <div class="svc-header-icon"><i class="bi bi-scissors"></i></div>
-                        <div class="svc-title">Instalasi Bedah Sentral (IBS)</div>
-                        <div class="svc-tagline">Layanan operasi elektif dan cito (darurat) dengan standar keamanan tinggi</div>
-                    </div>
-                    <div class="svc-body">
-                        <ul class="svc-list" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:16px;">
-                            <li><strong style="color:#1C145C;">Jam Pelayanan:</strong> 24 Jam (Operasi Darurat) / Terjadwal (Operasi Elektif)</li>
-                            <li><strong style="color:#1C145C;">Lokasi:</strong> Gedung Utama Lantai 2</li>
-                            <li><strong style="color:#1C145C;">Persyaratan:</strong> Rujukan Dokter, Hasil Lab/Radiologi, Puasa (Sesuai Instruksi), Surat Persetujuan Operasi</li>
-                            <li><strong style="color:#1C145C;">Alur Pelayanan:</strong> Penjadwalan dari Poli/IGD/Inap &rarr; Ruang Persiapan (Pre-op) &rarr; Ruang Operasi &rarr; Ruang Pemulihan (Recovery Room) &rarr; Rawat Inap</li>
-                            <li><strong style="color:#1C145C;">Kontak & Informasi:</strong> 085292224886 (WhatsApp/Telepon)</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    {{-- REHABILITASI MEDIK --}}
-    <section id="rehab" class="lay-section" style="position:relative;overflow:hidden;padding-bottom:80px;">
-        <div class="sec-divider"></div>
-        <div class="row g-4" style="position:relative;z-index:1;">
-            <div class="col-lg-12">
-                <div class="svc-card">
+            <div class="col-lg-6">
+                <!-- REHABILITASI MEDIK -->
+                <div class="svc-card h-100 d-flex flex-column">
                     <div class="svc-header" style="background:linear-gradient(135deg,#1e4d3a 0%,#059669 100%);">
                         <div class="svc-header-icon"><i class="bi bi-person-wheelchair"></i></div>
                         <div class="svc-title">Rehabilitasi Medik (Fisioterapi)</div>
                         <div class="svc-tagline">Pemulihan fungsi gerak dan tubuh paska cedera, operasi, atau gangguan syaraf</div>
                     </div>
-                    <div class="svc-body">
-                        <ul class="svc-list" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:16px;">
+                    <div class="svc-body flex-grow-1">
+                        <ul class="svc-list">
                             <li><strong style="color:#1C145C;">Jam Pelayanan:</strong> Senin - Sabtu (08.00 - 14.00 WIB)</li>
-                            <li><strong style="color:#1C145C;">Lokasi:</strong> Gedung Sayap Kiri Lantai 1</li>
+                            <li><strong style="color:#1C145C;">Lokasi:</strong> Gedung utama lantai 1</li>
                             <li><strong style="color:#1C145C;">Persyaratan:</strong> KTP, BPJS, Surat Rujukan/Pengantar dari Dokter Spesialis (Ortopedi/Saraf/Penyakit Dalam)</li>
                             <li><strong style="color:#1C145C;">Alur Pelayanan:</strong> Pendaftaran Poli &rarr; Asesmen Dokter Rehab Medik &rarr; Penjadwalan Terapi &rarr; Pelaksanaan Fisioterapi</li>
                             <li><strong style="color:#1C145C;">Kontak & Informasi:</strong> 085292224886 (WhatsApp/Telepon)</li>
@@ -1930,18 +1657,75 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
                     </div>
                 </div>
             </div>
+
+        </div>
+    </section>
+
+    {{-- ========================== HOME SERVICE TERPADU ========================== --}}
+    <section id="homeservice" class="lay-section" style="position:relative;overflow:hidden;padding-bottom:80px;">
+        <div class="sec-divider"></div>
+        <div style="margin-bottom:28px;position:relative;z-index:1;">
+            <div class="sec-label" style="background:#dcfce7;color:#15803d;"><i class="bi bi-house-heart-fill"></i> Praktis & Nyaman</div>
+            <div class="sec-title">Home Service Terpadu</div>
+            <div class="sec-sub">Layanan medis, keperawatan, laboratorium, dan fisioterapi yang hadir langsung di rumah Anda.</div>
+        </div>
+        
+        <div style="background:linear-gradient(135deg,#f0fdf4 0%,#ecfdf5 100%);border:1.5px solid #86efac;border-radius:24px;padding:36px;position:relative;overflow:hidden;box-shadow:0 8px 30px rgba(16,185,129,.1);">
+            <i class="bi bi-house-heart" style="position:absolute;right:-20px;bottom:-30px;font-size:220px;color:rgba(16,185,129,0.06);line-height:1;pointer-events:none;"></i>
+            
+            <div class="row g-4 align-items-center" style="position:relative;z-index:1;">
+                <div class="col-lg-7">
+                    <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;">
+                        <div style="width:60px;height:60px;border-radius:16px;background:linear-gradient(135deg,#059669,#10b981);display:flex;align-items:center;justify-content:center;font-size:28px;color:#fff;flex-shrink:0;box-shadow:0 8px 20px rgba(16,185,129,.3);"><i class="bi bi-house-heart-fill"></i></div>
+                        <div>
+                            <div style="font-family:'DM Serif Display',serif;font-size:28px;color:#065f46;line-height:1.2;">Home Service RS Allam Medica</div>
+                            <div style="font-size:14px;font-weight:700;color:#059669;">Rumah Sakit Hadir di Rumah Anda</div>
+                        </div>
+                    </div>
+                    <p style="font-size:15px;color:#15803d;line-height:1.8;margin-bottom:28px;">
+                        Tidak perlu antre atau menempuh perjalanan saat Anda sedang butuh istirahat. Tim medis profesional kami siap datang ke lokasi Anda. Mulai dari pemeriksaan dokter, perawatan luka, hingga tes laboratorium dengan standar kualitas rumah sakit yang tetap terjaga.
+                    </p>
+                    <div style="display:flex;gap:12px;flex-wrap:wrap;">
+                        <a href="https://wa.me/6285292224886?text=Halo,%20saya%20ingin%20memesan%20layanan%20Home%20Service%20(Dokter/Perawat/Lab/Fisioterapi)" target="_blank" style="display:inline-flex;align-items:center;gap:8px;padding:12px 26px;border-radius:12px;background:#059669;color:#fff;font-size:14.5px;font-weight:700;text-decoration:none;box-shadow:0 6px 16px rgba(5,150,105,.25);transition:.2s;"><i class="bi bi-whatsapp"></i> Pesan Home Service</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-5">
+                    <div style="background:rgba(255,255,255,0.7);backdrop-filter:blur(12px);border-radius:20px;padding:24px;border:1px solid rgba(16,185,129,0.25);">
+                        <div style="font-size:12px;font-weight:800;color:#065f46;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;">Cakupan Layanan Home Service:</div>
+                        
+                        <div style="display:flex;flex-direction:column;gap:12px;">
+                            <div style="display:flex;align-items:flex-start;gap:12px;">
+                                <div style="width:28px;height:28px;border-radius:8px;background:#d1fae5;color:#059669;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="bi bi-person-fill-check"></i></div>
+                                <div><div style="font-size:14px;font-weight:700;color:#065f46;">Kunjungan Dokter</div><div style="font-size:12px;color:#15803d;">Pemeriksaan umum & konsultasi di rumah.</div></div>
+                            </div>
+                            <div style="display:flex;align-items:flex-start;gap:12px;">
+                                <div style="width:28px;height:28px;border-radius:8px;background:#d1fae5;color:#059669;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="bi bi-bandaid"></i></div>
+                                <div><div style="font-size:14px;font-weight:700;color:#065f46;">Home Care Perawat / Bidan</div><div style="font-size:12px;color:#15803d;">Perawatan luka pasca operasi, cek tensi, dll.</div></div>
+                            </div>
+                            <div style="display:flex;align-items:flex-start;gap:12px;">
+                                <div style="width:28px;height:28px;border-radius:8px;background:#d1fae5;color:#059669;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="bi bi-eyedropper"></i></div>
+                                <div><div style="font-size:14px;font-weight:700;color:#065f46;">Pengambilan Sampel Laborat</div><div style="font-size:12px;color:#15803d;">Cek darah & urine tanpa harus ke RS.</div></div>
+                            </div>
+                            <div style="display:flex;align-items:flex-start;gap:12px;">
+                                <div style="width:28px;height:28px;border-radius:8px;background:#d1fae5;color:#059669;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="bi bi-person-wheelchair"></i></div>
+                                <div><div style="font-size:14px;font-weight:700;color:#065f46;">Fisioterapi di Rumah</div><div style="font-size:12px;color:#15803d;">Terapi gerak pasca cedera & stroke.</div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
 </div>
 </div>
-@endif
+@endunless
 
 {{-- FOOTER --}}
 <style>
 .footer-rsu{background:linear-gradient(to bottom,#ffffff 0%,#fefefd 3%,#fdfcf6 8%,#fcfbf3 13%,#faf8ee 20%,#f7f5e8 30%,#f3f0e1 45%,#ede9d9 65%,#e8e3d2 85%,#e3deca 100%);color:#1C145C;padding:56px 0 0;position:relative;overflow:hidden;}
 .footer-rsu .footer-ornament{position:absolute;right:-80px;bottom:-150px;width:420px;height:420px;opacity:.07;background-image:url('{{ asset("images/beranda/ornamen.png") }}');background-size:contain;background-repeat:no-repeat;background-position:center;pointer-events:none;z-index:0;}
-.footer-rsu .footer-ornament2{position:absolute;left:-100px;top:40px;width:340px;height:340px;opacity:.04;background-image:url('{{ asset("images/beranda/ornamen.png") }}');background-size:contain;background-repeat:no-repeat;background-position:center;pointer-events:none;z-index:0;}
 .footer-rsu .container-fluid{max-width:1550px;position:relative;z-index:1;}
 .footer-rsu .row{--bs-gutter-x:3.5rem;}
 .footer-rsu .footer-logo{height:40px;width:auto;display:block;margin-bottom:14px;}
@@ -1968,12 +1752,11 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
 .footer-rsu .footer-copy{font-size:12.5px;color:#9994bb;display:flex;justify-content:space-between;align-items:center;gap:12px;}
 .footer-rsu .footer-copy-badge{background:rgba(28,20,92,.06);border:1px solid rgba(28,20,92,.12);border-radius:20px;padding:4px 14px;font-size:11.5px;color:#7a74a0;white-space:nowrap;}
 .footer-rsu .footer-accent-dot{display:inline-block;width:3px;height:3px;border-radius:50%;background:#1C145C;opacity:.25;margin:0 8px;}
-@media(max-width:991px){.footer-rsu{padding:45px 0 0;}.footer-rsu .row>div{margin-bottom:24px;}.footer-rsu .footer-desc{max-width:100%;}}
-@media(max-width:768px){.footer-rsu{padding:40px 0 0;}.footer-rsu .container-fluid{padding-left:20px!important;padding-right:20px!important;}.footer-rsu .footer-copy{flex-direction:column;align-items:flex-start;gap:8px;}.footer-rsu .footer-bottom{padding:15px 20px;}.footer-rsu a:hover{padding-left:0;}.footer-rsu .footer-logo{height:34px;}}
+@media(max-width:991px){.footer-rsu{padding:45px 0 0;}.footer-rsu .row>div{margin-bottom:24px;}}
+@media(max-width:768px){.footer-rsu{padding:40px 0 0;}.footer-rsu .container-fluid{padding-left:20px!important;padding-right:20px!important;}.footer-rsu .footer-copy{flex-direction:column;align-items:flex-start;gap:8px;}.footer-rsu .footer-bottom{padding:15px 20px;}.footer-rsu a:hover{padding-left:0;}}
 </style>
 <footer class="footer-rsu">
     <div class="footer-ornament"></div>
-    <div class="footer-ornament2"></div>
     <div class="container-fluid px-lg-5 px-4">
         <div class="row g-5 justify-content-between">
             <div class="col-lg-3 col-md-12">
@@ -2004,25 +1787,27 @@ body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(180deg, 
                 </ul>
             </div>
             <div class="col-lg-2 col-md-4 col-6">
-                <h6 class="footer-heading">Menu</h6>
-                <ul>
-                    <li><a href="{{ url('/karir') }}">Karir</a></li>
-                    <li><a href="{{ url('/berita') }}">Berita</a></li>
-                    <li><a href="{{ url('/video') }}">Video</a></li>
-                    <li><a href="{{ url('/galeri') }}">Galeri</a></li>
-                </ul>
-            </div>
-            <div class="col-lg-2 col-md-4 col-6">
-                <h6 class="footer-heading">Layanan</h6>
+                <h6 class="footer-heading">Layanan Medis</h6>
                 <ul>
                     <li><a href="{{ url('/layanan#igd') }}">IGD 24 Jam</a></li>
                     <li><a href="{{ url('/layanan#rawatjalan') }}">Rawat Jalan</a></li>
                     <li><a href="{{ url('/layanan#rawatinap') }}">Rawat Inap</a></li>
                     <li><a href="{{ url('/layanan#ambulans') }}">Ambulans</a></li>
-                    <li><a href="{{ url('/layanan#laboratorium') }}">Laboratorium</a></li>
-                    <li><a href="{{ url('/layanan#radiologi') }}">Radiologi</a></li>
-                    <li><a href="{{ url('/layanan#farmasi') }}">Farmasi</a></li>
                     <li><a href="{{ url('/layanan#mcu') }}">Medical Check Up</a></li>
+                    <li><a href="{{ url('/layanan#intensif') }}">ICU / NICU / HCU</a></li>
+                    <li><a href="{{ url('/layanan#vk') }}">Ruang Bersalin (VK)</a></li>
+                    <li><a href="{{ url('/layanan#ibs') }}">Bedah Sentral (IBS)</a></li>
+                    <li><a href="{{ url('/layanan#penunjang') }}">Penunjang Medis</a></li>
+                    <li><a href="{{ url('/layanan#homeservice') }}">Home Service</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-md-4 col-6">
+                <h6 class="footer-heading">Menu Lainnya</h6>
+                <ul>
+                    <li><a href="{{ url('/karir') }}">Karir</a></li>
+                    <li><a href="{{ url('/berita') }}">Berita</a></li>
+                    <li><a href="{{ url('/video') }}">Video</a></li>
+                    <li><a href="{{ url('/galeri') }}">Galeri</a></li>
                 </ul>
             </div>
             <div class="col-lg-3 col-md-12">
@@ -2072,10 +1857,6 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!isOpen) { body.classList.add('open'); this.classList.add('open'); }
         });
     });
-    drawer.querySelectorAll('.d-accordion-body.open').forEach(b => {
-        const btn = drawer.querySelector('[data-target="' + b.id + '"]');
-        if (btn) btn.classList.add('open');
-    });
 
     window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 10), { passive: true });
 
@@ -2091,10 +1872,10 @@ document.addEventListener('DOMContentLoaded', function () {
         document.addEventListener('click', function(e) { if (!kontakWrap.contains(e.target)) kontakMega.classList.remove('open'); });
     }
 
-    const bsSheet   = document.getElementById('bsSheet');
-    const bsOverlay = document.getElementById('bsOverlay');
-    const bsClose   = document.getElementById('bsClose');
-    const btnMobile = document.getElementById('btnKontakMobile');
+    const bsSheet    = document.getElementById('bsSheet');
+    const bsOverlay  = document.getElementById('bsOverlay');
+    const bsClose    = document.getElementById('bsClose');
+    const btnMobile  = document.getElementById('btnKontakMobile');
     function bsOpen()  { return bsSheet && bsSheet.classList.contains('open'); }
     function openBs()  { if(bsSheet) { bsSheet.classList.add('open');bsOverlay.classList.add('show');document.body.style.overflow='hidden';closeDrawer(); } }
     function closeBs() { if(bsSheet) { bsSheet.classList.remove('open');bsOverlay.classList.remove('show');document.body.style.overflow=''; } }
@@ -2106,9 +1887,36 @@ document.addEventListener('DOMContentLoaded', function () {
         bsSheet.addEventListener('touchstart', e => { startY = e.touches[0].clientY; }, { passive: true });
         bsSheet.addEventListener('touchend',   e => { if (e.changedTouches[0].clientY - startY > 80) closeBs(); }, { passive: true });
     }
+
+    var pillsWrap = document.getElementById('kelasPills');
+    if (pillsWrap) {
+        pillsWrap.addEventListener('click', function (e) {
+            var btn = e.target.closest('.kelas-pill');
+            if (!btn) return;
+            var index = parseInt(btn.getAttribute('data-index'), 10);
+            
+            document.querySelectorAll('[id^="kelasPanel"]').forEach(function (el, i) {
+                el.style.display = (i === index) ? 'block' : 'none';
+            });
+            
+            var pills = document.querySelectorAll('.kelas-pill');
+            pills.forEach(function (el, i) {
+                el.classList.toggle('active', i === index);
+            });
+            
+            var container = document.getElementById('kelasPills');
+            var activePill = pills[index];
+            if (activePill && container) {
+                var targetLeft = activePill.offsetLeft - (container.clientWidth / 2) + (activePill.clientWidth / 2);
+                var maxScroll = container.scrollWidth - container.clientWidth;
+                if (targetLeft < 0) targetLeft = 0;
+                if (targetLeft > maxScroll) targetLeft = maxScroll;
+                container.scrollTo({ left: targetLeft, behavior: 'smooth' });
+            }
+        });
+    }
 });
 
-/* POLI COUNT */
 document.addEventListener('DOMContentLoaded', function () {
     const cards  = document.querySelectorAll('#poliGrid .poli-card');
     const statEl = document.getElementById('statPoli');
@@ -2127,12 +1935,12 @@ function filterPoliDesktop() {
         if (show) visible++;
     });
     const empty = document.querySelector('#poliGrid .poli-empty');
-    if (empty) empty.style.display = (visible === 0) ? '' : 'none';
+    if (empty) empty.style.display = (visible === 0) ? 'block' : 'none';
 }
 
 function filterPoliMobile() {
     const q   = (document.getElementById('searchPoliMobile').value || '').toLowerCase().trim();
-    const sta = document.getElementById('filterPoliStatusMobile').value;
+    const sta = document.getElementById('filterPoliStatusMobile') ? document.getElementById('filterPoliStatusMobile').value : '';
     let visible = 0;
     document.querySelectorAll('#poliMobileList .poli-mobile-item').forEach(function (el) {
         const show = (!q || (el.dataset.nama||'').includes(q)) && (!sta || el.dataset.status === sta);
@@ -2145,15 +1953,6 @@ function filterPoliMobile() {
     if (listEl) listEl.style.display = visible > 0 ? 'flex' : 'none';
 }
 
-function showKelas(index) {
-    document.querySelectorAll('[id^="kelasPanel"]').forEach(function (el) { el.style.display = 'none'; });
-    const target = document.getElementById('kelasPanel' + index);
-    if (target) { target.style.display = 'block'; target.style.animation = 'fadeUp .3s ease both'; }
-    document.querySelectorAll('.kelas-pill').forEach(function (btn) { btn.classList.toggle('active', parseInt(btn.dataset.index) === index); });
-    const pill = document.querySelector('.kelas-pill[data-index="' + index + '"]');
-    if (pill) pill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-}
-
 function smoothTo(id) {
     const el = document.getElementById(id);
     if (!el) return;
@@ -2162,7 +1961,7 @@ function smoothTo(id) {
 }
 
 (function () {
-    const sections = ['igd','rawatjalan','rawatinap','ambulans','laboratorium','radiologi','farmasi','mcu','intensif','vk','ibs','rehab'];
+    const sections = ['igd','rawatjalan','rawatinap','ambulans','mcu','intensif','vk','ibs','penunjang','homeservice'];
     const tabs = Array.from(document.querySelectorAll('.lay-tab'));
     const tabStrip = document.getElementById('layananTabs');
     const prevBtn = document.querySelector('.lay-nav-btn-prev');
@@ -2218,6 +2017,21 @@ function smoothTo(id) {
     updateNavButtons();
 })();
 
+function copyLink() {
+    const btn = document.getElementById('copyBtn');
+    if (!btn) return;
+    navigator.clipboard.writeText(window.location.href).then(function () {
+        btn.classList.add('copied'); btn.innerHTML = '<i class="bi bi-check-lg"></i> Tersalin!';
+        setTimeout(function () { btn.classList.remove('copied'); btn.innerHTML = '<i class="bi bi-link-45deg"></i> Salin Link'; }, 2500);
+    }).catch(function () {
+        const ta = document.createElement('textarea');
+        ta.value = window.location.href;
+        document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+        btn.classList.add('copied'); btn.innerHTML = '<i class="bi bi-check-lg"></i> Tersalin!';
+        setTimeout(function () { btn.classList.remove('copied'); btn.innerHTML = '<i class="bi bi-link-45deg"></i> Salin Link'; }, 2500);
+    });
+}
+
 (function () {
     const orns = [
         { el: document.getElementById('pgOrn1'), triggerPct: 0.08 },
@@ -2238,351 +2052,10 @@ function smoothTo(id) {
     updateOrns();
 })();
 
-function copyLink() {
-    const btn = document.getElementById('copyBtn');
-    if (!btn) return;
-    navigator.clipboard.writeText(window.location.href).then(function () {
-        btn.classList.add('copied'); btn.innerHTML = '<i class="bi bi-check-lg"></i> Tersalin!';
-        setTimeout(function () { btn.classList.remove('copied'); btn.innerHTML = '<i class="bi bi-link-45deg"></i> Salin Link'; }, 2500);
-    }).catch(function () {
-        const ta = document.createElement('textarea');
-        ta.value = window.location.href;
-        document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
-        btn.classList.add('copied'); btn.innerHTML = '<i class="bi bi-check-lg"></i> Tersalin!';
-        setTimeout(function () { btn.classList.remove('copied'); btn.innerHTML = '<i class="bi bi-link-45deg"></i> Salin Link'; }, 2500);
-    });
-}
-
 window.addEventListener('load', function () {
     if (window.location.hash) {
         setTimeout(function () { smoothTo(window.location.hash.replace('#','')); }, 400);
     }
-});
-</script>
-<style>
-/* ============================================================
-   FLOATING WHATSAPP BUTTON
-============================================================ */
-.wa-float-btn {
-    position: fixed;
-    right: 25px;
-    bottom: 25px;
-    width: 68px;
-    height: 68px;
-    border: none;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-    box-shadow: 0 16px 40px rgba(37, 211, 102, 0.32);
-    z-index: 99999;
-    cursor: pointer;
-    overflow: hidden;
-    transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
-    animation: waFloatIn .7s cubic-bezier(.2,.8,.2,1) both;
-}
-.wa-float-btn::before {
-    content: "";
-    position: absolute;
-    inset: -2px;
-    border-radius: inherit;
-    border: 1px solid rgba(255,255,255,.22);
-    animation: waPulse 3.4s ease-in-out infinite;
-    pointer-events: none;
-}
-.wa-float-btn::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background: rgba(255,255,255,.18);
-    transform: scale(0);
-    opacity: 0;
-    pointer-events: none;
-}
-.wa-float-btn.is-clicked::after { animation: waRipple .55s ease-out; }
-.wa-float-btn:hover {
-    transform: scale(1.08);
-    box-shadow: 0 22px 48px rgba(18, 140, 126, 0.38);
-    filter: saturate(1.08);
-}
-.wa-float-btn:active { transform: scale(1.02); }
-.wa-float-btn:hover .wa-float-icon { animation: waWiggle .35s ease-in-out 2; }
-.wa-float-icon { position: relative; z-index: 1; font-size: 30px; line-height: 1; }
-
-.wa-tooltip {
-    position: fixed;
-    right: 100px;
-    bottom: 35px;
-    max-width: 290px;
-    padding: 12px 14px;
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    border-radius: 16px;
-    background: rgba(255,255,255,.97);
-    border: 1px solid rgba(28,20,92,.12);
-    box-shadow: 0 18px 40px rgba(15,23,42,.16);
-    color: #1C145C;
-    z-index: 99998;
-    opacity: 0;
-    transform: translateX(16px);
-    pointer-events: none;
-}
-.wa-tooltip.show {
-    opacity: 1;
-    transform: translateX(0);
-    animation: waTooltipIn .35s ease forwards;
-    pointer-events: auto;
-}
-.wa-tooltip.is-hidden {
-    opacity: 0;
-    transform: translateX(16px);
-    animation: waTooltipOut .28s ease forwards;
-    pointer-events: none;
-}
-.wa-tooltip-icon {
-    width: 34px; height: 34px; border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; background: rgba(37, 211, 102, .14);
-    color: #128C7E; font-size: 16px;
-}
-.wa-tooltip-body { flex: 1; }
-.wa-tooltip-title { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
-.wa-tooltip-text { font-size: 12.5px; line-height: 1.45; color: #5a5480; }
-.wa-tooltip-close { border: none; background: transparent; color: #64748b; cursor: pointer; padding: 2px; margin-left: 4px; }
-
-.wa-modal-overlay {
-    position: fixed;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background: rgba(15, 23, 42, .6);
-    z-index: 10000003;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity .25s ease, visibility .25s ease;
-}
-.wa-modal-overlay.show { opacity: 1; visibility: visible; }
-.wa-modal-card {
-    position: relative;
-    width: min(92vw, 480px);
-    background: #fff;
-    border-radius: 24px;
-    padding: 24px 22px 20px;
-    box-shadow: 0 24px 60px rgba(15,23,42,.18);
-    transform: scale(.96);
-    opacity: 0;
-    transition: transform .25s ease, opacity .25s ease;
-}
-.wa-modal-overlay.show .wa-modal-card { transform: scale(1); opacity: 1; }
-.wa-modal-icon {
-    width: 54px; height: 54px; border-radius: 16px;
-    display: flex; align-items: center; justify-content: center;
-    background: rgba(37, 211, 102, .14); color: #128C7E;
-    font-size: 24px; margin-bottom: 14px;
-}
-.wa-modal-card h3 { margin: 0 0 8px; font-size: 20px; color: #1C145C; }
-.wa-modal-card p { margin: 0 0 12px; color: #5a5480; line-height: 1.65; font-size: 14px; }
-.wa-modal-pre {
-    padding: 12px 14px;
-    border-radius: 14px;
-    background: #f7f9fc;
-    border: 1px solid #ecf0f6;
-    color: #334155;
-    font-size: 13px;
-    line-height: 1.6;
-    white-space: pre-wrap;
-    margin-bottom: 16px;
-}
-.wa-modal-actions { display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap; }
-.wa-btn {
-    border: none; border-radius: 999px; padding: 10px 16px;
-    font-weight: 600; text-decoration: none;
-    display: inline-flex; align-items: center; justify-content: center;
-    cursor: pointer; transition: transform .18s ease, box-shadow .18s ease;
-}
-.wa-btn:hover { transform: translateY(-1px); }
-.wa-btn-secondary { background: #f3f4f6; color: #334155; }
-.wa-btn-primary {
-    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-    color: #fff;
-    box-shadow: 0 10px 24px rgba(37, 211, 102, .24);
-}
-
-@keyframes waFloatIn {
-    from { opacity: 0; transform: translateY(18px) scale(.92); }
-    to   { opacity: 1; transform: translateY(0) scale(1); }
-}
-@keyframes waPulse {
-    0%, 100% { transform: scale(1); opacity: .55; }
-    50%      { transform: scale(1.08); opacity: .2; }
-}
-@keyframes waWiggle {
-    0%, 100% { transform: rotate(0); }
-    25%      { transform: rotate(-8deg); }
-    75%      { transform: rotate(8deg); }
-}
-@keyframes waRipple {
-    0%   { transform: scale(.72); opacity: .45; }
-    100% { transform: scale(1.7); opacity: 0; }
-}
-@keyframes waTooltipIn {
-    from { opacity: 0; transform: translateX(16px); }
-    to   { opacity: 1; transform: translateX(0); }
-}
-@keyframes waTooltipOut {
-    from { opacity: 1; transform: translateX(0); }
-    to   { opacity: 0; transform: translateX(16px); }
-}
-
-@media(max-width: 575px) {
-    .wa-float-btn { right: 20px; bottom: 20px; width: 60px; height: 60px; }
-    .wa-float-icon { font-size: 26px; }
-    .wa-tooltip { right: 78px; bottom: 24px; max-width: min(72vw, 240px); padding: 11px 12px; }
-    .wa-modal-card { padding: 20px 18px 18px; }
-    .wa-modal-actions { justify-content: stretch; }
-    .wa-modal-actions .wa-btn { flex: 1 1 100%; }
-}
-</style>
-
-<!-- ============================================================
-     FLOATING WHATSAPP BUTTON — HTML
-============================================================ -->
-<button class="wa-float-btn" id="waFloatButton" type="button" aria-label="Hubungi Admin WhatsApp">
-    <span class="wa-float-icon"><i class="fab fa-whatsapp"></i></span>
-</button>
-
-<div class="wa-tooltip" id="waTooltip" role="status" aria-live="polite">
-    <div class="wa-tooltip-icon"><i class="fab fa-whatsapp"></i></div>
-    <div class="wa-tooltip-body">
-        <div class="wa-tooltip-title">Butuh bantuan?</div>
-        <div class="wa-tooltip-text">Chat Admin kami melalui WhatsApp.</div>
-    </div>
-    <button class="wa-tooltip-close" id="waTooltipClose" type="button" aria-label="Tutup tooltip">
-        <i class="bi bi-x-lg"></i>
-    </button>
-</div>
-
-<div class="wa-modal-overlay" id="waModalOverlay" aria-hidden="true">
-    <div class="wa-modal-card" role="dialog" aria-modal="true" aria-labelledby="waModalTitle">
-        <div class="wa-modal-icon"><i class="fab fa-whatsapp"></i></div>
-        <h3 id="waModalTitle">Hubungi Admin RSU Allam Medica</h3>
-        <p>
-            Anda akan terhubung dengan Admin RSU Allam Medica melalui WhatsApp.
-            Silakan klik tombol <strong>Lanjutkan ke WhatsApp</strong> untuk memulai percakapan.
-            Tim kami siap membantu memberikan informasi mengenai layanan rumah sakit.
-        </p>
-        <div class="wa-modal-pre">Halo Admin RSU Allam Medica,
-
-Saya ingin mendapatkan informasi mengenai layanan rumah sakit.
-Terima kasih.</div>
-        <div class="wa-modal-actions">
-            <button class="wa-btn wa-btn-secondary" id="waCancelBtn" type="button">Batal</button>
-            <a class="wa-btn wa-btn-primary" id="waContinueBtn" href="#" target="_blank" rel="noopener noreferrer">
-                Lanjutkan ke WhatsApp
-            </a>
-        </div>
-    </div>
-</div>
-
-<!-- ============================================================
-     FLOATING WHATSAPP BUTTON — JAVASCRIPT
-============================================================ -->
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-
-    const waButton        = document.getElementById('waFloatButton');
-    const waTooltip        = document.getElementById('waTooltip');
-    const waTooltipClose   = document.getElementById('waTooltipClose');
-    const waModalOverlay   = document.getElementById('waModalOverlay');
-    const waCancelBtn      = document.getElementById('waCancelBtn');
-    const waContinueBtn    = document.getElementById('waContinueBtn');
-
-    const waPhone   = '6285292224886';
-    const waMessage = 'Halo Admin RSU Allam Medica,\n\nSaya ingin mendapatkan informasi mengenai layanan rumah sakit.\nTerima kasih.';
-
-    function openWaModal() {
-        if (!waModalOverlay) return;
-        waModalOverlay.classList.add('show');
-        waModalOverlay.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeWaModal() {
-        if (!waModalOverlay) return;
-        waModalOverlay.classList.remove('show');
-        waModalOverlay.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-    }
-
-    function showTooltip() {
-        if (!waTooltip) return;
-        waTooltip.classList.remove('is-hidden');
-        waTooltip.classList.add('show');
-    }
-
-    function hideTooltip() {
-        if (!waTooltip) return;
-        waTooltip.classList.remove('show');
-        waTooltip.classList.add('is-hidden');
-    }
-
-    if (waButton) {
-        waButton.addEventListener('click', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            waButton.classList.remove('is-clicked');
-            void waButton.offsetWidth;
-            waButton.classList.add('is-clicked');
-            setTimeout(openWaModal, 220);
-        });
-    }
-
-    if (waTooltipClose) {
-        waTooltipClose.addEventListener('click', function () {
-            hideTooltip();
-        });
-    }
-
-    if (waCancelBtn) {
-        waCancelBtn.addEventListener('click', closeWaModal);
-    }
-
-    if (waContinueBtn) {
-        waContinueBtn.href = 'https://wa.me/' + waPhone + '?text=' + encodeURIComponent(waMessage);
-        waContinueBtn.addEventListener('click', closeWaModal);
-    }
-
-    if (waModalOverlay) {
-        waModalOverlay.addEventListener('click', function (e) {
-            if (e.target === waModalOverlay) closeWaModal();
-        });
-    }
-
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && waModalOverlay && waModalOverlay.classList.contains('show')) {
-            closeWaModal();
-        }
-    });
-
-    let tooltipShowTimer;
-    let tooltipHideTimer;
-
-    function scheduleTooltip() {
-        clearTimeout(tooltipShowTimer);
-        clearTimeout(tooltipHideTimer);
-        tooltipShowTimer = setTimeout(showTooltip, 5000);
-        tooltipHideTimer = setTimeout(() => hideTooltip(), 11000);
-    }
-
-    scheduleTooltip();
-    window.addEventListener('focus', scheduleTooltip);
-
 });
 </script>
 </body>

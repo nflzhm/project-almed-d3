@@ -716,344 +716,60 @@ body {
 </div>
 
 
-<!-- ============================================================
-     FOOTER
-============================================================ -->
+{{-- FOOTER --}}
 <style>
-.footer-rsu{
-    background:linear-gradient(
-        to bottom,
-        #ffffff 0%,
-        #fefefd 3%,
-        #fdfcf6 8%,
-        #fcfbf3 13%,
-        #faf8ee 20%,
-        #f7f5e8 30%,
-        #f3f0e1 45%,
-        #ede9d9 65%,
-        #e8e3d2 85%,
-        #e3deca 100%
-    );
-    color:#1C145C;
-    padding:56px 0 0;
-    position:relative;
-    overflow:hidden;
-}
-
-/* ORNAMEN */
-.footer-rsu .footer-ornament{
-    position:absolute;
-    right:-80px;
-    bottom:-150px;
-    width:420px;
-    height:420px;
-    opacity:.07;
-    background-image:url('{{ asset("images/beranda/ornamen.png") }}');
-    background-size:contain;
-    background-repeat:no-repeat;
-    background-position:center;
-    pointer-events:none;
-    z-index:0;
-}
-
-.footer-rsu .footer-ornament2{
-    position:absolute;
-    left:-100px;
-    top:40px;
-    width:340px;
-    height:340px;
-    opacity:.04;
-    background-image:url('{{ asset("images/beranda/ornamen.png") }}');
-    background-size:contain;
-    background-repeat:no-repeat;
-    background-position:center;
-    pointer-events:none;
-    z-index:0;
-}
-
-/* CONTAINER */
-.footer-rsu .container-fluid{
-    max-width:1550px;
-    position:relative;
-    z-index:1;
-}
-
-/* GRID */
-.footer-rsu .row{
-    --bs-gutter-x:3.5rem;
-}
-
-/* LOGO */
-.footer-rsu .footer-logo{
-    height:40px;
-    width:auto;
-    display:block;
-    margin-bottom:14px;
-}
-
-/* TITLE */
-.footer-rsu .footer-title{
-    font-size:16px;
-    font-weight:700;
-    color:#1C145C;
-    margin-bottom:8px;
-}
-
-.footer-rsu .footer-desc{
-    font-size:13px;
-    line-height:1.8;
-    color:#5a5480;
-    margin-bottom:20px;
-    max-width:340px;
-}
-
-/* SOCIAL */
-.footer-rsu .footer-social{
-    display:flex;
-    gap:10px;
-    margin-bottom:22px;
-}
-
-.footer-rsu .footer-social a{
-    width:36px;
-    height:36px;
-    border-radius:50%;
-    background:rgba(28,20,92,.07);
-    border:1px solid rgba(28,20,92,.15);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#1C145C;
-    text-decoration:none;
-    font-size:15px;
-    transition:.25s;
-}
-
-.footer-rsu .footer-social a:hover{
-    background:#1C145C;
-    color:#fff;
-    transform:translateY(-2px);
-}
-
-/* MITRA */
-.footer-rsu .footer-mitra-label{
-    font-size:11px;
-    color:#9994bb;
-    text-transform:uppercase;
-    letter-spacing:.08em;
-    margin-bottom:10px;
-}
-
-.footer-rsu .footer-mitra{
-    display:flex;
-    gap:10px;
-    align-items:center;
-    flex-wrap:wrap;
-}
-
-.footer-rsu .footer-mitra img:nth-child(1){
-    height:33px;
-}
-
-.footer-rsu .footer-mitra img:nth-child(2){
-    height:23px;
-}
-
-/* HEADING */
-.footer-rsu .footer-heading{
-    font-weight:900;
-    font-size:12px;
-    color:#1C145C;
-    text-transform:uppercase;
-    letter-spacing:.14em;
-    margin-bottom:18px;
-    padding-bottom:10px;
-    border-bottom:1.5px solid rgba(28,20,92,.12);
-    white-space:nowrap;
-}
-
-/* LIST */
-.footer-rsu ul{
-    list-style:none;
-    padding:0;
-    margin:0;
-}
-
-.footer-rsu ul li{
-    margin-bottom:10px;
-}
-
-.footer-rsu a{
-    color:#5a5480;
-    text-decoration:none;
-    font-size:13.5px;
-    transition:.2s;
-    display:inline-flex;
-    align-items:center;
-    gap:5px;
-}
-
-.footer-rsu ul li a::before{
-    content:'›';
-    color:#1C145C;
-    opacity:.4;
-    font-size:15px;
-}
-
-.footer-rsu a:hover{
-    color:#1C145C;
-    padding-left:3px;
-}
-
-/* CONTACT */
-.footer-rsu .footer-contact-row{
-    display:flex;
-    align-items:flex-start;
-    gap:11px;
-    margin-bottom:16px;
-}
-
-.footer-rsu .footer-contact-icon{
-    width:34px;
-    height:34px;
-    border-radius:8px;
-    background:rgba(28,20,92,.07);
-    border:1px solid rgba(28,20,92,.1);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#1C145C;
-    flex-shrink:0;
-}
-
-.footer-rsu .footer-contact-text{
-    font-size:13px;
-    color:#5a5480;
-    line-height:1.7;
-    word-break:normal;
-}
-
-/* HR */
-.footer-rsu hr{
-    height:1px;
-    background:linear-gradient(
-        90deg,
-        rgba(28,20,92,0) 0%,
-        rgba(28,20,92,.12) 30%,
-        rgba(28,20,92,.12) 70%,
-        rgba(28,20,92,0) 100%
-    );
-    border:none;
-    margin:36px 0 0;
-}
-
-/* BOTTOM */
-.footer-rsu .footer-bottom{
-    background:rgba(28,20,92,.05);
-    padding:15px 36px;
-}
-
-.footer-rsu .footer-copy{
-    font-size:12.5px;
-    color:#9994bb;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:12px;
-}
-
-.footer-rsu .footer-copy-badge{
-    background:rgba(28,20,92,.06);
-    border:1px solid rgba(28,20,92,.12);
-    border-radius:20px;
-    padding:4px 14px;
-    font-size:11.5px;
-    color:#7a74a0;
-    white-space:nowrap;
-}
-
-.footer-rsu .footer-accent-dot{
-    display:inline-block;
-    width:3px;
-    height:3px;
-    border-radius:50%;
-    background:#1C145C;
-    opacity:.25;
-    margin:0 8px;
-}
-
-/* TABLET */
-@media(max-width:991px){
-    .footer-rsu{ padding:45px 0 0; }
-    .footer-rsu .row > div{ margin-bottom:24px; }
-    .footer-rsu .footer-desc{ max-width:100%; }
-}
-
-/* MOBILE */
-@media(max-width:768px){
-    .footer-rsu{ padding:40px 0 0; }
-    .footer-rsu .container-fluid{ padding-left:20px !important; padding-right:20px !important; }
-    .footer-rsu .footer-copy{ flex-direction:column; align-items:flex-start; gap:8px; }
-    .footer-rsu .footer-bottom{ padding:15px 20px; }
-    .footer-rsu a:hover{ padding-left:0; }
-    .footer-rsu .footer-logo{ height:34px; }
-}
+.footer-rsu{background:linear-gradient(to bottom,#ffffff 0%,#fefefd 3%,#fdfcf6 8%,#fcfbf3 13%,#faf8ee 20%,#f7f5e8 30%,#f3f0e1 45%,#ede9d9 65%,#e8e3d2 85%,#e3deca 100%);color:#1C145C;padding:56px 0 0;position:relative;overflow:hidden;}
+.footer-rsu .footer-ornament{position:absolute;right:-80px;bottom:-150px;width:420px;height:420px;opacity:.07;background-image:url('{{ asset("images/beranda/ornamen.png") }}');background-size:contain;background-repeat:no-repeat;background-position:center;pointer-events:none;z-index:0;}
+.footer-rsu .container-fluid{max-width:1550px;position:relative;z-index:1;}
+.footer-rsu .row{--bs-gutter-x:3.5rem;}
+.footer-rsu .footer-logo{height:40px;width:auto;display:block;margin-bottom:14px;}
+.footer-rsu .footer-title{font-size:16px;font-weight:700;color:#1C145C;margin-bottom:8px;}
+.footer-rsu .footer-desc{font-size:13px;line-height:1.8;color:#5a5480;margin-bottom:20px;max-width:340px;}
+.footer-rsu .footer-social{display:flex;gap:10px;margin-bottom:22px;}
+.footer-rsu .footer-social a{width:36px;height:36px;border-radius:50%;background:rgba(28,20,92,.07);border:1px solid rgba(28,20,92,.15);display:flex;align-items:center;justify-content:center;color:#1C145C;text-decoration:none;font-size:15px;transition:.25s;}
+.footer-rsu .footer-social a:hover{background:#1C145C;color:#fff;transform:translateY(-2px);}
+.footer-rsu .footer-mitra-label{font-size:11px;color:#9994bb;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;}
+.footer-rsu .footer-mitra{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+.footer-rsu .footer-mitra img:nth-child(1){height:33px;}
+.footer-rsu .footer-mitra img:nth-child(2){height:23px;}
+.footer-rsu .footer-heading{font-weight:900;font-size:12px;color:#1C145C;text-transform:uppercase;letter-spacing:.14em;margin-bottom:18px;padding-bottom:10px;border-bottom:1.5px solid rgba(28,20,92,.12);white-space:nowrap;}
+.footer-rsu ul{list-style:none;padding:0;margin:0;}
+.footer-rsu ul li{margin-bottom:10px;}
+.footer-rsu a{color:#5a5480;text-decoration:none;font-size:13.5px;transition:.2s;display:inline-flex;align-items:center;gap:5px;}
+.footer-rsu ul li a::before{content:'›';color:#1C145C;opacity:.4;font-size:15px;}
+.footer-rsu a:hover{color:#1C145C;padding-left:3px;}
+.footer-rsu .footer-contact-row{display:flex;align-items:flex-start;gap:11px;margin-bottom:16px;}
+.footer-rsu .footer-contact-icon{width:34px;height:34px;border-radius:8px;background:rgba(28,20,92,.07);border:1px solid rgba(28,20,92,.1);display:flex;align-items:center;justify-content:center;color:#1C145C;flex-shrink:0;}
+.footer-rsu .footer-contact-text{font-size:13px;color:#5a5480;line-height:1.7;word-break:normal;}
+.footer-rsu hr{height:1px;background:linear-gradient(90deg,rgba(28,20,92,0) 0%,rgba(28,20,92,.12) 30%,rgba(28,20,92,.12) 70%,rgba(28,20,92,0) 100%);border:none;margin:36px 0 0;}
+.footer-rsu .footer-bottom{background:rgba(28,20,92,.05);padding:15px 36px;}
+.footer-rsu .footer-copy{font-size:12.5px;color:#9994bb;display:flex;justify-content:space-between;align-items:center;gap:12px;}
+.footer-rsu .footer-copy-badge{background:rgba(28,20,92,.06);border:1px solid rgba(28,20,92,.12);border-radius:20px;padding:4px 14px;font-size:11.5px;color:#7a74a0;white-space:nowrap;}
+.footer-rsu .footer-accent-dot{display:inline-block;width:3px;height:3px;border-radius:50%;background:#1C145C;opacity:.25;margin:0 8px;}
+@media(max-width:991px){.footer-rsu{padding:45px 0 0;}.footer-rsu .row>div{margin-bottom:24px;}}
+@media(max-width:768px){.footer-rsu{padding:40px 0 0;}.footer-rsu .container-fluid{padding-left:20px!important;padding-right:20px!important;}.footer-rsu .footer-copy{flex-direction:column;align-items:flex-start;gap:8px;}.footer-rsu .footer-bottom{padding:15px 20px;}.footer-rsu a:hover{padding-left:0;}}
 </style>
-
 <footer class="footer-rsu">
-
     <div class="footer-ornament"></div>
-    <div class="footer-ornament2"></div>
-
     <div class="container-fluid px-lg-5 px-4">
-
         <div class="row g-5 justify-content-between">
-
-            <!-- BRAND -->
             <div class="col-lg-3 col-md-12">
-
-                <img src="{{ asset('images/beranda/logo-almed.png') }}"
-                     class="footer-logo"
-                     alt="Logo RSU Allam Medica">
-
-                <h5 class="footer-title">
-                    RSU Allam Medica Bumiayu
-                </h5>
-
-                <p class="footer-desc">
-                    Jl. Pangeran Diponegoro No. 609,
-                    Jatisawit, Bumiayu, Kabupaten Brebes,
-                    Jawa Tengah 52273
-                </p>
-
+                <img src="{{ asset('images/beranda/logo-almed.png') }}" class="footer-logo" alt="Logo RSU Allam Medica">
+                <h5 class="footer-title">RSU Allam Medica Bumiayu</h5>
+                <p class="footer-desc">Jl. Pangeran Diponegoro No. 609, Jatisawit, Bumiayu, Kabupaten Brebes, Jawa Tengah 52273</p>
                 <div class="footer-social">
-                    <a href="https://www.tiktok.com/@rsuallammedicabumiayu" target="_blank">
-                        <i class="bi bi-tiktok"></i>
-                    </a>
-                    <a href="https://www.facebook.com/allam.medicabmy" target="_blank">
-                        <i class="bi bi-facebook"></i>
-                    </a>
-                    <a href="https://www.instagram.com/allam.medica/" target="_blank">
-                        <i class="bi bi-instagram"></i>
-                    </a>
+                    <a href="https://www.tiktok.com/@rsuallammedicabumiayu" target="_blank"><i class="bi bi-tiktok"></i></a>
+                    <a href="https://www.facebook.com/allam.medicabmy" target="_blank"><i class="bi bi-facebook"></i></a>
+                    <a href="https://www.instagram.com/allam.medica/" target="_blank"><i class="bi bi-instagram"></i></a>
                 </div>
-
-                <div class="footer-mitra-label">
-                    Akreditasi & Mitra
-                </div>
-
+                <div class="footer-mitra-label">Akreditasi & Mitra</div>
                 <div class="footer-mitra">
                     <img src="{{ asset('images/beranda/paripurna.png') }}" alt="">
                     <img src="{{ asset('images/beranda/bpjs.png') }}" alt="">
                 </div>
-
             </div>
-
-            <!-- TAUTAN CEPAT -->
             <div class="col-lg-2 col-md-4 col-6">
-
                 <h6 class="footer-heading">Tautan Cepat</h6>
-
                 <ul>
                     <li><a href="{{ route('beranda') }}">Beranda</a></li>
                     <li><a href="{{ url('/artikel') }}">Artikel</a></li>
@@ -1063,113 +779,50 @@ body {
                     <li><a href="{{ url('/kontak') }}">Kontak</a></li>
                     <li><a href="{{ url('/faq') }}">FAQ</a></li>
                 </ul>
-
             </div>
-
-            <!-- MENU -->
             <div class="col-lg-2 col-md-4 col-6">
-
-                <h6 class="footer-heading">Menu</h6>
-
-                <ul>
-                    <li><a href="{{ url('/karir') }}">Karir</a></li>
-                    <li><a href="{{ url('/berita') }}">Berita</a></li>
-                    <li><a href="{{ url('/video') }}">Video</a></li>
-                </ul>
-
-            </div>
-
-            <!-- LAYANAN -->
-            <div class="col-lg-2 col-md-4 col-6">
-
-                <h6 class="footer-heading">Layanan</h6>
-
+                <h6 class="footer-heading">Layanan Medis</h6>
                 <ul>
                     <li><a href="{{ url('/layanan#igd') }}">IGD 24 Jam</a></li>
                     <li><a href="{{ url('/layanan#rawatjalan') }}">Rawat Jalan</a></li>
                     <li><a href="{{ url('/layanan#rawatinap') }}">Rawat Inap</a></li>
                     <li><a href="{{ url('/layanan#ambulans') }}">Ambulans</a></li>
-                    <li><a href="{{ url('/layanan#laboratorium') }}">Laboratorium</a></li>
-                    <li><a href="{{ url('/layanan#radiologi') }}">Radiologi</a></li>
-                    <li><a href="{{ url('/layanan#farmasi') }}">Farmasi</a></li>
                     <li><a href="{{ url('/layanan#mcu') }}">Medical Check Up</a></li>
+                    <li><a href="{{ url('/layanan#intensif') }}">ICU / NICU / HCU</a></li>
+                    <li><a href="{{ url('/layanan#vk') }}">Ruang Bersalin (VK)</a></li>
+                    <li><a href="{{ url('/layanan#ibs') }}">Bedah Sentral (IBS)</a></li>
+                    <li><a href="{{ url('/layanan#penunjang') }}">Penunjang Medis</a></li>
+                    <li><a href="{{ url('/layanan#homeservice') }}">Home Service</a></li>
                 </ul>
-
             </div>
-
-            <!-- KONTAK -->
+            <div class="col-lg-2 col-md-4 col-6">
+                <h6 class="footer-heading">Menu Lainnya</h6>
+                <ul>
+                    <li><a href="{{ url('/karir') }}">Karir</a></li>
+                    <li><a href="{{ url('/berita') }}">Berita</a></li>
+                    <li><a href="{{ url('/video') }}">Video</a></li>
+                    <li><a href="{{ url('/galeri') }}">Galeri</a></li>
+                </ul>
+            </div>
             <div class="col-lg-3 col-md-12">
-
                 <h6 class="footer-heading">Hubungi Kami</h6>
-
-                <div class="footer-contact-row">
-                    <div class="footer-contact-icon">
-                        <i class="bi bi-telephone-fill"></i>
-                    </div>
-                    <div class="footer-contact-text">
-                        (0289) 430822
-                    </div>
-                </div>
-
-                <div class="footer-contact-row">
-                    <div class="footer-contact-icon">
-                        <i class="bi bi-envelope-fill"></i>
-                    </div>
-                    <div class="footer-contact-text">
-                        allam.medica@yahoo.co.id
-                    </div>
-                </div>
-
-                <div class="footer-contact-row">
-                    <div class="footer-contact-icon">
-                        <i class="bi bi-clock-fill"></i>
-                    </div>
-                    <div class="footer-contact-text">
-                        IGD, Lab & Farmasi : 24 Jam<br>
-                        Rawat Jalan : Sen – Sab 07.00 – 21.00
-                    </div>
-                </div>
-
-                <div class="footer-contact-row">
-                    <div class="footer-contact-icon">
-                        <i class="bi bi-geo-alt-fill"></i>
-                    </div>
-                    <div class="footer-contact-text">
-                        Jl. Pangeran Diponegoro No. 609,<br>
-                        Bumiayu, Brebes
-                    </div>
-                </div>
-
+                <div class="footer-contact-row"><div class="footer-contact-icon"><i class="bi bi-telephone-fill"></i></div><div class="footer-contact-text">(0289) 430822</div></div>
+                <div class="footer-contact-row"><div class="footer-contact-icon"><i class="bi bi-envelope-fill"></i></div><div class="footer-contact-text">allam.medica@yahoo.co.id</div></div>
+                <div class="footer-contact-row"><div class="footer-contact-icon"><i class="bi bi-clock-fill"></i></div><div class="footer-contact-text">IGD, Lab & Farmasi : 24 Jam<br>Rawat Jalan : Sen – Sab 07.00 – 21.00</div></div>
+                <div class="footer-contact-row"><div class="footer-contact-icon"><i class="bi bi-geo-alt-fill"></i></div><div class="footer-contact-text">Jl. Pangeran Diponegoro No. 609,<br>Bumiayu, Brebes</div></div>
             </div>
-
         </div>
-
         <hr>
-
     </div>
-
     <div class="footer-bottom">
-
         <div class="container-fluid px-lg-5 px-4">
-
             <div class="footer-copy">
-                <span>
-                    © 2026 RSU Allam Medica
-                    <span class="footer-accent-dot"></span>
-                    Hak Cipta Dilindungi
-                </span>
-
-                <span class="footer-copy-badge">
-                    Melayani dengan Sepenuh Hati
-                </span>
+                <span>© 2026 RSU Allam Medica <span class="footer-accent-dot"></span> Hak Cipta Dilindungi</span>
+                <span class="footer-copy-badge">Melayani dengan Sepenuh Hati</span>
             </div>
-
         </div>
-
     </div>
-
 </footer>
-<!-- END FOOTER -->
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
