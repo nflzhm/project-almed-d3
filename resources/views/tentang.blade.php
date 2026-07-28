@@ -1101,15 +1101,6 @@
                 </div>
 
             </div>
-
-            <div class="text-center mt-4">
-                <a href="{{ asset('images/beranda/BANNER STRUKTUR ORGANISASI.png') }}"
-                   download="Struktur-Organisasi-RSU-Allam-Medica.png"
-                   class="btn-kontak"
-                   style="text-decoration:none;">
-                    <i class="bi bi-download"></i> Unduh Bagan Struktur Organisasi
-                </a>
-            </div>
         </div>
     </section>
 
