@@ -788,7 +788,7 @@ body {
                     <li><a href="{{ url('/layanan#rawatinap') }}">Rawat Inap</a></li>
                     <li><a href="{{ url('/layanan#ambulans') }}">Ambulans</a></li>
                     <li><a href="{{ url('/layanan#mcu') }}">Medical Check Up</a></li>
-                    <li><a href="{{ url('/layanan#intensif') }}">ICU / NICU / HCU</a></li>
+                    <li><a href="{{ url('/layanan#intensif') }}">HCU/ICU/PICU//NICU</a></li>
                     <li><a href="{{ url('/layanan#vk') }}">Ruang Bersalin (VK)</a></li>
                     <li><a href="{{ url('/layanan#ibs') }}">Bedah Sentral (IBS)</a></li>
                     <li><a href="{{ url('/layanan#penunjang') }}">Penunjang Medis</a></li>

@@ -408,7 +408,7 @@
                         <a href="{{ url('/layanan#mcu') }}" class="drop-item"><i class="bi bi-heart-pulse"></i> Medical Check Up</a>
                     </div>
                     <div class="drop-column">
-                        <a href="{{ url('/layanan#intensif') }}" class="drop-item"><i class="bi bi-heart-pulse-fill"></i> ICU/NICU/HCU</a>
+                        <a href="{{ url('/layanan#intensif') }}" class="drop-item"><i class="bi bi-heart-pulse-fill"></i> HCU/ICU/PICU//NICU</a>
                         <a href="{{ url('/layanan#vk') }}" class="drop-item"><i class="bi bi-gender-female"></i> Ruang Bersalin (VK)</a>
                         <a href="{{ url('/layanan#ibs') }}" class="drop-item"><i class="bi bi-scissors"></i> Bedah Sentral (IBS)</a>
                         <a href="{{ url('/layanan#penunjang') }}" class="drop-item"><i class="bi bi-eyedropper"></i> Penunjang Medis</a>
@@ -522,7 +522,7 @@
             <a href="{{ url('/layanan#rawatinap') }}"   class="d-sub-link"><i class="bi bi-hospital"></i> Rawat Inap</a>
             <a href="{{ url('/layanan#ambulans') }}"     class="d-sub-link"><i class="bi bi-truck"></i> Ambulans 24 Jam</a>
             <a href="{{ url('/layanan#mcu') }}"          class="d-sub-link"><i class="bi bi-heart-pulse"></i> Medical Check Up</a>
-            <a href="{{ url('/layanan#intensif') }}"     class="d-sub-link"><i class="bi bi-heart-pulse-fill"></i> ICU/NICU/HCU</a>
+            <a href="{{ url('/layanan#intensif') }}"     class="d-sub-link"><i class="bi bi-heart-pulse-fill"></i> HCU/ICU/PICU//NICU</a>
             <a href="{{ url('/layanan#vk') }}"           class="d-sub-link"><i class="bi bi-gender-female"></i> Ruang Bersalin (VK)</a>
             <a href="{{ url('/layanan#ibs') }}"          class="d-sub-link"><i class="bi bi-scissors"></i> Bedah Sentral (IBS)</a>
             <a href="{{ url('/layanan#penunjang') }}"    class="d-sub-link"><i class="bi bi-eyedropper"></i> Penunjang Medis</a>
@@ -717,7 +717,7 @@
                     <li><a href="{{ url('/layanan#rawatinap') }}">Rawat Inap</a></li>
                     <li><a href="{{ url('/layanan#ambulans') }}">Ambulans</a></li>
                     <li><a href="{{ url('/layanan#mcu') }}">Medical Check Up</a></li>
-                    <li><a href="{{ url('/layanan#intensif') }}">ICU / NICU / HCU</a></li>
+                    <li><a href="{{ url('/layanan#intensif') }}">HCU/ICU/PICU//NICU</a></li>
                     <li><a href="{{ url('/layanan#vk') }}">Ruang Bersalin (VK)</a></li>
                     <li><a href="{{ url('/layanan#ibs') }}">Bedah Sentral (IBS)</a></li>
                     <li><a href="{{ url('/layanan#penunjang') }}">Penunjang Medis</a></li>
