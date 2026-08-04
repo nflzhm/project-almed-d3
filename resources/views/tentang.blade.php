@@ -894,10 +894,10 @@
             <div class="row g-3">
                 <div class="col-6 col-md-4 col-lg-2"><div class="medica-card medica-m text-center"><div class="medica-letter">M</div><div class="medica-name">Melayani Sepenuh Hati</div><p class="medica-desc">Sepenuh hati melayani setiap pasien</p></div></div>
                 <div class="col-6 col-md-4 col-lg-2"><div class="medica-card medica-e text-center"><div class="medica-letter">E</div><div class="medica-name">Empati</div><p class="medica-desc">Memahami dan merasakan kondisi pasien</p></div></div>
-                <div class="col-6 col-md-4 col-lg-2"><div class="medica-card medica-d text-center"><div class="medica-letter">D</div><div class="medica-name">Disiplin</div><p class="medica-desc">Disiplin dalam bekerja dan pelayanan</p></div></div>
-                <div class="col-6 col-md-4 col-lg-2"><div class="medica-card medica-i text-center"><div class="medica-letter">I</div><div class="medica-name">Ikhlas</div><p class="medica-desc">Ikhlas dalam memberikan layanan terbaik</p></div></div>
-                <div class="col-6 col-md-4 col-lg-2"><div class="medica-card medica-c text-center"><div class="medica-letter">C</div><div class="medica-name">Cepat</div><p class="medica-desc">Respons cepat dan tindakan yang tepat</p></div></div>
-                <div class="col-6 col-md-4 col-lg-2"><div class="medica-card medica-a text-center"><div class="medica-letter">A</div><div class="medica-name">Antusias</div><p class="medica-desc">Bertanggung jawab dan dapat dipercaya</p></div></div>
+                <div class="col-6 col-md-4 col-lg-2"><div class="medica-card medica-d text-center"><div class="medica-letter">D</div><div class="medica-name">Disiplin</div><p class="medica-desc">Disiplin dalam bekerja</p></div></div>
+                <div class="col-6 col-md-4 col-lg-2"><div class="medica-card medica-i text-center"><div class="medica-letter">I</div><div class="medica-name">Ikhlas</div><p class="medica-desc">Ikhlas dalam bertugas</p></div></div>
+                <div class="col-6 col-md-4 col-lg-2"><div class="medica-card medica-c text-center"><div class="medica-letter">C</div><div class="medica-name">Cepat</div><p class="medica-desc">Cepat dan dan tepat dalam pelayanan</p></div></div>
+                <div class="col-6 col-md-4 col-lg-2"><div class="medica-card medica-a text-center"><div class="medica-letter">A</div><div class="medica-name">Antusias</div><p class="medica-desc">Antusias dalam perubahan</p></div></div>
             </div>
         </div>
     </section>
