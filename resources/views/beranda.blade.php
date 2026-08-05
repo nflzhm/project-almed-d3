@@ -334,8 +334,8 @@
                                 <div class="kontak-info-val">0852-9027-3097</div>
                             </a>
                             <a href="https://wa.me/6285292224886" target="_blank" class="kontak-info-card">
-                                <div class="kontak-info-icon ci-wa"><i class="fa-brands fa-whatsapp"></i></div>
-                                <div class="kontak-info-title">WhatsApp</div>
+                                <div class="kontak-info-icon ci-wa"><i class="fa-solid fa-headset"></i></div>
+                                <div class="kontak-info-title">Informasi & Pengaduan</div>
                                 <div class="kontak-info-val">0852-9222-4886</div>
                             </a>
                             <a href="mailto:allam.medica@yahoo.co.id" class="kontak-info-card">
